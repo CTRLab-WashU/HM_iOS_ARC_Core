@@ -47,6 +47,8 @@ public class PricesTestViewController: ArcViewController {
         super.viewDidLoad()
         //topButton.shouldAutoToggle = false;
         //bottomButton.shouldAutoToggle = false;
+        ACState.testCount += 1
+
         buildButtonStackView()
 		let app = Arc.shared
 		let studyId = Int(app.studyController.getCurrentStudyPeriod()?.studyID ?? -1)

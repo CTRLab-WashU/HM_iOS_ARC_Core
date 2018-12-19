@@ -39,7 +39,8 @@ public class SymbolsTestViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //Create the test optionally with a duration
-		
+        ACState.testCount += 1
+
 		let app = Arc.shared
 		let studyId = Int(app.studyController.getCurrentStudyPeriod()?.studyID ?? -1)
 		
@@ -74,7 +75,7 @@ public class SymbolsTestViewController: UIViewController {
     override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         //Trigger the begining of the test
-        
+
         _ = controller.start(test: responseID)
 		_  = controller.mark(filled: responseID)
 

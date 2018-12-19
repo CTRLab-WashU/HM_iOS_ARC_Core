@@ -179,7 +179,20 @@ open class Arc : ArcApi {
 		// check to see if we need to schedule any notifications for upcoming Arcs
 		// If the participant hasn't confirmed their start date, we should send notifications periodically in the weeks leading up
 		// to the Arc.
-		
+        let app = Arc.shared
+        
+        //Check for participant setup
+        if app.participantId == nil {
+            
+            //If none set up go to auth
+            guard let id = app.authController.checkAuth() else {
+                completion();
+                return
+            }
+            
+            //set the id we can skip past this once set
+            app.participantId = Int(id)
+        }
 		HMAPI.deviceHeartbeat.execute(data: HeartbeatRequestData())
 		uploadTestData()
 		

@@ -29,7 +29,7 @@ open class PricesQuestionViewController: UIViewController {
     var presentedQuestions:Set<Int> = []
     override open func viewDidLoad() {
         super.viewDidLoad();
-        
+
         
         
     }
@@ -37,6 +37,7 @@ open class PricesQuestionViewController: UIViewController {
         super.viewDidAppear(animated)
         buildButtonStackView()
         if isBeingPresented {
+
             let test:PriceTestResponse = try! controller.get(id: responseId)
             questions = Set(0 ..< test.sections.count)
 //            for i in 0..<buttons.count
