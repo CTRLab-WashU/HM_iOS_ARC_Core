@@ -52,7 +52,9 @@ public protocol AppNavigationController {
 open class BaseAppNavigationController : AppNavigationController {
 	
 	
-    
+    public init() {
+        
+    }
 	public func defaultHelpState() -> UIViewController {
 		return ACState.home.viewForState()
 	}
