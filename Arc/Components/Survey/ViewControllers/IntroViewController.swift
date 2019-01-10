@@ -76,10 +76,11 @@ open class IntroViewController: UIViewController {
     
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-		if shouldHideBackButton {
-			//self.navigationItem.setLeftBarButton(leftButton, animated: true)
-			self.navigationItem.leftBarButtonItem = nil
-		}
+        if shouldHideBackButton {
+            self.navigationItem.leftBarButtonItem?.isEnabled = false
+            self.navigationItem.leftBarButtonItem?.customView?.isHidden = true
+        }
+
 		self.navigationItem.rightBarButtonItem = nil
         headingLabel.text = heading
         subheadingLabel.text = subheading
