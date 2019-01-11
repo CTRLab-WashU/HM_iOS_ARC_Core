@@ -78,9 +78,8 @@ public extension Date {
 	
 	public func daysSince(date:Date) -> Int
 	{
-		let diff = self.startOfDay().timeIntervalSince(date.startOfDay());
-		
-		return Int( floor(diff / (24 * 60 * 60)));
+        return Calendar.current.dateComponents([.day], from: date.startOfDay(), to: self.startOfDay()).day ?? 0
+
 	}
 	
     // creates a Date object with the same year, month, and day components of the given date, with a time of 00:00:00
