@@ -50,7 +50,7 @@ open class InstructionNavigationController: UINavigationController {
 			let vc:IntroViewController = .get()
 			vc.nextButtonTitle = instruction.nextButtonTitle
 
-			self.pushViewController(vc, animated: false)
+			self.pushViewController(vc, animated: true)
 			
 			vc.set(heading:     titleOverride ?? instruction.title,
 				   subheading:  instruction.subtitle,
