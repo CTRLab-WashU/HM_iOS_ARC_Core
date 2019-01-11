@@ -267,7 +267,8 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 	
 	
 	public func setError(message: String?) {
-        if self.input is PasswordView || self.input is SegmentedTextView {
+        
+        if message != nil && (self.input is PasswordView || self.input is SegmentedTextView) {
             showContactButton()
         }
 		input?.setError(message: message)
@@ -309,7 +310,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
         // Pass the selected object to the new view controller.
     }
     */
-    
+    //TODO:Remove this and refactor
     func showContactButton() {
         for v in views.arrangedSubviews {
             if v is LoginHelpView {
