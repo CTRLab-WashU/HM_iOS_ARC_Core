@@ -168,6 +168,7 @@
 		C54AEA6E21C81B5F00DEC360 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9CB21C81B5F00DEC360 /* Roboto-Bold.ttf */; };
 		C54AEA6F21C81B5F00DEC360 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9CC21C81B5F00DEC360 /* Roboto-Thin.ttf */; };
 		C54AEA7021C81B5F00DEC360 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9CD21C81B5F00DEC360 /* Roboto-Black.ttf */; };
+		C589B50E21ED001700389342 /* ACAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C589B50D21ED001700389342 /* ACAuthViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -364,6 +365,7 @@
 		C54AE9CB21C81B5F00DEC360 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		C54AE9CC21C81B5F00DEC360 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		C54AE9CD21C81B5F00DEC360 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		C589B50D21ED001700389342 /* ACAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACAuthViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -774,6 +776,7 @@
 		C54AE97721C81B5C00DEC360 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C589B50D21ED001700389342 /* ACAuthViewController.swift */,
 				C54AE97821C81B5C00DEC360 /* WelcomeViewController.swift */,
 				C54AE97921C81B5C00DEC360 /* WelcomeViewController.xib */,
 			);
@@ -1207,6 +1210,7 @@
 				C54AEA1921C81B5F00DEC360 /* FCollectionContainerView.swift in Sources */,
 				C54AEA2E21C81B5F00DEC360 /* LoadingScreenViewController.swift in Sources */,
 				C54AE9F521C81B5F00DEC360 /* SessionController.swift in Sources */,
+				C589B50E21ED001700389342 /* ACAuthViewController.swift in Sources */,
 				C54AEA4221C81B5F00DEC360 /* SurveyViewController.swift in Sources */,
 				C54AEA4C21C81B5F00DEC360 /* SurveyInputView.swift in Sources */,
 				C54AEA1F21C81B5F00DEC360 /* GridTestCells.swift in Sources */,
