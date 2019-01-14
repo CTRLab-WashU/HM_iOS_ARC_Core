@@ -32,14 +32,14 @@ open class StudyController : MHController {
 			defaults.synchronize();
 		}
 	}
-	open var beginingOfStudy:Date?
+	open var beginningOfStudy:Date?
 		{
 		get {
-			return (defaults.value(forKey:"beginingOfStudy") as? Date);
+			return (defaults.value(forKey:"beginningOfStudy") as? Date);
 		}
 		set (newVal)
 		{
-			defaults.setValue(newVal, forKey: "beginingOfStudy");
+			defaults.setValue(newVal, forKey: "beginningOfStudy");
 			defaults.synchronize();
 		}
 	}
