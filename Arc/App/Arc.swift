@@ -34,7 +34,7 @@ open class Arc : ArcApi {
 	}()
 	
 	lazy public var deviceString = {deviceInfo();}()
-	lazy public var deviceId = UIDevice.current.identifierForVendor!.uuidString;
+	lazy public var deviceId = AppController().deviceId
 	lazy public var versionString = {info?[APP_VERSION_INFO_KEY] as? String ?? ""}()
 	lazy public var arcVersion:Int = {info?[ARC_VERSION_INFO_KEY] as? Int ?? 0;}()
     //A map of all of the possible states in the application
