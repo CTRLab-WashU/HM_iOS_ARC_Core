@@ -25,20 +25,39 @@ open class AppController : MHController {
 			defaults.synchronize();
 		}
 	}
-	public var isFirstLaunch:Bool {
-		get {
-			if (defaults.value(forKey:"hasLaunched") as? Bool) != nil
-			{
-				return false;
-			}
-			return true;
-		}
-		set (newVal)
-		{
-			defaults.setValue(true, forKey:"hasLaunched");
-			defaults.synchronize();
-		}
-	}
+    
+    public var isFirstLaunch:Bool {
+        get {
+            if (defaults.value(forKey:"hasLaunched") as? Bool) != nil
+            {
+                return false;
+            }
+            return true;
+        }
+        set (newVal)
+        {
+            defaults.setValue(true, forKey:"hasLaunched");
+            defaults.synchronize();
+        }
+    }
+    
+    public var deviceId:String {
+        get {
+            if let value = (defaults.value(forKey:"deviceId") as? String)
+            {
+                return value;
+            }
+            let id = UUID().uuidString;
+            defaults.setValue(id, forKey:"deviceId");
+            defaults.synchronize();
+            return id
+        }
+        set (newVal)
+        {
+            defaults.setValue(newVal, forKey:"deviceId");
+            defaults.synchronize();
+        }
+    }
 	
 	public var wakeSleepUploaded:Bool {
 		get {
