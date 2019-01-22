@@ -15,6 +15,7 @@ public protocol ArcEnvironment {
     var welcomeLogo:String? {get}
     var welcomeText:String? {get}
     var privacyPolicyUrl:String? {get}
+    var arcStartDays:Dictionary<Int, Int>? {get}
    
     var appController:AppController {get}
     

@@ -17,8 +17,8 @@ open class StudyController : MHController {
 
 	///For testing replace these with their mock counterparts
 	///TODO: Investigate necessity of cross controller integration
-	open var InterArcWeeks: Dictionary<Int, Int> = [1: 0,
-											   ];
+    open var ArcStartDays:  Dictionary<Int, Int> = [1: 0,
+                                                    ];
 	public var progressHandler:((Int, Int)->())?
 
 	open var studyCount:Int
@@ -359,14 +359,14 @@ open class StudyController : MHController {
 		var nextStartDate:Date = startDate;
 		var nextId:Int = startingID;
 		
-		while InterArcWeeks[nextId] != nil
+		while ArcStartDays[nextId] != nil
 		{
 			createStudyPeriod(forDate: nextStartDate);
 			
 			nextId += 1;
-			if let weeks = InterArcWeeks[nextId]
+			if let days = ArcStartDays[nextId]
 			{
-				nextStartDate = nextStartDate.addingWeeks(weeks: weeks);
+				nextStartDate = nextStartDate.addingDays(days: days);
 			}
 			else
 			{
@@ -380,9 +380,9 @@ open class StudyController : MHController {
 	
 	open func getWeeksUntilNextVisit(study:StudyPeriod) -> Int?
 	{
-		if let weeks = InterArcWeeks[Int(study.studyID) + 1]
+		if let days = ArcStartDays[Int(study.studyID) + 1]
 		{
-			return weeks;
+			return days;
 		}
 		
 		return nil;

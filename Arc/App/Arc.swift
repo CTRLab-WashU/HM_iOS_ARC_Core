@@ -110,6 +110,10 @@ open class Arc : ArcApi {
         Arc.shared.gridTestController = environment.gridTestController
         Arc.shared.pricesTestController = environment.pricesTestController
         Arc.shared.symbolsTestController = environment.symbolsTestController
+        
+        if let arcStartDays = environment.arcStartDays {
+            Arc.shared.studyController.ArcStartDays = arcStartDays
+        }
     }
     public func nextAvailableState(runPeriodicBackgroundTask:Bool = false, direction:UIWindow.TransitionOptions.Direction = .toRight) {
         appNavigation.navigate(state: appNavigation.nextAvailableState(runPeriodicBackgroundTask: runPeriodicBackgroundTask), direction: direction)

@@ -13,6 +13,7 @@ public protocol Phase {
 	
 	static func from(startDate:Date, currentDate:Date) -> PhasePeriod
 	static func from(weeks:Int) -> PhasePeriod
+    static func from(days:Int) -> PhasePeriod
 	func statesForSession(week:Int, day:Int, session:Int) -> [State]
 	func statesFor(session: Session) -> [State]
 	
