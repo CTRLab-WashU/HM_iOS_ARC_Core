@@ -131,6 +131,25 @@ open class StudyController : MHController {
 			
 		}) as! Session
 	}
+    open func get(session sessionId:Int) -> Session? {
+        
+        let study:[Session]? = fetch(predicate: NSPredicate(format: "sessionID == %i", sessionId), sort: nil)
+        
+        return study?.first
+        
+    }
+    
+    open func getUpcomingSessions(withLimit limit:Int) -> [Session]  {
+        let now = NSDate();
+        
+        let predicate = NSPredicate(format: "sessionDate>=%@", now);
+        let sortDescriptors = [NSSortDescriptor(key:"sessionDate", ascending:true)];
+        
+        
+        let results:[Session] =  fetch(predicate:predicate, sort:sortDescriptors, limit: limit) ?? []
+        
+        return results
+    }
 	open func getAllStudyPeriods() -> [StudyPeriod]
 	{
 		

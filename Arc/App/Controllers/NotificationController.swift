@@ -110,6 +110,34 @@ open class NotificationController : MHController
 		
 //		save();
 	}
+    
+    // creates notifications for upcoming TestSessions
+    open func schedule(upcomingSessionNotificationsWithLimit limit:Int)
+    {
+        
+        //Just get the upcoming 32 sessions reverse them and schedule them
+        //Reversing the incoming list will cause the latest tests to be remove instead of the recent
+        let tests = Arc.shared.studyController.getUpcomingSessions(withLimit: limit).reversed()
+        for test in tests
+        {
+            
+            let title = "It's time to take a quick test!";
+            let body = title;
+            let date = test.sessionDate! as Date
+            
+            let newNotification = scheduleNotification(date: date, title: title, body: body, identifierPrefix: "TestSession");
+            if let study = test.study {
+                newNotification.studyID = study.studyID;
+                study.hasScheduledNotifications = true;
+            } else {
+                fatalError("Invalid test session, No study ID")
+            }
+            newNotification.sessionID = test.sessionID;
+        }
+        
+        
+        //        save();
+    }
 	func clear(confirmationReminders studyId:Int)
 	{
 		clearNotifications(withIdentifierPrefix: "DateConfirmation-\(studyId)");

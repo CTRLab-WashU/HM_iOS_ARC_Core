@@ -98,13 +98,25 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
     }
     //Override this to prepare a controller
     open func loadSurvey(template:String) {
+        self.loadSurvey(template: template, surveyId: nil)
+    }
+    
+    //Override this to prepare a controller
+    open func loadSurvey(template:String, surveyId:String? = nil) {
 		let app = Arc.shared
         survey = app.surveyController.load(survey: template)
 		surveyType = survey.type
 		let studyId = Int(app.studyController.getCurrentStudyPeriod()?.studyID ?? -1)
 		guard let sessionId = app.currentTestSession else {
-			
-			let response = Arc.shared.surveyController.create(type: surveyType)
+            
+            var response:String = ""
+            if let surveyId = surveyId {
+                response = Arc.shared.surveyController.create(surveyResponse: surveyId, type: surveyType)
+            } else {
+                response = Arc.shared.surveyController.create(type: surveyType)
+
+            }
+
 			Arc.shared.surveyController.mark(startDate: response)
 			self.surveyId = response
 			questions = survey.questions

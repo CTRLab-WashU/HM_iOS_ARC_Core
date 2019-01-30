@@ -9,7 +9,7 @@
 import Foundation
 
 public enum SurveyType : String, Codable {
-	case unknown, auth, ema, edna, mindfulness, schedule, mindfulnessReminder, context, finished, finishedNoQuestions, gridTest, priceTest, symbolsTest, cognitive, wake, chronotype
+	case unknown, auth, ema, edna, mindfulness, schedule, mindfulnessReminder, context, finished, finishedNoQuestions, gridTest, priceTest, symbolsTest, cognitive, wake, chronotype, region, language
 
 	public var metatype: HMCodable.Type {
 		switch self {

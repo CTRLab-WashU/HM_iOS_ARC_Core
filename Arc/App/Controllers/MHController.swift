@@ -78,11 +78,14 @@ open class MHController {
 		save()
 		return item
 	}
-    public func fetch<T:NSManagedObject>(predicate:NSPredicate? = nil, sort:[NSSortDescriptor]? = nil) -> [T]? {
+    public func fetch<T:NSManagedObject>(predicate:NSPredicate? = nil, sort:[NSSortDescriptor]? = nil, limit:Int? = nil) -> [T]? {
         do {
             if let fetchRequest:NSFetchRequest<T> = T.fetchRequest() as? NSFetchRequest<T> {
                 fetchRequest.predicate = predicate
                 fetchRequest.sortDescriptors = sort
+                if let limit = limit {
+                    fetchRequest.fetchLimit = limit
+                }
                 let results = try MHController.dataContext.fetch(fetchRequest)
                 return results
             }
