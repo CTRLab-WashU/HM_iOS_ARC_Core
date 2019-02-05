@@ -200,10 +200,40 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
 	}
     
     
-    
+    private func displayInstruction() {
+        
+    }
+    //TODO: Refactor survey question display, keep in mind old versions of surveys
     private func displayQuestion(index:String) -> Bool {
         let question = Arc.shared.surveyController.get(question: index)
+        if let style = question.style, style == .instruction {
+            
+            let vc:IntroViewController = .get()
+            vc.isIntersitial = true
+            vc.templateHandler = templateForPostSurvey
 
+            if !shouldShowBackButton {
+                vc.shouldHideBackButton = true
+            }
+            self.pushViewController(vc, animated: true)
+            
+            vc.set(heading:     question.prompt,
+                   subheading:  question.detail,
+                   content:     question.content)
+            vc.nextButtonTitle = question.nextButtonTitle
+            vc.nextPressed = {
+                [weak self] in
+                
+                let nextQuestion = self?.figureOutNextQuestion(id: index)
+                self?.onValueSelected(value: AnyResponse(type: QuestionType.none, value: nil), index: index)
+                
+                self?.next(nextQuestion: nextQuestion)
+                
+            }
+            self.isShowingHelpButton = false
+            
+            return true
+        }
 		let vc:SurveyViewController = .get()
 		if let helpPressed = helpPressed {
 			vc.helpPressed = helpPressed
@@ -434,6 +464,9 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
 		
 		//Pop off questions that got popped off the viewcontroller stack
 		let surveyControllerCount = navigationController.viewControllers.filter { (vc) -> Bool in
+            if let vc = vc as? IntroViewController {
+                return vc.isIntersitial
+            }
 			return vc is SurveyViewController
 		}
 		while answeredQuestions.count >= surveyControllerCount.count && answeredQuestions.count > 0 {

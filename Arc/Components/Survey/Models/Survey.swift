@@ -10,7 +10,9 @@
  */
 import Foundation
 
-
+public enum QuestionStyle : String, Codable {
+    case none, instruction
+}
 
 public enum QuestionType : String, Codable {
 	case none, text, number, slider, choice, checkbox, time, duration, password, segmentedText, multilineText
@@ -44,7 +46,6 @@ public struct Survey : HMCodable {
 			
 			public var type: QuestionType? = .none
 			
-			
             public var answerId:String
             public var value:Any?
 			public var exclusive:Bool?
@@ -67,9 +68,11 @@ public struct Survey : HMCodable {
         }
         
         public var type:QuestionType
+        public var style: QuestionStyle?
         public var questionId:String
         public var prompt:String
         public var detail:String?
+        public var content:String?
         public var minMessage:String?
         public var maxMessage:String?
         public var minValue:Float?

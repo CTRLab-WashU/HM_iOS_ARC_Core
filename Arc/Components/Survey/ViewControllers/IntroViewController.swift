@@ -24,6 +24,7 @@ open class IntroViewController: UIViewController {
     var templateHandler:((Int)->Dictionary<String,String>)?
     var instructionIndex:Int = 0
 	var shouldHideBackButton = false
+    var isIntersitial = false
 
     open var renderer:HMMarkupRenderer!
     
