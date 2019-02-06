@@ -169,6 +169,7 @@
 		C54AEA6F21C81B5F00DEC360 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9CC21C81B5F00DEC360 /* Roboto-Thin.ttf */; };
 		C54AEA7021C81B5F00DEC360 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9CD21C81B5F00DEC360 /* Roboto-Black.ttf */; };
 		C589B50E21ED001700389342 /* ACAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C589B50D21ED001700389342 /* ACAuthViewController.swift */; };
+		C5D0F6FA220B477B00F04942 /* MHScrollingAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5D0F6F9220B477B00F04942 /* MHScrollingAlertView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -366,6 +367,7 @@
 		C54AE9CC21C81B5F00DEC360 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		C54AE9CD21C81B5F00DEC360 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		C589B50D21ED001700389342 /* ACAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACAuthViewController.swift; sourceTree = "<group>"; };
+		C5D0F6F9220B477B00F04942 /* MHScrollingAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MHScrollingAlertView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -628,6 +630,7 @@
 				C54AE93A21C81B5C00DEC360 /* CancelButton.xib */,
 				C54AE93B21C81B5C00DEC360 /* ContainerButton.swift */,
 				C54AE93D21C81B5C00DEC360 /* MHAlertView.xib */,
+				C5D0F6F9220B477B00F04942 /* MHScrollingAlertView.xib */,
 				C54AE93E21C81B5C00DEC360 /* PrimaryButton.xib */,
 				C54AE93F21C81B5C00DEC360 /* MHAlertView.swift */,
 				C54AE94021C81B5C00DEC360 /* PrimaryButton.swift */,
@@ -1106,6 +1109,7 @@
 				C54AEA4121C81B5F00DEC360 /* SurveyNavigationViewController.xib in Resources */,
 				C54AEA4321C81B5F00DEC360 /* IntroViewController.xib in Resources */,
 				C54AEA6E21C81B5F00DEC360 /* Roboto-Bold.ttf in Resources */,
+				C5D0F6FA220B477B00F04942 /* MHScrollingAlertView.xib in Resources */,
 				C54AE9FD21C81B5F00DEC360 /* MHAlertView.xib in Resources */,
 				C54AEA6621C81B5F00DEC360 /* Roboto-Regular.ttf in Resources */,
 				C54AEA6521C81B5F00DEC360 /* Roboto-Light.ttf in Resources */,

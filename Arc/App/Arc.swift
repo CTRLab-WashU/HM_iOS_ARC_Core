@@ -125,28 +125,26 @@ open class Arc : ArcApi {
 	
 	
     
-	public func displayAlert(message:String, options:[MHAlertView.ButtonType]) {
-		let view:MHAlertView = .get()
-		view.alpha = 0
-		
-		guard let window = UIApplication.shared.keyWindow else {
-			return
-		}
-		
-		guard let _ = window.rootViewController else {
-			
-			return
-		}
-		window.constrain(view: view)
-		view.set(message: message, buttons: options)
-		UIView.animate(withDuration: 0.35, delay: 0.1, options: .curveEaseOut, animations: {
-			view.alpha = 1
-		}) { (_) in
-			
-		}
-		
-		
-	}
+    public func displayAlert(message:String, options:[MHAlertView.ButtonType], isScrolling:Bool = false){
+        let view:MHAlertView = (isScrolling) ? .get(nib: "MHScrollingAlertView") : .get()
+        view.alpha = 0
+        
+        guard let window = UIApplication.shared.keyWindow else {
+            return
+        }
+        
+        guard let _ = window.rootViewController else {
+            
+            return
+        }
+        window.constrain(view: view)
+        view.set(message: message, buttons: options)
+        UIView.animate(withDuration: 0.35, delay: 0.1, options: .curveEaseOut, animations: {
+            view.alpha = 1
+        }) { (_) in
+            
+        }
+    }
     
 	public func deviceInfo() -> String
 	{
@@ -380,6 +378,38 @@ open class Arc : ArcApi {
             
             
         }
+    }
+    public func debugSchedule() {
+        let list = studyController.getUpcomingSessions(withLimit: 32)
+            .map({
+                " \($0.study?.studyID ?? -1)-\($0.sessionID): \($0.sessionDate?.localizedString() ?? "") \(($0.finishedSession) ? "√" : "\(($0.missedSession) ? "x" : "-")")"
+                
+            }).joined(separator: "\n")
+        
+        
+        displayAlert(message:  """
+            Study: \(currentStudy ?? -1)
+            
+            Test: \(availableTestSession ?? -1)
+            
+            \(list)
+            """, options:  [.default("Notifications", {[weak self] in self?.debugNotifications()}),
+                            .cancel("Close", {})],
+                 isScrolling: true)
+    }
+    public func debugNotifications() {
+        let list = notificationController.getNotifications(withIdentifierPrefix: "TestSession").map({"\($0.studyID)-\($0.sessionID): \($0.scheduledAt!.localizedString())\n"}).joined()
+        
+        
+        displayAlert(message:  """
+            Study: \(currentStudy ?? -1)
+            
+            Test: \(availableTestSession ?? -1)
+            
+            \(list)
+            """, options:  [.default("Schedule", {[weak self] in self?.debugSchedule()}),
+                            .cancel("Close", {})],
+                 isScrolling: true)
     }
 }
 
