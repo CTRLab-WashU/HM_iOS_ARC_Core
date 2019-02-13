@@ -168,7 +168,29 @@
 		C54AEA6E21C81B5F00DEC360 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9CB21C81B5F00DEC360 /* Roboto-Bold.ttf */; };
 		C54AEA6F21C81B5F00DEC360 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9CC21C81B5F00DEC360 /* Roboto-Thin.ttf */; };
 		C54AEA7021C81B5F00DEC360 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9CD21C81B5F00DEC360 /* Roboto-Black.ttf */; };
+		C56BBCA3221490DF0025A318 /* ACTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56BBCA2221490DF0025A318 /* ACTextView.swift */; };
+		C56BBCA52214AF5B0025A318 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56BBCA42214AF5B0025A318 /* Common.swift */; };
+		C583C0E422136E0C0043DFA7 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9C121C81B5F00DEC360 /* Roboto-Medium.ttf */; };
+		C583C0E522136E0C0043DFA7 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9C221C81B5F00DEC360 /* Roboto-Light.ttf */; };
+		C583C0E622136E0C0043DFA7 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9C321C81B5F00DEC360 /* Roboto-Regular.ttf */; };
+		C583C0E722136E0C0043DFA7 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9C421C81B5F00DEC360 /* Roboto-MediumItalic.ttf */; };
+		C583C0E822136E0C0043DFA7 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9C521C81B5F00DEC360 /* Roboto-ThinItalic.ttf */; };
+		C583C0E922136E0C0043DFA7 /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9C621C81B5F00DEC360 /* Roboto-BoldItalic.ttf */; };
+		C583C0EA22136E0C0043DFA7 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9C721C81B5F00DEC360 /* Roboto-LightItalic.ttf */; };
+		C583C0EB22136E0C0043DFA7 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9C821C81B5F00DEC360 /* Roboto-Italic.ttf */; };
+		C583C0EC22136E0C0043DFA7 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9C921C81B5F00DEC360 /* LICENSE.txt */; };
+		C583C0ED22136E0C0043DFA7 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9CA21C81B5F00DEC360 /* Roboto-BlackItalic.ttf */; };
+		C583C0EE22136E0C0043DFA7 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9CB21C81B5F00DEC360 /* Roboto-Bold.ttf */; };
+		C583C0EF22136E0C0043DFA7 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9CC21C81B5F00DEC360 /* Roboto-Thin.ttf */; };
+		C583C0F022136E0C0043DFA7 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9CD21C81B5F00DEC360 /* Roboto-Black.ttf */; };
+		C583C0F222136E3B0043DFA7 /* ACLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C583C0F122136E3B0043DFA7 /* ACLabel.swift */; };
+		C583C0F3221378B10043DFA7 /* HMMarkup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52B75DC21C83B2A00498571 /* HMMarkup.framework */; };
 		C589B50E21ED001700389342 /* ACAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C589B50D21ED001700389342 /* ACAuthViewController.swift */; };
+		C5B2601C22135F7300BFF778 /* ArcUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B2601322135F7200BFF778 /* ArcUIKit.framework */; };
+		C5B2602122135F7300BFF778 /* ArcUIKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2602022135F7300BFF778 /* ArcUIKitTests.swift */; };
+		C5B2602322135F7300BFF778 /* ArcUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = C5B2601522135F7300BFF778 /* ArcUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C5B2602C2213606600BFF778 /* ACButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2602B2213606600BFF778 /* ACButton.swift */; };
+		C5B2602D2213657500BFF778 /* ArcUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B2601322135F7200BFF778 /* ArcUIKit.framework */; };
 		C5D0F6FA220B477B00F04942 /* MHScrollingAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5D0F6F9220B477B00F04942 /* MHScrollingAlertView.xib */; };
 /* End PBXBuildFile section */
 
@@ -193,6 +215,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = C54AE8E621C81B2F00DEC360;
 			remoteInfo = Arc;
+		};
+		C5B2601D22135F7300BFF778 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C54AE8DE21C81B2F00DEC360 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C5B2601222135F7200BFF778;
+			remoteInfo = ArcUIKit;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -366,7 +395,17 @@
 		C54AE9CB21C81B5F00DEC360 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		C54AE9CC21C81B5F00DEC360 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		C54AE9CD21C81B5F00DEC360 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		C56BBCA2221490DF0025A318 /* ACTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTextView.swift; sourceTree = "<group>"; };
+		C56BBCA42214AF5B0025A318 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		C583C0F122136E3B0043DFA7 /* ACLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACLabel.swift; sourceTree = "<group>"; };
 		C589B50D21ED001700389342 /* ACAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACAuthViewController.swift; sourceTree = "<group>"; };
+		C5B2601322135F7200BFF778 /* ArcUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ArcUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5B2601522135F7300BFF778 /* ArcUIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArcUIKit.h; sourceTree = "<group>"; };
+		C5B2601622135F7300BFF778 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5B2601B22135F7300BFF778 /* ArcUIKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArcUIKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5B2602022135F7300BFF778 /* ArcUIKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcUIKitTests.swift; sourceTree = "<group>"; };
+		C5B2602222135F7300BFF778 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5B2602B2213606600BFF778 /* ACButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACButton.swift; sourceTree = "<group>"; };
 		C5D0F6F9220B477B00F04942 /* MHScrollingAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MHScrollingAlertView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -390,6 +429,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5B2602D2213657500BFF778 /* ArcUIKit.framework in Frameworks */,
 				C52B760021C83B6400498571 /* HMMarkup.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,6 +439,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				C54AE8F121C81B2F00DEC360 /* Arc.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C5B2601022135F7200BFF778 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C583C0F3221378B10043DFA7 /* HMMarkup.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C5B2601822135F7300BFF778 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5B2601C22135F7300BFF778 /* ArcUIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +500,8 @@
 				C54AE8F421C81B2F00DEC360 /* ArcTests */,
 				C52B75DD21C83B2A00498571 /* HMMarkup */,
 				C52B75E821C83B2A00498571 /* HMMarkupTests */,
+				C5B2601422135F7300BFF778 /* ArcUIKit */,
+				C5B2601F22135F7300BFF778 /* ArcUIKitTests */,
 				C54AE8E821C81B2F00DEC360 /* Products */,
 				C52B75FF21C83B6400498571 /* Frameworks */,
 			);
@@ -456,6 +514,8 @@
 				C54AE8F021C81B2F00DEC360 /* ArcTests.xctest */,
 				C52B75DC21C83B2A00498571 /* HMMarkup.framework */,
 				C52B75E421C83B2A00498571 /* HMMarkupTests.xctest */,
+				C5B2601322135F7200BFF778 /* ArcUIKit.framework */,
+				C5B2601B22135F7300BFF778 /* ArcUIKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -933,6 +993,36 @@
 			path = Roboto;
 			sourceTree = "<group>";
 		};
+		C5B2601422135F7300BFF778 /* ArcUIKit */ = {
+			isa = PBXGroup;
+			children = (
+				C5B2601522135F7300BFF778 /* ArcUIKit.h */,
+				C5B2601622135F7300BFF778 /* Info.plist */,
+				C5B2602A2213602400BFF778 /* Views */,
+			);
+			path = ArcUIKit;
+			sourceTree = "<group>";
+		};
+		C5B2601F22135F7300BFF778 /* ArcUIKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				C5B2602022135F7300BFF778 /* ArcUIKitTests.swift */,
+				C5B2602222135F7300BFF778 /* Info.plist */,
+			);
+			path = ArcUIKitTests;
+			sourceTree = "<group>";
+		};
+		C5B2602A2213602400BFF778 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C56BBCA42214AF5B0025A318 /* Common.swift */,
+				C5B2602B2213606600BFF778 /* ACButton.swift */,
+				C583C0F122136E3B0043DFA7 /* ACLabel.swift */,
+				C56BBCA2221490DF0025A318 /* ACTextView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -949,6 +1039,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C54AE8F821C81B2F00DEC360 /* Arc.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C5B2600E22135F7200BFF778 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5B2602322135F7300BFF778 /* ArcUIKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1028,6 +1126,42 @@
 			productReference = C54AE8F021C81B2F00DEC360 /* ArcTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		C5B2601222135F7200BFF778 /* ArcUIKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C5B2602822135F7300BFF778 /* Build configuration list for PBXNativeTarget "ArcUIKit" */;
+			buildPhases = (
+				C5B2600E22135F7200BFF778 /* Headers */,
+				C5B2600F22135F7200BFF778 /* Sources */,
+				C5B2601022135F7200BFF778 /* Frameworks */,
+				C5B2601122135F7200BFF778 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ArcUIKit;
+			productName = ArcUIKit;
+			productReference = C5B2601322135F7200BFF778 /* ArcUIKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C5B2601A22135F7300BFF778 /* ArcUIKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C5B2602922135F7300BFF778 /* Build configuration list for PBXNativeTarget "ArcUIKitTests" */;
+			buildPhases = (
+				C5B2601722135F7300BFF778 /* Sources */,
+				C5B2601822135F7300BFF778 /* Frameworks */,
+				C5B2601922135F7300BFF778 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C5B2601E22135F7300BFF778 /* PBXTargetDependency */,
+			);
+			name = ArcUIKitTests;
+			productName = ArcUIKitTests;
+			productReference = C5B2601B22135F7300BFF778 /* ArcUIKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1052,6 +1186,13 @@
 					C54AE8EF21C81B2F00DEC360 = {
 						CreatedOnToolsVersion = 10.1;
 					};
+					C5B2601222135F7200BFF778 = {
+						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
+					};
+					C5B2601A22135F7300BFF778 = {
+						CreatedOnToolsVersion = 10.1;
+					};
 				};
 			};
 			buildConfigurationList = C54AE8E121C81B2F00DEC360 /* Build configuration list for PBXProject "Arc" */;
@@ -1070,6 +1211,8 @@
 				C54AE8EF21C81B2F00DEC360 /* ArcTests */,
 				C52B75DB21C83B2A00498571 /* HMMarkup */,
 				C52B75E321C83B2A00498571 /* HMMarkupTests */,
+				C5B2601222135F7200BFF778 /* ArcUIKit */,
+				C5B2601A22135F7300BFF778 /* ArcUIKitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1143,6 +1286,33 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		C54AE8EE21C81B2F00DEC360 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C5B2601122135F7200BFF778 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C583C0E922136E0C0043DFA7 /* Roboto-BoldItalic.ttf in Resources */,
+				C583C0E822136E0C0043DFA7 /* Roboto-ThinItalic.ttf in Resources */,
+				C583C0EA22136E0C0043DFA7 /* Roboto-LightItalic.ttf in Resources */,
+				C583C0EC22136E0C0043DFA7 /* LICENSE.txt in Resources */,
+				C583C0EE22136E0C0043DFA7 /* Roboto-Bold.ttf in Resources */,
+				C583C0E722136E0C0043DFA7 /* Roboto-MediumItalic.ttf in Resources */,
+				C583C0E622136E0C0043DFA7 /* Roboto-Regular.ttf in Resources */,
+				C583C0EB22136E0C0043DFA7 /* Roboto-Italic.ttf in Resources */,
+				C583C0EF22136E0C0043DFA7 /* Roboto-Thin.ttf in Resources */,
+				C583C0F022136E0C0043DFA7 /* Roboto-Black.ttf in Resources */,
+				C583C0ED22136E0C0043DFA7 /* Roboto-BlackItalic.ttf in Resources */,
+				C583C0E522136E0C0043DFA7 /* Roboto-Light.ttf in Resources */,
+				C583C0E422136E0C0043DFA7 /* Roboto-Medium.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C5B2601922135F7300BFF778 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1292,6 +1462,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C5B2600F22135F7200BFF778 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C56BBCA52214AF5B0025A318 /* Common.swift in Sources */,
+				C583C0F222136E3B0043DFA7 /* ACLabel.swift in Sources */,
+				C5B2602C2213606600BFF778 /* ACButton.swift in Sources */,
+				C56BBCA3221490DF0025A318 /* ACTextView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C5B2601722135F7300BFF778 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5B2602122135F7300BFF778 /* ArcUIKitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1309,6 +1498,11 @@
 			isa = PBXTargetDependency;
 			target = C54AE8E621C81B2F00DEC360 /* Arc */;
 			targetProxy = C54AE8F221C81B2F00DEC360 /* PBXContainerItemProxy */;
+		};
+		C5B2601E22135F7300BFF778 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C5B2601222135F7200BFF778 /* ArcUIKit */;
+			targetProxy = C5B2601D22135F7300BFF778 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1631,6 +1825,97 @@
 			};
 			name = Release;
 		};
+		C5B2602422135F7300BFF778 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = GT94FFC924;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = ArcUIKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.healthyMedium.ArcUIKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C5B2602522135F7300BFF778 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = GT94FFC924;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = ArcUIKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.healthyMedium.ArcUIKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C5B2602622135F7300BFF778 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GT94FFC924;
+				INFOPLIST_FILE = ArcUIKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.healthyMedium.ArcUIKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C5B2602722135F7300BFF778 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GT94FFC924;
+				INFOPLIST_FILE = ArcUIKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.healthyMedium.ArcUIKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1675,6 +1960,24 @@
 			buildConfigurations = (
 				C54AE8FF21C81B2F00DEC360 /* Debug */,
 				C54AE90021C81B2F00DEC360 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C5B2602822135F7300BFF778 /* Build configuration list for PBXNativeTarget "ArcUIKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C5B2602422135F7300BFF778 /* Debug */,
+				C5B2602522135F7300BFF778 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C5B2602922135F7300BFF778 /* Build configuration list for PBXNativeTarget "ArcUIKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C5B2602622135F7300BFF778 /* Debug */,
+				C5B2602722135F7300BFF778 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
