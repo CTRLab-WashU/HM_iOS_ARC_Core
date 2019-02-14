@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 import HMMarkup
-@IBDesignable public class ACLabel : HMMarkupLabel {
+@IBDesignable open class ACLabel : HMMarkupLabel {
     
         
-    public var style:Style = .none {
+    public var style:ACTextStyle = .none {
         didSet {
             setup(isSelected: false)
         }
@@ -20,7 +20,7 @@ import HMMarkup
     
     @IBInspectable var styleId:Int = 0 {
         didSet {
-            style = Style(rawValue: styleId) ?? .none
+            style = ACTextStyle(rawValue: styleId) ?? .none
             
         }
     }
@@ -33,6 +33,7 @@ import HMMarkup
     override open func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         setup(isSelected: false)
+
     }
     
     func setup(isSelected:Bool) {

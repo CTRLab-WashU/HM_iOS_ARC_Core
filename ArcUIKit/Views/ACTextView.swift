@@ -9,11 +9,11 @@
 import UIKit
 import HMMarkup
 
-@IBDesignable public class ACTextView : HMMarkupTextView {
+@IBDesignable open class ACTextView : HMMarkupTextView {
     
     
     
-    public var style:Style = .none {
+    public var style:ACTextStyle = .none {
         didSet {
             setup(isSelected: false)
         }
@@ -21,7 +21,7 @@ import HMMarkup
     
     @IBInspectable var styleId:Int = 0 {
         didSet {
-            style = Style(rawValue: styleId) ?? .none
+            style = ACTextStyle(rawValue: styleId) ?? .none
             
         }
     }
@@ -38,6 +38,9 @@ import HMMarkup
     
     func setup(isSelected:Bool) {
         self.font = style.font
+        textContainerInset = UIEdgeInsets.zero
+        textContainer.lineFragmentPadding = 0
+        markupText()
         
     }
 }
