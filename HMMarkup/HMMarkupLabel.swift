@@ -55,6 +55,8 @@ import UIKit
     }
     override open func awakeFromNib() {
         super.awakeFromNib()
+       
+        
         markupText()
     }
     
@@ -69,5 +71,31 @@ import UIKit
         attributedString.addAttributes([.foregroundColor : self.textColor], range: NSMakeRange(0, attributedString.length))
         self.attributedText = attributedString
     }
+    
+    public func setLink(url:String, range:ClosedRange<Int>) {
+        guard let url = URL(string: url) else {
+            return
+        }
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = spacing
+        paragraphStyle.alignment = self.textAlignment
+        
+        let r = NSMakeRange(range.lowerBound, range.upperBound - range.lowerBound)
+        
+        if let string = attributedText.mutableCopy() as? NSMutableAttributedString {
+            string.setAttributes([.link: url,
+                                  .paragraphStyle: paragraphStyle,
+                                  .font : self.font?.boldFont() ?? UIFont.systemFont(ofSize: 18.0)
+                ], range: r)
+            attributedText = string
+            self.linkTextAttributes = [
+                .foregroundColor: UIColor.white,
+                .underlineStyle: NSUnderlineStyle.single.rawValue
+                
+            ]
+        }
+        
+    }
+    
     
 }
