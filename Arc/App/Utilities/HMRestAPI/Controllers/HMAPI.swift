@@ -19,14 +19,14 @@ open class HMAPI {
 		clientId = Arc.shared.deviceId
     }
     
-    static public let deviceRegistration:HMAPIRequest<AuthCredentials, HMResponse> = .post("/device-registration")
-	static public let deviceHeartbeat:HMAPIRequest<HeartbeatRequestData, HMResponse> = .post("/device-heartbeat")
+    static public let deviceRegistration:HMAPIRequest<AuthCredentials, HMResponse> = .post("device-registration")
+	static public let deviceHeartbeat:HMAPIRequest<HeartbeatRequestData, HMResponse> = .post("device-heartbeat")
 	
 
-	static public let submitWakeSleepSchedule:HMAPIRequest<WakeSleepScheduleRequestData, HMResponse> = .post("/submit-wake-sleep-schedule")
+	static public let submitWakeSleepSchedule:HMAPIRequest<WakeSleepScheduleRequestData, HMResponse> = .post("submit-wake-sleep-schedule")
 	
 	
-	static public let getSessionInfo:HMAPIRequest<Data, SessionInfoResponse> = .get("/get-session-info")
+	static public let getSessionInfo:HMAPIRequest<Data, SessionInfoResponse> = .get("get-session-info")
 	
 	
 
