@@ -9,7 +9,18 @@
 import Foundation
 open class AppController : MHController {
 	public var testCount:Int = 0
-	
+    public var language:String? {
+        get {
+            
+            return defaults.string(forKey:"language");
+            
+        }
+        set (newVal)
+        {
+            defaults.setValue(newVal, forKey:"language");
+            defaults.synchronize();
+        }
+    }
 	public var participantId:Int? {
 		get {
 

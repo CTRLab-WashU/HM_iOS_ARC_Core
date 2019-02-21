@@ -385,7 +385,6 @@ open class StudyController : MHController {
 			nextId += 1;
 			if let days = ArcStartDays[nextId]
 			{
-				nextStartDate = nextStartDate.addingDays(days: days);
 			}
 			else
 			{
