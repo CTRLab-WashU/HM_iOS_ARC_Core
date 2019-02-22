@@ -32,17 +32,26 @@ open class StudyController : MHController {
 			defaults.synchronize();
 		}
 	}
-	open var beginningOfStudy:Date?
-		{
-		get {
-			return (defaults.value(forKey:"beginningOfStudy") as? Date);
-		}
-		set (newVal)
-		{
-			defaults.setValue(newVal, forKey: "beginningOfStudy");
-			defaults.synchronize();
-		}
-	}
+    open var beginningOfStudy:Date
+        {
+        get {
+            if let date = (defaults.value(forKey:"beginningOfStudy") as? Date)
+            {
+                return date;
+            }
+            else
+            {
+                let date = Date();
+                defaults.setValue(date, forKey:"beginningOfStudy");
+                return date;
+            }
+        }
+        set (newVal)
+        {
+            defaults.setValue(newVal, forKey: "beginningOfStudy");
+            defaults.synchronize();
+        }
+    }
 	open var firstTest:SessionInfoResponse.TestState?
 		{
 		get {
@@ -557,14 +566,16 @@ open class StudyController : MHController {
 				createdSessions.append(session);
 			}
 			
-			//If we're scheduling a set of test sessions for today, make the first one start now
-			if existingTests.count == 0 && start.daysSince(date: Date()) == 0
-			{
-				createdSessions[0].sessionDate = Date();
-			}
+            //If we're scheduling a set of test sessions for today, make the first one start now
+            if existingTests.count == 0 && start.daysSince(date: Date()) == 0
+            {
+                createdSessions[0].sessionDate = Date();
+                createdSessions[0].expirationDate = Date().addingHours(hours: 2);
+            }
 		}
 		
 		//Now that we've scheduled all of the tests, let's sort them and set the sessionID accordingly
+        let originalDate = beginningOfStudy;
 		sort(sessions: Int(currentStudy.studyID))
 		if let createdSessions = currentStudy.sessions
 		{
@@ -574,8 +585,8 @@ open class StudyController : MHController {
 				
 				
 				let aSession = createdSessions[i] as! Session;
-				let weeks = Int64((aSession.sessionDate?.weeks(from: startDate) ?? 0))
-				let days = Int64((aSession.sessionDate?.days(from: startDate) ?? 0) % 7)
+                let weeks = Int64((aSession.sessionDate?.daysSince(date: originalDate) ?? 0) / 7)
+                let days = Int64((aSession.sessionDate?.daysSince(date: originalDate) ?? 0) % 7)
 
 				let formatter = DateFormatter()
 				formatter.defaultDate = aSession.sessionDate
@@ -587,7 +598,7 @@ open class StudyController : MHController {
 				if session >= SESSIONS_PER_DAY {
 					session = 0
 				}
-				aSession.sessionID = Int64(i);
+				aSession.sessionID = Int64(i) + startingSessionId;
 				aSession.week = weeks
 				aSession.day = days
 				aSession.session = session
