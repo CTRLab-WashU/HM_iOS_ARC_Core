@@ -27,12 +27,12 @@ import HMMarkup
     
     override open func awakeFromNib() {
         super.awakeFromNib()
-        setup(isSelected: false)
+        //setup(isSelected: false)
     }
     
     override open func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        setup(isSelected: false)
+        //setup(isSelected: false)
 
     }
     
