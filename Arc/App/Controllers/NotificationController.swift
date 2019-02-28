@@ -120,7 +120,9 @@ open class NotificationController : MHController
         let tests = Arc.shared.studyController.getUpcomingSessions(withLimit: limit).reversed()
         for test in tests
         {
-            
+            guard test.startTime == nil && test.missedSession == false else {
+                continue
+            }
             let title = "It's time to take a quick test!";
             let body = title;
             let date = test.sessionDate! as Date
