@@ -19,11 +19,11 @@ import UIKit
     }
     override open func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        markupText()
+        //markupText()
     }
     override open func awakeFromNib() {
         super.awakeFromNib()
-        markupText()
+        //markupText()
     }
     
     public func markupText() {
@@ -43,7 +43,7 @@ import UIKit
     
     open var renderer:HMMarkupRenderer!
     @IBInspectable var spacing:CGFloat = 1.33
-    
+    private var _originalText:String?
     override open var text: String? {
         didSet {
             markupText()
@@ -51,13 +51,13 @@ import UIKit
     }
     override open func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        markupText()
+        //markupText()
     }
     override open func awakeFromNib() {
         super.awakeFromNib()
        
         
-        markupText()
+        //markupText()
     }
     
     public func markupText() {

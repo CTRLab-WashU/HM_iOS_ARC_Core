@@ -20,6 +20,7 @@
 		C52B75FE21C83B4700498571 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C52B75F821C83B4700498571 /* README.md */; };
 		C52B760021C83B6400498571 /* HMMarkup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52B75DC21C83B2A00498571 /* HMMarkup.framework */; };
 		C52B760121C83CEA00498571 /* HMMarkupLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE93C21C81B5C00DEC360 /* HMMarkupLabel.swift */; };
+		C540B5B1221E0FD000B539A4 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C540B5B0221E0FD000B539A4 /* LanguageViewController.swift */; };
 		C54AE8F121C81B2F00DEC360 /* Arc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C54AE8E721C81B2F00DEC360 /* Arc.framework */; };
 		C54AE8F621C81B2F00DEC360 /* ArcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE8F521C81B2F00DEC360 /* ArcTests.swift */; };
 		C54AE8F821C81B2F00DEC360 /* Arc.h in Headers */ = {isa = PBXBuildFile; fileRef = C54AE8EA21C81B2F00DEC360 /* Arc.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -238,6 +239,7 @@
 		C52B75F621C83B4600498571 /* HMMarkupNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMMarkupNode.swift; sourceTree = "<group>"; };
 		C52B75F721C83B4700498571 /* HMMarkupRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMMarkupRenderer.swift; sourceTree = "<group>"; };
 		C52B75F821C83B4700498571 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C540B5B0221E0FD000B539A4 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
 		C54AE8E721C81B2F00DEC360 /* Arc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Arc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C54AE8EA21C81B2F00DEC360 /* Arc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Arc.h; sourceTree = "<group>"; };
 		C54AE8EB21C81B2F00DEC360 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -935,6 +937,7 @@
 				C54AE99921C81B5C00DEC360 /* SurveyNavigationViewController.xib */,
 				C54AE99A21C81B5C00DEC360 /* SurveyViewController.swift */,
 				C54AE99B21C81B5C00DEC360 /* IntroViewController.xib */,
+				C540B5B0221E0FD000B539A4 /* LanguageViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1352,6 +1355,7 @@
 				C54AEA0B21C81B5F00DEC360 /* PricesQuestionViewController.swift in Sources */,
 				C54AEA6321C81B5F00DEC360 /* CoreDataStack.swift in Sources */,
 				C54AEA1B21C81B5F00DEC360 /* TextAlertView.swift in Sources */,
+				C540B5B1221E0FD000B539A4 /* LanguageViewController.swift in Sources */,
 				C54AEA1221C81B5F00DEC360 /* FinishedNavigationController.swift in Sources */,
 				C54AE9E621C81B5F00DEC360 /* HMRequest.swift in Sources */,
 				C54AE9D021C81B5F00DEC360 /* Arc.swift in Sources */,

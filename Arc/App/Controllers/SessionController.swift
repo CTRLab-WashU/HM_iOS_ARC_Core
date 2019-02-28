@@ -82,7 +82,7 @@ open class SessionController:MHController {
 		let full:FullTestSession = .init(withSession: session)
 		HMLog(full.toString())
 		let md5 = full.encode()?.MD5()
-		let submitTest:HMAPIRequest<FullTestSession, HMResponse> = .post("/submit-test")
+		let submitTest:HMAPIRequest<FullTestSession, HMResponse> = .post("submit-test")
 		submitTest.execute(data: full) { (response, data, _) in
             guard !HMRestAPI.shared.blackHole else {
                 return
@@ -110,7 +110,7 @@ open class SessionController:MHController {
 		let data:TestScheduleRequestData = .init(withStudyPeriod: studyPeriod)
 		
 		let md5 = data.encode()?.MD5()
-		let submitTestSchedule:HMAPIRequest<TestScheduleRequestData, HMResponse> = .post("/submit-test-schedule")
+		let submitTestSchedule:HMAPIRequest<TestScheduleRequestData, HMResponse> = .post("submit-test-schedule")
 		submitTestSchedule.execute(data: data) { (response, obj, _) in
 			HMLog("Participant: \(data.participant_id ?? ""), received response \(obj?.toString() ?? "") on \(Date())", silent: false)
             guard !HMRestAPI.shared.blackHole else {
@@ -146,7 +146,7 @@ open class SessionController:MHController {
 		let data:TestScheduleRequestData = .init(withStudyPeriods: studyPeriods)
 		
 		let md5 = data.encode()?.MD5()
-		let submitTestSchedule:HMAPIRequest<TestScheduleRequestData, HMResponse> = .post("/submit-test-schedule")
+		let submitTestSchedule:HMAPIRequest<TestScheduleRequestData, HMResponse> = .post("submit-test-schedule")
 		print(data.toString())
 		submitTestSchedule.execute(data: data) { (response, obj, _) in
 			HMLog("Participant: \(data.participant_id ?? ""), received response \(obj?.toString() ?? "") on \(Date())")
