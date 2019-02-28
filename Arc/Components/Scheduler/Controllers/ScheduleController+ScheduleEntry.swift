@@ -49,7 +49,42 @@ public extension ScheduleController {
     
     //Create a list of schedule entries
     
+    
+    
     //Get a schedule entry
+    public func get(scheduleForDay currentDate:Date, participantID:Int) -> ScheduleEntry {
+        
+        let day = WeekDay.getDayOfWeek(currentDate)
+        
+        guard let schedules = get(entriesForDay: day, forParticipant: participantID), let schedule = schedules.first  else {
+            fatalError("No valid schedule exists.")
+        }
+        
+        return schedule
+    }
+    
+    public func get(startTimeForDate currentDate:Date, participantID:Int) -> Date {
+        let formatter = DateFormatter()
+        formatter.defaultDate = currentDate
+        formatter.dateFormat = "h:mm a"
+        
+        let schedule = get(scheduleForDay: currentDate, participantID: participantID)
+        
+        let time = formatter.date(from:  schedule.availabilityStart!)!;
+        return time
+    }
+    
+    public func get(endTimeForDate currentDate:Date, participantID:Int) -> Date {
+        let formatter = DateFormatter()
+        formatter.defaultDate = currentDate
+        formatter.dateFormat = "h:mm a"
+        
+        let schedule = get(scheduleForDay: currentDate, participantID: participantID)
+        
+        let time = formatter.date(from:  schedule.availabilityEnd!)!;
+        return time
+    }
+    
     public func get(allEntriesForId participantId:Int) -> [ScheduleEntry]? {
         let result:[ScheduleEntry]? = fetch(predicate: NSPredicate(format: "participantID == %i", participantId),
                                                 sort:[NSSortDescriptor(key: "weekday", ascending: true)])
@@ -125,4 +160,6 @@ public extension ScheduleController {
 		//If we throw then the error will provide more information
 		return false
 	}
+    
+    
 }
