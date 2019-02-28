@@ -644,7 +644,42 @@ open class StudyController : MHController {
 		save();
 	}
 	
-	
+    open func clear(sessions studyId:Int, afterDate date:Date)
+    {
+        guard let study = get(study: studyId) else {
+            fatalError("Invalid study ID")
+        }
+        if let tests = study.sessions
+        {
+            var sessionsToRemove:Array<Session> = Array();
+            
+            for i in 0..<tests.count
+            {
+                let test = tests[i] as! Session;
+                
+                if test.finishedSession == true || test.missedSession == true
+                {
+                    continue;
+                }
+                
+                if let sessionTime = test.sessionDate
+                {
+                    if sessionTime.compare(date) == .orderedDescending
+                    {
+                        sessionsToRemove.append(test);
+                    }
+                }
+            }
+            
+            for test in sessionsToRemove
+            {
+                //                DNLog("removing test \(test.sessionID)");
+                delete(test);
+            }
+        }
+        
+        save();
+    }
 	open func incompleteSessionCount(studyId:Int) -> Int
 	{
 		guard let study = get(study: studyId) else {
