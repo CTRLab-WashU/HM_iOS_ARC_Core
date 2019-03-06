@@ -365,10 +365,12 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
         //dump(convertedRect)
 		guard !scrollView.bounds.contains(convertedRect) else {
 			scrollIndicator.alpha = 0
+            scrollView.delaysContentTouches = false
 			return
 		}
 		let alpha = 1.0 - (progress/maxProgress)
 		scrollIndicator.alpha = alpha
+        scrollView.delaysContentTouches = true
 		
 	}
 
