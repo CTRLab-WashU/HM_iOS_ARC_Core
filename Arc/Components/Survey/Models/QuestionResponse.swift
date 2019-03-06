@@ -47,7 +47,14 @@ public extension QuestionResponse {
 				} else {
 					return true
 				}
+            case .image:
+                if let value = value as? Data {
+                    return value.count == 0
+                } else {
+                    return false
+                }
 			}
+            
 		}
 		return false
 	}

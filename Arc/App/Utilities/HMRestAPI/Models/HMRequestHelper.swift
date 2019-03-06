@@ -42,6 +42,12 @@ public extension Data {
         }
         
     }
+    public mutating func appendString(value:String?) {
+        guard let data = value?.data(using: String.Encoding.utf8) else {
+            return
+        }
+        self.append(contentsOf: data)
+    }
 }
 //T is the request type, S is the type returned from the request
 public enum HMAPIRequest<T:Codable,S:Codable> {
@@ -90,6 +96,42 @@ public enum HMAPIRequest<T:Codable,S:Codable> {
 
     }
     
+    public func executeMultipart(data:Data, params:[String:String]? = nil, completion:((URLResponse?, S?, HMFault?)->Void)? = nil) {
+        var request:HMRequest<S>?
+        var method:BackendRequestMethod = .get
+        var requestUrl:String = ""
+        switch self {
+        case let .get(url):
+            method = .get
+            requestUrl = url
+            break
+        case let .post(url):
+            method = .post
+            requestUrl = url
+            
+            break
+        case let .put(url):
+            method = .put
+            requestUrl = url
+            
+            break
+        case let .patch(url):
+            method = .patch
+            requestUrl = url
+            
+            break
+        case let .delete(url):
+            method = .delete
+            requestUrl = url
+            
+            break
+            
+        }
+        request = createMultiPartRequest(method: method, url: requestUrl, data: data, params: params, completion: completion)
+        
+        request?.execute()
+        
+    }
     
     
     public func createRequest(method:BackendRequestMethod, url:String, data:T? = nil, params:[String:String]? = nil, completion:((URLResponse?, S?, HMFault?)->Void)? = nil) -> HMRequest<S> {
@@ -122,6 +164,55 @@ public enum HMAPIRequest<T:Codable,S:Codable> {
         }
         return request
     }
-    
+    public func createMultiPartRequest(method:BackendRequestMethod, url:String, data:Data, params:[String:String]? = nil, boundary:String = UUID().uuidString, completion:((URLResponse?, S?, HMFault?)->Void)? = nil) -> HMRequest<S> {
+        var request = HMRequest<S>(method: method, endPoint: url)
+        
+        request.headers = HMAPI.authHeaders()
+        request.headers?["Content-Type"] = "multipart/form-data; boundary=\(boundary)"
+        
+        request.data = createMultiPartBody(parameters: params,
+                                          data: data,
+                                          mimeType: "image/png", boundary: boundary)
+        request.success = {
+            response, retval, err in
+            
+            if let c = completion {
+                c(response, retval, err)
+            }
+        }
+        
+        request.failure = { response in
+            
+        }
+        
+        request.unhandledFailure = {
+            err in
+            dump(err)
+        }
+        return request
+        
+    }
+    public func createMultiPartBody(parameters:[String:String]?, data:Data, mimeType:String, boundary:String) -> Data {
+        var body = Data();
+        
+        if let params = parameters {
+            for (key, value) in params {
+                body.appendString(value: "--\(boundary)\r\n")
+                body.appendString(value:"Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
+                body.appendString(value:"\(value)\r\n")
+            }
+        }
+        
+        body.appendString(value: "--\(boundary)\r\n")
+        body.appendString(value: "Content-Disposition: form-data; name=file")
+        body.appendString(value: "Content-Type: \(mimeType)\r\n\r\n")
+        body.append(contentsOf: data)
+        body.appendString(value: "\r\n")
+        
+        body.appendString(value: "--\(boundary)--\r\n")
+
+        return body
+
+    }
     
 }

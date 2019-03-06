@@ -43,7 +43,8 @@ public struct AnyResponse : QuestionResponse {
 				
 			case .checkbox:
 				self.value = try container.decodeIfPresent([Int].self, forKey: .value)
-
+            case .image:
+                break
 			}
 	
 		}
@@ -72,7 +73,8 @@ public struct AnyResponse : QuestionResponse {
 			case .checkbox:
 				let v = self.value as? [Int]
 				try container.encodeIfPresent(v, forKey: .value)
-
+            case .image:
+                break
 			}
 		}
 		
@@ -160,7 +162,8 @@ public extension SurveyResponse.Question {
 				
 			case .checkbox:
 				self.value = try container.decodeIfPresent([Int].self, forKey: .value)
-				
+            case .image:
+                break
 			}
 		}
 		
@@ -194,7 +197,8 @@ public extension SurveyResponse.Question {
 			case .checkbox:
 				let v = self.value as? [Int]
 				try container.encodeIfPresent(v, forKey: .value)
-				
+            case .image:
+                break
 			}
 		
 		}

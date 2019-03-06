@@ -47,7 +47,7 @@
                     <rect key="frame" x="0.0" y="20" width="375" height="850"/>
                     <subviews>
                         <view contentMode="scaleToFill" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="627" translatesAutoresizingMaskIntoConstraints="NO" id="mdr-oD-iS5">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="815"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="710"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="A9h-Af-XDA">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="71.5"/>
@@ -77,26 +77,29 @@
                                     </subviews>
                                     <edgeInsets key="layoutMargins" top="0.0" left="32" bottom="0.0" right="32"/>
                                 </stackView>
-                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dsn-24-lzK">
-                                    <rect key="frame" x="0.0" y="91.5" width="375" height="631.5"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dsn-24-lzK">
+                                    <rect key="frame" x="0.0" y="91.5" width="375" height="526.5"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" placeholderIntrinsicWidth="327" placeholderIntrinsicHeight="394.5" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="JRC-5u-1Hu">
-                                            <rect key="frame" x="24" y="0.0" width="327" height="394.5"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="773" placeholderIntrinsicWidth="327" placeholderIntrinsicHeight="394.5" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="JRC-5u-1Hu">
+                                            <rect key="frame" x="24" y="0.0" width="327" height="469.5"/>
                                         </stackView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" placeholderIntrinsicWidth="287.5" placeholderIntrinsicHeight="21" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1i-kk-hTQ">
-                                            <rect key="frame" x="24" y="402.5" width="327" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="254" verticalCompressionResistancePriority="752" placeholderIntrinsicWidth="287.5" placeholderIntrinsicHeight="21" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1i-kk-hTQ">
+                                            <rect key="frame" x="24" y="477.5" width="327" height="21"/>
                                             <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="18"/>
                                             <color key="textColor" name="Error"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ijy-59-IcH">
-                                            <rect key="frame" x="24" y="431.5" width="327" height="200"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="280" placeholderIntrinsicWidth="327" placeholderIntrinsicHeight="20" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ijy-59-IcH">
+                                            <rect key="frame" x="24" y="506.5" width="327" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" priority="250" constant="20" id="2Kt-u6-Mrw"/>
+                                            </constraints>
                                         </stackView>
                                     </subviews>
                                     <edgeInsets key="layoutMargins" top="0.0" left="24" bottom="0.0" right="24"/>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="EOk-EH-Oqa">
-                                    <rect key="frame" x="79.5" y="743" width="216" height="48"/>
+                                    <rect key="frame" x="79.5" y="638" width="216" height="48"/>
                                     <subviews>
                                         <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Moq-gR-yzh">
                                             <rect key="frame" x="6.5" y="0.0" width="203" height="24"/>
@@ -165,7 +168,7 @@
                                 <constraint firstAttribute="bottom" secondItem="EOk-EH-Oqa" secondAttribute="bottom" constant="24" id="kxm-Ts-Nwj"/>
                                 <constraint firstAttribute="trailing" secondItem="dsn-24-lzK" secondAttribute="trailing" id="pPE-eG-zJu"/>
                                 <constraint firstItem="A9h-Af-XDA" firstAttribute="leading" secondItem="mdr-oD-iS5" secondAttribute="leading" id="yX4-ka-SFd"/>
-                                <constraint firstItem="EOk-EH-Oqa" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dsn-24-lzK" secondAttribute="bottom" constant="20" id="zup-b3-gAQ"/>
+                                <constraint firstItem="EOk-EH-Oqa" firstAttribute="top" secondItem="dsn-24-lzK" secondAttribute="bottom" priority="999" constant="20" id="zup-b3-gAQ"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -203,16 +206,16 @@
             <color red="0.60000002384185791" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Primary">
-            <color red="0.0" green="0.37254901960784315" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.37299999594688416" blue="0.5220000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Primary">
-            <color red="0.0" green="0.37254901960784315" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.37299999594688416" blue="0.5220000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Primary Gradient">
             <color red="0.0" green="0.49000000953674316" blue="0.68000000715255737" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Primary Text">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23499999940395355" green="0.23499999940395355" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Secondary Text">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

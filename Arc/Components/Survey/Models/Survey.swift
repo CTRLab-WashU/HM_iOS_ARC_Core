@@ -15,11 +15,11 @@ public enum QuestionStyle : String, Codable {
 }
 
 public enum QuestionType : String, Codable {
-	case none, text, number, slider, choice, checkbox, time, duration, password, segmentedText, multilineText
+	case none, text, number, slider, choice, checkbox, time, duration, password, segmentedText, multilineText, image
 	
 	public var metatype: Codable.Type {
 		switch self {
-		case .none, .text, .time, .duration, .password, .segmentedText, .multilineText, .number:
+		case .none, .text, .time, .duration, .password, .segmentedText, .multilineText, .number, .image:
 			return String.self
 		
 		case .slider:
@@ -212,6 +212,8 @@ extension Survey.Question.Answer {
 				let v:[Int] = self.value as! [Int]
 				try container.encodeIfPresent(v, forKey: .value)
 				
+            case .image:
+                break
 			}
 		}
 		

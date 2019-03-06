@@ -33,6 +33,8 @@ public struct BackendRequestHeader {
     
     static public let contentTypeJson = ["Content-Type": "application/json"]
     static public let acceptJson = ["Accept": "application/json"]
+    
+    
 }
 public extension BackendRequest {
     func cancel() {

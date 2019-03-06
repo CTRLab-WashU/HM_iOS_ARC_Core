@@ -159,14 +159,14 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 			
 			input = inputView
             
-            // container.alignment = inputView.orientation
+            container.alignment = inputView.orientation
             
 		} else if question.type == .duration {
 			let inputView:DurationView = input as? DurationView ?? .get()
 			
 			input = inputView
             
-            // container.alignment = inputView.orientation
+            container.alignment = inputView.orientation
             
 		} else if question.type == .choice {
 			let inputView:MultipleChoiceView = input as? MultipleChoiceView ?? .get()
@@ -174,7 +174,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
             disableNextButton()
 			inputView.set(question:question)
             
-            // container.alignment = inputView.orientation
+            container.alignment = inputView.orientation
 			
 			
 		} else if question.type == .checkbox {
@@ -183,7 +183,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 			inputView.state = .checkBox
 			inputView.set(question:question)
             
-            // container.alignment = inputView.orientation
+            container.alignment = inputView.orientation
             
 			
 		}  else if question.type == .password {
@@ -191,7 +191,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
             inputView.openKeyboard()
 			input = inputView
             privacyStack.isHidden = false
-            // container.alignment = inputView.orientation
+            container.alignment = inputView.orientation
             
 		} else if question.type == .segmentedText {
 			let inputView:SegmentedTextView = input as? SegmentedTextView ?? .get()
@@ -199,13 +199,13 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
             inputView.tryNext = self.tryNextButton
             input = inputView
             privacyStack.isHidden = false
-            // container.alignment = inputView.orientation
+            container.alignment = inputView.orientation
         } else if question.type == .multilineText {
             let inputView:MultilineTextView = input as? MultilineTextView ?? .get()
             input = inputView
 			inputView.minCharacters = 1
 
-            // container.alignment = inputView.orientation
+            container.alignment = inputView.orientation
             
 		} else if question.type == .number {
 			let inputView:MultilineTextView = input as? MultilineTextView ?? .get()
@@ -213,14 +213,17 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 			inputView.maxCharacters = 2
 			inputView.minCharacters = 1
 			inputView.keyboardType = .numberPad
-			// container.alignment = inputView.orientation
+			container.alignment = inputView.orientation
 			
-		}
+        } else if question.type == .image {
+            let inputView:SignatureView = input as? SignatureView ?? .get()
+            input = inputView
+            
+            container.alignment = inputView.orientation
+            
+        }
 		
         input?.setError(message: nil)
-        if container.arrangedSubviews.isEmpty, let input = input as? UIView {
-            container.addArrangedSubview(input)
-        }
         input?.didFinishSetup = {
             [weak self] in
             guard let weakSelf = self else {
@@ -232,19 +235,23 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
                 weakSelf.enableNextButton()
             }
         }
-		input?.didChangeValue = {
-			[weak self] in
-			guard let weakSelf = self else {
-				return
-			}
-			if weakSelf.input?.getValue()?.value == nil {
-				weakSelf.disableNextButton()
-			} else {
-				weakSelf.enableNextButton()
-			}
+        input?.didChangeValue = {
+            [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            if weakSelf.input?.getValue()?.value == nil {
+                weakSelf.disableNextButton()
+            } else {
+                weakSelf.enableNextButton()
+            }
             
             self?.didChangeValue?();
-		}
+        }
+        
+        if container.arrangedSubviews.isEmpty, let input = input as? UIView {
+            container.addArrangedSubview(input)
+        }
         
 
 	}
