@@ -250,7 +250,7 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
 			[weak self] input, value in
 			
 			//If the prompt being displayed is informational, move on.
-			if input == nil {
+			if input == nil || input?.isInformational() ?? false {
 				let nextQuestion = self?.figureOutNextQuestion(id: index)
                 self?.onValueSelected(value: AnyResponse(type: QuestionType.none, value: nil), index: index)
 

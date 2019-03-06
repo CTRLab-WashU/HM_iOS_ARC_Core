@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C50FC3BC22330F7700143EA8 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE91221C81B5C00DEC360 /* UIView+Extensions.swift */; };
+		C50FC3BD22330F7700143EA8 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE91721C81B5C00DEC360 /* Date+Extensions.swift */; };
+		C50FC3BE22330F8900143EA8 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE91321C81B5C00DEC360 /* UIStackView+Extensions.swift */; };
 		C52B75D421C8369400498571 /* arc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C54AE94821C81B5C00DEC360 /* arc.xcdatamodeld */; };
 		C52B75D521C837A200498571 /* Session+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE90E21C81B5C00DEC360 /* Session+Extensions.swift */; };
 		C52B75E521C83B2A00498571 /* HMMarkup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52B75DC21C83B2A00498571 /* HMMarkup.framework */; };
@@ -171,6 +174,10 @@
 		C54AEA7021C81B5F00DEC360 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9CD21C81B5F00DEC360 /* Roboto-Black.ttf */; };
 		C56BBCA3221490DF0025A318 /* ACTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56BBCA2221490DF0025A318 /* ACTextView.swift */; };
 		C56BBCA52214AF5B0025A318 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56BBCA42214AF5B0025A318 /* Common.swift */; };
+		C57E9C842236BB4B009F6228 /* ACCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50FC3BA22330F2C00143EA8 /* ACCalendarView.swift */; };
+		C57E9C862236C232009F6228 /* StartDateShiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E9C852236C232009F6228 /* StartDateShiftViewController.swift */; };
+		C57E9C882236CE67009F6228 /* ACPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E9C872236CE67009F6228 /* ACPickerView.swift */; };
+		C57E9C8A2236E825009F6228 /* ACPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C57E9C892236E825009F6228 /* ACPickerView.xib */; };
 		C583C0E422136E0C0043DFA7 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9C121C81B5F00DEC360 /* Roboto-Medium.ttf */; };
 		C583C0E522136E0C0043DFA7 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9C221C81B5F00DEC360 /* Roboto-Light.ttf */; };
 		C583C0E622136E0C0043DFA7 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9C321C81B5F00DEC360 /* Roboto-Regular.ttf */; };
@@ -196,6 +203,7 @@
 		C5F77F35222F094000BECAE1 /* SignatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F77F34222F094000BECAE1 /* SignatureView.swift */; };
 		C5F77F37222F095200BECAE1 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F77F36222F095200BECAE1 /* SignatureViewController.swift */; };
 		C5F77F39222F15DD00BECAE1 /* SignatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5F77F38222F15DD00BECAE1 /* SignatureView.xib */; };
+		C5F77F3B22306CFA00BECAE1 /* DateRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F77F3A22306CFA00BECAE1 /* DateRangeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -230,6 +238,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C50FC3BA22330F2C00143EA8 /* ACCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACCalendarView.swift; sourceTree = "<group>"; };
 		C52B75DC21C83B2A00498571 /* HMMarkup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HMMarkup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C52B75DE21C83B2A00498571 /* HMMarkup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HMMarkup.h; sourceTree = "<group>"; };
 		C52B75DF21C83B2A00498571 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -402,6 +411,9 @@
 		C54AE9CD21C81B5F00DEC360 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		C56BBCA2221490DF0025A318 /* ACTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTextView.swift; sourceTree = "<group>"; };
 		C56BBCA42214AF5B0025A318 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		C57E9C852236C232009F6228 /* StartDateShiftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartDateShiftViewController.swift; sourceTree = "<group>"; };
+		C57E9C872236CE67009F6228 /* ACPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPickerView.swift; sourceTree = "<group>"; };
+		C57E9C892236E825009F6228 /* ACPickerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ACPickerView.xib; sourceTree = "<group>"; };
 		C583C0F122136E3B0043DFA7 /* ACLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACLabel.swift; sourceTree = "<group>"; };
 		C589B50D21ED001700389342 /* ACAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACAuthViewController.swift; sourceTree = "<group>"; };
 		C5B2601322135F7200BFF778 /* ArcUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ArcUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -415,6 +427,7 @@
 		C5F77F34222F094000BECAE1 /* SignatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureView.swift; sourceTree = "<group>"; };
 		C5F77F36222F095200BECAE1 /* SignatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureViewController.swift; sourceTree = "<group>"; };
 		C5F77F38222F15DD00BECAE1 /* SignatureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignatureView.xib; sourceTree = "<group>"; };
+		C5F77F3A22306CFA00BECAE1 /* DateRangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRangeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -899,6 +912,7 @@
 			children = (
 				C54AE98821C81B5C00DEC360 /* SchedulerNavigationController.swift */,
 				C54AE98921C81B5C00DEC360 /* SchedulerViewController.xib */,
+				C57E9C852236C232009F6228 /* StartDateShiftViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -979,8 +993,12 @@
 				C54AE9AC21C81B5C00DEC360 /* PasswordView.xib */,
 				C54AE9AD21C81B5C00DEC360 /* SliderView.xib */,
 				C54AE9AE21C81B5C00DEC360 /* DurationView.swift */,
+				C57E9C872236CE67009F6228 /* ACPickerView.swift */,
+				C57E9C892236E825009F6228 /* ACPickerView.xib */,
 				C54AE9AF21C81B5C00DEC360 /* ChoiceView.swift */,
 				C54AE9B021C81B5C00DEC360 /* TimeView.swift */,
+				C5F77F3A22306CFA00BECAE1 /* DateRangeView.swift */,
+				C50FC3BA22330F2C00143EA8 /* ACCalendarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1285,6 +1303,7 @@
 				C54AEA3821C81B5F00DEC360 /* LoadingScreenViewController.xib in Resources */,
 				C54AEA5221C81B5F00DEC360 /* PasswordView.xib in Resources */,
 				C54AEA1A21C81B5F00DEC360 /* InterstitialView.xib in Resources */,
+				C57E9C8A2236E825009F6228 /* ACPickerView.xib in Resources */,
 				C54AEA6B21C81B5F00DEC360 /* Roboto-Italic.ttf in Resources */,
 				C54AEA4521C81B5F00DEC360 /* DurationView.xib in Resources */,
 				C54AEA2321C81B5F00DEC360 /* ACContactViewController.xib in Resources */,
@@ -1404,6 +1423,7 @@
 				C54AEA1F21C81B5F00DEC360 /* GridTestCells.swift in Sources */,
 				C54AEA3321C81B5F00DEC360 /* ScheduleEntry+CoreDataClass.swift in Sources */,
 				C54AEA3421C81B5F00DEC360 /* SchedulerNavigationController.swift in Sources */,
+				C57E9C842236BB4B009F6228 /* ACCalendarView.swift in Sources */,
 				C54AE9CF21C81B5F00DEC360 /* ACEnvironment.swift in Sources */,
 				C5F77F35222F094000BECAE1 /* SignatureView.swift in Sources */,
 				C54AE9EE21C81B5F00DEC360 /* ToggleButton.swift in Sources */,
@@ -1424,8 +1444,10 @@
 				C54AEA0421C81B5F00DEC360 /* BorderedUIView.swift in Sources */,
 				C54AEA3C21C81B5F00DEC360 /* QuestionResponse.swift in Sources */,
 				C54AE9DF21C81B5F00DEC360 /* Date+Extensions.swift in Sources */,
+				C5F77F3B22306CFA00BECAE1 /* DateRangeView.swift in Sources */,
 				C54AE9E421C81B5F00DEC360 /* StatusCode.swift in Sources */,
 				C54AEA2B21C81B5F00DEC360 /* AuthController.swift in Sources */,
+				C57E9C862236C232009F6228 /* StartDateShiftViewController.swift in Sources */,
 				C54AEA4721C81B5F00DEC360 /* MultilineTextView.swift in Sources */,
 				C54AE9F121C81B5F00DEC360 /* ArcControllerRegistry.swift in Sources */,
 				C54AEA0521C81B5F00DEC360 /* PaddinglessUITextView.swift in Sources */,
@@ -1440,6 +1462,7 @@
 				C54AE9EC21C81B5F00DEC360 /* HMAPI+Convenience.swift in Sources */,
 				C54AE9F221C81B5F00DEC360 /* UINavigationProxy.swift in Sources */,
 				C54AEA0921C81B5F00DEC360 /* GridTest.swift in Sources */,
+				C57E9C882236CE67009F6228 /* ACPickerView.swift in Sources */,
 				C54AEA3121C81B5F00DEC360 /* Schedule+CoreDataClass.swift in Sources */,
 				C54AE9D321C81B5F00DEC360 /* State.swift in Sources */,
 				C54AE9DE21C81B5F00DEC360 /* UILabel+Extensions.swift in Sources */,
@@ -1482,7 +1505,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C50FC3BC22330F7700143EA8 /* UIView+Extensions.swift in Sources */,
+				C50FC3BE22330F8900143EA8 /* UIStackView+Extensions.swift in Sources */,
 				C56BBCA52214AF5B0025A318 /* Common.swift in Sources */,
+				C50FC3BD22330F7700143EA8 /* Date+Extensions.swift in Sources */,
 				C583C0F222136E3B0043DFA7 /* ACLabel.swift in Sources */,
 				C5B2602C2213606600BFF778 /* ACButton.swift in Sources */,
 				C56BBCA3221490DF0025A318 /* ACTextView.swift in Sources */,

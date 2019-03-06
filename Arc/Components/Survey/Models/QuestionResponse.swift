@@ -14,10 +14,12 @@ public protocol QuestionResponse : Codable {
 	
 }
 public extension QuestionResponse {
+    //Each control can have different representations of empty
+    
 	public func isEmpty() -> Bool {
 		if let type = type {
 			switch type {
-			case .none, .text, .time, .duration, .password, .segmentedText, .multilineText, .number:
+			case .none, .text, .time, .duration, .password, .segmentedText, .multilineText, .number, .calendar:
 				if let value = value as? String {
 					return value == "-99" || value.count == 0
 				} else {
@@ -31,7 +33,7 @@ public extension QuestionResponse {
 					return true
 				}
 				
-			case .choice:
+			case .choice, .picker:
 				if let value = value as? Int {
 					return value == -99
 				} else {
