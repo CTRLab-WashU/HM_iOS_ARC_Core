@@ -7,7 +7,6 @@
 //
 
 import Foundation
-
 public enum ACLanguage {
     case english
     case spanish
@@ -21,6 +20,8 @@ public enum ACLanguage {
 
 open class ACLanguageViewController : SurveyNavigationViewController {
     open override func onValueSelected(value: QuestionResponse, index: String) {
-        
+        if index == "ac_language_1" {
+            Arc.shared.appController.language = value.text_value
+        }
     }
 }
