@@ -52,7 +52,7 @@ open class SignatureView: UIView, SurveyInput {
     // An empty implementation adversely affects performance during animation.
     override open func draw(_ rect: CGRect) {
         // Drawing code
-        UIColor.black.set()
+        UIColor(named:"Primary")!.set()
         path.stroke()
     }
 
