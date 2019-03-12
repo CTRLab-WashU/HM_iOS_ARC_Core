@@ -58,7 +58,7 @@ open class SignatureView: UIView, SurveyInput {
 
     public func getValue() -> QuestionResponse? {
         guard let data = save() else {
-            return AnyResponse(type: .image, value: nil)
+            return nil
         }
         return AnyResponse(type: .image, value: data)
     }
