@@ -30,22 +30,22 @@ import UIKit
     }
     
     
-    override open var isHighlighted: Bool {
-        didSet {
-            setup(isSelected: isHighlighted)
-        }
-    }
-    override open var isEnabled: Bool {
-        didSet {
-            if !isEnabled {
-                setup(isSelected: false)
-                
-            } else {
-                setup(isSelected: isHighlighted)
-                
-            }
-        }
-    }
+//    override open var isHighlighted: Bool {
+//        didSet {
+//            setup(isSelected: isHighlighted)
+//        }
+//    }
+//    override open var isEnabled: Bool {
+//        didSet {
+//            if !isEnabled {
+//                setup(isSelected: false)
+//
+//            } else {
+//                setup(isSelected: isHighlighted)
+//
+//            }
+//        }
+//    }
 //    override open var intrinsicContentSize: CGSize {
 //        return CGSize(width: 216, height: 48)
 //    }
@@ -59,7 +59,7 @@ import UIKit
     }
     func setup(isSelected:Bool){
         CATransaction.begin()
-        CATransaction.setAnimationDuration(0.03)
+        CATransaction.setAnimationDuration(0)
         layer.cornerRadius = self.cornerRadius
         layer.shadowOffset = CGSize(width: 0, height: 1)
         layer.shadowColor = UIColor(red:0, green:0, blue:0, alpha:0.5).cgColor
@@ -86,6 +86,16 @@ import UIKit
             layer.addSublayer(gradient)
         }
         CATransaction.commit()
+    }
+    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        setup(isSelected: true)
+
+    }
+    open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        setup(isSelected: false)
+
     }
 }
 
