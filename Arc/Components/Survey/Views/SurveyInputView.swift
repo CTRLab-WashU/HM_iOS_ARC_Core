@@ -11,7 +11,7 @@ import UIKit
 public protocol SurveyInput {
     ///Returns nil if the value returned is invalid
     func getValue() -> QuestionResponse?
-    
+    func isInformational() -> Bool
 	
     func setValue(_ value:QuestionResponse?)
 	func setError(message:String?)
@@ -23,7 +23,9 @@ public protocol SurveyInput {
 }
 
 extension SurveyInput {
-	
+    public func isInformational() -> Bool {
+        return false
+    }
 	public func setError(message: String?) {
 		
 	}
