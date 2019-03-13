@@ -52,13 +52,13 @@ open class SignatureView: UIView, SurveyInput {
     // An empty implementation adversely affects performance during animation.
     override open func draw(_ rect: CGRect) {
         // Drawing code
-        UIColor.black.set()
+        UIColor(named:"Primary")!.set()
         path.stroke()
     }
 
     public func getValue() -> QuestionResponse? {
         guard let data = save() else {
-            return AnyResponse(type: .image, value: nil)
+            return nil
         }
         return AnyResponse(type: .image, value: data)
     }

@@ -15,16 +15,16 @@ public enum QuestionStyle : String, Codable {
 }
 
 public enum QuestionType : String, Codable {
-	case none, text, number, slider, choice, checkbox, time, duration, password, segmentedText, multilineText, image
+	case none, text, number, slider, choice, checkbox, time, duration, password, segmentedText, multilineText, image, calendar, picker
 	
 	public var metatype: Codable.Type {
 		switch self {
-		case .none, .text, .time, .duration, .password, .segmentedText, .multilineText, .number, .image:
+		case .none, .text, .time, .duration, .password, .segmentedText, .multilineText, .number, .image,  .calendar:
 			return String.self
 		
 		case .slider:
 			return Float.self
-		case .choice:
+		case .choice, .picker:
 			return Int.self
 		
 		case .checkbox:
@@ -203,7 +203,7 @@ extension Survey.Question.Answer {
 				let v:Float = self.value as! Float
 				try container.encodeIfPresent(v, forKey: .value)
 
-			case .choice:
+			case .choice, .picker:
 				let v:Int = self.value as! Int
 				try container.encodeIfPresent(v, forKey: .value)
 				
@@ -212,9 +212,10 @@ extension Survey.Question.Answer {
 				let v:[Int] = self.value as! [Int]
 				try container.encodeIfPresent(v, forKey: .value)
 				
-            case .image:
+            case .image, .calendar:
                 break
-			}
+            
+            }
 		}
 		
 	}

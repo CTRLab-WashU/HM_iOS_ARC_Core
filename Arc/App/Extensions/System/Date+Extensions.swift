@@ -7,13 +7,24 @@
 //
 
 import Foundation
+public enum ACDateStyle:String {
+    case longWeekdayMonthDay = "EEEE, MMMM dd"
+    case mediumWeekDayMonthDay = "EEE, MMM dd"
+}
 
 public extension Date {
+    
 	public func localizedString(dateStyle:DateFormatter.Style = .short, timeStyle:DateFormatter.Style = .short) -> String
 	{
 		return DateFormatter.localizedString(from: self, dateStyle: dateStyle, timeStyle: timeStyle);
 	}
-	
+    public func localizedFormat(template:String = "MM/dd/yyyy h:mm a", options:Int = 0, locale:Locale? = nil ) -> String
+    {
+        let df = DateFormatter();
+        df.dateFormat = template;
+       
+        return df.string(from: self);
+    }
 	public func filenameSafeString() -> String
 	{
 		let df = DateFormatter();
@@ -71,7 +82,19 @@ public extension Date {
         if nanoseconds(from: date) > 0 { return "\(nanoseconds(from: date))ns" }
         return ""
     }
-	
+    public func dayOfMonth(calendar:Calendar =  Calendar(identifier: .gregorian)) -> Int {
+        
+        var components = calendar.dateComponents([.year,.weekday, .month, .day, .weekOfMonth], from: self);
+        return components.day ?? -1
+    }
+    
+    
+    public func weekdayOfMonth(calendar:Calendar =  Calendar(identifier: .gregorian)) -> (Int,Int) {
+        
+        var components = calendar.dateComponents([.year,.weekday, .month, .day, .weekOfMonth], from: self);
+        return (weekDay: components.weekday ?? -1, day: components.day ?? -1)
+        
+    }
 	// returns a count of "days" until or since the given date.
 	// This ignores the actual time of the Dates, and instead gives you a general count of days.
 	// So for instance, a date of 01/02/2017 0:00:01 still counts as 1 day since 01/01/2017 23:59:59

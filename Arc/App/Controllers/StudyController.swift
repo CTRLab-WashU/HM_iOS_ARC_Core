@@ -125,6 +125,19 @@ open class StudyController : MHController {
 		
 		return newSession;
 	}
+    
+    open func set(userStartDate date:Date, forStudyId studyId:Int) -> StudyPeriod? {
+        guard let study = get(study: studyId) else {
+            fatalError("Invalid studyId")
+        }
+        
+        study.userStartDate = date;
+        study.userEndDate = date.startOfDay().addingDays(days: DAYS_PER_STUDY).endOfDay();
+        
+        save()
+        return study
+    }
+    
 	open func get(study studyId:Int) -> StudyPeriod? {
 		
 		let study:[StudyPeriod]? = fetch(predicate: NSPredicate(format: "studyID == %i", studyId), sort: nil)

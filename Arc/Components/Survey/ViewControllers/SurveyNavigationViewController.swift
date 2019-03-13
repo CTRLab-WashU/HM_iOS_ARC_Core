@@ -255,7 +255,12 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
                 self?.onValueSelected(value: AnyResponse(type: QuestionType.none, value: nil), index: index)
 
 				self?.next(nextQuestion: nextQuestion)
-			} else {
+            } else if let input = input, input.isInformational() {
+                let nextQuestion = self?.figureOutNextQuestion(id: index)
+                self?.onValueSelected(value: AnyResponse(type: QuestionType.none, value: nil), index: index)
+                
+                self?.next(nextQuestion: nextQuestion)
+            } else {
 			//else validate it
 			
 				if let selection = value, !selection.isEmpty(),

@@ -37,13 +37,13 @@ public struct AnyResponse : QuestionResponse {
 			case .slider:
 				self.value = try container.decodeIfPresent(Float.self, forKey: .value)
 				
-			case .choice:
+			case .choice, .picker:
 				self.value = try container.decodeIfPresent(Int.self, forKey: .value)
 
 				
 			case .checkbox:
 				self.value = try container.decodeIfPresent([Int].self, forKey: .value)
-            case .image:
+            case .image, .calendar:
                 break
 			}
 	
@@ -65,7 +65,7 @@ public struct AnyResponse : QuestionResponse {
 				let v = self.value as? Float
 				try container.encodeIfPresent(v, forKey: .value)
 			
-			case .choice:
+			case .choice, .picker:
 				let v = self.value as? Int
 				try container.encodeIfPresent(v, forKey: .value)
 
@@ -73,7 +73,7 @@ public struct AnyResponse : QuestionResponse {
 			case .checkbox:
 				let v = self.value as? [Int]
 				try container.encodeIfPresent(v, forKey: .value)
-            case .image:
+            case .image, .calendar:
                 break
 			}
 		}
@@ -156,13 +156,13 @@ public extension SurveyResponse.Question {
 				self.value = try container.decodeIfPresent(Float.self, forKey: .value)
 				
 				
-			case .choice:
+			case .choice, .picker:
 				self.value = try container.decodeIfPresent(Int.self, forKey: .value)
 				
 				
 			case .checkbox:
 				self.value = try container.decodeIfPresent([Int].self, forKey: .value)
-            case .image:
+            case .image, .calendar:
                 break
 			}
 		}
@@ -189,7 +189,7 @@ public extension SurveyResponse.Question {
 				let v = self.value as? Float
 				try container.encodeIfPresent(v, forKey: .value)
 				
-			case .choice:
+			case .choice, .picker:
 				let v = self.value as? Int
 				try container.encodeIfPresent(v, forKey: .value)
 				
@@ -197,7 +197,7 @@ public extension SurveyResponse.Question {
 			case .checkbox:
 				let v = self.value as? [Int]
 				try container.encodeIfPresent(v, forKey: .value)
-            case .image:
+            case .image, .calendar:
                 break
 			}
 		

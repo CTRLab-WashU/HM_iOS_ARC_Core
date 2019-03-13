@@ -7,6 +7,24 @@
 //
 
 import UIKit
+extension UIFont {
+    func boldFont() -> UIFont? {
+        return addingSymbolicTraits(.traitBold)
+    }
+    
+    func italicFont() -> UIFont? {
+        return addingSymbolicTraits(.traitItalic)
+    }
+    
+    func addingSymbolicTraits(_ traits: UIFontDescriptor.SymbolicTraits) -> UIFont? {
+        let newTraits = fontDescriptor.symbolicTraits.union(traits)
+        guard let descriptor = fontDescriptor.withSymbolicTraits(newTraits) else {
+            return nil
+        }
+        
+        return UIFont(descriptor: descriptor, size: 0)
+    }
+}
 
 public extension UILabel
 {

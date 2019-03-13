@@ -8,27 +8,27 @@
 
 import UIKit
 
-public class GridTestViewController: ArcViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+open class GridTestViewController: ArcViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     public enum Mode {
         case none
         case image
         case fCell
     }
     
-    var mode:Mode = .none
+    public var mode:Mode = .none
     
-    var controller = Arc.shared.gridTestController
-    var tests:[GridTest] = []
-    var responseId:String = ""
-    var testNumber:Int = 0
-    var phase:Int = 0
-    var endTimer:Timer?
-    var maybeEndTimer:Timer?
-	var isVisible = true
+    public var controller = Arc.shared.gridTestController
+    public var tests:[GridTest] = []
+    public var responseId:String = ""
+    public var testNumber:Int = 0
+    public var phase:Int = 0
+    public var endTimer:Timer?
+    public var maybeEndTimer:Timer?
+	public var isVisible = true
     var interstitial:InterstitialView = .get()
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var collectionViewHeight:NSLayoutConstraint!
-    @IBOutlet weak var tapOnTheFsLabel: UILabel!
+    @IBOutlet public weak var collectionView: UICollectionView!
+    @IBOutlet public weak var collectionViewHeight:NSLayoutConstraint!
+    @IBOutlet public weak var tapOnTheFsLabel: UILabel!
     
     private var symbols:[UIImage] = [#imageLiteral(resourceName: "key"),
                                      #imageLiteral(resourceName: "phone"),
@@ -82,13 +82,13 @@ public class GridTestViewController: ArcViewController, UICollectionViewDelegate
 
         displayPreSymbols();
     }
-	public override func viewDidDisappear(_ animated: Bool) {
+	open override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 		isVisible = false
         maybeEndTimer?.invalidate()
         maybeEndTimer = nil
 	}
-    func displaySymbols()
+    open func displaySymbols()
     {
 		guard isVisible else {
 			return
@@ -117,7 +117,7 @@ public class GridTestViewController: ArcViewController, UICollectionViewDelegate
         }
     }
     
-    func displayFs()
+    open func displayFs()
     {
 		guard isVisible else {
 			return
@@ -145,7 +145,7 @@ public class GridTestViewController: ArcViewController, UICollectionViewDelegate
         
     }
     
-    func displayReady()
+    open func displayReady()
     {
         
 		guard isVisible else {
@@ -163,7 +163,7 @@ public class GridTestViewController: ArcViewController, UICollectionViewDelegate
 		
     }
     
-    func displayPreSymbols()
+    open func displayPreSymbols()
     {
 		guard isVisible else {
 			return
@@ -179,7 +179,7 @@ public class GridTestViewController: ArcViewController, UICollectionViewDelegate
 		
     }
     
-    func displayGrid()
+    open func displayGrid()
     {
 		guard isVisible else {
 			return
@@ -201,7 +201,7 @@ public class GridTestViewController: ArcViewController, UICollectionViewDelegate
         
         endTimer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(endTest), userInfo: nil, repeats: false)
     }
-    @objc func endTest()
+    @objc open  func endTest()
     {
         if phase == 3
         {
@@ -230,7 +230,7 @@ public class GridTestViewController: ArcViewController, UICollectionViewDelegate
         
     }
     
-    func maybeEndTest()
+    open func maybeEndTest()
     {
         if controller.get(numChoicesFor: responseId, testIndex: testNumber) >= 3
         {
@@ -239,7 +239,7 @@ public class GridTestViewController: ArcViewController, UICollectionViewDelegate
         }
     }
     
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch mode {
         case .image:
             return 25
@@ -252,7 +252,7 @@ public class GridTestViewController: ArcViewController, UICollectionViewDelegate
         
     }
     
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let type = (mode == .image) ? "imageCell" : "fCell"
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: type, for: indexPath)
         let index = indexPath.row
@@ -293,7 +293,7 @@ public class GridTestViewController: ArcViewController, UICollectionViewDelegate
         return cell
     }
     
-    public func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+    open func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         
         if (collectionView.cellForItem(at: indexPath) as? GridImageCell) != nil
         {
@@ -306,7 +306,7 @@ public class GridTestViewController: ArcViewController, UICollectionViewDelegate
         return true;
     }
     
-    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if let c = collectionView.cellForItem(at: indexPath) as? GridImageCell
         {
@@ -345,7 +345,7 @@ public class GridTestViewController: ArcViewController, UICollectionViewDelegate
 
     }
     
-    public func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath)
+    open func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath)
     {
         if (collectionView.cellForItem(at: indexPath) as? GridImageCell) != nil
         {
@@ -375,7 +375,7 @@ public class GridTestViewController: ArcViewController, UICollectionViewDelegate
 
     
     //MARK: Flow layout
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if mode == .image {
             return CGSize(width: 60, height: IMAGE_HEIGHT)
 
@@ -387,7 +387,7 @@ public class GridTestViewController: ArcViewController, UICollectionViewDelegate
         }
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         if mode == .image {
             return 2
             
@@ -399,7 +399,7 @@ public class GridTestViewController: ArcViewController, UICollectionViewDelegate
         }
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         if mode == .image {
             return 1
             
@@ -410,7 +410,7 @@ public class GridTestViewController: ArcViewController, UICollectionViewDelegate
             return 0
         }
     }
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         if mode == .image {
             return UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
             

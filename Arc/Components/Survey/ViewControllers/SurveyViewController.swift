@@ -213,16 +213,23 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 			inputView.maxCharacters = 2
 			inputView.minCharacters = 1
 			inputView.keyboardType = .numberPad
-			container.alignment = inputView.orientation
 			
         } else if question.type == .image {
             let inputView:SignatureView = input as? SignatureView ?? .get()
             input = inputView
             
-            container.alignment = inputView.orientation
             
+        } else if question.type == .calendar {
+            let inputView:ACCalendarView = input as? ACCalendarView ?? ACCalendarView(frame: .zero
+            )
+            input = inputView
+            
+        } else if question.type == .picker {
+            let inputView:ACPickerView = input as? ACPickerView ?? .get()
+            
+            input = inputView
         }
-		
+        container.alignment = input?.orientation ?? .fill
         input?.setError(message: nil)
         input?.didFinishSetup = {
             [weak self] in
