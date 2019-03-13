@@ -78,7 +78,7 @@ public class GridTestViewController: ArcViewController, UICollectionViewDelegate
 
 			
 		_ = controller.start(test: responseId)
-		_  = controller.mark(filled: responseId)
+		_ = controller.mark(filled: responseId)
 
         displayPreSymbols();
     }

@@ -29,6 +29,8 @@ open class SliderView: UIView, SurveyInput {
 
     var first = true
 	var hideSelectedAfterFirst = false
+    //Setting this will override all future instances created
+    static public var hideSelection:Bool?
     private var _value:Float? = nil
     
     
@@ -64,7 +66,7 @@ open class SliderView: UIView, SurveyInput {
             first = false
 			_value = value * valueSlider.maximumValue
 			valueSlider.value = value * valueSlider.maximumValue
-            if hideSelectedAfterFirst {
+            if SliderView.hideSelection ?? hideSelectedAfterFirst {
                 hideSelectedContainer()
             }
 		} else {
@@ -107,7 +109,7 @@ open class SliderView: UIView, SurveyInput {
             _value = sender.value
 			
 			print("printvalue:\(valueLabel.text)")
-			if hideSelectedAfterFirst {
+            if SliderView.hideSelection ?? hideSelectedAfterFirst {
 				hideSelectedContainer()
 			}
             didChangeValue?()

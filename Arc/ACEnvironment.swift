@@ -41,6 +41,7 @@ public protocol ArcEnvironment {
     
     var controllerRegistry:ArcControllerRegistry {get}
     
+    func configure()
 
 }
 
@@ -72,4 +73,6 @@ public extension ArcEnvironment {
     
     
     public var controllerRegistry:ArcControllerRegistry {return ArcControllerRegistry()}
+    
+    public func configure() {}
 }
