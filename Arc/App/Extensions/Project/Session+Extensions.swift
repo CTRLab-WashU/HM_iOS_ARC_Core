@@ -122,7 +122,7 @@ public extension Session {
             
 		case .priceTest:
 			let controller =  Arc.shared.pricesTestController
-			let priceTest = controller.loadTest(index: Int(sessionID), file: "priceSets-en-US")
+			let priceTest = controller.loadTest(index: Int(sessionID), file: PricesTestViewController.testVersion)
 			let response = controller.createResponse(withTest: priceTest)
 			let data = controller.fetch(id: response)
 			data?.type = surveyType.rawValue

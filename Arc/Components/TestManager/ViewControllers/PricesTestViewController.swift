@@ -20,6 +20,7 @@ public class PricesTestViewController: ArcViewController {
     var controller = Arc.shared.pricesTestController
     var test:PriceTest?
     var responseID = ""
+    public static var testVersion:String = "priceSets-en-US"
 //    private var questionDisplay:DNPricesQuestionViewController?
 //    private var test:DNPricesTest?
     private var itemIndex = 0
@@ -60,7 +61,7 @@ public class PricesTestViewController: ArcViewController {
 			
 		} else {
 		
-        	test = controller.loadTest(index: 0, file: "priceSets-en-US")
+        	test = controller.loadTest(index: 0, file: PricesTestViewController.testVersion )
         	responseID = controller.createResponse(withTest: test!)
 		}
         // Do any additional setup after loading the view.
