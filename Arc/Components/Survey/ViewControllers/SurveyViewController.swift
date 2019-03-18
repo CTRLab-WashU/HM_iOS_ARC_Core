@@ -229,7 +229,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
             
             input = inputView
         }
-        container.alignment = input?.orientation ?? .fill
+        container.alignment = input?.orientation ?? .top
         input?.setError(message: nil)
         input?.didFinishSetup = {
             [weak self] in
