@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C5143959224EA6FD000BF1CB /* ACSignatureNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5143958224EA6FD000BF1CB /* ACSignatureNavigationController.swift */; };
 		C52B75D421C8369400498571 /* arc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C54AE94821C81B5C00DEC360 /* arc.xcdatamodeld */; };
 		C52B75D521C837A200498571 /* Session+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE90E21C81B5C00DEC360 /* Session+Extensions.swift */; };
 		C52B75E521C83B2A00498571 /* HMMarkup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52B75DC21C83B2A00498571 /* HMMarkup.framework */; };
@@ -236,6 +237,8 @@
 
 /* Begin PBXFileReference section */
 		C50FC3BA22330F2C00143EA8 /* ACCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACCalendarView.swift; sourceTree = "<group>"; };
+		C5143957224E837C000BF1CB /* arc 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "arc 3.xcdatamodel"; sourceTree = "<group>"; };
+		C5143958224EA6FD000BF1CB /* ACSignatureNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSignatureNavigationController.swift; sourceTree = "<group>"; };
 		C52B75DC21C83B2A00498571 /* HMMarkup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HMMarkup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C52B75DE21C83B2A00498571 /* HMMarkup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HMMarkup.h; sourceTree = "<group>"; };
 		C52B75DF21C83B2A00498571 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -783,6 +786,7 @@
 				C54AE95921C81B5C00DEC360 /* PricesTestViewController.swift */,
 				C54AE95A21C81B5C00DEC360 /* FinishedNavigationController.swift */,
 				C54AE95B21C81B5C00DEC360 /* GridTestViewController.xib */,
+				C5143958224EA6FD000BF1CB /* ACSignatureNavigationController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1386,6 +1390,7 @@
 				C54AE9E621C81B5F00DEC360 /* HMRequest.swift in Sources */,
 				C54AE9D021C81B5F00DEC360 /* Arc.swift in Sources */,
 				C54AEA2421C81B5F00DEC360 /* ACContactViewController.swift in Sources */,
+				C5143959224EA6FD000BF1CB /* ACSignatureNavigationController.swift in Sources */,
 				C54AE9D121C81B5F00DEC360 /* ACState.swift in Sources */,
 				C54AEA5021C81B5F00DEC360 /* PasswordView.swift in Sources */,
 				C54AE9FB21C81B5F00DEC360 /* ContainerButton.swift in Sources */,
@@ -2026,10 +2031,11 @@
 		C54AE94821C81B5C00DEC360 /* arc.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				C5143957224E837C000BF1CB /* arc 3.xcdatamodel */,
 				C54AE94921C81B5C00DEC360 /* mHealth.xcdatamodel */,
 				C54AE94A21C81B5C00DEC360 /* mHealth 2.xcdatamodel */,
 			);
-			currentVersion = C54AE94A21C81B5C00DEC360 /* mHealth 2.xcdatamodel */;
+			currentVersion = C5143957224E837C000BF1CB /* arc 3.xcdatamodel */;
 			path = arc.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

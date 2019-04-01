@@ -45,6 +45,7 @@ open class SignatureView: UIView, SurveyInput {
     
     open override func didMoveToSuperview() {
         super.didMoveToSuperview()
+        isExclusiveTouch = true
         didFinishSetup?()
 
     }

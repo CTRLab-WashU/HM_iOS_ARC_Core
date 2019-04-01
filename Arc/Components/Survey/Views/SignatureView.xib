@@ -41,7 +41,7 @@
             <constraints>
                 <constraint firstItem="Wk6-qw-Wtd" firstAttribute="bottom" secondItem="uMB-h7-Wie" secondAttribute="bottom" constant="8" id="Ifm-tQ-I4S"/>
                 <constraint firstItem="uMB-h7-Wie" firstAttribute="leading" secondItem="Wk6-qw-Wtd" secondAttribute="leading" id="Il9-Wp-xqL"/>
-                <constraint firstItem="uMB-h7-Wie" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Wk6-qw-Wtd" secondAttribute="top" priority="999" constant="130" id="KIb-jX-Bc1"/>
+                <constraint firstItem="uMB-h7-Wie" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Wk6-qw-Wtd" secondAttribute="top" priority="999" id="KIb-jX-Bc1"/>
                 <constraint firstItem="uMB-h7-Wie" firstAttribute="trailing" secondItem="Wk6-qw-Wtd" secondAttribute="trailing" id="lJ7-8s-8Tr"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

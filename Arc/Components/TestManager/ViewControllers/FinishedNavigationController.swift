@@ -35,9 +35,12 @@ open class FinishedNavigationController: SurveyNavigationViewController {
 	
 	//Override this to write to other controllers
 	override open func onValueSelected(value:QuestionResponse, index:String) {
+        
 		guard let session = Arc.shared.currentTestSession else {return}
 		guard let study = Arc.shared.currentStudy else {return}
-		let v = value.value as! Int
+        guard let v = value.value as? Int else {
+            return
+        }
 		
 		if v == 0 {
 			Arc.shared.studyController.mark(interrupted:true, sessionId: session, studyId: study)
