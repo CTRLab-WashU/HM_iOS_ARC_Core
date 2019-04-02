@@ -16,7 +16,8 @@ public protocol ArcEnvironment {
     var welcomeText:String? {get}
     var privacyPolicyUrl:String? {get}
     var arcStartDays:Dictionary<Int, Int>? {get}
-   
+    var shouldDisplayDateReminderNotifications:Bool {get}
+    
     var appController:AppController {get}
     
     var authController:AuthController {get}
@@ -50,7 +51,8 @@ public extension ArcEnvironment {
     //This will trigger a flag that causes coredata to use a mock
     //persistent store, an in-memory database. 
     public var mockData:Bool {return false}
-    
+    public var shouldDisplayDateReminderNotifications:Bool {return false}
+
     public var appController:AppController {return AppController()}
     
     public var authController:AuthController {return AuthController()}
@@ -73,6 +75,7 @@ public extension ArcEnvironment {
     
     
     public var controllerRegistry:ArcControllerRegistry {return ArcControllerRegistry()}
-    
+
+
     public func configure() {}
 }
