@@ -370,7 +370,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
         
         
         //dump(convertedRect)
-		guard !scrollView.bounds.contains(convertedRect) else {
+		guard !scrollView.bounds.contains(convertedRect) && !scrollView.bounds.intersects(convertedRect) else {
 			scrollIndicator.alpha = 0
             scrollView.delaysContentTouches = false
 			return

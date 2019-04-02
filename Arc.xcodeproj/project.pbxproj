@@ -198,6 +198,7 @@
 		C5B2602C2213606600BFF778 /* ACButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2602B2213606600BFF778 /* ACButton.swift */; };
 		C5B2602D2213657500BFF778 /* ArcUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B2601322135F7200BFF778 /* ArcUIKit.framework */; };
 		C5D0F6FA220B477B00F04942 /* MHScrollingAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5D0F6F9220B477B00F04942 /* MHScrollingAlertView.xib */; };
+		C5E1E34F2253E84900255812 /* ACWakeSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1E34E2253E84900255812 /* ACWakeSurveyViewController.swift */; };
 		C5F77F35222F094000BECAE1 /* SignatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F77F34222F094000BECAE1 /* SignatureView.swift */; };
 		C5F77F37222F095200BECAE1 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F77F36222F095200BECAE1 /* SignatureViewController.swift */; };
 		C5F77F39222F15DD00BECAE1 /* SignatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5F77F38222F15DD00BECAE1 /* SignatureView.xib */; };
@@ -424,6 +425,7 @@
 		C5B2602222135F7300BFF778 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5B2602B2213606600BFF778 /* ACButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACButton.swift; sourceTree = "<group>"; };
 		C5D0F6F9220B477B00F04942 /* MHScrollingAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MHScrollingAlertView.xib; sourceTree = "<group>"; };
+		C5E1E34E2253E84900255812 /* ACWakeSurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACWakeSurveyViewController.swift; sourceTree = "<group>"; };
 		C5F77F34222F094000BECAE1 /* SignatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureView.swift; sourceTree = "<group>"; };
 		C5F77F36222F095200BECAE1 /* SignatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureViewController.swift; sourceTree = "<group>"; };
 		C5F77F38222F15DD00BECAE1 /* SignatureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignatureView.xib; sourceTree = "<group>"; };
@@ -960,6 +962,7 @@
 				C54AE99821C81B5C00DEC360 /* SurveyViewController.xib */,
 				C54AE99B21C81B5C00DEC360 /* IntroViewController.xib */,
 				C540B5B0221E0FD000B539A4 /* LanguageViewController.swift */,
+				C5E1E34E2253E84900255812 /* ACWakeSurveyViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1406,6 +1409,7 @@
 				C54AEA1C21C81B5F00DEC360 /* InterstitialView.swift in Sources */,
 				C54AE9F921C81B5F00DEC360 /* AppController.swift in Sources */,
 				C54AE9EA21C81B5F00DEC360 /* HMRequestHelper.swift in Sources */,
+				C5E1E34F2253E84900255812 /* ACWakeSurveyViewController.swift in Sources */,
 				C54AEA0821C81B5F00DEC360 /* PriceTest.swift in Sources */,
 				C54AE9F821C81B5F00DEC360 /* SlidePresentAnimationController.swift in Sources */,
 				C54AEA4621C81B5F00DEC360 /* SegmentedTextView.swift in Sources */,
