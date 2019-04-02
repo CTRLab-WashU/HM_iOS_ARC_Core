@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import HMMarkup
 open class MHAlertView: UIView {
 	public enum ButtonType {
 		case `default`(String, ()->())
@@ -26,10 +26,20 @@ open class MHAlertView: UIView {
 	@IBOutlet weak var messageLabel:UILabel!
 	private var waitTimer:Timer?
 	private var delayTimer:Timer?
-	private var buttonMap: [String:ButtonType] = [:]
+	private var buttonMap: [UIView:ButtonType] = [:]
+    
+    private var markupRenderer:HMMarkupRenderer
+   
+    public required init?(coder aDecoder: NSCoder) {
+        //The message label will not exist at this point use a default first
+        markupRenderer = HMMarkupRenderer(baseFont: .systemFont(ofSize: 14))
+        super.init(coder: aDecoder)
+
+    }
 	override open func awakeFromNib() {
 		super.awakeFromNib()
-		
+        markupRenderer = HMMarkupRenderer(baseFont: messageLabel.font)
+
 	}
 	public func set(message:String?, buttons:[ButtonType]) {
 		//Clear timers in case of rapid reuse
@@ -40,13 +50,13 @@ open class MHAlertView: UIView {
 		
 		
 		
-		messageLabel.text = message
+		messageLabel.attributedText = markupRenderer.render(text: message ?? "")
 		self.buttons = buttons
 		buttonMap = [:]
 		stack.removeSubviews()
 		for button in buttons {
 			if let b = get(buttonForType: button) {
-				buttonMap[b.titleLabel!.text!] = button
+				buttonMap[b] = button
 				stack.addArrangedSubview(b)
 			}
 		}
@@ -57,7 +67,7 @@ open class MHAlertView: UIView {
 		
 		
 	}
-	private func get(buttonForType buttonType:ButtonType) -> UIButton? {
+	private func get(buttonForType buttonType:ButtonType) -> UIView? {
 		switch buttonType {
 		case let .`default`(title, _):
 			let button:PrimaryButton = .get()
@@ -110,7 +120,7 @@ open class MHAlertView: UIView {
 	
 	}
 	@objc func buttonTapped(_ sender:UIButton) {
-		if let buttonType = buttonMap[sender.titleLabel!.text!] {
+		if let buttonType = buttonMap[sender] {
 		
 			switch buttonType {
 			case let .`default`(_, callBack):
