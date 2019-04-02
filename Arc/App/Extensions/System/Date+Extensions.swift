@@ -144,6 +144,20 @@ public extension Date {
         }
         return false
     }
+    public func addingYears(years:Int) -> Date
+    {
+        let calendar:Calendar = Calendar(identifier: .gregorian);
+        var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: self);
+        components.month = components.year! + years;
+        return calendar.date(from: components)!;
+    }
+    public func addingMonths(months:Int) -> Date
+    {
+        let calendar:Calendar = Calendar(identifier: .gregorian);
+        var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: self);
+        components.month = components.month! + months;
+        return calendar.date(from: components)!;
+    }
 	public func addingDays(days:Int) -> Date
 	{
 		let calendar:Calendar = Calendar(identifier: .gregorian);
