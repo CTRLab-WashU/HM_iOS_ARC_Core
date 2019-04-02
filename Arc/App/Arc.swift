@@ -231,6 +231,7 @@ open class Arc : ArcApi {
 		if let study = studyController.getUpcomingStudyPeriod()
 		{
 			let studyId = Int(study.studyID)
+            _ = Arc.shared.notificationController.scheduleDateConfirmationsForUpcomingStudy()
 
 			if  let startDate = study.userStartDate as Date?
 			{

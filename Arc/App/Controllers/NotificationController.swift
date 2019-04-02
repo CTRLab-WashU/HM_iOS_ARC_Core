@@ -86,6 +86,7 @@ open class NotificationController : MHController
 		return fetch(predicate: request.predicate, sort: request.sortDescriptors) ?? []
 		
 	}
+    
 	// creates notifications for upcoming TestSessions
 	open func schedule(sessionNotifications studyId:Int)
 	{
@@ -278,6 +279,64 @@ open class NotificationController : MHController
 		let maybeNotifications = getNotifications(withIdentifierPrefix: "DateReminder-\(studyId)", onlyPending: false);
 		return maybeNotifications.count > 0;
 	}
+    open func scheduleDateConfirmationsForUpcomingStudy() -> Bool {
+        guard let study = Arc.shared.studyController.getUpcomingStudyPeriod() else {
+            return false
+        }
+        schedule(dateConfirmationsForStudy: Int(study.studyID))
+        return true
+    }
+    open func schedule(dateConfirmationsForStudy studyId:Int) {
+        guard let study = Arc.shared.studyController.get(study: studyId) else {
+            fatalError("Invalid study ID")
+        }
+        guard let studyDate = study.userStartDate else {
+            fatalError("No user study date set")
+        }
+        clear(confirmationReminders: studyId)
+        //One month
+        let format = ACDateStyle.longWeekdayMonthDay.rawValue
+        
+        let formattedDate = studyDate.localizedFormat(template: format)
+        //Today must be before the target date
+        
+        guard Date().compare(studyDate.addingDays(days: -1)) == .orderedAscending ||
+        Date().compare(studyDate.addingDays(days: -1)) == .orderedSame else {
+            return
+        }
+        let day = scheduleNotification(date: studyDate.addingDays(days: -1),
+                                       title: "",
+                                       body: "Reminder: Your next testing cycle begins tomorrow.\nTap to confirm or reschedule.",
+                                       identifierPrefix: "DateReminder-\(studyId)")
+        day.studyID = Int64(studyId)
+
+        guard Date().compare(studyDate.addingWeeks(weeks: -1)) == .orderedAscending ||
+            Date().compare(studyDate.addingWeeks(weeks: -1)) == .orderedSame else {
+                save()
+                return
+        }
+        
+        let week = scheduleNotification(date: studyDate.addingWeeks(weeks: -1),
+                                        title: "",
+                                        body: "Reminder: Your next testing cycle starts in one week.\nTap to confirm or reschedule.",
+                                        identifierPrefix: "DateReminder-\(studyId)")
+        week.studyID = Int64(studyId)
+
+        guard Date().compare(studyDate.addingMonths(months: -1)) == .orderedAscending ||
+            Date().compare(studyDate.addingMonths(months: -1)) == .orderedSame else {
+                save()
+                return
+        }
+        let month = scheduleNotification(date: studyDate.addingMonths(months: -1),
+                                         title: "",
+                                         body: "Your next week of testing begins in one month, on \(formattedDate).\nYou may adjust this schedule up to 7 days. ",
+                                         identifierPrefix: "DateReminder-\(studyId)")
+        
+        month.studyID = Int64(studyId)
+
+        save()
+    }
+    
 	open func schedule(dateRemdinderNotification study:StudyPeriod)
 	{
 		let studyID = Int(study.studyID)

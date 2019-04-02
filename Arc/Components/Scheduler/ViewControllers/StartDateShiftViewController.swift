@@ -38,10 +38,7 @@ open class StartDateShiftViewController: SurveyNavigationViewController {
             let possibleDate = dates[i]
             if possibleDate.compare(userDate) == .orderedSame{
                 selectedDate = i
-                print(possibleDate.localizedString(), userDate.localizedString(), "<--- Match")
 
-            } else {
-                print(possibleDate.localizedString(), userDate.localizedString())
             }
         }
     }
@@ -92,7 +89,7 @@ open class StartDateShiftViewController: SurveyNavigationViewController {
     }
     
     override open func onValueSelected(value: QuestionResponse, index: String) {
-        super.onValueSelected(value: value, index: index)
+        //super.onValueSelected(value: value, index: index)
         guard let index = QuestionId(rawValue: index) else {return}
 
         
@@ -119,7 +116,10 @@ open class StartDateShiftViewController: SurveyNavigationViewController {
             _ = Arc.shared.studyController.mark(confirmed: id)
             Arc.shared.notificationController.clear(sessionNotifications: id)
             Arc.shared.notificationController.schedule(upcomingSessionNotificationsWithLimit: 32)
+            _ = Arc.shared.notificationController.scheduleDateConfirmationsForUpcomingStudy()
+
             Arc.shared.scheduleController.upload(confirmedSchedule: id);
+
             Arc.shared.studyController.save()
             Arc.shared.nextAvailableState()
             break
