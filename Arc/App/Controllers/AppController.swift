@@ -51,7 +51,20 @@ open class AppController : MHController {
             defaults.synchronize();
         }
     }
-    
+    public var isOnboarded:Bool {
+        get {
+            if let value = (defaults.value(forKey:"isOnboarded") as? Bool)
+            {
+                return value;
+            }
+            return false;
+        }
+        set (newVal)
+        {
+            defaults.setValue(newVal, forKey:"isOnboarded");
+            defaults.synchronize();
+        }
+    }
     public var deviceId:String {
         get {
             if let value = (defaults.value(forKey:"deviceId") as? String)
