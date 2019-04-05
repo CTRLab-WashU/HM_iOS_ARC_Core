@@ -1,6 +1,6 @@
 //
 //  AboutViewController.swift
-//  mHealth
+//  Arc
 //
 //  Created by Matt Gannon on 11/19/18.
 //  Copyright © 2018 healthyMedium. All rights reserved.

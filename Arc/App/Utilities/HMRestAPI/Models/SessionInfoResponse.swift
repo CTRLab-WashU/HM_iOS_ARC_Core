@@ -1,6 +1,6 @@
 //
 //  SessionInfoResponse.swift
-//  mHealth
+//  Arc
 //
 //  Created by Philip Hayes on 11/29/18.
 //  Copyright © 2018 healthyMedium. All rights reserved.

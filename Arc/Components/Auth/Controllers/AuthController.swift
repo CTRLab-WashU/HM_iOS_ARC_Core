@@ -129,7 +129,7 @@ open class AuthController:MHController {
     open func getAuthIssue(from code:Int?) -> String {
         if let code = code {
             if code == 401 {
-                return "Invalid mHealth ID or Password"
+                return "Invalid  Rater ID or ARC ID"
             }
             if code == 409 {
                 return "Already enrolled on another device"

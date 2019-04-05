@@ -1,6 +1,6 @@
 //
 //  SchedulerViewController.swift
-//  mHealth
+//  Arc
 //
 //  Created by Philip Hayes on 10/2/18.
 //  Copyright © 2018 healthyMedium. All rights reserved.

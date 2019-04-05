@@ -1,6 +1,6 @@
 //
 //  HMMarkupLabel.swift
-//  mHealth
+//  Arc
 //
 //  Created by Matt Gannon on 11/16/18.
 //  Copyright © 2018 healthyMedium. All rights reserved.
