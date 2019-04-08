@@ -10,7 +10,7 @@ import UIKit
 public enum ACState : String, State, CaseIterable {
 	
 	
-	case about, auth, schedule, home, context, gridTest, priceTest, symbolsTest, changeSchedule, contact, rescheduleAvailability, testIntro, thankYou
+	case about, auth, schedule, home, context, gridTest, priceTest, symbolsTest, changeSchedule, contact, rescheduleAvailability, testIntro, thankYou, changeStudyStart
 	
 	static var startup:[ACState] { return [.auth, .schedule, .home] }
 	
@@ -72,7 +72,11 @@ public enum ACState : String, State, CaseIterable {
 			break
 			
 			
-			
+        case .changeStudyStart:
+            let controller:StartDateShiftViewController = .get()
+            controller.surveyType = .schedule
+            controller.loadSurvey(template: "changeStartDate")
+            return controller
 		case .contact:
 			let controller:ACContactNavigationController = .get()
 			let window = UIApplication.shared.keyWindow
