@@ -10,7 +10,7 @@ import UIKit
 public enum ACState : String, State, CaseIterable {
 	
 	
-	case about, auth, schedule, home, context, gridTest, priceTest, symbolsTest, changeSchedule, contact, rescheduleAvailability, testIntro, thankYou
+	case about, auth, schedule, home, context, gridTest, priceTest, symbolsTest, changeSchedule, contact, rescheduleAvailability, testIntro, thankYou, changeStudyStart
 	
 	static var startup:[ACState] { return [.auth, .schedule, .home] }
 	
@@ -51,27 +51,21 @@ public enum ACState : String, State, CaseIterable {
 			
 			
 			
+        case .schedule, .changeSchedule:
+            let controller:ACScheduleViewController = .get()
+            controller.participantId = Arc.shared.participantId
+            if (self == .changeSchedule) {
+                controller.isChangingSchedule = true
+            }
+            controller.loadSurvey(template: "schedule")
+            return controller
 			
-			
-		case .schedule:
-//            let controller:ScheduleNavigationController = .get()
-//            controller.participantId = Arc.shared.participantId
-//
-//            controller.loadSurvey(template: "schedule")
-//            newController = controller
-			break
-		case .changeSchedule:
-//            let controller:ScheduleNavigationController = .get()
-//            controller.participantId = Arc.shared.participantId
-//            
-//            controller.shouldShowIntro = false
-//            
-//            controller.loadSurvey(template: "schedule")
-//            newController = controller
-			
-			break
-			
-			
+            
+        case .changeStudyStart:
+            let controller:StartDateShiftViewController = .get()
+            controller.surveyType = .schedule
+            controller.loadSurvey(template: "changeStartDate")
+            return controller
 			
 		case .contact:
 			let controller:ACContactNavigationController = .get()
