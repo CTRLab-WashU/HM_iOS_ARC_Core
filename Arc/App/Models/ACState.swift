@@ -60,13 +60,13 @@ public enum ACState : String, State, CaseIterable {
             controller.loadSurvey(template: "schedule")
             return controller
 			
-            
+
         case .changeStudyStart:
             let controller:StartDateShiftViewController = .get()
             controller.surveyType = .schedule
             controller.loadSurvey(template: "changeStartDate")
             return controller
-			
+
 		case .contact:
 			let controller:ACContactNavigationController = .get()
 			let window = UIApplication.shared.keyWindow
@@ -77,7 +77,7 @@ public enum ACState : String, State, CaseIterable {
 			newController = controller
 			
 		case .rescheduleAvailability:
-			let controller:UIViewController = UIViewController()
+			let controller:ACAvailbilityNavigationController = .get()
 			newController = controller
 			
 		case .testIntro:

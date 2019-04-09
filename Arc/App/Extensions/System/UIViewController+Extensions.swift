@@ -15,7 +15,7 @@ public extension UIViewController {
 			_bundle = Bundle(for: T.self)
 
 		}
-		
+		dump(_bundle)
         let vc = T(nibName: nib ?? String(describing: self), bundle: _bundle)
         
         return vc

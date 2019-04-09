@@ -428,7 +428,10 @@ open class StudyController : MHController {
 		
 		return nil;
 	}
-	
+    open func createTestSessions(studyId: Int, isRescheduling:Bool = false) {
+        fatalError("Override is required")
+    }
+
 	// create test sessions
 	// creates and schedules sessions from self.userStartDate
 	
