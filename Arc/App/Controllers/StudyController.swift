@@ -957,7 +957,46 @@ open class StudyController : MHController {
 		
 		return sessions;
 	}
-	
+    open func randomizeTimes(times:Array<Date>, start:Date, end: Date) -> Array<Date>
+    {
+        var times:Array<Date> = times;
+        for i in 0..<times.count
+        {
+            var minTime:Date?;
+            var maxTime:Date?;
+            
+            // if this is the first test, then we need to set minTime to start. BUT, sometimes start
+            // might actually be the time of the last test scheuled, in which case we want start + 2 hours
+            // That's why, above, around line 558, we set it to the last sessions' start time + 2 hours
+            if i == 0
+            {
+                minTime = start;
+            }
+            else    //otherwise we want the last scheduled test + 2 hours
+            {
+                minTime = times[i - 1].addingHours(hours: 2);
+            }
+            
+            
+            // if this is the last test, we want to set maxTime to the end of the day
+            if i == times.count - 1
+            {
+                maxTime = end;
+            }
+            else    //otherwise set it to the next text - 2 hours
+            {
+                maxTime = times[i + 1].addingHours(hours: -2);
+            }
+            
+            if let least = minTime, let most = maxTime
+            {
+                let randomTimeInterval =  min(most.timeIntervalSince1970, least.timeIntervalSince1970 + TimeInterval(arc4random_uniform(UInt32(max(0, most.timeIntervalSince1970 - least.timeIntervalSince1970)))));
+                times[i] = Date(timeIntervalSince1970: randomTimeInterval);
+            }
+        }
+        
+        return times;
+    }
 	open func delete(sessionsUpTo sessionId:Int, inStudy studyId: Int) {
 		guard let study = get(study: studyId), let sessions = study.sessions else {
 			fatalError("Invalid study ID")
