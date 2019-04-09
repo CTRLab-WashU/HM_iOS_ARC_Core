@@ -46,7 +46,8 @@ open class ACAvailbilityNavigationController:UINavigationController {
     
     override open func viewDidLoad() {
         super.viewDidLoad()
-        vc = .get()
+        let v:ACChangeAvailabilityViewController = .get()
+        vc = v
         
         pushViewController(vc, animated: true)
         navigationBar.isHidden = true
