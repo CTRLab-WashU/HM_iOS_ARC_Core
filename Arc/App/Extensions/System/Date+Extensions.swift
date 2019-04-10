@@ -227,6 +227,15 @@ public extension ClosedRange where Bound == Date {
     public func randomElement() -> Date? {
         return Date.random(in: self)
     }
+    
+    subscript(index:Double) -> Date {
+        get {
+            return Date(timeIntervalSince1970:  lowerBound.timeIntervalSince1970 + index * (upperBound.timeIntervalSince1970 - lowerBound.timeIntervalSince1970))
+        }
+        set {
+            
+        }
+    }
 }
 
 public extension TimeInterval {
