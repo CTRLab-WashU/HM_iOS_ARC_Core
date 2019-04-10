@@ -218,7 +218,7 @@ open class Arc : ArcApi {
 					
 				}
 				Arc.shared.notificationController.clear(sessionNotifications: Int(studyId))
-				Arc.shared.notificationController.schedule(sessionNotifications: Int(studyId))
+                Arc.shared.notificationController.schedule(upcomingSessionNotificationsWithLimit: 32)
 				Arc.shared.notificationController.save()
 			}
 			
