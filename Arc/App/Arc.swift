@@ -156,7 +156,7 @@ open class Arc : ArcApi {
     public func uploadTestData() {
 		sessionController.sendFinishedSessions()
 		sessionController.sendMissedSessions()
-		
+		sessionController.sendSignatures()
 		if !appController.testScheduleUploaded{
 			let studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
 			Arc.shared.sessionController.uploadSchedule(studyPeriods: studies)
@@ -218,7 +218,7 @@ open class Arc : ArcApi {
 					
 				}
 				Arc.shared.notificationController.clear(sessionNotifications: Int(studyId))
-				Arc.shared.notificationController.schedule(sessionNotifications: Int(studyId))
+                Arc.shared.notificationController.schedule(upcomingSessionNotificationsWithLimit: 32)
 				Arc.shared.notificationController.save()
 			}
 			

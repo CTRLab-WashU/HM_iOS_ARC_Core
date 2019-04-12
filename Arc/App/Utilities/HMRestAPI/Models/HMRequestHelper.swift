@@ -171,6 +171,7 @@ public enum HMAPIRequest<T:Codable,S:Codable> {
         request.headers?["Content-Type"] = "multipart/form-data; boundary=\(boundary)"
         
         request.data = createMultiPartBody(parameters: params,
+                                           fileName: "image.png",
                                           data: data,
                                           mimeType: "image/png", boundary: boundary)
         request.success = {
@@ -192,7 +193,7 @@ public enum HMAPIRequest<T:Codable,S:Codable> {
         return request
         
     }
-    public func createMultiPartBody(parameters:[String:String]?, data:Data, mimeType:String, boundary:String) -> Data {
+    public func createMultiPartBody(parameters:[String:String]?, fileName:String, data:Data, mimeType:String, boundary:String) -> Data {
         var body = Data();
         
         if let params = parameters {
@@ -204,7 +205,7 @@ public enum HMAPIRequest<T:Codable,S:Codable> {
         }
         
         body.appendString(value: "--\(boundary)\r\n")
-        body.appendString(value: "Content-Disposition: form-data; name=file")
+        body.appendString(value: "Content-Disposition: form-data; name=\"file\"; filename=\"\(fileName)\"\r\n")
         body.appendString(value: "Content-Type: \(mimeType)\r\n\r\n")
         body.append(contentsOf: data)
         body.appendString(value: "\r\n")

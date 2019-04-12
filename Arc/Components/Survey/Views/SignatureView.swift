@@ -92,12 +92,16 @@ open class SignatureView: UIView, SurveyInput {
     }
     override open func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
     }
-    
+    @IBAction func xPressed(sender:UIButton) {
+        clear()
+        
+    }
     public func clear(){
         path = UIBezierPath()
         self.setNeedsDisplay()
         delegate?.signatureViewContentChanged(state: .empty)
         state = .empty
+        didChangeValue?()
     }
     public func save() -> UIImage?{
         

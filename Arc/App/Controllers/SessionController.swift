@@ -47,6 +47,14 @@ open class SessionController:MHController {
 	}
 	
 
+    open func getSignaturesForUploading() -> [Signature]
+    {
+        
+        
+        let results:[Signature] = fetch() ?? []
+        return results;
+        
+    }
 	open func sendFinishedSessions()
 	{
 		
@@ -74,7 +82,51 @@ open class SessionController:MHController {
 			}
 		}
 	}
-	
+    open func sendSignatures() {
+        MHController.dataContext.perform {
+            let signatures = self.getSignaturesForUploading()
+            for i in 0 ..< signatures.count {
+                self.uploadSignature(signature: signatures[i])
+            }
+        }
+    }
+    open func uploadSignature(signature:Signature) {
+        guard signature.isUploaded == false else {
+            return
+        }
+        guard let data = signature.data else {
+            return
+        }
+        //let md5 = data.encode()?.MD5()
+        
+        let r:HMAPIRequest<Data, HMResponse> = .post("/signature-data")
+        r.executeMultipart(data:data ,
+                           params: [
+                            "participant_id":"\(Arc.shared.participantId ?? -1)",
+                            "device_id": Arc.shared.deviceId,
+                            "session_id": "\(signature.sessionId)"])
+        { (response, data, _) in
+            guard !HMRestAPI.shared.blackHole else {
+                return
+            }
+            if data?.errors.count == 0 {
+                //if md5 == data?.response?.md5 {
+                    signature.isUploaded = true
+                    
+                    self.save()
+                //} else {
+                  //  HMLog("\(md5 ?? "") does not match \(data?.response?.md5 ?? "")")
+                //}
+            } else {
+                print(data?.errors.toString())
+            }
+            
+            
+            
+        }
+        
+        
+    }
 	open func uploadSession(session:Session) {
 		guard session.uploaded == false else {
 			return
