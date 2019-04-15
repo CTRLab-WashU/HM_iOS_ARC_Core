@@ -20,13 +20,9 @@ class SignatureViewController: UIViewController, SignatureViewDelegate  {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated);
         
-//        DNDataManager.sharedInstance.currentTestSession = TestVisit.getCurrentVisit()?.getAvailableTestSession();
-//        DNDataManager.sharedInstance.currentTestSession?.clearNotifications();
-//        DNDataManager.sharedInstance.isTesting = true
-//        DNDataManager.sharedInstance.currentTestSession?.startTime = Date() as NSDate;
+
         self.signatureView.delegate = self
         self.signatureViewContentChanged(state: .empty)
-        //        DNDataManager.sharedInstance.takeDeviceSample();
     }
     
     override func didReceiveMemoryWarning() {

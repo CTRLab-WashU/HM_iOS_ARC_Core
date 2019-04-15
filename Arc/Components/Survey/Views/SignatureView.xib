@@ -53,7 +53,7 @@
                 <constraint firstItem="uMB-h7-Wie" firstAttribute="leading" secondItem="Wk6-qw-Wtd" secondAttribute="leading" id="Il9-Wp-xqL"/>
                 <constraint firstItem="uMB-h7-Wie" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Wk6-qw-Wtd" secondAttribute="top" priority="999" id="KIb-jX-Bc1"/>
                 <constraint firstItem="uMB-h7-Wie" firstAttribute="trailing" secondItem="Wk6-qw-Wtd" secondAttribute="trailing" id="lJ7-8s-8Tr"/>
-                <constraint firstItem="uMB-h7-Wie" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Wk6-qw-Wtd" secondAttribute="top" priority="750" constant="100" id="mwg-K9-qgO"/>
+                <constraint firstItem="uMB-h7-Wie" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Wk6-qw-Wtd" secondAttribute="top" priority="750" constant="80" id="mwg-K9-qgO"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="Wk6-qw-Wtd"/>
