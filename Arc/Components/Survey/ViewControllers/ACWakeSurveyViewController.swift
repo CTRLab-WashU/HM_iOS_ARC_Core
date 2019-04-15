@@ -41,18 +41,47 @@ open class ACWakeSurveyViewController: SurveyNavigationViewController {
         switch question {
         
         case .bedTimeLastNight, .sleepTimeLastNight:
+            
             guard getAnswerFor(question: question) == nil else {return}
+
             input.setValue(AnyResponse(type: .time, value: yesterday.availabilityEnd))
-            break
-        case .wakeTimeThisMorning, .outOfBedTimeThisMorning, .workWake, .nonworkWake, .nonworkWake2:
+        
+        
+        
+        case .wakeTimeThisMorning, .outOfBedTimeThisMorning, .workWake:
+            
             guard getAnswerFor(question: question) == nil else {return}
+            
             input.setValue(AnyResponse(type: .time, value: today.availabilityStart))
         
-        case .workSleep, .nonworkSleep, .nonworkSleep2:
+        
+        
+        case .workSleep:
+            
             guard getAnswerFor(question: question) == nil else {return}
+            
             input.setValue(AnyResponse(type: .time, value: today.availabilityEnd))
-
-            break
+        
+        
+        
+        case .nonworkWake, .nonworkWake2:
+            
+            guard getAnswerFor(question: question) == nil else {return}
+            
+            guard let saturday = Arc.shared.scheduleController.get(entriesForDay: .saturday, forParticipant: Arc.shared.participantId ?? 0)?.first else {return}
+            
+            input.setValue(AnyResponse(type: .time, value: saturday.availabilityStart))
+        
+        
+        
+        case .nonworkSleep, .nonworkSleep2:
+            
+            guard getAnswerFor(question: question) == nil else {return}
+            
+            guard let saturday = Arc.shared.scheduleController.get(entriesForDay: .saturday, forParticipant: Arc.shared.participantId ?? 0)?.first else {return}
+            
+            input.setValue(AnyResponse(type: .time, value: saturday.availabilityEnd))
+        
         default:
             return
         }
