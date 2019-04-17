@@ -276,7 +276,6 @@
 		C54AE91221C81B5C00DEC360 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		C54AE91321C81B5C00DEC360 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
 		C54AE91421C81B5C00DEC360 /* Set+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Set+Extensions.swift"; sourceTree = "<group>"; };
-		C54AE91521C81B5C00DEC360 /* XCTestCase+FatalError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FatalError.swift"; sourceTree = "<group>"; };
 		C54AE91621C81B5C00DEC360 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		C54AE91721C81B5C00DEC360 /* Date+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		C54AE91821C81B5C00DEC360 /* Data+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
@@ -630,7 +629,6 @@
 				C54AE91221C81B5C00DEC360 /* UIView+Extensions.swift */,
 				C54AE91321C81B5C00DEC360 /* UIStackView+Extensions.swift */,
 				C54AE91421C81B5C00DEC360 /* Set+Extensions.swift */,
-				C54AE91521C81B5C00DEC360 /* XCTestCase+FatalError.swift */,
 				C54AE91621C81B5C00DEC360 /* UILabel+Extensions.swift */,
 				C54AE91721C81B5C00DEC360 /* Date+Extensions.swift */,
 				C54AE91821C81B5C00DEC360 /* Data+Extensions.swift */,

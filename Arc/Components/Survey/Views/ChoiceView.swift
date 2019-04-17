@@ -7,7 +7,7 @@
 //
 
 import UIKit
-open class ChoiceView : UIView {
+open class ChoiceView : BorderedView {
     public enum State {
         case radio, checkBox
         
@@ -30,6 +30,16 @@ open class ChoiceView : UIView {
                 default:
                     //return UIImage(named: "cut-ups/radio/selected")
                     return UIImage(named: "cut-ups/radio/selected alt")
+                }
+            }
+        }
+        var cornerRadius:CGFloat {
+            get {
+                switch self {
+                case .checkBox:
+                    return 6.0
+                default:
+                    return 22.0
                 }
             }
         }
@@ -79,6 +89,8 @@ open class ChoiceView : UIView {
     func set(state:State) {
         button.setImage(state.unselectedImage, for: .normal)
         button.setImage(state.selectedImage, for: .selected)
+        self.cornerRadius = state.cornerRadius
+        
     }
     @IBAction func tapped(_ sender: Any) {
         //tapped?(self)
@@ -87,11 +99,14 @@ open class ChoiceView : UIView {
     
     func updateColors() {
         self.backgroundColor = (_isSelected) ? UIColor(named: "Primary Selection") : nil
+        self.borderColor = ((_isSelected) ? UIColor(named: "Primary") : UIColor(named: "Primary Selected")) ?? .clear
+        self.borderThickness = (_isSelected) ? 2.0 : 1.0
         if (_isSelected) {
             label.font = UIFont(name: "Roboto-Black", size: 18)
         } else {
             label.font = UIFont(name: "Roboto-Medium", size: 18)
         }
+        self.layoutSubviews()
     }
     
     func updateState() {

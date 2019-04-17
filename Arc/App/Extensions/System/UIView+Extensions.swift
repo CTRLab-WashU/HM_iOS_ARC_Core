@@ -288,22 +288,31 @@ open class BorderedView : UIView {
         
         clearBorders()
         var layer:CALayer
-        
-        if borderTop {
-            layer = self.layer.addBorder(edge: .top, color: borderColor, thickness: borderThickness)
-            borders?.append(layer)
-        }
-        if borderRight {
-            layer = self.layer.addBorder(edge: .right, color: borderColor, thickness: borderThickness)
-            borders?.append(layer)
-        }
-        if borderBottom {
-            layer = self.layer.addBorder(edge: .bottom, color: borderColor, thickness: borderThickness)
-            borders?.append(layer)
-        }
-        if borderLeft {
-            layer = self.layer.addBorder(edge: .left, color: borderColor, thickness: borderThickness)
-            borders?.append(layer)
+        if borderTop && borderRight && borderLeft && borderBottom {
+            self.layer.borderColor = borderColor.cgColor
+            self.layer.borderWidth = borderThickness
+            self.layer.cornerRadius = cornerRadius
+            
+        } else {
+            self.layer.borderColor = nil
+            self.layer.cornerRadius = 0
+
+            if borderTop {
+                layer = self.layer.addBorder(edge: .top, color: borderColor, thickness: borderThickness)
+                borders?.append(layer)
+            }
+            if borderRight {
+                layer = self.layer.addBorder(edge: .right, color: borderColor, thickness: borderThickness)
+                borders?.append(layer)
+            }
+            if borderBottom {
+                layer = self.layer.addBorder(edge: .bottom, color: borderColor, thickness: borderThickness)
+                borders?.append(layer)
+            }
+            if borderLeft {
+                layer = self.layer.addBorder(edge: .left, color: borderColor, thickness: borderThickness)
+                borders?.append(layer)
+            }
         }
         
         
