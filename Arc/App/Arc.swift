@@ -401,8 +401,9 @@ open class Arc : ArcApi {
                  isScrolling: true)
     }
     public func debugNotifications() {
-        let list = notificationController.getNotifications(withIdentifierPrefix: "TestSession").map({"\($0.studyID)-\($0.sessionID): \($0.scheduledAt!.localizedString())\n"}).joined()
         
+        let list = notificationController.getNotifications(withIdentifierPrefix: "TestSession").map({"\($0.studyID)-\($0.sessionID): \($0.scheduledAt!.localizedString())\n"}).joined()
+        let preTestNotifications = notificationController.getNotifications(withIdentifierPrefix: "DateReminder").map({"\($0.studyID)-\($0.sessionID): \($0.scheduledAt!.localizedString())\n"}).joined()
         
         displayAlert(message:  """
             Study: \(currentStudy ?? -1)
@@ -410,6 +411,8 @@ open class Arc : ArcApi {
             Test: \(availableTestSession ?? -1)
             
             \(list)
+            Date Reminders:
+            \(preTestNotifications)
             """, options:  [.default("Schedule", {[weak self] in self?.debugSchedule()}),
                             .cancel("Close", {})],
                  isScrolling: true)

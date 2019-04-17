@@ -141,6 +141,10 @@ open class NotificationController : MHController
         
         //        save();
     }
+    func clearDateReminders()
+    {
+        clearNotifications(withIdentifierPrefix: "DateReminder");
+    }
 	func clear(confirmationReminders studyId:Int)
 	{
 		clearNotifications(withIdentifierPrefix: "DateConfirmation-\(studyId)");
@@ -293,7 +297,7 @@ open class NotificationController : MHController
         guard let studyDate = study.userStartDate else {
             fatalError("No user study date set")
         }
-        clear(confirmationReminders: studyId)
+        clearDateReminders()
         //One month
         let format = ACDateStyle.longWeekdayMonthDay.rawValue
         
