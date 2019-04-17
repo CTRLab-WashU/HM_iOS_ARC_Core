@@ -716,14 +716,13 @@
 		C54AE93921C81B5C00DEC360 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C54AE94121C81B5C00DEC360 /* CancelButton.swift */,
 				C54AE93A21C81B5C00DEC360 /* CancelButton.xib */,
-				C54AE93B21C81B5C00DEC360 /* ContainerButton.swift */,
+				C54AE93F21C81B5C00DEC360 /* MHAlertView.swift */,
 				C54AE93D21C81B5C00DEC360 /* MHAlertView.xib */,
 				C5D0F6F9220B477B00F04942 /* MHScrollingAlertView.xib */,
 				C54AE93E21C81B5C00DEC360 /* PrimaryButton.xib */,
-				C54AE93F21C81B5C00DEC360 /* MHAlertView.swift */,
 				C54AE94021C81B5C00DEC360 /* PrimaryButton.swift */,
-				C54AE94121C81B5C00DEC360 /* CancelButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -987,29 +986,30 @@
 		C54AE99E21C81B5C00DEC360 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C54AE9A621C81B5C00DEC360 /* SurveyInputView.swift */,
+				C54AE93B21C81B5C00DEC360 /* ContainerButton.swift */,
 				C5F77F34222F094000BECAE1 /* SignatureView.swift */,
 				C5F77F38222F15DD00BECAE1 /* SignatureView.xib */,
+				C54AE9AE21C81B5C00DEC360 /* DurationView.swift */,
 				C54AE99F21C81B5C00DEC360 /* DurationView.xib */,
 				C54AE9A021C81B5C00DEC360 /* SegmentedTextView.swift */,
-				C54AE9A121C81B5C00DEC360 /* MultilineTextView.swift */,
-				C54AE9A221C81B5C00DEC360 /* TextSegment.swift */,
-				C54AE9A321C81B5C00DEC360 /* ChoiceView.xib */,
 				C54AE9A421C81B5C00DEC360 /* SegmentedTextView.xib */,
+				C54AE9A121C81B5C00DEC360 /* MultilineTextView.swift */,
 				C54AE9A521C81B5C00DEC360 /* MultilineTextView.xib */,
-				C54AE9A621C81B5C00DEC360 /* SurveyInputView.swift */,
+				C54AE9A221C81B5C00DEC360 /* TextSegment.swift */,
 				C54AE9A721C81B5C00DEC360 /* TextSegment.xib */,
 				C54AE9A821C81B5C00DEC360 /* SliderView.swift */,
+				C54AE9AD21C81B5C00DEC360 /* SliderView.xib */,
+				C54AE9B021C81B5C00DEC360 /* TimeView.swift */,
 				C54AE9A921C81B5C00DEC360 /* TimeView.xib */,
 				C54AE9AA21C81B5C00DEC360 /* PasswordView.swift */,
+				C54AE9AC21C81B5C00DEC360 /* PasswordView.xib */,
 				C54AE9B121C81B5C00DEC360 /* MultipleChoiceView.swift */,
 				C54AE9AB21C81B5C00DEC360 /* MultipleChoiceView.xib */,
-				C54AE9AC21C81B5C00DEC360 /* PasswordView.xib */,
-				C54AE9AD21C81B5C00DEC360 /* SliderView.xib */,
-				C54AE9AE21C81B5C00DEC360 /* DurationView.swift */,
+				C54AE9AF21C81B5C00DEC360 /* ChoiceView.swift */,
+				C54AE9A321C81B5C00DEC360 /* ChoiceView.xib */,
 				C57E9C872236CE67009F6228 /* ACPickerView.swift */,
 				C57E9C892236E825009F6228 /* ACPickerView.xib */,
-				C54AE9AF21C81B5C00DEC360 /* ChoiceView.swift */,
-				C54AE9B021C81B5C00DEC360 /* TimeView.swift */,
 				C5F77F3A22306CFA00BECAE1 /* DateRangeView.swift */,
 				C50FC3BA22330F2C00143EA8 /* ACCalendarView.swift */,
 			);
