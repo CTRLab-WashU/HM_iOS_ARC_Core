@@ -176,6 +176,52 @@ open class Arc : ArcApi {
 
 		}
 	}
+    public func missingTestBackgroundTask(completion: @escaping ()->Void) {
+        // check to see if we need to schedule any notifications for upcoming Arcs
+        // If the participant hasn't confirmed their start date, we should send notifications periodically in the weeks leading up
+        // to the Arc.
+        let app = Arc.shared
+        
+        //Check for participant setup
+        if app.participantId == nil {
+            
+            //If none set up go to auth
+            guard let id = app.authController.checkAuth() else {
+                completion();
+                return
+            }
+            
+            //set the id we can skip past this once set
+            app.participantId = Int(id)
+        }
+       
+        
+        
+        if let study = studyController.getCurrentStudyPeriod()
+        {
+            let studyId = Int(study.studyID)
+            MHController.dataContext.performAndWait {
+                self.studyController.markMissedSessions(studyId: studyId)
+                // we don't want to fire off the missed test notification while the app is open,
+                // so we have to check to make sure it's in the background
+                
+                if UIApplication.shared.applicationState == .background
+                    && self.studyController.get(consecutiveMissedSessionCount: studyId) >= 4
+                    && self.notificationController.has(ScheduledMissedTestsNotification: studyId) == false
+                {
+                    
+                    self.notificationController.schedule(missedTestsNotification: studyId)
+                    
+                }
+                Arc.shared.notificationController.save()
+            }
+            completion()
+            
+            
+            
+            
+        }
+    }
 	public func periodicBackgroundTask(timeout:TimeInterval = 20, completion: @escaping()->Void)
 	{
 		let now = Date();
@@ -205,25 +251,10 @@ open class Arc : ArcApi {
 		{
 			let studyId = Int(study.studyID)
 			MHController.dataContext.performAndWait {
-				self.studyController.markMissedSessions(studyId: studyId)
-				// we don't want to fire off the missed test notification while the app is open,
-				// so we have to check to make sure it's in the background
-				
-				if UIApplication.shared.applicationState == .background
-					&& self.studyController.get(consecutiveMissedSessionCount: studyId) >= 4
-					&& self.notificationController.has(ScheduledMissedTestsNotification: studyId) == false
-				{
-					
-					self.notificationController.schedule(missedTestsNotification: studyId)
-					
-				}
-				Arc.shared.notificationController.clear(sessionNotifications: Int(studyId))
+                Arc.shared.notificationController.clear(sessionNotifications: Int(studyId))
                 Arc.shared.notificationController.schedule(upcomingSessionNotificationsWithLimit: 32)
 				Arc.shared.notificationController.save()
 			}
-			
-			
-			
 
 		}
 		
