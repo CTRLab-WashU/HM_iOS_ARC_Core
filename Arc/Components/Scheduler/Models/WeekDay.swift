@@ -9,7 +9,25 @@
 import Foundation
 public enum WeekDay : Int64, Equatable, Comparable, Strideable {
 	case sunday, monday, tuesday, wednesday, thursday, friday, saturday, none
-	static public func fromString(day:String) -> WeekDay {
+	
+    static public func from(rawValue:Int64) -> WeekDay {
+        
+        let val = rawValue % 7
+        
+        switch val {
+        case 0:     return sunday
+        case 1, -6: return monday
+        case 2, -5: return tuesday
+        case 3, -4: return wednesday
+        case 4, -3: return thursday
+        case 5, -2: return friday
+        case 6, -1: return saturday
+        default:
+            fatalError("invalid input value")
+        }
+    }
+    
+    static public func fromString(day:String) -> WeekDay {
 		let day = day.lowercased()
 		switch day {
 		case "sunday", "sun", "1":
@@ -64,6 +82,6 @@ public enum WeekDay : Int64, Equatable, Comparable, Strideable {
 		return (other.rawValue - rawValue) % 7
 	}
 	public func advanced(by n: Int64) -> WeekDay {
-		return WeekDay(rawValue: (rawValue + n) % 7)!
+        return WeekDay.from(rawValue: (rawValue + n) % 7)
 	}
 }
