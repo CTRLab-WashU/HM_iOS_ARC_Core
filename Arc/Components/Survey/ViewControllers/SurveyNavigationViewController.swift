@@ -106,22 +106,21 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
 		let app = Arc.shared
         survey = app.surveyController.load(survey: template)
 		surveyType = survey.type
-		let studyId = Int(app.studyController.getCurrentStudyPeriod()?.studyID ?? -1)
+        questions = survey.questions
+
+        guard let i = app.studyController.getCurrentStudyPeriod()?.studyID else {
+            self.surveyId = createSurvey(surveyId: surveyId)
+
+            return
+        }
+        
+		let studyId = Int(i)
 		guard let sessionId = app.currentTestSession else {
             
-            var response:String = ""
-            if let surveyId = surveyId {
-                response = Arc.shared.surveyController.create(surveyResponse: surveyId, type: surveyType)
-            } else {
-                response = Arc.shared.surveyController.create(type: surveyType)
-
-            }
-
-			Arc.shared.surveyController.mark(startDate: response)
-			self.surveyId = response
-			questions = survey.questions
+           self.surveyId = createSurvey(surveyId: surveyId)
 			return
 		}
+        
 		let session = app.studyController.get(session: sessionId, inStudy: studyId)
 
 		if	let surveyType = surveyType,
@@ -131,9 +130,19 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
 			self.surveyId = data.id
 			
 		}
-		questions = survey.questions
     }
-    
+    private func createSurvey(surveyId:String?) -> String{
+        var response:String = ""
+        if let surveyId = surveyId {
+            response = Arc.shared.surveyController.create(surveyResponse: surveyId, type: surveyType)
+        } else {
+            response = Arc.shared.surveyController.create(type: surveyType)
+            
+        }
+        
+        Arc.shared.surveyController.mark(startDate: response)
+        return response
+    }
 	open func shuffleQuestions() {
 		questions = questions.shuffled()
 	}
