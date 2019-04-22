@@ -295,8 +295,9 @@ public class ACScheduleViewController : SurveyNavigationViewController {
 	
 	
 		//			DispatchQueue.global(qos: .userInteractive).async {
-		MHController.dataContext.performAndWait {
-			
+		MHController.dataContext.perform {
+            MHController.dataContext.performAndWait {
+
 			
             // If firstTest is set, that means we've probably recently re-installed the app, and are recreating a schedule.
             // So set beginningOfStudy to be the session_date of the first test.
@@ -369,6 +370,7 @@ public class ACScheduleViewController : SurveyNavigationViewController {
 				}
 				self?.didFinishScheduling()
 			}
+            }
 
 		}
 
