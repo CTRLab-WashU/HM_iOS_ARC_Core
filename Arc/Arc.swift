@@ -12,7 +12,7 @@ public protocol ArcApi {
 	
 }
 public enum SurveyAvailabilityStatus {
-    case available, laterToday, tomorrow, later(String), finished
+    case available, laterToday, tomorrow, startingTomorrow(String), later(String), finished
 }
 open class Arc : ArcApi {
 	
@@ -392,17 +392,21 @@ open class Arc : ArcApi {
             
             if let upcoming = upcoming {
                 let d = DateFormatter()
-                d.dateFormat = "MM/dd/yy"
                 let date = upcoming.sessionDate ?? Date()
-                let dateString = d.string(from: date)
+                
                 if date.isToday() {
                     
                     return .laterToday
                 } else if date.isTomorrow() {
-                    
+                    if Arc.shared.studyController.getCurrentStudyPeriod() == nil {
+                        d.dateFormat = ACDateStyle.longWeekdayMonthDay.rawValue
+                        let dateString = d.string(from: date)
+                        return .startingTomorrow(dateString)
+                    }
                     return .tomorrow
                 } else {
-                    
+                    d.dateFormat = "MM/dd/yy"
+                    let dateString = d.string(from: date)
                     return .later(dateString)
                 }
             } else {
