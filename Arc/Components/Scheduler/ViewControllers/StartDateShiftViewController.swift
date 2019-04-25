@@ -31,8 +31,12 @@ open class StartDateShiftViewController: SurveyNavigationViewController {
         print(userDate.localizedString())
         let date = upComingStudy?.startDate ?? Date()
         for i in -7 ... 7 {
+            let d = date.startOfDay().addingDays(days: i)
+            guard Date().endOfDay().timeIntervalSince1970 < d.timeIntervalSince1970 else {
+                continue
+            }
             
-            dates.append(date.startOfDay().addingDays(days: i))
+            dates.append(d)
         }
         for i in 0 ..< dates.count {
             let possibleDate = dates[i]
@@ -112,7 +116,7 @@ open class StartDateShiftViewController: SurveyNavigationViewController {
             
             Arc.shared.studyController.clear(upcomingSessions: id)
             let starting = Arc.shared.studyController.get(lastSessionId: id - 1)
-            Arc.shared.studyController.create(testSessions: id, days: -1, startingSessionId: starting)
+            Arc.shared.studyController.createTestSessions(studyId: id, isRescheduling: true)
             _ = Arc.shared.studyController.mark(confirmed: id)
             Arc.shared.notificationController.clear(sessionNotifications: id)
             Arc.shared.notificationController.schedule(upcomingSessionNotificationsWithLimit: 32)

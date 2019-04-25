@@ -12,7 +12,7 @@ public protocol ArcApi {
 	
 }
 public enum SurveyAvailabilityStatus {
-    case available, laterToday, tomorrow, later(String), finished
+    case available, laterToday, tomorrow, startingTomorrow(String), later(String), finished
 }
 open class Arc : ArcApi {
 	
@@ -176,6 +176,52 @@ open class Arc : ArcApi {
 
 		}
 	}
+    public func missingTestBackgroundTask(completion: @escaping ()->Void) {
+        // check to see if we need to schedule any notifications for upcoming Arcs
+        // If the participant hasn't confirmed their start date, we should send notifications periodically in the weeks leading up
+        // to the Arc.
+        let app = Arc.shared
+        
+        //Check for participant setup
+        if app.participantId == nil {
+            
+            //If none set up go to auth
+            guard let id = app.authController.checkAuth() else {
+                completion();
+                return
+            }
+            
+            //set the id we can skip past this once set
+            app.participantId = Int(id)
+        }
+       
+        
+        
+        if let study = studyController.getCurrentStudyPeriod()
+        {
+            let studyId = Int(study.studyID)
+            MHController.dataContext.performAndWait {
+                self.studyController.markMissedSessions(studyId: studyId)
+                // we don't want to fire off the missed test notification while the app is open,
+                // so we have to check to make sure it's in the background
+                
+                if UIApplication.shared.applicationState == .background
+                    && self.studyController.get(consecutiveMissedSessionCount: studyId) >= 4
+                    && self.notificationController.has(ScheduledMissedTestsNotification: studyId) == false
+                {
+                    
+                    self.notificationController.schedule(missedTestsNotification: studyId)
+                    
+                }
+                Arc.shared.notificationController.save()
+            }
+            completion()
+            
+            
+            
+            
+        }
+    }
 	public func periodicBackgroundTask(timeout:TimeInterval = 20, completion: @escaping()->Void)
 	{
 		let now = Date();
@@ -205,25 +251,10 @@ open class Arc : ArcApi {
 		{
 			let studyId = Int(study.studyID)
 			MHController.dataContext.performAndWait {
-				self.studyController.markMissedSessions(studyId: studyId)
-				// we don't want to fire off the missed test notification while the app is open,
-				// so we have to check to make sure it's in the background
-				
-				if UIApplication.shared.applicationState == .background
-					&& self.studyController.get(consecutiveMissedSessionCount: studyId) >= 4
-					&& self.notificationController.has(ScheduledMissedTestsNotification: studyId) == false
-				{
-					
-					self.notificationController.schedule(missedTestsNotification: studyId)
-					
-				}
-				Arc.shared.notificationController.clear(sessionNotifications: Int(studyId))
+                Arc.shared.notificationController.clear(sessionNotifications: Int(studyId))
                 Arc.shared.notificationController.schedule(upcomingSessionNotificationsWithLimit: 32)
 				Arc.shared.notificationController.save()
 			}
-			
-			
-			
 
 		}
 		
@@ -361,17 +392,21 @@ open class Arc : ArcApi {
             
             if let upcoming = upcoming {
                 let d = DateFormatter()
-                d.dateFormat = "MM/dd/yy"
                 let date = upcoming.sessionDate ?? Date()
-                let dateString = d.string(from: date)
+                
                 if date.isToday() {
                     
                     return .laterToday
                 } else if date.isTomorrow() {
-                    
+                    if Arc.shared.studyController.getCurrentStudyPeriod() == nil {
+                        d.dateFormat = ACDateStyle.longWeekdayMonthDay.rawValue
+                        let dateString = d.string(from: date)
+                        return .startingTomorrow(dateString)
+                    }
                     return .tomorrow
                 } else {
-                    
+                    d.dateFormat = "MM/dd/yy"
+                    let dateString = d.string(from: date)
                     return .later(dateString)
                 }
             } else {
@@ -401,8 +436,9 @@ open class Arc : ArcApi {
                  isScrolling: true)
     }
     public func debugNotifications() {
-        let list = notificationController.getNotifications(withIdentifierPrefix: "TestSession").map({"\($0.studyID)-\($0.sessionID): \($0.scheduledAt!.localizedString())\n"}).joined()
         
+        let list = notificationController.getNotifications(withIdentifierPrefix: "TestSession").map({"\($0.studyID)-\($0.sessionID): \($0.scheduledAt!.localizedString())\n"}).joined()
+        let preTestNotifications = notificationController.getNotifications(withIdentifierPrefix: "DateReminder").map({"\($0.studyID)-\($0.sessionID): \($0.scheduledAt!.localizedString())\n"}).joined()
         
         displayAlert(message:  """
             Study: \(currentStudy ?? -1)
@@ -410,6 +446,8 @@ open class Arc : ArcApi {
             Test: \(availableTestSession ?? -1)
             
             \(list)
+            Date Reminders:
+            \(preTestNotifications)
             """, options:  [.default("Schedule", {[weak self] in self?.debugSchedule()}),
                             .cancel("Close", {})],
                  isScrolling: true)

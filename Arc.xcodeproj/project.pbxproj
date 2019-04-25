@@ -552,6 +552,7 @@
 			isa = PBXGroup;
 			children = (
 				C54AE8EA21C81B2F00DEC360 /* Arc.h */,
+				C54AE90421C81B5C00DEC360 /* Arc.swift */,
 				C54AE8EB21C81B2F00DEC360 /* Info.plist */,
 				C54AE90221C81B5B00DEC360 /* ACEnvironment.swift */,
 				C54AE9BF21C81B5F00DEC360 /* CoreDataStack.swift */,
@@ -576,7 +577,6 @@
 		C54AE90321C81B5C00DEC360 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				C54AE90421C81B5C00DEC360 /* Arc.swift */,
 				C54AE90521C81B5C00DEC360 /* Models */,
 				C54AE90B21C81B5C00DEC360 /* Extensions */,
 				C54AE91921C81B5C00DEC360 /* Utilities */,

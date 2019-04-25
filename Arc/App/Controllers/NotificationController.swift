@@ -141,6 +141,10 @@ open class NotificationController : MHController
         
         //        save();
     }
+    func clearDateReminders()
+    {
+        clearNotifications(withIdentifierPrefix: "DateReminder");
+    }
 	func clear(confirmationReminders studyId:Int)
 	{
 		clearNotifications(withIdentifierPrefix: "DateConfirmation-\(studyId)");
@@ -293,7 +297,7 @@ open class NotificationController : MHController
         guard let studyDate = study.userStartDate else {
             fatalError("No user study date set")
         }
-        clear(confirmationReminders: studyId)
+        clearDateReminders()
         //One month
         let format = ACDateStyle.longWeekdayMonthDay.rawValue
         
@@ -304,7 +308,7 @@ open class NotificationController : MHController
         Date().compare(studyDate.addingDays(days: -1)) == .orderedSame else {
             return
         }
-        let day = scheduleNotification(date: studyDate.addingDays(days: -1),
+        let day = scheduleNotification(date: studyDate.addingDays(days: -1).addingHours(hours: 12),
                                        title: "",
                                        body: "Reminder: Your next testing cycle begins tomorrow.\nTap to confirm or reschedule.",
                                        identifierPrefix: "DateReminder-\(studyId)")
@@ -316,7 +320,7 @@ open class NotificationController : MHController
                 return
         }
         
-        let week = scheduleNotification(date: studyDate.addingWeeks(weeks: -1),
+        let week = scheduleNotification(date: studyDate.addingWeeks(weeks: -1).addingHours(hours: 12),
                                         title: "",
                                         body: "Reminder: Your next testing cycle starts in one week.\nTap to confirm or reschedule.",
                                         identifierPrefix: "DateReminder-\(studyId)")
@@ -327,7 +331,7 @@ open class NotificationController : MHController
                 save()
                 return
         }
-        let month = scheduleNotification(date: studyDate.addingMonths(months: -1),
+        let month = scheduleNotification(date: studyDate.addingMonths(months: -1).addingHours(hours: 12),
                                          title: "",
                                          body: "Your next week of testing begins in one month, on \(formattedDate).\nYou may adjust this schedule up to 7 days. ",
                                          identifierPrefix: "DateReminder-\(studyId)")

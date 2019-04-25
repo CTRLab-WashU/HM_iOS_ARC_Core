@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,6 +24,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SurveyViewController" customModule="Arc" customModuleProvider="target">
             <connections>
+                <outlet property="bottomAnchor" destination="29A-7U-tte" id="SVv-yg-BDa"/>
                 <outlet property="container" destination="JRC-5u-1Hu" id="duh-sZ-goD"/>
                 <outlet property="detailsLabel" destination="slk-NL-Rhg" id="aWf-W1-TeP"/>
                 <outlet property="errorLabel" destination="K1i-kk-hTQ" id="1se-MD-K6m"/>
@@ -80,7 +81,7 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dsn-24-lzK">
                                     <rect key="frame" x="0.0" y="91.5" width="375" height="526.5"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="773" placeholderIntrinsicWidth="327" placeholderIntrinsicHeight="394.5" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="JRC-5u-1Hu">
+                                        <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="773" placeholderIntrinsicWidth="327" placeholderIntrinsicHeight="394.5" translatesAutoresizingMaskIntoConstraints="NO" id="JRC-5u-1Hu">
                                             <rect key="frame" x="24" y="0.0" width="327" height="469.5"/>
                                         </stackView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="254" verticalCompressionResistancePriority="752" placeholderIntrinsicWidth="287.5" placeholderIntrinsicHeight="21" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1i-kk-hTQ">
@@ -160,6 +161,7 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstItem="EOk-EH-Oqa" firstAttribute="top" secondItem="dsn-24-lzK" secondAttribute="bottom" priority="999" constant="20" id="29A-7U-tte"/>
                                 <constraint firstItem="dsn-24-lzK" firstAttribute="top" secondItem="A9h-Af-XDA" secondAttribute="bottom" constant="20" id="KBT-o7-ah2"/>
                                 <constraint firstItem="dsn-24-lzK" firstAttribute="leading" secondItem="mdr-oD-iS5" secondAttribute="leading" id="Skm-2w-bjg"/>
                                 <constraint firstAttribute="trailing" secondItem="A9h-Af-XDA" secondAttribute="trailing" id="Vv1-md-nJd"/>
@@ -168,7 +170,7 @@
                                 <constraint firstAttribute="bottom" secondItem="EOk-EH-Oqa" secondAttribute="bottom" constant="24" id="kxm-Ts-Nwj"/>
                                 <constraint firstAttribute="trailing" secondItem="dsn-24-lzK" secondAttribute="trailing" id="pPE-eG-zJu"/>
                                 <constraint firstItem="A9h-Af-XDA" firstAttribute="leading" secondItem="mdr-oD-iS5" secondAttribute="leading" id="yX4-ka-SFd"/>
-                                <constraint firstItem="EOk-EH-Oqa" firstAttribute="top" secondItem="dsn-24-lzK" secondAttribute="bottom" priority="999" constant="20" id="zup-b3-gAQ"/>
+                                <constraint firstItem="EOk-EH-Oqa" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dsn-24-lzK" secondAttribute="bottom" priority="999" constant="20" id="zup-b3-gAQ"/>
                             </constraints>
                         </view>
                     </subviews>
