@@ -14,11 +14,11 @@ public enum SignatureViewContentState {
 public protocol SignatureViewDelegate : class {
     func signatureViewContentChanged(state:SignatureViewContentState)
 }
-open class SignatureView: UIView, SurveyInput {
+open class SignatureView: BorderedUIView, SurveyInput {
      public var didChangeValue: (() -> ())?
     
     
-    
+    public var isBottomAnchored: Bool = true
     
     public var orientation: UIStackView.Alignment = .bottom
     

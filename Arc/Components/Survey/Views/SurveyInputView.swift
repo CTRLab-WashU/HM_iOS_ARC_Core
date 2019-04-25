@@ -16,13 +16,26 @@ public protocol SurveyInput {
     func setValue(_ value:QuestionResponse?)
 	func setError(message:String?)
     var orientation:UIStackView.Alignment {get set}
+    var distribution:UIStackView.Distribution {get set}
     var didChangeValue:(()->())? {get set}
     var didFinishSetup:(()->())? {get set}
 	var tryNext:(() -> ())? {get set}
-
+    var isBottomAnchored:Bool {get}
+    
 }
 
 extension SurveyInput {
+    public var isBottomAnchored:Bool {
+        return false
+    }
+    public var distribution:UIStackView.Distribution {
+        get {
+            return .fill
+        }
+        set {
+            
+        }
+    }
     public func isInformational() -> Bool {
         return false
     }

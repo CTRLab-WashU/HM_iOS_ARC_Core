@@ -30,6 +30,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
     @IBOutlet weak var container: UIStackView!
     @IBOutlet weak var views: UIStackView!
     @IBOutlet weak var nextBottomSpacing: NSLayoutConstraint!
+    @IBOutlet weak var bottomAnchor: NSLayoutConstraint!
     @IBOutlet weak var privacyStack: UIStackView!
     @IBOutlet weak var privacyPolicyButton: UIButton!
 	@IBOutlet weak var scrollView: UIScrollView!
@@ -228,6 +229,9 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
             let inputView:ACPickerView = input as? ACPickerView ?? .get()
             
             input = inputView
+        }
+        if bottomAnchor != nil {
+            bottomAnchor.isActive = input?.isBottomAnchored ?? false
         }
         container.alignment = input?.orientation ?? .top
         input?.setError(message: nil)
