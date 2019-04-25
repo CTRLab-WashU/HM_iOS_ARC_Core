@@ -98,7 +98,7 @@ open class CoreDataStack {
     public func saveContext () {
         var context = persistentContainer.viewContext
         if context.hasChanges {
-//			context.perform {
+			context.performAndWait {
 
 				do {
 						try context.save()
@@ -110,11 +110,11 @@ open class CoreDataStack {
 					let nserror = error as NSError
 					assertionFailure("Unresolved error \(nserror), \(nserror.userInfo)")
 				}
-//			}
+			}
         }
 		context = MHController.dataContext
 		if context.hasChanges {
-//			context.perform {
+			context.performAndWait {
 
 				do {
 
@@ -126,7 +126,7 @@ open class CoreDataStack {
 					let nserror = error as NSError
 					assertionFailure("Unresolved error \(nserror), \(nserror.userInfo)")
 				}
-//			}
+			}
 		}
     }
 }

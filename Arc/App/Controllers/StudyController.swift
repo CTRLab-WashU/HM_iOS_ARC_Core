@@ -414,7 +414,7 @@ open class StudyController : MHController {
                 break;
 			}
 		}
-        save();
+//        save();
 	}
 	
 	// gets the weeks until the next visit, if there is another visit after the current one.

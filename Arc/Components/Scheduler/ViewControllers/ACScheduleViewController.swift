@@ -299,77 +299,77 @@ public class ACScheduleViewController : SurveyNavigationViewController {
             MHController.dataContext.performAndWait {
 
 			
-            // If firstTest is set, that means we've probably recently re-installed the app, and are recreating a schedule.
-            // So set beginningOfStudy to be the session_date of the first test.
-            // Othwerwise, we'll just let beginningOfStudy's get handler set the date for us.
-            
-            if let firstTest = Arc.shared.studyController.firstTest {
-                Arc.shared.studyController.beginningOfStudy = Date(timeIntervalSince1970: firstTest.session_date)
-            }
-            
-            let date = Arc.shared.studyController.beginningOfStudy;
-            if self.isChangingSchedule {
-                let startDayTomorrow = Arc.shared.scheduleController.get(endTimeForDate: Date(), participantID: self.participantId!)
-                let studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
+                // If firstTest is set, that means we've probably recently re-installed the app, and are recreating a schedule.
+                // So set beginningOfStudy to be the session_date of the first test.
+                // Othwerwise, we'll just let beginningOfStudy's get handler set the date for us.
                 
-                for study in studies {
+                if let firstTest = Arc.shared.studyController.firstTest {
+                    Arc.shared.studyController.beginningOfStudy = Date(timeIntervalSince1970: firstTest.session_date)
+                }
+                
+                let date = Arc.shared.studyController.beginningOfStudy;
+                if self.isChangingSchedule {
+                    let startDayTomorrow = Arc.shared.scheduleController.get(endTimeForDate: Date(), participantID: self.participantId!)
+                    let studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
+                    
+                    for study in studies {
+                        Arc.shared.notificationController.clear(sessionNotifications: Int(study.studyID))
+                        Arc.shared.studyController.clear(sessions: Int(study.studyID), afterDate: startDayTomorrow)
+
+                    }
+                } else {
+                    _ = Arc.shared.studyController.createAllStudyPeriods(startingID: 0, startDate: date)
+                }
+                var studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
+                var starting:Int64 = 0
+                for i in 0 ..< studies.count{
+                    //get the last session id for the previous study to keep the session id's continuous
+                    let study = studies[i]
+                    if i > 0 {
+                        let prev = studies[i-1]
+                        starting = Arc.shared.studyController.get(lastSessionId: Int(prev.studyID)) + 1
+                    }
+                        let sc = Arc.shared.studyController
+                    sc.createTestSessions(studyId: Int(study.studyID), isRescheduling: self.isChangingSchedule);
+                   
+                    
+                    _ = Arc.shared.studyController.mark(confirmed: Int(study.studyID))
                     Arc.shared.notificationController.clear(sessionNotifications: Int(study.studyID))
-                    Arc.shared.studyController.clear(sessions: Int(study.studyID), afterDate: startDayTomorrow)
-
                 }
-            } else {
-                _ = Arc.shared.studyController.createAllStudyPeriods(startingID: 0, startDate: date)
-            }
-            var studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
-			var starting:Int64 = 0
-			for i in 0 ..< studies.count{
-				//get the last session id for the previous study to keep the session id's continuous
-				let study = studies[i]
-				if i > 0 {
-					let prev = studies[i-1]
-					starting = Arc.shared.studyController.get(lastSessionId: Int(prev.studyID)) + 1
-				}
-                    let sc = Arc.shared.studyController
-                sc.createTestSessions(studyId: Int(study.studyID), isRescheduling: self.isChangingSchedule);
-               
                 
-				_ = Arc.shared.studyController.mark(confirmed: Int(study.studyID))
-				Arc.shared.notificationController.clear(sessionNotifications: Int(study.studyID))
-			}
-            
-            // And now, delete any test sessions that have already passed.
-            // studyController.latestTest is the most recent test that has passed, according to the server.
-            
-            for i in 0 ..< studies.count {
-                if let latestTest = Arc.shared.studyController.latestTest, let session = Int(latestTest.session_id){
-                    Arc.shared.studyController.delete(sessionsUpTo: session, inStudy: i)
+                // And now, delete any test sessions that have already passed.
+                // studyController.latestTest is the most recent test that has passed, according to the server.
+                
+                for i in 0 ..< studies.count {
+                    if let latestTest = Arc.shared.studyController.latestTest, let session = Int(latestTest.session_id){
+                        Arc.shared.studyController.delete(sessionsUpTo: session, inStudy: i)
+                    }
                 }
-            }
-			
-			//Refetch the studies and upload
-			
-            studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
-            
-            Arc.shared.notificationController.schedule(upcomingSessionNotificationsWithLimit: 32)
-             _ = Arc.shared.notificationController.scheduleDateConfirmationsForUpcomingStudy()
-			Arc.shared.sessionController.uploadSchedule(studyPeriods: studies)
-			
-            if let study = studies.first
-            {
-                Arc.shared.scheduleController.upload(confirmedSchedule: Int(study.studyID));
-            }
-			
-            
-			Arc.shared.studyController.save()
-			
-			DispatchQueue.main.async { [weak self] in
-				self?.view.hideSpinner()
-				if let top = self?.topViewController as? SurveyViewController {
-					top.nextButton.hideSpinner()
+                
+                //Refetch the studies and upload
+                
+                studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
+                
+                Arc.shared.notificationController.schedule(upcomingSessionNotificationsWithLimit: 32)
+                 _ = Arc.shared.notificationController.scheduleDateConfirmationsForUpcomingStudy()
+                Arc.shared.sessionController.uploadSchedule(studyPeriods: studies)
+                
+                if let study = studies.first
+                {
+                    Arc.shared.scheduleController.upload(confirmedSchedule: Int(study.studyID));
+                }
+                
+                
+                Arc.shared.studyController.save()
+                
+                DispatchQueue.main.async { [weak self] in
+                    self?.view.hideSpinner()
+                    if let top = self?.topViewController as? SurveyViewController {
+                        top.nextButton.hideSpinner()
 
-				}
-				self?.didFinishScheduling()
-			}
+                    }
+                    self?.didFinishScheduling()
+                }
             }
 
 		}
