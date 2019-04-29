@@ -242,10 +242,12 @@ open class Arc : ArcApi {
             //set the id we can skip past this once set
             app.participantId = Int(id)
         }
-		HMAPI.deviceHeartbeat.execute(data: HeartbeatRequestData())
-		uploadTestData()
+        MHController.dataContext.performAndWait {
+
+            HMAPI.deviceHeartbeat.execute(data: HeartbeatRequestData())
+            uploadTestData()
 		
-		
+        }
 		
 		if let study = studyController.getCurrentStudyPeriod()
 		{

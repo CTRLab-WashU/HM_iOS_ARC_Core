@@ -11,6 +11,7 @@ import CoreData
 
 open class CoreDataStack {
     // MARK: - Core Data stack
+    static public var isSaving:Bool = false
     static public let shared = CoreDataStack()
     static public var useMockContainer = false {
         didSet {
@@ -96,6 +97,15 @@ open class CoreDataStack {
         return managedObjectModel
     }()
     public func saveContext () {
+        guard !CoreDataStack.isSaving else {
+            
+//            print("Blocked save")
+            return
+            
+        }
+//        print("Starting save....")
+
+        CoreDataStack.isSaving = true
         var context = persistentContainer.viewContext
         if context.hasChanges {
 //            context.performAndWait {
@@ -119,7 +129,7 @@ open class CoreDataStack {
 				do {
 
 						try context.save()
-					
+
 				} catch {
 					// Replace this implementation with code to handle the error appropriately.
 					// fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -128,5 +138,9 @@ open class CoreDataStack {
 				}
 //            }
 		}
+//        print("Ending save.")
+
+        CoreDataStack.isSaving = false
+
     }
 }

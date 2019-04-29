@@ -107,25 +107,27 @@ open class StartDateShiftViewController: SurveyNavigationViewController {
             guard let study = upComingStudy else {
                 return
             }
-            
-            study.userStartDate = dates[selectedDate]
-            let new = Arc.shared.studyController.set(userStartDate: dates[selectedDate], forStudyId: Int(study.studyID))
-            print(new?.userStartDate?.localizedString())
-            
-           let id = Int(study.studyID)
-            
-            Arc.shared.studyController.clear(upcomingSessions: id)
-            let starting = Arc.shared.studyController.get(lastSessionId: id - 1)
-            Arc.shared.studyController.createTestSessions(studyId: id, isRescheduling: true)
-            _ = Arc.shared.studyController.mark(confirmed: id)
-            Arc.shared.notificationController.clear(sessionNotifications: id)
-            Arc.shared.notificationController.schedule(upcomingSessionNotificationsWithLimit: 32)
-            _ = Arc.shared.notificationController.scheduleDateConfirmationsForUpcomingStudy()
+            MHController.dataContext.performAndWait {
 
-            Arc.shared.scheduleController.upload(confirmedSchedule: id);
+                study.userStartDate = dates[selectedDate]
+                let new = Arc.shared.studyController.set(userStartDate: dates[selectedDate], forStudyId: Int(study.studyID))
+                print(new?.userStartDate?.localizedString())
+                
+               let id = Int(study.studyID)
+                
+                Arc.shared.studyController.clear(upcomingSessions: id)
+                let starting = Arc.shared.studyController.get(lastSessionId: id - 1)
+                Arc.shared.studyController.createTestSessions(studyId: id, isRescheduling: true)
+                _ = Arc.shared.studyController.mark(confirmed: id)
+                Arc.shared.notificationController.clear(sessionNotifications: id)
+                Arc.shared.notificationController.schedule(upcomingSessionNotificationsWithLimit: 32)
+                _ = Arc.shared.notificationController.scheduleDateConfirmationsForUpcomingStudy()
 
-            Arc.shared.studyController.save()
-            Arc.shared.nextAvailableState()
+                Arc.shared.scheduleController.upload(confirmedSchedule: id);
+
+                Arc.shared.studyController.save()
+                Arc.shared.nextAvailableState()
+            }
             break
             
         }
