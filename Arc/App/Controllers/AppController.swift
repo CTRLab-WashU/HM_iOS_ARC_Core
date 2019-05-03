@@ -36,7 +36,21 @@ open class AppController : MHController {
 			defaults.synchronize();
 		}
 	}
-    
+    public var lastFlaggedMissedTestCount:Int {
+        get {
+            
+            if let id = defaults.value(forKey:"lastFlaggedMissedTestCount") as? Int
+            {
+                return id;
+            }
+            return 0;
+        }
+        set (newVal)
+        {
+            defaults.setValue(newVal, forKey:"lastFlaggedMissedTestCount");
+            defaults.synchronize();
+        }
+    }
     public var isFirstLaunch:Bool {
         get {
             if (defaults.value(forKey:"hasLaunched") as? Bool) != nil
