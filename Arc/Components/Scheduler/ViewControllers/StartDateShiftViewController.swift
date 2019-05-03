@@ -116,7 +116,6 @@ open class StartDateShiftViewController: SurveyNavigationViewController {
                let id = Int(study.studyID)
                 
                 Arc.shared.studyController.clear(upcomingSessions: id)
-                let starting = Arc.shared.studyController.get(lastSessionId: id - 1)
                 Arc.shared.studyController.createTestSessions(studyId: id, isRescheduling: true)
                 _ = Arc.shared.studyController.mark(confirmed: id)
                 Arc.shared.notificationController.clear(sessionNotifications: id)

@@ -25,6 +25,13 @@ open class Arc : ArcApi {
 	public var TEST_START_ALLOWANCE:TimeInterval = -300; // 5 minute window before actual start time
 	var STORE_DATA = false
 	var FORGET_ON_RESTART = false
+    lazy var arcInfo: NSDictionary? = {
+        if let path = Bundle(for: Arc.self).path(forResource: "Info", ofType: "plist") {
+            return NSDictionary(contentsOfFile: path)
+            
+        }
+        return nil
+    }()
 	lazy var info: NSDictionary? = {
 		if let path = Bundle.main.path(forResource: "Info", ofType: "plist") {
 			return NSDictionary(contentsOfFile: path)
@@ -36,7 +43,7 @@ open class Arc : ArcApi {
 	lazy public var deviceString = {deviceInfo();}()
 	lazy public var deviceId = AppController().deviceId
 	lazy public var versionString = {info?[APP_VERSION_INFO_KEY] as? String ?? ""}()
-	lazy public var arcVersion:Int = {info?[ARC_VERSION_INFO_KEY] as? Int ?? 0;}()
+	lazy public var arcVersion:Int = {arcInfo?[ARC_VERSION_INFO_KEY] as? Int ?? 0;}()
     //A map of all of the possible states in the application
 	
     static public let shared = Arc()
@@ -204,13 +211,18 @@ open class Arc : ArcApi {
                 self.studyController.markMissedSessions(studyId: studyId)
                 // we don't want to fire off the missed test notification while the app is open,
                 // so we have to check to make sure it's in the background
-                
-                if UIApplication.shared.applicationState == .background
-                    && self.studyController.get(consecutiveMissedSessionCount: studyId) >= 4
-                    && self.notificationController.has(ScheduledMissedTestsNotification: studyId) == false
+                let isInBackground = UIApplication.shared.applicationState == .background
+                if isInBackground {
+                    print("Background Check")
+                }
+                let testMissed = studyController.get(consecutiveMissedSessionCount: studyId)
+                let lastFlaggedMissedTestCount = app.appController.lastFlaggedMissedTestCount
+                let shouldPostNotification = testMissed - lastFlaggedMissedTestCount >= 4
+                if isInBackground && shouldPostNotification
                 {
-                    
+                    app.appController.lastFlaggedMissedTestCount = testMissed
                     self.notificationController.schedule(missedTestsNotification: studyId)
+
                     
                 }
                 Arc.shared.notificationController.save()
@@ -220,6 +232,9 @@ open class Arc : ArcApi {
             
             
             
+        } else {
+            completion();
+
         }
     }
 	public func periodicBackgroundTask(timeout:TimeInterval = 20, completion: @escaping()->Void)

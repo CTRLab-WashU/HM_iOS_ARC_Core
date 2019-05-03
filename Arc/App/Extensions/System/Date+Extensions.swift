@@ -230,7 +230,10 @@ public extension ClosedRange where Bound == Date {
     
     subscript(index:Double) -> Date {
         get {
-            return Date(timeIntervalSince1970:  lowerBound.timeIntervalSince1970 + index * (upperBound.timeIntervalSince1970 - lowerBound.timeIntervalSince1970))
+            let min = lowerBound.timeIntervalSince1970
+            let max = upperBound.timeIntervalSince1970
+            
+            return Date(timeIntervalSince1970:  min + (index * (max - min)))
         }
         set {
             
