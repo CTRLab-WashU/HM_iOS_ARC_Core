@@ -12,7 +12,9 @@ open class SliderView: UIView, SurveyInput {
     public var didFinishSetup: (() -> ())?
     
     public var orientation: UIStackView.Alignment = .bottom
-    
+    public var isBottomAnchored:Bool {
+        return true
+    }
     
     @IBOutlet weak var selectedContainer: UIStackView!
     

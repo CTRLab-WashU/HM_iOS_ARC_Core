@@ -368,6 +368,7 @@ open class StudyController : MHController {
 		if(results.count > 0)
 		{
 			let firstResult = results[0] as StudyPeriod;
+            
 			return firstResult;
 		}
 		
@@ -815,28 +816,17 @@ open class StudyController : MHController {
 		var maxMissed:Int = 0;
 		for test in get(pastSessions: studyId)
 		{
-			if test.missedSession
-			{
-				consecutive += 1;
-			}
-			else
-			{
-				if consecutive > maxMissed
-				{
-					maxMissed = consecutive;
-				}
-				consecutive = 0;
-			}
+            guard test.startTime == nil else {
+                    consecutive = 0;
+                    continue
+            }
+            if test.missedSession {
+                consecutive += 1;
+            }
+			
 		}
-		
-		//check one last time to make sure we have the max count of consecutive missed tests.
-		
-		if consecutive > maxMissed
-		{
-			maxMissed = consecutive;
-		}
-		
-		return maxMissed;
+        
+		return consecutive;
 	}
 	
 	open func has(scheduledTestSessions studyId:Int) -> Bool
@@ -990,8 +980,8 @@ open class StudyController : MHController {
             
             if let least = minTime, let most = maxTime
             {
-                let randomTimeInterval =  min(most.timeIntervalSince1970, least.timeIntervalSince1970 + TimeInterval(arc4random_uniform(UInt32(max(0, most.timeIntervalSince1970 - least.timeIntervalSince1970)))));
-                times[i] = Date(timeIntervalSince1970: randomTimeInterval);
+               
+                times[i] = (least ... most).randomElement()!
             }
         }
         

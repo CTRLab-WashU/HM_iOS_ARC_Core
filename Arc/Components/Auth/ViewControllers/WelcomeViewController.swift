@@ -18,7 +18,8 @@ open class WelcomeViewController: UIViewController {
     @IBOutlet weak var privacyButton:UIButton!
     @IBOutlet weak var signInButton:UIButton!
 
-
+    @IBOutlet weak var versionLabel: UILabel!
+    
     override open func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,6 +35,7 @@ open class WelcomeViewController: UIViewController {
         privacyButton.setAttributedTitle(privacyTitle, for: .normal)
         titleImage.image = Arc.shared.WELCOME_LOGO
         titleText.text = Arc.shared.WELCOME_TEXT
+        versionLabel.text = "v\(Arc.shared.versionString)"
     }
     
     @IBAction open func signInPressed(_ sender: UIButton) {

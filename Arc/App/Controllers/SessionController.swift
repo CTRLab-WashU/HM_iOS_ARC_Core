@@ -139,7 +139,7 @@ open class SessionController:MHController {
             guard !HMRestAPI.shared.blackHole else {
                 return
             }
-			MHController.dataContext.perform {
+			MHController.dataContext.performAndWait {
 				HMLog("Session: \(full.session_id ?? ""), received response \(data?.toString() ?? "") on \(Date())", silent: false)
 				if data?.errors.count == 0 {
 					session.uploaded = true

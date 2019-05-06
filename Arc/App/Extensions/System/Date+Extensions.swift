@@ -33,9 +33,18 @@ public extension Date {
 	}
 	
     static public func random(in range: ClosedRange<Date>) -> Date {
+        if range.lowerBound.timeIntervalSince1970 > range.upperBound.timeIntervalSince1970 {
+            let val = Double.random(in: range.upperBound.timeIntervalSince1970...range.lowerBound.timeIntervalSince1970)
+            return Date(timeIntervalSince1970: val)
+
+        } else if range.lowerBound.timeIntervalSince1970 == range.upperBound.timeIntervalSince1970 {
+            return range.lowerBound
+        } else {
         
-        let val = Double.random(in: range.lowerBound.timeIntervalSince1970...range.upperBound.timeIntervalSince1970)
-        return Date(timeIntervalSince1970: val)
+            let val = Double.random(in: range.lowerBound.timeIntervalSince1970...range.upperBound.timeIntervalSince1970)
+            return Date(timeIntervalSince1970: val)
+
+        }
     }
     
     /// Returns the amount of years from another date
@@ -230,7 +239,10 @@ public extension ClosedRange where Bound == Date {
     
     subscript(index:Double) -> Date {
         get {
-            return Date(timeIntervalSince1970:  lowerBound.timeIntervalSince1970 + index * (upperBound.timeIntervalSince1970 - lowerBound.timeIntervalSince1970))
+            let min = lowerBound.timeIntervalSince1970
+            let max = upperBound.timeIntervalSince1970
+            
+            return Date(timeIntervalSince1970:  min + (index * (max - min)))
         }
         set {
             

@@ -170,7 +170,7 @@ open class NotificationController : MHController
 	open func clearNotifications(withIdentifierPrefix identifierPrefix:String)
     {
         
-		let notifications = getNotifications(withIdentifierPrefix: identifierPrefix, onlyPending: true)
+		let notifications = getNotifications(withIdentifierPrefix: identifierPrefix, onlyPending: false)
 		
 		manageDeleteNotifications(notifications: notifications);
     }
