@@ -161,8 +161,8 @@ open class StudyController : MHController {
         
     }
     
-    open func getUpcomingSessions(withLimit limit:Int) -> [Session]  {
-        let now = NSDate();
+    open func getUpcomingSessions(withLimit limit:Int, startDate:NSDate = NSDate()) -> [Session]  {
+        let now = startDate
         
         let predicate = NSPredicate(format: "sessionDate>=%@", now);
         let sortDescriptors = [NSSortDescriptor(key:"sessionDate", ascending:true)];
@@ -172,6 +172,7 @@ open class StudyController : MHController {
         
         return results
     }
+    
 	open func getAllStudyPeriods() -> [StudyPeriod]
 	{
 		
@@ -816,12 +817,11 @@ open class StudyController : MHController {
 		var maxMissed:Int = 0;
 		for test in get(pastSessions: studyId)
 		{
-            guard test.startTime == nil else {
-                    consecutive = 0;
-                    continue
-            }
+          
             if test.missedSession {
                 consecutive += 1;
+            } else {
+                consecutive = 0;
             }
 			
 		}
@@ -988,6 +988,7 @@ open class StudyController : MHController {
         return times;
     }
 	open func delete(sessionsUpTo sessionId:Int, inStudy studyId: Int) {
+        print("Deleting sessions upto \(sessionId)")
 		guard let study = get(study: studyId), let sessions = study.sessions else {
 			fatalError("Invalid study ID")
 		}

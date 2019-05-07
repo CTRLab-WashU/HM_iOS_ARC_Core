@@ -120,7 +120,7 @@ open class StartDateShiftViewController: SurveyNavigationViewController {
                 _ = Arc.shared.studyController.mark(confirmed: id)
                 Arc.shared.notificationController.clear(sessionNotifications: id)
                 Arc.shared.notificationController.schedule(upcomingSessionNotificationsWithLimit: 32)
-                _ = Arc.shared.notificationController.scheduleDateConfirmationsForUpcomingStudy()
+                _ = Arc.shared.notificationController.scheduleDateConfirmationsForUpcomingStudy(force: true)
 
                 Arc.shared.scheduleController.upload(confirmedSchedule: id);
 
