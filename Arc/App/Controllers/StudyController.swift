@@ -980,8 +980,12 @@ open class StudyController : MHController {
             
             if let least = minTime, let most = maxTime
             {
-               
-                times[i] = (least ... most).randomElement()!
+                if least.timeIntervalSince1970 > most.timeIntervalSince1970 {
+                    times[i] = (most ... least).randomElement()!
+                } else {
+                    times[i] = (least ... most).randomElement()!
+
+                }
             }
         }
         
