@@ -412,6 +412,7 @@ open class Arc : ArcApi {
     }
     public func debugSchedule() {
         let dateFrame = studyController.getCurrentStudyPeriod()?.userStartDate ?? Date()
+        let lastFetch = appController.lastBackgroundFetch?.localizedFormat()
         let list = studyController.getUpcomingSessions(withLimit: 32, startDate: dateFrame as NSDate)
             .map({
                 " \($0.study?.studyID ?? -1)-\($0.sessionID): \($0.sessionDate?.localizedString() ?? "") \(($0.finishedSession) ? "√" : "\(($0.missedSession) ? "x" : "\(($0.startTime == nil) ? "-" : "o")")")"
@@ -423,6 +424,9 @@ open class Arc : ArcApi {
             Study: \(currentStudy ?? -1)
             
             Test: \(availableTestSession ?? -1)
+            
+            Last background Fetch:
+            \(String(describing: (lastFetch != nil) ? lastFetch : "None"))
             
             Last flagged missed test count: \(appController.lastFlaggedMissedTestCount)
             
