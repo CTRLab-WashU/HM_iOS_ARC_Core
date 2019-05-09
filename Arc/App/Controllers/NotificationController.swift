@@ -301,7 +301,7 @@ open class NotificationController : MHController
         guard let study = Arc.shared.studyController.getUpcomingStudyPeriod() else {
             return false
         }
-        if !has(scheduledDateReminder: Int(study.studyID)) {
+        if !has(scheduledDateReminder: Int(study.studyID)) || force == true {
             schedule(dateConfirmationsForStudy: Int(study.studyID), force: force)
         }
         return true
