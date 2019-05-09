@@ -288,6 +288,8 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
         
         if message != nil && (self.input is PasswordView || self.input is SegmentedTextView) {
             showContactButton()
+        } else {
+            showContactButton(false)
         }
 		input?.setError(message: message)
 		errorLabel.text = message
@@ -329,11 +331,14 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
     }
     */
     //TODO:Remove this and refactor
-    func showContactButton() {
+    func showContactButton(_ shouldShow:Bool = true) {
         for v in views.arrangedSubviews {
             if v is LoginHelpView {
                 v.removeFromSuperview()
             }
+        }
+        guard shouldShow else {
+            return
         }
         let helpView:LoginHelpView = .get()
         helpView.helpButton.addTarget(self, action: #selector(navigateToHelp), for: .touchUpInside)
