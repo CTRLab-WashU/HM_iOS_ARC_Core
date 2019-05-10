@@ -77,7 +77,7 @@ public extension Session {
 		// delete all of the relationships
 		for (name, _) in relationships
 		{
-			if name == "testVisit"
+			if name == "study"
 			{
 				continue;
 			}

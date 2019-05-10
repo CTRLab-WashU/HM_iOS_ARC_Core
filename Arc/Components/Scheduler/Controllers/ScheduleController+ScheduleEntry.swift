@@ -70,8 +70,8 @@ public extension ScheduleController {
         
         let schedule = get(scheduleForDay: currentDate, participantID: participantID)
         
-        let time = formatter.date(from:  schedule.availabilityStart!)!;
-        return time
+        let startTime = formatter.date(from:  schedule.availabilityStart!)!;
+        return startTime
     }
     
     public func get(endTimeForDate currentDate:Date, participantID:Int) -> Date {
@@ -80,9 +80,14 @@ public extension ScheduleController {
         formatter.dateFormat = "h:mm a"
         
         let schedule = get(scheduleForDay: currentDate, participantID: participantID)
+        let startTime = formatter.date(from:  schedule.availabilityStart!)!;
+        let endTime = formatter.date(from:  schedule.availabilityEnd!)!;
         
-        let time = formatter.date(from:  schedule.availabilityEnd!)!;
-        return time
+        if endTime.timeIntervalSince1970 < startTime.timeIntervalSince1970 {
+            return endTime.addingDays(days: 1)
+        }
+        
+        return endTime
     }
     
     public func get(allEntriesForId participantId:Int) -> [ScheduleEntry]? {

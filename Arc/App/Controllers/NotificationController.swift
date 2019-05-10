@@ -154,7 +154,10 @@ open class NotificationController : MHController
 	{
 		clearNotifications(withIdentifierPrefix: "DateConfirmation-\(studyId)-\(week)");
 	}
-
+    func clear(missedTestReminder studyId:Int)
+    {
+        clearNotifications(withIdentifierPrefix: "MissedTests-\(studyId)");
+    }
 	
 	// clear notifications for upcoming TestSessions
 	open func clear(sessionNotifications studyId:Int)
@@ -280,20 +283,39 @@ open class NotificationController : MHController
 	
 	open func has(scheduledDateReminder studyId:Int) -> Bool
 	{
-		let maybeNotifications = getNotifications(withIdentifierPrefix: "DateReminder-\(studyId)", onlyPending: false);
+		var maybeNotifications = getNotifications(withIdentifierPrefix: "DateReminder-\(studyId)", onlyPending: false);
+        let group = DispatchGroup()
+        group.enter()
+        UNUserNotificationCenter.current().getPendingNotificationRequests { (reqs) in
+            maybeNotifications = maybeNotifications.filter({ (entry) -> Bool in
+                return reqs.contains(where: { (req) -> Bool in
+                    entry.notificationIdentifier == req.identifier
+                })
+            })
+            group.leave()
+        }
+        group.wait()
 		return maybeNotifications.count > 0;
 	}
-    open func scheduleDateConfirmationsForUpcomingStudy() -> Bool {
+    open func scheduleDateConfirmationsForUpcomingStudy(force:Bool = false) -> Bool {
         guard let study = Arc.shared.studyController.getUpcomingStudyPeriod() else {
             return false
         }
-        schedule(dateConfirmationsForStudy: Int(study.studyID))
+        if !has(scheduledDateReminder: Int(study.studyID)) || force == true {
+            schedule(dateConfirmationsForStudy: Int(study.studyID), force: force)
+        }
         return true
     }
-    open func schedule(dateConfirmationsForStudy studyId:Int) {
+    open func schedule(dateConfirmationsForStudy studyId:Int, force:Bool = false) {
+    
         guard let study = Arc.shared.studyController.get(study: studyId) else {
             fatalError("Invalid study ID")
         }
+//        if !force {
+//            guard has(scheduledConfirmationReminders: studyId) == false else {
+//                return
+//            }
+//        }
         guard let studyDate = study.userStartDate else {
             fatalError("No user study date set")
         }
@@ -303,9 +325,8 @@ open class NotificationController : MHController
         
         let formattedDate = studyDate.localizedFormat(template: format)
         //Today must be before the target date
-        
-        guard Date().compare(studyDate.addingDays(days: -1)) == .orderedAscending ||
-        Date().compare(studyDate.addingDays(days: -1)) == .orderedSame else {
+        guard Date().compare(studyDate.addingDays(days: -1).addingHours(hours: 12)) == .orderedAscending ||
+        Date().compare(studyDate.addingDays(days: -1).addingHours(hours: 12)) == .orderedSame else {
             return
         }
         let day = scheduleNotification(date: studyDate.addingDays(days: -1).addingHours(hours: 12),
@@ -314,8 +335,8 @@ open class NotificationController : MHController
                                        identifierPrefix: "DateReminder-\(studyId)")
         day.studyID = Int64(studyId)
 
-        guard Date().compare(studyDate.addingWeeks(weeks: -1)) == .orderedAscending ||
-            Date().compare(studyDate.addingWeeks(weeks: -1)) == .orderedSame else {
+        guard Date().compare(studyDate.addingWeeks(weeks: -1).addingHours(hours: 12)) == .orderedAscending ||
+            Date().compare(studyDate.addingWeeks(weeks: -1).addingHours(hours: 12)) == .orderedSame else {
                 save()
                 return
         }
@@ -326,8 +347,8 @@ open class NotificationController : MHController
                                         identifierPrefix: "DateReminder-\(studyId)")
         week.studyID = Int64(studyId)
 
-        guard Date().compare(studyDate.addingMonths(months: -1)) == .orderedAscending ||
-            Date().compare(studyDate.addingMonths(months: -1)) == .orderedSame else {
+        guard Date().compare(studyDate.addingMonths(months: -1).addingHours(hours: 12)) == .orderedAscending ||
+            Date().compare(studyDate.addingMonths(months: -1).addingHours(hours: 12)) == .orderedSame else {
                 save()
                 return
         }
@@ -339,6 +360,7 @@ open class NotificationController : MHController
         month.studyID = Int64(studyId)
 
         save()
+        
     }
     
 	open func schedule(dateRemdinderNotification study:StudyPeriod)
@@ -374,7 +396,20 @@ open class NotificationController : MHController
 	}
 	open func has(ScheduledMissedTestsNotification studyId:Int) -> Bool
 	{
-		let maybeNotifications = getNotifications(withIdentifierPrefix: "MissedTests-\(studyId)", onlyPending: false);
+		
+        var maybeNotifications = getNotifications(withIdentifierPrefix: "MissedTests-\(studyId)", onlyPending: false);
+        let group = DispatchGroup()
+        group.enter()
+        UNUserNotificationCenter.current().getPendingNotificationRequests { (reqs) in
+            maybeNotifications = maybeNotifications.filter({ (entry) -> Bool in
+                return reqs.contains(where: { (req) -> Bool in
+                    entry.notificationIdentifier == req.identifier
+                })
+            })
+            group.leave()
+        }
+        group.wait()
+        
 		return maybeNotifications.count > 0;
 	}
 	

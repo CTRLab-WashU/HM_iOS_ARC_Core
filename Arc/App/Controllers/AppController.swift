@@ -143,7 +143,20 @@ open class AppController : MHController {
 			defaults.synchronize();
 		}
 	}
-	
+    public var lastBackgroundFetch:Date? {
+        get {
+            if let _lastUploadDate = defaults.value(forKey:"lastBackgroundFetch") as? Date
+            {
+                return _lastUploadDate;
+            }
+            return nil;
+        }
+        set (newVal)
+        {
+            defaults.setValue(newVal, forKey:"lastBackgroundFetch");
+            defaults.synchronize();
+        }
+    }
 	public var lastWeekScheduled:Date? {
 		get {
 			if let _lastUploadDate = defaults.value(forKey:"lastWeekScheduled") as? Date

@@ -183,60 +183,7 @@ open class Arc : ArcApi {
 
 		}
 	}
-    public func missingTestBackgroundTask(completion: @escaping ()->Void) {
-        // check to see if we need to schedule any notifications for upcoming Arcs
-        // If the participant hasn't confirmed their start date, we should send notifications periodically in the weeks leading up
-        // to the Arc.
-        let app = Arc.shared
-        
-        //Check for participant setup
-        if app.participantId == nil {
-            
-            //If none set up go to auth
-            guard let id = app.authController.checkAuth() else {
-                completion();
-                return
-            }
-            
-            //set the id we can skip past this once set
-            app.participantId = Int(id)
-        }
-       
-        
-        
-        if let study = studyController.getCurrentStudyPeriod()
-        {
-            let studyId = Int(study.studyID)
-            MHController.dataContext.performAndWait {
-                self.studyController.markMissedSessions(studyId: studyId)
-                // we don't want to fire off the missed test notification while the app is open,
-                // so we have to check to make sure it's in the background
-                let isInBackground = UIApplication.shared.applicationState == .background
-                if isInBackground {
-                    print("Background Check")
-                }
-                let testMissed = studyController.get(consecutiveMissedSessionCount: studyId)
-                let lastFlaggedMissedTestCount = app.appController.lastFlaggedMissedTestCount
-                let shouldPostNotification = testMissed - lastFlaggedMissedTestCount >= 4
-                if isInBackground && shouldPostNotification
-                {
-                    app.appController.lastFlaggedMissedTestCount = testMissed
-                    self.notificationController.schedule(missedTestsNotification: studyId)
-
-                    
-                }
-                Arc.shared.notificationController.save()
-            }
-            completion()
-            
-            
-            
-            
-        } else {
-            completion();
-
-        }
-    }
+  
 	public func periodicBackgroundTask(timeout:TimeInterval = 20, completion: @escaping()->Void)
 	{
 		let now = Date();
@@ -264,6 +211,36 @@ open class Arc : ArcApi {
 		
         }
 		
+        if let study = studyController.getCurrentStudyPeriod()
+        {
+            let studyId = Int(study.studyID)
+            MHController.dataContext.performAndWait {
+                self.studyController.markMissedSessions(studyId: studyId)
+                // we don't want to fire off the missed test notification while the app is open,
+                // so we have to check to make sure it's in the background
+                let isInBackground = UIApplication.shared.applicationState == .background
+                if isInBackground {
+                    print("Background Check")
+                } else {
+                    
+                }
+                let testMissed = studyController.get(consecutiveMissedSessionCount: studyId)
+                let lastFlaggedMissedTestCount = app.appController.lastFlaggedMissedTestCount
+                let hasPostedMissedTestNotification = app.notificationController.has(ScheduledMissedTestsNotification: studyId)
+                let shouldPostNotification = testMissed - lastFlaggedMissedTestCount >= 4 && !hasPostedMissedTestNotification
+            
+                if isInBackground && shouldPostNotification
+                {
+                    app.appController.lastFlaggedMissedTestCount = testMissed
+                    self.notificationController.schedule(missedTestsNotification: studyId)
+                    
+                    
+                }
+                Arc.shared.notificationController.save()
+            }
+  
+        }
+        
 		if let study = studyController.getCurrentStudyPeriod()
 		{
 			let studyId = Int(study.studyID)
@@ -349,10 +326,9 @@ open class Arc : ArcApi {
 						HMLog("Deleting Visit \(study.studyID)");
 						for session in sessions
 						{
-							MHController.dataContext.delete(session);
+                            session.clearData()
 						}
 						
-						MHController.dataContext.delete(study);
 						self.studyController.save();
 					}
 				}
@@ -435,9 +411,11 @@ open class Arc : ArcApi {
         }
     }
     public func debugSchedule() {
-        let list = studyController.getUpcomingSessions(withLimit: 32)
+        let dateFrame = studyController.getCurrentStudyPeriod()?.userStartDate ?? Date()
+        let lastFetch = appController.lastBackgroundFetch?.localizedFormat()
+        let list = studyController.getUpcomingSessions(withLimit: 32, startDate: dateFrame as NSDate)
             .map({
-                " \($0.study?.studyID ?? -1)-\($0.sessionID): \($0.sessionDate?.localizedString() ?? "") \(($0.finishedSession) ? "√" : "\(($0.missedSession) ? "x" : "-")")"
+                " \($0.study?.studyID ?? -1)-\($0.sessionID): \($0.sessionDate?.localizedString() ?? "") \(($0.finishedSession) ? "√" : "\(($0.missedSession) ? "x" : "\(($0.startTime == nil) ? "-" : "o")")")"
                 
             }).joined(separator: "\n")
         
@@ -446,6 +424,11 @@ open class Arc : ArcApi {
             Study: \(currentStudy ?? -1)
             
             Test: \(availableTestSession ?? -1)
+            
+            Last background Fetch:
+            \(String(describing: (lastFetch != nil) ? lastFetch : "None"))
+            
+            Last flagged missed test count: \(appController.lastFlaggedMissedTestCount)
             
             \(list)
             """, options:  [.default("Notifications", {[weak self] in self?.debugNotifications()}),
