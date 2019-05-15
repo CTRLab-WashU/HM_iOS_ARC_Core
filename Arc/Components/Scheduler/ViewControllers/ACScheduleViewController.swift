@@ -83,9 +83,13 @@ public class ACScheduleViewController : SurveyNavigationViewController {
 		var time:String
 		var day:Int
 	}
+    
+    
 	var wakeSleeptimes:[QuestionIndex:DayTime] = [:]
 	public var isChangingSchedule = false
 	var error:String?
+    
+    public var shouldLimitWakeTime = false
 	override open func loadSurvey(template:String) {
 		survey = Arc.shared.surveyController.load(survey: template)
 		self.surveyId = Arc.shared.surveyController.get(surveyResponse: "availability")?.id ??
@@ -197,6 +201,13 @@ public class ACScheduleViewController : SurveyNavigationViewController {
             {
                 
                 error = "Please set a minimum of 8 hours of wake time."
+                return false;
+            }
+            
+            if sleep.timeIntervalSince(wake) > 18 * 60 * 60 && shouldLimitWakeTime
+            {
+                
+                error = "Please enter less than 18 hours of wake time."
                 return false;
             }
         }
