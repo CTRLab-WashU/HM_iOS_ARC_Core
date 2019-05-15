@@ -172,8 +172,12 @@ open class AppController : MHController {
 		}
 	}
     public func fetch(signature sessionId:Int64, tag:Int32) -> Signature?{
-        let predicate = NSPredicate(format: "tag == \(tag) AND sessionId == \(sessionId)")
-        let signature:Signature? = fetch(predicate: predicate, sort: nil, limit: 1)?.first
+        var signature:Signature?
+        MHController.dataContext.performAndWait {
+            let predicate = NSPredicate(format: "tag == \(tag) AND sessionId == \(sessionId)")
+            signature = fetch(predicate: predicate, sort: nil, limit: 1)?.first
+        }
+        
         return signature
     }
     public func save(signature image:UIImage, sessionId:Int64, tag:Int32) -> Bool {
