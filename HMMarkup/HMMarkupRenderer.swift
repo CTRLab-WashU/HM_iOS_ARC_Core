@@ -16,6 +16,12 @@ public typealias Font = NSFont
 #endif
 
 public final class HMMarkupRenderer {
+    struct Config {
+        var baseLanguage:Int = 1 //0 renders the keys
+        
+    }
+    static var translation:Dictionary<String, String>?
+    
 	private let baseFont: Font
 	
 	public init(baseFont: Font) {
