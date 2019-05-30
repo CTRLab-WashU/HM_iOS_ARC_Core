@@ -152,7 +152,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 			return
 		}
 
-		Arc.shared.displayAlert(message: "Ready", options: [.wait(waitTime: 1.0, {
+		Arc.shared.displayAlert(message: "Ready".localized("grids_popup1"), options: [.wait(waitTime: 1.0, {
 			[weak self] in
 			self?.displayGrid()
 			if let s = self {
@@ -170,7 +170,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 		}
 		self.tapOnTheFsLabel.isHidden = true
 
-		Arc.shared.displayAlert(message: "Try to remember the location\nof the items!",
+		Arc.shared.displayAlert(message: "Try to remember the location\nof the items!".localized("grid_transition_overlay"),
 									options: [.wait(waitTime: 2.0, {
 										self.displaySymbols()
 			

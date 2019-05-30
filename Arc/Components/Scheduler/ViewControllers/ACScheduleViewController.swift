@@ -18,7 +18,7 @@ public class ACScheduleViewController : SurveyNavigationViewController {
         let wake_time = wakeSleeptimes[.schedule_1]?.time
         let sleep_time = wakeSleeptimes[.schedule_2]?.time
         
-        return ["wake_time":wake_time!, "sleep_time":sleep_time!]
+        return ["wake_time":wake_time!, "sleep_time":sleep_time!, "0":wake_time!, "1":sleep_time!]
     }
     
     // enum values:
@@ -200,14 +200,14 @@ public class ACScheduleViewController : SurveyNavigationViewController {
             if sleep.timeIntervalSince(wake) < 28800
             {
                 
-                error = "Please set a minimum of 8 hours of wake time."
+                error = "Please set a minimum of 8 hours of wake time.".localized("error4")
                 return false;
             }
             
             if sleep.timeIntervalSince(wake) > 18 * 60 * 60 && shouldLimitWakeTime
             {
                 
-                error = "Please enter less than 18 hours of wake time."
+                error = "Please enter less than 18 hours of wake time.".localized("error5")
                 return false;
             }
         }

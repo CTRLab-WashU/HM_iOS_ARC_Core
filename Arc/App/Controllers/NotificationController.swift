@@ -97,7 +97,7 @@ open class NotificationController : MHController
 		for test in tests
 		{
 			
-			let title = "It's time to take a quick test!";
+			let title = "It's time to take a quick test!".localized("notification_take");
 			let body = title;
 			let date = test.sessionDate! as Date
 			
@@ -124,7 +124,7 @@ open class NotificationController : MHController
             guard test.startTime == nil && test.missedSession == false else {
                 continue
             }
-            let title = "It's time to take a quick test!";
+            let title = "It's time to take a quick test!".localized("notification_take");
             let body = title;
             let date = test.sessionDate! as Date
             
@@ -274,7 +274,7 @@ open class NotificationController : MHController
 	
 	open func schedule(missedTestsNotification studyId:Int, fireDate:Date = Date().addingMinutes(minutes: 1))
 	{
-		let body = "You've missed your tests. If you're unable to finish this week, please contact your site coordinator." //comment: "Notification for missed test sessions"
+		let body = "You've missed your tests. If you're unable to finish this week, please contact your site coordinator.".localized("notification_missed") //comment: "Notification for missed test sessions"
 		
 		let newNotification = scheduleNotification(date: fireDate, title: "", body: body, identifierPrefix: "MissedTests-\(studyId)");
 		newNotification.studyID = Int64(studyId);
@@ -331,7 +331,7 @@ open class NotificationController : MHController
         }
         let day = scheduleNotification(date: studyDate.addingDays(days: -1).addingHours(hours: 12),
                                        title: "",
-                                       body: "Reminder: Your next testing cycle begins tomorrow.\nTap to confirm or reschedule.",
+                                       body: "Reminder: Your next testing cycle begins tomorrow.\nTap to confirm or reschedule.".localized("notification_1day"),
                                        identifierPrefix: "DateReminder-\(studyId)")
         day.studyID = Int64(studyId)
 
@@ -343,7 +343,7 @@ open class NotificationController : MHController
         
         let week = scheduleNotification(date: studyDate.addingWeeks(weeks: -1).addingHours(hours: 12),
                                         title: "",
-                                        body: "Reminder: Your next testing cycle starts in one week.\nTap to confirm or reschedule.",
+                                        body: "Reminder: Your next testing cycle starts in one week.\nTap to confirm or reschedule.".localized("notification_1week"),
                                         identifierPrefix: "DateReminder-\(studyId)")
         week.studyID = Int64(studyId)
 
@@ -352,9 +352,13 @@ open class NotificationController : MHController
                 save()
                 return
         }
+        
+        let monthBody = "Your next week of testing begins in one month, on \(formattedDate).\nYou may adjust this schedule up to 7 days."
+            .localized("notification_1month")
+            .replacingOccurrences(of: "{0}", with: "formattedDate")
         let month = scheduleNotification(date: studyDate.addingMonths(months: -1).addingHours(hours: 12),
                                          title: "",
-                                         body: "Your next week of testing begins in one month, on \(formattedDate).\nYou may adjust this schedule up to 7 days. ",
+                                         body:monthBody,
                                          identifierPrefix: "DateReminder-\(studyId)")
         
         month.studyID = Int64(studyId)

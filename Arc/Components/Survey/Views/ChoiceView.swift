@@ -70,7 +70,7 @@ open class ChoiceView : UIView {
         return _isSelected
     }
     func set(message:String?) {
-        label.text = message
+        label.text = message?.localized(message ?? "")
     }
     
     func set(selected:Bool) {

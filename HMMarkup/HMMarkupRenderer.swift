@@ -16,12 +16,18 @@ public typealias Font = NSFont
 #endif
 
 public final class HMMarkupRenderer {
-    struct Config {
-        var baseLanguage:Int = 1 //0 renders the keys
+    public struct Config {
+        public var translation:Dictionary<String, String>?
+        
+        //Setting to false could result in seeing keys
+        public var shouldTranslate:Bool = true
+        public var translationIndex:Int = 1
+        public init() {
+            
+        }
         
     }
-    static var translation:Dictionary<String, String>?
-    
+    static public var config:Config?
 	private let baseFont: Font
 	
 	public init(baseFont: Font) {
@@ -29,13 +35,20 @@ public final class HMMarkupRenderer {
 	}
 	
 	public func render(text: String) -> NSAttributedString {
+        var text = text
+        if let config = HMMarkupRenderer.config, config.shouldTranslate {
+            text = config.translation?[text] ?? text
+        }
 		let elements = HMMarkupParser.parse(text: text)
 		let attributes = [NSAttributedString.Key.font: baseFont]
 		
 		return elements.map { $0.render(withAttributes: attributes) }.joined()
 	}
 	public func render(text: String, template:Dictionary<String, String>) -> NSAttributedString {
-		var text = text
+        var text = text
+        if let config = HMMarkupRenderer.config, config.shouldTranslate {
+           text = config.translation?[text] ?? text
+        }
 		for (key, value) in template {
 			text = text.replacingOccurrences(of: "{\(key)}", with: value)
 		}

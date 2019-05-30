@@ -20,7 +20,13 @@ public class PricesTestViewController: ArcViewController {
     var controller = Arc.shared.pricesTestController
     var test:PriceTest?
     var responseID = ""
-    public static var testVersion:String = "priceSets-en-US"
+    public static var testVersion:String {
+        
+        return Arc.shared.appController.locale.availablePriceTest
+        
+        
+        
+    }
 //    private var questionDisplay:DNPricesQuestionViewController?
 //    private var test:DNPricesTest?
     private var itemIndex = 0
@@ -114,7 +120,7 @@ public class PricesTestViewController: ArcViewController {
             
             topLabel?.text = item.item
             
-            let correctPrice = "$" + item.price
+            let correctPrice = "".localized("money_prefix") + item.price
             bottomLabel?.text = correctPrice
             
             bottomLabel?.resizeFontForSingleWords();
@@ -141,9 +147,9 @@ public class PricesTestViewController: ArcViewController {
 				}
 			}
 			
-			Arc.shared.displayAlert(message: "You will now start the test.\nYou will see an item and two prices. Please select the price that matches the item you studied.", options: [
+			Arc.shared.displayAlert(message: "You will now start the test.\nYou will see an item and two prices. Please select the price that matches the item you studied.".localized("price_overlay"), options: [
 				
-				.delayed(name: "BEGIN", delayTime: 3.0, onConfirm),
+				.delayed(name: "BEGIN".localized("button_begin"), delayTime: 3.0, onConfirm),
 				
 				.wait(waitTime: 12.0, onConfirm)
 				
@@ -162,8 +168,8 @@ public class PricesTestViewController: ArcViewController {
     }
     
     func buildButtonStackView() {
-        topButton.set(message: "Yes")
-        bottomButton.set(message: "No")
+        topButton.set(message: "Yes".localized("YES").capitalized)
+        bottomButton.set(message: "No".localized("NO").capitalized)
         
         topButton.needsImmediateResponse = true
         bottomButton.needsImmediateResponse = true

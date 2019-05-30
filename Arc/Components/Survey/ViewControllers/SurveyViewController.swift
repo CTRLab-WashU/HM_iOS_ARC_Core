@@ -62,7 +62,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
             let backButton = UIButton(type: .custom)
             backButton.frame = CGRect(x: 0, y: 0, width: 60, height: 10)
             backButton.setImage(UIImage(named: "cut-ups/icons/arrow_left_blue"), for: .normal)
-            backButton.setTitle("BACK", for: .normal)
+            backButton.setTitle("BACK".localized("button_back"), for: .normal)
             backButton.titleLabel?.font = UIFont(name: "Roboto-Medium", size: 14)
             backButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
             backButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -8, bottom: 0, right: 0)
@@ -79,17 +79,21 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
         nextBottomSpacing.constant = getNextButtonSpacing()
         
         let attributes = [ NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.foregroundColor: UIColor(named: "Primary"), NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.medium) ] as [NSAttributedString.Key : Any]
-        let attrString = NSAttributedString(string: "Privacy Policy", attributes: attributes)
+        let attrString = NSAttributedString(string: "Privacy Policy".localized("privacy_linked"), attributes: attributes)
         privacyPolicyButton.setAttributedTitle(attrString, for: .normal)
     }
 	
     override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.navigationBar.backgroundColor = view.backgroundColor
-		scrollIndicatorState(scrollView)
         
     }
-    
+    open override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        scrollIndicatorState(scrollView)
+
+        
+    }
     func getNextButtonSpacing() -> CGFloat {
         var nextHeight:CGFloat = 0
         if #available(iOS 11.0, *) {
@@ -122,8 +126,10 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 		//promptLabel.text = question.prompt
 		//Get supplied template for question
 		if let nextButtonTitle = question.nextButtonTitle {
-			nextButton.setTitle(nextButtonTitle, for: .normal)
-		}
+			nextButton.setTitle(nextButtonTitle.localized(nextButtonTitle), for: .normal)
+        } else {
+            nextButton.setTitle("NEXT".localized("button_next"), for: .normal)
+        }
 		let template = templateHandler?(question.questionId) ?? [:]
 
 		let markedUpString = renderer.render(text: question.prompt, template:template)
@@ -144,8 +150,8 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 			
 			inputView.set(min: question.minValue ?? 0,
 						  max: question.maxValue ?? 100,
-						  minMessage: question.minMessage ?? "Not at all",
-						  maxMessage: question.maxMessage ?? "Very much so")
+						  minMessage: question.minMessage ?? "",
+						  maxMessage: question.maxMessage ?? "")
 			
 			input = inputView
 

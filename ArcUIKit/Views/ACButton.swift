@@ -8,9 +8,10 @@
 
 
 import UIKit
+import HMMarkup
 
-@IBDesignable open class ACButton : UIButton {
-    
+@IBDesignable open class ACButton : HMMarkupButton {
+
     @IBInspectable var cornerRadius:CGFloat = 24.0 {
         didSet {
             layer.cornerRadius = cornerRadius
@@ -19,45 +20,10 @@ import UIKit
     @IBInspectable var primaryColor:UIColor = UIColor(named: "Primary") ?? UIColor.white
     @IBInspectable var secondaryColor:UIColor = UIColor(named: "Primary Gradient") ?? UIColor.gray
     var gradient:CAGradientLayer?
-    override open func awakeFromNib() {
-        super.awakeFromNib()
-        setup(isSelected: false)
-    }
     
-    override open func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        setup(isSelected: false)
-    }
-    
-    
-//    override open var isHighlighted: Bool {
-//        didSet {
-//            setup(isSelected: isHighlighted)
-//        }
-//    }
-//    override open var isEnabled: Bool {
-//        didSet {
-//            if !isEnabled {
-//                setup(isSelected: false)
-//
-//            } else {
-//                setup(isSelected: isHighlighted)
-//
-//            }
-//        }
-//    }
-//    override open var intrinsicContentSize: CGSize {
-//        return CGSize(width: 216, height: 48)
-//    }
-    override open func layoutIfNeeded() {
-        super.layoutIfNeeded()
-        
-    }
-    override open func layoutSubviews() {
-        super.layoutSubviews()
-        setup(isSelected: isHighlighted)
-    }
-    func setup(isSelected:Bool){
+
+    override open func setup(isSelected:Bool){
+        super.setup(isSelected:isSelected)
         CATransaction.begin()
         CATransaction.setAnimationDuration(0)
         layer.cornerRadius = self.cornerRadius
@@ -87,15 +53,6 @@ import UIKit
         }
         CATransaction.commit()
     }
-    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        setup(isSelected: true)
-
-    }
-    open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesEnded(touches, with: event)
-        setup(isSelected: false)
-
-    }
+    
 }
 

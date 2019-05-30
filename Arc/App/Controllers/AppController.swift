@@ -9,6 +9,9 @@
 import Foundation
 open class AppController : MHController {
 	public var testCount:Int = 0
+    public var locale:ACLocale {
+        return ACLocale(rawValue: "\(language ?? "en")_\(country ?? "US")") ?? .en_US
+    }
     public var language:String? {
         get {
             
@@ -18,6 +21,18 @@ open class AppController : MHController {
         set (newVal)
         {
             defaults.setValue(newVal, forKey:"language");
+            defaults.synchronize();
+        }
+    }
+    public var country:String? {
+        get {
+            
+            return defaults.string(forKey:"country");
+            
+        }
+        set (newVal)
+        {
+            defaults.setValue(newVal, forKey:"country");
             defaults.synchronize();
         }
     }

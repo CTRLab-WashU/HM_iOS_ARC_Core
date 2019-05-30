@@ -83,7 +83,7 @@ open class SliderView: UIView, SurveyInput {
         
         guard let value = value else {
             valueLabel.text = ""
-            detailLabel.text = "Drag to select"
+            detailLabel.text = "Drag to select".localized("wake_drag")
             return
         }
         detailLabel.text = "You've selected:"
@@ -100,8 +100,8 @@ open class SliderView: UIView, SurveyInput {
         valueSlider.layer.zPosition = 10000
         valueLabel.text = "\(Int(valueSlider.value))"
 
-        minLabel.text = minMessage
-        maxLabel.text = maxMessage
+        minLabel.text = minMessage?.localized(minMessage ?? "")
+        maxLabel.text = maxMessage?.localized(maxMessage ?? "")
         
     }
     

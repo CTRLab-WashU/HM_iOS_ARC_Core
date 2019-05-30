@@ -105,11 +105,14 @@
                                         <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Moq-gR-yzh">
                                             <rect key="frame" x="6.5" y="0.0" width="203" height="24"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By signing in you agree to our" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68i-9R-al1">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By signing in you agree to our" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68i-9R-al1" customClass="ACLabel" customModule="ArcUIKit">
                                                     <rect key="frame" x="0.0" y="0.0" width="203" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="bysigning_key"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1UX-tn-iFl">
                                                     <rect key="frame" x="54.5" y="0.0" width="94" height="24"/>
@@ -141,7 +144,7 @@
                                                 <constraint firstAttribute="width" priority="999" constant="216" id="bMo-Oh-RNh"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="18"/>
-                                            <state key="normal" title="NEXT">
+                                            <state key="normal">
                                                 <color key="titleColor" name="Secondary Text"/>
                                             </state>
                                             <userDefinedRuntimeAttributes>
@@ -162,7 +165,9 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="EOk-EH-Oqa" firstAttribute="top" secondItem="dsn-24-lzK" secondAttribute="bottom" priority="999" constant="20" id="29A-7U-tte"/>
+                                <constraint firstItem="EOk-EH-Oqa" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mdr-oD-iS5" secondAttribute="leading" constant="20" id="7Xd-2n-dVh"/>
                                 <constraint firstItem="dsn-24-lzK" firstAttribute="top" secondItem="A9h-Af-XDA" secondAttribute="bottom" constant="20" id="KBT-o7-ah2"/>
+                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EOk-EH-Oqa" secondAttribute="trailing" constant="20" id="OCN-Bl-zGO"/>
                                 <constraint firstItem="dsn-24-lzK" firstAttribute="leading" secondItem="mdr-oD-iS5" secondAttribute="leading" id="Skm-2w-bjg"/>
                                 <constraint firstAttribute="trailing" secondItem="A9h-Af-XDA" secondAttribute="trailing" id="Vv1-md-nJd"/>
                                 <constraint firstItem="A9h-Af-XDA" firstAttribute="top" secondItem="mdr-oD-iS5" secondAttribute="top" id="Wfn-ap-nm2"/>
@@ -182,7 +187,7 @@
                     </constraints>
                 </scrollView>
                 <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" image="scroll indicator" translatesAutoresizingMaskIntoConstraints="NO" id="bD2-j0-6MR">
-                    <rect key="frame" x="118.5" y="754" width="138" height="98"/>
+                    <rect key="frame" x="179.5" y="836" width="16" height="16"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

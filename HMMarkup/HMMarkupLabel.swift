@@ -9,6 +9,8 @@
 import UIKit
 
 @IBDesignable open class HMMarkupLabel: UILabel {
+    @IBInspectable var translationKey:String?
+
     open var renderer:HMMarkupRenderer!
     @IBInspectable var spacing:CGFloat = 1.33
     
@@ -23,11 +25,15 @@ import UIKit
     }
     override open func awakeFromNib() {
         super.awakeFromNib()
-        //markupText()
+        
+        markupText()
     }
     
     public func markupText() {
-        let text = self.text ?? ""
+        var text = self.text ?? ""
+        if let config = HMMarkupRenderer.config, config.shouldTranslate, let key = translationKey {
+            text = config.translation?[key] ?? text
+        }
         renderer = HMMarkupRenderer(baseFont: self.font)
         let attributedString = NSMutableAttributedString(attributedString: renderer.render(text: text))
         let paragraphStyle = NSMutableParagraphStyle()

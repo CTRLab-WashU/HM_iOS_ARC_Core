@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,6 +24,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ACChangeAvailabilityViewController" customModule="Arc" customModuleProvider="target">
             <connections>
+                <outlet property="changeDateButton" destination="wDH-BW-Ib9" id="1Pz-jx-aC9"/>
+                <outlet property="changeTimeButton" destination="ekY-n5-gXH" id="ITg-qc-N6M"/>
                 <outlet property="studyPeriodAdjustView" destination="0WR-K0-PLh" id="7bz-z3-cX6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -39,7 +41,7 @@
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="j9G-ef-Thq">
                             <rect key="frame" x="0.0" y="6" width="375" height="32"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4iX-lu-2oq">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4iX-lu-2oq" customClass="HMMarkupButton" customModule="HMMarkup">
                                     <rect key="frame" x="8" y="0.0" width="80" height="32"/>
                                     <color key="backgroundColor" white="1" alpha="0.14701947770000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
@@ -56,6 +58,7 @@
                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                             <integer key="value" value="16"/>
                                         </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="button_back"/>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="goBackPressed:" destination="-1" eventType="touchUpInside" id="C6M-JK-cbu"/>
@@ -76,6 +79,7 @@
                                         <userDefinedRuntimeAttribute type="number" keyPath="styleId">
                                             <integer key="value" value="2"/>
                                         </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="ChangeAvail_time"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekY-n5-gXH" customClass="ACButton" customModule="ArcUIKit">
@@ -99,6 +103,7 @@
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                             <real key="value" value="24"/>
                                         </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="change_button"/>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="changeSchedulePressed:" destination="-1" eventType="touchUpInside" id="Uue-I2-1rw"/>
@@ -119,6 +124,7 @@
                                         <userDefinedRuntimeAttribute type="number" keyPath="styleId">
                                             <integer key="value" value="2"/>
                                         </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="ChangeAvail_date"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wDH-BW-Ib9" customClass="ACButton" customModule="ArcUIKit">
@@ -142,6 +148,7 @@
                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                             <integer key="value" value="24"/>
                                         </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="change_button"/>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="changeStudyDatesPressed:" destination="-1" eventType="touchUpInside" id="dWs-1q-qLL"/>

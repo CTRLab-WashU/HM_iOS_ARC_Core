@@ -11,7 +11,7 @@ public struct ACCalendarStore {
     public var dateRange:ClosedRange<Date>
     public var selectedDateRange:ClosedRange<Date>?
     public var calendar:Calendar = Calendar(identifier: .gregorian)
-    public var weekNames:Array<String> = ["S", "M", "T", "W", "T", "F", "S"]
+    public var weekNames:Array<String> = ["S", "M", "T", "W", "T", "F", "S"].map({$0.localized($0)})
     
     init(range:ClosedRange<Date>) {
         self.dateRange = range

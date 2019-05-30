@@ -27,6 +27,7 @@ public class LoginHelpView: UIView {
             .font : UIFont(name: "Roboto-Regular", size: 18.0) as Any,
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ]
+        #warning("No provided translation key")
         let title = NSAttributedString(string: "Problems logging in?", attributes: attributes)
         helpButton.setAttributedTitle(title, for: .normal)
     }
