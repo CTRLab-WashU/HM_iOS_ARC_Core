@@ -207,7 +207,7 @@ public class ACScheduleViewController : SurveyNavigationViewController {
             if sleep.timeIntervalSince(wake) > 18 * 60 * 60 && shouldLimitWakeTime
             {
                 
-                error = "Please enter less than 18 hours of wake time.".localized("error5")
+                error = " " //Please enter less than 18 hours of wake time.".localized("error5")
                 return false;
             }
         }
