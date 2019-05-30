@@ -18,12 +18,14 @@ public extension Date {
 	{
 		return DateFormatter.localizedString(from: self, dateStyle: dateStyle, timeStyle: timeStyle);
 	}
-    public func localizedFormat(template:String = "MM/dd/yyyy h:mm a", options:Int = 0, locale:Locale? = nil ) -> String
+    func localizedFormat(template:String = "MM/dd/yyyy h:mm a", options:Int = 0, locale:Locale? = nil ) -> String
     {
         let df = DateFormatter();
-        df.dateFormat = template;
-       
-        return df.string(from: self);
+        df.locale = locale ?? Locale(identifier: Arc.shared.appController.locale.string)
+        df.setLocalizedDateFormatFromTemplate(DateFormatter.dateFormat(fromTemplate: template, options: 0, locale: locale) ?? template)
+//        df.doesRelativeDateFormatting = true
+       let v = df.string(from: self);
+        return v
     }
 	public func filenameSafeString() -> String
 	{
