@@ -104,6 +104,7 @@
                                         <constraint firstAttribute="width" constant="216" id="aBc-pM-EC1"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="18"/>
+                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" title="NEXT">
                                         <color key="titleColor" name="Primary"/>
                                     </state>

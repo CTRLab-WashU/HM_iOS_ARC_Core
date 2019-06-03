@@ -42,13 +42,13 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="M80-Lq-p3T">
                                     <rect key="frame" x="16" y="16" width="135" height="99.5"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello," textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hca-8b-Gis">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello," textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hca-8b-Gis" customClass="ACLabel" customModule="ArcUIKit">
                                             <rect key="frame" x="0.0" y="0.0" width="67.5" height="30.5"/>
                                             <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="26"/>
                                             <color key="textColor" name="Primary Text"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have a new survey." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="11X-d6-l6g">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have a new survey." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="11X-d6-l6g" customClass="ACLabel" customModule="ArcUIKit">
                                             <rect key="frame" x="0.0" y="38.5" width="135" height="61"/>
                                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="26"/>
                                             <color key="textColor" name="Primary Text"/>
@@ -56,9 +56,8 @@
                                         </label>
                                     </subviews>
                                 </stackView>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qjl-MQ-sUK" customClass="PrimaryButton" customModule="Arc" customModuleProvider="target">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qjl-MQ-sUK" customClass="ACButton" customModule="ArcUIKit">
                                     <rect key="frame" x="16" y="131.5" width="216" height="48"/>
-                                    <color key="backgroundColor" name="Primary"/>
                                     <constraints>
                                         <constraint firstAttribute="width" priority="999" constant="216" id="Zjq-q9-rT8"/>
                                         <constraint firstAttribute="height" priority="999" constant="48" id="wJn-Up-CY7"/>
@@ -120,9 +119,8 @@
                                             </attributedString>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ep-c9-7xf" customClass="PrimaryButton" customModule="Arc" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ep-c9-7xf" customClass="ACButton" customModule="ArcUIKit">
                                             <rect key="frame" x="0.0" y="61" width="216" height="48"/>
-                                            <color key="backgroundColor" name="Primary"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" priority="999" constant="216" id="Svy-Gm-xCK"/>
                                                 <constraint firstAttribute="height" priority="999" constant="48" id="lAi-wN-Ed6"/>
@@ -323,7 +321,7 @@
             <color red="0.23499999940395355" green="0.23499999940395355" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Primary Text">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23499999940395355" green="0.23499999940395355" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Secondary Text">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

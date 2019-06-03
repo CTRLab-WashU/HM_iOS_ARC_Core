@@ -21,10 +21,20 @@ public protocol SurveyInput {
     var didFinishSetup:(()->())? {get set}
 	var tryNext:(() -> ())? {get set}
     var isBottomAnchored:Bool {get}
+    var parentScrollView:UIScrollView? {get set}
     
 }
 
 extension SurveyInput {
+    public var parentScrollView:UIScrollView? {
+        get {
+            return nil
+        }
+        set {
+            
+        }
+    }
+
     public var isBottomAnchored:Bool {
         return false
     }

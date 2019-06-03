@@ -84,7 +84,6 @@
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekY-n5-gXH" customClass="ACButton" customModule="ArcUIKit">
                                     <rect key="frame" x="32" y="144" width="216" height="48"/>
-                                    <color key="backgroundColor" name="Secondary"/>
                                     <constraints>
                                         <constraint firstAttribute="width" priority="999" constant="216" id="7zD-m0-y80"/>
                                         <constraint firstAttribute="height" priority="999" constant="48" id="VJZ-NE-Uy7"/>
@@ -127,9 +126,8 @@
                                         <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="ChangeAvail_date"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wDH-BW-Ib9" customClass="ACButton" customModule="ArcUIKit">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wDH-BW-Ib9" customClass="ACButton" customModule="ArcUIKit">
                                     <rect key="frame" x="32" y="120.5" width="216" height="48"/>
-                                    <color key="backgroundColor" name="Secondary"/>
                                     <constraints>
                                         <constraint firstAttribute="width" priority="999" constant="216" id="Sn1-la-hqf"/>
                                         <constraint firstAttribute="height" priority="999" constant="48" id="jzH-MQ-g6R"/>

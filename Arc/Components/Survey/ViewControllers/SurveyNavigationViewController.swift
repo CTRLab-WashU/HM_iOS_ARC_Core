@@ -163,6 +163,7 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
                    subheading:  instruction.subtitle,
                    content:     instruction.preface)
 				vc.nextButtonTitle = instruction.nextButtonTitle
+                vc.nextButtonImage = instruction.nextButtonImage
 
                 vc.nextPressed = {
                     [weak self] in
@@ -194,6 +195,8 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
 				   subheading:  instruction.subtitle,
 				   content:     instruction.preface)
 			vc.nextButtonTitle = instruction.nextButtonTitle
+            vc.nextButtonImage = instruction.nextButtonImage
+
 			vc.nextPressed = {
 				[weak self] in
 
@@ -230,6 +233,7 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
                    subheading:  question.detail,
                    content:     question.content)
             vc.nextButtonTitle = question.nextButtonTitle
+            vc.nextButtonImage = question.nextButtonImage
             vc.nextPressed = {
                 [weak self] in
                 

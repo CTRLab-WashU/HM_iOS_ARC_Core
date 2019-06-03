@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -33,7 +33,7 @@
                 <outlet property="privacyPolicyButton" destination="1UX-tn-iFl" id="vDY-NW-z5d"/>
                 <outlet property="privacyStack" destination="Moq-gR-yzh" id="Gge-U1-qAL"/>
                 <outlet property="promptLabel" destination="9Do-fU-xIu" id="iNn-E1-p2g"/>
-                <outlet property="scrollIndicator" destination="bD2-j0-6MR" id="L4n-EI-HKf"/>
+                <outlet property="scrollIndicator" destination="ohL-ic-bnv" id="Swd-8u-Uaf"/>
                 <outlet property="scrollView" destination="Oti-R1-FeL" id="Fbe-LC-tle"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="views" destination="Ijy-59-IcH" id="IqT-6e-Rc2"/>
@@ -140,8 +140,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="216" height="48"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" priority="999" constant="48" id="K1I-kJ-e9P"/>
-                                                <constraint firstAttribute="width" priority="999" constant="216" id="bMo-Oh-RNh"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="48" id="K1I-kJ-e9P"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="999" constant="216" id="bMo-Oh-RNh"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="18"/>
                                             <state key="normal">
@@ -186,9 +186,44 @@
                         <constraint firstItem="mdr-oD-iS5" firstAttribute="leading" secondItem="Oti-R1-FeL" secondAttribute="leading" id="sNO-76-uaC"/>
                     </constraints>
                 </scrollView>
-                <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" image="scroll indicator" translatesAutoresizingMaskIntoConstraints="NO" id="bD2-j0-6MR">
-                    <rect key="frame" x="179.5" y="836" width="16" height="16"/>
-                </imageView>
+                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ohL-ic-bnv" customClass="IndicatorView" customModule="ArcUIKit">
+                    <rect key="frame" x="135" y="759.5" width="105.5" height="90.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scroll" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0I6-gD-ixz" customClass="ACLabel" customModule="ArcUIKit">
+                            <rect key="frame" x="20" y="20" width="65.5" height="30.5"/>
+                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="26"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="styleId">
+                                    <integer key="value" value="2"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="scroll"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="0I6-gD-ixz" secondAttribute="trailing" constant="20" id="IMk-41-bBS"/>
+                        <constraint firstItem="0I6-gD-ixz" firstAttribute="leading" secondItem="ohL-ic-bnv" secondAttribute="leading" constant="20" id="aaI-9G-qab"/>
+                        <constraint firstAttribute="bottom" secondItem="0I6-gD-ixz" secondAttribute="bottom" constant="40" id="vmN-QI-KUC"/>
+                        <constraint firstItem="0I6-gD-ixz" firstAttribute="top" secondItem="ohL-ic-bnv" secondAttribute="top" constant="20" id="wgM-XK-iLk"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="primaryColor">
+                            <color key="value" name="Primary Text"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="secondaryColor">
+                            <color key="value" name="Primary Text"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -196,19 +231,20 @@
                 <constraint firstItem="mdr-oD-iS5" firstAttribute="height" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="height" constant="-160" id="3Fk-Z6-l21"/>
                 <constraint firstAttribute="trailing" secondItem="Oti-R1-FeL" secondAttribute="trailing" id="4ee-Sq-qCx"/>
                 <constraint firstItem="Oti-R1-FeL" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="5JJ-AL-qJg"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="bD2-j0-6MR" secondAttribute="bottom" constant="18" id="6xX-fq-6nl"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ohL-ic-bnv" secondAttribute="trailing" priority="999" constant="20" id="7Et-sA-bkW"/>
                 <constraint firstItem="Oti-R1-FeL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="E97-WX-DQg"/>
+                <constraint firstItem="ohL-ic-bnv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" priority="999" id="GEz-3l-jn8"/>
+                <constraint firstItem="ohL-ic-bnv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="leading" priority="999" constant="20" id="L2J-2W-zGQ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ohL-ic-bnv" secondAttribute="bottom" constant="20" id="Sso-QA-RLc"/>
                 <constraint firstItem="mdr-oD-iS5" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="UmE-3z-uxy"/>
                 <constraint firstItem="Oti-R1-FeL" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="u4b-C2-SXj"/>
-                <constraint firstItem="bD2-j0-6MR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ukd-Jx-Kb4"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="12" y="64.767616191904054"/>
+            <point key="canvasLocation" x="4" y="64"/>
         </view>
     </objects>
     <resources>
-        <image name="scroll indicator" width="138" height="98"/>
         <namedColor name="Error">
             <color red="0.60000002384185791" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

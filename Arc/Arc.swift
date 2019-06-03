@@ -476,8 +476,8 @@ open class Arc : ArcApi {
                     return .tomorrow
                 } else {
                     d.dateFormat = "MM/dd/yy"
-                    let dateString = d.string(from: date)
-                    let endDateString = d.string(from: date.addingDays(days: 6))
+                    let dateString = date.localizedFormat(template: ACDateStyle.longWeekdayMonthDay.rawValue, options: 0, locale: nil)
+                    let endDateString = date.addingDays(days: 6).localizedFormat(template: ACDateStyle.longWeekdayMonthDay.rawValue, options: 0, locale: nil)
                     return .later(dateString, endDateString)
                 }
             } else {

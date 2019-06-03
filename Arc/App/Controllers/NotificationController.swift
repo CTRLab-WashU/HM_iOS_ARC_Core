@@ -355,7 +355,7 @@ open class NotificationController : MHController
         
         let monthBody = "Your next week of testing begins in one month, on \(formattedDate).\nYou may adjust this schedule up to 7 days."
             .localized("notification_1month")
-            .replacingOccurrences(of: "{0}", with: "formattedDate")
+            .replacingOccurrences(of: "{0}", with: formattedDate)
         let month = scheduleNotification(date: studyDate.addingMonths(months: -1).addingHours(hours: 12),
                                          title: "",
                                          body:monthBody,

@@ -62,7 +62,7 @@
                                 <action selector="signInPressed:" destination="-1" eventType="touchUpInside" id="TWX-Mh-c3r"/>
                             </connections>
                         </button>
-                        <stackView opaque="NO" contentMode="scaleToFill" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="2K2-uK-FSQ">
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="2K2-uK-FSQ">
                             <rect key="frame" x="64" y="80" width="88" height="30"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OfG-Rv-UYw" customClass="HMMarkupButton" customModule="HMMarkup">

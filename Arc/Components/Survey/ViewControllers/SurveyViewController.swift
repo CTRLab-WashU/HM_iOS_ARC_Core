@@ -35,6 +35,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
     @IBOutlet weak var privacyPolicyButton: UIButton!
 	@IBOutlet weak var scrollView: UIScrollView!
 	@IBOutlet weak var scrollIndicator: UIView!
+    @IBOutlet weak var scrollIndicatorLabel:UILabel!
 //    @IBOutlet weak var spacerView: UIView!
     
     var id:String?
@@ -128,7 +129,14 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 		if let nextButtonTitle = question.nextButtonTitle {
 			nextButton.setTitle(nextButtonTitle.localized(nextButtonTitle), for: .normal)
         } else {
-            nextButton.setTitle("NEXT".localized("button_next"), for: .normal)
+            if question.nextButtonImage == nil {
+                nextButton.setTitle("NEXT".localized("button_next"), for: .normal)
+            }
+        }
+        if let nextButtonTitle = question.nextButtonImage {
+            nextButton.setImage(UIImage(named: nextButtonTitle), for: .normal)
+        } else {
+            nextButton.setImage(nil, for: .normal)
         }
 		let template = templateHandler?(question.questionId) ?? [:]
 
@@ -144,7 +152,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 		detailsLabel.text = question.detail
 		
 		self.id = question.questionId
-        
+        input?.parentScrollView = nil
 		if question.type == .slider {
 			let inputView:SliderView = input as? SliderView ?? .get()
 			
@@ -241,6 +249,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
         }
         container.alignment = input?.orientation ?? .top
         input?.setError(message: nil)
+        input?.parentScrollView = self.scrollView
         input?.didFinishSetup = {
             [weak self] in
             guard let weakSelf = self else {
@@ -358,6 +367,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
             app.appNavigation.navigate(vc: app.appNavigation.defaultHelpState(), direction: .toRight)
 		}
     }
+    
 	public func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		self.scrollIndicatorState(scrollView)
 	}

@@ -10,7 +10,7 @@ import UIKit
 @IBDesignable open class HMMarkupButton: UIButton {
     @IBInspectable var translationKey:String?
     open var renderer:HMMarkupRenderer!
-
+    
     override open func awakeFromNib() {
         super.awakeFromNib()
         setup(isSelected: false)
@@ -21,9 +21,13 @@ import UIKit
     }
     override open func layoutSubviews() {
         super.layoutSubviews()
-        setup(isSelected: isHighlighted)
+        //setup(isSelected: isHighlighted)
     }
     open func setup(isSelected:Bool){
+
+        self.titleLabel?.lineBreakMode = .byWordWrapping
+        self.titleLabel?.textAlignment = .center
+        self.titleLabel?.numberOfLines = 4
         if let key = translationKey, let config = HMMarkupRenderer.config, config.shouldTranslate {
             let text = config.translation?[key] ?? title(for: .normal)
             setTitle(text, for: .normal)

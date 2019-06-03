@@ -81,7 +81,9 @@ public struct Survey : HMCodable {
         public var answers:Array<Answer>? // if a question has predefined answers
         public var routes:Array<Route>?
 		public var nextButtonTitle:String?
+        public var nextButtonImage:String?
         public var altNextButtonTitle:String?
+        public var altNextButtonImage:String?
 
     }
     public struct Instruction : Codable {
@@ -89,6 +91,8 @@ public struct Survey : HMCodable {
         public var subtitle : String
         public var preface : String
 		public var nextButtonTitle:String?
+        public var nextButtonImage:String?
+
     }
     public var id:String?
     public var type: SurveyType?

@@ -17,42 +17,76 @@ import HMMarkup
             layer.cornerRadius = cornerRadius
         }
     }
+    open override var isSelected: Bool{
+        didSet {
+            self.setNeedsDisplay()
+
+        }
+    }
     @IBInspectable var primaryColor:UIColor = UIColor(named: "Primary") ?? UIColor.white
     @IBInspectable var secondaryColor:UIColor = UIColor(named: "Primary Gradient") ?? UIColor.gray
-    var gradient:CAGradientLayer?
     
-
+    open override func draw(_ rect: CGRect) {
+        let path = UIBezierPath(roundedRect: rect,
+                                byRoundingCorners: .allCorners,
+                                cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
+        path.addClip()
+        let context = UIGraphicsGetCurrentContext()
+        
+        let colors = (!isSelected && isEnabled) ? [secondaryColor.cgColor,
+                                                   primaryColor.cgColor] : [primaryColor.cgColor,
+                                                                            primaryColor.cgColor]
+        
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        
+        let colorLocations:[CGFloat] = [0.0, 1.0]
+        
+        let gradient = CGGradient(colorsSpace: colorSpace,
+                                  colors: colors as CFArray,
+                                  locations: colorLocations)!
+        
+        let startPoint = CGPoint.zero
+        let endPoint = CGPoint(x:0, y:bounds.height)
+        context?.drawLinearGradient(gradient, start: startPoint, end: endPoint, options:[])
+    }
     override open func setup(isSelected:Bool){
         super.setup(isSelected:isSelected)
-        CATransaction.begin()
-        CATransaction.setAnimationDuration(0)
-        layer.cornerRadius = self.cornerRadius
-        layer.shadowOffset = CGSize(width: 0, height: 1)
-        layer.shadowColor = UIColor(red:0, green:0, blue:0, alpha:0.5).cgColor
-        layer.shadowOpacity =  1
-        layer.shadowRadius = (!isSelected) ? 2 : 0
-        let gradient = self.gradient ?? CAGradientLayer()
-        gradient.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
-        gradient.colors = (!isSelected && isEnabled) ? [secondaryColor.cgColor,
-                                                        primaryColor.cgColor] : [primaryColor.cgColor,
-                                                                                 primaryColor.cgColor]
+//        tintColor = .clear
+        imageView?.layer.zPosition = 1
         
         if isEnabled {
             self.alpha = 1.0
         } else {
             self.alpha = 0.5
         }
+        layer.cornerRadius = cornerRadius
+        self.setNeedsDisplay()
+
+      
         
-        gradient.locations = [0, 1]
-        gradient.startPoint = CGPoint(x: 0.5, y: 0)
-        gradient.endPoint = CGPoint(x: 0.5, y: 1)
-        gradient.cornerRadius = 24
-        if gradient.superlayer == nil {
-            self.gradient = gradient
-            layer.addSublayer(gradient)
-        }
-        CATransaction.commit()
     }
     
+    open override func setTitle(_ title: String?, for state: UIControl.State) {
+        super.setTitle(title, for: state)
+        
+
+    }
+    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        isSelected = true
+
+    }
+    open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        isSelected = false
+
+
+    }
+    open override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        isSelected = false
+
+
+    }
 }
 

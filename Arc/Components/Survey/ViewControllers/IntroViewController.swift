@@ -15,6 +15,7 @@ open class IntroViewController: UIViewController {
     @IBOutlet weak var subheadingLabel: UILabel!
     @IBOutlet weak var contentTextview: UITextView!
 	@IBOutlet weak var nextButton:UIButton!
+    var nextButtonImage:String?
 
     var heading:String?
     var subheading:String?
@@ -71,6 +72,11 @@ open class IntroViewController: UIViewController {
 			if let nextButtonTitle = nextButtonTitle {
 				nextButton.setTitle(nextButtonTitle.localized(nextButtonTitle), for: .normal)
 			}
+            if let nextButtonTitle = nextButtonImage {
+                nextButton.setImage(UIImage(named: nextButtonTitle), for: .normal)
+            } else {
+                nextButton.setImage(nil, for: .normal)
+            }
             parseText(content: content)
         }
     }
@@ -89,7 +95,18 @@ open class IntroViewController: UIViewController {
         if let nextButtonTitle = nextButtonTitle, !nextButtonTitle.isEmpty {
             nextButton.setTitle(nextButtonTitle.localized(nextButtonTitle), for: .normal)
         } else {
-            nextButton.setTitle("NEXT".localized("button_next"), for: .normal)
+            if nextButtonImage == nil {
+                nextButton.setTitle("NEXT".localized("button_next"), for: .normal)
+            } else {
+                nextButton.setTitle(nil, for: .normal)
+            }
+        }
+        
+        if let nextButtonTitle = nextButtonImage {
+            nextButton.setImage(UIImage(named: nextButtonTitle), for: .normal)
+        } else {
+            nextButton.setImage(nil, for: .normal)
+
         }
         parseText(content: content)
         self.navigationController?.navigationBar.backgroundColor = .clear
