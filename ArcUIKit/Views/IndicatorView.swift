@@ -30,8 +30,8 @@ import UIKit
     
     override init(frame: CGRect) {
         let f = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
-            .insetBy(dx: 0, dy: -10)
-            .offsetBy(dx: 0, dy: -10)
+            .insetBy(dx: 0, dy: -5)
+            .offsetBy(dx: 0, dy: -5)
         
         
         super.init(frame: frame)
@@ -77,13 +77,13 @@ import UIKit
         super.draw(rect)
         
         var path = UIBezierPath(roundedRect: rect
-            .insetBy(dx: 0, dy: 10)
-            .offsetBy(dx: 0, dy: -10),
+            .insetBy(dx: 0, dy: 5)
+            .offsetBy(dx: 0, dy: -5),
                                 byRoundingCorners: .allCorners,
                                 cornerRadii: CGSize(width: layer.cornerRadius, height: layer.cornerRadius))
         path.move(to: CGPoint(x: rect.midX, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.midX - 20, y: rect.maxY - 20))
-        path.addLine(to: CGPoint(x: rect.midX + 20, y: rect.maxY - 20))
+        path.addLine(to: CGPoint(x: rect.midX - 10, y: rect.maxY - 10))
+        path.addLine(to: CGPoint(x: rect.midX + 10, y: rect.maxY - 10))
         path.addLine(to: CGPoint(x: rect.midX, y: rect.maxY))
         path.close()
         path.addClip()
