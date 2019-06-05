@@ -172,6 +172,7 @@
 		C54AEA7021C81B5F00DEC360 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9CD21C81B5F00DEC360 /* Roboto-Black.ttf */; };
 		C56BBCA3221490DF0025A318 /* ACTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56BBCA2221490DF0025A318 /* ACTextView.swift */; };
 		C56BBCA52214AF5B0025A318 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56BBCA42214AF5B0025A318 /* Common.swift */; };
+		C578B8D622A859A60038DDF0 /* ACView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C578B8D522A859A60038DDF0 /* ACView.swift */; };
 		C57E9C842236BB4B009F6228 /* ACCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50FC3BA22330F2C00143EA8 /* ACCalendarView.swift */; };
 		C57E9C862236C232009F6228 /* StartDateShiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E9C852236C232009F6228 /* StartDateShiftViewController.swift */; };
 		C57E9C882236CE67009F6228 /* ACPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E9C872236CE67009F6228 /* ACPickerView.swift */; };
@@ -418,6 +419,7 @@
 		C54AE9CD21C81B5F00DEC360 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		C56BBCA2221490DF0025A318 /* ACTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTextView.swift; sourceTree = "<group>"; };
 		C56BBCA42214AF5B0025A318 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		C578B8D522A859A60038DDF0 /* ACView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACView.swift; sourceTree = "<group>"; };
 		C57E9C852236C232009F6228 /* StartDateShiftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartDateShiftViewController.swift; sourceTree = "<group>"; };
 		C57E9C872236CE67009F6228 /* ACPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPickerView.swift; sourceTree = "<group>"; };
 		C57E9C892236E825009F6228 /* ACPickerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ACPickerView.xib; sourceTree = "<group>"; };
@@ -1068,6 +1070,7 @@
 			isa = PBXGroup;
 			children = (
 				C56BBCA42214AF5B0025A318 /* Common.swift */,
+				C578B8D522A859A60038DDF0 /* ACView.swift */,
 				C5B2602B2213606600BFF778 /* ACButton.swift */,
 				C583C0F122136E3B0043DFA7 /* ACLabel.swift */,
 				C56BBCA2221490DF0025A318 /* ACTextView.swift */,
@@ -1538,6 +1541,7 @@
 			files = (
 				C56BBCA52214AF5B0025A318 /* Common.swift in Sources */,
 				C583C0F222136E3B0043DFA7 /* ACLabel.swift in Sources */,
+				C578B8D622A859A60038DDF0 /* ACView.swift in Sources */,
 				C5B2602C2213606600BFF778 /* ACButton.swift in Sources */,
 				C56BBCA3221490DF0025A318 /* ACTextView.swift in Sources */,
 				C5E0DDB922A5B7D20034DEDF /* IndicatorView.swift in Sources */,

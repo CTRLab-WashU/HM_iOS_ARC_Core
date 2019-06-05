@@ -7,7 +7,8 @@
 //
 
 import UIKit
-open class ChoiceView : BorderedView {
+import ArcUIKit
+@IBDesignable open class ChoiceView : ACView {
     public enum State {
         case radio, checkBox
         
