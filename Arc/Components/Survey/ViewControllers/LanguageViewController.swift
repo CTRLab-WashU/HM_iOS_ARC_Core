@@ -65,24 +65,14 @@ public enum ACLocale : String{
         return (values[0], values[1])
     }
     var availablePriceTest:String {
-        switch self {
-            
-        case .en_AU: return "priceSets-en-AU"
-        case .en_CA: return "priceSets-en-CA"
-        case .en_UK: return "priceSets-en-UK"
-        case .en_US: return "priceSets-en-US"
-        case .es_ES: return "priceSets-es-ES"
-        case .es_US, .es_MX: return "priceSets-es-US"
-        case .fr_CA: return "priceSets-fr-CA"
-        case .fr_FR: return "priceSets-fr-FR"
-        default:
-            return "priceSets-en-US"
-            
-        }
+	let value = "prices/\(self.rawValue)/price_sets"
+       return value
     }
 }
 
 open class ACLanguageViewController : SurveyNavigationViewController {
+	
+	
     open override func onValueSelected(value: QuestionResponse, index: String) {
         if index == "ac_language_1" {
             guard let value = value.text_value else {

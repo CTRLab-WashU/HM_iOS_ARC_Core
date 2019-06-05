@@ -398,7 +398,8 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
                                                         forSurveyResponse: self.surveyId!)
 
     }
-    //Override this to write to other controllers
+	//Override this to write to other controllers
+
     open func onValueSelected(value:QuestionResponse, index:String) {
 		
 		let question = Arc.shared.surveyController.get(question: index)

@@ -18,7 +18,7 @@ public class ACScheduleViewController : SurveyNavigationViewController {
         let wake_time = wakeSleeptimes[.schedule_1]?.time
         let sleep_time = wakeSleeptimes[.schedule_2]?.time
         
-        return ["wake_time":wake_time!, "sleep_time":sleep_time!, "0":wake_time!, "1":sleep_time!]
+        return ["wake_time":wake_time!, "sleep_time":sleep_time!, "TIME1":wake_time!, "TIME2":sleep_time!]
     }
     
     // enum values:
