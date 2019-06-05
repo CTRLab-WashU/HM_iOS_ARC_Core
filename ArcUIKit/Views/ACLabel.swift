@@ -11,7 +11,6 @@ import UIKit
 import HMMarkup
 @IBDesignable open class ACLabel : HMMarkupLabel {
     
-        
     public var style:ACTextStyle = .none {
         didSet {
             setup(isSelected: false)

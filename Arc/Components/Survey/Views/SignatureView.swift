@@ -13,10 +13,12 @@ public enum SignatureViewContentState {
 }
 public protocol SignatureViewDelegate : class {
     func signatureViewContentChanged(state:SignatureViewContentState)
+    
 }
 open class SignatureView: BorderedUIView, SurveyInput {
-     public var didChangeValue: (() -> ())?
+    public var parentScrollView: UIScrollView?
     
+    public var didChangeValue: (() -> ())?
     
     public var isBottomAnchored: Bool = true
     
@@ -68,29 +70,40 @@ open class SignatureView: BorderedUIView, SurveyInput {
         
     }
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
         guard let location = touches.first?.location(in: self) else {
             return
         }
-        
+        parentScrollView?.isScrollEnabled = false
         path.move(to: location)
     }
     override open func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesMoved(touches, with: event)
+
         guard let location = touches.first?.location(in: self) else {
             return
         }
         
-        
+        parentScrollView?.isScrollEnabled = false
+
         path.addLine(to: location)
         self.setNeedsDisplay()
         
     }
     override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+
+        parentScrollView?.isScrollEnabled = true
+
         delegate?.signatureViewContentChanged(state: .dirty)
         state = .dirty
         didChangeValue?()
         
     }
     override open func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        parentScrollView?.isScrollEnabled = true
+
     }
     @IBAction func xPressed(sender:UIButton) {
         clear()

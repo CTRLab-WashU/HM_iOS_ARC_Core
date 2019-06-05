@@ -8,11 +8,12 @@
 
 import Foundation
 import UIKit
+import HMMarkup
 public protocol ArcApi {
 	
 }
 public enum SurveyAvailabilityStatus {
-    case available, laterToday, tomorrow, startingTomorrow(String), later(String), finished
+    case available, laterToday, tomorrow, startingTomorrow(String), later(String, String), finished
 }
 open class Arc : ArcApi {
 	
@@ -39,7 +40,20 @@ open class Arc : ArcApi {
 		}
 		return nil
 	}()
-	
+    lazy public var translation:ArcTranslation? = {
+        do {
+            guard let asset = NSDataAsset(name: "translation") else {
+                return nil
+            }
+            let translation:ArcTranslation = try JSONDecoder().decode(ArcTranslation.self, from: asset.data)
+        
+            return translation
+        } catch {
+            dump(error)
+        }
+        return nil
+    }()
+    public var translationIndex = 1
 	lazy public var deviceString = {deviceInfo();}()
 	lazy public var deviceId = AppController().deviceId
 	lazy public var versionString = {info?[APP_VERSION_INFO_KEY] as? String ?? ""}()
@@ -94,17 +108,14 @@ open class Arc : ArcApi {
 	}
     static public func configureWithEnvironment(environment:ArcEnvironment) {
         self.environment = environment
-        CoreDataStack.useMockContainer = environment.mockData
-        HMRestAPI.shared.blackHole = environment.blockApiRequests
+        
         HMAPI.baseUrl = environment.baseUrl ?? ""
-        Arc.shared.WELCOME_LOGO =  UIImage(named: environment.welcomeLogo ?? "")
-        Arc.shared.WELCOME_TEXT = environment.welcomeText ?? ""
-        Arc.shared.APP_PRIVACY_POLICY_URL = environment.privacyPolicyUrl ?? ""
         
         _ = MHController.dataContext
         
         _ = HMAPI.shared
-
+        CoreDataStack.useMockContainer = environment.mockData
+        HMRestAPI.shared.blackHole = environment.blockApiRequests
         Arc.shared.appNavigation = environment.appNavigation
         Arc.shared.studyController = environment.studyController
         Arc.shared.authController = environment.authController
@@ -117,6 +128,19 @@ open class Arc : ArcApi {
         Arc.shared.gridTestController = environment.gridTestController
         Arc.shared.pricesTestController = environment.pricesTestController
         Arc.shared.symbolsTestController = environment.symbolsTestController
+        
+        let locale = Locale.current
+
+        
+        Arc.shared.setLocalization(country: Arc.shared.appController.country ?? locale.regionCode,
+                                   language: Arc.shared.appController.language ?? locale.languageCode)
+
+        
+        
+        Arc.shared.WELCOME_LOGO =  UIImage(named: environment.welcomeLogo ?? "")
+        Arc.shared.WELCOME_TEXT = environment.welcomeText ?? ""
+        Arc.shared.APP_PRIVACY_POLICY_URL = environment.privacyPolicyUrl ?? ""
+      
         
         if let arcStartDays = environment.arcStartDays {
             Arc.shared.studyController.ArcStartDays = arcStartDays
@@ -153,7 +177,60 @@ open class Arc : ArcApi {
             
         }
     }
-    
+    public func setCountry(key:String?) {
+        appController.country = key
+    }
+    public func setLanguage(key:String?) {
+        appController.language = key
+    }
+    public func setLocalization(country:String?, language:String?) {
+        
+        let matchesBoth = Arc.shared.translation?.versions.filter {
+            $0.map?["country_key"] == country && $0.map?["language_key"] == language
+        }
+        let matchesCountry = Arc.shared.translation?.versions.filter {
+            $0.map?["country_key"] == country
+        }
+        let matchesLanguage = Arc.shared.translation?.versions.filter {
+            $0.map?["language_key"] == language
+        }
+        
+        var config = HMMarkupRenderer.Config()
+        config.shouldTranslate = true
+        switch (country, language) {
+        
+        case (nil, let l):
+            print(l ?? "")
+            dump(matchesLanguage)
+            config.translation = matchesLanguage?.first?.map
+
+            break
+
+        case (let c, nil):
+            print(c ?? "")
+            config.translation = matchesCountry?.first?.map
+
+            dump(matchesCountry)
+            break
+        case (let c, let l):
+            print(c ?? "" , l ?? "")
+            dump(matchesBoth)
+            config.translation = matchesBoth?.first?.map
+
+            break
+        
+        }
+        HMMarkupRenderer.config = config
+
+    }
+    public func setLocalization(index:Int = 1) {
+       
+            var config = HMMarkupRenderer.Config()
+            config.shouldTranslate = true
+            config.translation = Arc.shared.translation?.versions[index].map
+            HMMarkupRenderer.config = config
+      
+    }
 	public func deviceInfo() -> String
 	{
 		let deviceString = " \(UIDevice.current.systemName)|\(deviceIdentifier())|\(UIDevice.current.systemVersion)";
@@ -399,8 +476,9 @@ open class Arc : ArcApi {
                     return .tomorrow
                 } else {
                     d.dateFormat = "MM/dd/yy"
-                    let dateString = d.string(from: date)
-                    return .later(dateString)
+                    let dateString = date.localizedFormat(template: ACDateStyle.longWeekdayMonthDay.rawValue, options: 0, locale: nil)
+                    let endDateString = date.addingDays(days: 6).localizedFormat(template: ACDateStyle.longWeekdayMonthDay.rawValue, options: 0, locale: nil)
+                    return .later(dateString, endDateString)
                 }
             } else {
                 

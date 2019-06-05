@@ -163,6 +163,7 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
                    subheading:  instruction.subtitle,
                    content:     instruction.preface)
 				vc.nextButtonTitle = instruction.nextButtonTitle
+                vc.nextButtonImage = instruction.nextButtonImage
 
                 vc.nextPressed = {
                     [weak self] in
@@ -194,6 +195,8 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
 				   subheading:  instruction.subtitle,
 				   content:     instruction.preface)
 			vc.nextButtonTitle = instruction.nextButtonTitle
+            vc.nextButtonImage = instruction.nextButtonImage
+
 			vc.nextPressed = {
 				[weak self] in
 
@@ -230,6 +233,7 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
                    subheading:  question.detail,
                    content:     question.content)
             vc.nextButtonTitle = question.nextButtonTitle
+            vc.nextButtonImage = question.nextButtonImage
             vc.nextPressed = {
                 [weak self] in
                 
@@ -394,7 +398,8 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
                                                         forSurveyResponse: self.surveyId!)
 
     }
-    //Override this to write to other controllers
+	//Override this to write to other controllers
+
     open func onValueSelected(value:QuestionResponse, index:String) {
 		
 		let question = Arc.shared.surveyController.get(question: index)
@@ -496,7 +501,7 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
                 
                 let helpButton = UIButton(type: .custom)
                 helpButton.frame = CGRect(x: 0, y: 0, width: 60, height: 10)
-                helpButton.setTitle("HELP", for: .normal)
+                helpButton.setTitle("HELP".localized("help"), for: .normal)
                 helpButton.titleLabel?.font = UIFont(name: "Roboto-Medium", size: 14)
                 helpButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -16)
                 helpButton.setTitleColor(UIColor(named: "Primary"), for: .normal)

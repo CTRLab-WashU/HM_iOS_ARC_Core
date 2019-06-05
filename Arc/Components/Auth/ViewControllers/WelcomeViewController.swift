@@ -29,8 +29,8 @@ open class WelcomeViewController: UIViewController {
             .font : UIFont(name: "Roboto-Medium", size: 18.0) as Any,
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ]
-        let aboutTitle = NSAttributedString(string: "About This App", attributes: attributes)
-        let privacyTitle = NSAttributedString(string: "Privacy Policy", attributes: attributes)
+        let aboutTitle = NSAttributedString(string: "About This App".localized("aboutapp_header"), attributes: attributes)
+        let privacyTitle = NSAttributedString(string: "Privacy Policy".localized("privacy_linked"), attributes: attributes)
         aboutButton.setAttributedTitle(aboutTitle, for: .normal)
         privacyButton.setAttributedTitle(privacyTitle, for: .normal)
         titleImage.image = Arc.shared.WELCOME_LOGO

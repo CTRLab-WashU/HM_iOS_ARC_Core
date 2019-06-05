@@ -33,7 +33,7 @@
                 <outlet property="privacyPolicyButton" destination="1UX-tn-iFl" id="vDY-NW-z5d"/>
                 <outlet property="privacyStack" destination="Moq-gR-yzh" id="Gge-U1-qAL"/>
                 <outlet property="promptLabel" destination="9Do-fU-xIu" id="iNn-E1-p2g"/>
-                <outlet property="scrollIndicator" destination="bD2-j0-6MR" id="L4n-EI-HKf"/>
+                <outlet property="scrollIndicator" destination="ohL-ic-bnv" id="Swd-8u-Uaf"/>
                 <outlet property="scrollView" destination="Oti-R1-FeL" id="Fbe-LC-tle"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="views" destination="Ijy-59-IcH" id="IqT-6e-Rc2"/>
@@ -105,11 +105,14 @@
                                         <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Moq-gR-yzh">
                                             <rect key="frame" x="6.5" y="0.0" width="203" height="24"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By signing in you agree to our" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68i-9R-al1">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By signing in you agree to our" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68i-9R-al1" customClass="ACLabel" customModule="ArcUIKit">
                                                     <rect key="frame" x="0.0" y="0.0" width="203" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="bysigning_key"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1UX-tn-iFl">
                                                     <rect key="frame" x="54.5" y="0.0" width="94" height="24"/>
@@ -137,11 +140,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="216" height="48"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" priority="999" constant="48" id="K1I-kJ-e9P"/>
-                                                <constraint firstAttribute="width" priority="999" constant="216" id="bMo-Oh-RNh"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="48" id="K1I-kJ-e9P"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="999" constant="216" id="bMo-Oh-RNh"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="18"/>
-                                            <state key="normal" title="NEXT">
+                                            <state key="normal">
                                                 <color key="titleColor" name="Secondary Text"/>
                                             </state>
                                             <userDefinedRuntimeAttributes>
@@ -162,7 +165,9 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="EOk-EH-Oqa" firstAttribute="top" secondItem="dsn-24-lzK" secondAttribute="bottom" priority="999" constant="20" id="29A-7U-tte"/>
+                                <constraint firstItem="EOk-EH-Oqa" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mdr-oD-iS5" secondAttribute="leading" constant="20" id="7Xd-2n-dVh"/>
                                 <constraint firstItem="dsn-24-lzK" firstAttribute="top" secondItem="A9h-Af-XDA" secondAttribute="bottom" constant="20" id="KBT-o7-ah2"/>
+                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EOk-EH-Oqa" secondAttribute="trailing" constant="20" id="OCN-Bl-zGO"/>
                                 <constraint firstItem="dsn-24-lzK" firstAttribute="leading" secondItem="mdr-oD-iS5" secondAttribute="leading" id="Skm-2w-bjg"/>
                                 <constraint firstAttribute="trailing" secondItem="A9h-Af-XDA" secondAttribute="trailing" id="Vv1-md-nJd"/>
                                 <constraint firstItem="A9h-Af-XDA" firstAttribute="top" secondItem="mdr-oD-iS5" secondAttribute="top" id="Wfn-ap-nm2"/>
@@ -181,9 +186,44 @@
                         <constraint firstItem="mdr-oD-iS5" firstAttribute="leading" secondItem="Oti-R1-FeL" secondAttribute="leading" id="sNO-76-uaC"/>
                     </constraints>
                 </scrollView>
-                <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" image="scroll indicator" translatesAutoresizingMaskIntoConstraints="NO" id="bD2-j0-6MR">
-                    <rect key="frame" x="118.5" y="754" width="138" height="98"/>
-                </imageView>
+                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ohL-ic-bnv" customClass="IndicatorView" customModule="ArcUIKit">
+                    <rect key="frame" x="155" y="798.5" width="65.5" height="51.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scroll" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0I6-gD-ixz" customClass="ACLabel" customModule="ArcUIKit">
+                            <rect key="frame" x="10" y="10" width="45.5" height="21.5"/>
+                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="26"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="styleId">
+                                    <integer key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="scroll"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="0I6-gD-ixz" secondAttribute="trailing" constant="10" id="IMk-41-bBS"/>
+                        <constraint firstItem="0I6-gD-ixz" firstAttribute="leading" secondItem="ohL-ic-bnv" secondAttribute="leading" constant="10" id="aaI-9G-qab"/>
+                        <constraint firstAttribute="bottom" secondItem="0I6-gD-ixz" secondAttribute="bottom" constant="20" id="vmN-QI-KUC"/>
+                        <constraint firstItem="0I6-gD-ixz" firstAttribute="top" secondItem="ohL-ic-bnv" secondAttribute="top" constant="10" id="wgM-XK-iLk"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="primaryColor">
+                            <color key="value" name="Primary Text"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="secondaryColor">
+                            <color key="value" name="Primary Text"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -191,19 +231,20 @@
                 <constraint firstItem="mdr-oD-iS5" firstAttribute="height" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="height" constant="-160" id="3Fk-Z6-l21"/>
                 <constraint firstAttribute="trailing" secondItem="Oti-R1-FeL" secondAttribute="trailing" id="4ee-Sq-qCx"/>
                 <constraint firstItem="Oti-R1-FeL" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="5JJ-AL-qJg"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="bD2-j0-6MR" secondAttribute="bottom" constant="18" id="6xX-fq-6nl"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ohL-ic-bnv" secondAttribute="trailing" priority="999" constant="20" id="7Et-sA-bkW"/>
                 <constraint firstItem="Oti-R1-FeL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="E97-WX-DQg"/>
+                <constraint firstItem="ohL-ic-bnv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" priority="999" id="GEz-3l-jn8"/>
+                <constraint firstItem="ohL-ic-bnv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="leading" priority="999" constant="20" id="L2J-2W-zGQ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ohL-ic-bnv" secondAttribute="bottom" constant="20" id="Sso-QA-RLc"/>
                 <constraint firstItem="mdr-oD-iS5" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="UmE-3z-uxy"/>
                 <constraint firstItem="Oti-R1-FeL" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="u4b-C2-SXj"/>
-                <constraint firstItem="bD2-j0-6MR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ukd-Jx-Kb4"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="12" y="64.767616191904054"/>
+            <point key="canvasLocation" x="4" y="64"/>
         </view>
     </objects>
     <resources>
-        <image name="scroll indicator" width="138" height="98"/>
         <namedColor name="Error">
             <color red="0.60000002384185791" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

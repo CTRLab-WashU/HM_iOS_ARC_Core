@@ -9,6 +9,9 @@
 import Foundation
 open class AppController : MHController {
 	public var testCount:Int = 0
+    public var locale:ACLocale {
+        return ACLocale(rawValue: "\(language ?? "en")_\(country ?? "US")") ?? .en_US
+    }
     public var language:String? {
         get {
             
@@ -18,6 +21,18 @@ open class AppController : MHController {
         set (newVal)
         {
             defaults.setValue(newVal, forKey:"language");
+            defaults.synchronize();
+        }
+    }
+    public var country:String? {
+        get {
+            
+            return defaults.string(forKey:"country");
+            
+        }
+        set (newVal)
+        {
+            defaults.setValue(newVal, forKey:"country");
             defaults.synchronize();
         }
     }
@@ -172,8 +187,12 @@ open class AppController : MHController {
 		}
 	}
     public func fetch(signature sessionId:Int64, tag:Int32) -> Signature?{
-        let predicate = NSPredicate(format: "tag == \(tag) AND sessionId == \(sessionId)")
-        let signature:Signature? = fetch(predicate: predicate, sort: nil, limit: 1)?.first
+        var signature:Signature?
+        MHController.dataContext.performAndWait {
+            let predicate = NSPredicate(format: "tag == \(tag) AND sessionId == \(sessionId)")
+            signature = fetch(predicate: predicate, sort: nil, limit: 1)?.first
+        }
+        
         return signature
     }
     public func save(signature image:UIImage, sessionId:Int64, tag:Int32) -> Bool {

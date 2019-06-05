@@ -35,6 +35,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
     @IBOutlet weak var privacyPolicyButton: UIButton!
 	@IBOutlet weak var scrollView: UIScrollView!
 	@IBOutlet weak var scrollIndicator: UIView!
+    @IBOutlet weak var scrollIndicatorLabel:UILabel!
 //    @IBOutlet weak var spacerView: UIView!
     
     var id:String?
@@ -62,7 +63,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
             let backButton = UIButton(type: .custom)
             backButton.frame = CGRect(x: 0, y: 0, width: 60, height: 10)
             backButton.setImage(UIImage(named: "cut-ups/icons/arrow_left_blue"), for: .normal)
-            backButton.setTitle("BACK", for: .normal)
+            backButton.setTitle("BACK".localized("button_back"), for: .normal)
             backButton.titleLabel?.font = UIFont(name: "Roboto-Medium", size: 14)
             backButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
             backButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -8, bottom: 0, right: 0)
@@ -79,17 +80,21 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
         nextBottomSpacing.constant = getNextButtonSpacing()
         
         let attributes = [ NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.foregroundColor: UIColor(named: "Primary"), NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.medium) ] as [NSAttributedString.Key : Any]
-        let attrString = NSAttributedString(string: "Privacy Policy", attributes: attributes)
+        let attrString = NSAttributedString(string: "Privacy Policy".localized("privacy_linked"), attributes: attributes)
         privacyPolicyButton.setAttributedTitle(attrString, for: .normal)
     }
 	
     override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.navigationBar.backgroundColor = view.backgroundColor
-		scrollIndicatorState(scrollView)
         
     }
-    
+    open override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        scrollIndicatorState(scrollView)
+
+        
+    }
     func getNextButtonSpacing() -> CGFloat {
         var nextHeight:CGFloat = 0
         if #available(iOS 11.0, *) {
@@ -122,8 +127,17 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 		//promptLabel.text = question.prompt
 		//Get supplied template for question
 		if let nextButtonTitle = question.nextButtonTitle {
-			nextButton.setTitle(nextButtonTitle, for: .normal)
-		}
+			nextButton.setTitle(nextButtonTitle.localized(nextButtonTitle), for: .normal)
+        } else {
+            if question.nextButtonImage == nil {
+                nextButton.setTitle("NEXT".localized("button_next"), for: .normal)
+            }
+        }
+        if let nextButtonTitle = question.nextButtonImage {
+            nextButton.setImage(UIImage(named: nextButtonTitle), for: .normal)
+        } else {
+            nextButton.setImage(nil, for: .normal)
+        }
 		let template = templateHandler?(question.questionId) ?? [:]
 
 		let markedUpString = renderer.render(text: question.prompt, template:template)
@@ -138,14 +152,14 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 		detailsLabel.text = question.detail
 		
 		self.id = question.questionId
-        
+        input?.parentScrollView = nil
 		if question.type == .slider {
 			let inputView:SliderView = input as? SliderView ?? .get()
 			
 			inputView.set(min: question.minValue ?? 0,
 						  max: question.maxValue ?? 100,
-						  minMessage: question.minMessage ?? "Not at all",
-						  maxMessage: question.maxMessage ?? "Very much so")
+						  minMessage: question.minMessage ?? "",
+						  maxMessage: question.maxMessage ?? "")
 			
 			input = inputView
 
@@ -235,6 +249,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
         }
         container.alignment = input?.orientation ?? .top
         input?.setError(message: nil)
+        input?.parentScrollView = self.scrollView
         input?.didFinishSetup = {
             [weak self] in
             guard let weakSelf = self else {
@@ -352,6 +367,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
             app.appNavigation.navigate(vc: app.appNavigation.defaultHelpState(), direction: .toRight)
 		}
     }
+    
 	public func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		self.scrollIndicatorState(scrollView)
 	}

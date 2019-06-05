@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ArcUIKit
+import HMMarkup
 open class ACChangeAvailabilityViewController: UIViewController {
     public var returnState:State = Arc.shared.appNavigation.previousState() ?? Arc.shared.appNavigation.defaultState()
     public var returnVC:UIViewController?
@@ -15,10 +17,19 @@ open class ACChangeAvailabilityViewController: UIViewController {
     
     @IBOutlet weak var studyPeriodAdjustView: UIStackView!
     
+    @IBOutlet weak var changeTimeButton: ACButton!
+    
+    @IBOutlet weak var changeDateButton: ACButton!
+    
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if Arc.shared.studyController.getCurrentStudyPeriod() != nil {
             studyPeriodAdjustView.isHidden = true
+        }
+        if let config = HMMarkupRenderer.config, config.shouldTranslate {
+            changeTimeButton.setTitle("CHANGE".localized("change_button"), for: .normal)
+            changeDateButton.setTitle("CHANGE".localized("change_button"), for: .normal)
+
         }
     }
     @IBAction public func goBackPressed(_ sender: Any) {

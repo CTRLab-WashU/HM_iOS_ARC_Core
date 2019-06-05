@@ -193,12 +193,15 @@
 		C583C0F3221378B10043DFA7 /* HMMarkup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52B75DC21C83B2A00498571 /* HMMarkup.framework */; };
 		C589B50E21ED001700389342 /* ACAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C589B50D21ED001700389342 /* ACAuthViewController.swift */; };
 		C58C96F1228201CE001BDE11 /* HMOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C96F0228201CE001BDE11 /* HMOperation.swift */; };
+		C58D92832294AA1E000AD89F /* HMMarkupButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D92822294AA1E000AD89F /* HMMarkupButton.swift */; };
 		C5B2601C22135F7300BFF778 /* ArcUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B2601322135F7200BFF778 /* ArcUIKit.framework */; };
 		C5B2602122135F7300BFF778 /* ArcUIKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2602022135F7300BFF778 /* ArcUIKitTests.swift */; };
 		C5B2602322135F7300BFF778 /* ArcUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = C5B2601522135F7300BFF778 /* ArcUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C5B2602C2213606600BFF778 /* ACButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2602B2213606600BFF778 /* ACButton.swift */; };
 		C5B2602D2213657500BFF778 /* ArcUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B2601322135F7200BFF778 /* ArcUIKit.framework */; };
+		C5C7F715228F65C50086315B /* ArcTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C7F714228F65C50086315B /* ArcTranslation.swift */; };
 		C5D0F6FA220B477B00F04942 /* MHScrollingAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5D0F6F9220B477B00F04942 /* MHScrollingAlertView.xib */; };
+		C5E0DDB922A5B7D20034DEDF /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0DDB822A5B7D20034DEDF /* IndicatorView.swift */; };
 		C5E1E34F2253E84900255812 /* ACWakeSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1E34E2253E84900255812 /* ACWakeSurveyViewController.swift */; };
 		C5E1E3952257ECC200255812 /* ACChangeAvailabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1E3932257ECC100255812 /* ACChangeAvailabilityViewController.swift */; };
 		C5E1E3962257ECC200255812 /* ACChangeAvailabilityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5E1E3942257ECC200255812 /* ACChangeAvailabilityViewController.xib */; };
@@ -421,6 +424,7 @@
 		C583C0F122136E3B0043DFA7 /* ACLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACLabel.swift; sourceTree = "<group>"; };
 		C589B50D21ED001700389342 /* ACAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACAuthViewController.swift; sourceTree = "<group>"; };
 		C58C96F0228201CE001BDE11 /* HMOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMOperation.swift; sourceTree = "<group>"; };
+		C58D92822294AA1E000AD89F /* HMMarkupButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMMarkupButton.swift; sourceTree = "<group>"; };
 		C5B2601322135F7200BFF778 /* ArcUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ArcUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5B2601522135F7300BFF778 /* ArcUIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArcUIKit.h; sourceTree = "<group>"; };
 		C5B2601622135F7300BFF778 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -428,7 +432,9 @@
 		C5B2602022135F7300BFF778 /* ArcUIKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcUIKitTests.swift; sourceTree = "<group>"; };
 		C5B2602222135F7300BFF778 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5B2602B2213606600BFF778 /* ACButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACButton.swift; sourceTree = "<group>"; };
+		C5C7F714228F65C50086315B /* ArcTranslation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArcTranslation.swift; sourceTree = "<group>"; };
 		C5D0F6F9220B477B00F04942 /* MHScrollingAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MHScrollingAlertView.xib; sourceTree = "<group>"; };
+		C5E0DDB822A5B7D20034DEDF /* IndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorView.swift; sourceTree = "<group>"; };
 		C5E1E34E2253E84900255812 /* ACWakeSurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACWakeSurveyViewController.swift; sourceTree = "<group>"; };
 		C5E1E3932257ECC100255812 /* ACChangeAvailabilityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACChangeAvailabilityViewController.swift; sourceTree = "<group>"; };
 		C5E1E3942257ECC200255812 /* ACChangeAvailabilityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACChangeAvailabilityViewController.xib; sourceTree = "<group>"; };
@@ -498,6 +504,7 @@
 				C52B75DE21C83B2A00498571 /* HMMarkup.h */,
 				C52B75DF21C83B2A00498571 /* Info.plist */,
 				C54AE93C21C81B5C00DEC360 /* HMMarkupLabel.swift */,
+				C58D92822294AA1E000AD89F /* HMMarkupButton.swift */,
 				C52B75F621C83B4600498571 /* HMMarkupNode.swift */,
 				C52B75F421C83B4600498571 /* HMMarkupParser.swift */,
 				C52B75F721C83B4700498571 /* HMMarkupRenderer.swift */,
@@ -602,6 +609,7 @@
 				C54AE90821C81B5C00DEC360 /* State.swift */,
 				C54AE90921C81B5C00DEC360 /* JSONData.swift */,
 				C54AE90A21C81B5C00DEC360 /* Phase.swift */,
+				C5C7F714228F65C50086315B /* ArcTranslation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1063,6 +1071,7 @@
 				C5B2602B2213606600BFF778 /* ACButton.swift */,
 				C583C0F122136E3B0043DFA7 /* ACLabel.swift */,
 				C56BBCA2221490DF0025A318 /* ACTextView.swift */,
+				C5E0DDB822A5B7D20034DEDF /* IndicatorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1378,6 +1387,7 @@
 				C52B75F921C83B4700498571 /* HMMarkupToken.swift in Sources */,
 				C52B75FA21C83B4700498571 /* HMMarkupParser.swift in Sources */,
 				C52B75FD21C83B4700498571 /* HMMarkupRenderer.swift in Sources */,
+				C58D92832294AA1E000AD89F /* HMMarkupButton.swift in Sources */,
 				C52B75FB21C83B4700498571 /* HMMarkupTokenizer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1413,6 +1423,7 @@
 				C54AEA3E21C81B5F00DEC360 /* IntroViewController.swift in Sources */,
 				C54AEA3221C81B5F00DEC360 /* ScheduleEntry+Extensions.swift in Sources */,
 				C58C96F1228201CE001BDE11 /* HMOperation.swift in Sources */,
+				C5C7F715228F65C50086315B /* ArcTranslation.swift in Sources */,
 				C54AE9DB21C81B5F00DEC360 /* UIStackView+Extensions.swift in Sources */,
 				C54AE9E021C81B5F00DEC360 /* Data+Extensions.swift in Sources */,
 				C54AE9EB21C81B5F00DEC360 /* HMAPI.swift in Sources */,
@@ -1529,6 +1540,7 @@
 				C583C0F222136E3B0043DFA7 /* ACLabel.swift in Sources */,
 				C5B2602C2213606600BFF778 /* ACButton.swift in Sources */,
 				C56BBCA3221490DF0025A318 /* ACTextView.swift in Sources */,
+				C5E0DDB922A5B7D20034DEDF /* IndicatorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
