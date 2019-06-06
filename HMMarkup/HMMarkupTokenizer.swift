@@ -9,7 +9,7 @@
 import Foundation
 
 private extension CharacterSet {
-	static let delimiters = CharacterSet(charactersIn: "*_~`")
+	static let delimiters = CharacterSet(charactersIn: "*~`")
 	static let whitespaceAndPunctuation = CharacterSet.whitespacesAndNewlines
 		.union(CharacterSet.punctuationCharacters)
 		.union(CharacterSet(charactersIn: "~"))
