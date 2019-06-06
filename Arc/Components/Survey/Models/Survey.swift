@@ -13,7 +13,9 @@ import Foundation
 public enum QuestionStyle : String, Codable {
     case none, instruction
 }
-
+public enum BackgroundStyle: String, Codable {
+    case none, style1, style2, priceTest, symbolTest, gridTest
+}
 public enum QuestionType : String, Codable {
 	case none, text, number, slider, choice, checkbox, time, duration, password, segmentedText, multilineText, image, calendar, picker
 	
@@ -84,6 +86,7 @@ public struct Survey : HMCodable {
         public var nextButtonImage:String?
         public var altNextButtonTitle:String?
         public var altNextButtonImage:String?
+        public var backgroundStyle:String?
 
     }
     public struct Instruction : Codable {
@@ -93,6 +96,7 @@ public struct Survey : HMCodable {
 		public var nextButtonTitle:String?
         public var nextButtonImage:String?
 
+        public var backgroundStyle:String?
     }
     public var id:String?
     public var type: SurveyType?

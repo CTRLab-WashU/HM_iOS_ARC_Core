@@ -21,6 +21,7 @@
 		C52B75FE21C83B4700498571 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C52B75F821C83B4700498571 /* README.md */; };
 		C52B760021C83B6400498571 /* HMMarkup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52B75DC21C83B2A00498571 /* HMMarkup.framework */; };
 		C52B760121C83CEA00498571 /* HMMarkupLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE93C21C81B5C00DEC360 /* HMMarkupLabel.swift */; };
+		C537A1AE228B74E20098A4CD /* Window+Overlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C537A1AD228B74E20098A4CD /* Window+Overlay.swift */; };
 		C540B5B1221E0FD000B539A4 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C540B5B0221E0FD000B539A4 /* LanguageViewController.swift */; };
 		C54AE8F121C81B2F00DEC360 /* Arc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C54AE8E721C81B2F00DEC360 /* Arc.framework */; };
 		C54AE8F621C81B2F00DEC360 /* ArcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE8F521C81B2F00DEC360 /* ArcTests.swift */; };
@@ -260,6 +261,7 @@
 		C52B75F621C83B4600498571 /* HMMarkupNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMMarkupNode.swift; sourceTree = "<group>"; };
 		C52B75F721C83B4700498571 /* HMMarkupRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMMarkupRenderer.swift; sourceTree = "<group>"; };
 		C52B75F821C83B4700498571 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C537A1AD228B74E20098A4CD /* Window+Overlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Window+Overlay.swift"; sourceTree = "<group>"; };
 		C540B5B0221E0FD000B539A4 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
 		C54AE8E721C81B2F00DEC360 /* Arc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Arc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C54AE8EA21C81B2F00DEC360 /* Arc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Arc.h; sourceTree = "<group>"; };
@@ -530,6 +532,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C537A1AC228B74D20098A4CD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C537A1AD228B74E20098A4CD /* Window+Overlay.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		C54AE8DD21C81B2F00DEC360 = {
@@ -1052,6 +1062,7 @@
 			children = (
 				C5B2601522135F7300BFF778 /* ArcUIKit.h */,
 				C5B2601622135F7300BFF778 /* Info.plist */,
+				C537A1AC228B74D20098A4CD /* Extensions */,
 				C5B2602A2213602400BFF778 /* Views */,
 			);
 			path = ArcUIKit;
@@ -1545,6 +1556,7 @@
 				C5B2602C2213606600BFF778 /* ACButton.swift in Sources */,
 				C56BBCA3221490DF0025A318 /* ACTextView.swift in Sources */,
 				C5E0DDB922A5B7D20034DEDF /* IndicatorView.swift in Sources */,
+				C537A1AE228B74E20098A4CD /* Window+Overlay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
