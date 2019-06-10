@@ -469,13 +469,11 @@ open class Arc : ArcApi {
                     return .laterToday
                 } else if date.isTomorrow() {
                     if Arc.shared.studyController.getCurrentStudyPeriod() == nil {
-                        d.dateFormat = ACDateStyle.longWeekdayMonthDay.rawValue
-                        let dateString = d.string(from: date)
+                        let dateString = date.localizedFormat(template: ACDateStyle.longWeekdayMonthDay.rawValue, options: 0, locale: nil)
                         return .startingTomorrow(dateString)
                     }
                     return .tomorrow
                 } else {
-                    d.dateFormat = "MM/dd/yy"
                     let dateString = date.localizedFormat(template: ACDateStyle.longWeekdayMonthDay.rawValue, options: 0, locale: nil)
                     let endDateString = date.addingDays(days: 6).localizedFormat(template: ACDateStyle.longWeekdayMonthDay.rawValue, options: 0, locale: nil)
                     return .later(dateString, endDateString)
