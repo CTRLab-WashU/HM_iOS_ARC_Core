@@ -53,9 +53,9 @@ open class StartDateShiftViewController: SurveyNavigationViewController {
         if index == .user_schedule_2 {
             #warning("Use arc length")
             return ["start":  dates[selectedDate].localizedFormat(template:longFormat),
-                    "0":  dates[selectedDate].localizedFormat(template:longFormat),
+                    "DATE1":  dates[selectedDate].localizedFormat(template:longFormat),
                     "end":  dates[selectedDate].addingDays(days: 6).localizedFormat(template:longFormat),
-                    "1":  dates[selectedDate].addingDays(days: 6).localizedFormat(template:longFormat)]
+                    "DATE2":  dates[selectedDate].addingDays(days: 6).localizedFormat(template:longFormat)]
         }
         return [:]
     }
