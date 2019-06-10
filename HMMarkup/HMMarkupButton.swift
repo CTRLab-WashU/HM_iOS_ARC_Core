@@ -9,6 +9,7 @@
 import UIKit
 @IBDesignable open class HMMarkupButton: UIButton {
     @IBInspectable var translationKey:String?
+	@IBInspectable var numberOfLines:Int = 0
     open var renderer:HMMarkupRenderer!
     
     override open func awakeFromNib() {
@@ -23,16 +24,18 @@ import UIKit
         super.layoutSubviews()
         //setup(isSelected: isHighlighted)
     }
+	
+	/// Applies standard formatting to strings before converting any markup text to the proper font face in the form of a attributed string.
+	/// - Parameter isSelected: signals if it should use different styles if needed in sub-classes
     open func setup(isSelected:Bool){
 
         self.titleLabel?.lineBreakMode = .byWordWrapping
         self.titleLabel?.textAlignment = .center
-        self.titleLabel?.numberOfLines = 4
+        self.titleLabel?.numberOfLines = numberOfLines
         if let key = translationKey, let config = HMMarkupRenderer.config, config.shouldTranslate {
             let text = config.translation?[key] ?? title(for: .normal)
             setTitle(text, for: .normal)
         }
-        
     }
     override open func setTitle(_ title: String?, for state: UIControl.State) {
         if let title = title, let config = HMMarkupRenderer.config, config.shouldTranslate {
