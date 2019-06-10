@@ -92,8 +92,13 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         scrollIndicatorState(scrollView)
+		if scrollView.contentSize.height > scrollView.bounds.height {
+			scrollView.delaysContentTouches = true
 
-        
+		} else {
+			scrollView.delaysContentTouches = false
+		}
+		
     }
     func getNextButtonSpacing() -> CGFloat {
         var nextHeight:CGFloat = 0
@@ -397,12 +402,12 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
         //dump(convertedRect)
 		guard !scrollView.bounds.contains(convertedRect) && !scrollView.bounds.intersects(convertedRect) else {
 			scrollIndicator.alpha = 0
-            scrollView.delaysContentTouches = false
 			return
 		}
 		let alpha = 1.0 - (progress/maxProgress)
 		scrollIndicator.alpha = alpha
-        scrollView.delaysContentTouches = true
+		
+		
 		
 	}
 
