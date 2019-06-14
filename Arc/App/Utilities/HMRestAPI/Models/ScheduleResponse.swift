@@ -39,7 +39,7 @@ public struct TestScheduleRequestData : Codable {
 			public let success:Bool
 			public let test_schedule:TestScheduleRequestData?
 		}
-		public let response:Body
+		public let response:Body?
 		public let errors: [String:[String]]
 	}
 	
@@ -125,7 +125,7 @@ public struct WakeSleepScheduleRequestData : Codable {
 			public let success:Bool
 			public let wake_sleep_schedule:WakeSleepScheduleRequestData?
 		}
-		public let response:Body
+		public let response:Body?
 		public let errors:[String:[String]]
 	}
 	

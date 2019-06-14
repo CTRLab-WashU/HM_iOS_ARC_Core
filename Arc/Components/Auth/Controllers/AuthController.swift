@@ -137,7 +137,7 @@ open class AuthController:MHController {
 				
 				
 			}
-			guard let data = obj?.response.wake_sleep_schedule else {
+			guard let data = obj?.response?.wake_sleep_schedule else {
 				return completion()
 			}
 			
@@ -155,9 +155,10 @@ open class AuthController:MHController {
 			
 			HMAPI.getTestSchedule.execute(data: nil, completion: { (res, obj, err) in
 				guard err == nil && obj?.errors.isEmpty ?? true else {
+					
 					return completion()
 				}
-				guard let data = obj?.response.test_schedule else {
+				guard let data = obj?.response?.test_schedule else {
 					return completion()
 				}
 				
