@@ -11,6 +11,7 @@ public protocol Phase {
 	
 	associatedtype PhasePeriod
 	
+	static func from(studyId:Int) -> PhasePeriod
 	static func from(startDate:Date, currentDate:Date) -> PhasePeriod
 	static func from(weeks:Int) -> PhasePeriod
     static func from(days:Int) -> PhasePeriod
