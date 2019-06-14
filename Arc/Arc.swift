@@ -200,21 +200,17 @@ open class Arc : ArcApi {
         switch (country, language) {
         
         case (nil, let l):
-            print(l ?? "")
-            dump(matchesLanguage)
+			
             config.translation = matchesLanguage?.first?.map
 
             break
 
         case (let c, nil):
-            print(c ?? "")
             config.translation = matchesCountry?.first?.map
 
-            dump(matchesCountry)
             break
         case (let c, let l):
-            print(c ?? "" , l ?? "")
-            dump(matchesBoth)
+            
             config.translation = matchesBoth?.first?.map
 
             break
