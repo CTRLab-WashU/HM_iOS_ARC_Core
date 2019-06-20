@@ -109,8 +109,14 @@ open class AuthController:MHController {
 						
 						
 						entry.participantID = id
+						//Set this value
+						let value = Int(id)
+						Arc.shared.participantId = value
 						self.save()
+						
 						completion(id, nil)
+
+						
 
 					}
 					
@@ -145,7 +151,12 @@ open class AuthController:MHController {
 				let controller = Arc.shared.scheduleController
 				for entry in data.wake_sleep_data {
 					
-					controller.create(entry: entry.wake, endTime: entry.bed, weekDay: WeekDay.fromString(day: entry.weekday), participantId: participantID)
+					controller.create(entry: entry.wake,
+									  endTime: entry.bed,
+									  weekDay: WeekDay.fromString(day: entry.weekday),
+									  participantId: participantID)
+					
+					
 				}
 				controller.save()
 				
