@@ -153,6 +153,14 @@ open class StudyController : MHController {
 		return study?.first
 		
 	}
+	open func get(firstSessionInStudy studyId:Int) -> Session? {
+		guard let study = get(study: studyId) else {
+			return nil
+		}
+		return study.sessions?.firstObject as? Session
+	}
+	
+	
 	open func get(session:Int, inStudy studyId:Int) -> Session {
 		let study = get(study: studyId)
 		return study?.sessions?.first(where: { (test) -> Bool in
@@ -455,6 +463,11 @@ open class StudyController : MHController {
 		}
 		
 		MHController.dataContext.performAndWait {
+			
+			//Create all test sessions, this gives all studies their default start dates.
+			//Take caution to update the user start dates if the first session of the study
+			//does not match the study's start date, update the user start date.
+			Arc.shared.studyController.beginningOfStudy = Date(timeIntervalSince1970: firstTest.session_date)
 			createAllStudyPeriods(startingID: 0, startDate: Date(timeIntervalSince1970: firstTest.session_date))
 			
 			for sessionData in schedule.sessions
@@ -463,11 +476,19 @@ open class StudyController : MHController {
 					fatalError("Malformed Data in response")
 				}
 
+			
 				let studyId = sessionID / 28
+				let sessionOffSet = sessionID % 28
 				let phase = PhaseType.from(studyId: studyId)
-
+				
 				let date = Date(timeIntervalSince1970: sessionData.session_date)
 				let session = self.schedule(sessionAt: date, studyId: studyId)
+				if sessionOffSet == 0 && studyId != 0 {
+					let study = get(study: studyId)
+					if session.sessionDate?.days(from: study!.startDate!) != 0 {
+						_ = set(userStartDate: session.sessionDate!, forStudyId: studyId)
+					}
+				}
 				session.day = sessionData.day
 				session.week = sessionData.week
 				session.sessionID = Int64(sessionID)
@@ -482,18 +503,34 @@ open class StudyController : MHController {
 					session.createSurveyFor(surveyType: surveyType)
 				}
 			}
-			//Delete old sessions
+			
 			let studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
 			for i in 0 ..< studies.count {
-				if let latestTest = Arc.shared.studyController.latestTest, let session = Int(latestTest.session_id){
-					Arc.shared.studyController.delete(sessionsUpTo: session, inStudy: i)
-				}
+				let study = studies[i]
+
+				_ = Arc.shared.studyController.mark(confirmed: Int(study.studyID))
+				Arc.shared.notificationController.clear(sessionNotifications: Int(study.studyID))
 			}
+			cleanupSessionsBeforeLatest()
+			
+			Arc.shared.notificationController.schedule(upcomingSessionNotificationsWithLimit: 32)
+			_ = Arc.shared.notificationController.scheduleDateConfirmationsForUpcomingStudy()
+			
 			save();
 		}
 		
 		
 		return true
+	}
+	
+	func cleanupSessionsBeforeLatest() {
+		//Delete old sessions
+		let studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
+		for i in 0 ..< studies.count {
+			if let latestTest = Arc.shared.studyController.latestTest, let session = Int(latestTest.session_id){
+				Arc.shared.studyController.delete(sessionsUpTo: session, inStudy: i)
+			}
+		}
 	}
 	// create test sessions
 	// creates and schedules sessions from self.userStartDate
@@ -875,7 +912,7 @@ open class StudyController : MHController {
 	{
 		
 		var consecutive:Int = 0;
-		var maxMissed:Int = 0;
+		var _:Int = 0;
 		for test in get(pastSessions: studyId)
 		{
           
