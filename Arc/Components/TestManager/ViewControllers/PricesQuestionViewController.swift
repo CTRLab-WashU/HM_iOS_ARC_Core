@@ -97,7 +97,7 @@ open class PricesQuestionViewController: UIViewController {
             b.isHidden = true
         }
         for b in buttons {
-            let priceIndex = buttons.index(of: b)!
+            let priceIndex = buttons.firstIndex(of: b)!
             
             let string = controller.get(option: priceIndex, forQuestion: index, id: id)!
             

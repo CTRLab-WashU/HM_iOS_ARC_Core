@@ -112,6 +112,13 @@ open class StudyController : MHController {
         
 		return newStudyPeriod;
 	}
+	
+	/// Creates a session then gives it a session date and expriation date.
+	///
+	/// - Parameters:
+	///   - date: session date
+	///   - studyId: the id of the study it will be assigned to, will crash if the session does not exsit.
+	/// - Returns: A session with an expriation date set
 	@discardableResult
 	open func schedule(sessionAt date:Date, studyId:Int) -> Session
 	{
@@ -125,7 +132,8 @@ open class StudyController : MHController {
 		
 		return newSession;
 	}
-    
+	
+	
     open func set(userStartDate date:Date, forStudyId studyId:Int) -> StudyPeriod? {
         guard let study = get(study: studyId) else {
             fatalError("Invalid studyId")
@@ -145,6 +153,14 @@ open class StudyController : MHController {
 		return study?.first
 		
 	}
+	open func get(firstSessionInStudy studyId:Int) -> Session? {
+		guard let study = get(study: studyId) else {
+			return nil
+		}
+		return study.sessions?.firstObject as? Session
+	}
+	
+	
 	open func get(session:Int, inStudy studyId:Int) -> Session {
 		let study = get(study: studyId)
 		return study?.sessions?.first(where: { (test) -> Bool in
@@ -433,7 +449,89 @@ open class StudyController : MHController {
     open func createTestSessions(studyId: Int, isRescheduling:Bool = false) {
         fatalError("Override is required")
     }
+	
+	
+	/// Creates a schedule using a pre existing reqest data object.
+	/// - The where clause enables this class to use implmentation specific details related to the phase protocol.
+	/// - Parameters:
+	///   - schedule: A prevalidated TestScheuleRequestData Object
+	///   - PhaseType: The type of the phase to be used to generate tests for each session.
+	/// - Returns: A boolean denoting if it was successfully able to create the schedule using the existing data.
+	open func create<T:Phase>(testSessionsWithSchedule schedule:TestScheduleRequestData, with PhaseType:T.Type) -> Bool where T.PhasePeriod == T{
+		guard let firstTest = firstTest else {
+			return false
+		}
+		
+		MHController.dataContext.performAndWait {
+			
+			//Create all test sessions, this gives all studies their default start dates.
+			//Take caution to update the user start dates if the first session of the study
+			//does not match the study's start date, update the user start date.
+			Arc.shared.studyController.beginningOfStudy = Date(timeIntervalSince1970: firstTest.session_date)
+			createAllStudyPeriods(startingID: 0, startDate: Date(timeIntervalSince1970: firstTest.session_date))
+			
+			for sessionData in schedule.sessions
+			{
+				guard let sessionID = Int(sessionData.session_id) else {
+					fatalError("Malformed Data in response")
+				}
 
+			
+				let studyId = sessionID / 28
+				let sessionOffSet = sessionID % 28
+				let phase = PhaseType.from(studyId: studyId)
+				
+				let date = Date(timeIntervalSince1970: sessionData.session_date)
+				let session = self.schedule(sessionAt: date, studyId: studyId)
+				if sessionOffSet == 0 && studyId != 0 {
+					let study = get(study: studyId)
+					if session.sessionDate?.days(from: study!.startDate!) != 0 {
+						_ = set(userStartDate: session.sessionDate!, forStudyId: studyId)
+					}
+				}
+				session.day = sessionData.day
+				session.week = sessionData.week
+				session.sessionID = Int64(sessionID)
+				session.session = sessionData.session
+				
+				let states = phase.statesForSession(week: Int(session.week),
+													day: Int(session.day),
+													session: Int(session.session))
+				
+				for state in states {
+					let surveyType = state.surveyTypeForState()
+					session.createSurveyFor(surveyType: surveyType)
+				}
+			}
+			
+			let studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
+			for i in 0 ..< studies.count {
+				let study = studies[i]
+
+				_ = Arc.shared.studyController.mark(confirmed: Int(study.studyID))
+				Arc.shared.notificationController.clear(sessionNotifications: Int(study.studyID))
+			}
+			cleanupSessionsBeforeLatest()
+			
+			Arc.shared.notificationController.schedule(upcomingSessionNotificationsWithLimit: 32)
+			_ = Arc.shared.notificationController.scheduleDateConfirmationsForUpcomingStudy()
+			
+			save();
+		}
+		
+		
+		return true
+	}
+	
+	func cleanupSessionsBeforeLatest() {
+		//Delete old sessions
+		let studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
+		for i in 0 ..< studies.count {
+			if let latestTest = Arc.shared.studyController.latestTest, let session = Int(latestTest.session_id){
+				Arc.shared.studyController.delete(sessionsUpTo: session, inStudy: i)
+			}
+		}
+	}
 	// create test sessions
 	// creates and schedules sessions from self.userStartDate
 	
@@ -814,7 +912,7 @@ open class StudyController : MHController {
 	{
 		
 		var consecutive:Int = 0;
-		var maxMissed:Int = 0;
+		var _:Int = 0;
 		for test in get(pastSessions: studyId)
 		{
           
@@ -1006,6 +1104,7 @@ open class StudyController : MHController {
 		for session in deleted {
 			session.study = nil
 			study.removeFromSessions(session)
+			delete(session)
 		}
 		save()
 	}

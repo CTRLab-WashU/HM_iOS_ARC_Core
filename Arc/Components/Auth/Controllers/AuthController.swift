@@ -109,8 +109,14 @@ open class AuthController:MHController {
 						
 						
 						entry.participantID = id
+						//Set this value
+						let value = Int(id)
+						Arc.shared.participantId = value
 						self.save()
+						
 						completion(id, nil)
+
+						
 
 					}
 					
@@ -123,9 +129,66 @@ open class AuthController:MHController {
 				completion(nil, failureMessage)
 			}
         }
+		
+		
         
     }
-    
+	open func pullData<T:Phase>(phaseType:T.Type, completion:@escaping (()->())) where T.PhasePeriod == T {
+		guard let participantID = Arc.shared.participantId else {
+			return completion()
+		}
+		HMAPI.getWakeSleep.execute(data: nil, completion: { (res, obj, err) in
+			guard err == nil && obj?.errors.isEmpty ?? true else {
+				return completion() //The closure returns Void so this is valid syntax because the function also returns Void
+				
+				
+			}
+			guard let data = obj?.response?.wake_sleep_schedule else {
+				return completion()
+			}
+			
+			MHController.dataContext.performAndWait {
+				let controller = Arc.shared.scheduleController
+				for entry in data.wake_sleep_data {
+					
+					controller.create(entry: entry.wake,
+									  endTime: entry.bed,
+									  weekDay: WeekDay.fromString(day: entry.weekday),
+									  participantId: participantID)
+					
+					
+				}
+				controller.save()
+				
+				
+				
+			}
+			
+			HMAPI.getTestSchedule.execute(data: nil, completion: { (res, obj, err) in
+				guard err == nil && obj?.errors.isEmpty ?? true else {
+					
+					return completion()
+				}
+				guard let data = obj?.response?.test_schedule else {
+					return completion()
+				}
+				
+				
+				MHController.dataContext.performAndWait {
+					let controller = Arc.shared.studyController
+					if controller.create(testSessionsWithSchedule: data, with: phaseType) {
+						controller.save()
+					} else {
+						print("Error creating sessions from schedule")
+					}
+					
+				}
+				completion()
+			})
+		})
+		
+	}
+	
     open func getAuthIssue(from code:Int?) -> String {
         if let code = code {
             if code == 401 {

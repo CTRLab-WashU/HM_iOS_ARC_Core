@@ -183,7 +183,7 @@ open class Arc : ArcApi {
     public func setLanguage(key:String?) {
         appController.language = key
     }
-    public func setLocalization(country:String?, language:String?) {
+	public func setLocalization(country:String?, language:String?, shouldTranslate:Bool = true) {
         
         let matchesBoth = Arc.shared.translation?.versions.filter {
             $0.map?["country_key"] == country && $0.map?["language_key"] == language
@@ -196,25 +196,21 @@ open class Arc : ArcApi {
         }
         
         var config = HMMarkupRenderer.Config()
-        config.shouldTranslate = true
+        config.shouldTranslate = shouldTranslate
         switch (country, language) {
         
         case (nil, let l):
-            print(l ?? "")
-            dump(matchesLanguage)
+			
             config.translation = matchesLanguage?.first?.map
 
             break
 
         case (let c, nil):
-            print(c ?? "")
             config.translation = matchesCountry?.first?.map
 
-            dump(matchesCountry)
             break
         case (let c, let l):
-            print(c ?? "" , l ?? "")
-            dump(matchesBoth)
+            
             config.translation = matchesBoth?.first?.map
 
             break
@@ -469,13 +465,11 @@ open class Arc : ArcApi {
                     return .laterToday
                 } else if date.isTomorrow() {
                     if Arc.shared.studyController.getCurrentStudyPeriod() == nil {
-                        d.dateFormat = ACDateStyle.longWeekdayMonthDay.rawValue
-                        let dateString = d.string(from: date)
+                        let dateString = date.localizedFormat(template: ACDateStyle.longWeekdayMonthDay.rawValue, options: 0, locale: nil)
                         return .startingTomorrow(dateString)
                     }
                     return .tomorrow
                 } else {
-                    d.dateFormat = "MM/dd/yy"
                     let dateString = date.localizedFormat(template: ACDateStyle.longWeekdayMonthDay.rawValue, options: 0, locale: nil)
                     let endDateString = date.addingDays(days: 6).localizedFormat(template: ACDateStyle.longWeekdayMonthDay.rawValue, options: 0, locale: nil)
                     return .later(dateString, endDateString)

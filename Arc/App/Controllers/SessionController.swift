@@ -132,7 +132,7 @@ open class SessionController:MHController {
 			return
 		}
 		let full:FullTestSession = .init(withSession: session)
-		HMLog(full.toString())
+		//HMLog(full.toString())
 		let md5 = full.encode()?.MD5()
 		let submitTest:HMAPIRequest<FullTestSession, HMResponse> = .post("submit-test")
 		submitTest.execute(data: full) { (response, data, _) in

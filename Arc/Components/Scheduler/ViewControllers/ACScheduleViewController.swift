@@ -319,27 +319,34 @@ public class ACScheduleViewController : SurveyNavigationViewController {
             
             let date = Arc.shared.studyController.beginningOfStudy;
             if self.isChangingSchedule {
-                let startDayTomorrow = Arc.shared.scheduleController.get(endTimeForDate: Date(), participantID: self.participantId!)
+				
                 let studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
-                
+                let sessions = Arc.shared.studyController.getUpcomingSessions(withLimit: 5)
+				var dayIndex:Int?
+				var afterDate:Date?
+				for session in sessions {
+					if dayIndex == nil {
+						dayIndex = Int(session.day)
+					}
+					if dayIndex == Int(session.day) {
+						afterDate = session.sessionDate
+					}
+				}
+				
                 for study in studies {
-                    Arc.shared.notificationController.clear(sessionNotifications: Int(study.studyID))
-                    Arc.shared.studyController.clear(sessions: Int(study.studyID), afterDate: startDayTomorrow)
+                    	Arc.shared.notificationController.clear(sessionNotifications: Int(study.studyID))
+                    Arc.shared.studyController.clear(sessions: Int(study.studyID), afterDate: afterDate!)
 
                 }
             } else {
                 _ = Arc.shared.studyController.createAllStudyPeriods(startingID: 0, startDate: date)
             }
             var studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
-            var starting:Int64 = 0
             for i in 0 ..< studies.count{
-                //get the last session id for the previous study to keep the session id's continuous
+				
                 let study = studies[i]
-                if i > 0 {
-                    let prev = studies[i-1]
-                    starting = Arc.shared.studyController.get(lastSessionId: Int(prev.studyID)) + 1
-                }
-                    let sc = Arc.shared.studyController
+				
+				let sc = Arc.shared.studyController
                 sc.createTestSessions(studyId: Int(study.studyID), isRescheduling: self.isChangingSchedule);
                
                 

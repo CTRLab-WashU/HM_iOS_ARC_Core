@@ -12,12 +12,13 @@ public enum ACLocale : String{
      US - English    Nederland - Nederlands    France - Français    España - Español    Argentina - Español    Canada - Français    Deutschland - Deutsche    Italia - Italiano    日本 - 日本語    Brasil - Português    Columbia - Español    Mexico - Español    US - Español    中国 - 简体中文
      
      language_key    en    nl    fr    es    es    fr    de    it    ja    pt    es    es    es    zh
-      country_key    US    NL    FR    ES    AR    CA    DE    IT    JP    BR    COL    MX    US    CN
+      country_key    US    NL    FR    ES    AR    CA    DE    IT    JP    BR    CO    MX    US    CN
 */
     case en_US
     case en_AU
     case en_UK
     case en_CA
+	case en_IE
     case nl_NL
     case fr_FR
     case es_ES
@@ -27,7 +28,7 @@ public enum ACLocale : String{
     case it_IT
     case ja_JP
     case pt_BR
-    case es_COL
+    case es_CO
     case es_MX
     case es_US
     case zh_CN
@@ -39,6 +40,7 @@ public enum ACLocale : String{
         case "Australia - English": return .en_AU
         case "UK - English": return .en_UK
         case "Canada - English": return .en_CA
+		case "Ireland - English": return .en_IE
         case "Nederland - Nederlands": return .nl_NL
         case "France - Français": return .fr_FR
         case "España - Español": return .es_ES
@@ -48,7 +50,7 @@ public enum ACLocale : String{
         case "Italia - Italiano": return .it_IT
         case "日本 - 日本語": return .ja_JP
         case "Brasil - Português": return .pt_BR
-        case  "Columbia - Español": return .es_COL
+        case  "Columbia - Español": return .es_CO
         case "Mexico - Español": return .es_MX
         case "US - Español": return .es_US
         case "中国 - 简体中文": return .zh_CN

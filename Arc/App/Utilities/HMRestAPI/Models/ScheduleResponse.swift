@@ -34,22 +34,31 @@
 */
 import Foundation
 public struct TestScheduleRequestData : Codable {
-	public struct Entry : Codable {
-		let week:Int64
-		let day:Int64
-		let session:Int64
-		let session_id: String
-		let session_date: TimeInterval
-		let types: [String]
+	public struct Response : Codable {
+		public struct Body : Codable {
+			public let success:Bool
+			public let test_schedule:TestScheduleRequestData?
+		}
+		public let response:Body?
+		public let errors: [String:[String]]
 	}
-	var participant_id:String? //"111111",
+	
+	public struct Entry : Codable {
+		public let week:Int64
+		public let day:Int64
+		public let session:Int64
+		public let session_id: String
+		public let session_date: TimeInterval
+		public let types: [String]
+	}
+	public var participant_id:String? //"111111",
 
-	var sessions:[Entry]
+	public var sessions:[Entry]
 
-	var device_id:String? // "[device id]",
-	var device_info:String? // "iOS|iPhone8,4|10.1.1",
-	var app_version:String? // "1.2.4",
-	var model_version:String? // "1",
+	public var device_id:String? // "[device id]",
+	public var device_info:String? // "iOS|iPhone8,4|10.1.1",
+	public var app_version:String? // "1.2.4",
+	public var model_version:String? // "1",
 
 
 	public init(withStudyPeriod studyPeriod: StudyPeriod) {
@@ -110,30 +119,41 @@ public struct TestScheduleRequestData : Codable {
 }
 
 public struct WakeSleepScheduleRequestData : Codable {
-	public struct Entry : Codable {
-		let wake:String
-		let bed:String
-		let weekday: String
+	public struct Response : Codable {
 		
-		init(entry:ScheduleEntry) {
+		public struct Body : Codable {
+			public let success:Bool
+			public let wake_sleep_schedule:WakeSleepScheduleRequestData?
+		}
+		public let response:Body?
+		public let errors:[String:[String]]
+	}
+	
+	
+	public struct Entry : Codable {
+		public let wake:String
+		public let bed:String
+		public let weekday: String
+		
+		public init(entry:ScheduleEntry) {
 			wake = entry.availabilityStart!
 			bed = entry.availabilityEnd!
 			weekday = entry.day.toString().capitalized
 
 		}
 	}
-	var participant_id:String //"111111",
+	public var participant_id:String //"111111",
 	
-	var wake_sleep_data:[Entry]
+	public var wake_sleep_data:[Entry]
 	
 
-	var device_id:String // "[device id]",
-	var device_info:String // "iOS|iPhone8,4|10.1.1",
-	var app_version:String // "1.2.4",
-	var model_version:String // "1",
+	public var device_id:String // "[device id]",
+	public var device_info:String // "iOS|iPhone8,4|10.1.1",
+	public var app_version:String // "1.2.4",
+	public var model_version:String // "1",
 	
 	
-	init(withStudyPeriod studyPeriod: StudyPeriod) {
+	public init(withStudyPeriod studyPeriod: StudyPeriod) {
 		
 
 		

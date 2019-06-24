@@ -54,7 +54,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 			
             nextPressed?(input, value)
     }
-    
+	
     override open func viewDidLoad() {
         super.viewDidLoad()
 		renderer = HMMarkupRenderer(baseFont: promptLabel.font)
@@ -75,15 +75,31 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
             
             //self.navigationItem.setLeftBarButton(leftButton, animated: true)
             self.navigationItem.leftBarButtonItem = leftButton
-        }
+			NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+			NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+			
+		}
         
         nextBottomSpacing.constant = getNextButtonSpacing()
         
-        let attributes = [ NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.foregroundColor: UIColor(named: "Primary"), NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.medium) ] as [NSAttributedString.Key : Any]
+		let attributes = [ NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.foregroundColor: UIColor(named: "Primary") ?? .blue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.medium) ] as [NSAttributedString.Key : Any]
         let attrString = NSAttributedString(string: "Privacy Policy".localized("privacy_linked"), attributes: attributes)
         privacyPolicyButton.setAttributedTitle(attrString, for: .normal)
     }
+	@objc func keyboardWillShow(notification: NSNotification) {
+		print("keyboardWillShow")
+		setBottomScrollInset(value: 40)
+	}
 	
+	@objc func keyboardWillHide(notification: NSNotification){
+		print("keyboardWillHide")
+		setBottomScrollInset(value: 0)
+
+	}
+	open override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		NotificationCenter.default.removeObserver(self)
+	}
     override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.navigationBar.backgroundColor = view.backgroundColor
@@ -92,8 +108,13 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         scrollIndicatorState(scrollView)
+		if scrollView.contentSize.height > scrollView.bounds.height && !(input is SignatureView){
+			scrollView.delaysContentTouches = true
 
-        
+		} else {
+			scrollView.delaysContentTouches = false
+		}
+		
     }
     func getNextButtonSpacing() -> CGFloat {
         var nextHeight:CGFloat = 0
@@ -367,7 +388,16 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
             app.appNavigation.navigate(vc: app.appNavigation.defaultHelpState(), direction: .toRight)
 		}
     }
-    
+	
+	public func setBottomScrollInset(value:CGFloat) {
+		var inset = scrollView.contentInset
+		
+			inset.bottom = value
+		
+		scrollView.contentInset = inset
+	}
+	
+	// MARK: ScrollView
 	public func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		self.scrollIndicatorState(scrollView)
 	}
@@ -397,12 +427,12 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
         //dump(convertedRect)
 		guard !scrollView.bounds.contains(convertedRect) && !scrollView.bounds.intersects(convertedRect) else {
 			scrollIndicator.alpha = 0
-            scrollView.delaysContentTouches = false
 			return
 		}
-		let alpha = 1.0 - (progress/maxProgress)
+		let alpha:CGFloat = 1.0 - (progress/maxProgress)
 		scrollIndicator.alpha = alpha
-        scrollView.delaysContentTouches = true
+		
+		
 		
 	}
 

@@ -27,7 +27,9 @@ open class HMAPI {
 	
 	
 	static public let getSessionInfo:HMAPIRequest<Data, SessionInfoResponse> = .get("get-session-info")
-	
+	static public let getTestSchedule:HMAPIRequest<Data, TestScheduleRequestData.Response> = .get("get-test-schedule")
+	static public let getWakeSleep:HMAPIRequest<Data, WakeSleepScheduleRequestData.Response> = .get("get-wake-sleep-schedule")
+
 	
 
 }

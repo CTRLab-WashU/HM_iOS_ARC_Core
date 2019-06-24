@@ -22,7 +22,8 @@ extension HMMarkupNode {
 		case "*":
 			self = .strong(children)
 		case "_":
-			self = .emphasis(children)
+			return nil
+			//self = .emphasis(children)
 		case "~":
 			self = .delete(children)
 		case "`":
