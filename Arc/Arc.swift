@@ -183,7 +183,7 @@ open class Arc : ArcApi {
     public func setLanguage(key:String?) {
         appController.language = key
     }
-    public func setLocalization(country:String?, language:String?) {
+	public func setLocalization(country:String?, language:String?, shouldTranslate:Bool = true) {
         
         let matchesBoth = Arc.shared.translation?.versions.filter {
             $0.map?["country_key"] == country && $0.map?["language_key"] == language
@@ -196,7 +196,7 @@ open class Arc : ArcApi {
         }
         
         var config = HMMarkupRenderer.Config()
-        config.shouldTranslate = true
+        config.shouldTranslate = shouldTranslate
         switch (country, language) {
         
         case (nil, let l):
