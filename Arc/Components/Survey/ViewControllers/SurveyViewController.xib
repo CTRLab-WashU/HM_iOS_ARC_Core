@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14810.11" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14766.13"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -41,14 +39,14 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="870"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" delaysContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oti-R1-FeL">
-                    <rect key="frame" x="0.0" y="20" width="375" height="850"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <view contentMode="scaleToFill" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="627" translatesAutoresizingMaskIntoConstraints="NO" id="mdr-oD-iS5">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="710"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="635"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="A9h-Af-XDA">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="71.5"/>
@@ -79,19 +77,19 @@
                                     <edgeInsets key="layoutMargins" top="0.0" left="32" bottom="0.0" right="32"/>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dsn-24-lzK">
-                                    <rect key="frame" x="0.0" y="91.5" width="375" height="526.5"/>
+                                    <rect key="frame" x="0.0" y="91.5" width="375" height="451.5"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="773" placeholderIntrinsicWidth="327" placeholderIntrinsicHeight="394.5" translatesAutoresizingMaskIntoConstraints="NO" id="JRC-5u-1Hu">
-                                            <rect key="frame" x="24" y="0.0" width="327" height="469.5"/>
+                                            <rect key="frame" x="24" y="0.0" width="327" height="394.5"/>
                                         </stackView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="254" verticalCompressionResistancePriority="752" placeholderIntrinsicWidth="287.5" placeholderIntrinsicHeight="21" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1i-kk-hTQ">
-                                            <rect key="frame" x="24" y="477.5" width="327" height="21"/>
+                                            <rect key="frame" x="24" y="402.5" width="327" height="21"/>
                                             <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="18"/>
                                             <color key="textColor" name="Error"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="280" placeholderIntrinsicWidth="327" placeholderIntrinsicHeight="20" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ijy-59-IcH">
-                                            <rect key="frame" x="24" y="506.5" width="327" height="20"/>
+                                            <rect key="frame" x="24" y="431.5" width="327" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" priority="250" constant="20" id="2Kt-u6-Mrw"/>
                                             </constraints>
@@ -100,7 +98,7 @@
                                     <edgeInsets key="layoutMargins" top="0.0" left="24" bottom="0.0" right="24"/>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="EOk-EH-Oqa">
-                                    <rect key="frame" x="79.5" y="638" width="216" height="48"/>
+                                    <rect key="frame" x="79.5" y="563" width="216" height="48"/>
                                     <subviews>
                                         <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Moq-gR-yzh">
                                             <rect key="frame" x="6.5" y="0.0" width="203" height="24"/>
@@ -115,7 +113,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1UX-tn-iFl">
-                                                    <rect key="frame" x="54.5" y="0.0" width="94" height="24"/>
+                                                    <rect key="frame" x="57.5" y="0.0" width="88" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="Auq-PM-aC3"/>
                                                     </constraints>
@@ -187,7 +185,7 @@
                     </constraints>
                 </scrollView>
                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ohL-ic-bnv" customClass="IndicatorView" customModule="ArcUIKit">
-                    <rect key="frame" x="155" y="798.5" width="65.5" height="51.5"/>
+                    <rect key="frame" x="155" y="595.5" width="65.5" height="51.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scroll" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0I6-gD-ixz" customClass="ACLabel" customModule="ArcUIKit">
                             <rect key="frame" x="10" y="10" width="45.5" height="21.5"/>
@@ -239,9 +237,8 @@
                 <constraint firstItem="mdr-oD-iS5" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="UmE-3z-uxy"/>
                 <constraint firstItem="Oti-R1-FeL" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="u4b-C2-SXj"/>
             </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="4" y="64"/>
+            <point key="canvasLocation" x="4" y="-45.42728635682159"/>
         </view>
     </objects>
     <resources>

@@ -66,7 +66,6 @@
 		C54AE9F821C81B5F00DEC360 /* SlidePresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE93721C81B5C00DEC360 /* SlidePresentAnimationController.swift */; };
 		C54AE9F921C81B5F00DEC360 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE93821C81B5C00DEC360 /* AppController.swift */; };
 		C54AE9FA21C81B5F00DEC360 /* CancelButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE93A21C81B5C00DEC360 /* CancelButton.xib */; };
-		C54AE9FB21C81B5F00DEC360 /* ContainerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE93B21C81B5C00DEC360 /* ContainerButton.swift */; };
 		C54AE9FD21C81B5F00DEC360 /* MHAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE93D21C81B5C00DEC360 /* MHAlertView.xib */; };
 		C54AE9FE21C81B5F00DEC360 /* PrimaryButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE93E21C81B5C00DEC360 /* PrimaryButton.xib */; };
 		C54AE9FF21C81B5F00DEC360 /* MHAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE93F21C81B5C00DEC360 /* MHAlertView.swift */; };
@@ -136,25 +135,6 @@
 		C54AEA4221C81B5F00DEC360 /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE99A21C81B5C00DEC360 /* SurveyViewController.swift */; };
 		C54AEA4321C81B5F00DEC360 /* IntroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE99B21C81B5C00DEC360 /* IntroViewController.xib */; };
 		C54AEA4421C81B5F00DEC360 /* SurveyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE99D21C81B5C00DEC360 /* SurveyController.swift */; };
-		C54AEA4521C81B5F00DEC360 /* DurationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE99F21C81B5C00DEC360 /* DurationView.xib */; };
-		C54AEA4621C81B5F00DEC360 /* SegmentedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE9A021C81B5C00DEC360 /* SegmentedTextView.swift */; };
-		C54AEA4721C81B5F00DEC360 /* MultilineTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE9A121C81B5C00DEC360 /* MultilineTextView.swift */; };
-		C54AEA4821C81B5F00DEC360 /* TextSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE9A221C81B5C00DEC360 /* TextSegment.swift */; };
-		C54AEA4921C81B5F00DEC360 /* ChoiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9A321C81B5C00DEC360 /* ChoiceView.xib */; };
-		C54AEA4A21C81B5F00DEC360 /* SegmentedTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9A421C81B5C00DEC360 /* SegmentedTextView.xib */; };
-		C54AEA4B21C81B5F00DEC360 /* MultilineTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9A521C81B5C00DEC360 /* MultilineTextView.xib */; };
-		C54AEA4C21C81B5F00DEC360 /* SurveyInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE9A621C81B5C00DEC360 /* SurveyInputView.swift */; };
-		C54AEA4D21C81B5F00DEC360 /* TextSegment.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9A721C81B5C00DEC360 /* TextSegment.xib */; };
-		C54AEA4E21C81B5F00DEC360 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE9A821C81B5C00DEC360 /* SliderView.swift */; };
-		C54AEA4F21C81B5F00DEC360 /* TimeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9A921C81B5C00DEC360 /* TimeView.xib */; };
-		C54AEA5021C81B5F00DEC360 /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE9AA21C81B5C00DEC360 /* PasswordView.swift */; };
-		C54AEA5121C81B5F00DEC360 /* MultipleChoiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9AB21C81B5C00DEC360 /* MultipleChoiceView.xib */; };
-		C54AEA5221C81B5F00DEC360 /* PasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9AC21C81B5C00DEC360 /* PasswordView.xib */; };
-		C54AEA5321C81B5F00DEC360 /* SliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9AD21C81B5C00DEC360 /* SliderView.xib */; };
-		C54AEA5421C81B5F00DEC360 /* DurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE9AE21C81B5C00DEC360 /* DurationView.swift */; };
-		C54AEA5521C81B5F00DEC360 /* ChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE9AF21C81B5C00DEC360 /* ChoiceView.swift */; };
-		C54AEA5621C81B5F00DEC360 /* TimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE9B021C81B5C00DEC360 /* TimeView.swift */; };
-		C54AEA5721C81B5F00DEC360 /* MultipleChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE9B121C81B5C00DEC360 /* MultipleChoiceView.swift */; };
 		C54AEA6321C81B5F00DEC360 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE9BF21C81B5F00DEC360 /* CoreDataStack.swift */; };
 		C54AEA6421C81B5F00DEC360 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9C121C81B5F00DEC360 /* Roboto-Medium.ttf */; };
 		C54AEA6521C81B5F00DEC360 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9C221C81B5F00DEC360 /* Roboto-Light.ttf */; };
@@ -169,13 +149,42 @@
 		C54AEA6E21C81B5F00DEC360 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9CB21C81B5F00DEC360 /* Roboto-Bold.ttf */; };
 		C54AEA6F21C81B5F00DEC360 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9CC21C81B5F00DEC360 /* Roboto-Thin.ttf */; };
 		C54AEA7021C81B5F00DEC360 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9CD21C81B5F00DEC360 /* Roboto-Black.ttf */; };
+		C54D101122C2743F00B43E42 /* QuestionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D101022C2743F00B43E42 /* QuestionType.swift */; };
+		C54D101322C2745A00B43E42 /* QuestionStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D101222C2745A00B43E42 /* QuestionStyle.swift */; };
+		C54D103222C28A1D00B43E42 /* SurveyInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE9A621C81B5C00DEC360 /* SurveyInputView.swift */; };
+		C54D103322C28A1D00B43E42 /* ContainerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE93B21C81B5C00DEC360 /* ContainerButton.swift */; };
+		C54D103422C28A1D00B43E42 /* SignatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F77F34222F094000BECAE1 /* SignatureView.swift */; };
+		C54D103522C28A1D00B43E42 /* SignatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5F77F38222F15DD00BECAE1 /* SignatureView.xib */; };
+		C54D103622C28A1D00B43E42 /* DurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE9AE21C81B5C00DEC360 /* DurationView.swift */; };
+		C54D103722C28A1D00B43E42 /* DurationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE99F21C81B5C00DEC360 /* DurationView.xib */; };
+		C54D103822C28A1D00B43E42 /* SegmentedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE9A021C81B5C00DEC360 /* SegmentedTextView.swift */; };
+		C54D103922C28A1D00B43E42 /* SegmentedTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9A421C81B5C00DEC360 /* SegmentedTextView.xib */; };
+		C54D103A22C28A1D00B43E42 /* MultilineTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE9A121C81B5C00DEC360 /* MultilineTextView.swift */; };
+		C54D103B22C28A1D00B43E42 /* MultilineTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9A521C81B5C00DEC360 /* MultilineTextView.xib */; };
+		C54D103C22C28A1D00B43E42 /* TextSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE9A221C81B5C00DEC360 /* TextSegment.swift */; };
+		C54D103D22C28A1D00B43E42 /* TextSegment.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9A721C81B5C00DEC360 /* TextSegment.xib */; };
+		C54D103E22C28A1D00B43E42 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE9A821C81B5C00DEC360 /* SliderView.swift */; };
+		C54D103F22C28A1D00B43E42 /* SliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9AD21C81B5C00DEC360 /* SliderView.xib */; };
+		C54D104022C28A1D00B43E42 /* TimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE9B021C81B5C00DEC360 /* TimeView.swift */; };
+		C54D104122C28A1D00B43E42 /* TimeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9A921C81B5C00DEC360 /* TimeView.xib */; };
+		C54D104222C28A1D00B43E42 /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE9AA21C81B5C00DEC360 /* PasswordView.swift */; };
+		C54D104322C28A1D00B43E42 /* PasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9AC21C81B5C00DEC360 /* PasswordView.xib */; };
+		C54D104422C28A1D00B43E42 /* MultipleChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE9B121C81B5C00DEC360 /* MultipleChoiceView.swift */; };
+		C54D104522C28A1D00B43E42 /* MultipleChoiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9AB21C81B5C00DEC360 /* MultipleChoiceView.xib */; };
+		C54D104622C28A1D00B43E42 /* ChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE9AF21C81B5C00DEC360 /* ChoiceView.swift */; };
+		C54D104722C28A1D00B43E42 /* ChoiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9A321C81B5C00DEC360 /* ChoiceView.xib */; };
+		C54D104822C28A1D00B43E42 /* ACPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E9C872236CE67009F6228 /* ACPickerView.swift */; };
+		C54D104922C28A1D00B43E42 /* ACPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C57E9C892236E825009F6228 /* ACPickerView.xib */; };
+		C54D104A22C28A1D00B43E42 /* DateRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F77F3A22306CFA00BECAE1 /* DateRangeView.swift */; };
+		C54D104B22C28A1D00B43E42 /* ACCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50FC3BA22330F2C00143EA8 /* ACCalendarView.swift */; };
+		C54D104C22C28C9500B43E42 /* ConstraintDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D101622C2852C00B43E42 /* ConstraintDSL.swift */; };
+		C54D104D22C28CB300B43E42 /* UIDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D101422C2846E00B43E42 /* UIDSL.swift */; };
 		C56BBCA3221490DF0025A318 /* ACTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56BBCA2221490DF0025A318 /* ACTextView.swift */; };
 		C56BBCA52214AF5B0025A318 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56BBCA42214AF5B0025A318 /* Common.swift */; };
 		C578B8D622A859A60038DDF0 /* ACView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C578B8D522A859A60038DDF0 /* ACView.swift */; };
 		C57E9C842236BB4B009F6228 /* ACCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50FC3BA22330F2C00143EA8 /* ACCalendarView.swift */; };
+
 		C57E9C862236C232009F6228 /* StartDateShiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E9C852236C232009F6228 /* StartDateShiftViewController.swift */; };
-		C57E9C882236CE67009F6228 /* ACPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E9C872236CE67009F6228 /* ACPickerView.swift */; };
-		C57E9C8A2236E825009F6228 /* ACPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C57E9C892236E825009F6228 /* ACPickerView.xib */; };
 		C583C0E422136E0C0043DFA7 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9C121C81B5F00DEC360 /* Roboto-Medium.ttf */; };
 		C583C0E522136E0C0043DFA7 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9C221C81B5F00DEC360 /* Roboto-Light.ttf */; };
 		C583C0E622136E0C0043DFA7 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9C321C81B5F00DEC360 /* Roboto-Regular.ttf */; };
@@ -208,10 +217,7 @@
 		C5E1E3952257ECC200255812 /* ACChangeAvailabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1E3932257ECC100255812 /* ACChangeAvailabilityViewController.swift */; };
 		C5E1E3962257ECC200255812 /* ACChangeAvailabilityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5E1E3942257ECC200255812 /* ACChangeAvailabilityViewController.xib */; };
 		C5E1E3982257ECDE00255812 /* ACScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1E3972257ECDE00255812 /* ACScheduleViewController.swift */; };
-		C5F77F35222F094000BECAE1 /* SignatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F77F34222F094000BECAE1 /* SignatureView.swift */; };
 		C5F77F37222F095200BECAE1 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F77F36222F095200BECAE1 /* SignatureViewController.swift */; };
-		C5F77F39222F15DD00BECAE1 /* SignatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5F77F38222F15DD00BECAE1 /* SignatureView.xib */; };
-		C5F77F3B22306CFA00BECAE1 /* DateRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F77F3A22306CFA00BECAE1 /* DateRangeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -418,6 +424,10 @@
 		C54AE9CB21C81B5F00DEC360 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		C54AE9CC21C81B5F00DEC360 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		C54AE9CD21C81B5F00DEC360 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		C54D101022C2743F00B43E42 /* QuestionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionType.swift; sourceTree = "<group>"; };
+		C54D101222C2745A00B43E42 /* QuestionStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionStyle.swift; sourceTree = "<group>"; };
+		C54D101422C2846E00B43E42 /* UIDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDSL.swift; sourceTree = "<group>"; };
+		C54D101622C2852C00B43E42 /* ConstraintDSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintDSL.swift; sourceTree = "<group>"; };
 		C56BBCA2221490DF0025A318 /* ACTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTextView.swift; sourceTree = "<group>"; };
 		C56BBCA42214AF5B0025A318 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		C578B8D522A859A60038DDF0 /* ACView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACView.swift; sourceTree = "<group>"; };
@@ -650,6 +660,8 @@
 		C54AE91021C81B5C00DEC360 /* System */ = {
 			isa = PBXGroup;
 			children = (
+				C54D101422C2846E00B43E42 /* UIDSL.swift */,
+				C54D101622C2852C00B43E42 /* ConstraintDSL.swift */,
 				C54AE91121C81B5C00DEC360 /* UIViewController+Extensions.swift */,
 				C54AE91221C81B5C00DEC360 /* UIView+Extensions.swift */,
 				C54AE91321C81B5C00DEC360 /* UIStackView+Extensions.swift */,
@@ -980,6 +992,8 @@
 				C54AE99221C81B5C00DEC360 /* SurveyResponse.swift */,
 				C54AE99321C81B5C00DEC360 /* QuestionResponse.swift */,
 				C54AE99421C81B5C00DEC360 /* Introduction.swift */,
+				C54D101022C2743F00B43E42 /* QuestionType.swift */,
+				C54D101222C2745A00B43E42 /* QuestionStyle.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1319,31 +1333,33 @@
 				C54AEA1321C81B5F00DEC360 /* GridTestViewController.xib in Resources */,
 				C5E1E3962257ECC200255812 /* ACChangeAvailabilityViewController.xib in Resources */,
 				C54AEA0F21C81B5F00DEC360 /* PricesTestViewController.xib in Resources */,
-				C54AEA4D21C81B5F00DEC360 /* TextSegment.xib in Resources */,
 				C54AEA2521C81B5F00DEC360 /* HomeViewController.xib in Resources */,
-				C54AEA4A21C81B5F00DEC360 /* SegmentedTextView.xib in Resources */,
 				C54AE9CE21C81B5F00DEC360 /* SharedAssets.xcassets in Resources */,
-				C54AEA5121C81B5F00DEC360 /* MultipleChoiceView.xib in Resources */,
 				C54AEA2121C81B5F00DEC360 /* GridImageCell.xib in Resources */,
-				C54AEA4F21C81B5F00DEC360 /* TimeView.xib in Resources */,
-				C54AEA4921C81B5F00DEC360 /* ChoiceView.xib in Resources */,
 				C54AEA2A21C81B5F00DEC360 /* WelcomeViewController.xib in Resources */,
 				C54AEA6721C81B5F00DEC360 /* Roboto-MediumItalic.ttf in Resources */,
 				C54AEA4121C81B5F00DEC360 /* SurveyNavigationViewController.xib in Resources */,
 				C54AEA4321C81B5F00DEC360 /* IntroViewController.xib in Resources */,
 				C54AEA6E21C81B5F00DEC360 /* Roboto-Bold.ttf in Resources */,
+				C54D104122C28A1D00B43E42 /* TimeView.xib in Resources */,
 				C5D0F6FA220B477B00F04942 /* MHScrollingAlertView.xib in Resources */,
+				C54D103B22C28A1D00B43E42 /* MultilineTextView.xib in Resources */,
 				C54AE9FD21C81B5F00DEC360 /* MHAlertView.xib in Resources */,
+				C54D104722C28A1D00B43E42 /* ChoiceView.xib in Resources */,
+				C54D103522C28A1D00B43E42 /* SignatureView.xib in Resources */,
 				C54AEA6621C81B5F00DEC360 /* Roboto-Regular.ttf in Resources */,
 				C54AEA6521C81B5F00DEC360 /* Roboto-Light.ttf in Resources */,
 				C54AEA1D21C81B5F00DEC360 /* GridFCell.xib in Resources */,
 				C54AE9FE21C81B5F00DEC360 /* PrimaryButton.xib in Resources */,
+				C54D103922C28A1D00B43E42 /* SegmentedTextView.xib in Resources */,
 				C54AEA6421C81B5F00DEC360 /* Roboto-Medium.ttf in Resources */,
 				C54AEA1021C81B5F00DEC360 /* PricesQuestionViewController.xib in Resources */,
+				C54D104322C28A1D00B43E42 /* PasswordView.xib in Resources */,
 				C54AEA6D21C81B5F00DEC360 /* Roboto-BlackItalic.ttf in Resources */,
 				C54AE9FA21C81B5F00DEC360 /* CancelButton.xib in Resources */,
 				C54AEA0E21C81B5F00DEC360 /* SymbolsTestViewController.xib in Resources */,
 				C54AEA6921C81B5F00DEC360 /* Roboto-BoldItalic.ttf in Resources */,
+				C54D103D22C28A1D00B43E42 /* TextSegment.xib in Resources */,
 				C54AEA1E21C81B5F00DEC360 /* FCollectionContainerView.xib in Resources */,
 				C54AEA7021C81B5F00DEC360 /* Roboto-Black.ttf in Resources */,
 				C54AEA6821C81B5F00DEC360 /* Roboto-ThinItalic.ttf in Resources */,
@@ -1351,19 +1367,17 @@
 				C54AEA3521C81B5F00DEC360 /* SchedulerViewController.xib in Resources */,
 				C54AEA6C21C81B5F00DEC360 /* LICENSE.txt in Resources */,
 				C54AEA3821C81B5F00DEC360 /* LoadingScreenViewController.xib in Resources */,
-				C54AEA5221C81B5F00DEC360 /* PasswordView.xib in Resources */,
 				C54AEA1A21C81B5F00DEC360 /* InterstitialView.xib in Resources */,
-				C57E9C8A2236E825009F6228 /* ACPickerView.xib in Resources */,
+				C54D104522C28A1D00B43E42 /* MultipleChoiceView.xib in Resources */,
+				C54D103722C28A1D00B43E42 /* DurationView.xib in Resources */,
 				C54AEA6B21C81B5F00DEC360 /* Roboto-Italic.ttf in Resources */,
-				C54AEA4521C81B5F00DEC360 /* DurationView.xib in Resources */,
 				C54AEA2321C81B5F00DEC360 /* ACContactViewController.xib in Resources */,
-				C54AEA4B21C81B5F00DEC360 /* MultilineTextView.xib in Resources */,
 				C54AEA6A21C81B5F00DEC360 /* Roboto-LightItalic.ttf in Resources */,
 				C54AEA4021C81B5F00DEC360 /* SurveyViewController.xib in Resources */,
 				C54AEA6F21C81B5F00DEC360 /* Roboto-Thin.ttf in Resources */,
-				C5F77F39222F15DD00BECAE1 /* SignatureView.xib in Resources */,
+				C54D103F22C28A1D00B43E42 /* SliderView.xib in Resources */,
+				C54D104922C28A1D00B43E42 /* ACPickerView.xib in Resources */,
 				C54AEA2D21C81B5F00DEC360 /* LoginHelpView.xib in Resources */,
-				C54AEA5321C81B5F00DEC360 /* SliderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1430,6 +1444,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C54D103422C28A1D00B43E42 /* SignatureView.swift in Sources */,
 				C54AEA3F21C81B5F00DEC360 /* SurveyNavigationViewController.swift in Sources */,
 				C54AEA2F21C81B5F00DEC360 /* WeekDay.swift in Sources */,
 				C54AEA0B21C81B5F00DEC360 /* PricesQuestionViewController.swift in Sources */,
@@ -1438,59 +1453,64 @@
 				C540B5B1221E0FD000B539A4 /* LanguageViewController.swift in Sources */,
 				C54AEA1221C81B5F00DEC360 /* FinishedNavigationController.swift in Sources */,
 				C54AE9E621C81B5F00DEC360 /* HMRequest.swift in Sources */,
+				C54D104B22C28A1D00B43E42 /* ACCalendarView.swift in Sources */,
 				C54AE9D021C81B5F00DEC360 /* Arc.swift in Sources */,
+				C54D104422C28A1D00B43E42 /* MultipleChoiceView.swift in Sources */,
 				C54AEA2421C81B5F00DEC360 /* ACContactViewController.swift in Sources */,
 				C5143959224EA6FD000BF1CB /* ACSignatureNavigationController.swift in Sources */,
+				C54D104C22C28C9500B43E42 /* ConstraintDSL.swift in Sources */,
 				C54AE9D121C81B5F00DEC360 /* ACState.swift in Sources */,
-				C54AEA5021C81B5F00DEC360 /* PasswordView.swift in Sources */,
-				C54AE9FB21C81B5F00DEC360 /* ContainerButton.swift in Sources */,
+				C54D104822C28A1D00B43E42 /* ACPickerView.swift in Sources */,
+				C54D104222C28A1D00B43E42 /* PasswordView.swift in Sources */,
 				C54AE9E321C81B5F00DEC360 /* Algorithms.swift in Sources */,
 				C54AEA0D21C81B5F00DEC360 /* InstructionNavigationController.swift in Sources */,
 				C54AEA3E21C81B5F00DEC360 /* IntroViewController.swift in Sources */,
 				C54AEA3221C81B5F00DEC360 /* ScheduleEntry+Extensions.swift in Sources */,
 				C58C96F1228201CE001BDE11 /* HMOperation.swift in Sources */,
 				C5C7F715228F65C50086315B /* ArcTranslation.swift in Sources */,
+				C54D104A22C28A1D00B43E42 /* DateRangeView.swift in Sources */,
 				C54AE9DB21C81B5F00DEC360 /* UIStackView+Extensions.swift in Sources */,
 				C54AE9E021C81B5F00DEC360 /* Data+Extensions.swift in Sources */,
 				C54AE9EB21C81B5F00DEC360 /* HMAPI.swift in Sources */,
 				C54AEA2921C81B5F00DEC360 /* WelcomeViewController.swift in Sources */,
 				C54AEA3921C81B5F00DEC360 /* Survey.swift in Sources */,
 				C54AEA1C21C81B5F00DEC360 /* InterstitialView.swift in Sources */,
+				C54D103A22C28A1D00B43E42 /* MultilineTextView.swift in Sources */,
 				C54AE9F921C81B5F00DEC360 /* AppController.swift in Sources */,
+				C54D103322C28A1D00B43E42 /* ContainerButton.swift in Sources */,
 				C54AE9EA21C81B5F00DEC360 /* HMRequestHelper.swift in Sources */,
 				C5E1E34F2253E84900255812 /* ACWakeSurveyViewController.swift in Sources */,
 				C54AEA0821C81B5F00DEC360 /* PriceTest.swift in Sources */,
 				C54AE9F821C81B5F00DEC360 /* SlidePresentAnimationController.swift in Sources */,
-				C54AEA4621C81B5F00DEC360 /* SegmentedTextView.swift in Sources */,
+				C54D103822C28A1D00B43E42 /* SegmentedTextView.swift in Sources */,
 				C54AE9E521C81B5F00DEC360 /* HMFault.swift in Sources */,
 				C54AE9D521C81B5F00DEC360 /* Phase.swift in Sources */,
 				C54AEA2821C81B5F00DEC360 /* AuthCredentials.swift in Sources */,
+				C54D103622C28A1D00B43E42 /* DurationView.swift in Sources */,
 				C54AEA1821C81B5F00DEC360 /* SymbolSelectButton.swift in Sources */,
 				C54AEA1721C81B5F00DEC360 /* PricesTestController.swift in Sources */,
 				C54AE9F621C81B5F00DEC360 /* NotificationController.swift in Sources */,
 				C54AE9F721C81B5F00DEC360 /* MHController.swift in Sources */,
+				C54D103E22C28A1D00B43E42 /* SliderView.swift in Sources */,
 				C54AEA1921C81B5F00DEC360 /* FCollectionContainerView.swift in Sources */,
+				C54D103C22C28A1D00B43E42 /* TextSegment.swift in Sources */,
 				C54AEA2E21C81B5F00DEC360 /* LoadingScreenViewController.swift in Sources */,
 				C54AE9F521C81B5F00DEC360 /* SessionController.swift in Sources */,
 				C589B50E21ED001700389342 /* ACAuthViewController.swift in Sources */,
 				C54AEA4221C81B5F00DEC360 /* SurveyViewController.swift in Sources */,
-				C54AEA4C21C81B5F00DEC360 /* SurveyInputView.swift in Sources */,
 				C54AEA1F21C81B5F00DEC360 /* GridTestCells.swift in Sources */,
 				C54AEA3321C81B5F00DEC360 /* ScheduleEntry+CoreDataClass.swift in Sources */,
 				C54AEA3421C81B5F00DEC360 /* SchedulerNavigationController.swift in Sources */,
-				C57E9C842236BB4B009F6228 /* ACCalendarView.swift in Sources */,
+				C54D103222C28A1D00B43E42 /* SurveyInputView.swift in Sources */,
 				C54AE9CF21C81B5F00DEC360 /* ACEnvironment.swift in Sources */,
-				C5F77F35222F094000BECAE1 /* SignatureView.swift in Sources */,
 				C54AE9EE21C81B5F00DEC360 /* ToggleButton.swift in Sources */,
 				C54AEA0321C81B5F00DEC360 /* BorderedTextField.swift in Sources */,
 				C54AE9FF21C81B5F00DEC360 /* MHAlertView.swift in Sources */,
 				C54AEA3B21C81B5F00DEC360 /* SurveyResponse.swift in Sources */,
-				C54AEA4E21C81B5F00DEC360 /* SliderView.swift in Sources */,
-				C54AEA5721C81B5F00DEC360 /* MultipleChoiceView.swift in Sources */,
 				C54AEA3D21C81B5F00DEC360 /* Introduction.swift in Sources */,
 				C54AE9DA21C81B5F00DEC360 /* UIView+Extensions.swift in Sources */,
 				C54AEA2621C81B5F00DEC360 /* AboutViewController.swift in Sources */,
-				C54AEA5521C81B5F00DEC360 /* ChoiceView.swift in Sources */,
+				C54D101322C2745A00B43E42 /* QuestionStyle.swift in Sources */,
 				C54AE9E121C81B5F00DEC360 /* HMLog.swift in Sources */,
 				C54AEA2221C81B5F00DEC360 /* ACContactNavigationController.swift in Sources */,
 				C54AEA4421C81B5F00DEC360 /* SurveyController.swift in Sources */,
@@ -1498,12 +1518,12 @@
 				C52B75D521C837A200498571 /* Session+Extensions.swift in Sources */,
 				C54AEA0421C81B5F00DEC360 /* BorderedUIView.swift in Sources */,
 				C54AEA3C21C81B5F00DEC360 /* QuestionResponse.swift in Sources */,
+				C54D104022C28A1D00B43E42 /* TimeView.swift in Sources */,
 				C54AE9DF21C81B5F00DEC360 /* Date+Extensions.swift in Sources */,
-				C5F77F3B22306CFA00BECAE1 /* DateRangeView.swift in Sources */,
 				C54AE9E421C81B5F00DEC360 /* StatusCode.swift in Sources */,
 				C54AEA2B21C81B5F00DEC360 /* AuthController.swift in Sources */,
 				C57E9C862236C232009F6228 /* StartDateShiftViewController.swift in Sources */,
-				C54AEA4721C81B5F00DEC360 /* MultilineTextView.swift in Sources */,
+				C54D101122C2743F00B43E42 /* QuestionType.swift in Sources */,
 				C54AE9F121C81B5F00DEC360 /* ArcControllerRegistry.swift in Sources */,
 				C54AEA0521C81B5F00DEC360 /* PaddinglessUITextView.swift in Sources */,
 				C54AE9D921C81B5F00DEC360 /* UIViewController+Extensions.swift in Sources */,
@@ -1517,8 +1537,8 @@
 				C5E1E3982257ECDE00255812 /* ACScheduleViewController.swift in Sources */,
 				C54AE9EC21C81B5F00DEC360 /* HMAPI+Convenience.swift in Sources */,
 				C54AE9F221C81B5F00DEC360 /* UINavigationProxy.swift in Sources */,
+				C54D104D22C28CB300B43E42 /* UIDSL.swift in Sources */,
 				C54AEA0921C81B5F00DEC360 /* GridTest.swift in Sources */,
-				C57E9C882236CE67009F6228 /* ACPickerView.swift in Sources */,
 				C54AEA3121C81B5F00DEC360 /* Schedule+CoreDataClass.swift in Sources */,
 				C54AE9D321C81B5F00DEC360 /* State.swift in Sources */,
 				C54AE9DE21C81B5F00DEC360 /* UILabel+Extensions.swift in Sources */,
@@ -1528,7 +1548,6 @@
 				C54AEA3721C81B5F00DEC360 /* ScheduleController+ScheduleEntry.swift in Sources */,
 				C54AE9E921C81B5F00DEC360 /* TestSession.swift in Sources */,
 				C54AE9F321C81B5F00DEC360 /* ProxyManager.swift in Sources */,
-				C54AEA5421C81B5F00DEC360 /* DurationView.swift in Sources */,
 				C54AEA0021C81B5F00DEC360 /* PrimaryButton.swift in Sources */,
 				C5E1E3952257ECC200255812 /* ACChangeAvailabilityViewController.swift in Sources */,
 				C54AEA0721C81B5F00DEC360 /* SymbolsTest.swift in Sources */,
@@ -1539,11 +1558,10 @@
 				C54AEA0A21C81B5F00DEC360 /* GridTestViewController.swift in Sources */,
 				C54AE9DC21C81B5F00DEC360 /* Set+Extensions.swift in Sources */,
 				C54AE9D421C81B5F00DEC360 /* JSONData.swift in Sources */,
+				C54D104622C28A1D00B43E42 /* ChoiceView.swift in Sources */,
 				C54AE9E221C81B5F00DEC360 /* FatalErrorUtil.swift in Sources */,
-				C54AEA5621C81B5F00DEC360 /* TimeView.swift in Sources */,
 				C54AEA1521C81B5F00DEC360 /* GridTestController.swift in Sources */,
 				C54AE9E821C81B5F00DEC360 /* ScheduleResponse.swift in Sources */,
-				C54AEA4821C81B5F00DEC360 /* TextSegment.swift in Sources */,
 				C54AEA3A21C81B5F00DEC360 /* ACSurveyType.swift in Sources */,
 				C54AEA0121C81B5F00DEC360 /* CancelButton.swift in Sources */,
 				C54AEA3621C81B5F00DEC360 /* ScheduleController.swift in Sources */,

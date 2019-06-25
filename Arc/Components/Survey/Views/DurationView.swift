@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 open class DurationView: UIView, SurveyInput{
     public var orientation: UIStackView.Alignment = .top
     public var didChangeValue: (() -> ())?

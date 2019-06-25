@@ -10,31 +10,7 @@
  */
 import Foundation
 
-public enum QuestionStyle : String, Codable {
-    case none, instruction
-}
-public enum BackgroundStyle: String, Codable {
-    case none, style1, style2, priceTest, symbolTest, gridTest
-}
-public enum QuestionType : String, Codable {
-	case none, text, number, slider, choice, checkbox, time, duration, password, segmentedText, multilineText, image, calendar, picker
-	
-	public var metatype: Codable.Type {
-		switch self {
-		case .none, .text, .time, .duration, .password, .segmentedText, .multilineText, .number, .image,  .calendar:
-			return String.self
-		
-		case .slider:
-			return Float.self
-		case .choice, .picker:
-			return Int.self
-		
-		case .checkbox:
-			return [Int].self
-		}
-	}
-	
-}
+
 
 public struct Survey : HMCodable {
     

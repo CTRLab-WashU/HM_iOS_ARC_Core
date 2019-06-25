@@ -144,8 +144,14 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 		displayQuestion(question: question)
         
     }
+	
+	// MARK: - Question Display
+	/// Display Question sets the main prompt text, detail text, and input for a question.
+	/// The button text is also handled via the question data along with other metadata for specific settings.
+	///
+	/// - Parameter question: An object of type Survey.Question.
+	/// This value is created via Json files loaded by the parent SurveyNavigationViewController
 	func displayQuestion(question:Survey.Question) {
-		//promptLabel.text = question.prompt
 		//Get supplied template for question
 		if let nextButtonTitle = question.nextButtonTitle {
 			nextButton.setTitle(nextButtonTitle.localized(nextButtonTitle), for: .normal)
@@ -154,11 +160,15 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
                 nextButton.setTitle("NEXT".localized("button_next"), for: .normal)
             }
         }
-        if let nextButtonTitle = question.nextButtonImage {
-            nextButton.setImage(UIImage(named: nextButtonTitle), for: .normal)
+		
+		//If theres an image set it here.
+        if let nextButtonImage = question.nextButtonImage {
+            nextButton.setImage(UIImage(named: nextButtonImage), for: .normal)
         } else {
             nextButton.setImage(nil, for: .normal)
         }
+		
+		
 		let template = templateHandler?(question.questionId) ?? [:]
 
 		let markedUpString = renderer.render(text: question.prompt, template:template)
@@ -174,96 +184,30 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 		
 		self.id = question.questionId
         input?.parentScrollView = nil
-		if question.type == .slider {
-			let inputView:SliderView = input as? SliderView ?? .get()
-			
-			inputView.set(min: question.minValue ?? 0,
-						  max: question.maxValue ?? 100,
-						  minMessage: question.minMessage ?? "",
-						  maxMessage: question.maxMessage ?? "")
-			
-			input = inputView
+		
+		input = question.type.create(inputWithQuestion: question)
+		container.alignment = input?.orientation ?? .bottom
 
+		if question.type == .choice {
 			
-			
-//            spacerView.isHidden = true
-            
-            container.alignment = inputView.orientation
-            
-		} else if question.type == .time {
-			let inputView:TimeView = input as? TimeView ?? .get()
-			
-			input = inputView
-            
-            container.alignment = inputView.orientation
-            
-		} else if question.type == .duration {
-			let inputView:DurationView = input as? DurationView ?? .get()
-			
-			input = inputView
-            
-            container.alignment = inputView.orientation
-            
-		} else if question.type == .choice {
-			let inputView:MultipleChoiceView = input as? MultipleChoiceView ?? .get()
-			input = inputView
             disableNextButton()
-			inputView.set(question:question)
-            
-            container.alignment = inputView.orientation
 			
 			
-		} else if question.type == .checkbox {
-			let inputView:MultipleChoiceView = input as? MultipleChoiceView ?? .get()
-			input = inputView
-			inputView.state = .checkBox
-			inputView.set(question:question)
-            
-            container.alignment = inputView.orientation
-            
 			
 		}  else if question.type == .password {
-			let inputView:PasswordView = input as? PasswordView ?? .get()
-            inputView.openKeyboard()
-			input = inputView
-            privacyStack.isHidden = false
-            container.alignment = inputView.orientation
-            
-		} else if question.type == .segmentedText {
-			let inputView:SegmentedTextView = input as? SegmentedTextView ?? .get()
-			inputView.openKeyboard()
-            inputView.tryNext = self.tryNextButton
-            input = inputView
-            privacyStack.isHidden = false
-            container.alignment = inputView.orientation
-        } else if question.type == .multilineText {
-            let inputView:MultilineTextView = input as? MultilineTextView ?? .get()
-            input = inputView
-			inputView.minCharacters = 1
-
-            container.alignment = inputView.orientation
-            
-		} else if question.type == .number {
-			let inputView:MultilineTextView = input as? MultilineTextView ?? .get()
-			input = inputView
-			inputView.maxCharacters = 2
-			inputView.minCharacters = 1
-			inputView.keyboardType = .numberPad
+			if let inputView = input as? PasswordView {
+            	inputView.openKeyboard()
+			}
 			
-        } else if question.type == .image {
-            let inputView:SignatureView = input as? SignatureView ?? .get()
-            input = inputView
-            
-            
-        } else if question.type == .calendar {
-            let inputView:ACCalendarView = input as? ACCalendarView ?? ACCalendarView(frame: .zero
-            )
-            input = inputView
-            
-        } else if question.type == .picker {
-            let inputView:ACPickerView = input as? ACPickerView ?? .get()
-            
-            input = inputView
+            privacyStack.isHidden = false
+			
+		} else if question.type == .segmentedText {
+			if let inputView = input as? SegmentedTextView {
+				inputView.openKeyboard()
+				inputView.tryNext = self.tryNextButton
+			}
+
+            privacyStack.isHidden = false
         }
         if bottomAnchor != nil {
             bottomAnchor.isActive = input?.isBottomAnchored ?? false
