@@ -23,8 +23,6 @@
 		C52B760121C83CEA00498571 /* HMMarkupLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE93C21C81B5C00DEC360 /* HMMarkupLabel.swift */; };
 		C537A1AE228B74E20098A4CD /* Window+Overlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C537A1AD228B74E20098A4CD /* Window+Overlay.swift */; };
 		C540B5B1221E0FD000B539A4 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C540B5B0221E0FD000B539A4 /* LanguageViewController.swift */; };
-		C54AE8F121C81B2F00DEC360 /* Arc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C54AE8E721C81B2F00DEC360 /* Arc.framework */; };
-		C54AE8F621C81B2F00DEC360 /* ArcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE8F521C81B2F00DEC360 /* ArcTests.swift */; };
 		C54AE8F821C81B2F00DEC360 /* Arc.h in Headers */ = {isa = PBXBuildFile; fileRef = C54AE8EA21C81B2F00DEC360 /* Arc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C54AE9CE21C81B5F00DEC360 /* SharedAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C54AE90121C81B5B00DEC360 /* SharedAssets.xcassets */; };
 		C54AE9CF21C81B5F00DEC360 /* ACEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE90221C81B5B00DEC360 /* ACEnvironment.swift */; };
@@ -193,6 +191,8 @@
 		C583C0F022136E0C0043DFA7 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9CD21C81B5F00DEC360 /* Roboto-Black.ttf */; };
 		C583C0F222136E3B0043DFA7 /* ACLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C583C0F122136E3B0043DFA7 /* ACLabel.swift */; };
 		C583C0F3221378B10043DFA7 /* HMMarkup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52B75DC21C83B2A00498571 /* HMMarkup.framework */; };
+		C584F33522C16682009741A7 /* ArcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C584F33422C16682009741A7 /* ArcTests.swift */; };
+		C584F33722C16682009741A7 /* Arc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C54AE8E721C81B2F00DEC360 /* Arc.framework */; };
 		C589B50E21ED001700389342 /* ACAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C589B50D21ED001700389342 /* ACAuthViewController.swift */; };
 		C58C96F1228201CE001BDE11 /* HMOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C96F0228201CE001BDE11 /* HMOperation.swift */; };
 		C58D92832294AA1E000AD89F /* HMMarkupButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D92822294AA1E000AD89F /* HMMarkupButton.swift */; };
@@ -229,7 +229,7 @@
 			remoteGlobalIDString = C52B75DB21C83B2A00498571;
 			remoteInfo = HMMarkup;
 		};
-		C54AE8F221C81B2F00DEC360 /* PBXContainerItemProxy */ = {
+		C584F33822C16682009741A7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C54AE8DE21C81B2F00DEC360 /* Project object */;
 			proxyType = 1;
@@ -266,7 +266,6 @@
 		C54AE8E721C81B2F00DEC360 /* Arc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Arc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C54AE8EA21C81B2F00DEC360 /* Arc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Arc.h; sourceTree = "<group>"; };
 		C54AE8EB21C81B2F00DEC360 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C54AE8F021C81B2F00DEC360 /* ArcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C54AE8F521C81B2F00DEC360 /* ArcTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcTests.swift; sourceTree = "<group>"; };
 		C54AE8F721C81B2F00DEC360 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C54AE90121C81B5B00DEC360 /* SharedAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SharedAssets.xcassets; sourceTree = "<group>"; };
@@ -426,6 +425,9 @@
 		C57E9C872236CE67009F6228 /* ACPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPickerView.swift; sourceTree = "<group>"; };
 		C57E9C892236E825009F6228 /* ACPickerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ACPickerView.xib; sourceTree = "<group>"; };
 		C583C0F122136E3B0043DFA7 /* ACLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACLabel.swift; sourceTree = "<group>"; };
+		C584F33222C16682009741A7 /* ArcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C584F33422C16682009741A7 /* ArcTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcTests.swift; sourceTree = "<group>"; };
+		C584F33622C16682009741A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C589B50D21ED001700389342 /* ACAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACAuthViewController.swift; sourceTree = "<group>"; };
 		C58C96F0228201CE001BDE11 /* HMOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMOperation.swift; sourceTree = "<group>"; };
 		C58D92822294AA1E000AD89F /* HMMarkupButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMMarkupButton.swift; sourceTree = "<group>"; };
@@ -474,11 +476,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C54AE8ED21C81B2F00DEC360 /* Frameworks */ = {
+		C584F32F22C16682009741A7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C54AE8F121C81B2F00DEC360 /* Arc.framework in Frameworks */,
+				C584F33722C16682009741A7 /* Arc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,6 +553,7 @@
 				C52B75E821C83B2A00498571 /* HMMarkupTests */,
 				C5B2601422135F7300BFF778 /* ArcUIKit */,
 				C5B2601F22135F7300BFF778 /* ArcUIKitTests */,
+				C584F33322C16682009741A7 /* ArcTests */,
 				C54AE8E821C81B2F00DEC360 /* Products */,
 				C52B75FF21C83B6400498571 /* Frameworks */,
 			);
@@ -560,11 +563,11 @@
 			isa = PBXGroup;
 			children = (
 				C54AE8E721C81B2F00DEC360 /* Arc.framework */,
-				C54AE8F021C81B2F00DEC360 /* ArcTests.xctest */,
 				C52B75DC21C83B2A00498571 /* HMMarkup.framework */,
 				C52B75E421C83B2A00498571 /* HMMarkupTests.xctest */,
 				C5B2601322135F7200BFF778 /* ArcUIKit.framework */,
 				C5B2601B22135F7300BFF778 /* ArcUIKitTests.xctest */,
+				C584F33222C16682009741A7 /* ArcTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1057,6 +1060,15 @@
 			path = Roboto;
 			sourceTree = "<group>";
 		};
+		C584F33322C16682009741A7 /* ArcTests */ = {
+			isa = PBXGroup;
+			children = (
+				C584F33422C16682009741A7 /* ArcTests.swift */,
+				C584F33622C16682009741A7 /* Info.plist */,
+			);
+			path = ArcTests;
+			sourceTree = "<group>";
+		};
 		C5B2601422135F7300BFF778 /* ArcUIKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -1175,22 +1187,22 @@
 			productReference = C54AE8E721C81B2F00DEC360 /* Arc.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		C54AE8EF21C81B2F00DEC360 /* ArcTests */ = {
+		C584F33122C16682009741A7 /* ArcTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C54AE8FE21C81B2F00DEC360 /* Build configuration list for PBXNativeTarget "ArcTests" */;
+			buildConfigurationList = C584F33A22C16682009741A7 /* Build configuration list for PBXNativeTarget "ArcTests" */;
 			buildPhases = (
-				C54AE8EC21C81B2F00DEC360 /* Sources */,
-				C54AE8ED21C81B2F00DEC360 /* Frameworks */,
-				C54AE8EE21C81B2F00DEC360 /* Resources */,
+				C584F32E22C16682009741A7 /* Sources */,
+				C584F32F22C16682009741A7 /* Frameworks */,
+				C584F33022C16682009741A7 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C54AE8F321C81B2F00DEC360 /* PBXTargetDependency */,
+				C584F33922C16682009741A7 /* PBXTargetDependency */,
 			);
 			name = ArcTests;
 			productName = ArcTests;
-			productReference = C54AE8F021C81B2F00DEC360 /* ArcTests.xctest */;
+			productReference = C584F33222C16682009741A7 /* ArcTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		C5B2601222135F7200BFF778 /* ArcUIKit */ = {
@@ -1235,7 +1247,7 @@
 		C54AE8DE21C81B2F00DEC360 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1010;
+				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = HealthyMedium;
 				TargetAttributes = {
@@ -1250,8 +1262,8 @@
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1020;
 					};
-					C54AE8EF21C81B2F00DEC360 = {
-						CreatedOnToolsVersion = 10.1;
+					C584F33122C16682009741A7 = {
+						CreatedOnToolsVersion = 11.0;
 					};
 					C5B2601222135F7200BFF778 = {
 						CreatedOnToolsVersion = 10.1;
@@ -1275,7 +1287,7 @@
 			projectRoot = "";
 			targets = (
 				C54AE8E621C81B2F00DEC360 /* Arc */,
-				C54AE8EF21C81B2F00DEC360 /* ArcTests */,
+				C584F33122C16682009741A7 /* ArcTests */,
 				C52B75DB21C83B2A00498571 /* HMMarkup */,
 				C52B75E321C83B2A00498571 /* HMMarkupTests */,
 				C5B2601222135F7200BFF778 /* ArcUIKit */,
@@ -1355,7 +1367,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C54AE8EE21C81B2F00DEC360 /* Resources */ = {
+		C584F33022C16682009741A7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1538,11 +1550,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C54AE8EC21C81B2F00DEC360 /* Sources */ = {
+		C584F32E22C16682009741A7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C54AE8F621C81B2F00DEC360 /* ArcTests.swift in Sources */,
+				C584F33522C16682009741A7 /* ArcTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1581,10 +1593,10 @@
 			target = C52B75DB21C83B2A00498571 /* HMMarkup */;
 			targetProxy = C52B760C21C846F700498571 /* PBXContainerItemProxy */;
 		};
-		C54AE8F321C81B2F00DEC360 /* PBXTargetDependency */ = {
+		C584F33922C16682009741A7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C54AE8E621C81B2F00DEC360 /* Arc */;
-			targetProxy = C54AE8F221C81B2F00DEC360 /* PBXContainerItemProxy */;
+			targetProxy = C584F33822C16682009741A7 /* PBXContainerItemProxy */;
 		};
 		C5B2601E22135F7300BFF778 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1874,40 +1886,40 @@
 			};
 			name = Release;
 		};
-		C54AE8FF21C81B2F00DEC360 /* Debug */ = {
+		C584F33B22C16682009741A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9RQ4636JA2;
 				INFOPLIST_FILE = ArcTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.healthyMedium.ArcTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.happyMedium.ArcTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		C54AE90021C81B2F00DEC360 /* Release */ = {
+		C584F33C22C16682009741A7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9RQ4636JA2;
 				INFOPLIST_FILE = ArcTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.healthyMedium.ArcTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.happyMedium.ArcTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2044,11 +2056,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C54AE8FE21C81B2F00DEC360 /* Build configuration list for PBXNativeTarget "ArcTests" */ = {
+		C584F33A22C16682009741A7 /* Build configuration list for PBXNativeTarget "ArcTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C54AE8FF21C81B2F00DEC360 /* Debug */,
-				C54AE90021C81B2F00DEC360 /* Release */,
+				C584F33B22C16682009741A7 /* Debug */,
+				C584F33C22C16682009741A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -50,32 +50,60 @@ public extension ArcEnvironment {
     
     //This will trigger a flag that causes coredata to use a mock
     //persistent store, an in-memory database. 
-    public var mockData:Bool {return false}
-    public var shouldDisplayDateReminderNotifications:Bool {return false}
+	var mockData:Bool {return true}
+	var blockApiRequests:Bool {return true}
+	var arcStartDays:Dictionary<Int, Int>? {
+		return [0: 0,   // Test Cycle A
+			1: 89,  // Test Cycle B
+			2: 179, // Test Cycle C
+			3: 269, // Test Cycle D
+			4: 359, // Test Cycle E
+			5: 449, // Test Cycle F
+			6: 539, // Test Cycle G
+			7: 629, // Test Cycle H
+			8: 719  // Test Cycle I
+		];
+		
+	}
+    var shouldDisplayDateReminderNotifications:Bool {return false}
 
-    public var appController:AppController {return AppController()}
+    var appController:AppController {return AppController()}
     
-    public var authController:AuthController {return AuthController()}
+    var authController:AuthController {return AuthController()}
     
-    public var sessionController:SessionController {return SessionController()}
+    var sessionController:SessionController {return SessionController()}
     
-    public var surveyController:SurveyController {return SurveyController()}
+    var surveyController:SurveyController {return SurveyController()}
     
-    public var scheduleController:ScheduleController {return ScheduleController()}
+    var scheduleController:ScheduleController {return ScheduleController()}
     
-    public var gridTestController:GridTestController {return GridTestController()}
+    var gridTestController:GridTestController {return GridTestController()}
     
-    public var pricesTestController:PricesTestController {return PricesTestController()}
+    var pricesTestController:PricesTestController {return PricesTestController()}
     
-    public var symbolsTestController:SymbolsTestController {return SymbolsTestController()}
+    var symbolsTestController:SymbolsTestController {return SymbolsTestController()}
     
-    public var studyController:StudyController {return StudyController()}
+    var studyController:StudyController {return StudyController()}
     
-    public var notificationController:NotificationController {return NotificationController()}
+    var notificationController:NotificationController {return NotificationController()}
     
     
-    public var controllerRegistry:ArcControllerRegistry {return ArcControllerRegistry()}
+    var controllerRegistry:ArcControllerRegistry {return ArcControllerRegistry()}
 
 
-    public func configure() {}
+    func configure() {}
+}
+
+public struct ACEnvironment : ArcEnvironment {
+	public var baseUrl: String?
+	
+	public var welcomeLogo: String?
+	
+	public var welcomeText: String?
+	
+	public var privacyPolicyUrl: String?
+	
+	public var appNavigation: AppNavigationController = BaseAppNavigationController()
+	
+	
 }
