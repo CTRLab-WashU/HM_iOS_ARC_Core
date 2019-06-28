@@ -21,7 +21,7 @@ public extension String {
             config.shouldTranslate,
             let translation = config.translation
         {
-            return translation[key] ?? self
+			return translation[key] ?? ((key != "/empty") ? self : " ")
         }
         return self
     }
