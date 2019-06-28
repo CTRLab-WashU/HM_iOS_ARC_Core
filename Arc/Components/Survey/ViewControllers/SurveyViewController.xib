@@ -185,10 +185,10 @@
                     </constraints>
                 </scrollView>
                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ohL-ic-bnv" customClass="IndicatorView" customModule="ArcUIKit">
-                    <rect key="frame" x="155" y="595.5" width="65.5" height="51.5"/>
+                    <rect key="frame" x="145" y="586.5" width="85.5" height="60.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scroll" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0I6-gD-ixz" customClass="ACLabel" customModule="ArcUIKit">
-                            <rect key="frame" x="10" y="10" width="45.5" height="21.5"/>
+                            <rect key="frame" x="10" y="10" width="65.5" height="30.5"/>
                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="26"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>

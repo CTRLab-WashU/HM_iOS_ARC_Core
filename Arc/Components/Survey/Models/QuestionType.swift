@@ -10,11 +10,11 @@ import Foundation
 
 
 public enum QuestionType : String, Codable {
-	case none, text, number, slider, choice, checkbox, time, duration, password, segmentedText, multilineText, image, calendar, picker
+	case none, text, number, slider, choice, checkbox, time, duration, password, segmentedText, multilineText, image, calendar, picker, signature
 	
 	public var metatype: Codable.Type {
 		switch self {
-		case .none, .text, .time, .duration, .password, .segmentedText, .multilineText, .number, .image,  .calendar:
+		case .none, .text, .time, .duration, .password, .segmentedText, .multilineText, .number, .image,  .calendar, .signature:
 			return String.self
 			
 		case .slider:
@@ -27,16 +27,18 @@ public enum QuestionType : String, Codable {
 		}
 	
 	}
-	func create(inputWithQuestion question:Survey.Question) -> SurveyInput? {
+	func create(inputWithQuestion question:Survey.Question?) -> SurveyInput? {
 		var input:SurveyInput?
 		
-		switch question.type {
+		switch self {
 		case .none:
 			break
 	
 		case .slider:
 			let inputView:SliderView = .get()
-			
+			guard let question = question else {
+				return nil
+			}
 			inputView.set(min: question.minValue ?? 0,
 						  max: question.maxValue ?? 100,
 						  minMessage: question.minMessage ?? "",
@@ -61,7 +63,9 @@ public enum QuestionType : String, Codable {
 		case .choice:
 			let inputView:MultipleChoiceView = .get()
 			input = inputView
-		
+			guard let question = question else {
+				return nil
+			}
 			inputView.set(question:question)
 		
 		
@@ -70,6 +74,9 @@ public enum QuestionType : String, Codable {
 			let inputView:MultipleChoiceView = .get()
 			input = inputView
 			inputView.state = .checkBox
+			guard let question = question else {
+				return nil
+			}
 			inputView.set(question:question)
 		
 		
@@ -113,6 +120,11 @@ public enum QuestionType : String, Codable {
 			input = inputView
 		
 		
+	
+		case .signature:
+			let inputView:SignatureView = .get()
+			
+			input = inputView
 		}
 		return input
 

@@ -22,10 +22,10 @@ open class TimeView: UIView, SurveyInput {
     
     private var _value:String?
 	
-    
 	
     override open func awakeFromNib() {
         super.awakeFromNib()
+		
         self.dateFormatter.dateFormat = "h:mm a"
 
         if let date = self.dateFormatter.date(from: "12:00 PM") {

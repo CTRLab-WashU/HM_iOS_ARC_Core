@@ -9,10 +9,9 @@
 
 import UIKit
 import HMMarkup
-
 @IBDesignable open class ACButton : HMMarkupButton {
 
-    @IBInspectable var cornerRadius:CGFloat = 24.0 {
+    @IBInspectable public var cornerRadius:CGFloat = 24.0 {
         didSet {
             layer.cornerRadius = cornerRadius
         }
@@ -23,31 +22,34 @@ import HMMarkup
 
         }
     }
-    @IBInspectable var primaryColor:UIColor = UIColor(named: "Primary") ?? UIColor.white
-    @IBInspectable var secondaryColor:UIColor = UIColor(named: "Primary Gradient") ?? UIColor.gray
-    
+    @IBInspectable public var primaryColor:UIColor = UIColor(named: "Primary") ?? UIColor.white
+    @IBInspectable public var secondaryColor:UIColor = UIColor(named: "Primary Gradient") ?? UIColor.gray
+	
+	
+	public init() {
+		super.init(frame:.zero)
+		Roboto.Style.bodyBold(titleLabel!)
+		layout {
+			$0.width >= 216 ~ 999
+			$0.height >= 48 ~ 999
+			$0.height == 48 ~ 250
+			//$0.bottom >= self.bottomAnchor - 40 ~ 250
+		}
+	}
+	
+	required public init?(coder: NSCoder) {
+		super.init(coder: coder)
+	}
+	
     open override func draw(_ rect: CGRect) {
-        let path = UIBezierPath(roundedRect: rect,
-                                byRoundingCorners: .allCorners,
-                                cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
-        path.addClip()
-        let context = UIGraphicsGetCurrentContext()
-        
-        let colors = (!isSelected && isEnabled) ? [secondaryColor.cgColor,
-                                                   primaryColor.cgColor] : [primaryColor.cgColor,
-                                                                            primaryColor.cgColor]
-        
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
-        
-        let colorLocations:[CGFloat] = [0.0, 1.0]
-        
-        let gradient = CGGradient(colorsSpace: colorSpace,
-                                  colors: colors as CFArray,
-                                  locations: colorLocations)!
-        
-        let startPoint = CGPoint.zero
-        let endPoint = CGPoint(x:0, y:bounds.height)
-        context?.drawLinearGradient(gradient, start: startPoint, end: endPoint, options:[])
+		let config = Drawing.GradientButton(rect: rect,
+											  bounds: bounds,
+											  cornerRadius: cornerRadius,
+											  primaryColor: primaryColor,
+											  secondaryColor: secondaryColor,
+											  isSelected: isSelected,
+											  isEnabled: isEnabled)
+        config.draw()
     }
     override open func setup(isSelected:Bool){
         super.setup(isSelected:isSelected)

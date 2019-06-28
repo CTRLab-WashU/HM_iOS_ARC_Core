@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ArcUIKit
 public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTraits{
     public var orientation: UIStackView.Alignment = .top
     public var didChangeValue: (() -> ())?
@@ -143,6 +144,21 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTra
 	override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		becomeFirstResponder()
 	}
+	
+	
+	public func supplementaryViews(for view: UIView) {
+		let nav = Arc.shared.appNavigation
+		view.button {
+			#warning("No provided translation key.")
+			$0.setTitle("", for: .normal)
+		}
+		view.privacyStack {
+			$0.button.addAction {
+				nav.defaultPrivacy()
+			}
+		}
+	}
+	
 	
 	public func setError(message: String?) {
         var borderColor = UIColor(named: "Primary")!

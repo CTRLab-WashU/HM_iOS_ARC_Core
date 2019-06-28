@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		C5143959224EA6FD000BF1CB /* ACSignatureNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5143958224EA6FD000BF1CB /* ACSignatureNavigationController.swift */; };
+		C5192A6722C518AC00223B69 /* UIDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D101422C2846E00B43E42 /* UIDSL.swift */; };
+		C5192A6822C518AC00223B69 /* ConstraintDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D101622C2852C00B43E42 /* ConstraintDSL.swift */; };
+		C5192A6D22C5198F00223B69 /* UIDSL+ArcUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5192A6B22C5190D00223B69 /* UIDSL+ArcUIKit.swift */; };
+		C5192A6F22C519D900223B69 /* UIDSL+ArcCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5192A6E22C519D900223B69 /* UIDSL+ArcCore.swift */; };
+		C5192A7522C51F5000223B69 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5192A6522C3E04300223B69 /* Buttons.swift */; };
+		C5192A7722C5231900223B69 /* Georgia.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5192A5F22C3D34100223B69 /* Georgia.swift */; };
+		C5192A7822C5231900223B69 /* Roboto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5192A6222C3DF9000223B69 /* Roboto.swift */; };
+		C5192A7F22C5235E00223B69 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE91621C81B5C00DEC360 /* UILabel+Extensions.swift */; };
 		C52B75D421C8369400498571 /* arc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C54AE94821C81B5C00DEC360 /* arc.xcdatamodeld */; };
 		C52B75D521C837A200498571 /* Session+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE90E21C81B5C00DEC360 /* Session+Extensions.swift */; };
 		C52B75E521C83B2A00498571 /* HMMarkup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52B75DC21C83B2A00498571 /* HMMarkup.framework */; };
@@ -23,6 +31,7 @@
 		C52B760121C83CEA00498571 /* HMMarkupLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE93C21C81B5C00DEC360 /* HMMarkupLabel.swift */; };
 		C537A1AE228B74E20098A4CD /* Window+Overlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C537A1AD228B74E20098A4CD /* Window+Overlay.swift */; };
 		C540B5B1221E0FD000B539A4 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C540B5B0221E0FD000B539A4 /* LanguageViewController.swift */; };
+		C548B79122C54D630039DBCB /* UIControl+Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = C548B79022C54D630039DBCB /* UIControl+Closure.swift */; };
 		C54AE8F821C81B2F00DEC360 /* Arc.h in Headers */ = {isa = PBXBuildFile; fileRef = C54AE8EA21C81B2F00DEC360 /* Arc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C54AE9CE21C81B5F00DEC360 /* SharedAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C54AE90121C81B5B00DEC360 /* SharedAssets.xcassets */; };
 		C54AE9CF21C81B5F00DEC360 /* ACEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE90221C81B5B00DEC360 /* ACEnvironment.swift */; };
@@ -37,7 +46,6 @@
 		C54AE9DA21C81B5F00DEC360 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE91221C81B5C00DEC360 /* UIView+Extensions.swift */; };
 		C54AE9DB21C81B5F00DEC360 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE91321C81B5C00DEC360 /* UIStackView+Extensions.swift */; };
 		C54AE9DC21C81B5F00DEC360 /* Set+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE91421C81B5C00DEC360 /* Set+Extensions.swift */; };
-		C54AE9DE21C81B5F00DEC360 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE91621C81B5C00DEC360 /* UILabel+Extensions.swift */; };
 		C54AE9DF21C81B5F00DEC360 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE91721C81B5C00DEC360 /* Date+Extensions.swift */; };
 		C54AE9E021C81B5F00DEC360 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE91821C81B5C00DEC360 /* Data+Extensions.swift */; };
 		C54AE9E121C81B5F00DEC360 /* HMLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE91A21C81B5C00DEC360 /* HMLog.swift */; };
@@ -177,13 +185,10 @@
 		C54D104922C28A1D00B43E42 /* ACPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C57E9C892236E825009F6228 /* ACPickerView.xib */; };
 		C54D104A22C28A1D00B43E42 /* DateRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F77F3A22306CFA00BECAE1 /* DateRangeView.swift */; };
 		C54D104B22C28A1D00B43E42 /* ACCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50FC3BA22330F2C00143EA8 /* ACCalendarView.swift */; };
-		C54D104C22C28C9500B43E42 /* ConstraintDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D101622C2852C00B43E42 /* ConstraintDSL.swift */; };
-		C54D104D22C28CB300B43E42 /* UIDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D101422C2846E00B43E42 /* UIDSL.swift */; };
+		C54D104F22C29DA700B43E42 /* SurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D104E22C29DA700B43E42 /* SurveyView.swift */; };
 		C56BBCA3221490DF0025A318 /* ACTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56BBCA2221490DF0025A318 /* ACTextView.swift */; };
 		C56BBCA52214AF5B0025A318 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56BBCA42214AF5B0025A318 /* Common.swift */; };
 		C578B8D622A859A60038DDF0 /* ACView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C578B8D522A859A60038DDF0 /* ACView.swift */; };
-		C57E9C842236BB4B009F6228 /* ACCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50FC3BA22330F2C00143EA8 /* ACCalendarView.swift */; };
-
 		C57E9C862236C232009F6228 /* StartDateShiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E9C852236C232009F6228 /* StartDateShiftViewController.swift */; };
 		C583C0E422136E0C0043DFA7 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9C121C81B5F00DEC360 /* Roboto-Medium.ttf */; };
 		C583C0E522136E0C0043DFA7 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9C221C81B5F00DEC360 /* Roboto-Light.ttf */; };
@@ -213,6 +218,7 @@
 		C5C7F715228F65C50086315B /* ArcTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C7F714228F65C50086315B /* ArcTranslation.swift */; };
 		C5D0F6FA220B477B00F04942 /* MHScrollingAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5D0F6F9220B477B00F04942 /* MHScrollingAlertView.xib */; };
 		C5E0DDB922A5B7D20034DEDF /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0DDB822A5B7D20034DEDF /* IndicatorView.swift */; };
+		C5E1530B22C64B630066FD6B /* PrivacyStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1530A22C64B630066FD6B /* PrivacyStack.swift */; };
 		C5E1E34F2253E84900255812 /* ACWakeSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1E34E2253E84900255812 /* ACWakeSurveyViewController.swift */; };
 		C5E1E3952257ECC200255812 /* ACChangeAvailabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1E3932257ECC100255812 /* ACChangeAvailabilityViewController.swift */; };
 		C5E1E3962257ECC200255812 /* ACChangeAvailabilityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5E1E3942257ECC200255812 /* ACChangeAvailabilityViewController.xib */; };
@@ -255,6 +261,11 @@
 		C50FC3BA22330F2C00143EA8 /* ACCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACCalendarView.swift; sourceTree = "<group>"; };
 		C5143957224E837C000BF1CB /* arc 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "arc 3.xcdatamodel"; sourceTree = "<group>"; };
 		C5143958224EA6FD000BF1CB /* ACSignatureNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSignatureNavigationController.swift; sourceTree = "<group>"; };
+		C5192A5F22C3D34100223B69 /* Georgia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Georgia.swift; sourceTree = "<group>"; };
+		C5192A6222C3DF9000223B69 /* Roboto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roboto.swift; sourceTree = "<group>"; };
+		C5192A6522C3E04300223B69 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
+		C5192A6B22C5190D00223B69 /* UIDSL+ArcUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDSL+ArcUIKit.swift"; sourceTree = "<group>"; };
+		C5192A6E22C519D900223B69 /* UIDSL+ArcCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDSL+ArcCore.swift"; sourceTree = "<group>"; };
 		C52B75DC21C83B2A00498571 /* HMMarkup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HMMarkup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C52B75DE21C83B2A00498571 /* HMMarkup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HMMarkup.h; sourceTree = "<group>"; };
 		C52B75DF21C83B2A00498571 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -269,6 +280,7 @@
 		C52B75F821C83B4700498571 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C537A1AD228B74E20098A4CD /* Window+Overlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Window+Overlay.swift"; sourceTree = "<group>"; };
 		C540B5B0221E0FD000B539A4 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
+		C548B79022C54D630039DBCB /* UIControl+Closure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Closure.swift"; sourceTree = "<group>"; };
 		C54AE8E721C81B2F00DEC360 /* Arc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Arc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C54AE8EA21C81B2F00DEC360 /* Arc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Arc.h; sourceTree = "<group>"; };
 		C54AE8EB21C81B2F00DEC360 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -428,6 +440,7 @@
 		C54D101222C2745A00B43E42 /* QuestionStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionStyle.swift; sourceTree = "<group>"; };
 		C54D101422C2846E00B43E42 /* UIDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDSL.swift; sourceTree = "<group>"; };
 		C54D101622C2852C00B43E42 /* ConstraintDSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintDSL.swift; sourceTree = "<group>"; };
+		C54D104E22C29DA700B43E42 /* SurveyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyView.swift; sourceTree = "<group>"; };
 		C56BBCA2221490DF0025A318 /* ACTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTextView.swift; sourceTree = "<group>"; };
 		C56BBCA42214AF5B0025A318 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		C578B8D522A859A60038DDF0 /* ACView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACView.swift; sourceTree = "<group>"; };
@@ -451,6 +464,7 @@
 		C5C7F714228F65C50086315B /* ArcTranslation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArcTranslation.swift; sourceTree = "<group>"; };
 		C5D0F6F9220B477B00F04942 /* MHScrollingAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MHScrollingAlertView.xib; sourceTree = "<group>"; };
 		C5E0DDB822A5B7D20034DEDF /* IndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorView.swift; sourceTree = "<group>"; };
+		C5E1530A22C64B630066FD6B /* PrivacyStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyStack.swift; sourceTree = "<group>"; };
 		C5E1E34E2253E84900255812 /* ACWakeSurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACWakeSurveyViewController.swift; sourceTree = "<group>"; };
 		C5E1E3932257ECC100255812 /* ACChangeAvailabilityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACChangeAvailabilityViewController.swift; sourceTree = "<group>"; };
 		C5E1E3942257ECC200255812 /* ACChangeAvailabilityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACChangeAvailabilityViewController.xib; sourceTree = "<group>"; };
@@ -513,6 +527,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C5192A6122C3DF6700223B69 /* AppStyle */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AppStyle;
+			sourceTree = "<group>";
+		};
+		C5192A6422C3DFA800223B69 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				C5192A5F22C3D34100223B69 /* Georgia.swift */,
+				C5192A6222C3DF9000223B69 /* Roboto.swift */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		C5192A7622C5204F00223B69 /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				C5192A6422C3DFA800223B69 /* Fonts */,
+				C5192A6522C3E04300223B69 /* Buttons.swift */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
 		C52B75DD21C83B2A00498571 /* HMMarkup */ = {
 			isa = PBXGroup;
 			children = (
@@ -549,7 +588,11 @@
 		C537A1AC228B74D20098A4CD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				C54AE91621C81B5C00DEC360 /* UILabel+Extensions.swift */,
+				C54D101422C2846E00B43E42 /* UIDSL.swift */,
+				C54D101622C2852C00B43E42 /* ConstraintDSL.swift */,
 				C537A1AD228B74E20098A4CD /* Window+Overlay.swift */,
+				C548B79022C54D630039DBCB /* UIControl+Closure.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -611,6 +654,7 @@
 		C54AE90321C81B5C00DEC360 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				C5192A6122C3DF6700223B69 /* AppStyle */,
 				C54AE90521C81B5C00DEC360 /* Models */,
 				C54AE90B21C81B5C00DEC360 /* Extensions */,
 				C54AE91921C81B5C00DEC360 /* Utilities */,
@@ -660,15 +704,13 @@
 		C54AE91021C81B5C00DEC360 /* System */ = {
 			isa = PBXGroup;
 			children = (
-				C54D101422C2846E00B43E42 /* UIDSL.swift */,
-				C54D101622C2852C00B43E42 /* ConstraintDSL.swift */,
 				C54AE91121C81B5C00DEC360 /* UIViewController+Extensions.swift */,
 				C54AE91221C81B5C00DEC360 /* UIView+Extensions.swift */,
 				C54AE91321C81B5C00DEC360 /* UIStackView+Extensions.swift */,
 				C54AE91421C81B5C00DEC360 /* Set+Extensions.swift */,
-				C54AE91621C81B5C00DEC360 /* UILabel+Extensions.swift */,
 				C54AE91721C81B5C00DEC360 /* Date+Extensions.swift */,
 				C54AE91821C81B5C00DEC360 /* Data+Extensions.swift */,
+				C5192A6E22C519D900223B69 /* UIDSL+ArcCore.swift */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -1024,6 +1066,7 @@
 		C54AE99E21C81B5C00DEC360 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C5E1530A22C64B630066FD6B /* PrivacyStack.swift */,
 				C54AE9A621C81B5C00DEC360 /* SurveyInputView.swift */,
 				C54AE93B21C81B5C00DEC360 /* ContainerButton.swift */,
 				C5F77F34222F094000BECAE1 /* SignatureView.swift */,
@@ -1050,6 +1093,7 @@
 				C57E9C892236E825009F6228 /* ACPickerView.xib */,
 				C5F77F3A22306CFA00BECAE1 /* DateRangeView.swift */,
 				C50FC3BA22330F2C00143EA8 /* ACCalendarView.swift */,
+				C54D104E22C29DA700B43E42 /* SurveyView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1106,6 +1150,8 @@
 		C5B2602A2213602400BFF778 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C5192A7622C5204F00223B69 /* Style */,
+				C5192A6B22C5190D00223B69 /* UIDSL+ArcUIKit.swift */,
 				C56BBCA42214AF5B0025A318 /* Common.swift */,
 				C578B8D522A859A60038DDF0 /* ACView.swift */,
 				C5B2602B2213606600BFF778 /* ACButton.swift */,
@@ -1458,7 +1504,6 @@
 				C54D104422C28A1D00B43E42 /* MultipleChoiceView.swift in Sources */,
 				C54AEA2421C81B5F00DEC360 /* ACContactViewController.swift in Sources */,
 				C5143959224EA6FD000BF1CB /* ACSignatureNavigationController.swift in Sources */,
-				C54D104C22C28C9500B43E42 /* ConstraintDSL.swift in Sources */,
 				C54AE9D121C81B5F00DEC360 /* ACState.swift in Sources */,
 				C54D104822C28A1D00B43E42 /* ACPickerView.swift in Sources */,
 				C54D104222C28A1D00B43E42 /* PasswordView.swift in Sources */,
@@ -1504,6 +1549,7 @@
 				C54D103222C28A1D00B43E42 /* SurveyInputView.swift in Sources */,
 				C54AE9CF21C81B5F00DEC360 /* ACEnvironment.swift in Sources */,
 				C54AE9EE21C81B5F00DEC360 /* ToggleButton.swift in Sources */,
+				C5E1530B22C64B630066FD6B /* PrivacyStack.swift in Sources */,
 				C54AEA0321C81B5F00DEC360 /* BorderedTextField.swift in Sources */,
 				C54AE9FF21C81B5F00DEC360 /* MHAlertView.swift in Sources */,
 				C54AEA3B21C81B5F00DEC360 /* SurveyResponse.swift in Sources */,
@@ -1514,6 +1560,7 @@
 				C54AE9E121C81B5F00DEC360 /* HMLog.swift in Sources */,
 				C54AEA2221C81B5F00DEC360 /* ACContactNavigationController.swift in Sources */,
 				C54AEA4421C81B5F00DEC360 /* SurveyController.swift in Sources */,
+				C54D104F22C29DA700B43E42 /* SurveyView.swift in Sources */,
 				C54AE9EF21C81B5F00DEC360 /* ArcViewController.swift in Sources */,
 				C52B75D521C837A200498571 /* Session+Extensions.swift in Sources */,
 				C54AEA0421C81B5F00DEC360 /* BorderedUIView.swift in Sources */,
@@ -1523,6 +1570,7 @@
 				C54AE9E421C81B5F00DEC360 /* StatusCode.swift in Sources */,
 				C54AEA2B21C81B5F00DEC360 /* AuthController.swift in Sources */,
 				C57E9C862236C232009F6228 /* StartDateShiftViewController.swift in Sources */,
+				C5192A6F22C519D900223B69 /* UIDSL+ArcCore.swift in Sources */,
 				C54D101122C2743F00B43E42 /* QuestionType.swift in Sources */,
 				C54AE9F121C81B5F00DEC360 /* ArcControllerRegistry.swift in Sources */,
 				C54AEA0521C81B5F00DEC360 /* PaddinglessUITextView.swift in Sources */,
@@ -1537,11 +1585,9 @@
 				C5E1E3982257ECDE00255812 /* ACScheduleViewController.swift in Sources */,
 				C54AE9EC21C81B5F00DEC360 /* HMAPI+Convenience.swift in Sources */,
 				C54AE9F221C81B5F00DEC360 /* UINavigationProxy.swift in Sources */,
-				C54D104D22C28CB300B43E42 /* UIDSL.swift in Sources */,
 				C54AEA0921C81B5F00DEC360 /* GridTest.swift in Sources */,
 				C54AEA3121C81B5F00DEC360 /* Schedule+CoreDataClass.swift in Sources */,
 				C54AE9D321C81B5F00DEC360 /* State.swift in Sources */,
-				C54AE9DE21C81B5F00DEC360 /* UILabel+Extensions.swift in Sources */,
 				C54AE9F421C81B5F00DEC360 /* StudyController.swift in Sources */,
 				C54AE9D221C81B5F00DEC360 /* Study.swift in Sources */,
 				C5F77F37222F095200BECAE1 /* SignatureViewController.swift in Sources */,
@@ -1582,11 +1628,19 @@
 			files = (
 				C56BBCA52214AF5B0025A318 /* Common.swift in Sources */,
 				C583C0F222136E3B0043DFA7 /* ACLabel.swift in Sources */,
+				C5192A7722C5231900223B69 /* Georgia.swift in Sources */,
+				C5192A6822C518AC00223B69 /* ConstraintDSL.swift in Sources */,
+				C5192A7522C51F5000223B69 /* Buttons.swift in Sources */,
+				C5192A7822C5231900223B69 /* Roboto.swift in Sources */,
+				C5192A7F22C5235E00223B69 /* UILabel+Extensions.swift in Sources */,
 				C578B8D622A859A60038DDF0 /* ACView.swift in Sources */,
 				C5B2602C2213606600BFF778 /* ACButton.swift in Sources */,
 				C56BBCA3221490DF0025A318 /* ACTextView.swift in Sources */,
 				C5E0DDB922A5B7D20034DEDF /* IndicatorView.swift in Sources */,
 				C537A1AE228B74E20098A4CD /* Window+Overlay.swift in Sources */,
+				C5192A6722C518AC00223B69 /* UIDSL.swift in Sources */,
+				C5192A6D22C5198F00223B69 /* UIDSL+ArcUIKit.swift in Sources */,
+				C548B79122C54D630039DBCB /* UIControl+Closure.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

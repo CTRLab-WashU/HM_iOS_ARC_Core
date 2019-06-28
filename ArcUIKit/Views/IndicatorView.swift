@@ -7,8 +7,8 @@
 //
 
 import UIKit
-@IBDesignable class IndicatorView:UIView {
-    struct Config {
+@IBDesignable public class IndicatorView:UIView {
+    public struct Config {
         let primaryColor:UIColor
         let secondaryColor:UIColor
         let textColor:UIColor
@@ -28,7 +28,7 @@ import UIKit
     var isEnabled = true
     
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         let f = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
             .insetBy(dx: 0, dy: -5)
             .offsetBy(dx: 0, dy: -5)
@@ -40,7 +40,7 @@ import UIKit
     }
     
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         
         super.init(coder: aDecoder)
         
@@ -73,7 +73,7 @@ import UIKit
         setNeedsDisplay()
         
     }
-    override func draw(_ rect: CGRect) {
+    override public func draw(_ rect: CGRect) {
         super.draw(rect)
         
         var path = UIBezierPath(roundedRect: rect

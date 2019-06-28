@@ -196,7 +196,7 @@ extension Survey.Question.Answer {
 				let v:[Int] = self.value as! [Int]
 				try container.encodeIfPresent(v, forKey: .value)
 				
-            case .image, .calendar:
+            case .image, .calendar, .signature:
                 break
             
             }

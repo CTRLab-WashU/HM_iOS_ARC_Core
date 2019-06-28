@@ -49,7 +49,7 @@ public extension QuestionResponse {
 				} else {
 					return true
 				}
-            case .image:
+            case .image, .signature:
                 if let value = value as? Data {
                     return value.count == 0
                 } else {

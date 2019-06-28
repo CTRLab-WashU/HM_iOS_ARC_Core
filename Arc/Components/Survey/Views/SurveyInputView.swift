@@ -12,10 +12,10 @@ public protocol SurveyInput {
     ///Returns nil if the value returned is invalid
     func getValue() -> QuestionResponse?
     func isInformational() -> Bool
-	
     func setValue(_ value:QuestionResponse?)
 	func setError(message:String?)
-    var orientation:UIStackView.Alignment {get set}
+	func supplementaryViews(for view:UIView)
+	var orientation:UIStackView.Alignment {get set}
     var distribution:UIStackView.Distribution {get set}
     var didChangeValue:(()->())? {get set}
     var didFinishSetup:(()->())? {get set}
@@ -53,7 +53,10 @@ extension SurveyInput {
 		
 	}
 	
-	
+	public func supplementaryViews(for view:UIView) {
+		
+	}
+
     func setValues(_ values:[String]?) {
         
     }

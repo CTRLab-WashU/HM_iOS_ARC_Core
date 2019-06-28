@@ -8,7 +8,8 @@
 
 import UIKit
 public extension UIViewController {
-	static public func get<T:UIViewController>(nib:String? = nil, bundle:Bundle? = nil) -> T {
+	
+	static func get<T:UIViewController>(nib:String? = nil, bundle:Bundle? = nil) -> T {
 		//For multi-module functionality.
 		var _bundle:Bundle? = bundle
 		if bundle == nil {
@@ -19,7 +20,7 @@ public extension UIViewController {
         
         return vc
     }
-    static public func present<T:UIViewController>(nib:String? = nil, onSetup:((T)->Void)? = nil, onCompletion:(()->Void)? = nil) -> T {
+	static func present<T:UIViewController>(nib:String? = nil, onSetup:((T)->Void)? = nil, onCompletion:(()->Void)? = nil) -> T {
         
         let vc:T = .get()
         
@@ -35,7 +36,7 @@ public extension UIViewController {
         
         return vc
     }
-    static public func replace<T:UIViewController>(nib:String? = nil, onSetup:((T)->Void)? = nil, onCompletion:((T)->Void)? = nil) -> T {
+    static func replace<T:UIViewController>(nib:String? = nil, onSetup:((T)->Void)? = nil, onCompletion:((T)->Void)? = nil) -> T {
         
         let vc:T = .get()
         

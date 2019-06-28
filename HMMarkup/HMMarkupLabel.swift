@@ -9,9 +9,9 @@
 import UIKit
 
 @IBDesignable open class HMMarkupLabel: UILabel {
-    @IBInspectable var translationKey:String?
+    @IBInspectable public var translationKey:String?
 
-    open var renderer:HMMarkupRenderer!
+    open public var renderer:HMMarkupRenderer!
     @IBInspectable var spacing:CGFloat = 1.33
     
     override open var text: String? {

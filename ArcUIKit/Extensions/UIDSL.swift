@@ -192,4 +192,6 @@ extension UIView {
 							 apply closure: (UIVisualEffectView) -> Void) -> UIVisualEffectView {
 		custom(UIVisualEffectView(effect: effect), apply: closure)
 	}
+	
+	
 }

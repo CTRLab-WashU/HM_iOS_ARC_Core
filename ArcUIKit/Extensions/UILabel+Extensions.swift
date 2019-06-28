@@ -7,19 +7,46 @@
 //
 
 import UIKit
-extension UIFont {
-    func boldFont() -> UIFont? {
+public extension UIFont {
+	func family(_ family:String) -> UIFont {
+		var attributes = fontDescriptor.fontAttributes
+		attributes[.family] = family
+		
+		return UIFont(descriptor: UIFontDescriptor(fontAttributes: attributes), size:0)
+	}
+	func face(_ face:String) -> UIFont {
+		var attributes = fontDescriptor.fontAttributes
+		
+		attributes[.face] = face
+		
+		return UIFont(descriptor: UIFontDescriptor(fontAttributes: attributes), size:0)
+	}
+    func boldFont() -> UIFont {
         return addingSymbolicTraits(.traitBold)
     }
-    
-    func italicFont() -> UIFont? {
+	
+    func italicFont() -> UIFont {
         return addingSymbolicTraits(.traitItalic)
     }
-    
-    func addingSymbolicTraits(_ traits: UIFontDescriptor.SymbolicTraits) -> UIFont? {
+	
+	func size(_ value:CGFloat) -> UIFont {
+		var attributes = fontDescriptor.fontAttributes
+
+		attributes[.size] = value
+		
+		return UIFont(descriptor: UIFontDescriptor(fontAttributes: attributes), size:value)
+	}
+	func size(_ value:Double) -> UIFont {
+		return size(CGFloat(value))
+	}
+	func size(_ value:Int) -> UIFont {
+		return size(CGFloat(value))
+	}
+	func addingSymbolicTraits(_ traits: UIFontDescriptor.SymbolicTraits) -> UIFont {
         let newTraits = fontDescriptor.symbolicTraits.union(traits)
         guard let descriptor = fontDescriptor.withSymbolicTraits(newTraits) else {
-            return nil
+			assertionFailure("Failed to add attribute to font!")
+            return self
         }
         
         return UIFont(descriptor: descriptor, size: 0)

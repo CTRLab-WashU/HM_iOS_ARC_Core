@@ -247,7 +247,7 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
             
             return true
         }
-		let vc:SurveyViewController = .get()
+		let vc:SurveyViewController = SurveyViewController()
 		if let helpPressed = helpPressed {
 			vc.helpPressed = helpPressed
 		}

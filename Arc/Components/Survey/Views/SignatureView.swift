@@ -131,5 +131,21 @@ open class SignatureView: BorderedUIView, SurveyInput {
         
         return img
     }
+	
+	public func supplementaryViews(for view: UIView) {
+		view.acButton {
+			$0.setTitle("Undo", for: .normal)
+		}
+	}
     
+}
+
+
+extension UIView {
+	
+	@discardableResult
+	public func signatureInput(apply closure: (SignatureView) -> Void) -> SignatureView {
+		custom(SignatureView.get(), apply: closure)
+	}
+	
 }

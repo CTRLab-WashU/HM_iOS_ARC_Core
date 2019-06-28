@@ -44,20 +44,26 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
     var input:SurveyInput?
     var questionIndex:String?
     var surveyId:String?
-
-	open var renderer:HMMarkupRenderer!
+	var surveyView:SurveyView {
+		return view as! SurveyView
+	}
     private var controller = Arc.shared.surveyController
 
-    @IBAction func nextButtonPressed(_ sender: Any) {
-        
-			let value = input?.getValue()
-			
-            nextPressed?(input, value)
-    }
+//    @IBAction func nextButtonPressed(_ sender: Any) {
+//
+//			let value = input?.getValue()
+//
+//            nextPressed?(input, value)
+//    }
+	open override func loadView() {
+		super.loadView()
+		let v = SurveyView()
+		v.nextPressed = self.nextPressed
+		self.view = v
+	}
 	
     override open func viewDidLoad() {
         super.viewDidLoad()
-		renderer = HMMarkupRenderer(baseFont: promptLabel.font)
         // Do any additional setup after loading the view.
         if let nav = self.navigationController, nav.viewControllers.count > 1 {
             let backButton = UIButton(type: .custom)
@@ -69,22 +75,22 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
             backButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -8, bottom: 0, right: 0)
             backButton.setTitleColor(UIColor(named: "Primary"), for: .normal)
             backButton.addTarget(self, action: #selector(self.backPressed), for: .touchUpInside)
-            
-            //NSLayoutConstraint(item: backButton, attribute: NSLayoutConstraint.Attribute.left, relatedBy: NSLayoutConstraint.Relation.equal, toItem: super.view, attribute: NSLayoutConstraint.Attribute.left, multiplier: 1, constant: -75).isActive = true
+
+            NSLayoutConstraint(item: backButton, attribute: NSLayoutConstraint.Attribute.left, relatedBy: NSLayoutConstraint.Relation.equal, toItem: super.view, attribute: NSLayoutConstraint.Attribute.left, multiplier: 1, constant: -75).isActive = true
             let leftButton = UIBarButtonItem(customView: backButton)
-            
+
             //self.navigationItem.setLeftBarButton(leftButton, animated: true)
             self.navigationItem.leftBarButtonItem = leftButton
 			NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
 			NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-			
+
 		}
         
-        nextBottomSpacing.constant = getNextButtonSpacing()
-        
-		let attributes = [ NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.foregroundColor: UIColor(named: "Primary") ?? .blue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.medium) ] as [NSAttributedString.Key : Any]
-        let attrString = NSAttributedString(string: "Privacy Policy".localized("privacy_linked"), attributes: attributes)
-        privacyPolicyButton.setAttributedTitle(attrString, for: .normal)
+//        nextBottomSpacing.constant = getNextButtonSpacing()
+		
+//		let attributes = [ NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.foregroundColor: UIColor(named: "Primary") ?? .blue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.medium) ] as [NSAttributedString.Key : Any]
+//        let attrString = NSAttributedString(string: "Privacy Policy".localized("privacy_linked"), attributes: attributes)
+//        privacyPolicyButton.setAttributedTitle(attrString, for: .normal)
     }
 	@objc func keyboardWillShow(notification: NSNotification) {
 		print("keyboardWillShow")
@@ -107,28 +113,16 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
     }
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        scrollIndicatorState(scrollView)
-		if scrollView.contentSize.height > scrollView.bounds.height && !(input is SignatureView){
-			scrollView.delaysContentTouches = true
-
-		} else {
-			scrollView.delaysContentTouches = false
-		}
+//        scrollIndicatorState(scrollView)
+//		if scrollView.contentSize.height > scrollView.bounds.height && !(input is SignatureView){
+//			scrollView.delaysContentTouches = true
+//
+//		} else {
+//			scrollView.delaysContentTouches = false
+//		}
 		
     }
-    func getNextButtonSpacing() -> CGFloat {
-        var nextHeight:CGFloat = 0
-        if #available(iOS 11.0, *) {
-            if let bottomPadding = UIApplication.shared.keyWindow?.safeAreaInsets.bottom {
-                nextHeight += bottomPadding
-            }
-        }
-        if let navBarHeight = navigationController?.navigationBar.frame.height {
-            nextHeight += navBarHeight
-        }
-        nextHeight += UIApplication.shared.statusBarFrame.height
-        return -nextHeight
-    }
+
     
     @objc func backPressed() {
         self.navigationController?.popViewController(animated: true)
@@ -140,9 +134,9 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
     }
     func loadQuestion(questionIndex:String) {
         let question = controller.get(question: questionIndex)
-        
-		displayQuestion(question: question)
-        
+		surveyView.displayQuestion(withQuestion: question)
+
+		
     }
 	
 	// MARK: - Question Display
@@ -152,107 +146,76 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 	/// - Parameter question: An object of type Survey.Question.
 	/// This value is created via Json files loaded by the parent SurveyNavigationViewController
 	func displayQuestion(question:Survey.Question) {
+		
 		//Get supplied template for question
-		if let nextButtonTitle = question.nextButtonTitle {
-			nextButton.setTitle(nextButtonTitle.localized(nextButtonTitle), for: .normal)
-        } else {
-            if question.nextButtonImage == nil {
-                nextButton.setTitle("NEXT".localized("button_next"), for: .normal)
-            }
-        }
+//		if let nextButtonTitle = question.nextButtonTitle {
+//			nextButton.setTitle(nextButtonTitle.localized(nextButtonTitle), for: .normal)
+//		} else {
+//			if question.nextButtonImage == nil {
+//				nextButton.setTitle("NEXT".localized("button_next"), for: .normal)
+//			}
+//		}
+//		
 		
-		//If theres an image set it here.
-        if let nextButtonImage = question.nextButtonImage {
-            nextButton.setImage(UIImage(named: nextButtonImage), for: .normal)
-        } else {
-            nextButton.setImage(nil, for: .normal)
-        }
-		
-		
-		let template = templateHandler?(question.questionId) ?? [:]
+//		
+//		
+//		let template = templateHandler?(question.questionId) ?? [:]
+//
+//		let markedUpString = renderer.render(text: question.prompt, template:template)
+//		
+//		// Increase line height
+//		let attributedString = NSMutableAttributedString(attributedString: markedUpString)
+//		let paragraphStyle = NSMutableParagraphStyle()
+//		paragraphStyle.lineSpacing = 7
+//		attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+//		promptLabel.attributedText = attributedString
+//		
+//		detailsLabel.text = question.detail
+//		
+//		self.id = question.questionId
+//		input?.parentScrollView = nil
+//		
+//		input = question.type.create(inputWithQuestion: question)
+//		container.alignment = input?.orientation ?? .bottom
+//
+//		if question.type == .choice {
+//			
+//			disableNextButton()
+//			
+//			
+//			
+//		}  else if question.type == .password {
+//			if let inputView = input as? PasswordView {
+//				inputView.openKeyboard()
+//			}
+//			
+//			privacyStack.isHidden = false
+//			
+//		} else if question.type == .segmentedText {
+//			if let inputView = input as? SegmentedTextView {
+//				inputView.openKeyboard()
+//				inputView.tryNext = self.tryNextButton
+//			}
+//
+//			privacyStack.isHidden = false
+//		}
+//		if bottomAnchor != nil {
+//			bottomAnchor.isActive = input?.isBottomAnchored ?? false
+//		}
+//		container.alignment = input?.orientation ?? .top
 
-		let markedUpString = renderer.render(text: question.prompt, template:template)
-		
-		// Increase line height
-		let attributedString = NSMutableAttributedString(attributedString: markedUpString)
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 7
-        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
-        promptLabel.attributedText = attributedString
-        
-		detailsLabel.text = question.detail
-		
-		self.id = question.questionId
-        input?.parentScrollView = nil
-		
-		input = question.type.create(inputWithQuestion: question)
-		container.alignment = input?.orientation ?? .bottom
+//		
 
-		if question.type == .choice {
-			
-            disableNextButton()
-			
-			
-			
-		}  else if question.type == .password {
-			if let inputView = input as? PasswordView {
-            	inputView.openKeyboard()
-			}
-			
-            privacyStack.isHidden = false
-			
-		} else if question.type == .segmentedText {
-			if let inputView = input as? SegmentedTextView {
-				inputView.openKeyboard()
-				inputView.tryNext = self.tryNextButton
-			}
-
-            privacyStack.isHidden = false
-        }
-        if bottomAnchor != nil {
-            bottomAnchor.isActive = input?.isBottomAnchored ?? false
-        }
-        container.alignment = input?.orientation ?? .top
-        input?.setError(message: nil)
-        input?.parentScrollView = self.scrollView
-        input?.didFinishSetup = {
-            [weak self] in
-            guard let weakSelf = self else {
-                return
-            }
-            if weakSelf.input?.getValue()?.value == nil {
-                weakSelf.disableNextButton()
-            } else {
-                weakSelf.enableNextButton()
-            }
-        }
-        input?.didChangeValue = {
-            [weak self] in
-            guard let weakSelf = self else {
-                return
-            }
-            if weakSelf.input?.getValue()?.value == nil {
-                weakSelf.disableNextButton()
-            } else {
-                weakSelf.enableNextButton()
-            }
-            
-            self?.didChangeValue?();
-        }
-        
-        if container.arrangedSubviews.isEmpty, let input = input as? UIView {
-            container.addArrangedSubview(input)
-        }
-        
+//		
 
 	}
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.loadQuestion(questionIndex: questionIndex ?? "")
-        self.questionPresented?(input)
-		scrollView.delegate = self
-		scrollIndicatorState(scrollView)
-        self.didFinishSetup?()
+//        self.questionPresented?(input)
+//		scrollView.delegate = self
+//		scrollIndicatorState(scrollView)
+//        self.didFinishSetup?()
         
     }
 	public func getValue() -> QuestionResponse? {
@@ -276,24 +239,22 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 	}
     public func tryNextButton() {
         if self.nextButton.isEnabled {
-            self.nextButtonPressed(UIButton())
+            //self.nextButtonPressed(UIButton())
         }
     }
     public func enableNextButton()
     {
-        self.nextButton.isEnabled = true;
-        self.nextButton.alpha = 1;
+		
         if let id = self.id, let title = Arc.shared.surveyController.get(question: id).altNextButtonTitle {
-            self.nextButton.setTitle(title, for: .normal)
+            surveyView.enableNextButton(title: title)
         }
     }
     
     public func disableNextButton()
     {
-        self.nextButton.isEnabled = false;
-        self.nextButton.alpha = 0.5;
+		
         if let id = self.id, let title = Arc.shared.surveyController.get(question: id).nextButtonTitle {
-            self.nextButton.setTitle(title, for: .normal)
+			surveyView.disableNextButton(title: title)
         }
     }
     
@@ -341,43 +302,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 		scrollView.contentInset = inset
 	}
 	
-	// MARK: ScrollView
-	public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-		self.scrollIndicatorState(scrollView)
-	}
-	public func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-		self.scrollIndicatorState(scrollView)
-
-	}
-	public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-		self.scrollIndicatorState(scrollView)
-
-	}
 	
-	private func scrollIndicatorState(_ scrollView: UIScrollView) {
-		let contentHeight = scrollView.contentSize.height
-		
-		let viewHeight = scrollView.bounds.height
-		let offset = scrollView.contentOffset.y
-		
-		let effectiveHeight = contentHeight - viewHeight - 20
-		let maxProgress = contentHeight - viewHeight - effectiveHeight
-		
-		let progress = min(maxProgress, max(offset - effectiveHeight, 0))
-        let convertedRect = nextButton.convert(nextButton.frame, to: scrollView)
-       // dump(scrollView.bounds)
-        
-        
-        //dump(convertedRect)
-		guard !scrollView.bounds.contains(convertedRect) && !scrollView.bounds.intersects(convertedRect) else {
-			scrollIndicator.alpha = 0
-			return
-		}
-		let alpha:CGFloat = 1.0 - (progress/maxProgress)
-		scrollIndicator.alpha = alpha
-		
-		
-		
-	}
-
+	
+	
 }
