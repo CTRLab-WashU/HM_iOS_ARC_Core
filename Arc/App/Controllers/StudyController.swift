@@ -485,7 +485,7 @@ open class StudyController : MHController {
 				let session = self.schedule(sessionAt: date, studyId: studyId)
 				if sessionOffSet == 0 && studyId != 0 {
 					let study = get(study: studyId)
-					if session.sessionDate?.days(from: study!.startDate!) != 0 {
+					if session.sessionDate?.days(from: study!.startDate!.startOfDay()) != 0 {
 						_ = set(userStartDate: session.sessionDate!, forStudyId: studyId)
 					}
 				}
