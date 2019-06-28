@@ -72,7 +72,7 @@ open class StartDateShiftViewController: SurveyNavigationViewController {
             
             picker.set(dates.map({ (dateItem) -> String in
                 //TODO: Refactor for reusability as needed
-                return "\(dateItem.localizedFormat(template:mediumFormat)) - \(dateItem.addingDays(days: 7).localizedFormat(template:mediumFormat))"
+                return "\(dateItem.localizedFormat(template:mediumFormat)) - \(dateItem.addingDays(days: 6).localizedFormat(template:mediumFormat))"
             }))
             picker.setValue(AnyResponse(type: .picker, value: selectedDate))
             break
