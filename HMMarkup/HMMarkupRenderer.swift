@@ -33,7 +33,20 @@ public final class HMMarkupRenderer {
 	public init(baseFont: Font) {
 		self.baseFont = baseFont
 	}
-	
+	public func canRender(text:String) -> Bool {
+		var text = text
+		if let config = HMMarkupRenderer.config, config.shouldTranslate {
+			text = config.translation?[text] ?? text
+		}
+		let elements = HMMarkupParser.parse(text: text)
+		
+		return !elements.filter {
+			if case HMMarkupNode.text(_) = $0 {
+					return false
+			}
+			return true
+		}.isEmpty
+	}
 	public func render(text: String) -> NSAttributedString {
         var text = text
         if let config = HMMarkupRenderer.config, config.shouldTranslate {
@@ -44,6 +57,7 @@ public final class HMMarkupRenderer {
 		
 		return elements.map { $0.render(withAttributes: attributes) }.joined()
 	}
+	
 	public func render(text: String, template:Dictionary<String, String>) -> NSAttributedString {
         var text = text
         if let config = HMMarkupRenderer.config, config.shouldTranslate {
