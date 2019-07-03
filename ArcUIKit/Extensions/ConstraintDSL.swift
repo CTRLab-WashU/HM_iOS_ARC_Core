@@ -18,6 +18,11 @@ public protocol LayoutAnchor {
 	func constraint(lessThanOrEqualTo anchor: Self,
 					constant: CGFloat) -> NSLayoutConstraint
 }
+extension NSLayoutConstraint {
+	func constraintWithMultiplier(_ multiplier: CGFloat) -> NSLayoutConstraint {
+		return NSLayoutConstraint(item: self.firstItem as Any, attribute: self.firstAttribute, relatedBy: self.relation, toItem: self.secondItem, attribute: self.secondAttribute, multiplier: multiplier, constant: self.constant)
+	}
+}
 extension LayoutAnchor where Self : NSLayoutDimension{
 	
 	func constraint(equalToConstant c: CGFloat) -> NSLayoutConstraint {

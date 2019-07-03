@@ -8,9 +8,32 @@
 
 import Foundation
 
-
+public protocol ACDrawable{
+	func draw()
+}
 public struct Drawing {
-	public struct GradientButton {
+	public struct HorizontalBar : ACDrawable {
+		var rect:CGRect
+		var bounds:CGRect
+		var cornerRadius:CGFloat
+		var primaryColor:UIColor?
+		var progress:CGFloat
+		
+		
+		public func draw() {
+			
+			let visible = CGRect(x: rect.origin.x, y: rect.origin.y, width: bounds.width * progress, height: bounds.height)
+			let path = UIBezierPath(roundedRect: visible,
+									byRoundingCorners: .allCorners,
+									cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
+			path.addClip()
+			let context = UIGraphicsGetCurrentContext()
+			context?.setFillColor((primaryColor ?? .black).cgColor)
+			path.fill()
+		}
+	}
+	
+	public struct GradientButton : ACDrawable {
 		var rect:CGRect
 		var bounds:CGRect
 		var cornerRadius:CGFloat

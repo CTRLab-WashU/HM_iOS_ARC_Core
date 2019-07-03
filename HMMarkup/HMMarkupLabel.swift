@@ -11,7 +11,7 @@ import UIKit
 @IBDesignable open class HMMarkupLabel: UILabel {
     @IBInspectable public var translationKey:String?
 
-    open public var renderer:HMMarkupRenderer!
+    open var renderer:HMMarkupRenderer!
     @IBInspectable var spacing:CGFloat = 1.33
     
     override open var text: String? {

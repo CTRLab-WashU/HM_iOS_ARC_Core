@@ -23,6 +23,7 @@ extension UIView {
 			stack.addArrangedSubview(view)
 		} else {
 			addSubview(view)
+			
 		}
 	}
 }
