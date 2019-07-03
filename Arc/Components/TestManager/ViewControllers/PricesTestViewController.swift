@@ -39,21 +39,10 @@ public class PricesTestViewController: ArcViewController {
     let topButton:ChoiceView = .get()
     let bottomButton:ChoiceView = .get()
     
-//    override func getTest<T : DNTest>() -> T? {
-//        //If our test matches what the outside context wants, pass it back
-//        return self.test as? T
-//    }
-//
-//    override func setTest<T : DNTest>(test: T) {
-//        self.test = test as? DNPricesTest
-//
-//    }
-    
-    
+
     override open func viewDidLoad() {
         super.viewDidLoad()
-        //topButton.shouldAutoToggle = false;
-        //bottomButton.shouldAutoToggle = false;
+
         ACState.testCount += 1
 
         buildButtonStackView()
@@ -70,7 +59,14 @@ public class PricesTestViewController: ArcViewController {
         	test = controller.loadTest(index: 0, file: PricesTestViewController.testVersion )
         	responseID = controller.createResponse(withTest: test!)
 		}
-        // Do any additional setup after loading the view.
+		
+		//Selecte a group of question indicies such that then they are displayed,
+		//they will be flipped.
+		if flippedPrices == nil
+		{
+			let count = controller.get(testCount: responseID)
+			flippedPrices = Set<Int>.uniqueSet(numberOfItems: count / 2, maxValue: count)
+		}
     }
     
     override open func viewDidAppear(_ animated: Bool) {
@@ -89,80 +85,96 @@ public class PricesTestViewController: ArcViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    @objc func nextItem()
+	
+	public func nextStep() {
+		itemIndex += 1
+	}
+	
+	@objc func nextItem()
     {
-        itemIndex += 1;
+        nextStep()
 		
         displayItem();
     }
-    
-    func displayItem() {
-        
-        displayTimer?.invalidate();
-        
-        topButton._isSelected = false;
-        topButton.isUserInteractionEnabled = true;
-        bottomButton._isSelected = false;
-        bottomButton.isUserInteractionEnabled = true;
-        
-        if flippedPrices == nil {
-            let count = controller.get(testCount: responseID)
-            flippedPrices = Set<Int>.uniqueSet(numberOfItems: count / 2, maxValue: count)
-            
-        }
-        if itemIndex < controller.get(testCount: responseID) {
-            guard let item = controller.get(question: itemIndex, id: responseID) else {
-                return
-            }
-            let topLabel = (flippedPrices.contains(itemIndex)) ? itemNameLabel : itemPriceLabel
-            let bottomLabel = (topLabel == itemNameLabel) ? itemPriceLabel : itemNameLabel
-            
-            topLabel?.text = item.item
-            
-            let correctPrice = "".localized("money_prefix") + item.price
-            bottomLabel?.text = correctPrice
-            
-            bottomLabel?.resizeFontForSingleWords();
-            topLabel?.resizeFontForSingleWords();
-            
-            _ = controller.mark(stimulusDisplayTime: responseID, index: itemIndex)
-            
-            displayTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(nextItem), userInfo: nil, repeats: false)
-        } else {
-			
-			let onConfirm = {[weak self] in
-				if let weakSelf = self {
-					
-					//Present controller
-					weakSelf.questionDisplay = .get()
-					weakSelf.questionDisplay?.responseId = weakSelf.responseID
-					
-					weakSelf.present(weakSelf.questionDisplay!, animated: false, completion: { [weak self] in
-						guard let weakself = self else {
-							return
-						}
-						weakself.questionDisplay?.selectQuestion()
-					})
-				}
+	
+	public func resetController() {
+		displayTimer?.invalidate();
+		
+		topButton._isSelected = false;
+		topButton.isUserInteractionEnabled = true;
+		bottomButton._isSelected = false;
+		bottomButton.isUserInteractionEnabled = true;
+	}
+	
+	public func displayPrice(index:Int, isTimed:Bool = true) {
+		
+		guard let item = controller.get(question: index, id: responseID) else {
+			return
+		}
+		let topLabel = (flippedPrices.contains(itemIndex)) ? itemNameLabel : itemPriceLabel
+		let bottomLabel = (topLabel == itemNameLabel) ? itemPriceLabel : itemNameLabel
+		
+		topLabel?.text = item.item
+		
+		let correctPrice = "".localized("money_prefix") + item.price
+		bottomLabel?.text = correctPrice
+		
+		bottomLabel?.resizeFontForSingleWords();
+		topLabel?.resizeFontForSingleWords();
+		
+		_ = controller.mark(stimulusDisplayTime: responseID, index: index)
+		if isTimed {
+			displayTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(nextItem), userInfo: nil, repeats: false)
+		}
+	}
+	
+	public func showQuestionController() {
+		//Present controller
+		questionDisplay = .get()
+		questionDisplay?.responseId = responseID
+		
+		present(questionDisplay!, animated: false, completion: { [weak self] in
+			guard let weakself = self else {
+				return
 			}
+			weakself.questionDisplay?.selectQuestion()
+		})
+	}
+	
+	public func displayTransition() {
+		Arc.shared.displayAlert(message: "You will now start the test.\nYou will see an item and two prices. Please select the price that matches the item you studied.".localized("price_overlay"), options: [
 			
-			Arc.shared.displayAlert(message: "You will now start the test.\nYou will see an item and two prices. Please select the price that matches the item you studied.".localized("price_overlay"), options: [
-				
-				.delayed(name: "BEGIN".localized("button_begin"), delayTime: 3.0, onConfirm),
-				
-				.wait(waitTime: 12.0, onConfirm)
-				
-			])
+			.delayed(name: "BEGIN".localized("button_begin"), delayTime: 3.0, showQuestionController),
 			
+			.wait(waitTime: 12.0, showQuestionController)
+			
+		])
+	}
+	
+	public func hideInterface() {
+		self.topButton.isHidden = true;
+		self.bottomButton.isHidden = true;
+		self.goodPriceLabel.isHidden = true;
+		self.itemNameLabel.text = ""
+		self.itemPriceLabel.text = ""
+	}
+	
+	func displayItem()
+	{
+		
+		resetController()
+		
+		
+		
+        if itemIndex < controller.get(testCount: responseID)
+		{
+			displayPrice(index: itemIndex)
+        }
+		else
+		{
+			displayTransition()
             
-            self.topButton.isHidden = true;
-            self.bottomButton.isHidden = true;
-            self.goodPriceLabel.isHidden = true;
-            self.itemNameLabel.text = ""
-            self.itemPriceLabel.text = ""
-            //Suffle before input
-            
+			hideInterface()
         }
         
     }
@@ -217,27 +229,6 @@ public class PricesTestViewController: ArcViewController {
 //            print(p.toString())
         }
     }
-    
-    //MARK: - DNPriceQuestionDelegate
-    
-//    func didAnswerWithValue(data: DNPriceInputData) {
-//        test?.testData.items[questionIndex].inputData = data;
-//        questionIndex += 1
-//
-//        if questionIndex < test!.itemCount {
-//            questionDisplay?.presentQuestion(item: (test?.testData.items[questionIndex])!,variation: (self.test is DNPricesTestVariationA) ? 1 : 0)
-//        } else {
-//            self.questionDisplay?.dismiss(animated: false, completion: nil)
-//
-//            test?.endTest()
-//
-//            endTest()
-//            self.itemNameLabel.text = ""
-//            self.itemPriceLabel.text = ""
-//
-//        }
-//
-//    }
     
 }
 
