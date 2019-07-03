@@ -9,6 +9,20 @@
 import Foundation
 open class AppController : MHController {
 	public var testCount:Int = 0
+	
+	public var coachMarks:[String:Bool]? {
+		get {
+			
+			return defaults.dictionary(forKey:"coachMarks") as? [String : Bool];
+			
+		}
+		set (newVal)
+		{
+			defaults.setValue(newVal, forKey:"coachMarks");
+			defaults.synchronize();
+		}
+	}
+	
     public var locale:ACLocale {
         return ACLocale(rawValue: "\(language ?? "en")_\(country ?? "US")") ?? .en_US
     }
