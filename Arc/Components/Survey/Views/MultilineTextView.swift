@@ -32,6 +32,7 @@ open class MultilineTextView : UIView, SurveyInput, UITextViewDelegate {
         textView.layer.cornerRadius = 8.0
 		textView.inputAccessoryView = getInputAccessoryView(selector: #selector(endEditing(_:)))
         textView.becomeFirstResponder()
+		didFinishSetup?()
     }
     
     override open var canBecomeFirstResponder: Bool {

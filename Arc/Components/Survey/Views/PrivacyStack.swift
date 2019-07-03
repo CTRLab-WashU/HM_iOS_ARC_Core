@@ -19,10 +19,11 @@ public class PrivacyStack: UIView {
 		stack { [weak self] in
 			$0.axis = .vertical
 			$0.alignment = .center
-			
 			$0.acLabel {
+				$0.textAlignment = .center
 				$0.text = "By signing in you agree to our"
 					.localized("bysigning_key")
+				$0.numberOfLines = 0
 				
 			}
 			
@@ -31,6 +32,17 @@ public class PrivacyStack: UIView {
 									  for: .normal)
 				Roboto.PostProcess.link($0)
 			}
+		}
+		.layout { [weak self] in
+			guard let weakSelf = self else {
+				return
+			}
+			$0.top == weakSelf.topAnchor ~ 999
+			$0.trailing == weakSelf.trailingAnchor ~ 999
+			$0.bottom == weakSelf.bottomAnchor ~ 999
+			$0.leading == weakSelf.leadingAnchor ~ 999
+			$0.width == weakSelf.widthAnchor ~ 999
+			$0.height == weakSelf.heightAnchor ~ 999
 		}
 	}
 	

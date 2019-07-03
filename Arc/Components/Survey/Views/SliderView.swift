@@ -43,6 +43,10 @@ open class SliderView: UIView, SurveyInput {
         // Drawing code
     }
     */
+	open override func awakeFromNib() {
+		super.awakeFromNib()
+		didFinishSetup?()
+	}
 	public func setHidesSelectedAfterFirst(value:Bool) {
 		hideSelectedAfterFirst = value
 	}

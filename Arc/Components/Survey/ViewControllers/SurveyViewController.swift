@@ -15,27 +15,14 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 	public var orientation: UIStackView.Alignment = .center
     public var didChangeValue: (() -> ())?
 	public var tryNext:(() -> ())?
-    public var didFinishSetup: (() -> ())?
+	public var didFinishSetup: (() -> ())?
 
 	
     var nextPressed:((SurveyInput?, QuestionResponse?)->Void)?
     var questionPresented:((SurveyInput?)->Void)?
 	var templateHandler:((String)->Dictionary<String,String>)?
 	public var helpPressed:(()->())?
-    @IBOutlet weak var promptLabel: UILabel!
-	@IBOutlet weak var errorLabel:UILabel!
-    @IBOutlet weak var detailsLabel:UILabel!
-	@IBOutlet public weak var nextButton:UIButton!
-
-    @IBOutlet weak var container: UIStackView!
-    @IBOutlet weak var views: UIStackView!
-    @IBOutlet weak var nextBottomSpacing: NSLayoutConstraint!
-    @IBOutlet weak var bottomAnchor: NSLayoutConstraint!
-    @IBOutlet weak var privacyStack: UIStackView!
-    @IBOutlet weak var privacyPolicyButton: UIButton!
-	@IBOutlet weak var scrollView: UIScrollView!
-	@IBOutlet weak var scrollIndicator: UIView!
-    @IBOutlet weak var scrollIndicatorLabel:UILabel!
+	
 //    @IBOutlet weak var spacerView: UIView!
     
     var id:String?
@@ -44,7 +31,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
     var input:SurveyInput?
     var questionIndex:String?
     var surveyId:String?
-	var surveyView:SurveyView {
+	public var surveyView:SurveyView {
 		return view as! SurveyView
 	}
     private var controller = Arc.shared.surveyController
@@ -59,6 +46,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 		super.loadView()
 		let v = SurveyView()
 		v.nextPressed = self.nextPressed
+		input = v
 		self.view = v
 	}
 	
@@ -76,32 +64,18 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
             backButton.setTitleColor(UIColor(named: "Primary"), for: .normal)
             backButton.addTarget(self, action: #selector(self.backPressed), for: .touchUpInside)
 
-            NSLayoutConstraint(item: backButton, attribute: NSLayoutConstraint.Attribute.left, relatedBy: NSLayoutConstraint.Relation.equal, toItem: super.view, attribute: NSLayoutConstraint.Attribute.left, multiplier: 1, constant: -75).isActive = true
+//            NSLayoutConstraint(item: backButton, attribute: NSLayoutConstraint.Attribute.left, relatedBy: NSLayoutConstraint.Relation.equal, toItem: super.view, attribute: NSLayoutConstraint.Attribute.left, multiplier: 1, constant: -75).isActive = true
             let leftButton = UIBarButtonItem(customView: backButton)
 
             //self.navigationItem.setLeftBarButton(leftButton, animated: true)
             self.navigationItem.leftBarButtonItem = leftButton
-			NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-			NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-
+			
 		}
         
-//        nextBottomSpacing.constant = getNextButtonSpacing()
 		
-//		let attributes = [ NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.foregroundColor: UIColor(named: "Primary") ?? .blue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.medium) ] as [NSAttributedString.Key : Any]
-//        let attrString = NSAttributedString(string: "Privacy Policy".localized("privacy_linked"), attributes: attributes)
-//        privacyPolicyButton.setAttributedTitle(attrString, for: .normal)
-    }
-	@objc func keyboardWillShow(notification: NSNotification) {
-		print("keyboardWillShow")
-		setBottomScrollInset(value: 40)
-	}
-	
-	@objc func keyboardWillHide(notification: NSNotification){
-		print("keyboardWillHide")
-		setBottomScrollInset(value: 0)
 
-	}
+    }
+	
 	open override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		NotificationCenter.default.removeObserver(self)
@@ -134,8 +108,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
     }
     func loadQuestion(questionIndex:String) {
         let question = controller.get(question: questionIndex)
-		surveyView.displayQuestion(withQuestion: question)
-
+		displayQuestion(question: question)
 		
     }
 	
@@ -146,76 +119,18 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 	/// - Parameter question: An object of type Survey.Question.
 	/// This value is created via Json files loaded by the parent SurveyNavigationViewController
 	func displayQuestion(question:Survey.Question) {
-		
-		//Get supplied template for question
-//		if let nextButtonTitle = question.nextButtonTitle {
-//			nextButton.setTitle(nextButtonTitle.localized(nextButtonTitle), for: .normal)
-//		} else {
-//			if question.nextButtonImage == nil {
-//				nextButton.setTitle("NEXT".localized("button_next"), for: .normal)
-//			}
-//		}
-//		
-		
-//		
-//		
-//		let template = templateHandler?(question.questionId) ?? [:]
-//
-//		let markedUpString = renderer.render(text: question.prompt, template:template)
-//		
-//		// Increase line height
-//		let attributedString = NSMutableAttributedString(attributedString: markedUpString)
-//		let paragraphStyle = NSMutableParagraphStyle()
-//		paragraphStyle.lineSpacing = 7
-//		attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
-//		promptLabel.attributedText = attributedString
-//		
-//		detailsLabel.text = question.detail
-//		
-//		self.id = question.questionId
-//		input?.parentScrollView = nil
-//		
-//		input = question.type.create(inputWithQuestion: question)
-//		container.alignment = input?.orientation ?? .bottom
-//
-//		if question.type == .choice {
-//			
-//			disableNextButton()
-//			
-//			
-//			
-//		}  else if question.type == .password {
-//			if let inputView = input as? PasswordView {
-//				inputView.openKeyboard()
-//			}
-//			
-//			privacyStack.isHidden = false
-//			
-//		} else if question.type == .segmentedText {
-//			if let inputView = input as? SegmentedTextView {
-//				inputView.openKeyboard()
-//				inputView.tryNext = self.tryNextButton
-//			}
-//
-//			privacyStack.isHidden = false
-//		}
-//		if bottomAnchor != nil {
-//			bottomAnchor.isActive = input?.isBottomAnchored ?? false
-//		}
-//		container.alignment = input?.orientation ?? .top
+		surveyView.questionPresented = questionPresented
 
-//		
-
-//		
+		surveyView.displayQuestion(withQuestion: question)
+		input = surveyView
 
 	}
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.loadQuestion(questionIndex: questionIndex ?? "")
-//        self.questionPresented?(input)
 //		scrollView.delegate = self
 //		scrollIndicatorState(scrollView)
-//        self.didFinishSetup?()
+        self.didFinishSetup?()
         
     }
 	public func getValue() -> QuestionResponse? {
@@ -229,19 +144,14 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 	
 	public func setError(message: String?) {
         
-        if message != nil && (self.input is PasswordView || self.input is SegmentedTextView) {
-            showContactButton()
-        } else {
-            showContactButton(false)
-        }
+//        if message != nil && (self.input is PasswordView || self.input is SegmentedTextView) {
+//            showContactButton()
+//        } else {
+//            showContactButton(false)
+//        }
 		input?.setError(message: message)
-		errorLabel.text = message
 	}
-    public func tryNextButton() {
-        if self.nextButton.isEnabled {
-            //self.nextButtonPressed(UIButton())
-        }
-    }
+	
     public func enableNextButton()
     {
 		
@@ -262,29 +172,8 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
     @IBAction public func goToPrivacy() {
         app.appNavigation.defaultPrivacy()
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    //TODO:Remove this and refactor
-    func showContactButton(_ shouldShow:Bool = true) {
-        for v in views.arrangedSubviews {
-            if v is LoginHelpView {
-                v.removeFromSuperview()
-            }
-        }
-        guard shouldShow else {
-            return
-        }
-        let helpView:LoginHelpView = .get()
-        helpView.helpButton.addTarget(self, action: #selector(navigateToHelp), for: .touchUpInside)
-        views.addArrangedSubview(helpView)
-    }
+	
     
     @objc open func navigateToHelp() {
 		if let helpPressed = helpPressed {
@@ -294,13 +183,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 		}
     }
 	
-	public func setBottomScrollInset(value:CGFloat) {
-		var inset = scrollView.contentInset
-		
-			inset.bottom = value
-		
-		scrollView.contentInset = inset
-	}
+	
 	
 	
 	

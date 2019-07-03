@@ -44,6 +44,7 @@ open class MultipleChoiceView : UIView,  SurveyInput {
             views.append(o)
             stack.addArrangedSubview(o)
         }
+		didFinishSetup?()
     }
     
     private func selectView(view:ChoiceView) {

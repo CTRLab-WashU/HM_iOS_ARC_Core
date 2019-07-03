@@ -31,6 +31,7 @@ open class TimeView: UIView, SurveyInput {
         if let date = self.dateFormatter.date(from: "12:00 PM") {
             picker.setDate(date, animated: false)
         }
+		didFinishSetup?()
     }
  
     public func getValue() -> QuestionResponse? {

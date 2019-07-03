@@ -177,8 +177,7 @@ public class ACCalendarView:UIView, SurveyInput {
         super.init(frame: frame)
         setup()
         self.constrain(view:content)
-        
-        
+		
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -188,7 +187,6 @@ public class ACCalendarView:UIView, SurveyInput {
 
         setup()
         self.constrain(view:content)
-       
     }
     public override func prepareForInterfaceBuilder() {
 
@@ -299,6 +297,7 @@ public class ACCalendarView:UIView, SurveyInput {
         for row in 0 ..< rows {
             content.addArrangedSubview( createRow(views: Array(items[0 + (7 * row) ... 6 + (7 * row)])))
         }
+		didFinishSetup?()
     }
     
     private func getWeekDays(range:ClosedRange<Date>, selected:ClosedRange<Date>? = nil) -> [(Int, Int, Bool?)]{

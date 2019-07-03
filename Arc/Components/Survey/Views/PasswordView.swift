@@ -20,6 +20,7 @@ open class PasswordView : UIView, SurveyInput, UITextFieldDelegate {
 		super.awakeFromNib()
         set(secure: false)
 		textField.inputAccessoryView = getInputAccessoryView(selector: #selector(PasswordView.doneButtonAction))
+		didFinishSetup?()
 	}
 	
 	@IBAction func toggleSecure(_ sender: Any) {

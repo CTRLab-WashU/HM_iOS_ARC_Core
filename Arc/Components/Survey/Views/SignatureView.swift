@@ -49,7 +49,7 @@ open class SignatureView: BorderedUIView, SurveyInput {
         super.didMoveToSuperview()
         isExclusiveTouch = true
         didFinishSetup?()
-
+		didFinishSetup?()
     }
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

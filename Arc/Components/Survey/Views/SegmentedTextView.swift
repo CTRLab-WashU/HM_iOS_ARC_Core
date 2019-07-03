@@ -56,6 +56,13 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTra
 	public var hasText: Bool {
 		return _value.count > 0
 	}
+	
+	public override func awakeFromNib() {
+		super.awakeFromNib()
+		updateValue(newValue: [])
+		didFinishSetup?()
+	}
+	
 	public func set(length:UInt) {
 		
 		self.inputStack.removeSubviews()
