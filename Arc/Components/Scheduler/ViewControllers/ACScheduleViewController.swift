@@ -301,7 +301,7 @@ public class ACScheduleViewController : SurveyNavigationViewController {
 
 		//Probably see where the app wants to go next
 		if let top = self.topViewController as? SurveyViewController {
-			top.nextButton.showSpinner(color: UIColor(white: 1.0, alpha: 0.8), backgroundColor:UIColor(named:"Primary") )
+			top.surveyView.nextButton?.showSpinner(color: UIColor(white: 1.0, alpha: 0.8), backgroundColor:UIColor(named:"Primary") )
 		}
 	
 	
@@ -382,7 +382,7 @@ public class ACScheduleViewController : SurveyNavigationViewController {
             DispatchQueue.main.async { [weak self] in
                 self?.view.hideSpinner()
                 if let top = self?.topViewController as? SurveyViewController {
-                    top.nextButton.hideSpinner()
+                    top.surveyView.nextButton?.hideSpinner()
 
                 }
                 self?.didFinishScheduling()

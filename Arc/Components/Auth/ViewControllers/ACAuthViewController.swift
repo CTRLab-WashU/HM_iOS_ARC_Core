@@ -102,7 +102,7 @@ open class ACAuthViewController: SurveyNavigationViewController {
 				}
 			} else {
 				if let top = self.topViewController as? SurveyViewController {
-					top.nextButton.showSpinner(color: UIColor(white: 1.0, alpha: 0.8), backgroundColor:UIColor(named:"Primary") )
+					top.surveyView.nextButton?.showSpinner(color: UIColor(white: 1.0, alpha: 0.8), backgroundColor:UIColor(named:"Primary") )
 				}
 				controller.authenticate { (id, error) in
 					OperationQueue.main.addOperation {
@@ -113,7 +113,7 @@ open class ACAuthViewController: SurveyNavigationViewController {
 							Arc.shared.participantId = Int(value)
 
 							if let top = self.topViewController as? SurveyViewController {
-								top.nextButton.hideSpinner()
+								top.surveyView.nextButton?.hideSpinner()
 							}
 
 							Arc.shared.nextAvailableState()
@@ -122,7 +122,7 @@ open class ACAuthViewController: SurveyNavigationViewController {
 							if let input:SurveyInput = self.topViewController as? SurveyInput {
 								input.setError(message:error)
 								if let top = self.topViewController as? SurveyViewController {
-									top.nextButton.hideSpinner()
+									top.surveyView.nextButton?.hideSpinner()
 								}
 							}
 						}
