@@ -97,6 +97,8 @@ public class PricesTestViewController: ArcViewController {
         displayItem();
     }
 	
+	/// Invalidates the display timer, deselects all buttons for reuse,
+	/// and ensures that user interaction is enabled.
 	public func resetController() {
 		displayTimer?.invalidate();
 		
@@ -106,6 +108,10 @@ public class PricesTestViewController: ArcViewController {
 		bottomButton.isUserInteractionEnabled = true;
 	}
 	
+	/// Displays a question stimuli and asks the user to confirm if the price is good or not.
+	/// - Parameter index: The index is fed into the controller powering the test and used
+	/// to retrieve a question from the selected test.
+	/// - Parameter isTimed: Defaulting to true, this will cause the test to only display the stimuli for a limited period of time.
 	public func displayPrice(index:Int, isTimed:Bool = true) {
 		
 		guard let item = controller.get(question: index, id: responseID) else {
@@ -128,6 +134,9 @@ public class PricesTestViewController: ArcViewController {
 		}
 	}
 	
+	/// Displays the recall portion of the test. This controller is not timed.
+	/// As the user makes selections the test will progress and track their
+	/// response time.
 	public func showQuestionController() {
 		//Present controller
 		questionDisplay = .get()
@@ -141,6 +150,9 @@ public class PricesTestViewController: ArcViewController {
 		})
 	}
 	
+	/// Display an alert telling the user that the recall portion of the test will begin.
+	/// They can either wait 12 seconds or after 3 seconds hit the begin button to begin
+	/// the next phase of the test.
 	public func displayTransition() {
 		Arc.shared.displayAlert(message: "You will now start the test.\nYou will see an item and two prices. Please select the price that matches the item you studied.".localized("price_overlay"), options: [
 			
@@ -151,6 +163,8 @@ public class PricesTestViewController: ArcViewController {
 		])
 	}
 	
+	/// Hide the buttons and remove all text from the display
+	/// this will prevent the user from seeing stimuli for too long.
 	public func hideInterface() {
 		self.topButton.isHidden = true;
 		self.bottomButton.isHidden = true;
@@ -161,17 +175,20 @@ public class PricesTestViewController: ArcViewController {
 	
 	func displayItem()
 	{
-		
+		//Reset the state of the top and bottom selection bottons
 		resetController()
 		
 		
-		
+		//If our item index is less than the number of items in this particular
+		//run of the prices test we can safely display the price at that index
         if itemIndex < controller.get(testCount: responseID)
 		{
 			displayPrice(index: itemIndex)
         }
+		//Else we've reached the end of the first phase of the test
 		else
 		{
+			
 			displayTransition()
             
 			hideInterface()

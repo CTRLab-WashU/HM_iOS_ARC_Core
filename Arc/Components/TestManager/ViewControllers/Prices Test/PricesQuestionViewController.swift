@@ -40,39 +40,21 @@ open class PricesQuestionViewController: UIViewController {
 
             let test:PriceTestResponse = try! controller.get(id: responseId)
             questions = Set(0 ..< test.sections.count)
-//            for i in 0..<buttons.count
-//            {
-//                let b = buttons[i];
-//                b.tag = i;
-//                b.removeTarget(nil, action: nil, for: .touchUpInside);
-//                b.addTarget(self, action: #selector(didSelect(_:)), for: .touchDown);
-//            }
+
         }
     }
-//    @IBAction func didSelect(_ sender: UIButton) {
-//        guard let id = buttons.index(of: sender) else {
-//            return
-//        }
-//
-//        _ = controller.mark(timeTouched: responseId, index: questionIndex)
-//        let p = controller.set(choice: id, id: responseId, index: questionIndex)
-//        print(p.toString())
-//        selectQuestion()
-//
-//
-//    }
-    
+
     func didSelect(id:Int) {
-//        guard let id = buttons.index(of: sender) else {
-//            return
-//        }
-        
+
         _ = controller.mark(timeTouched: responseId, index: questionIndex)
         let p = controller.set(choice: id, id: responseId, index: questionIndex)
-//        print(p.toString())
         selectQuestion()
     }
-    
+	
+	/// Select question will check to see what prices were shown to the user
+	/// and then pick a random value that has NOT been presented to the user.
+	/// if it cannot find a value it will mark the test as complete and defer
+	/// to the application for navigation.
     func selectQuestion() {
         if let value = questions.subtracting(presentedQuestions).randomElement() {
             presentQuestion(index: value, id: responseId)
@@ -81,11 +63,19 @@ open class PricesQuestionViewController: UIViewController {
 			Arc.shared.nextAvailableState()
         }
     }
+	
+	
+	/// Present question will track question indicies passed into this function.
+	/// It will then fetch the data for that question and configure the view.
+	/// Once the user makes a selection it will immediately present the next question.
+	/// - Parameter index: The index of a question to be presented
+	/// - Parameter id: the id of the survey to present the question from
     func presentQuestion(index:Int, id:String){
         presentedQuestions.insert(index)
         questionIndex = index
         responseId = id
-      
+		
+		
         _ = controller.mark(questionDisplayTime: id, index: index)
         let item = controller.get(question: index, id: id)
         let formatter = NumberFormatter()
