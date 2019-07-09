@@ -20,12 +20,14 @@ public struct Math{
 		return min(1.0, max(0.0, value))
 	}
 	public enum Curve {
-		case linear, easeIn, easeOut
+		case none, linear, easeIn, easeOut
 		
 		func evaluate (currentTime:Double) -> Double {
 			let t = Math.clamp(currentTime)
 			
 			switch self {
+			case .none:
+				return 1.0
 			case .linear:
 				return Math.lerp(a: 0.0, b: 1.0, t: t)
 			case .easeOut:
@@ -41,64 +43,15 @@ public struct Math{
 
 
 public struct Animate {
-	public struct State {
-		var _isValid:(()->Bool)
-		func isValid(condition:((TimeInterval)->Bool)) {
-			
-		}
-	}
-	private class UpdateLooper {
-		
-		var displayLink:CADisplayLink?
-		
-		var update:((Double)->())?
-		var _current:Double = 0.0
-		var time:Double = 0
-		var delay:Double = 0
-		var maxTime:Double = 1.0
-		var curve:Math.Curve = .linear
-		init() {
-		}
-		func start() {
-			displayLink = CADisplayLink(target: self, selector: #selector(loop))
-			displayLink?.add(to: .current, forMode: .common)
-		}
-		func pause() {
-			displayLink?.isPaused = true
-		}
-		func resume() {
-			displayLink?.isPaused = false
-		}
-		func stop() {
-			displayLink?.invalidate()
-			displayLink = nil
-			print("stopped")
-		}
-		public func run(_ update:@escaping (Double)->()) {
-			self.update = update
-			start()
-		}
-		@objc private func loop() {
-			print("updating: \(_current)")
-			guard let dl = displayLink else {
-				return
-			}
-			time += dl.targetTimestamp - dl.timestamp
-			_current = curve.evaluate(currentTime: (time - delay)/maxTime)
-			 update?(_current)
-			if time - delay >= maxTime {
-				
-				stop()
-			}
-		}
-	}
+	
+	
 	private var _delay:Double = 0.0
 	private var _duration:Double = 0.2
 	private var _curve:Math.Curve = .linear
 	private var _progress:Double = 0
 
 	private var updater:UpdateLooper
-	init() {
+	public init() {
 		updater = UpdateLooper()
 		
 	}
@@ -143,6 +96,72 @@ public struct Animate {
 	}
 	public func resume() {
 		updater.resume()
+	}
+	
+	public struct State {
+		var _isValid:(()->Bool)
+		func isValid(condition:((TimeInterval)->Bool)) {
+			
+		}
+	}
+	private class UpdateLooper {
+		
+		var displayLink:CADisplayLink?
+		
+		var update:((Double)->())?
+		var _current:Double = 0.0
+		var time:Double = 0
+		var delay:Double = 0
+		var maxTime:Double = 1.0
+		var curve:Math.Curve = .linear
+		init() {
+		}
+		func start() {
+			displayLink = CADisplayLink(target: self, selector: #selector(loop))
+			displayLink?.add(to: .current, forMode: .common)
+		}
+		func pause() {
+			displayLink?.isPaused = true
+		}
+		func resume() {
+			displayLink?.isPaused = false
+		}
+		func stop() {
+			displayLink?.invalidate()
+			displayLink = nil
+			print("stopped")
+		}
+		public func run(_ update:@escaping (Double)->()) {
+			
+			self.update = update
+			//The none option simply returns the final value
+			//Run the loop once and stop the animation.
+			if curve == .none {
+				loop()
+			} else {
+				start()
+			}
+		}
+		@objc private func loop() {
+			print("updating: \(_current)")
+			guard let dl = displayLink else {
+				if curve == .none {
+					_current = curve.evaluate(currentTime: (time - delay)/maxTime)
+					
+					update?(_current)
+					time = maxTime + delay
+				}
+				stop()
+				return
+			}
+			time += dl.targetTimestamp - dl.timestamp
+			_current = curve.evaluate(currentTime: (time - delay)/maxTime)
+			
+			if time - delay >= maxTime {
+				
+				stop()
+			}
+		}
 	}
 	
 }

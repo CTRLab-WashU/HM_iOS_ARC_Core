@@ -59,10 +59,24 @@ public struct Roboto {
 			let renderer:HMMarkupRenderer = HMMarkupRenderer(baseFont: label.font)
 			
 			
-			let markedUpString = renderer.render(text: label.text ?? "", template:template)
+			let markedUpString = NSMutableAttributedString(attributedString:  renderer.render(text: label.text ?? "", template:template))
+			
+			markedUpString.addAttribute(NSAttributedString.Key.foregroundColor, value: label.textColor ?? .black, range: NSMakeRange(0, markedUpString.length))
 			label.attributedText = markedUpString
 			
 			lineHeight(label)
+		}
+		public static func renderMarkup (_ textView:UITextView, template:[String:String] = [:]) {
+			let renderer:HMMarkupRenderer = HMMarkupRenderer(baseFont: textView.font ?? Roboto.Font.body)
+			
+			
+			let markedUpString = NSMutableAttributedString(attributedString:  renderer.render(text: textView.text ?? "", template:template))
+			
+			markedUpString.addAttribute(NSAttributedString.Key.foregroundColor, value: textView.textColor ?? .black, range: NSMakeRange(0, markedUpString.length))
+			
+			textView.attributedText = markedUpString
+			
+			lineHeight(textView)
 		}
 		public static func link (_ label:UILabel) {
 			
@@ -86,6 +100,16 @@ public struct Roboto {
 			attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
 			label.attributedText = attributedString
 		}
+		public static func lineHeight (_ textView:UITextView) {
+			
+			let attributedString = NSMutableAttributedString(attributedString: textView.attributedText ?? NSAttributedString(string: textView.text ?? ""))
+			
+			
+			let paragraphStyle = NSMutableParagraphStyle()
+			paragraphStyle.lineSpacing = 7
+			attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+			textView.attributedText = attributedString
+		}
 	}
 	public struct Style {
 		
@@ -95,43 +119,43 @@ public struct Roboto {
 			label.textColor = #colorLiteral(red: 0.6000000238, green: 0, blue: 0, alpha: 1)
 			
 		}
-		public static func body(_ label:UILabel) {
+		public static func body(_ label:UILabel, color:UIColor? = UIColor(named: "primary Text")) {
 			label.font = Roboto.Font.body
 			label.numberOfLines = 0
-			label.textColor = #colorLiteral(red: 0.2349999994, green: 0.2349999994, blue: 0.2349999994, alpha: 1)
+			label.textColor = color
 		}
-		public static func bodyBold(_ label:UILabel) {
+		public static func bodyBold(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
 			label.font = Roboto.Font.bodyBold
 			label.numberOfLines = 0
-			label.textColor = #colorLiteral(red: 0.2349999994, green: 0.2349999994, blue: 0.2349999994, alpha: 1)
+			label.textColor = color
 		}
-		public static func heading(_ label:UILabel) {
+		public static func heading(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
 			label.font = Roboto.Font.heading
 			label.numberOfLines = 0
 			
-			label.textColor = #colorLiteral(red: 0.2349999994, green: 0.2349999994, blue: 0.2349999994, alpha: 1)
+			label.textColor = color
 		}
-		public static func headingBold(_ label:UILabel) {
+		public static func headingBold(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
 			label.font = Roboto.Font.headingBold
 			label.numberOfLines = 0
-			label.textColor = #colorLiteral(red: 0.2349999994, green: 0.2349999994, blue: 0.2349999994, alpha: 1)
+			label.textColor = color
 		}
-		public static func body(_ label:UITextView) {
+		public static func body(_ label:UITextView, color:UIColor? = UIColor(named:"Primary Text")) {
 			label.font = Roboto.Font.body
-			label.textColor = #colorLiteral(red: 0.2349999994, green: 0.2349999994, blue: 0.2349999994, alpha: 1)
+			label.textColor = color
 		}
-		public static func bodyBold(_ label:UITextView) {
+		public static func bodyBold(_ label:UITextView, color:UIColor? = UIColor(named:"Primary Text")) {
 			label.font = Roboto.Font.bodyBold
-			label.textColor = #colorLiteral(red: 0.2349999994, green: 0.2349999994, blue: 0.2349999994, alpha: 1)
+			label.textColor = color
 		}
-		public static func heading(_ label:UITextView) {
+		public static func heading(_ label:UITextView, color:UIColor? = UIColor(named:"Primary Text")) {
 			label.font = Roboto.Font.heading
 			
-			label.textColor = #colorLiteral(red: 0.2349999994, green: 0.2349999994, blue: 0.2349999994, alpha: 1)
+			label.textColor = color
 		}
-		public static func headingBold(_ label:UITextView) {
+		public static func headingBold(_ label:UITextView, color:UIColor? = UIColor(named:"Primary Text")) {
 			label.font = Roboto.Font.headingBold
-			label.textColor = #colorLiteral(red: 0.2349999994, green: 0.2349999994, blue: 0.2349999994, alpha: 1)
+			label.textColor = color
 		}
 	}
 	
