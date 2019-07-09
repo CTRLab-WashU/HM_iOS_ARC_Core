@@ -49,7 +49,7 @@ public class ACHomeView: ACTemplateView {
 	
 	public var debugButton: UIButton!
 	public var surveyButton: UIButton!
-	var relSeparatorWidth:CGFloat = 1.0
+	var relSeparatorWidth:CGFloat = 0.15
 	var versionLabel: UILabel!
 	public var separator:ACHorizontalBar!
 	public var tutorialTarget:UIView?
@@ -76,8 +76,8 @@ public class ACHomeView: ACTemplateView {
 
 	}
 	public func highlightTutorialTargets() {
-		 tutorialTarget?.highlight()
-		window?.overlayView(view: self, withShapes: [.roundedRect(tutorialTarget!, 8.0)])
+//		 tutorialTarget?.highlight()
+//		window?.overlayView(view: self, withShapes: [.roundedRect(tutorialTarget!, 8.0)])
 	}
 	public required init?(coder: NSCoder) {
 		super.init(coder: coder)
