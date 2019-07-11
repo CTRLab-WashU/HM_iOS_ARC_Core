@@ -155,13 +155,15 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
             index < instructions.count
              {
             let instruction = instructions[index]
-            let vc:IntroViewController = .get()
+			let vc:IntroViewController = IntroViewController()
+			vc.loadViewIfNeeded()
             
             self.pushViewController(vc, animated: true)
             
             vc.set(heading:     instruction.title,
                    subheading:  instruction.subtitle,
-                   content:     instruction.preface)
+				   content:     instruction.preface,
+				   template: templateForInstruction(instruction: index))
 				vc.nextButtonTitle = instruction.nextButtonTitle
                 vc.nextButtonImage = instruction.nextButtonImage
 
@@ -183,8 +185,8 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
                index < instructions.count
 		{
 			let instruction = instructions[index]
-			let vc:IntroViewController = .get()
-			vc.templateHandler = templateForPostSurvey
+			let vc:IntroViewController = IntroViewController()
+			vc.loadViewIfNeeded()
             vc.instructionIndex = index
 			if !shouldShowBackButton {
 				vc.shouldHideBackButton = true
@@ -193,7 +195,8 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
 			
 			vc.set(heading:     instruction.title,
 				   subheading:  instruction.subtitle,
-				   content:     instruction.preface)
+				   content:     instruction.preface,
+				   template: templateForPostSurvey(instruction: index))
 			vc.nextButtonTitle = instruction.nextButtonTitle
             vc.nextButtonImage = instruction.nextButtonImage
 
@@ -220,9 +223,9 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
         let question = Arc.shared.surveyController.get(question: index)
         if let style = question.style, style == .instruction {
             
-            let vc:IntroViewController = .get()
+			let vc:IntroViewController = IntroViewController()
+			vc.loadViewIfNeeded()
             vc.isIntersitial = true
-            vc.templateHandler = templateForPostSurvey
 
             if !shouldShowBackButton {
                 vc.shouldHideBackButton = true
@@ -231,7 +234,8 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
             
             vc.set(heading:     question.prompt,
                    subheading:  question.detail,
-                   content:     question.content)
+				   content:     question.content,
+				   template: templateForQuestion(questionId: index))
             vc.nextButtonTitle = question.nextButtonTitle
             vc.nextButtonImage = question.nextButtonImage
             vc.nextPressed = {

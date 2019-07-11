@@ -92,3 +92,11 @@ import HMMarkup
     }
 }
 
+extension UIView {
+	
+	@discardableResult
+	public func acButton(apply closure: (ACButton) -> Void) -> ACButton {
+		return custom(ACButton(), apply: closure)
+	}
+	
+}

@@ -112,7 +112,11 @@ open class PricesTestController : TestController<PriceTestResponse> {
         }
         return nil
     }
-    
+	
+	/// Marks the display time for a question, used to track the users
+	/// response time in seconds
+	/// - Parameter id: The id of the survey being taken
+	/// - Parameter index: the index of the question in the survey being taken.
     public func mark(questionDisplayTime id:String, index:Int) -> PriceTestResponse? {
         do {
             
@@ -128,7 +132,12 @@ open class PricesTestController : TestController<PriceTestResponse> {
         }
         return nil
 
-    }
+	}
+	/// Tracks the time that the user commited to touching a value, when they release
+	/// their touch on the button their confirmation time will be when they first touched
+	/// the item.
+	/// - Parameter id: The id of the survey being taken
+	/// - Parameter index: the index of the question in the survey being taken.
     public func mark(timeTouched id:String, index:Int) -> PriceTestResponse? {
         do {
             
@@ -144,6 +153,10 @@ open class PricesTestController : TestController<PriceTestResponse> {
         return nil
         
     }
+	
+	/// The time that the question was displayed to the user
+	/// - Parameter id: The id of the survey being taken
+	/// - Parameter index: the index of the question in the survey being taken.
     public func mark(stimulusDisplayTime id:String, index:Int) -> PriceTestResponse? {
         do {
             

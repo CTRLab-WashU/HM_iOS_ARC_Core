@@ -13,6 +13,7 @@ class TutorialView: UIStackView {
 	var progressBar:ACHorizontalBar!
 	var containerView:UIView!
 	var contentView:UIViewController?
+	var closeButton:UIButton!
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -23,15 +24,45 @@ class TutorialView: UIStackView {
 	init() {
 		
 		super.init(frame: .zero)
+		axis = .vertical
 		header()
 		container()
 	}
 	public func header() {
-		headerView = view {
-			$0.backgroundColor = .blue
+		headerView = view { [weak self] in
+			$0.backgroundColor = UIColor(named:"Primary Info")
 			$0.stack {
+				$0.axis = .horizontal
+				$0.spacing = 8
+				
+				$0.alignment = .center
+				$0.isLayoutMarginsRelativeArrangement = true
+				$0.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 20)
+				$0.button {
+					$0.setImage(UIImage(named:"cut-ups/icons/X-to-close"), for: .normal)
+					$0.tintColor = UIColor(named:"Highlight")
+					
+				}
 				$0.acHorizontalBar {
-					$0.relativeWidth = 0.5
+					$0.relativeWidth = 0
+					$0.clipsToBounds = false
+					$0.backgroundColor = .white
+					$0.layout {
+						$0.height == 2 ~ 999
+					}
+					let v = $0
+					self?.progressBar = $0.acHorizontalBar {
+						$0.relativeWidth = 0.05
+						$0.cornerRadius = 8.0
+						$0.backgroundColor = .clear
+						$0.layout {
+							$0.height == 8
+							$0.width == v.widthAnchor
+							$0.leading == v.leadingAnchor
+							$0.top == v.topAnchor - 3
+						}
+						
+					}
 				}
 				
 				let v = $0
@@ -41,23 +72,31 @@ class TutorialView: UIStackView {
 					$0.trailing == v.superview!.trailingAnchor ~ 999
 					$0.bottom == v.superview!.bottomAnchor ~ 999
 					$0.leading == v.superview!.leadingAnchor ~ 999
-					
+					$0.height == v.superview!.heightAnchor ~ 999
 				}
 			}
+		}
+		headerView.layout { [weak self] in
+			$0.height == 60
+			$0.width == self!.widthAnchor ~ 999
+			
 		}
 	}
 	public func container() {
 		containerView = view {
 			$0.backgroundColor = .white
 		}
+		containerView.layout { [weak self] in
+			$0.width == self!.widthAnchor ~ 999
+		}
 	}
 	required init(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 	public func setContent(viewController:UIViewController) {
-		viewController.removeFromParent()
-		viewController.view.removeFromSuperview()
-		containerView.anchor(view: viewController.view)
+		
+		
+		containerView.anchor(view:viewController.view)
 		
 	}
 	

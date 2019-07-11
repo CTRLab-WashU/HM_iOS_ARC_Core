@@ -9,7 +9,20 @@
 import Foundation
 open class AppController : MHController {
 	public var testCount:Int = 0
-	
+	public var isParticipating:Bool {
+		get {
+			if let value = (defaults.value(forKey:"isParticipating") as? Bool)
+			{
+				return value;
+			}
+			return false;
+		}
+		set (newVal)
+		{
+			defaults.setValue(newVal, forKey:"isParticipating");
+			defaults.synchronize();
+		}
+	}
 	public var coachMarks:[String:Bool]? {
 		get {
 			

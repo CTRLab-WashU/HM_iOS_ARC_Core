@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import UIKit
+import ArcUIKit
 public enum SignatureViewContentState {
     case empty, dirty
 }
@@ -49,7 +49,7 @@ open class SignatureView: BorderedUIView, SurveyInput {
         super.didMoveToSuperview()
         isExclusiveTouch = true
         didFinishSetup?()
-		didFinishSetup?()
+//		didFinishSetup?()
     }
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -134,7 +134,12 @@ open class SignatureView: BorderedUIView, SurveyInput {
 	
 	public func supplementaryViews(for view: UIView) {
 		view.acButton {
+			$0.primaryColor = .clear
+			$0.secondaryColor = .clear
+			
 			$0.setTitle("Undo", for: .normal)
+			Roboto.Style.bodyBold($0.titleLabel!, color: UIColor(named:"Primary"))
+			Roboto.PostProcess.link($0)
 		}
 	}
     
@@ -145,7 +150,7 @@ extension UIView {
 	
 	@discardableResult
 	public func signatureInput(apply closure: (SignatureView) -> Void) -> SignatureView {
-		custom(SignatureView.get(), apply: closure)
+		return custom(SignatureView.get(), apply: closure)
 	}
 	
 }

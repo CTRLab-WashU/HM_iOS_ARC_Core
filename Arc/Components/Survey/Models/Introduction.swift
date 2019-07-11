@@ -15,6 +15,7 @@ public struct Introduction : Codable {
 		var preface : String
 		var nextButtonTitle:String?
         var nextButtonImage:String?
+		var style:String?
 	}
 	var instructions:Array<Instruction>?
 	

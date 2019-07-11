@@ -32,14 +32,21 @@ public class OverlayView: UIView {
 		return false
 	}
 }
-
+extension UIView {
+	public func overlay(radius:CGFloat = 8.0) {
+		if let window = window {
+			window.overlayView(withShapes: [.roundedRect(self, radius)])
+		}
+	}
+}
 extension UIWindow {
 	static var overlayId:Int {
 		get {
 			return 95384754
 		}
 	}
-	public func overlayView(view:UIView, withShapes shapes:[OverlayShape]) {
+	
+	public func clearOverlay() {
 		if let oldView = self.viewWithTag(UIWindow.overlayId) as? OverlayView {
 			UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear, animations: {
 				oldView.alpha = 0
@@ -48,6 +55,9 @@ extension UIWindow {
 				oldView.removeFromSuperview()
 			})
 		}
+	}
+	public func overlayView(withShapes shapes:[OverlayShape]) {
+		clearOverlay()
 		
 		
 		let overlay = OverlayView(frame: self.bounds)

@@ -8,15 +8,44 @@
 
 import UIKit
 import HMMarkup
-
-open class IntroViewController: UIViewController {
+import ArcUIKit
+public enum IntroViewControllerStyle : String {
+	case standard, dark, test, gridTest, symbolTest, priceTest
+	
+	public func set(view:InfoView, heading:String?, subheading:String?, content:String?, template:[String:String] = [:]) {
+		switch self {
+		case .standard:
+			view.setHeading(heading)
+			view.setSubHeading(subheading)
+			view.setContentText(content, template: template)
+		case .test, .gridTest, .symbolTest, .priceTest:
+			view.setSubHeading(heading)
+			view.setHeading(subheading)
+			view.setSeparatorWidth(0.0)
+			view.setContentText(content, template: template)
+			view.backgroundColor = UIColor(named:"Primary Info")
+			view.infoContent.alignment = .leading
+			
+			
+		
+		case .dark:
+			view.setSubHeading(heading)
+			view.setHeading(subheading)
+			view.setSeparatorWidth(0.0)
+			view.setContentText(content, template: template)
+			view.backgroundColor = UIColor(named:"Primary Info")
+			view.infoContent.alignment = .leading
+		}
+	}
+}
+open class IntroViewController: CustomViewController<InfoView> {
     
     @IBOutlet weak var headingLabel: UILabel!
     @IBOutlet weak var subheadingLabel: UILabel!
     @IBOutlet weak var contentTextview: UITextView!
 	@IBOutlet weak var nextButton:UIButton!
     var nextButtonImage:String?
-
+	var style:IntroViewControllerStyle = .standard
     var heading:String?
     var subheading:String?
     var content:String?
@@ -27,12 +56,10 @@ open class IntroViewController: UIViewController {
 	var shouldHideBackButton = false
     var isIntersitial = false
 
-    open var renderer:HMMarkupRenderer!
-    
+	
     override open func viewDidLoad() {
         super.viewDidLoad()
-		renderer = HMMarkupRenderer(baseFont: contentTextview.font!)
-
+		customView.backgroundColor = UIColor(named: "Primary")
         // Do any additional setup after loading the view.
 		if let nav = self.navigationController, nav.viewControllers.count > 1 {
 			let backButton = UIButton(type: .custom)
@@ -60,27 +87,42 @@ open class IntroViewController: UIViewController {
     @IBAction func nextButtonPressed(_ sender: Any) {
         nextPressed?()
     }
-    func set(heading:String?, subheading:String?, content:String?) {
-        self.heading = heading
-        self.subheading = subheading
-        self.content = content
+	public func set(heading:String?, subheading:String?, content:String?, template:[String:String] = [:]) {
+		
         
-        if isViewLoaded {
-            headingLabel.text = heading
-            subheadingLabel.text = subheading
-            contentTextview.text = content
-			if let nextButtonTitle = nextButtonTitle {
-				nextButton.setTitle(nextButtonTitle.localized(nextButtonTitle), for: .normal)
+		style.set(view: customView, heading: heading, subheading: subheading, content: content, template: template)
+		if style == .test {
+			let button = HMMarkupButton()
+			button.setTitle("View a Tutorial", for: .normal)
+			Roboto.Style.bodyBold(button.titleLabel!, color:.white)
+			Roboto.PostProcess.link(button)
+			button.addAction {[weak self] in
+				self?.present(PricesTestTutorialViewController(), animated: true) {
+					
+				}
 			}
-            if let nextButtonTitle = nextButtonImage {
-                nextButton.setImage(UIImage(named: nextButtonTitle), for: .normal)
-            } else {
-                nextButton.setImage(nil, for: .normal)
-            }
-            parseText(content: content)
-        }
+			customView.setMiscContent(button)
+		}
     }
-    
+	public func updateNextbutton() {
+		if let nextButtonTitle = nextButtonTitle, !nextButtonTitle.isEmpty {
+			customView.nextButton?.setTitle(nextButtonTitle.localized(nextButtonTitle), for: .normal)
+		} else {
+			if nextButtonImage == nil {
+				customView.nextButton?.setTitle("NEXT".localized("button_next"), for: .normal)
+			} else {
+				customView.nextButton?.setTitle(nil, for: .normal)
+			}
+		}
+		
+		if let nextButtonTitle = nextButtonImage {
+			customView.nextButton?.setImage(UIImage(named: nextButtonTitle), for: .normal)
+		} else {
+			customView.nextButton?.setImage(nil, for: .normal)
+			
+		}
+		customView.nextPressed = nextPressed
+	}
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if shouldHideBackButton {
@@ -89,48 +131,23 @@ open class IntroViewController: UIViewController {
         }
 
 		self.navigationItem.rightBarButtonItem = nil
-        headingLabel.text = heading
-        subheadingLabel.text = subheading
-        contentTextview.text = content
-        if let nextButtonTitle = nextButtonTitle, !nextButtonTitle.isEmpty {
-            nextButton.setTitle(nextButtonTitle.localized(nextButtonTitle), for: .normal)
-        } else {
-            if nextButtonImage == nil {
-                nextButton.setTitle("NEXT".localized("button_next"), for: .normal)
-            } else {
-                nextButton.setTitle(nil, for: .normal)
-            }
-        }
         
-        if let nextButtonTitle = nextButtonImage {
-            nextButton.setImage(UIImage(named: nextButtonTitle), for: .normal)
-        } else {
-            nextButton.setImage(nil, for: .normal)
-
-        }
-        parseText(content: content)
+		
+		
         self.navigationController?.navigationBar.backgroundColor = .clear
+		updateNextbutton()
     }
 	open override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
+		if style != .standard {
+			customView.setSeparatorWidth(0.15)
+		}
 
 	}
-    func parseText(content: String?) {
-        guard let content = content else { return }
-        let template = templateHandler?(instructionIndex) ?? [:]
-
-        let markedUpString = renderer.render(text: content, template:template)
-        let attributedString = NSMutableAttributedString(attributedString: markedUpString)
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 7
-		let foregroundColor:UIColor = .white
-//        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
-		attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: foregroundColor, range: NSMakeRange(0, attributedString.length))
-        contentTextview.attributedText = attributedString
-    }
+	
 	override open func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
-		contentTextview.setContentOffset(CGPoint.zero, animated: false)
+		//contentTextview.setContentOffset(CGPoint.zero, animated: false)
 
 	}
 

@@ -27,7 +27,11 @@ public class ACHorizontalBar: UIView {
 				let old = config.progress
 				animation.run {[weak self] t in
 					guard let weakSelf = self else {
-						return
+					
+						return false
+					}
+					guard weakSelf.window != nil else {
+						return false
 					}
 					weakSelf.config.progress = Math.lerp(
 						a: old,
@@ -35,7 +39,7 @@ public class ACHorizontalBar: UIView {
 						t: CGFloat(t))
 				
 					weakSelf.setNeedsDisplay()
-				
+					return true
 				}
 			
 			} else {
@@ -50,6 +54,17 @@ public class ACHorizontalBar: UIView {
 		}
 		set {
 			config.primaryColor = newValue
+			setNeedsDisplay()
+		}
+	}
+	
+	public var cornerRadius:CGFloat {
+		set {
+			config.cornerRadius = newValue
+			setNeedsDisplay()
+		}
+		get {
+			return config.cornerRadius
 		}
 	}
 	init() {
@@ -91,7 +106,6 @@ public class ACHorizontalBar: UIView {
     override public func draw(_ rect: CGRect) {
 		config.rect = rect
 		config.bounds = bounds
-		print(config.progress)
 		config.draw()
 		
     }
@@ -101,6 +115,6 @@ public class ACHorizontalBar: UIView {
 extension UIView {
 	@discardableResult
 	public func acHorizontalBar(apply closure: (ACHorizontalBar) -> Void) -> ACHorizontalBar {
-		custom(ACHorizontalBar(), apply: closure)
+		return custom(ACHorizontalBar(), apply: closure)
 	}
 }

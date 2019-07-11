@@ -36,7 +36,9 @@ import HMMarkup
     }
     
     func setup(isSelected:Bool) {
-        self.font = style.font
+		if style != .none {
+        	self.font = style.font
+		}
         markupText()
     }
 }

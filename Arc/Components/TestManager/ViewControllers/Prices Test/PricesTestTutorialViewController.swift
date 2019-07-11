@@ -7,31 +7,53 @@
 //
 
 import UIKit
+import ArcUIKit
 
-class PricesTestTutorialViewController: ACTutorialViewController {
-	let pricesTest = PricesTestViewController.get()
+class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDelegate {
+	
+	
+	let pricesTest:PricesTestViewController = .get()
+	var didSelectPrice1 = false
+	var didSelectPrice2 = false
+	
+	var didRecalPrice1 = false
+	var didRecalPrice2 = false
     override func viewDidLoad() {
         super.viewDidLoad()
+		pricesTest.delegate = self
+		pricesTest.autoStart = false
+
+		state.addCondition(atTime: 0, flagName: "hide") { [weak self] in
+			
+			self?.pricesTest.priceDisplay.isHidden = true
+		}
+		state.addCondition(atTime: 0.02, flagName: "init") { [weak self] in
+			self?.pricesTest.priceDisplay.isHidden = false
+
+			self?.pricesTest.displayItem()
+			self?.pricesTest.buildButtonStackView()
+		}
+		state.addCondition(atTime: 0.11, flagName: "overlay1") { [weak self] in
+			
+			self?.pricesTest.priceDisplay.overlay()
+		}
+    }
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		addChild(pricesTest)
 		customView.setContent(viewController: pricesTest)
-		
-		
-		state.addCondition(atTime: 0.1, flagName: "start", onFlag: { [weak self] in
-			self?.pauseTutorialAnimation()
-			print("oi")
-		})
-		
-		
-    }
-    
+	}
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		view.window?.clearOverlay()
+	}
+	
+	func didSelectGoodPrice(_ option: Int) {
+		view.window?.clearOverlay()
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+		didSelectPrice1 = true
+		
+		
+	}
 
 }

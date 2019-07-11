@@ -84,20 +84,15 @@ public class ACHomeView: ACTemplateView {
 	}
 	override public func content(_ view: UIView) {
 		let relWidth = relSeparatorWidth
-		view.stack { [weak self] in
-			$0.spacing = 20
-			$0.axis = .vertical
-			$0.distribution = .fill
-			$0.isLayoutMarginsRelativeArrangement = true
-			$0.layoutMargins = UIEdgeInsets(top: 24, left: 24, bottom: 24, right: 24)
-			self?.tutorialTarget = $0.stack {
+		
+			self.tutorialTarget = view.stack { [weak self] in
 				$0.spacing = 20
 				$0.axis = .vertical
 				$0.distribution = .fill
 				self?.headingLabel = $0.acLabel {
 					Roboto.Style.heading($0)
 				}
-				separator = $0.acHorizontalBar {
+				self?.separator = $0.acHorizontalBar {
 					$0.relativeWidth = relWidth
 					$0.color = UIColor(named: "HorizontalSeparator")
 					$0.layout {
@@ -118,27 +113,20 @@ public class ACHomeView: ACTemplateView {
 			}
 			
 			
-			self?.debugButton = $0.acButton {
+			self.debugButton = view.acButton {
 				$0.setTitle("DEBUG", for: .normal)
 				$0.addAction {
 					Arc.shared.debugSchedule()
 				}
 
 			}
-			
-			let v = $0
-			v.layout {
-				// select an anchor give a priority of 999 (almost Required)
-				$0.top == v.superview!.topAnchor ~ 999
-				$0.trailing == v.superview!.trailingAnchor ~ 999
-				$0.bottom == v.superview!.bottomAnchor ~ 999
-				$0.leading == v.superview!.leadingAnchor ~ 999
-				$0.width == self!.widthAnchor ~ 999
-				
+			view.view {
+				$0.setContentHuggingPriority(.defaultLow, for: .vertical)
 			}
+		
 			
 			
-		}
+	
 	}
 	public func setState(surveyStatus:SurveyAvailabilityStatus) {
 		surveyButton.isHidden = true

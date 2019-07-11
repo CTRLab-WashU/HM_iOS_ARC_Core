@@ -11,11 +11,13 @@ import ArcUIKit
 import HMMarkup
 open class ACTemplateView: UIView, UIScrollViewDelegate {
 	var root:UIScrollView!
+	var backgroundView:UIView!
 	public var nextButton:ACButton?
 	var renderer:HMMarkupRenderer!
 	var shouldShowScrollIndicator: Bool = true
 	var scrollIndicatorView: UIView!
 	var scrollIndicatorLabel:UILabel!
+
 	public init() {
 		super.init(frame: .zero)
 		
@@ -27,12 +29,47 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 		
 	}
+	
 	func build() {
 		if root != nil {
 			root.removeFromSuperview()
 		}
-		root = scroll {
-			content($0)
+		root = scroll {[weak self] in
+			
+			
+			let v = $0.stack {
+				$0.spacing = 8
+				$0.axis = .vertical
+				$0.alignment = .fill
+				$0.isLayoutMarginsRelativeArrangement = true
+				$0.layoutMargins = UIEdgeInsets(top: 24,
+												left: 24,
+												bottom: 24,
+												right: 24)
+				//An internal override point for handling content that will appear above all other content.
+				header($0)
+				
+				//This will be where the main content of a view should go.
+				content($0)
+				$0.view {
+					$0.setContentHuggingPriority(UILayoutPriority(rawValue: 200), for: .vertical)
+				}
+				
+				//This is for items that you want to always be below all other content.
+				footer($0)
+			}
+			
+			v.layout {
+				
+				// select an anchor give a priority of 999 (almost Required)
+				$0.top == v.superview!.topAnchor ~ 999
+				$0.trailing == v.superview!.trailingAnchor ~ 999
+				$0.bottom == v.superview!.bottomAnchor ~ 999
+				$0.leading == v.superview!.leadingAnchor ~ 999
+				$0.width == self!.widthAnchor ~ 999
+				$0.height >= self!.safeAreaLayoutGuide.heightAnchor ~ 500
+			}
+			
 		}
 		root.layout { [weak self] in
 			$0.top == safeAreaLayoutGuide.topAnchor ~ 999
@@ -62,7 +99,9 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 		scrollIndicatorState(root)
 
 	}
-	
+	open func header(_ view:UIView) {
+		
+	}
 	/// Layout content for the view override this method to add content to a
 	/// pre-constrained scrollview, this will also  automatically add a scroll
 	/// indicator to the view. Keyboard insets will be handled when they appear.
@@ -71,6 +110,12 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 	open func content(_ view:UIView) {
 	
 	}
+	
+	open func footer(_ view:UIView) {
+		
+		
+	}
+	
 	public required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
@@ -92,13 +137,7 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 		
 		root.contentInset = inset
 	}
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
+
 	// MARK: ScrollView
 	public func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		self.scrollIndicatorState(scrollView)

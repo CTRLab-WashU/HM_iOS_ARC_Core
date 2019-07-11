@@ -11,23 +11,20 @@ import Foundation
 extension UIView {
 	@discardableResult
 	public func acView(apply closure: (ACView) -> Void) -> ACView {
-		custom(ACView(), apply: closure)
+		return custom(ACView(), apply: closure)
 	}
-	@discardableResult
-	public func acButton(apply closure: (ACButton) -> Void) -> ACButton {
-		custom(ACButton(), apply: closure)
-	}
+	
 	@discardableResult
 	public func acLabel(apply closure: (ACLabel) -> Void) -> ACLabel {
-		custom(ACLabel(), apply: closure)
+		return custom(ACLabel(), apply: closure)
 	}
 	@discardableResult
 	public func acTextView(apply closure: (ACTextView) -> Void) -> ACTextView {
-		custom(ACTextView(), apply: closure)
+		return custom(ACTextView(), apply: closure)
 	}
 	@discardableResult
 	public func scrollIndicator(apply closure: (IndicatorView) -> Void) -> IndicatorView {
-		custom(IndicatorView(), apply: closure)
+		return custom(IndicatorView(), apply: closure)
 	}
 	
 

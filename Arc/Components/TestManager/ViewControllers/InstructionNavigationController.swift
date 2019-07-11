@@ -14,6 +14,7 @@ open class InstructionNavigationController: UINavigationController {
 	public var nextVc:UIViewController?
 	public var nextState:State?
 	public var titleOverride:String?
+	
     override open func viewDidLoad() {
         super.viewDidLoad()
 
@@ -47,11 +48,13 @@ open class InstructionNavigationController: UINavigationController {
 			index < instructions.count
 		{
 			let instruction = instructions[index]
-			let vc:IntroViewController = .get()
+			let vc:IntroViewController = IntroViewController()
+			vc.style = IntroViewControllerStyle(rawValue: instruction.style ?? "standard")!
+			vc.loadViewIfNeeded()
 			vc.nextButtonTitle = instruction.nextButtonTitle
             vc.nextButtonImage = instruction.nextButtonImage
 			self.pushViewController(vc, animated: true)
-			
+//
 			vc.set(heading:     titleOverride ?? instruction.title,
 				   subheading:  instruction.subtitle,
 				   content:     instruction.preface)
@@ -85,14 +88,6 @@ open class InstructionNavigationController: UINavigationController {
 			}
 		}
 	}
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

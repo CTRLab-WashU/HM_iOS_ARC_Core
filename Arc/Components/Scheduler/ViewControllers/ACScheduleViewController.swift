@@ -218,7 +218,7 @@ public class ACScheduleViewController : SurveyNavigationViewController {
 	
 	//Override this to write to other controllers
 	override open func onValueSelected(value:QuestionResponse, index:String) {
-		super.onValueSelected(value: value, index: index)
+			super.onValueSelected(value: value, index: index)
 
 		let index = QuestionIndex(rawValue: index)!
 		if let day = index.day {

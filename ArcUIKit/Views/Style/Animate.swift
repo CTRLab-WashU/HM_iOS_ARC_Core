@@ -49,10 +49,10 @@ public struct Animate {
 	private var _duration:Double = 0.2
 	private var _curve:Math.Curve = .linear
 	private var _progress:Double = 0
-
-	private var updater:UpdateLooper
+	
+	fileprivate var updater:UpdateLooper?
 	public init() {
-		updater = UpdateLooper()
+		
 		
 	}
 	public func duration(_ value:Double) -> Animate {
@@ -76,26 +76,32 @@ public struct Animate {
 	/// to perform various rudimentary animations
 	/// - Parameter update: <#update description#>
 	@discardableResult
-	public func run(_ update:@escaping (Double)->()) -> Animate {
-		updater.time = 0
-		updater.maxTime = _duration
-		updater.curve = _curve
-		updater.delay = _delay
-		updater.run(update)
-		return self
+	public func run(_ update:@escaping (Double)->Bool) -> Animate {
+		var s = self
+		s.updater = UpdateLooper()
+		s.updater?.time = 0
+		s.updater?.maxTime = _duration
+		s.updater?.curve = _curve
+		s.updater?.delay = _delay
+		s.updater?.run(update)
+		return s
 	}
-	public func stop(forceEnd:Bool = false){
+	public mutating func stop(forceEnd:Bool = false){
+		guard let updater = updater else {
+			return
+		}
 		if forceEnd {
 			updater.time = updater.maxTime + updater.delay
 		} else {
 			updater.stop()
 		}
+		self.updater = nil
 	}
 	public func pause() {
-		updater.pause()
+		updater?.pause()
 	}
 	public func resume() {
-		updater.resume()
+		updater?.resume()
 	}
 	
 	public struct State {
@@ -104,11 +110,11 @@ public struct Animate {
 			
 		}
 	}
-	private class UpdateLooper {
+	fileprivate class UpdateLooper {
 		
 		var displayLink:CADisplayLink?
 		
-		var update:((Double)->())?
+		var update:((Double)->Bool)?
 		var _current:Double = 0.0
 		var time:Double = 0
 		var delay:Double = 0
@@ -129,38 +135,59 @@ public struct Animate {
 		func stop() {
 			displayLink?.invalidate()
 			displayLink = nil
+			update = nil
 			print("stopped")
 		}
-		public func run(_ update:@escaping (Double)->()) {
+		public func run(_ update:@escaping (Double)->Bool) {
 			
 			self.update = update
-			//The none option simply returns the final value
-			//Run the loop once and stop the animation.
-			if curve == .none {
-				loop()
-			} else {
-				start()
-			}
+			
+			start()
 		}
 		@objc private func loop() {
-			print("updating: \(_current)")
+//			print("updating: \(_current)")
 			guard let dl = displayLink else {
-				if curve == .none {
-					_current = curve.evaluate(currentTime: (time - delay)/maxTime)
-					
-					update?(_current)
-					time = maxTime + delay
-				}
+				
 				stop()
 				return
 			}
 			time += dl.targetTimestamp - dl.timestamp
-			_current = curve.evaluate(currentTime: (time - delay)/maxTime)
 			
+			if curve == .none {
+				
+				if time - delay < 0 {
+					return
+				}
+				
+				_current = curve.evaluate(currentTime: (time - delay)/maxTime)
+				
+				guard update?(_current) == true else {
+					stop()
+					return
+				}
+				time = maxTime + delay
+			
+				
+			} else {
+				_current = curve.evaluate(currentTime: (time - delay)/maxTime)
+				if time - delay < 0 {
+					return
+				}
+				
+				guard update?(_current) == true else {
+					stop()
+					return
+				}
+				
+				
+				
+			}
 			if time - delay >= maxTime {
 				
 				stop()
 			}
+			
+			
 		}
 	}
 	

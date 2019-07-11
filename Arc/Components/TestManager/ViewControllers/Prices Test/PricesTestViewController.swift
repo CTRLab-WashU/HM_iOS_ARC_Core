@@ -7,19 +7,25 @@
 //
 
 import UIKit
-
+public protocol PricesTestDelegate : class {
+	func didSelectGoodPrice(_ option:Int)
+	
+}
 public class PricesTestViewController: ArcViewController {
     
     @IBOutlet weak var itemNameLabel: UILabel!
     @IBOutlet weak var itemPriceLabel: UILabel!
     @IBOutlet weak var goodPriceLabel: UILabel!
-    
+	@IBOutlet weak var priceDisplay: UIStackView!
+	
     @IBOutlet weak var buttonStack: UIStackView!
     private var questionDisplay:PricesQuestionViewController?
 
     var controller = Arc.shared.pricesTestController
     var test:PriceTest?
     var responseID = ""
+	var autoStart = true
+	weak var delegate:PricesTestDelegate?
     public static var testVersion:String {
         
         return Arc.shared.appController.locale.availablePriceTest
@@ -27,6 +33,9 @@ public class PricesTestViewController: ArcViewController {
         
         
     }
+	public static var tutorialVersion:String {
+		return "priceSets-en-US-tutorial"
+	}
 //    private var questionDisplay:DNPricesQuestionViewController?
 //    private var test:DNPricesTest?
     private var itemIndex = 0
@@ -45,23 +54,33 @@ public class PricesTestViewController: ArcViewController {
 
         ACState.testCount += 1
 
-        buildButtonStackView()
+		
 		let app = Arc.shared
 		let studyId = Int(app.studyController.getCurrentStudyPeriod()?.studyID ?? -1)
 		let sessionId = app.currentTestSession ?? -1
-		let session = app.studyController.get(session: sessionId, inStudy: studyId)
-		if let data = session.surveyFor(surveyType: .priceTest){
+		if sessionId != -1 {
+			let session = app.studyController.get(session: sessionId, inStudy: studyId)
+			if let data = session.surveyFor(surveyType: .priceTest){
+				
+				responseID = data.id! //A crash here means that the session is malformed
+				
+			} else {
 			
-			responseID = data.id! //A crash here means that the session is malformed
+				test = controller.loadTest(index: 0, file: PricesTestViewController.testVersion )
+				responseID = controller.createResponse(withTest: test!)
+			}
+			
+			//Selecte a group of question indicies such that then they are displayed,
+			//they will be flipped.
 			
 		} else {
-		
-        	test = controller.loadTest(index: 0, file: PricesTestViewController.testVersion )
-        	responseID = controller.createResponse(withTest: test!)
+			let controller =  Arc.shared.pricesTestController
+			test = controller.loadTest(index: 0,
+												file: PricesTestViewController.tutorialVersion)
+			
+			responseID = controller.createResponse(withTest: test!)
 		}
 		
-		//Selecte a group of question indicies such that then they are displayed,
-		//they will be flipped.
 		if flippedPrices == nil
 		{
 			let count = controller.get(testCount: responseID)
@@ -73,12 +92,15 @@ public class PricesTestViewController: ArcViewController {
         super.viewDidAppear(animated)
             _ = controller.start(test: responseID)
 		_  = controller.mark(filled: responseID)
-
+		if autoStart {
+			priceDisplay.isHidden = false
             displayItem()
-        
+			buildButtonStackView()
+		}
     }
 	public override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
+		
 		displayTimer?.invalidate()
 	}
     override open func didReceiveMemoryWarning() {
@@ -183,7 +205,7 @@ public class PricesTestViewController: ArcViewController {
 		//run of the prices test we can safely display the price at that index
         if itemIndex < controller.get(testCount: responseID)
 		{
-			displayPrice(index: itemIndex)
+			displayPrice(index: itemIndex, isTimed:autoStart)
         }
 		//Else we've reached the end of the first phase of the test
 		else
@@ -233,6 +255,8 @@ public class PricesTestViewController: ArcViewController {
             
             let p = controller.set(goodPrice: 1, id: responseID, index: itemIndex)
 //            print(p.toString())
+			delegate?.didSelectGoodPrice(1)
+
         }
     }
     
@@ -244,6 +268,7 @@ public class PricesTestViewController: ArcViewController {
             
             let p = controller.set(goodPrice: 0, id: responseID, index: itemIndex)
 //            print(p.toString())
+			delegate?.didSelectGoodPrice(0)
         }
     }
     

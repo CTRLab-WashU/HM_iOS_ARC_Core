@@ -23,7 +23,7 @@ public struct Roboto {
 		public static let blackItalic = "BlackItalic"
 	}
 	public struct Font {
-		public static let body = UIFont()
+		public static let body = UIFont(name: "Roboto", size: 18)!
 			
 			.family(Roboto.family)
 			.face(Roboto.Face.regular)
@@ -32,15 +32,15 @@ public struct Roboto {
 			.boldFont()
 			
 		
-		public static let heading = UIFont()
+		public static let heading = UIFont(name: "Roboto", size: 26)!
 			.family(Roboto.family)
 			.face(Roboto.Face.regular)
 			.size(26)
-		public static let headingBold = UIFont()
+		public static let headingBold = UIFont(name: "Roboto", size: 26)!
 			.family(Roboto.family)
 			.boldFont()
 			.size(26)
-		public static let italic = UIFont()
+		public static let italic = UIFont(name: "Roboto", size: 18)!
 			.family(Roboto.family)
 			.italicFont()
 			.size(18)
@@ -79,14 +79,19 @@ public struct Roboto {
 			lineHeight(textView)
 		}
 		public static func link (_ label:UILabel) {
+			var attributes = Attributes.link
+			attributes[NSAttributedString.Key.foregroundColor] = label.textColor
+			attributes[NSAttributedString.Key.font] = label.font!
+			let attrString = NSMutableAttributedString(string:label.text ?? "", attributes: attributes)
 			
-			let attrString = NSAttributedString(string:label.text ?? "", attributes: Attributes.link)
 			label.attributedText = attrString
 			
 		}
 		public static func link (_ button:UIButton) {
-			
-			let attrString = NSAttributedString(string:button.title(for: .normal) ?? "", attributes: Attributes.link)
+			var attributes = Attributes.link
+			attributes[NSAttributedString.Key.foregroundColor] = button.titleLabel!.textColor
+			attributes[NSAttributedString.Key.font] = button.titleLabel!.font!
+			let attrString = NSAttributedString(string:button.title(for: .normal) ?? "", attributes: attributes)
 			
 			button.setAttributedTitle(attrString, for: .normal)
 		}

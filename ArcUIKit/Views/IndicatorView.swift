@@ -7,12 +7,15 @@
 //
 
 import UIKit
+
+
 @IBDesignable public class IndicatorView:UIView {
     public struct Config {
         let primaryColor:UIColor
         let secondaryColor:UIColor
         let textColor:UIColor
         let cornerRadius:CGFloat
+		let arrowEnabled:Bool
     }
     @IBInspectable var primaryColor:UIColor = .black
     @IBInspectable var secondaryColor:UIColor = .black
@@ -26,14 +29,9 @@ import UIKit
     var indicatorCenter:CGPoint?
     var isSelected = false
     var isEnabled = true
-    
-    
+    var isArrowEnabled = true
+	var container:UIStackView?
     override public init(frame: CGRect) {
-        let f = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
-            .insetBy(dx: 0, dy: -5)
-            .offsetBy(dx: 0, dy: -5)
-        
-        
         super.init(frame: frame)
         
         
@@ -47,8 +45,29 @@ import UIKit
        
 
     }
-    
-    
+	override func add(_ view: UIView) {
+		if container == nil {
+			let s = UIStackView()
+			self.addSubview(s)
+			s.alignment = .fill
+			s.axis = .vertical
+			s.spacing = 8
+			let v = self
+			s.layout {
+				
+				$0.top == v.topAnchor ~ 999
+				$0.trailing == v.trailingAnchor ~ 999
+				$0.bottom == v.bottomAnchor ~ 999
+				$0.leading == v.leadingAnchor ~ 999
+				
+			}
+			
+			
+			container = s
+		}
+		container?.addArrangedSubview(view)
+	}
+	
     
     override open func awakeFromNib() {
         super.awakeFromNib()
@@ -75,17 +94,24 @@ import UIKit
     }
     override public func draw(_ rect: CGRect) {
         super.draw(rect)
-        
-        var path = UIBezierPath(roundedRect: rect
-            .insetBy(dx: 0, dy: 5)
-            .offsetBy(dx: 0, dy: -5),
+        var insetRect = rect
+		if isArrowEnabled {
+			insetRect = rect
+				.insetBy(dx: 0, dy: 5)
+				.offsetBy(dx: 0, dy: -5)
+		}
+		
+        var path = UIBezierPath(roundedRect:insetRect,
                                 byRoundingCorners: .allCorners,
                                 cornerRadii: CGSize(width: layer.cornerRadius, height: layer.cornerRadius))
-        path.move(to: CGPoint(x: rect.midX, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.midX - 10, y: rect.maxY - 10))
-        path.addLine(to: CGPoint(x: rect.midX + 10, y: rect.maxY - 10))
-        path.addLine(to: CGPoint(x: rect.midX, y: rect.maxY))
-        path.close()
+		
+		if isArrowEnabled {
+			path.move(to: CGPoint(x: rect.midX, y: rect.maxY))
+			path.addLine(to: CGPoint(x: rect.midX - 10, y: rect.maxY - 10))
+			path.addLine(to: CGPoint(x: rect.midX + 10, y: rect.maxY - 10))
+			path.addLine(to: CGPoint(x: rect.midX, y: rect.maxY))
+			path.close()
+		}
         path.addClip()
         
         let context = UIGraphicsGetCurrentContext()

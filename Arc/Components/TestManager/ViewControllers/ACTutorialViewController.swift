@@ -70,14 +70,23 @@ class ACTutorialViewController: CustomViewController<TutorialView> {
 	var state:TutorialState = TutorialState()
 	override func viewDidLoad() {
         super.viewDidLoad()
-
-		
+		state = TutorialState()
+		customView.closeButton.addAction { [weak self] in
+			self?.dismiss(animated: true) {
+				self?.view.window?.clearOverlay()
+			}
+			
+		}
     }
 	func startTutorialAnimation() {
-		state = TutorialState()
-		tutorialAnimation.run {[weak self]
+		
+		tutorialAnimation = tutorialAnimation.run {[weak self]
 			progress in
+			if self?.presentingViewController == nil {
+				return false
+			}
 			_ = self?.state.evaluate(progress)
+			return true
 		}
 	}
 	func stopTutorialanimation() {

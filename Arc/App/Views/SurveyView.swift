@@ -20,15 +20,15 @@ open class SurveyView : ACTemplateView, SurveyInput {
 	public var didFinishSetup: (() -> ())?
 	public var didChangeValue: (() -> ())?
 	public var tryNext: (() -> ())?
+
 	
-	
+	var error:String?
 	
 
 	var container:UIStackView!
 	var errorLabel:UILabel!
-	var promptLabel: UILabel!
-	var detailsLabel:UILabel!
-	
+
+	var top:PromptDetailView!
 	var input:SurveyInput?
 	var views:UIStackView!
 	
@@ -66,14 +66,12 @@ open class SurveyView : ACTemplateView, SurveyInput {
 	///
 	/// - Parameter question: An object of type Survey.Question.
 	/// This value is created via Json files loaded by the parent SurveyNavigationViewController
-	func displayQuestion(withQuestion question: Survey.Question){
+	/// - Parameter template: A template for replacing variable words in question prompts
+	func displayQuestion(withQuestion question: Survey.Question, template:[String:String] = [:]){
 
-		
-		renderer = HMMarkupRenderer(baseFont: promptLabel.font)
-		let template = templateHandler?(question.questionId) ?? [:]
-		let markedUpString = renderer.render(text: question.prompt, template:template)
-		promptLabel.attributedText = markedUpString
-		detailsLabel.text = question.detail
+		top.setPrompt(question.prompt, template: template)
+		top.separatorWidth = 0
+		top.setDetail(question.detail)
 		
 		//If theres an image set it here.
 		if let nextButtonImage = question.nextButtonImage {
@@ -84,7 +82,7 @@ open class SurveyView : ACTemplateView, SurveyInput {
 	
 		configureInput(question: question)
 
-		renderer = HMMarkupRenderer(baseFont: promptLabel.font)
+		
 		
 		self.didFinishSetup?()
 		self.questionPresented?(input)
@@ -119,7 +117,11 @@ open class SurveyView : ACTemplateView, SurveyInput {
 		input = question?.type.create(inputWithQuestion: question)
 		input?.tryNext = { [weak self] in
 			if self?.nextButton?.isEnabled == true {
-				self?.nextPressed?(nil, nil)
+				if let value = self?.input?.getValue() {
+					self?.nextPressed?(self?.input, value)
+				} else {
+					self?.nextPressed?(nil, nil)
+				}
 			}
 		}
 		
@@ -157,54 +159,23 @@ open class SurveyView : ACTemplateView, SurveyInput {
 		self.nextButton?.setTitle(title, for: .normal)
 	}
 	
-	
+	open override func header(_ view: UIView) {
+		
+	}
 	override open func content(_ view: UIView) {
 		super.content(view)
 		view.stack { [weak self] in
-			$0.spacing = 8
 			$0.axis = .vertical
-			$0.alignment = .fill
-			$0.isLayoutMarginsRelativeArrangement = true
-			$0.layoutMargins = UIEdgeInsets(top: 24,
-											left: 24,
-											bottom: 24,
-											right: 24)
-			let v = $0
-			v.layout {
-				
-				// select an anchor give a priority of 999 (almost Required)
-				$0.top == v.superview!.topAnchor ~ 999
-				$0.trailing == v.superview!.trailingAnchor ~ 999
-				$0.bottom == v.superview!.bottomAnchor ~ 999
-				$0.leading == v.superview!.leadingAnchor ~ 999
-				$0.width == self!.widthAnchor ~ 999
-				$0.height >= self!.safeAreaLayoutGuide.heightAnchor ~ 500
-			}
-
-			let top = $0.stack {
-				$0.axis = .vertical
-				$0.alignment = .fill
-
-				$0.spacing = 20
-				self?.promptLabel = $0.acLabel {
-					$0.text = ""
-					Roboto.Style.heading($0)
-
-
-				}
-				self?.detailsLabel = $0.acLabel {
-					
-					Roboto.Style.body($0)
-					$0.text = ""
-
-				}
-			}
+			self?.top = $0.promptDetail {_ in}
+			
 			$0.setCustomSpacing(20, after: top)
+			
 			//Container stack for questions
 			$0.stack {
 				
 				container = $0.stack {
 					$0.axis = .horizontal
+					$0.distribution = .equalCentering
 					
 				}
 			}
@@ -215,37 +186,36 @@ open class SurveyView : ACTemplateView, SurveyInput {
 				$0.text = ""
 
 			}
+		}
+		
+	}
+	open override func footer(_ view: UIView) {
+		
+		//A container for miscelaneous views
+		self.views = view.stack {
+			$0.axis = .vertical
+			$0.alignment = .center
+			$0.isLayoutMarginsRelativeArrangement = true
+			$0.layoutMargins.bottom = 20
+			input?.supplementaryViews(for: views)
 			
-			$0.view {
-				$0.setContentHuggingPriority(UILayoutPriority(rawValue: 200), for: .vertical)
+			$0.layout {
+				$0.height == 20 ~ 250
+				$0.height >= 20 ~ 999
 			}
-			//A container for miscelaneous views
-			self?.views = $0.stack {
-				$0.axis = .vertical
-				$0.alignment = .center
-				$0.isLayoutMarginsRelativeArrangement = true
-				$0.layoutMargins.bottom = 20
-				input?.supplementaryViews(for: views)
-
-				$0.layout {
-					$0.height == 20 ~ 250
-					$0.height >= 20 ~ 999
-				}
-			}
+		}
+		view.stack { [weak self] in
+			$0.axis = .vertical
+			$0.alignment = .center
 			
-			$0.stack { [weak self] in
-				$0.axis = .vertical
-				$0.alignment = .center
+			self?.nextButton = $0.acButton {
+				$0.translatesAutoresizingMaskIntoConstraints = false
+				$0.setTitle("Next", for: .normal)
 				
-				self?.nextButton = $0.acButton {
-					$0.translatesAutoresizingMaskIntoConstraints = false
-					$0.setTitle("Next", for: .normal)
+				$0.addAction { [weak self] in
+					let value = self?.input?.getValue()
 					
-					$0.addAction { [weak self] in
-						let value = self?.input?.getValue()
-						
-						self?.nextPressed?(self?.input, value)
-					}
+					self?.nextPressed?(self?.input, value)
 				}
 			}
 		}

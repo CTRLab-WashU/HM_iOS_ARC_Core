@@ -79,7 +79,7 @@ extension UIView {
 	
 	@discardableResult
 	public func promptDetail(apply closure: (PromptDetailView) -> Void) -> PromptDetailView {
-		custom(PromptDetailView(), apply: closure)
+		return custom(PromptDetailView(), apply: closure)
 	}
 	
 }

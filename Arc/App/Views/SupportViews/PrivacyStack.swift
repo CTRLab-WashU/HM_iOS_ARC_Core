@@ -64,7 +64,7 @@ extension UIView {
 	
 	@discardableResult
 	public func privacyStack(apply closure: (PrivacyStack) -> Void) -> PrivacyStack {
-		custom(PrivacyStack(), apply: closure)
+		return custom(PrivacyStack(), apply: closure)
 	}
 	
 }
