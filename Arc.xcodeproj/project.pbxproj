@@ -585,6 +585,14 @@
 			path = Style;
 			sourceTree = "<group>";
 		};
+		C51A7D8822D7F65100854B13 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				C51A7D8622D7EC5900854B13 /* ParticipationView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		C52B75DD21C83B2A00498571 /* HMMarkup */ = {
 			isa = PBXGroup;
 			children = (
@@ -816,7 +824,6 @@
 		C54AE93221C81B5C00DEC360 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C51A7D8622D7EC5900854B13 /* ParticipationView.swift */,
 				C54AE93321C81B5C00DEC360 /* StudyController.swift */,
 				C54AE93421C81B5C00DEC360 /* SessionController.swift */,
 				C54AE93521C81B5C00DEC360 /* NotificationController.swift */,
@@ -830,6 +837,7 @@
 		C54AE93921C81B5C00DEC360 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C51A7D8822D7F65100854B13 /* Onboarding */,
 				C54D104E22C29DA700B43E42 /* SurveyView.swift */,
 				C5C2B12622D3D66B002CB4C5 /* InfoView.swift */,
 				C556BA2C22CA4B3D0057B54B /* ACTemplateView.swift */,
