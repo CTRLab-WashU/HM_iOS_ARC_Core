@@ -111,9 +111,13 @@ open class SurveyView : ACTemplateView, SurveyInput {
 		} else {
 			self.enableNextButton(title: title)
 		}
+		
 	}
 	
 	public func configureInput(question:Survey.Question?) {
+		guard input == nil else {
+			return
+		}
 		input = question?.type.create(inputWithQuestion: question)
 		input?.tryNext = { [weak self] in
 			if self?.nextButton?.isEnabled == true {
