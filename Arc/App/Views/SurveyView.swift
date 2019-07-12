@@ -90,6 +90,11 @@ open class SurveyView : ACTemplateView, SurveyInput {
 	
 	
 	func updateButtonState(_ question:Survey.Question?) {
+		if question?.style == .impasse {
+			nextButton?.isHidden = true
+		} else {
+			nextButton?.isHidden = false
+		}
 		var altTitle = "NEXT".localized("button_next")
 		var title = "NEXT".localized("button_next")
 		if let nextButtonTitle = question?.nextButtonTitle {
