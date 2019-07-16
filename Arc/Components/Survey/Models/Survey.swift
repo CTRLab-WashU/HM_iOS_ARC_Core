@@ -45,10 +45,13 @@ public struct Survey : HMCodable {
 			}
         }
         
-        public var type:QuestionType
+        public var type:QuestionType?
         public var style: QuestionStyle?
+		public var viewController:String?
         public var questionId:String
         public var prompt:String
+		public var subTitle:String?
+		public var title:String?
         public var detail:String?
         public var content:String?
         public var minMessage:String?

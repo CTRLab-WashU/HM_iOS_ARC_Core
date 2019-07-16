@@ -75,7 +75,7 @@ public enum ACLocale : String{
 open class ACLanguageViewController : SurveyNavigationViewController {
 	
 	
-    open override func onValueSelected(value: QuestionResponse, index: String) {
+    open override func valueSelected(value: QuestionResponse, index: String) {
         if index == "ac_language_1" {
             guard let value = value.text_value else {
                 return

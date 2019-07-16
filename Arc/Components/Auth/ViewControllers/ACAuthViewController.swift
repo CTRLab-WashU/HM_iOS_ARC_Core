@@ -30,7 +30,7 @@ open class ACAuthViewController: SurveyNavigationViewController {
 	func helpHandler() {
 //		print("Navigate to help")
 	}
-	override open func onQuestionDisplayed(input:SurveyInput, index:String) {
+	override open func questionDisplayed(input:SurveyInput, index:String) {
 		var input = input
 		if index == "auth_1" {
 //            if let view = input as? SegmentedTextView {
@@ -53,8 +53,8 @@ open class ACAuthViewController: SurveyNavigationViewController {
 		} else if index == "auth_3" {
 			//Try next will trigger the next button if not nil
 			//We don't want to fire this for the final step (#9016)
-			input.tryNext = nil
             if let view = input as? SegmentedTextView {
+				view.shouldTryNext = false
                 view.set(length: 5)
             }
             if let pass = controller.getPassword() {
@@ -80,7 +80,7 @@ open class ACAuthViewController: SurveyNavigationViewController {
 	}
 	
 	//Override this to write to other controllers
-	override open func onValueSelected(value:QuestionResponse, index:String) {
+	override open func valueSelected(value:QuestionResponse, index:String) {
 		//All questions are of type string in this controller
 		guard let value = value.value as? String else {
 			assertionFailure("Should be a string value")

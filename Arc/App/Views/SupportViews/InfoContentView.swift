@@ -14,6 +14,7 @@ import HMMarkup
 public class InfoContentView: UIStackView {
 	weak var headingLabel: UILabel?
 	weak var subheadingLabel: UILabel?
+	weak var contentLabel: UILabel?
 	weak var contentTextView: UITextView?
 	weak var separator:ACHorizontalBar!
 
@@ -76,7 +77,34 @@ public class InfoContentView: UIStackView {
 			}
 		}
 	}
+	public func setContentLabel(_ text:String?, template:[String:String] = [:]) {
+		
+		let text = Text.replaceIn(text, withTemplate: template)
+		
+		if let view = contentLabel {
+			view.text = text
+		} else {
+			contentLabel = acLabel {
+				
+				$0.backgroundColor = .clear
+				$0.textAlignment = .left
+
+				Roboto.Style.body($0,
+								  color:textColor)
+				$0.text = text
+				
+				$0.layout {
+					$0.width == self.widthAnchor ~ 400
+				}
+				
+			}
+		}
+		//Roboto.PostProcess.renderMarkup(contentTextView!, template: template)
+	}
 	public func setContent(_ text:String?, template:[String:String] = [:]) {
+		
+		let text = Text.replaceIn(text, withTemplate: template)
+		
 		if let view = contentTextView {
 			view.text = text
 		} else {
@@ -84,8 +112,10 @@ public class InfoContentView: UIStackView {
 				$0.contentInset = .zero
 				$0.isEditable = false
 				$0.backgroundColor = .clear
-				$0.textAlignment = .center
+				$0.textAlignment = .left
+				$0.contentInset = .zero
 				$0.isSelectable = true
+				
 				Roboto.Style.body($0,
 								  color:textColor)
 				
@@ -97,7 +127,7 @@ public class InfoContentView: UIStackView {
 				
 			}
 		}
-		Roboto.PostProcess.renderMarkup(contentTextView!, template: template)
+		//Roboto.PostProcess.renderMarkup(contentTextView!, template: template)
 	}
 	
 	

@@ -12,57 +12,25 @@ import HMMarkup
 open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDelegate {
 	
 	var app = Arc.shared
+	
+	
 	public var orientation: UIStackView.Alignment = .center
-	public var didChangeValue: (() -> ())? {
-		set {
-			input?.didChangeValue = newValue
-		}
+	
+	weak public var inputDelegate:SurveyInputDelegate? {
 		get {
-			return input?.didChangeValue
+			return surveyView.inputDelegate
+		}
+		set {
+			surveyView.inputDelegate = newValue
 		}
 	}
-	public var tryNext:(() -> ())?  {
-		set {
-			surveyView.tryNext = newValue
-		}
-		get {
-			return surveyView.tryNext
-		}
-	}
-	public var didFinishSetup: (() -> ())? {
-		set {
-			input?.didFinishSetup = newValue
-		}
-		get {
-			return input?.didFinishSetup
-		}
-	}
+	
+	
 
 	
-	var nextPressed:((SurveyInput?, QuestionResponse?)->Void)? {
-		set {
-			surveyView.nextPressed = newValue
-		}
-		get {
-			return surveyView.nextPressed
-		}
-	}
-	var questionPresented:((SurveyInput?)->Void)? {
-		set {
-			surveyView.questionPresented = newValue
-		}
-		get {
-			return surveyView.questionPresented
-		}
-	}
-	var templateHandler:((String)->Dictionary<String,String>)? {
-		set {
-			surveyView.templateHandler = newValue
-		}
-		get {
-			return surveyView.templateHandler
-		}
-	}
+
+	
+	
 	public var helpPressed:(()->())?
 	
 //    @IBOutlet weak var spacerView: UIView!
@@ -149,6 +117,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
     }
     func loadQuestion(questionIndex:String) {
         let question = controller.get(question: questionIndex)
+		
 		displayQuestion(question: question)
 		
     }
@@ -160,20 +129,17 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 	/// - Parameter question: An object of type Survey.Question.
 	/// This value is created via Json files loaded by the parent SurveyNavigationViewController
 	func displayQuestion(question:Survey.Question) {
-		surveyView.questionPresented = questionPresented
-		let template = templateHandler?(question.questionId) ?? [:]
+		
+		let template = inputDelegate?.templateForQuestion(id: question.questionId) ?? [:]
 		
 		surveyView.displayQuestion(withQuestion: question, template: template)
-		input = surveyView
-		
-		
+
 	}
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.loadQuestion(questionIndex: questionIndex ?? "")
-//		scrollView.delegate = self
-//		scrollIndicatorState(scrollView)
-        self.didFinishSetup?()
+
+       	inputDelegate?.didFinishSetup()
         
     }
 	public func getValue() -> QuestionResponse? {

@@ -22,7 +22,7 @@ open class SurveyController : MHController {
 			loadedSurvey = survey
 			return survey
 		} catch {
-			fatalError("Invalid asset format: \(template) - Error: \(error.localizedDescription)")
+			fatalError("Invalid asset format: \(template) - Error: \(error)")
 			
 		}
 		
@@ -50,7 +50,7 @@ open class SurveyController : MHController {
     }
     
     
-    open func create(surveyResponse id:String = UUID().uuidString, type:SurveyType?)  -> String {
+    open func create(surveyResponse id:String = UUID().uuidString, type:SurveyType? = nil)  -> String {
         
 		let surveyResponse = SurveyResponse(id: id, type: type ?? .unknown)
 		

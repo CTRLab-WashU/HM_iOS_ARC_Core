@@ -9,7 +9,14 @@
 import UIKit
 
 open class ArcViewController: UIViewController {
-	public let app = Arc.shared
+	public var app:Arc {
+		get {
+			return Arc.shared
+		}
+		set {
+			
+		}
+	}
     override open func viewDidLoad() {
         super.viewDidLoad()
 

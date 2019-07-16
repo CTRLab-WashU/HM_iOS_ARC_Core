@@ -8,14 +8,22 @@
 
 import UIKit
 
-open class SurveyNavigationViewController: UINavigationController, UINavigationControllerDelegate, SurveyInput {
-    public var didChangeValue: (() -> ())?
-    public var didFinishSetup: (() -> ())?
+open class SurveyNavigationViewController: UINavigationController, UINavigationControllerDelegate, SurveyInput, SurveyInputDelegate {
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
     public var orientation: UIStackView.Alignment = .center
     
-    public var tryNext: (() -> ())?
-    
+	open weak var inputDelegate: SurveyInputDelegate?
+
 	var app = Arc.shared
     public var survey:Survey! = nil
     public var surveyId:String?
@@ -34,6 +42,7 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
 	public var shouldShowHelpButton = false
 	public var shouldShowBackButton = true
 	public var helpPressed:(()->())?
+	public var currentIndex:Int = 0
 
 	public var isShowingHelpButton = false{
 		didSet {
@@ -57,10 +66,10 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
     override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if displayed == false {
-            
-			next(nextQuestion: questions.first?.questionId)
+			displayed = true
+
+			next(nil)
         }
-        displayed = true
     }
     public func getValue() -> QuestionResponse? {
         guard let input = topViewController as? SurveyInput else {
@@ -81,6 +90,121 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
         }
         input.setError(message: message)
     }
+	public func didChangeValue() {
+		
+	}
+	public func nextPressed(input: SurveyInput?, value: QuestionResponse?) {
+		
+		let instructionCount = survey.instructions?.count ?? 0
+		
+		if currentIndex < instructionCount {
+			
+			next(nil)
+		}
+		else if let current = currentQuestion {
+			
+			//Check if its nil OR if the input is informational. 
+			if (input == nil || input!.isInformational())  {
+				valueSelected(value: AnyResponse(type: QuestionType.none, value: nil), index: current)
+			}
+			else if let selection = value,
+				!selection.isEmpty(),
+				isValid(value: selection, index: current)
+			{
+				valueSelected(value: selection,index: current)
+
+			}
+			
+			next(currentQuestion)
+		} else {
+			next(nil)
+		}
+
+	}
+	
+
+	public func templateForQuestion(id: String) -> Dictionary<String, String> {
+		return [:]
+	}
+	
+	public func didPresentQuestion(input: SurveyInput?) {
+		assert(currentQuestion != nil, "No question to present, check code path.")
+		guard let currentQuestion = currentQuestion else {
+			return
+		}
+		if let surveyId = self.surveyId {
+			
+			let question = Arc.shared.surveyController.get(question: currentQuestion)
+			
+			Arc.shared.surveyController.mark(displayTime: currentQuestion,
+											 question: question.prompt,
+											 forSurveyResponse: surveyId)
+		}
+		if let input = input {
+			questionDisplayed(input: input, index: currentQuestion)
+		}
+	}
+	
+	public func didFinishSetup() {
+		guard let currentQuestion = currentQuestion else {
+			return
+		}
+		onFinishSetup(index: currentQuestion)
+	}
+	
+	public func tryNextPressed() {
+		
+	}
+	open func questionDisplayed(input:SurveyInput, index:String) {
+		
+		let question = Arc.shared.surveyController.get(question: index)
+		//If we set a value for this test then load it
+		if let id = surveyId {
+			let questionId = question.questionId
+			if let value = Arc.shared.surveyController.getResponse(forQuestion: questionId, fromSurveyResponse: id) {
+				
+				
+				if value.isEmpty(){
+					input.setValue(nil)
+				} else {
+					input.setValue(value)
+				}
+			}
+		}
+		
+		
+	}
+	
+	open func onFinishSetup(index:String) {
+	
+	}
+	open func valueChanged(index:String) {
+		
+		let question = Arc.shared.surveyController.get(question: index)
+		guard let surveyId = self.surveyId else {
+			return
+		}
+		let _ = Arc.shared.surveyController.mark(responseTime: question.questionId,
+												 question: question.prompt,
+												 forSurveyResponse: self.surveyId!)
+		
+	}
+	//Override this to write to other controllers
+	
+	open func valueSelected(value:QuestionResponse, index:String) {
+		
+		let question = Arc.shared.surveyController.get(question: index)
+		
+		let _ = Arc.shared.surveyController.set(response: value,
+												questionId: question.questionId,
+												question: question.prompt,
+												forSurveyId: self.surveyId!)
+		
+		
+		
+		//        dump(response.toString())
+		
+	}
     public func enableNextButton()
     {
         guard let input = topViewController as? SurveyViewController else {
@@ -107,7 +231,7 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
         survey = app.surveyController.load(survey: template)
 		surveyType = survey.type
         questions = survey.questions
-
+		currentQuestion = survey.questions.first?.questionId
         guard let i = app.studyController.getCurrentStudyPeriod()?.studyID else {
             self.surveyId = createSurvey(surveyId: surveyId)
 
@@ -167,10 +291,7 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
 				vc.nextButtonTitle = instruction.nextButtonTitle
                 vc.nextButtonImage = instruction.nextButtonImage
 
-                vc.nextPressed = {
-                    [weak self] in
-					self?.next(nextQuestion: self?.questions.first?.questionId)
-                }
+               vc.inputDelegate = self
 			self.isShowingHelpButton = false
             return true
         }
@@ -182,7 +303,8 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
 			return false
 		}
 		if let instructions = survey?.postSurvey,
-               index < instructions.count
+               index < instructions.count,
+				index >= 0
 		{
 			let instruction = instructions[index]
 			let vc:IntroViewController = IntroViewController()
@@ -200,13 +322,7 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
 			vc.nextButtonTitle = instruction.nextButtonTitle
             vc.nextButtonImage = instruction.nextButtonImage
 
-			vc.nextPressed = {
-				[weak self] in
-
-				self?.next(nextQuestion: nil)
-
-				
-			}
+			vc.inputDelegate = self
 			self.isShowingHelpButton = false
 
 			return true
@@ -221,6 +337,8 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
     //TODO: Refactor survey question display, keep in mind old versions of surveys
     private func displayQuestion(index:String) -> Bool {
         let question = Arc.shared.surveyController.get(question: index)
+		currentQuestion = index
+
         if let style = question.style, style == .instruction {
             
 			let vc:IntroViewController = IntroViewController()
@@ -235,18 +353,10 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
             vc.set(heading:     question.prompt,
                    subheading:  question.detail,
 				   content:     question.content,
-				   template: templateForQuestion(questionId: index))
+				   template: templateForQuestion(id: index))
             vc.nextButtonTitle = question.nextButtonTitle
             vc.nextButtonImage = question.nextButtonImage
-            vc.nextPressed = {
-                [weak self] in
-                
-                let nextQuestion = self?.figureOutNextQuestion(id: index)
-                self?.onValueSelected(value: AnyResponse(type: QuestionType.none, value: nil), index: index)
-                
-                self?.next(nextQuestion: nextQuestion)
-                
-            }
+           	vc.inputDelegate = self
             self.isShowingHelpButton = false
             
             return true
@@ -255,69 +365,13 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
 		if let helpPressed = helpPressed {
 			vc.helpPressed = helpPressed
 		}
-		vc.templateHandler = templateForQuestion
+		vc.inputDelegate = self
 		vc.surveyId = surveyId
 	
 		self.pushViewController(vc, animated: true)
 		
 		vc.set(questionIndex: index)
-		
-		//MARK: Next Pressed callback
-		vc.nextPressed = {
-			[weak self] input, value in
-			
-			//If the prompt being displayed is informational, move on.
-			if input == nil {
-				let nextQuestion = self?.figureOutNextQuestion(id: index)
-                self?.onValueSelected(value: AnyResponse(type: QuestionType.none, value: nil), index: index)
 
-				self?.next(nextQuestion: nextQuestion)
-            } else if let input = input, input.isInformational() {
-                let nextQuestion = self?.figureOutNextQuestion(id: index)
-                self?.onValueSelected(value: AnyResponse(type: QuestionType.none, value: nil), index: index)
-                
-                self?.next(nextQuestion: nextQuestion)
-            } else {
-			//else validate it
-			
-				if let selection = value, !selection.isEmpty(),
-					let isValid = self?.isValid(value: selection, index: index), isValid == true {
-					
-					
-					self?.onValueSelected(value: selection, index: index)
-					
-					let nextQuestion = self?.figureOutNextQuestion(id: index)
-					
-					self?.next(nextQuestion: nextQuestion)
-
-				}
-			}
-		}
-        vc.didChangeValue = {
-            [weak self] in
-            
-            self?.onValueChanged(index: index)
-        }
-		//MARK: question Presented callback
-		vc.questionPresented = {
-			[weak self] input in
-			if let surveyId = self?.surveyId {
-				let question = Arc.shared.surveyController.get(question: index)
-
-				Arc.shared.surveyController.mark(displayTime: index,
-													 question: question.prompt,
-													 forSurveyResponse: surveyId)
-			}
-			if let input = input {
-				self?.onQuestionDisplayed(input: input, index: index)
-			}
-
-		}
-        vc.didFinishSetup = {
-            [weak self] in
-            
-            self?.onFinishSetup(index: index)
-        }
 		self.isShowingHelpButton = true
 
 		return true
@@ -329,9 +383,7 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
         return true
     }
 	
-	open func templateForQuestion(questionId:String) -> Dictionary<String, String> {
-		return [:]
-	}
+	
     
     open func templateForInstruction(instruction:Int) -> Dictionary<String, String> {
         return [:]
@@ -341,89 +393,69 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
         return [:]
     }
     
-	private func next(nextQuestion: String?) {
+	private func next(_ questionId: String?) {
 		let instructionCount = survey.instructions?.count ?? 0
 		let questionCount = questions.count
 		let outroIndex = self.viewControllers.count - instructionCount - questionCount
-        if displayIntro(index: self.viewControllers.count) {
-        
-        } else if let nextQuestion = nextQuestion {
-			
-			_ = displayQuestion(index: nextQuestion)
-			
-		} else if displayOutro(index: outroIndex){
 		
-		} else {
+		
+		let introDisplayed = displayIntro(index: currentIndex)
+		//If an introductory slide was displayed, then return and wait for user input
+		guard !introDisplayed else {
+			return
+		}
+		currentQuestion = figureOutNextQuestion(id: questionId)
+		//If any questions remain...
+		if let question = currentQuestion{
+			//Display a question...
+			guard !displayQuestion(index: question) else {
 			
-			//If this survey is being stored in core data
-			//mark it as filled out.
-			if let id = surveyId {
-				_ = Arc.shared.surveyController.mark(filled: id)
-			}
-			
-			//Subclasses may perform conditional async operations
-			//that determine if the app should proceed. 
-			if shouldNavigateToNextState {
-				Arc.shared.nextAvailableState()
+				//If a question was displayed return
+				return
 			}
 		}
-    }
-    open func onQuestionDisplayed(input:SurveyInput, index:String) {
 		
-		let question = Arc.shared.surveyController.get(question: index)
-            //If we set a value for this test then load it
-            if let id = surveyId {
-                let questionId = question.questionId
-                if let value = Arc.shared.surveyController.getResponse(forQuestion: questionId, fromSurveyResponse: id) {
-					
-					
-                    if value.isEmpty(){
-                        input.setValue(nil)
-                    } else {
-                        input.setValue(value)
-                    }
-                }
-            }
-        input.didFinishSetup?()
-
+		//If we display any exiting slides return
+		guard !displayOutro(index: outroIndex) else {
+			return
+		}
+		
+	
+		
+		//If this survey is being stored in core data
+		//mark it as filled out.
+		if let id = surveyId {
+			_ = Arc.shared.surveyController.mark(filled: id)
+		}
+		
+		//Subclasses may perform conditional async operations
+		//that determine if the app should proceed.
+		if shouldNavigateToNextState {
+			Arc.shared.nextAvailableState()
+		}
     }
+	
     
-    open func onFinishSetup(index:String) {
-        
-    }
-    open func onValueChanged(index:String) {
-        
-        let question = Arc.shared.surveyController.get(question: index)
-        guard let surveyId = self.surveyId else {
-            return
-        }
-        let _ = Arc.shared.surveyController.mark(responseTime: question.questionId,
-                                                        question: question.prompt,
-                                                        forSurveyResponse: self.surveyId!)
-
-    }
-	//Override this to write to other controllers
-
-    open func onValueSelected(value:QuestionResponse, index:String) {
+	open func figureOutNextQuestion(id:String?) -> String? {
 		
-		let question = Arc.shared.surveyController.get(question: index)
-            
-        let _ = Arc.shared.surveyController.set(response: value,
-                                                                questionId: question.questionId,
-                                                                question: question.prompt,
-                                                                forSurveyId: self.surveyId!)
+		if let instructionCount = survey.instructions?.count {
+			guard currentIndex >= instructionCount else {
+				return nil
+			}
+		}
 		
-		
-
-//        dump(response.toString())
-		
-    }
-    
-	open func figureOutNextQuestion(id:String) -> String? {
+		guard let id = id else {
+			if answeredQuestions.count < questions.count {
+				return questions[answeredQuestions.count].questionId
+			} else {
+				return nil
+			}
+		}
 		self.answeredQuestions.append(id)
 		
 		
 		if let surveyId = surveyId {
+			
             let question = Arc.shared.surveyController.get(question: id)
 
 			let answer = Arc.shared.surveyController.getResponse(forQuestion: id, fromSurveyResponse: surveyId)
@@ -481,7 +513,22 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
 		
 	}
     
-    
+	open override func popViewController(animated: Bool) -> UIViewController? {
+		let vc = super.popViewController(animated: animated)
+		currentIndex = viewControllers.count
+		print(currentIndex)
+		currentQuestion = figureOutNextQuestion(id: nil)
+
+		return vc
+		
+	}
+	open override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+		super.pushViewController(viewController, animated: animated)
+		
+		currentIndex = viewControllers.count
+		print(currentIndex)
+		
+	}
 	open func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         HMLog("Changed stuff \(viewController)")
 		

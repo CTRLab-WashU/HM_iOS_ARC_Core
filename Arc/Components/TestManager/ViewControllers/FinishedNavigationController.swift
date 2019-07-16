@@ -28,13 +28,13 @@ open class FinishedNavigationController: SurveyNavigationViewController {
 		
 	}
 	
-	override open func onQuestionDisplayed(input:SurveyInput, index:String) {
+	override open func questionDisplayed(input:SurveyInput, index:String) {
 		
 		
 	}
 	
 	//Override this to write to other controllers
-	override open func onValueSelected(value:QuestionResponse, index:String) {
+	override open func valueSelected(value:QuestionResponse, index:String) {
         
 		guard let session = Arc.shared.currentTestSession else {return}
 		guard let study = Arc.shared.currentStudy else {return}

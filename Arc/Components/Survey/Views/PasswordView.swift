@@ -9,18 +9,17 @@
 import UIKit
 open class PasswordView : UIView, SurveyInput, UITextFieldDelegate {
     public var orientation: UIStackView.Alignment = .top
-    public var didChangeValue: (() -> ())?
-    public var tryNext:(() -> ())?
-    public var didFinishSetup: (() -> ())?
+    
 
 	@IBOutlet weak var textField:UITextField!
 	@IBOutlet weak var secureButton:UIButton!
 	@IBOutlet weak var borderView:BorderedUIView!
+	public weak var inputDelegate: SurveyInputDelegate?
 	override open func awakeFromNib() {
 		super.awakeFromNib()
         set(secure: false)
 		textField.inputAccessoryView = getInputAccessoryView(selector: #selector(PasswordView.doneButtonAction))
-		didFinishSetup?()
+		inputDelegate?.didFinishSetup()
 	}
 	
 	@IBAction func toggleSecure(_ sender: Any) {
@@ -42,7 +41,7 @@ open class PasswordView : UIView, SurveyInput, UITextFieldDelegate {
 		textField.text = String(describing: value?.value as? String ?? "")
 	}
 	@objc func doneButtonAction() {
-        tryNext?()
+        inputDelegate?.tryNextPressed()
 		textField.resignFirstResponder()
 	}
 	public func setError(message: String?) {

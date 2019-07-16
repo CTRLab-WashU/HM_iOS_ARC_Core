@@ -17,7 +17,7 @@ open class ACSignatureNavigationController: SurveyNavigationViewController {
         sessionId = Int64(session)
     }
     
-    open override func onValueSelected(value: QuestionResponse, index: String) {
+    open override func valueSelected(value: QuestionResponse, index: String) {
         //Do things here
         guard let image = value.value as? UIImage else {
             return

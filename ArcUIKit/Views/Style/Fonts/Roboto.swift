@@ -8,6 +8,18 @@
 
 import UIKit
 import HMMarkup
+
+public struct Text {
+	public static func replaceIn(_ text:String?, withTemplate template:[String:String]) -> String {
+		guard var text = text else {
+			return ""
+		}
+		for (key, value) in template {
+			text = text.replacingOccurrences(of: "{\(key)}", with: value)
+		}
+		return text
+	}
+}
 public struct Roboto {
 	public static let family = "Roboto"
 	
@@ -66,6 +78,7 @@ public struct Roboto {
 			
 			lineHeight(label)
 		}
+		
 		public static func renderMarkup (_ textView:UITextView, template:[String:String] = [:]) {
 			let renderer:HMMarkupRenderer = HMMarkupRenderer(baseFont: textView.font ?? Roboto.Font.body)
 			

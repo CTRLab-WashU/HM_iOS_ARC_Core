@@ -50,7 +50,14 @@ open class IntroViewController: CustomViewController<InfoView> {
     var subheading:String?
     var content:String?
 	var nextButtonTitle:String?
-    var nextPressed:(()->Void)?
+	weak var inputDelegate:SurveyInputDelegate? {
+		get {
+			return customView.inputDelegate
+		}
+		set {
+			customView.inputDelegate = newValue
+		}
+	}
     var templateHandler:((Int)->Dictionary<String,String>)?
     var instructionIndex:Int = 0
 	var shouldHideBackButton = false
@@ -59,6 +66,7 @@ open class IntroViewController: CustomViewController<InfoView> {
 	
     override open func viewDidLoad() {
         super.viewDidLoad()
+		
 		customView.backgroundColor = UIColor(named: "Primary")
         // Do any additional setup after loading the view.
 		if let nav = self.navigationController, nav.viewControllers.count > 1 {
@@ -79,13 +87,15 @@ open class IntroViewController: CustomViewController<InfoView> {
 			//self.navigationItem.setLeftBarButton(leftButton, animated: true)
 			self.navigationItem.leftBarButtonItem = leftButton
 		}
-
+		customView.nextButton?.addTarget(self, action: #selector(nextButtonPressed(_:)), for: .primaryActionTriggered)
     }
+	
 	@objc func backPressed() {
 		self.navigationController?.popViewController(animated: true)
 	}
-    @IBAction func nextButtonPressed(_ sender: Any) {
-        nextPressed?()
+	
+  	@objc func nextButtonPressed(_ sender: Any) {
+		inputDelegate?.nextPressed(input: customView.inputItem, value: customView.inputItem?.getValue())
     }
 	public func set(heading:String?, subheading:String?, content:String?, template:[String:String] = [:]) {
 		
@@ -121,7 +131,6 @@ open class IntroViewController: CustomViewController<InfoView> {
 			customView.nextButton?.setImage(nil, for: .normal)
 			
 		}
-		customView.nextPressed = nextPressed
 	}
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -152,14 +161,5 @@ open class IntroViewController: CustomViewController<InfoView> {
 	}
 
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+	
 }

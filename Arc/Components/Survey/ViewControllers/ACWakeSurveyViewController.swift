@@ -23,8 +23,8 @@ open class ACWakeSurveyViewController: SurveyNavigationViewController {
 
         case other
     }
-    override open func onQuestionDisplayed(input:SurveyInput, index:String) {
-        super.onQuestionDisplayed(input: input, index: index)
+    override open func questionDisplayed(input:SurveyInput, index:String) {
+        super.questionDisplayed(input: input, index: index)
         
         
         let question = WakeSurveyQuestion(rawValue: index) ?? .other

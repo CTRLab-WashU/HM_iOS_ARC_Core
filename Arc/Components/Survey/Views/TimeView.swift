@@ -9,10 +9,10 @@
 import UIKit
 
 open class TimeView: UIView, SurveyInput {
+	public weak var inputDelegate: SurveyInputDelegate?
+
     public var orientation: UIStackView.Alignment = .top
-    public var didChangeValue: (() -> ())?
-	public var tryNext:(() -> ())?
-    public var didFinishSetup: (() -> ())?
+    
 
 	@IBOutlet weak var picker:UIDatePicker!
     
@@ -31,7 +31,7 @@ open class TimeView: UIView, SurveyInput {
         if let date = self.dateFormatter.date(from: "12:00 PM") {
             picker.setDate(date, animated: false)
         }
-		didFinishSetup?()
+		inputDelegate?.didFinishSetup()
     }
  
     public func getValue() -> QuestionResponse? {
@@ -54,7 +54,7 @@ open class TimeView: UIView, SurveyInput {
     }
     
     @IBAction func valueChanged(_ sender: Any) {
-        self.didChangeValue?();
+        self.inputDelegate?.didChangeValue();
     }
     
     //MARK: TextFields

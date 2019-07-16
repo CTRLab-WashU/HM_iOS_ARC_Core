@@ -18,20 +18,17 @@ public protocol SignatureViewDelegate : class {
 open class SignatureView: BorderedUIView, SurveyInput {
     public var parentScrollView: UIScrollView?
     
-    public var didChangeValue: (() -> ())?
-    
+	
     public var isBottomAnchored: Bool = true
     
     public var orientation: UIStackView.Alignment = .bottom
+  
     
-    public var didFinishSetup: (() -> ())?
-    
-    public var tryNext: (() -> ())?
-    
-    
+	public weak var inputDelegate: SurveyInputDelegate?
+
     public var path:UIBezierPath = UIBezierPath()
     public var state:SignatureViewContentState = .empty
-    weak public var delegate:SignatureViewDelegate?
+    weak public var signatureDelegate:SignatureViewDelegate?
     
     
     
@@ -48,7 +45,7 @@ open class SignatureView: BorderedUIView, SurveyInput {
     open override func didMoveToSuperview() {
         super.didMoveToSuperview()
         isExclusiveTouch = true
-        didFinishSetup?()
+        inputDelegate?.didFinishSetup()
 //		didFinishSetup?()
     }
     // Only override draw() if you perform custom drawing.
@@ -95,10 +92,11 @@ open class SignatureView: BorderedUIView, SurveyInput {
 
         parentScrollView?.isScrollEnabled = true
 
-        delegate?.signatureViewContentChanged(state: .dirty)
+        signatureDelegate?.signatureViewContentChanged(state: .dirty)
+		inputDelegate?.didChangeValue()
         state = .dirty
-        didChangeValue?()
-        
+//        didChangeValue?()
+		
     }
     override open func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesCancelled(touches, with: event)
@@ -112,9 +110,10 @@ open class SignatureView: BorderedUIView, SurveyInput {
     public func clear(){
         path = UIBezierPath()
         self.setNeedsDisplay()
-        delegate?.signatureViewContentChanged(state: .empty)
+        signatureDelegate?.signatureViewContentChanged(state: .empty)
+		inputDelegate?.didChangeValue()
         state = .empty
-        didChangeValue?()
+//        didChangeValue?()
     }
     public func save() -> UIImage?{
         
@@ -137,9 +136,13 @@ open class SignatureView: BorderedUIView, SurveyInput {
 			$0.primaryColor = .clear
 			$0.secondaryColor = .clear
 			
-			$0.setTitle("Undo", for: .normal)
+			$0.setTitle("UNDO", for: .normal)
 			Roboto.Style.bodyBold($0.titleLabel!, color: UIColor(named:"Primary"))
 			Roboto.PostProcess.link($0)
+			$0.addAction {
+				[weak self] in
+				self?.clear()
+			}
 		}
 	}
     

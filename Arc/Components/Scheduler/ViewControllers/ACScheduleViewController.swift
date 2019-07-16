@@ -9,7 +9,7 @@
 import Foundation
 public class ACScheduleViewController : SurveyNavigationViewController {
     
-    open override func templateForQuestion(questionId:String) -> Dictionary<String, String> {
+	open override func templateForQuestion(id questionId:String) -> Dictionary<String, String> {
         
         guard QuestionIndex.init(rawValue: questionId) == .schedule_3 else {
             return [:]
@@ -121,7 +121,7 @@ public class ACScheduleViewController : SurveyNavigationViewController {
 		}
 	}
 	
-	override open func onQuestionDisplayed(input:SurveyInput, index:String) {
+	override open func questionDisplayed(input:SurveyInput, index:String) {
 		let qIndex = QuestionIndex(rawValue: index)!
 		let responseValue = Arc.shared.surveyController.getResponse(forQuestion: index, fromSurveyResponse: surveyId!)
 		guard qIndex != .schedule_3 else {
@@ -150,7 +150,7 @@ public class ACScheduleViewController : SurveyNavigationViewController {
         }
         setError(message:error)
     }
-    public override func onValueChanged(index: String) {
+    public override func valueChanged(index: String) {
         
         
         if let newValue = getValue(), isValid(value: newValue, index: index)
@@ -217,8 +217,8 @@ public class ACScheduleViewController : SurveyNavigationViewController {
     }
 	
 	//Override this to write to other controllers
-	override open func onValueSelected(value:QuestionResponse, index:String) {
-			super.onValueSelected(value: value, index: index)
+	override open func valueSelected(value:QuestionResponse, index:String) {
+			super.valueSelected(value: value, index: index)
 
 		let index = QuestionIndex(rawValue: index)!
 		if let day = index.day {

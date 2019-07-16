@@ -8,13 +8,17 @@
 
 import UIKit
 
-open class InstructionNavigationController: UINavigationController {
+open class InstructionNavigationController: UINavigationController, SurveyInputDelegate {
+	
+	
+	
+	
 	var app = Arc.shared
 	public var instructions:[Introduction.Instruction]?
 	public var nextVc:UIViewController?
 	public var nextState:State?
 	public var titleOverride:String?
-	
+	var currentIndex:Int = 0
     override open func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,6 +45,32 @@ open class InstructionNavigationController: UINavigationController {
 		super.viewWillAppear(animated)
 		_ = displayIntro(index: 0)
 	}
+	public func didChangeValue() {
+		
+	}
+	
+	public func nextPressed(input:SurveyInput?, value:QuestionResponse?) {
+		self.next(nextQuestion: currentIndex)
+	}
+	
+	public func valueSelected(value: QuestionResponse, index: String) {
+		
+	}
+	
+	public func templateForQuestion(id: String) -> Dictionary<String, String> {
+		return [:]
+	}
+	
+	public func didPresentQuestion(input: SurveyInput?) {
+		
+	}
+	
+	public func didFinishSetup() {
+		
+	}
+	public func tryNextPressed() {
+		
+	}
 	
 	private func displayIntro(index:Int) -> Bool {
 		
@@ -58,11 +88,8 @@ open class InstructionNavigationController: UINavigationController {
 			vc.set(heading:     titleOverride ?? instruction.title,
 				   subheading:  instruction.subtitle,
 				   content:     instruction.preface)
-
-			vc.nextPressed = {
-				[weak self] in
-				self?.next(nextQuestion: index + 1)
-			}
+			vc.inputDelegate = self
+			
 			return true
 		}
 		return false
@@ -88,6 +115,19 @@ open class InstructionNavigationController: UINavigationController {
 			}
 		}
 	}
-
+	open override func popViewController(animated: Bool) -> UIViewController? {
+		currentIndex = viewControllers.count - 1
+		print(currentIndex)
+		
+		return super.popViewController(animated: animated)
+		
+	}
+	open override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+		super.pushViewController(viewController, animated: animated)
+		
+		currentIndex = viewControllers.count - 1
+		print(currentIndex)
+		
+	}
 
 }

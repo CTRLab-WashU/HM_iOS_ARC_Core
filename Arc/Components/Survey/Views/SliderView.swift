@@ -28,6 +28,7 @@ open class SliderView: UIView, SurveyInput {
     
     public var didChangeValue: (() -> ())?
 	public var tryNext:(() -> ())?
+	public weak var inputDelegate: SurveyInputDelegate?
 
     var first = true
 	var hideSelectedAfterFirst = false
@@ -45,7 +46,7 @@ open class SliderView: UIView, SurveyInput {
     */
 	open override func awakeFromNib() {
 		super.awakeFromNib()
-		didFinishSetup?()
+		inputDelegate?.didFinishSetup()
 	}
 	public func setHidesSelectedAfterFirst(value:Bool) {
 		hideSelectedAfterFirst = value
@@ -118,7 +119,7 @@ open class SliderView: UIView, SurveyInput {
             if SliderView.hideSelection ?? hideSelectedAfterFirst {
 				hideSelectedContainer()
 			}
-            didChangeValue?()
+            inputDelegate?.didChangeValue()
 		} else {
 			
 		}

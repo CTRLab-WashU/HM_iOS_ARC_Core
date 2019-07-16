@@ -9,17 +9,19 @@
 import Foundation
 import ArcUIKit
 import HMMarkup
-open class SurveyView : ACTemplateView, SurveyInput {
+
+
+open class SurveyView : ACTemplateView, SurveyInput, SurveyInputDelegate {
 	
 	
+	
+	public weak var inputDelegate: SurveyInputDelegate?
+
 	public var orientation: UIStackView.Alignment = .top
 	var nextPressed:((SurveyInput?, QuestionResponse?)->Void)?
 	var templateHandler:((String)->Dictionary<String,String>)?
 	var questionPresented:((SurveyInput?)->Void)?
-
-	public var didFinishSetup: (() -> ())?
-	public var didChangeValue: (() -> ())?
-	public var tryNext: (() -> ())?
+	var question:Survey.Question?
 
 	
 	var error:String?
@@ -43,23 +45,75 @@ open class SurveyView : ACTemplateView, SurveyInput {
 	required public init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
-	public func getValue() -> QuestionResponse? {
-		return input?.getValue()
+	//MARK: - Layout
+	open override func header(_ view: UIView) {
+		
+	}
+	override open func content(_ view: UIView) {
+		super.content(view)
+		view.stack { [weak self] in
+			$0.axis = .vertical
+			self?.top = $0.promptDetail {_ in}
+			
+			$0.setCustomSpacing(20, after: top)
+			
+			//Container stack for questions
+			$0.stack {
+				
+				container = $0.stack {
+					$0.axis = .horizontal
+					$0.distribution = .equalCentering
+					
+				}
+			}
+			//
+			//The error label below an input
+			self?.errorLabel = $0.label {
+				Roboto.Style.error($0)
+				$0.text = ""
+				
+			}
+		}
+		
+	}
+	open override func footer(_ view: UIView) {
+		
+		//A container for miscelaneous views
+		self.views = view.stack {
+			$0.axis = .vertical
+			$0.alignment = .center
+			$0.isLayoutMarginsRelativeArrangement = true
+			$0.layoutMargins.bottom = 20
+			input?.supplementaryViews(for: views)
+			
+			$0.layout {
+				$0.height == 20 ~ 250
+				$0.height >= 20 ~ 999
+			}
+		}
+		view.stack { [weak self] in
+			$0.axis = .vertical
+			$0.alignment = .center
+			
+			self?.nextButton = $0.acButton {
+				$0.translatesAutoresizingMaskIntoConstraints = false
+				$0.setTitle("Next", for: .normal)
+				
+				$0.addAction { [weak self] in
+					let value = self?.input?.getValue()
+					
+					self?.inputDelegate?.nextPressed(input: self?.input, value: value)
+				}
+			}
+		}
 	}
 	
-	public func setValue(_ value: QuestionResponse?) {
-		input?.setValue(value)
-	}
-
+	
 	private func baseStyle(_ label:UILabel) {
 		Roboto.PostProcess.renderMarkup(label)
 	}
 	
-	public func setError(message: String?) {
-		input?.setError(message: message)
-		errorLabel.text = message
-	}
+	
 	// MARK: - Question Display
 	/// Display Question sets the main prompt text, detail text, and input for a question.
 	/// The button text is also handled via the question data along with other metadata for specific settings.
@@ -84,8 +138,9 @@ open class SurveyView : ACTemplateView, SurveyInput {
 
 		
 		
-		self.didFinishSetup?()
-		self.questionPresented?(input)
+		inputDelegate?.didFinishSetup()
+		inputDelegate?.didPresentQuestion(input: input)
+		
 	}
 	
 	
@@ -123,26 +178,8 @@ open class SurveyView : ACTemplateView, SurveyInput {
 		guard input == nil else {
 			return
 		}
-		input = question?.type.create(inputWithQuestion: question)
-		input?.tryNext = { [weak self] in
-			if self?.nextButton?.isEnabled == true {
-				if let value = self?.input?.getValue() {
-					self?.nextPressed?(self?.input, value)
-				} else {
-					self?.nextPressed?(nil, nil)
-				}
-			}
-		}
-		
-		input?.didChangeValue = { [weak self] in
-			
-			self?.updateButtonState(question)
-			self?.didChangeValue?();
-		}
-		input?.didFinishSetup = { [weak self] in
-			self?.updateButtonState(question)
-		}
-		
+		input = question?.type?.create(inputWithQuestion: question)
+		input?.inputDelegate = self
 		input?.parentScrollView = root
 		container.alignment = input?.orientation ?? .top
 		if container.arrangedSubviews.isEmpty, let input = input as? UIView {
@@ -168,64 +205,54 @@ open class SurveyView : ACTemplateView, SurveyInput {
 		self.nextButton?.setTitle(title, for: .normal)
 	}
 	
-	open override func header(_ view: UIView) {
+	
+	//MARK: - Survey Input
+	public func getValue() -> QuestionResponse? {
+		return input?.getValue()
+	}
+	
+	public func setValue(_ value: QuestionResponse?) {
+		input?.setValue(value)
+	}
+	public func setError(message: String?) {
+		input?.setError(message: message)
+		errorLabel.text = message
+	}
+	public func didChangeValue() {
+		inputDelegate?.didChangeValue()
+		self.updateButtonState(question)
 		
 	}
-	override open func content(_ view: UIView) {
-		super.content(view)
-		view.stack { [weak self] in
-			$0.axis = .vertical
-			self?.top = $0.promptDetail {_ in}
-			
-			$0.setCustomSpacing(20, after: top)
-			
-			//Container stack for questions
-			$0.stack {
-				
-				container = $0.stack {
-					$0.axis = .horizontal
-					$0.distribution = .equalCentering
-					
-				}
-			}
-//				
-			//The error label below an input
-			self?.errorLabel = $0.label {
-				Roboto.Style.error($0)
-				$0.text = ""
+	
+	public func nextPressed(input: SurveyInput?, value: QuestionResponse?) {
+		inputDelegate?.nextPressed(input: input, value: value)
+	}
+	
+	public func valueSelected(value: QuestionResponse, index: String) {
+		inputDelegate?.valueSelected(value: value, index: index)
+	}
+	
+	public func templateForQuestion(id: String) -> Dictionary<String, String> {
+		return inputDelegate?.templateForQuestion(id: id) ?? [:]
+	}
+	
+	public func didPresentQuestion(input: SurveyInput?) {
+		inputDelegate?.didPresentQuestion(input: input)
+		self.updateButtonState(question)
 
-			}
-		}
-		
 	}
-	open override func footer(_ view: UIView) {
-		
-		//A container for miscelaneous views
-		self.views = view.stack {
-			$0.axis = .vertical
-			$0.alignment = .center
-			$0.isLayoutMarginsRelativeArrangement = true
-			$0.layoutMargins.bottom = 20
-			input?.supplementaryViews(for: views)
-			
-			$0.layout {
-				$0.height == 20 ~ 250
-				$0.height >= 20 ~ 999
-			}
-		}
-		view.stack { [weak self] in
-			$0.axis = .vertical
-			$0.alignment = .center
-			
-			self?.nextButton = $0.acButton {
-				$0.translatesAutoresizingMaskIntoConstraints = false
-				$0.setTitle("Next", for: .normal)
-				
-				$0.addAction { [weak self] in
-					let value = self?.input?.getValue()
-					
-					self?.nextPressed?(self?.input, value)
-				}
+	
+	public func didFinishSetup() {
+		inputDelegate?.didFinishSetup()
+		self.updateButtonState(question)
+	}
+	
+	public func tryNextPressed() {
+		if self.nextButton?.isEnabled == true {
+			if let value = self.input?.getValue() {
+				inputDelegate?.nextPressed(input: self.input, value: value)
+			} else {
+				inputDelegate?.nextPressed(input: nil, value: nil)
 			}
 		}
 	}

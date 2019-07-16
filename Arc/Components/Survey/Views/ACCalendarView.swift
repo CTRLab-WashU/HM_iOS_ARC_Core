@@ -25,7 +25,8 @@ public struct ACCalendarStore {
 }
 @IBDesignable
 public class ACCalendarView:UIView, SurveyInput {
-    
+	public weak var inputDelegate: SurveyInputDelegate?
+
     private enum CellStyle {
         case none, header, selected, selectedFirst, selectedLast
         
@@ -297,7 +298,7 @@ public class ACCalendarView:UIView, SurveyInput {
         for row in 0 ..< rows {
             content.addArrangedSubview( createRow(views: Array(items[0 + (7 * row) ... 6 + (7 * row)])))
         }
-		didFinishSetup?()
+		inputDelegate?.didFinishSetup()
     }
     
     private func getWeekDays(range:ClosedRange<Date>, selected:ClosedRange<Date>? = nil) -> [(Int, Int, Bool?)]{

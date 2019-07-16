@@ -7,7 +7,15 @@
 //
 
 import UIKit
-
+public protocol SurveyInputDelegate : class {
+	func nextPressed(input:SurveyInput?, value:QuestionResponse?)
+	func valueSelected(value:QuestionResponse, index:String)
+	func templateForQuestion(id:String)-> Dictionary<String, String>
+	func didPresentQuestion(input:SurveyInput?)
+	func didFinishSetup()
+	func didChangeValue()
+	func tryNextPressed()
+}
 public protocol SurveyInput {
     ///Returns nil if the value returned is invalid
     func getValue() -> QuestionResponse?
@@ -17,9 +25,7 @@ public protocol SurveyInput {
 	func supplementaryViews(for view:UIView)
 	var orientation:UIStackView.Alignment {get set}
     var distribution:UIStackView.Distribution {get set}
-    var didChangeValue:(()->())? {get set}
-    var didFinishSetup:(()->())? {get set}
-	var tryNext:(() -> ())? {get set}
+	var inputDelegate:SurveyInputDelegate? {get set}
     var isBottomAnchored:Bool {get}
     var parentScrollView:UIScrollView? {get set}
     

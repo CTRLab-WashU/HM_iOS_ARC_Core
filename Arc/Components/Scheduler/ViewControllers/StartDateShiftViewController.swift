@@ -47,8 +47,8 @@ open class StartDateShiftViewController: SurveyNavigationViewController {
         }
     }
     
-    open override func templateForQuestion(questionId: String) -> Dictionary<String, String> {
-        super.templateForQuestion(questionId: questionId)
+	open override func templateForQuestion(id questionId: String) -> Dictionary<String, String> {
+		super.templateForQuestion(id: questionId)
         guard let index = QuestionId(rawValue: questionId) else {return [:]}
         if index == .user_schedule_2 {
             #warning("Use arc length")
@@ -60,8 +60,8 @@ open class StartDateShiftViewController: SurveyNavigationViewController {
         return [:]
     }
     
-    override open func onQuestionDisplayed(input: SurveyInput, index: String) {
-        super.onQuestionDisplayed(input: input, index: index)
+    override open func questionDisplayed(input: SurveyInput, index: String) {
+        super.questionDisplayed(input: input, index: index)
         guard let index = QuestionId(rawValue: index) else {return}
         
         switch index {
@@ -94,7 +94,7 @@ open class StartDateShiftViewController: SurveyNavigationViewController {
         }
     }
     
-    override open func onValueSelected(value: QuestionResponse, index: String) {
+    override open func valueSelected(value: QuestionResponse, index: String) {
         //super.onValueSelected(value: value, index: index)
         guard let index = QuestionId(rawValue: index) else {return}
 

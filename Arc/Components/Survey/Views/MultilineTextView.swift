@@ -8,11 +8,10 @@
 
 import UIKit
 open class MultilineTextView : UIView, SurveyInput, UITextViewDelegate {
+	public weak var inputDelegate: SurveyInputDelegate?
 
     public var orientation: UIStackView.Alignment = .top
-    public var didChangeValue: (() -> ())?
-	public var tryNext:(() -> ())?
-    public var didFinishSetup: (() -> ())?
+    
 
     @IBOutlet weak var textView: UITextView!
 	public var maxCharacters:Int?
@@ -32,7 +31,7 @@ open class MultilineTextView : UIView, SurveyInput, UITextViewDelegate {
         textView.layer.cornerRadius = 8.0
 		textView.inputAccessoryView = getInputAccessoryView(selector: #selector(endEditing(_:)))
         textView.becomeFirstResponder()
-		didFinishSetup?()
+		inputDelegate?.didFinishSetup()
     }
     
     override open var canBecomeFirstResponder: Bool {
@@ -76,6 +75,6 @@ open class MultilineTextView : UIView, SurveyInput, UITextViewDelegate {
 		if let max = maxCharacters {
 			textView.text = String(textView.text.prefix(max))
 		}
-		didChangeValue?()
+		inputDelegate?.didChangeValue()
 	}
 }

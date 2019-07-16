@@ -21,7 +21,7 @@ class SignatureViewController: UIViewController, SignatureViewDelegate  {
         super.viewDidAppear(animated);
         
 
-        self.signatureView.delegate = self
+        self.signatureView.signatureDelegate = self
         self.signatureViewContentChanged(state: .empty)
     }
     

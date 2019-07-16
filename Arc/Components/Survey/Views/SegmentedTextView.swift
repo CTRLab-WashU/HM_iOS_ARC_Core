@@ -9,13 +9,13 @@
 import UIKit
 import ArcUIKit
 public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTraits{
+	public weak var inputDelegate: SurveyInputDelegate?
+
     public var orientation: UIStackView.Alignment = .top
-    public var didChangeValue: (() -> ())?
-    public var tryNext:(() -> ())?
-    public var didFinishSetup: (() -> ())?
+   
 
 	@IBOutlet weak var inputStack: UIStackView!
-
+	public var shouldTryNext = true
 	private var _value:[String] = [] {
 		didSet {
 			updateValue(newValue: self._value)
@@ -50,7 +50,9 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTra
 	}
 	
 	@objc func doneButtonAction() {
-        tryNext?()
+		if shouldTryNext {
+        	inputDelegate?.tryNextPressed()
+		}
 		resignFirstResponder()
 	}
 	public var hasText: Bool {
@@ -60,7 +62,7 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTra
 	public override func awakeFromNib() {
 		super.awakeFromNib()
 		updateValue(newValue: [])
-		didFinishSetup?()
+		inputDelegate?.didFinishSetup()
 	}
 	
 	public func set(length:UInt) {
@@ -139,7 +141,7 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTra
 			index += 1
 			view.layoutSubviews()
 		}
-		didChangeValue?()
+		inputDelegate?.didChangeValue()
 	}
 	
 	public func getValue() -> QuestionResponse? {
