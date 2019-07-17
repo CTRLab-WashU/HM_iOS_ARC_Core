@@ -14,7 +14,7 @@ open class NotificationController : MHController
 		let options: UNAuthorizationOptions = [.alert, .sound, .badge];
 		
 		center.requestAuthorization(options: options, completionHandler: completion)
-
+		
 	}
 	
     @discardableResult

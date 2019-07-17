@@ -8,5 +8,5 @@
 
 import Foundation
 public enum QuestionStyle : String, Codable {
-	case none, instruction, impasse, grids, prices, symbols
+	case none, instruction, impasse, grids, prices, symbols, viewController
 }

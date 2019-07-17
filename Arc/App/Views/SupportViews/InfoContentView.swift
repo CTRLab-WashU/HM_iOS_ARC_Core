@@ -54,9 +54,9 @@ public class InfoContentView: UIStackView {
 			view.text = text
 		} else {
 			headingLabel = acLabel {
-				$0.textAlignment = .center
-
-				Roboto.Style.headingBold($0,
+				$0.textAlignment = .left
+				
+				Roboto.Style.heading($0,
 										 color:textColor)
 				$0.text = text
 				

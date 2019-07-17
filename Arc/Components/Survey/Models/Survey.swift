@@ -47,7 +47,7 @@ public struct Survey : HMCodable {
         
         public var type:QuestionType?
         public var style: QuestionStyle?
-		public var viewController:String?
+		public var state:String?
         public var questionId:String
         public var prompt:String
 		public var subTitle:String?

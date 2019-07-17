@@ -9,9 +9,8 @@
 import UIKit
 public protocol SurveyInputDelegate : class {
 	func nextPressed(input:SurveyInput?, value:QuestionResponse?)
-	func valueSelected(value:QuestionResponse, index:String)
 	func templateForQuestion(id:String)-> Dictionary<String, String>
-	func didPresentQuestion(input:SurveyInput?)
+	
 	func didFinishSetup()
 	func didChangeValue()
 	func tryNextPressed()

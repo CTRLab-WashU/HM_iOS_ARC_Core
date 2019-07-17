@@ -17,7 +17,7 @@
 		C5192A7822C5231900223B69 /* Roboto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5192A6222C3DF9000223B69 /* Roboto.swift */; };
 		C5192A7F22C5235E00223B69 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE91621C81B5C00DEC360 /* UILabel+Extensions.swift */; };
 		C51A7D8722D7EC5900854B13 /* ParticipationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51A7D8622D7EC5900854B13 /* ParticipationView.swift */; };
-		C51A7D8C22D8C33F00854B13 /* NotificationPremissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51A7D8B22D8C33F00854B13 /* NotificationPremissionViewController.swift */; };
+		C51A7D8C22D8C33F00854B13 /* NotificationPermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51A7D8B22D8C33F00854B13 /* NotificationPermissionViewController.swift */; };
 		C51A7D8E22D8C38300854B13 /* NotificationPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51A7D8D22D8C38300854B13 /* NotificationPermissionView.swift */; };
 		C51A7D9022D8CDAE00854B13 /* BasicSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51A7D8F22D8CDAE00854B13 /* BasicSurveyViewController.swift */; };
 		C523B38622CA76450074337D /* UIViewController + CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C523B38522CA76450074337D /* UIViewController + CustomView.swift */; };
@@ -234,6 +234,8 @@
 		C5C2B12922D3ECBB002CB4C5 /* InfoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C2B12822D3ECBB002CB4C5 /* InfoContentView.swift */; };
 		C5C2B12B22D3F205002CB4C5 /* TestInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C2B12A22D3F205002CB4C5 /* TestInfoView.swift */; };
 		C5C7F715228F65C50086315B /* ArcTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C7F714228F65C50086315B /* ArcTranslation.swift */; };
+		C5CCD7AC22DE6A61002A788A /* OnboardingSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CCD7AB22DE6A61002A788A /* OnboardingSurveyViewController.swift */; };
+		C5CCD7AE22DF717D002A788A /* AsyncAwait.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CCD7AD22DF717D002A788A /* AsyncAwait.swift */; };
 		C5D085CC22D7828300043513 /* HintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D085CB22D7828300043513 /* HintView.swift */; };
 		C5D0F6FA220B477B00F04942 /* MHScrollingAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5D0F6F9220B477B00F04942 /* MHScrollingAlertView.xib */; };
 		C5E0DDB922A5B7D20034DEDF /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0DDB822A5B7D20034DEDF /* IndicatorView.swift */; };
@@ -286,7 +288,7 @@
 		C5192A6B22C5190D00223B69 /* UIDSL+ArcUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDSL+ArcUIKit.swift"; sourceTree = "<group>"; };
 		C5192A6E22C519D900223B69 /* UIDSL+ArcCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDSL+ArcCore.swift"; sourceTree = "<group>"; };
 		C51A7D8622D7EC5900854B13 /* ParticipationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipationView.swift; sourceTree = "<group>"; };
-		C51A7D8B22D8C33F00854B13 /* NotificationPremissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPremissionViewController.swift; sourceTree = "<group>"; };
+		C51A7D8B22D8C33F00854B13 /* NotificationPermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPermissionViewController.swift; sourceTree = "<group>"; };
 		C51A7D8D22D8C38300854B13 /* NotificationPermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPermissionView.swift; sourceTree = "<group>"; };
 		C51A7D8F22D8CDAE00854B13 /* BasicSurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicSurveyViewController.swift; sourceTree = "<group>"; };
 		C523B38522CA76450074337D /* UIViewController + CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + CustomView.swift"; sourceTree = "<group>"; };
@@ -499,6 +501,8 @@
 		C5C2B12822D3ECBB002CB4C5 /* InfoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoContentView.swift; sourceTree = "<group>"; };
 		C5C2B12A22D3F205002CB4C5 /* TestInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestInfoView.swift; sourceTree = "<group>"; };
 		C5C7F714228F65C50086315B /* ArcTranslation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArcTranslation.swift; sourceTree = "<group>"; };
+		C5CCD7AB22DE6A61002A788A /* OnboardingSurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSurveyViewController.swift; sourceTree = "<group>"; };
+		C5CCD7AD22DF717D002A788A /* AsyncAwait.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncAwait.swift; sourceTree = "<group>"; };
 		C5D085CB22D7828300043513 /* HintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintView.swift; sourceTree = "<group>"; };
 		C5D0F6F9220B477B00F04942 /* MHScrollingAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MHScrollingAlertView.xib; sourceTree = "<group>"; };
 		C5E0DDB822A5B7D20034DEDF /* IndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorView.swift; sourceTree = "<group>"; };
@@ -602,9 +606,9 @@
 		C51A7D8A22D8C30800854B13 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				C51A7D8B22D8C33F00854B13 /* NotificationPremissionViewController.swift */,
+				C51A7D8B22D8C33F00854B13 /* NotificationPermissionViewController.swift */,
 				C51A7D8D22D8C38300854B13 /* NotificationPermissionView.swift */,
-				C51A7D8F22D8CDAE00854B13 /* BasicSurveyViewController.swift */,
+				C5CCD7AB22DE6A61002A788A /* OnboardingSurveyViewController.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -777,6 +781,7 @@
 		C54AE91921C81B5C00DEC360 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				C5CCD7AD22DF717D002A788A /* AsyncAwait.swift */,
 				C58C96F0228201CE001BDE11 /* HMOperation.swift */,
 				C54AE91A21C81B5C00DEC360 /* HMLog.swift */,
 				C54AE91B21C81B5C00DEC360 /* FatalErrorUtil.swift */,
@@ -1109,6 +1114,7 @@
 		C54AE99521C81B5C00DEC360 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C51A7D8F22D8CDAE00854B13 /* BasicSurveyViewController.swift */,
 				C54AE99621C81B5C00DEC360 /* IntroViewController.swift */,
 				C54AE99721C81B5C00DEC360 /* SurveyNavigationViewController.swift */,
 				C54AE99921C81B5C00DEC360 /* SurveyNavigationViewController.xib */,
@@ -1583,6 +1589,7 @@
 				C54AEA3F21C81B5F00DEC360 /* SurveyNavigationViewController.swift in Sources */,
 				C54AEA2F21C81B5F00DEC360 /* WeekDay.swift in Sources */,
 				C54AEA0B21C81B5F00DEC360 /* PricesQuestionViewController.swift in Sources */,
+				C5CCD7AE22DF717D002A788A /* AsyncAwait.swift in Sources */,
 				C54AEA6321C81B5F00DEC360 /* CoreDataStack.swift in Sources */,
 				C54AEA1B21C81B5F00DEC360 /* TextAlertView.swift in Sources */,
 				C540B5B1221E0FD000B539A4 /* LanguageViewController.swift in Sources */,
@@ -1658,6 +1665,7 @@
 				C54AEA4421C81B5F00DEC360 /* SurveyController.swift in Sources */,
 				C54D104F22C29DA700B43E42 /* SurveyView.swift in Sources */,
 				C54AE9EF21C81B5F00DEC360 /* ArcViewController.swift in Sources */,
+				C5CCD7AC22DE6A61002A788A /* OnboardingSurveyViewController.swift in Sources */,
 				C52B75D521C837A200498571 /* Session+Extensions.swift in Sources */,
 				C556BA2F22CA5B4C0057B54B /* ACHomeView.swift in Sources */,
 				C54AEA0421C81B5F00DEC360 /* BorderedUIView.swift in Sources */,
@@ -1688,7 +1696,7 @@
 				C54AE9D321C81B5F00DEC360 /* State.swift in Sources */,
 				C54AE9F421C81B5F00DEC360 /* StudyController.swift in Sources */,
 				C54AE9D221C81B5F00DEC360 /* Study.swift in Sources */,
-				C51A7D8C22D8C33F00854B13 /* NotificationPremissionViewController.swift in Sources */,
+				C51A7D8C22D8C33F00854B13 /* NotificationPermissionViewController.swift in Sources */,
 				C5F77F37222F095200BECAE1 /* SignatureViewController.swift in Sources */,
 				C54AEA3721C81B5F00DEC360 /* ScheduleController+ScheduleEntry.swift in Sources */,
 				C54AE9E921C81B5F00DEC360 /* TestSession.swift in Sources */,

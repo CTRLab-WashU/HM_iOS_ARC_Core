@@ -139,7 +139,6 @@ open class SurveyView : ACTemplateView, SurveyInput, SurveyInputDelegate {
 		
 		
 		inputDelegate?.didFinishSetup()
-		inputDelegate?.didPresentQuestion(input: input)
 		
 	}
 	
@@ -228,19 +227,11 @@ open class SurveyView : ACTemplateView, SurveyInput, SurveyInputDelegate {
 		inputDelegate?.nextPressed(input: input, value: value)
 	}
 	
-	public func valueSelected(value: QuestionResponse, index: String) {
-		inputDelegate?.valueSelected(value: value, index: index)
-	}
 	
 	public func templateForQuestion(id: String) -> Dictionary<String, String> {
 		return inputDelegate?.templateForQuestion(id: id) ?? [:]
 	}
 	
-	public func didPresentQuestion(input: SurveyInput?) {
-		inputDelegate?.didPresentQuestion(input: input)
-		self.updateButtonState(question)
-
-	}
 	
 	public func didFinishSetup() {
 		inputDelegate?.didFinishSetup()

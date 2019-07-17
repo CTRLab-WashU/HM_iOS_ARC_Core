@@ -100,6 +100,7 @@ open class Arc : ArcApi {
 	public var currentStudy:Int?
 	public var availableTestSession:Int?
 	public var currentTestSession:Int?
+	static public var currentState:State?
     static public var environment:ArcEnvironment?
 	
 	
@@ -148,10 +149,15 @@ open class Arc : ArcApi {
         environment.configure()
     }
     public func nextAvailableState(runPeriodicBackgroundTask:Bool = false, direction:UIWindow.TransitionOptions.Direction = .toRight) {
-        appNavigation.navigate(state: appNavigation.nextAvailableState(runPeriodicBackgroundTask: runPeriodicBackgroundTask), direction: direction)
+		let state = appNavigation.nextAvailableState(runPeriodicBackgroundTask: runPeriodicBackgroundTask)
+		Arc.currentState = state
+        appNavigation.navigate(state: state, direction: direction)
 	}
 	public func nextAvailableSurveyState() {
-		appNavigation.navigate(state: appNavigation.nextAvailableSurveyState() ?? appNavigation.defaultState(), direction: .toRight)
+		
+		let state = appNavigation.nextAvailableSurveyState() ?? appNavigation.defaultState()
+		Arc.currentState = state
+		appNavigation.navigate(state: state, direction: .toRight)
 	}
 	
 	
