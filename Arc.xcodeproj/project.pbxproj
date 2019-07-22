@@ -937,9 +937,8 @@
 			children = (
 				C58129F922E244BF00CD1883 /* Grid Test */,
 				C5C2B12322D39386002CB4C5 /* Prices Test */,
-				C54AE95421C81B5C00DEC360 /* SymbolsTestViewController.swift */,
+				C54E8E0F22E647ED0080BFC1 /* SymbolsTest */,
 				C54AE95521C81B5C00DEC360 /* InstructionNavigationController.swift */,
-				C54AE95621C81B5C00DEC360 /* SymbolsTestViewController.xib */,
 				C54AE95A21C81B5C00DEC360 /* FinishedNavigationController.swift */,
 				C5143958224EA6FD000BF1CB /* ACSignatureNavigationController.swift */,
 				C56D6C5A22CD2B9F00C3F8EA /* ACTutorialViewController.swift */,
@@ -1190,6 +1189,15 @@
 				C54AE9CD21C81B5F00DEC360 /* Roboto-Black.ttf */,
 			);
 			path = Roboto;
+			sourceTree = "<group>";
+		};
+		C54E8E0F22E647ED0080BFC1 /* SymbolsTest */ = {
+			isa = PBXGroup;
+			children = (
+				C54AE95421C81B5C00DEC360 /* SymbolsTestViewController.swift */,
+				C54AE95621C81B5C00DEC360 /* SymbolsTestViewController.xib */,
+			);
+			path = SymbolsTest;
 			sourceTree = "<group>";
 		};
 		C58129F922E244BF00CD1883 /* Grid Test */ = {

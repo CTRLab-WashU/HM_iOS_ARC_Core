@@ -23,13 +23,13 @@ public class SymbolsTestViewController: UIViewController {
     var controller = Arc.shared.symbolsTestController
     var responseID = ""
     var questionIndex = 0
-    @IBOutlet weak var option1: UIView!
-    @IBOutlet weak var option2: UIView!
-    @IBOutlet weak var option3: UIView!
+    @IBOutlet public weak var option1: UIView!
+    @IBOutlet public weak var option2: UIView!
+    @IBOutlet public weak var option3: UIView!
     
-    @IBOutlet weak var choice1: UIView!
-    @IBOutlet weak var choice2: UIView!
-    
+    @IBOutlet public weak var choice1: UIView!
+    @IBOutlet public weak var choice2: UIView!
+	public var isPracticeTest:Bool = false
 //    private var currentTrialData:DNSymbolInputData!
     private var test:SymbolsTest?
     
@@ -39,7 +39,9 @@ public class SymbolsTestViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //Create the test optionally with a duration
-        ACState.testCount += 1
+		if !isPracticeTest {
+        	ACState.testCount += 1
+		}
 
 		let app = Arc.shared
 		let studyId = Int(app.studyController.getCurrentStudyPeriod()?.studyID ?? -1)
