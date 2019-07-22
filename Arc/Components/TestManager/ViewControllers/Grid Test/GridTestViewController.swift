@@ -7,7 +7,14 @@
 //
 
 import UIKit
-
+import ArcUIKit
+public protocol GridTestViewControllerDelegate : class {
+	func didSelectGrid(indexPath:IndexPath)
+	func didSelectLetter(indexPath:IndexPath)
+	func didDeselectGrid(indexPath:IndexPath)
+	func didDeselectLeter(indexPath:IndexPath)
+	
+}
 open class GridTestViewController: ArcViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     public enum Mode {
         case none
@@ -25,11 +32,14 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
     public var endTimer:Timer?
     public var maybeEndTimer:Timer?
 	public var isVisible = true
+	public var shouldAutoProceed = true
+	public var fIndexPaths:[IndexPath] = []
+	public var symbolIndexPaths:[IndexPath] = []
     var interstitial:InterstitialView = .get()
     @IBOutlet public weak var collectionView: UICollectionView!
     @IBOutlet public weak var collectionViewHeight:NSLayoutConstraint!
     @IBOutlet public weak var tapOnTheFsLabel: UILabel!
-    
+	public weak var delegate:GridTestViewControllerDelegate?
     private var symbols:[UIImage] = [#imageLiteral(resourceName: "key"),
                                      #imageLiteral(resourceName: "phone"),
                                      #imageLiteral(resourceName: "pen")]
@@ -79,8 +89,9 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 			
 		_ = controller.start(test: responseId)
 		_ = controller.mark(filled: responseId)
-
-        displayPreSymbols();
+		if shouldAutoProceed {
+			displayPreSymbols();
+		}
     }
 	open override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
@@ -105,16 +116,17 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         phase = 0;
         
         collectionView.allowsSelection = false;
-        
+        symbolIndexPaths = []
         collectionView.reloadData();
         
         _ = controller.markTime(gridDisplayedSymbols: responseId, questionIndex: testNumber)
        
-        
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) {
-			[weak self] (timer) in
-            self?.displayFs()
-        }
+		if shouldAutoProceed {
+			Timer.scheduledTimer(withTimeInterval: 3, repeats: false) {
+				[weak self] (timer) in
+				self?.displayFs()
+			}
+		}
     }
     
     open func displayFs()
@@ -132,19 +144,45 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         collectionView.allowsSelection = true
 
         collectionView.allowsMultipleSelection = true
-
+		fIndexPaths = []
         collectionView.reloadData()
 
         _ = controller.markTime(gridDisplayedFs: responseId, questionIndex: testNumber)
         
         tapOnTheFsLabel.isHidden = false
-        
-        Timer.scheduledTimer(withTimeInterval: 8, repeats: false) {[weak self] (timer) in
-            self?.displayReady()
-        }
+		
+		if shouldAutoProceed {
+
+			Timer.scheduledTimer(withTimeInterval: 8, repeats: false) {[weak self] (timer) in
+				self?.displayReady()
+			}
+		}
         
     }
-    
+	open func clearGrids()
+	{
+		guard isVisible else {
+			return
+		}
+		
+		self.collectionViewHeight.constant = CGFloat((LETTER_HEIGHT*LETTER_ROWS) + (LINE_SPACING*(LETTER_ROWS-1)) + LETTER_BUFFER)
+		
+		self.mode = .none
+		
+		phase = 0
+		
+		collectionView.allowsSelection = false
+		
+		collectionView.allowsMultipleSelection = false
+		fIndexPaths = []
+		collectionView.reloadData()
+		
+		
+		tapOnTheFsLabel.isHidden = false
+		
+		
+		
+	}
     open func displayReady()
     {
         
@@ -190,7 +228,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         mode = .image
         
         collectionView.allowsSelection = true;
-        
+        tapOnTheFsLabel.isHidden = true
         collectionView.allowsMultipleSelection = true;
         
         phase = 2
@@ -198,8 +236,10 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         collectionView.reloadData()
         
         _ = controller.markTime(gridDisplayedTestGrid: responseId, questionIndex: testNumber)
-        
-        endTimer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(endTest), userInfo: nil, repeats: false)
+		if shouldAutoProceed {
+
+        	endTimer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(endTest), userInfo: nil, repeats: false)
+		}
     }
     @objc open  func endTest()
     {
@@ -213,6 +253,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         testNumber += 1;
         
 //        test?.selectValue(option: gridData as AnyObject?);
+		
 //        gridData = DNGridInputSet(selectedFs: 0, selectedEs: 0, selectedGridItems: []);
         
 //        test?.gridTestMetrics.append(self.gridMetrics);
@@ -267,6 +308,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
                 if value > -1 {
                     iCell.setImage(image: self.symbols[value]);
                     iCell.image.isHidden = false;
+					symbolIndexPaths.append(indexPath)
                 }
             } else {
                 iCell.clear()
@@ -284,6 +326,8 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 
             if value == 1 {
                 fCell.setCharacter(character: "F")
+				fIndexPaths.append(indexPath)
+
             }
             else
             {
@@ -318,12 +362,13 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
                                 time: c.touchTime!,
                                 id: responseId)
 //            print(value.toString())
-
-            maybeEndTimer?.invalidate();
-            maybeEndTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false, block: { (timer) in
-                self.maybeEndTest()
-            })
-                
+			delegate?.didSelectGrid(indexPath: indexPath)
+			if shouldAutoProceed {
+				maybeEndTimer?.invalidate();
+				maybeEndTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false, block: { (timer) in
+					self.maybeEndTest()
+				})
+			}
             
         }
         else if let c = collectionView.cellForItem(at: indexPath) as? GridFCell
@@ -340,7 +385,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 
             }
 			//c.isSelected = true
-
+			delegate?.didSelectLetter(indexPath: indexPath)
         }
 
     }
@@ -355,8 +400,8 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
                                 id: responseId)
 			
 //			print(value.toString())
+			delegate?.didDeselectGrid(indexPath: indexPath)
 			
-
         }
         else if let c = collectionView.cellForItem(at: indexPath) as? GridFCell
         {
@@ -369,11 +414,28 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
                 
             }
 			//c.isSelected = false
+			delegate?.didDeselectLeter(indexPath: indexPath)
 
         }
     }
 
-    
+	func overlayCell(at indexPath:IndexPath) -> UIView? {
+		if mode == .image {
+			if let c = collectionView.cellForItem(at: indexPath) as? GridImageCell {
+				c.overlay()
+				c.highlight()
+				return c
+			}
+		}
+		if mode == .fCell {
+			if let c = collectionView.cellForItem(at: indexPath) as? GridFCell {
+				c.overlay(radius: c.frame.width/2)
+				c.highlight(radius: c.frame.width/2)
+				return c
+			}
+		}
+		return nil
+	}
     //MARK: Flow layout
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if mode == .image {

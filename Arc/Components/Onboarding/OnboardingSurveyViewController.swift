@@ -23,7 +23,11 @@ public class OnboardingSurveyViewController: BasicSurveyViewController {
 	}
 	public override func isValid(value: QuestionResponse?, questionId: String) -> Bool {
 		var valid = super.isValid(value: value, questionId: questionId)
-		
+		if questionId == "commitment" {
+			if value?.value == nil {
+				valid = false
+			}
+		}
 		if questionId == "allow_from_settings" {
 			if Await(checkNotificationStatus).execute(()) {
 				valid = true
@@ -42,24 +46,14 @@ public class OnboardingSurveyViewController: BasicSurveyViewController {
 		}
 		return valid
 	}
+	
+	
 	func checkNotificationStatus(void:Void, didFinish: @escaping (Bool)->()) {
 		//A long running request
 		Arc.shared.notificationController.authenticateNotifications { (granted, error) in
 			OperationQueue().addOperation {
 				didFinish(granted)
 			}
-			
 		}
-		
 	}
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

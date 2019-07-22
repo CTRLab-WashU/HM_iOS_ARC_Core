@@ -38,7 +38,7 @@ class TutorialView: UIStackView {
 				$0.alignment = .center
 				$0.isLayoutMarginsRelativeArrangement = true
 				$0.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 20)
-				$0.button {
+				self?.closeButton = $0.button {
 					$0.setImage(UIImage(named:"cut-ups/icons/X-to-close"), for: .normal)
 					$0.tintColor = UIColor(named:"Highlight")
 					
@@ -95,7 +95,12 @@ class TutorialView: UIStackView {
 	}
 	public func setContent(viewController:UIViewController) {
 		
-		
+		if let c = contentView {
+			c.removeFromParent()
+			c.view.removeFromSuperview()
+		}
+		contentView = viewController
+		viewController.view.translatesAutoresizingMaskIntoConstraints = false
 		containerView.anchor(view:viewController.view)
 		
 	}

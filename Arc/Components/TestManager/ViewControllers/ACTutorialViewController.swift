@@ -40,6 +40,7 @@ struct TutorialState {
 		 flags.insert(value)
 	}
 	mutating func evaluate(_ time:Double) -> String? {
+		print(time)
 		var removeIndex:Int?
 		for index in 0 ..< conditions.count {
 			let c = conditions[index]
@@ -65,11 +66,17 @@ struct TutorialState {
 
 class ACTutorialViewController: CustomViewController<TutorialView> {
 	var tutorialAnimation:Animate = Animate()
-	.duration(10)
+	var progress:CGFloat = 0 {
+		didSet {
+			customView.progressBar.relativeWidth = progress
+		}
+	}
 	
 	var state:TutorialState = TutorialState()
+	var duration:Double = 10.0
 	override func viewDidLoad() {
         super.viewDidLoad()
+		tutorialAnimation = tutorialAnimation.duration(duration)
 		state = TutorialState()
 		customView.closeButton.addAction { [weak self] in
 			self?.dismiss(animated: true) {
@@ -88,6 +95,9 @@ class ACTutorialViewController: CustomViewController<TutorialView> {
 			_ = self?.state.evaluate(progress)
 			return true
 		}
+	}
+	public func progress(seconds:TimeInterval, minutes:TimeInterval = 0) -> Double {
+		return (seconds + (minutes * 60)) / duration
 	}
 	func stopTutorialanimation() {
 		tutorialAnimation.stop()

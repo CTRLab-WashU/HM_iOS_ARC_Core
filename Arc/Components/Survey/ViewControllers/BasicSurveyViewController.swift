@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import HMMarkup
+import ArcUIKit
 struct OnboardingConfig {
 	
 	var willCommit:Bool = false
@@ -117,7 +119,16 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		vc.customView.setHeading(question.prompt)
 		vc.customView.setSubHeading(question.subTitle)
 		vc.customView.setContentLabel(question.detail)
-		
+		let button = HMMarkupButton()
+		button.setTitle("View a Tutorial", for: .normal)
+		Roboto.Style.bodyBold(button.titleLabel!, color:.white)
+		Roboto.PostProcess.link(button)
+		button.addAction {[weak self] in
+			self?.present(GridTestTutorialViewController(), animated: true) {
+				
+			}
+		}
+		vc.customView.setMiscContent(button)
 		if let input = question.type?.create(inputWithQuestion: question) as? (UIView & SurveyInput) {
 			vc.customView.setInput(input)
 		}

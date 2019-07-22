@@ -47,7 +47,7 @@
                             <rect key="frame" x="0.0" y="26" width="320" height="502"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" priority="999" constant="548" id="Pyq-AP-BS4"/>
+                                <constraint firstAttribute="height" priority="995" constant="548" id="Pyq-AP-BS4"/>
                                 <constraint firstAttribute="width" constant="320" id="ZaE-P6-Kyy"/>
                             </constraints>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="2" id="6UV-zq-TEM">

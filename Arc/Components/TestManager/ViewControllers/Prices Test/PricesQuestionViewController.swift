@@ -9,7 +9,6 @@
 import UIKit
 
 
-
 open class PricesQuestionViewController: UIViewController {
     //@IBOutlet var buttons: [UIButton]!
     
@@ -18,10 +17,13 @@ open class PricesQuestionViewController: UIViewController {
     
     // Buttons
     @IBOutlet weak var buttonStack: UIStackView!
-    private var buttons:[ChoiceView] = []
+	@IBOutlet weak var questionDisplay: UIStackView!
+	private var buttons:[ChoiceView] = []
+	public var shouldAutoProceed = true
     let topButton:ChoiceView = .get()
     let bottomButton:ChoiceView = .get()
-    
+	weak var delegate:PricesTestDelegate?
+
     var controller = Arc.shared.pricesTestController
     var responseId:String = ""
     var questionIndex = 0
@@ -38,29 +40,40 @@ open class PricesQuestionViewController: UIViewController {
         buildButtonStackView()
         if isBeingPresented {
 
-            let test:PriceTestResponse = try! controller.get(id: responseId)
-            questions = Set(0 ..< test.sections.count)
-
+			
+			prepareQuestions()
         }
     }
-
-    func didSelect(id:Int) {
-
+	public func prepareQuestions() {
+		let test:PriceTestResponse = try! controller.get(id: responseId)
+		questions = Set(0 ..< test.sections.count)
+	}
+    public func didSelect(id:Int) {
+		
         _ = controller.mark(timeTouched: responseId, index: questionIndex)
         let p = controller.set(choice: id, id: responseId, index: questionIndex)
-        selectQuestion()
+		if shouldAutoProceed {
+        	selectQuestion()
+		}
+		delegate?.didSelectPrice(id)
     }
 	
 	/// Select question will check to see what prices were shown to the user
 	/// and then pick a random value that has NOT been presented to the user.
 	/// if it cannot find a value it will mark the test as complete and defer
 	/// to the application for navigation.
-    func selectQuestion() {
+    public func selectQuestion() {
+		
         if let value = questions.subtracting(presentedQuestions).randomElement() {
             presentQuestion(index: value, id: responseId)
         } else {
+			
 			_  = controller.mark(filled: responseId)
-			Arc.shared.nextAvailableState()
+			
+			//If the delegate implements this method and returns false it will not proceed automatically.
+			if delegate?.shouldEndTest() ?? true {
+				Arc.shared.nextAvailableState()
+			}
         }
     }
 	
@@ -102,7 +115,7 @@ open class PricesQuestionViewController: UIViewController {
         
     }
     
-    func buildButtonStackView() {
+    public func buildButtonStackView() {
         //topButton.set(message: top)
         //bottomButton.set(message: bottom)
         

@@ -9,10 +9,10 @@
 import Foundation
 import QuartzCore
 
-func createAnimatedLayer(from view: UIView, strokeColor: UIColor, fillColor: UIColor) -> CAShapeLayer {
+func createAnimatedLayer(from view: UIView, strokeColor: UIColor, fillColor: UIColor, overlayShape:OverlayShape) -> CAShapeLayer {
 	let layer = CAShapeLayer()
 	//    let path = OverlayShape.rect(view).path()
-	let path = OverlayShape.roundedRect(view, 8.0).path()
+	let path = overlayShape.path()
 	layer.frame = view.bounds
 	layer.path = path.cgPath
 	layer.strokeColor = strokeColor.cgColor
@@ -60,7 +60,8 @@ extension UIView {
 		}
 	}
 	
-	public func highlight(highlightColor color:UIColor = .yellow, toScale scale:Double = 1.3, forDuration duration: Double = 1.0, looping:Bool = true) {
+	public func highlight(radius:CGFloat = 8.0) {
+		let color = UIColor(named:"TutorialHighlight")!
 		let newView = OverlayView()
 		newView.tag = UIView.highlightId
 		newView.backgroundColor = .clear
@@ -68,14 +69,17 @@ extension UIView {
 		self.window?.addSubview(newView)
 		newView.frame = self.convert(self.bounds, to: nil)
 
-		let animatedLayer = createAnimatedLayer(from: newView, strokeColor: color, fillColor: .clear)
-		animatedLayer.animatePulsingBorder(to: scale, for: duration, looping: looping)
+		let animatedLayer = createAnimatedLayer(from: newView, strokeColor: color, fillColor: .clear, overlayShape:  OverlayShape.roundedRect(self, radius))
+		
+		animatedLayer.animatePulsingBorder(to: 1.3, for: 1.0, looping: true)
 		newView.layer.addSublayer(animatedLayer)
 	}
 	public func removeHighlight() {
-		self.window?.subviews.first { (v) -> Bool in
-			return v.tag == UIView.highlightId && v.frame == self.frame
-			}?.removeFromSuperview()
+		
+		while let view = window?.viewWithTag(UIView.highlightId) {
+			view.removeFromSuperview()
+		}
+		
 	}
 	public func hasHighlight() -> Bool {
 		guard let window = window else { return false }

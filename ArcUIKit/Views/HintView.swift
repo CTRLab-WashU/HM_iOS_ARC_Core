@@ -10,45 +10,73 @@ import UIKit
 import HMMarkup
 public class HintView : IndicatorView {
 	var titleLabel:ACLabel!
-	var button:ACButton!
-	var content:String? {
+	public var button:ACButton!
+	public var content:String? {
 		get {
 			return titleLabel.text
 		}
 		set {
+			titleLabel.isHidden = (newValue == nil)
+
 			titleLabel.text = newValue
 		}
 	}
-	
-	public override init(frame: CGRect) {
-		super.init(frame: frame)
-		titleLabel = acLabel {
-			$0.isHidden = true
-
-			Roboto.Style.body($0, color:.black)
+	public var buttonTitle:String? {
+		get {
+			return button.titleLabel?.text
 		}
-		button = acButton {
-			$0.isHidden = true
-			$0.primaryColor = .clear
-			$0.secondaryColor = .clear
-			$0.tintColor = .black
+		set {
+			button.isHidden = (newValue == nil)
 			
+			button.setTitle(newValue, for: .normal)
+			Roboto.PostProcess.link(button)
+
 		}
-		
 	}
+	public var onTap:(()->Void)?
+	
 	public init() {
 		super.init(frame: .zero)
 		titleLabel = acLabel {
+			$0.isHidden = true
+			$0.textAlignment = .center
 			Roboto.Style.body($0, color:.black)
 		}
 		button = acButton {
+			$0.isHidden = true
 			$0.primaryColor = .clear
 			$0.secondaryColor = .clear
 			$0.tintColor = .black
-			
+			Roboto.PostProcess.link($0)
+			$0.addAction { [weak self] in
+				self?.onTap?()
+			}
 		}
+		container?.isLayoutMarginsRelativeArrangement = true
+		container?.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+		configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+											 secondaryColor: UIColor(named:"HintFill")!,
+											 textColor: .black,
+											 cornerRadius: 8.0,
+											 arrowEnabled: false))
 	}
 	required public init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
+	
+	public override func draw(_ rect: CGRect) {
+		super.draw(rect)
+		 let context = UIGraphicsGetCurrentContext()
+		context?.setStrokeColor(UIColor(named:"HorizontalSeparator")!.cgColor)
+		path?.lineWidth = 8
+		path?.stroke()
+	}
+}
+extension UIView {
+	
+	@discardableResult
+	public func hint(apply closure: (HintView) -> Void) -> HintView {
+		return custom(HintView(), apply: closure)
+	}
+	
 }

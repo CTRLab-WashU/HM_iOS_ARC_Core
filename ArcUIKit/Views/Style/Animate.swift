@@ -15,6 +15,10 @@ public struct Math{
 		return (a + t * (b - a))
 		
 	}
+	public static func lerp(a:CGPoint, b:CGPoint, t:CGFloat) -> CGPoint {
+		return CGPoint(x: lerp(a: a.x, b: b.x, t: t),
+					   y:  lerp(a: a.y, b: b.y, t: t))
+	}
 	public static func clamp(_ value:Double) -> Double {
 		
 		return min(1.0, max(0.0, value))

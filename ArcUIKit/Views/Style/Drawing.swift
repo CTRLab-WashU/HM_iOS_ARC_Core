@@ -13,11 +13,11 @@ public protocol ACDrawable{
 }
 public struct Drawing {
 	public struct HorizontalBar : ACDrawable {
-		var rect:CGRect
-		var bounds:CGRect
-		var cornerRadius:CGFloat
-		var primaryColor:UIColor?
-		var progress:CGFloat
+		public var rect:CGRect
+		public var bounds:CGRect
+		public var cornerRadius:CGFloat
+		public var primaryColor:UIColor?
+		public var progress:CGFloat
 		
 		
 		public func draw() {

@@ -31,6 +31,7 @@ import UIKit
     var isEnabled = true
     var isArrowEnabled = true
 	var container:UIStackView?
+	var path:UIBezierPath?
     override public init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -49,17 +50,18 @@ import UIKit
 		if container == nil {
 			let s = UIStackView()
 			self.addSubview(s)
+			s.frame = self.bounds
 			s.alignment = .fill
 			s.axis = .vertical
 			s.spacing = 8
 			let v = self
 			s.layout {
-				
-				$0.top == v.topAnchor ~ 999
-				$0.trailing == v.trailingAnchor ~ 999
-				$0.bottom == v.bottomAnchor ~ 999
-				$0.leading == v.leadingAnchor ~ 999
-				
+
+				$0.top == v.topAnchor
+				$0.trailing == v.trailingAnchor
+				$0.bottom == v.bottomAnchor
+				$0.leading == v.leadingAnchor
+
 			}
 			
 			
@@ -86,7 +88,7 @@ import UIKit
     public func configure(with config:Config) {
         primaryColor = config.primaryColor
         secondaryColor = config.secondaryColor
-        
+        isArrowEnabled = config.arrowEnabled
         layer.cornerRadius = config.cornerRadius
         backgroundColor = .clear
         setNeedsDisplay()
@@ -101,21 +103,23 @@ import UIKit
 				.offsetBy(dx: 0, dy: -5)
 		}
 		
-        var path = UIBezierPath(roundedRect:insetRect,
+		path = UIBezierPath(roundedRect:insetRect,
                                 byRoundingCorners: .allCorners,
                                 cornerRadii: CGSize(width: layer.cornerRadius, height: layer.cornerRadius))
 		
 		if isArrowEnabled {
-			path.move(to: CGPoint(x: rect.midX, y: rect.maxY))
-			path.addLine(to: CGPoint(x: rect.midX - 10, y: rect.maxY - 10))
-			path.addLine(to: CGPoint(x: rect.midX + 10, y: rect.maxY - 10))
-			path.addLine(to: CGPoint(x: rect.midX, y: rect.maxY))
-			path.close()
+			path?.move(to: CGPoint(x: rect.midX, y: rect.maxY))
+			path?.addLine(to: CGPoint(x: rect.midX - 10, y: rect.maxY - 10))
+			path?.addLine(to: CGPoint(x: rect.midX + 10, y: rect.maxY - 10))
+			path?.addLine(to: CGPoint(x: rect.midX, y: rect.maxY))
+			path?.close()
 		}
-        path.addClip()
-        
+		
+		
         let context = UIGraphicsGetCurrentContext()
-        
+		
+		path?.addClip()
+
         let colors = (!isSelected && isEnabled) ? [secondaryColor.cgColor,
                                                    primaryColor.cgColor] : [primaryColor.cgColor,
                                                                             primaryColor.cgColor]
@@ -130,5 +134,7 @@ import UIKit
         let startPoint = CGPoint.zero
         let endPoint = CGPoint(x:0, y:bounds.height)
         context?.drawLinearGradient(gradient, start: startPoint, end: endPoint, options:[])
+		
+		
     }
 }

@@ -9,7 +9,9 @@
 import UIKit
 public protocol PricesTestDelegate : class {
 	func didSelectGoodPrice(_ option:Int)
-	
+	func didSelectPrice(_ option:Int)
+	func shouldEndTest() -> Bool
+
 }
 public class PricesTestViewController: ArcViewController {
     
@@ -155,7 +157,14 @@ public class PricesTestViewController: ArcViewController {
 			displayTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(nextItem), userInfo: nil, repeats: false)
 		}
 	}
-	
+	public func preparedQuestionController() -> PricesQuestionViewController{
+		//Present controller
+		questionDisplay = .get()
+		questionDisplay?.responseId = responseID
+//		questionDisplay?.selectQuestion()
+		return questionDisplay!
+	}
+
 	/// Displays the recall portion of the test. This controller is not timed.
 	/// As the user makes selections the test will progress and track their
 	/// response time.
@@ -163,13 +172,13 @@ public class PricesTestViewController: ArcViewController {
 		//Present controller
 		questionDisplay = .get()
 		questionDisplay?.responseId = responseID
-		
 		present(questionDisplay!, animated: false, completion: { [weak self] in
 			guard let weakself = self else {
 				return
 			}
 			weakself.questionDisplay?.selectQuestion()
 		})
+		
 	}
 	
 	/// Display an alert telling the user that the recall portion of the test will begin.

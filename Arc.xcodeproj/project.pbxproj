@@ -203,6 +203,8 @@
 		C56D6C5D22CD3FE800C3F8EA /* PricesTestTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56D6C5C22CD3FE800C3F8EA /* PricesTestTutorialViewController.swift */; };
 		C578B8D622A859A60038DDF0 /* ACView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C578B8D522A859A60038DDF0 /* ACView.swift */; };
 		C57E9C862236C232009F6228 /* StartDateShiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E9C852236C232009F6228 /* StartDateShiftViewController.swift */; };
+		C58129F822E20BE000CD1883 /* TutorialCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58129F722E20BE000CD1883 /* TutorialCompleteView.swift */; };
+		C58129FB22E249EE00CD1883 /* GridTestTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58129FA22E249EE00CD1883 /* GridTestTutorialViewController.swift */; };
 		C583C0E422136E0C0043DFA7 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9C121C81B5F00DEC360 /* Roboto-Medium.ttf */; };
 		C583C0E522136E0C0043DFA7 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9C221C81B5F00DEC360 /* Roboto-Light.ttf */; };
 		C583C0E622136E0C0043DFA7 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9C321C81B5F00DEC360 /* Roboto-Regular.ttf */; };
@@ -481,6 +483,8 @@
 		C57E9C852236C232009F6228 /* StartDateShiftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartDateShiftViewController.swift; sourceTree = "<group>"; };
 		C57E9C872236CE67009F6228 /* ACPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPickerView.swift; sourceTree = "<group>"; };
 		C57E9C892236E825009F6228 /* ACPickerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ACPickerView.xib; sourceTree = "<group>"; };
+		C58129F722E20BE000CD1883 /* TutorialCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCompleteView.swift; sourceTree = "<group>"; };
+		C58129FA22E249EE00CD1883 /* GridTestTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTestTutorialViewController.swift; sourceTree = "<group>"; };
 		C583C0F122136E3B0043DFA7 /* ACLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACLabel.swift; sourceTree = "<group>"; };
 		C584F33222C16682009741A7 /* ArcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C584F33422C16682009741A7 /* ArcTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcTests.swift; sourceTree = "<group>"; };
@@ -606,9 +610,9 @@
 		C51A7D8A22D8C30800854B13 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				C5CCD7AB22DE6A61002A788A /* OnboardingSurveyViewController.swift */,
 				C51A7D8B22D8C33F00854B13 /* NotificationPermissionViewController.swift */,
 				C51A7D8D22D8C38300854B13 /* NotificationPermissionView.swift */,
-				C5CCD7AB22DE6A61002A788A /* OnboardingSurveyViewController.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -931,13 +935,12 @@
 		C54AE95121C81B5C00DEC360 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				C54AE95221C81B5C00DEC360 /* GridTestViewController.swift */,
+				C58129F922E244BF00CD1883 /* Grid Test */,
 				C5C2B12322D39386002CB4C5 /* Prices Test */,
 				C54AE95421C81B5C00DEC360 /* SymbolsTestViewController.swift */,
 				C54AE95521C81B5C00DEC360 /* InstructionNavigationController.swift */,
 				C54AE95621C81B5C00DEC360 /* SymbolsTestViewController.xib */,
 				C54AE95A21C81B5C00DEC360 /* FinishedNavigationController.swift */,
-				C54AE95B21C81B5C00DEC360 /* GridTestViewController.xib */,
 				C5143958224EA6FD000BF1CB /* ACSignatureNavigationController.swift */,
 				C56D6C5A22CD2B9F00C3F8EA /* ACTutorialViewController.swift */,
 			);
@@ -970,6 +973,7 @@
 				C54AE96B21C81B5C00DEC360 /* GridImageCell.xib */,
 				C56D6C5822CD0DFE00C3F8EA /* TutorialView.swift */,
 				C5C2B12A22D3F205002CB4C5 /* TestInfoView.swift */,
+				C58129F722E20BE000CD1883 /* TutorialCompleteView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1186,6 +1190,16 @@
 				C54AE9CD21C81B5F00DEC360 /* Roboto-Black.ttf */,
 			);
 			path = Roboto;
+			sourceTree = "<group>";
+		};
+		C58129F922E244BF00CD1883 /* Grid Test */ = {
+			isa = PBXGroup;
+			children = (
+				C58129FA22E249EE00CD1883 /* GridTestTutorialViewController.swift */,
+				C54AE95221C81B5C00DEC360 /* GridTestViewController.swift */,
+				C54AE95B21C81B5C00DEC360 /* GridTestViewController.xib */,
+			);
+			path = "Grid Test";
 			sourceTree = "<group>";
 		};
 		C584F33322C16682009741A7 /* ArcTests */ = {
@@ -1658,6 +1672,7 @@
 				C54AEA3D21C81B5F00DEC360 /* Introduction.swift in Sources */,
 				C54AE9DA21C81B5F00DEC360 /* UIView+Extensions.swift in Sources */,
 				C54AEA2621C81B5F00DEC360 /* AboutViewController.swift in Sources */,
+				C58129F822E20BE000CD1883 /* TutorialCompleteView.swift in Sources */,
 				C54D101322C2745A00B43E42 /* QuestionStyle.swift in Sources */,
 				C51A7D8722D7EC5900854B13 /* ParticipationView.swift in Sources */,
 				C54AE9E121C81B5F00DEC360 /* HMLog.swift in Sources */,
@@ -1685,6 +1700,7 @@
 				C54AEA2C21C81B5F00DEC360 /* LoginHelpView.swift in Sources */,
 				C54AE9D621C81B5F00DEC360 /* Arc+Auth.swift in Sources */,
 				C52B75D421C8369400498571 /* arc.xcdatamodeld in Sources */,
+				C58129FB22E249EE00CD1883 /* GridTestTutorialViewController.swift in Sources */,
 				C54AEA1121C81B5F00DEC360 /* PricesTestViewController.swift in Sources */,
 				C5C2B12522D3A2B3002CB4C5 /* PromptDetailView.swift in Sources */,
 				C54AEA1621C81B5F00DEC360 /* SymbolsTestController.swift in Sources */,

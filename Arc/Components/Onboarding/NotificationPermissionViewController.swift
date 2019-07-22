@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import ArcUIKit
 public class NotificationPermissionViewController: CustomViewController<NotificationPermissionView>, SurveyInput {
 	
 	public weak var inputDelegate: SurveyInputDelegate?
@@ -36,6 +36,7 @@ public class NotificationPermissionViewController: CustomViewController<Notifica
 			}
 			
 		}
+		
 	}
 	
 	

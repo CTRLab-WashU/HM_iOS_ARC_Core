@@ -9,7 +9,7 @@
 import UIKit
 
 public class ACHorizontalBar: UIView {
-	var config : Drawing.HorizontalBar
+	public var config : Drawing.HorizontalBar
 	var animation:Animate = Animate()
 		.duration(0.4)
 		.delay(0.2)
