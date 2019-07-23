@@ -93,11 +93,15 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		case .impasse:
 			questionStyle(question)
 		case .grids:
-			instructionStyle(question)
+			instructionStyle(question, presentableVc: GridTestTutorialViewController())
+			
 		case .prices:
-			instructionStyle(question)
+			instructionStyle(question, presentableVc: PricesTestTutorialViewController())
+			
 		case .symbols:
-			instructionStyle(question)
+			instructionStyle(question, presentableVc: SymbolsTutorialViewController())
+			
+			
 		}
 		
 	}
@@ -106,7 +110,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 			input.inputDelegate = self
 		}
 	}
-	func instructionStyle(_ question:Survey.Question) {
+	func instructionStyle(_ question:Survey.Question, presentableVc:UIViewController? = nil) {
 		// Do any additional setup after loading the view.
 		let vc:CustomViewController<InfoView> = getTopViewController()!
 		
@@ -119,16 +123,18 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		vc.customView.setHeading(question.prompt)
 		vc.customView.setSubHeading(question.subTitle)
 		vc.customView.setContentLabel(question.detail)
-		let button = HMMarkupButton()
-		button.setTitle("View a Tutorial", for: .normal)
-		Roboto.Style.bodyBold(button.titleLabel!, color:.white)
-		Roboto.PostProcess.link(button)
-		button.addAction {[weak self] in
-			self?.present(SymbolsTutorialViewController(), animated: true) {
-				
+		if let presentable = presentableVc {
+			let button = HMMarkupButton()
+			button.setTitle("View a Tutorial", for: .normal)
+			Roboto.Style.bodyBold(button.titleLabel!, color:.white)
+			Roboto.PostProcess.link(button)
+			button.addAction {[weak self] in
+				self?.present(presentable, animated: true) {
+					
+				}
 			}
+			vc.customView.setMiscContent(button)
 		}
-		vc.customView.setMiscContent(button)
 		if let input = question.type?.create(inputWithQuestion: question) as? (UIView & SurveyInput) {
 			vc.customView.setInput(input)
 		}
@@ -137,6 +143,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		vc.customView.nextButton?.addTarget(self, action: #selector(nextButtonPressed(sender:)), for: .primaryActionTriggered)
 		//		pushViewController(vc, animated: true)
 		didPresentQuestion(input: vc.customView.inputItem, questionId: question.questionId)
+	
 	}
 	func questionStyle(_ question:Survey.Question) {
 		// Do any additional setup after loading the view.
