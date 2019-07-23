@@ -20,6 +20,19 @@ public extension UIViewController {
         
         return vc
     }
+    
+    static func instanceFromType(_ type:UIViewController.Type, nib:String? = nil, bundle:Bundle? = nil) -> UIViewController {
+        //For multi-module functionality.
+        var _bundle:Bundle? = bundle
+        if bundle == nil {
+            _bundle = Bundle(for: type.self)
+            
+        }
+        let vc = type.init(nibName: nib ?? String(describing: self), bundle: _bundle)
+        
+        return vc
+    }
+    
 	static func present<T:UIViewController>(nib:String? = nil, onSetup:((T)->Void)? = nil, onCompletion:(()->Void)? = nil) -> T {
         
         let vc:T = .get()
