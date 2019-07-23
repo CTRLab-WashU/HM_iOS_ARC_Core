@@ -124,7 +124,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		Roboto.Style.bodyBold(button.titleLabel!, color:.white)
 		Roboto.PostProcess.link(button)
 		button.addAction {[weak self] in
-			self?.present(GridTestTutorialViewController(), animated: true) {
+			self?.present(SymbolsTutorialViewController(), animated: true) {
 				
 			}
 		}

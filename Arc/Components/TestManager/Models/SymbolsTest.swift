@@ -34,7 +34,7 @@ public struct DNSymbolInputData {
 import Foundation
 //For UI configuration
 public struct SymbolsTest : Codable {
-    public struct SymbolSet: Codable {
+    public struct SymbolSet: Codable, Equatable {
         var symbols:[Int]
         
     }

@@ -9,7 +9,7 @@
 import UIKit
 import ArcUIKit
 
-struct TutorialState {
+class TutorialState {
 	struct TutorialCondition {
 		var time:Double
 		var flag:String
@@ -31,40 +31,43 @@ struct TutorialState {
 	/// - Parameter time: a time in the range of 0.0 to 1.0
 	/// - Parameter flag: the name of the flag to identify it by
 	/// - Parameter onFlag: an action to perform when flagged
-	mutating func addCondition(atTime time:Double, flagName flag:String, onFlag:@escaping (()->Void)) {
+	func addCondition(atTime time:Double, flagName flag:String, onFlag:@escaping (()->Void)) {
 		maxSteps += 1
 		conditions.append(TutorialCondition(time: time, flag: flag, onFlag: onFlag))
 		conditions.sort {$0.time < $1.time}
 	}
-	mutating func setFlag(value:String) {
+	func setFlag(value:String) {
 		 flags.insert(value)
 	}
-	mutating func evaluate(_ time:Double) -> String? {
+	func removeCondition(with name:String) {
+		conditions = conditions.filter {
+			$0.flag != name
+		}
+		flags.remove(name)
+	}
+	func evaluate(_ time:Double) {
 		print(time)
-		var removeIndex:Int?
 		for index in 0 ..< conditions.count {
 			let c = conditions[index]
 			
 			if time >= c.time && !flags.contains(c.flag) {
 				flags.insert(c.flag)
+				conditions.remove(at: index)
 				c.onFlag()
 				
-				removeIndex = index
-				break
+				return
 			} else {
 				break
 			}
 		}
-		if let index = removeIndex {
-			//Return the removed flag
-			return conditions.remove(at: index).flag
-		}
-		return nil
+		
+		return
 	}
 }
 
 
-class ACTutorialViewController: CustomViewController<TutorialView> {
+class ACTutorialViewController: CustomViewController<TutorialView>, TutorialCompleteViewDelegate {
+	var currentHint:HintView?
 	var tutorialAnimation:Animate = Animate()
 	var progress:CGFloat = 0 {
 		didSet {
@@ -85,6 +88,11 @@ class ACTutorialViewController: CustomViewController<TutorialView> {
 			
 		}
     }
+	func closePressed() {
+		dismiss(animated: true) {
+			
+		}
+	}
 	func startTutorialAnimation() {
 		
 		tutorialAnimation = tutorialAnimation.run {[weak self]
@@ -115,7 +123,24 @@ class ACTutorialViewController: CustomViewController<TutorialView> {
 	func handleStep(time:Double) {
 		
 	}
-
+	func finishTutorial() {
+		progress = 1.0
+		
+		currentHint?.removeFromSuperview()
+		
+		customView.contentView?.removeFromParent()
+		customView.contentView?.view.removeFromSuperview()
+		
+		currentHint?.removeFromSuperview()
+		let finishView = TutorialCompleteView()
+		finishView.updateProgress(0.0)
+		
+		customView.removeArrangedSubview(customView.containerView)
+		customView.addArrangedSubview(finishView)
+		finishView.updateProgress(1.0)
+		
+		finishView.tutorialDelegate = self
+	}
     /*
     // MARK: - Navigation
 

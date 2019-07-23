@@ -181,7 +181,7 @@ open class SymbolContainer: UIView {
         shadowView.layer.shadowPath = path.cgPath
         shadowView.layer.rasterizationScale = UIScreen.main.scale
         shadowView.layer.shouldRasterize = true
-        superview?.insertSubview(shadowView, belowSubview: self)
+        insertSubview(shadowView, belowSubview: self)
     }
 }
 

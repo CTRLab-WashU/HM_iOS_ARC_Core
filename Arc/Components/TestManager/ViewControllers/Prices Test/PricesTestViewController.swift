@@ -53,14 +53,14 @@ public class PricesTestViewController: ArcViewController {
 
     override open func viewDidLoad() {
         super.viewDidLoad()
-
-        ACState.testCount += 1
-
+		if !autoStart {
+        	ACState.testCount += 1
+		}
 		
 		let app = Arc.shared
 		let studyId = Int(app.studyController.getCurrentStudyPeriod()?.studyID ?? -1)
 		let sessionId = app.currentTestSession ?? -1
-		if sessionId != -1 {
+		if sessionId != -1 && autoStart{
 			let session = app.studyController.get(session: sessionId, inStudy: studyId)
 			if let data = session.surveyFor(surveyType: .priceTest){
 				

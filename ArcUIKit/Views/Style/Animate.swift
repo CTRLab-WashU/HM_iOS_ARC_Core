@@ -53,7 +53,14 @@ public struct Animate {
 	private var _duration:Double = 0.2
 	private var _curve:Math.Curve = .linear
 	private var _progress:Double = 0
-	
+	public var time:Double {
+		get {
+			return max(0.0, (updater?.time ?? 0.0) - (updater?.delay ?? 0.0))
+		}
+		set {
+			updater?.time = newValue
+		}
+	}
 	fileprivate var updater:UpdateLooper?
 	public init() {
 		

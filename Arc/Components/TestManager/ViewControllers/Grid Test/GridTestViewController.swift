@@ -57,7 +57,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         ACState.testCount += 1
 		let app = Arc.shared
 		let studyId = Int(app.studyController.getCurrentStudyPeriod()?.studyID ?? -1)
-		if let sessionId = app.currentTestSession {
+		if let sessionId = app.currentTestSession, shouldAutoProceed {
 			let session = app.studyController.get(session: sessionId, inStudy: studyId)
 			let data = session.surveyFor(surveyType: .gridTest)
 			responseId = data!.id! //A crash here means that the session is malformed

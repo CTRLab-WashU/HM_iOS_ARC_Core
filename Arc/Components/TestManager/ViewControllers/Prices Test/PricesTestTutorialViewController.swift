@@ -9,18 +9,13 @@
 import UIKit
 import ArcUIKit
 
-class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDelegate, TutorialCompleteViewDelegate {
+class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDelegate {
 	
-	
-	
-	
-	
-	
+
 	let pricesTest:PricesTestViewController = .get()
 	var pricesQuestions:PricesQuestionViewController!
 	var selectionMade = false
 	
-	var currentHint:HintView?
     override func viewDidLoad() {
         super.viewDidLoad()
 		pricesTest.delegate = self
@@ -56,12 +51,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 	func shouldEndTest() -> Bool {
 		return false
 	}
-	func closePressed() {
-		dismiss(animated: true) {
-			
-		}
-		
-	}
+	
 	func setupScript() {
 		state.addCondition(atTime: 0.0, flagName: "hide") { [weak self] in
 			
@@ -281,20 +271,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 				return
 			}
 			
-			weakSelf.currentHint?.removeFromSuperview()
-			
-			weakSelf.customView.contentView?.removeFromParent()
-			weakSelf.customView.contentView?.view.removeFromSuperview()
-			
-			weakSelf.currentHint?.removeFromSuperview()
-			let finishView = TutorialCompleteView()
-			finishView.updateProgress(0.0)
-			
-			weakSelf.customView.removeArrangedSubview(weakSelf.customView.containerView)
-			weakSelf.customView.addArrangedSubview(finishView)
-			finishView.updateProgress(1.0)
-			
-			finishView.tutorialDelegate = self
+			weakSelf.finishTutorial()
 		}
 		
 		

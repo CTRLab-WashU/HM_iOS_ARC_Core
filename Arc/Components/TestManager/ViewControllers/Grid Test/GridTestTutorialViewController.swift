@@ -8,10 +8,10 @@
 
 import UIKit
 import ArcUIKit
-class GridTestTutorialViewController: ACTutorialViewController, GridTestViewControllerDelegate, TutorialCompleteViewDelegate {
+class GridTestTutorialViewController: ACTutorialViewController, GridTestViewControllerDelegate {
 	
 	let test:GridTestViewController = .get()
-	var currentHint:HintView?
+	
 	var selectionMade = false
 	var isMakingSelections = false
 	var maxGridSelected = 3
@@ -32,6 +32,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		view.window?.clearOverlay()
+		view.removeHighlight()
 		currentHint?.removeFromSuperview()
 		
 	}
@@ -71,11 +72,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 		didSelect(isMakingSelections)
 	}
 	
-	func closePressed() {
-		dismiss(animated: true) {
-			
-		}
-	}
+	
 
 	
 	func setupScript() {
@@ -83,7 +80,6 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			guard let weakSelf = self else {
 				return
 			}
-			weakSelf.progress = 0.0
 			weakSelf.buildStartScreen(message: "In this three part test, you’ll be asked to *recall the location* of these items.",
 									  buttonTitle: "Got it")
 			
@@ -271,22 +267,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			guard let weakSelf = self else {
 				return
 			}
-			weakSelf.progress = 1.0
-
-			weakSelf.currentHint?.removeFromSuperview()
-			
-			weakSelf.customView.contentView?.removeFromParent()
-			weakSelf.customView.contentView?.view.removeFromSuperview()
-			
-			weakSelf.currentHint?.removeFromSuperview()
-			let finishView = TutorialCompleteView()
-			finishView.updateProgress(0.0)
-			
-			weakSelf.customView.removeArrangedSubview(weakSelf.customView.containerView)
-			weakSelf.customView.addArrangedSubview(finishView)
-			finishView.updateProgress(1.0)
-			
-			finishView.tutorialDelegate = self
+			weakSelf.finishTutorial()
 		}
 	}
 	func buildStartScreen(message:String, buttonTitle:String) {

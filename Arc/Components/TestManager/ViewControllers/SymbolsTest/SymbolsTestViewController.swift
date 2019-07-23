@@ -9,9 +9,11 @@
 import UIKit
 
 
-
+public protocol SymbolsTestViewControllerDelegate : class {
+	func didSelect(index:Int)
+}
 public class SymbolsTestViewController: UIViewController {
-    private var symbols:[Int:UIImage] = [0: #imageLiteral(resourceName: "symbol_0"),
+    public var symbols:[Int:UIImage] = [0: #imageLiteral(resourceName: "symbol_0"),
                                          1: #imageLiteral(resourceName: "symbol_1"),
                                          2: #imageLiteral(resourceName: "symbol_2"),
                                          3: #imageLiteral(resourceName: "symbol_3"),
@@ -26,14 +28,36 @@ public class SymbolsTestViewController: UIViewController {
     @IBOutlet public weak var option1: UIView!
     @IBOutlet public weak var option2: UIView!
     @IBOutlet public weak var option3: UIView!
-    
-    @IBOutlet public weak var choice1: UIView!
+	
+	@IBOutlet weak var messageLabel: UILabel!
+	
+	@IBOutlet weak var orLabel: UILabel!
+	@IBOutlet weak var selectionContainer: UIView!
+	
+	@IBOutlet public weak var choiceContainer: UIView!
+	@IBOutlet public weak var choice1: UIView!
     @IBOutlet public weak var choice2: UIView!
 	public var isPracticeTest:Bool = false
+	public weak var delegate:SymbolsTestViewControllerDelegate?
 //    private var currentTrialData:DNSymbolInputData!
     private var test:SymbolsTest?
     
-    
+	public var correctSelection:(UIView,UIView)? {
+		get {
+			let correct = test!.sections[questionIndex].correct - 1
+			guard let option = test!.sections[questionIndex].options.firstIndex (where: {
+				$0 == test!.sections[questionIndex].choices[correct]
+			}) else { return nil }
+			
+			guard let optionView = [option1, option2, option3][option] else {
+				return nil
+			}
+			return (correct == 0) ? (choice1, optionView) : (choice2, optionView)
+		}
+		set {
+			
+		}
+	}
     
     override open func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +70,7 @@ public class SymbolsTestViewController: UIViewController {
 		let app = Arc.shared
 		let studyId = Int(app.studyController.getCurrentStudyPeriod()?.studyID ?? -1)
 		
-		if let sessionId = app.currentTestSession {
+		if let sessionId = app.currentTestSession, !isPracticeTest{
 			let session = app.studyController.get(session: sessionId, inStudy: studyId)
 			let data = session.surveyFor(surveyType: .symbolsTest)
 			
@@ -54,7 +78,7 @@ public class SymbolsTestViewController: UIViewController {
 			test = controller.generateTest(numSections: 12, numSymbols: 8)
 			responseID = controller.createResponse(withTest: test!, id: responseID)
 		} else {
-		
+			//Will be stored in core data, but not retrieved for server upload.
         	test = controller.generateTest(numSections: 12, numSymbols: 8)
         	responseID = controller.createResponse(withTest: test!)
 		}
@@ -72,7 +96,17 @@ public class SymbolsTestViewController: UIViewController {
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        
+		if isPracticeTest {
+			layoutOptionsAndChoices()
+			
+			option1.isHidden = true
+			option2.isHidden = true
+			option3.isHidden = true
+			
+			choice1.isHidden = true
+			choice2.isHidden = true
+			
+		}
     }
     override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
@@ -81,9 +115,11 @@ public class SymbolsTestViewController: UIViewController {
         _ = controller.start(test: responseID)
 		_  = controller.mark(filled: responseID)
 
-        layoutOptionsAndChoices()
+		if !isPracticeTest {
+			layoutOptionsAndChoices()
+		}
     }
-    private func layoutOptionsAndChoices(){
+    public func layoutOptionsAndChoices(){
         
         let choicesAndOptions = test!.sections[questionIndex]
 		
@@ -106,7 +142,7 @@ public class SymbolsTestViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func getSymbol(index:Int) -> UIImage {
+    public func getSymbol(index:Int) -> UIImage {
         let img = self.symbols[index]!
         return img.copy() as! UIImage;
     }
@@ -126,25 +162,36 @@ public class SymbolsTestViewController: UIViewController {
 		
     }
     @IBAction func optionSelected(_ sender: SymbolSelectButton) {
-        _ = controller.mark(timeTouched: questionIndex, date:sender.touchTime!, id: responseID)
-        let p = controller.set(choice: sender.tag, forQueston: questionIndex, id: responseID)
+		if !isPracticeTest {
+        	_ = controller.mark(timeTouched: questionIndex, date:sender.touchTime!, id: responseID)
+        	let _ = controller.set(choice: sender.tag, forQueston: questionIndex, id: responseID)
+		}
+		
 //        currentTrialData.touchLocation = sender.touchLocation! //this doesn't appear in the data for current tests
 //        print(p!.toString())
 //        test?.touchLocations.append(sender.touchLocation!);
 //        test?.touchTimes.append(sender.touchTime!);
 //        test?.selectValue(option: currentTrialData as AnyObject?)
-        
+        delegate?.didSelect(index: sender.tag)
         if questionIndex >= controller.get(questionCount: responseID) - 1 {
+			if !isPracticeTest {
+
 			_  = controller.mark(filled: responseID)
-			Arc.shared.nextAvailableState()
+				Arc.shared.nextAvailableState()
+			}
             
         }
         else
         {
-            questionIndex += 1
-            layoutOptionsAndChoices();
+			if !isPracticeTest {
+				next()
+			}
         }
         
     }
+	public func next() {
+		questionIndex += 1
+		layoutOptionsAndChoices();
+	}
     
 }
