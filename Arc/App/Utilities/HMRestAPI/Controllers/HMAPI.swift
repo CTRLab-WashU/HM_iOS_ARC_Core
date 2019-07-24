@@ -30,6 +30,6 @@ open class HMAPI {
 	static public let getTestSchedule:HMAPIRequest<Data, TestScheduleRequestData.Response> = .get("get-test-schedule")
 	static public let getWakeSleep:HMAPIRequest<Data, WakeSleepScheduleRequestData.Response> = .get("get-wake-sleep-schedule")
 
-	
+	static public let getContactInfo:HMAPIRequest<Data, ContactInfoResponse> = .get("get-contact-info")
 
 }
