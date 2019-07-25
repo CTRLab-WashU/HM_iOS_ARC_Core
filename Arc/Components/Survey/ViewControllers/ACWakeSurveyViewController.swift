@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class ACWakeSurveyViewController: SurveyNavigationViewController {
+open class ACWakeSurveyViewController: BasicSurveyViewController {
     enum WakeSurveyQuestion : String {
         case bedTimeLastNight = "wake_1"
         case sleepTimeLastNight = "wake_2"
@@ -23,11 +23,16 @@ open class ACWakeSurveyViewController: SurveyNavigationViewController {
 
         case other
     }
-    override open func questionDisplayed(input:SurveyInput, index:String) {
-        super.questionDisplayed(input: input, index: index)
+    
+    open var participantId:Int?;
+    
+	
+    open override func didPresentQuestion(input: SurveyInput?, questionId: String)
+    {
         
+        guard let input = input else { return; }
         
-        let question = WakeSurveyQuestion(rawValue: index) ?? .other
+        let question = WakeSurveyQuestion(rawValue: questionId) ?? .other
         
         guard question != .other else {return}
         
@@ -86,9 +91,10 @@ open class ACWakeSurveyViewController: SurveyNavigationViewController {
             return
         }
     }
+    
+    
     private func getAnswerFor(question:WakeSurveyQuestion) -> String? {
         let question = question.rawValue
-        guard let surveyId = surveyId else {return nil}
         
         guard let answer = Arc.shared.surveyController.getResponse(forQuestion: question, fromSurveyResponse: surveyId) else {
             return nil
