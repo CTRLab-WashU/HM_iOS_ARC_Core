@@ -24,7 +24,6 @@ open class ACWakeSurveyViewController: BasicSurveyViewController {
         case other
     }
     
-    open var participantId:Int?;
     
 	
     open override func didPresentQuestion(input: SurveyInput?, questionId: String)
