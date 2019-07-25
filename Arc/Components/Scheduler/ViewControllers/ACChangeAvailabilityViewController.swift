@@ -15,7 +15,8 @@ open class ACChangeAvailabilityViewController: UIViewController {
     
     public var studyChangeView:UIView!
     
-    @IBOutlet weak var studyPeriodAdjustView: UIStackView!
+    @IBOutlet weak var studyPeriodAdjustView: UIView!
+    
     
     @IBOutlet weak var changeTimeButton: ACButton!
     

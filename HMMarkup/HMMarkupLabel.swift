@@ -10,9 +10,11 @@ import UIKit
 
 @IBDesignable open class HMMarkupLabel: UILabel {
     @IBInspectable public var translationKey:String?
-
+    
     open var renderer:HMMarkupRenderer!
     @IBInspectable var spacing:CGFloat = 1.33
+    
+    open var template:Dictionary<String, String> = [:]
     
     override open var text: String? {
         didSet {
@@ -35,7 +37,7 @@ import UIKit
             text = config.translation?[key] ?? text
         }
         renderer = HMMarkupRenderer(baseFont: self.font)
-        let attributedString = NSMutableAttributedString(attributedString: renderer.render(text: text))
+        let attributedString = NSMutableAttributedString(attributedString: renderer.render(text: text, template: self.template))
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = spacing
         paragraphStyle.alignment = self.textAlignment

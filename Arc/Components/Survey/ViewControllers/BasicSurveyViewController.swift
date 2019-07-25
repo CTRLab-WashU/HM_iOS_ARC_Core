@@ -36,15 +36,15 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 	var answeredQuestions:[Survey.Question] = []
 	public var surveyId:String
 	public var shouldNavigateToNextState:Bool = true
-	public init(file:String) {
+    public init(file:String, surveyId:String? = nil) {
 		survey = Arc.shared.surveyController.load(survey: file)
-		surveyId = Arc.shared.surveyController.create()
+        self.surveyId = surveyId ?? Arc.shared.surveyController.create();
 		questions = survey.questions
 		
 		subQuestions = survey.subQuestions
 		
 		super.init(nibName: nil, bundle: nil)
-		addController()
+		
 	}
 	
 	open func displayHelpButton(_ shouldShow:Bool) {
@@ -144,7 +144,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 	
 	override open func viewDidLoad() {
         super.viewDidLoad()
-		
+		addController()
     }
 	open func customViewController(forQuestion question:Survey.Question) -> UIViewController? {
 		return nil
@@ -276,6 +276,24 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		nextButtonPressed(sender: self)
 	}
 	
+    
+    public func enableNextButton()
+    {
+        
+        guard let input:CustomViewController<InfoView> = self.getTopViewController() else {
+            return
+        }
+        input.customView.nextButton?.isEnabled = true;
+    }
+    
+    public func disableNextButton()
+    {
+        guard let input:CustomViewController<InfoView>  = self.getTopViewController() else {
+            return
+        }
+        input.customView.nextButton?.isEnabled = false;
+    }
+    
 	@objc public func nextButtonPressed(sender:Any) {
 		
 
@@ -301,6 +319,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 	}
 	public func nextPressed(input: SurveyInput?, value: QuestionResponse?) {
 		isValid(value: value, questionId: questions[currentIndex].questionId) { [weak self] valid in
+			
 			OperationQueue.main.addOperation {
 				guard valid else {return}
 				guard let wSelf = self else {return}
@@ -336,13 +355,14 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 				
 				if nextQuestion != nil {
 					
-					wSelf.addController()
+					wSelf.addController(wSelf.customViewController(forQuestion: wSelf.questions[nextQuestion!]))
 				} else {
 					//No questions were added, move on to the next step
 					wSelf.setCompleted()
 				}
 			}
 		}
+
 	}
 	
 	open override func popViewController(animated: Bool) -> UIViewController? {
@@ -356,6 +376,19 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		return vc
 
 	}
+    
+    open override func popToRootViewController(animated: Bool) -> [UIViewController]? {
+        let vcs = super.popToRootViewController(animated: animated);
+        
+        currentIndex = viewControllers.count - 1
+        print("Controller index:", currentIndex)
+        while answeredQuestions.count >= viewControllers.count && answeredQuestions.count > 0 {
+            _ = answeredQuestions.popLast()
+        }
+        
+        return vcs;
+    }
+    
 	/// This override will control what to display as the questions unfold
 	///
 	open override func pushViewController(_ viewController: UIViewController, animated: Bool) {

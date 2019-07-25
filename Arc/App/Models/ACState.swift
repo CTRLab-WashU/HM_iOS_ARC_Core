@@ -52,12 +52,12 @@ public enum ACState : String, State, CaseIterable {
 			
 			
         case .schedule, .changeSchedule:
-            let controller:ACScheduleViewController = .get()
+            let controller:ACScheduleViewController = .init(file: "schedule")
             controller.participantId = Arc.shared.participantId
             if (self == .changeSchedule) {
                 controller.isChangingSchedule = true
             }
-            controller.loadSurvey(template: "schedule")
+            
             return controller
 			
 
