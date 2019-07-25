@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14810.11" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14766.13"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,7 +26,7 @@
             <connections>
                 <outlet property="changeDateButton" destination="wDH-BW-Ib9" id="1Pz-jx-aC9"/>
                 <outlet property="changeTimeButton" destination="ekY-n5-gXH" id="ITg-qc-N6M"/>
-                <outlet property="studyPeriodAdjustView" destination="0WR-K0-PLh" id="7bz-z3-cX6"/>
+                <outlet property="studyPeriodAdjustView" destination="7lH-Uc-OCk" id="GRb-JM-7tc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -33,147 +35,175 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="cFk-Yn-mgM">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="449.5"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4iX-lu-2oq" customClass="HMMarkupButton" customModule="HMMarkup">
+                    <rect key="frame" x="8" y="20" width="80" height="32"/>
+                    <color key="backgroundColor" white="1" alpha="0.14701947770000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="Dha-wM-fAY"/>
+                        <constraint firstAttribute="height" constant="32" id="xVL-ti-fK9"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
+                    <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                    <inset key="imageEdgeInsets" minX="-4" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="BACK" image="cut-ups/icons/arrow_left_white">
+                        <color key="titleColor" name="Secondary Text"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="16"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="button_back"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="numberOfLines">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="goBackPressed:" destination="-1" eventType="touchUpInside" id="C6M-JK-cbu"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ooz-Go-G1w">
+                    <rect key="frame" x="0.0" y="68" width="375" height="164.5"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="j9G-ef-Thq">
-                            <rect key="frame" x="0.0" y="6" width="375" height="37"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4iX-lu-2oq" customClass="HMMarkupButton" customModule="HMMarkup">
-                                    <rect key="frame" x="8" y="0.0" width="36" height="37"/>
-                                    <color key="backgroundColor" white="1" alpha="0.14701947770000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
-                                    <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                    <inset key="imageEdgeInsets" minX="-4" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" title="BACK" image="cut-ups/icons/arrow_left_white">
-                                        <color key="titleColor" name="Secondary Text"/>
-                                    </state>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="16"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="button_back"/>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="numberOfLines">
-                                            <integer key="value" value="1"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="goBackPressed:" destination="-1" eventType="touchUpInside" id="C6M-JK-cbu"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="8" bottom="0.0" trailing="8"/>
-                        </stackView>
-                        <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="200" axis="vertical" alignment="top" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="V4t-ec-0Ju">
-                            <rect key="frame" x="0.0" y="50" width="375" height="200"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I would like to change the *time of day* I am available for testing." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRr-mg-Z8G" customClass="ACLabel" customModule="ArcUIKit">
-                                    <rect key="frame" x="32" y="8" width="335" height="118"/>
-                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="26"/>
-                                    <color key="textColor" name="Secondary Text"/>
-                                    <nil key="highlightedColor"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="styleId">
-                                            <integer key="value" value="2"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="ChangeAvail_time"/>
-                                    </userDefinedRuntimeAttributes>
-                                </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekY-n5-gXH" customClass="ACButton" customModule="ArcUIKit">
-                                    <rect key="frame" x="32" y="144" width="216" height="48"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" priority="999" constant="216" id="7zD-m0-y80"/>
-                                        <constraint firstAttribute="height" priority="999" constant="48" id="VJZ-NE-Uy7"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="18"/>
-                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <state key="normal" title="CHANGE">
-                                        <color key="titleColor" name="Primary"/>
-                                    </state>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="primaryColor">
-                                            <color key="value" name="Secondary"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="secondaryColor">
-                                            <color key="value" name="Secondary Gradient"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                            <real key="value" value="24"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="change_button"/>
-                                    </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="changeSchedulePressed:" destination="-1" eventType="touchUpInside" id="Uue-I2-1rw"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="32" bottom="8" trailing="8"/>
-                        </stackView>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="0WR-K0-PLh">
-                            <rect key="frame" x="0.0" y="257" width="375" height="176.5"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I would like to change the *dates* of my next *testing cycle.*" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ujD-Ta-E6z" customClass="ACLabel" customModule="ArcUIKit">
-                                    <rect key="frame" x="32" y="8" width="299.5" height="94.5"/>
-                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="26"/>
-                                    <color key="textColor" name="Secondary Text"/>
-                                    <nil key="highlightedColor"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="styleId">
-                                            <integer key="value" value="2"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="ChangeAvail_date"/>
-                                    </userDefinedRuntimeAttributes>
-                                </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wDH-BW-Ib9" customClass="ACButton" customModule="ArcUIKit">
-                                    <rect key="frame" x="32" y="120.5" width="216" height="48"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" priority="999" constant="216" id="Sn1-la-hqf"/>
-                                        <constraint firstAttribute="height" priority="999" constant="48" id="jzH-MQ-g6R"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="18"/>
-                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <state key="normal" title="CHANGE">
-                                        <color key="titleColor" name="Primary"/>
-                                    </state>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="primaryColor">
-                                            <color key="value" name="Secondary"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="secondaryColor">
-                                            <color key="value" name="Secondary Gradient"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="24"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="change_button"/>
-                                    </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="changeStudyDatesPressed:" destination="-1" eventType="touchUpInside" id="dWs-1q-qLL"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="32" bottom="8" trailing="8"/>
-                        </stackView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I would like to change the *time of day* I am available for testing." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRr-mg-Z8G" customClass="ACLabel" customModule="ArcUIKit">
+                            <rect key="frame" x="24" y="0.0" width="327" height="91.5"/>
+                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="26"/>
+                            <color key="textColor" name="Secondary Text"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="styleId">
+                                    <integer key="value" value="2"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="ChangeAvail_time"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekY-n5-gXH" customClass="ACButton" customModule="ArcUIKit">
+                            <rect key="frame" x="24" y="116.5" width="327" height="48"/>
+                            <constraints>
+                                <constraint firstAttribute="height" priority="999" constant="48" id="VJZ-NE-Uy7"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="18"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" title="CHANGE">
+                                <color key="titleColor" name="Primary"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="primaryColor">
+                                    <color key="value" name="Secondary"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="secondaryColor">
+                                    <color key="value" name="Secondary Gradient"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="24"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="change_button"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="changeSchedulePressed:" destination="-1" eventType="touchUpInside" id="Uue-I2-1rw"/>
+                            </connections>
+                        </button>
                     </subviews>
-                    <edgeInsets key="layoutMargins" top="6" left="0.0" bottom="16" right="0.0"/>
-                    <viewLayoutGuide key="safeArea" id="siG-Ad-L4i"/>
-                </stackView>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="QRr-mg-Z8G" firstAttribute="leading" secondItem="ooz-Go-G1w" secondAttribute="leading" constant="24" id="0gn-8W-H5X"/>
+                        <constraint firstAttribute="trailing" secondItem="ekY-n5-gXH" secondAttribute="trailing" constant="24" id="Iv3-tq-Ner"/>
+                        <constraint firstItem="ekY-n5-gXH" firstAttribute="leading" secondItem="ooz-Go-G1w" secondAttribute="leading" constant="24" id="WMX-Mn-sSZ"/>
+                        <constraint firstAttribute="trailing" secondItem="QRr-mg-Z8G" secondAttribute="trailing" constant="24" id="Xcn-Xa-55Z"/>
+                        <constraint firstAttribute="bottom" secondItem="ekY-n5-gXH" secondAttribute="bottom" id="dXq-tZ-RU2"/>
+                        <constraint firstItem="QRr-mg-Z8G" firstAttribute="top" secondItem="ooz-Go-G1w" secondAttribute="top" id="f1e-h0-ehH"/>
+                        <constraint firstItem="ekY-n5-gXH" firstAttribute="top" secondItem="QRr-mg-Z8G" secondAttribute="bottom" constant="25" id="yhE-1t-GXc"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7lH-Uc-OCk">
+                    <rect key="frame" x="0.0" y="268.5" width="375" height="194.5"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YHQ-t5-SKF" userLabel="separator">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                            <color key="backgroundColor" name="Resources Separator"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="q2K-6S-7zz"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I would like to change the *dates* of my next *testing cycle.*" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ujD-Ta-E6z" customClass="ACLabel" customModule="ArcUIKit">
+                            <rect key="frame" x="24" y="25" width="327" height="91.5"/>
+                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="26"/>
+                            <color key="textColor" name="Secondary Text"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="styleId">
+                                    <integer key="value" value="2"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="ChangeAvail_date"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wDH-BW-Ib9" customClass="ACButton" customModule="ArcUIKit">
+                            <rect key="frame" x="24" y="146.5" width="327" height="48"/>
+                            <constraints>
+                                <constraint firstAttribute="height" priority="999" constant="48" id="jzH-MQ-g6R"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="18"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" title="CHANGE">
+                                <color key="titleColor" name="Primary"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="primaryColor">
+                                    <color key="value" name="Secondary"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="secondaryColor">
+                                    <color key="value" name="Secondary Gradient"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="24"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="change_button"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="changeStudyDatesPressed:" destination="-1" eventType="touchUpInside" id="dWs-1q-qLL"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="wDH-BW-Ib9" secondAttribute="bottom" id="9Bo-te-nuw"/>
+                        <constraint firstAttribute="trailing" secondItem="YHQ-t5-SKF" secondAttribute="trailing" id="9XQ-pK-8bR"/>
+                        <constraint firstAttribute="trailing" secondItem="ujD-Ta-E6z" secondAttribute="trailing" constant="24" id="BGs-eR-o5U"/>
+                        <constraint firstItem="YHQ-t5-SKF" firstAttribute="leading" secondItem="7lH-Uc-OCk" secondAttribute="leading" id="KQw-lY-fbW"/>
+                        <constraint firstItem="wDH-BW-Ib9" firstAttribute="top" secondItem="ujD-Ta-E6z" secondAttribute="bottom" constant="30" id="Xoa-RM-kt0"/>
+                        <constraint firstAttribute="trailing" secondItem="ujD-Ta-E6z" secondAttribute="trailing" constant="24" id="fRj-L6-H8N"/>
+                        <constraint firstItem="ujD-Ta-E6z" firstAttribute="top" secondItem="YHQ-t5-SKF" secondAttribute="bottom" constant="24" id="geb-sg-uOp"/>
+                        <constraint firstItem="ujD-Ta-E6z" firstAttribute="leading" secondItem="7lH-Uc-OCk" secondAttribute="leading" constant="24" id="kvt-0S-l4X"/>
+                        <constraint firstItem="YHQ-t5-SKF" firstAttribute="top" secondItem="7lH-Uc-OCk" secondAttribute="top" id="nAY-xV-eEH"/>
+                        <constraint firstAttribute="trailing" secondItem="wDH-BW-Ib9" secondAttribute="trailing" constant="24" id="u3Q-Wn-HOF"/>
+                        <constraint firstItem="wDH-BW-Ib9" firstAttribute="leading" secondItem="7lH-Uc-OCk" secondAttribute="leading" constant="24" id="wnj-ZB-6b1"/>
+                    </constraints>
+                </view>
             </subviews>
-            <color key="backgroundColor" name="Primary"/>
+            <color key="backgroundColor" name="Primary Info"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cFk-Yn-mgM" secondAttribute="bottom" id="1sH-8x-6i8"/>
-                <constraint firstItem="cFk-Yn-mgM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="CK2-h0-war"/>
-                <constraint firstItem="cFk-Yn-mgM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="cY5-s4-Htn"/>
-                <constraint firstAttribute="trailing" secondItem="cFk-Yn-mgM" secondAttribute="trailing" id="y8G-Vb-Nnl"/>
+                <constraint firstItem="4iX-lu-2oq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="7A9-dr-Xrd"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ooz-Go-G1w" secondAttribute="trailing" id="IwT-wl-eCG"/>
+                <constraint firstItem="7lH-Uc-OCk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="MWX-lg-L5M"/>
+                <constraint firstItem="7lH-Uc-OCk" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Wvy-hQ-tYG"/>
+                <constraint firstItem="ooz-Go-G1w" firstAttribute="top" secondItem="4iX-lu-2oq" secondAttribute="bottom" constant="16" id="mxQ-Bw-lwt"/>
+                <constraint firstItem="4iX-lu-2oq" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="uGL-dU-RAB"/>
+                <constraint firstItem="7lH-Uc-OCk" firstAttribute="top" secondItem="ooz-Go-G1w" secondAttribute="bottom" constant="36" id="uPX-IU-XPy"/>
+                <constraint firstItem="ooz-Go-G1w" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vCO-2Z-PDx"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="138" y="125"/>
+            <point key="canvasLocation" x="136.80000000000001" y="124.58770614692655"/>
         </view>
     </objects>
     <resources>
         <image name="cut-ups/icons/arrow_left_white" width="16" height="16"/>
         <namedColor name="Primary">
             <color red="0.0" green="0.37299999594688416" blue="0.5220000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Primary Info">
+            <color red="0.043000001460313797" green="0.12200000137090683" blue="0.33300000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Resources Separator">
+            <color red="0.12999999523162842" green="0.20000000298023224" blue="0.40000000596046448" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Secondary">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
