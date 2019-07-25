@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4CB0BAC522E8FA7B00ABB348 /* ContactInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0BAC422E8FA7B00ABB348 /* ContactInfoResponse.swift */; };
 		C5143959224EA6FD000BF1CB /* ACSignatureNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5143958224EA6FD000BF1CB /* ACSignatureNavigationController.swift */; };
 		C5192A6722C518AC00223B69 /* UIDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D101422C2846E00B43E42 /* UIDSL.swift */; };
 		C5192A6D22C5198F00223B69 /* UIDSL+ArcUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5192A6B22C5190D00223B69 /* UIDSL+ArcUIKit.swift */; };
@@ -291,6 +292,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C58E91622E934730024F666 /* ScheduleEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEndViewController.swift; sourceTree = "<group>"; };
+		4CB0BAC422E8FA7B00ABB348 /* ContactInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoResponse.swift; sourceTree = "<group>"; };
 		C50FC3BA22330F2C00143EA8 /* ACCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACCalendarView.swift; sourceTree = "<group>"; };
 		C5143957224E837C000BF1CB /* arc 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "arc 3.xcdatamodel"; sourceTree = "<group>"; };
 		C5143958224EA6FD000BF1CB /* ACSignatureNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSignatureNavigationController.swift; sourceTree = "<group>"; };
@@ -593,6 +596,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4CB4F83222EA486900170AF3 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				4C58E91622E934730024F666 /* ScheduleEndViewController.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		C5192A6122C3DF6700223B69 /* AppStyle */ = {
 			isa = PBXGroup;
 			children = (
@@ -695,6 +706,7 @@
 				C584F33322C16682009741A7 /* ArcTests */,
 				C54AE8E821C81B2F00DEC360 /* Products */,
 				C52B75FF21C83B6400498571 /* Frameworks */,
+				4CB4F83222EA486900170AF3 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -836,6 +848,7 @@
 				C54AE92321C81B5C00DEC360 /* ScheduleResponse.swift */,
 				C54AE92421C81B5C00DEC360 /* TestSession.swift */,
 				C54AE92521C81B5C00DEC360 /* HMRequestHelper.swift */,
+				4CB0BAC422E8FA7B00ABB348 /* ContactInfoResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1696,6 +1709,7 @@
 				C54AEA0D21C81B5F00DEC360 /* InstructionNavigationController.swift in Sources */,
 				C56D6C5B22CD2B9F00C3F8EA /* ACTutorialViewController.swift in Sources */,
 				C54AEA3E21C81B5F00DEC360 /* IntroViewController.swift in Sources */,
+				4CB0BAC522E8FA7B00ABB348 /* ContactInfoResponse.swift in Sources */,
 				C54AEA3221C81B5F00DEC360 /* ScheduleEntry+Extensions.swift in Sources */,
 				C58C96F1228201CE001BDE11 /* HMOperation.swift in Sources */,
 				C5C7F715228F65C50086315B /* ArcTranslation.swift in Sources */,

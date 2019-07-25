@@ -176,6 +176,11 @@ public enum VerifyError : Error {
 }
 fileprivate func verifyParticipant(id:String, didFinish:@escaping (Result<String>)->()){
 	
+    if (Arc.environment?.blockApiRequests ?? false) == true
+    {
+        didFinish(Result.success(id));
+        return;
+    }
 	let req = ConfirmationCode.Request(participant_id: id)
 	confirmationCode.execute(data: req) { (urlResponse, hmResponse, fault) in
 		if hmResponse?.response?.success ?? false == true {
