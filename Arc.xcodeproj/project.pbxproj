@@ -232,6 +232,8 @@
 		C593227122E890DA00528FF5 /* ACProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C593227022E890DA00528FF5 /* ACProgressView.swift */; };
 		C593227322E8916300528FF5 /* BlockProgressview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C593227222E8916300528FF5 /* BlockProgressview.swift */; };
 		C593227522E8BB0F00528FF5 /* AC2FAuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C593227422E8BB0F00528FF5 /* AC2FAuthenticationViewController.swift */; };
+		C593227B22EA397C00528FF5 /* ScheduleEndViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C593227922EA397B00528FF5 /* ScheduleEndViewController.xib */; };
+		C593227C22EA397C00528FF5 /* ScheduleEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C593227A22EA397C00528FF5 /* ScheduleEndViewController.swift */; };
 		C5A43CCF22CA648700C10BC0 /* ACHorizontalBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A43CCE22CA648700C10BC0 /* ACHorizontalBar.swift */; };
 		C5B2601C22135F7300BFF778 /* ArcUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B2601322135F7200BFF778 /* ArcUIKit.framework */; };
 		C5B2602122135F7300BFF778 /* ArcUIKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2602022135F7300BFF778 /* ArcUIKitTests.swift */; };
@@ -253,6 +255,7 @@
 		C5E1E3952257ECC200255812 /* ACChangeAvailabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1E3932257ECC100255812 /* ACChangeAvailabilityViewController.swift */; };
 		C5E1E3962257ECC200255812 /* ACChangeAvailabilityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5E1E3942257ECC200255812 /* ACChangeAvailabilityViewController.xib */; };
 		C5E1E3982257ECDE00255812 /* ACScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1E3972257ECDE00255812 /* ACScheduleViewController.swift */; };
+		C5E3924B22EA3A8F007CB3B6 /* ContactInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E3924A22EA3A8F007CB3B6 /* ContactInfoResponse.swift */; };
 		C5F77F37222F095200BECAE1 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F77F36222F095200BECAE1 /* SignatureViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -506,6 +509,8 @@
 		C593227022E890DA00528FF5 /* ACProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACProgressView.swift; sourceTree = "<group>"; };
 		C593227222E8916300528FF5 /* BlockProgressview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockProgressview.swift; sourceTree = "<group>"; };
 		C593227422E8BB0F00528FF5 /* AC2FAuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AC2FAuthenticationViewController.swift; sourceTree = "<group>"; };
+		C593227922EA397B00528FF5 /* ScheduleEndViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScheduleEndViewController.xib; sourceTree = "<group>"; };
+		C593227A22EA397C00528FF5 /* ScheduleEndViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleEndViewController.swift; sourceTree = "<group>"; };
 		C5A43CCE22CA648700C10BC0 /* ACHorizontalBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACHorizontalBar.swift; sourceTree = "<group>"; };
 		C5B2601322135F7200BFF778 /* ArcUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ArcUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5B2601522135F7300BFF778 /* ArcUIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArcUIKit.h; sourceTree = "<group>"; };
@@ -529,6 +534,7 @@
 		C5E1E3932257ECC100255812 /* ACChangeAvailabilityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACChangeAvailabilityViewController.swift; sourceTree = "<group>"; };
 		C5E1E3942257ECC200255812 /* ACChangeAvailabilityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACChangeAvailabilityViewController.xib; sourceTree = "<group>"; };
 		C5E1E3972257ECDE00255812 /* ACScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACScheduleViewController.swift; sourceTree = "<group>"; };
+		C5E3924A22EA3A8F007CB3B6 /* ContactInfoResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoResponse.swift; sourceTree = "<group>"; };
 		C5F77F34222F094000BECAE1 /* SignatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureView.swift; sourceTree = "<group>"; };
 		C5F77F36222F095200BECAE1 /* SignatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureViewController.swift; sourceTree = "<group>"; };
 		C5F77F38222F15DD00BECAE1 /* SignatureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignatureView.xib; sourceTree = "<group>"; };
@@ -822,6 +828,7 @@
 		C54AE91E21C81B5C00DEC360 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C5E3924A22EA3A8F007CB3B6 /* ContactInfoResponse.swift */,
 				C54AE91F21C81B5C00DEC360 /* StatusCode.swift */,
 				C54AE92021C81B5C00DEC360 /* HMFault.swift */,
 				C54AE92121C81B5C00DEC360 /* HMRequest.swift */,
@@ -1092,6 +1099,8 @@
 				C5E1E3972257ECDE00255812 /* ACScheduleViewController.swift */,
 				C5E1E3932257ECC100255812 /* ACChangeAvailabilityViewController.swift */,
 				C5E1E3942257ECC200255812 /* ACChangeAvailabilityViewController.xib */,
+				C593227A22EA397C00528FF5 /* ScheduleEndViewController.swift */,
+				C593227922EA397B00528FF5 /* ScheduleEndViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1556,6 +1565,7 @@
 				C54AEA6721C81B5F00DEC360 /* Roboto-MediumItalic.ttf in Resources */,
 				C54AEA4121C81B5F00DEC360 /* SurveyNavigationViewController.xib in Resources */,
 				C54AEA4321C81B5F00DEC360 /* IntroViewController.xib in Resources */,
+				C593227B22EA397C00528FF5 /* ScheduleEndViewController.xib in Resources */,
 				C54AEA6E21C81B5F00DEC360 /* Roboto-Bold.ttf in Resources */,
 				C54D104122C28A1D00B43E42 /* TimeView.xib in Resources */,
 				C5D0F6FA220B477B00F04942 /* MHScrollingAlertView.xib in Resources */,
@@ -1663,6 +1673,7 @@
 				C54D103422C28A1D00B43E42 /* SignatureView.swift in Sources */,
 				C54AEA3F21C81B5F00DEC360 /* SurveyNavigationViewController.swift in Sources */,
 				C54AEA2F21C81B5F00DEC360 /* WeekDay.swift in Sources */,
+				C5E3924B22EA3A8F007CB3B6 /* ContactInfoResponse.swift in Sources */,
 				C54AEA0B21C81B5F00DEC360 /* PricesQuestionViewController.swift in Sources */,
 				C5CCD7AE22DF717D002A788A /* AsyncAwait.swift in Sources */,
 				C54AEA6321C81B5F00DEC360 /* CoreDataStack.swift in Sources */,
@@ -1676,6 +1687,7 @@
 				C56D6C5D22CD3FE800C3F8EA /* PricesTestTutorialViewController.swift in Sources */,
 				C54AEA2421C81B5F00DEC360 /* ACContactViewController.swift in Sources */,
 				C5143959224EA6FD000BF1CB /* ACSignatureNavigationController.swift in Sources */,
+				C593227C22EA397C00528FF5 /* ScheduleEndViewController.swift in Sources */,
 				C54AE9D121C81B5F00DEC360 /* ACState.swift in Sources */,
 				C54D104822C28A1D00B43E42 /* ACPickerView.swift in Sources */,
 				C523B38622CA76450074337D /* UIViewController + CustomView.swift in Sources */,

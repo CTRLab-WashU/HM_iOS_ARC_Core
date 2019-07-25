@@ -128,51 +128,59 @@ public class ACScheduleViewController : BasicSurveyViewController {
     
     public override func didFinishSetup() {
         
-        let questionId = self.getCurrentQuestion();
-        
-        if let newValue = self.getInput()?.getValue(), isValid(value: newValue, questionId: questionId)
-        {
-            self.enableNextButton();
-        }
-        else
-        {
-            self.disableNextButton();
-        }
+       didChangeValue()
 //        setError(message:error)
     }
     
     public override func didChangeValue() {
         let questionId = self.getCurrentQuestion();
         
-        if let newValue = self.getInput()?.getValue(), isValid(value: newValue, questionId: questionId)
-        {
-            enableNextButton();
-        }
-        else
-        {
-            disableNextButton();
-        }
-//        setError(message:error)
+		guard let newValue = self.getInput()?.getValue() else
+		{
+			self.disableNextButton();
+			return
+		}
+			
+		isValid(value: newValue, questionId: questionId) { [weak self] valid in
+			if valid {
+				self?.enableNextButton();
+			} else {
+				self?.disableNextButton();
+			}
+		}
+		
+		
     }
-    
-    public override func isValid(value: QuestionResponse?, questionId: String) -> Bool {
-     	error = nil
-        
+	public override func isValid(value: QuestionResponse?, questionId: String, didFinish: @escaping ((Bool) -> Void)) {
+     	set(error: nil)
+        error = nil
         if questionId == QuestionIndex.sleep_confirm.rawValue
+			|| questionId == QuestionIndex.wake_time.rawValue
         {
-            return true;
+			didFinish(true)
+            return;
         }
         
-        guard let value = value else { return false; }
-        guard let sleepTime = self.sleepTime else {return !value.isEmpty()};
-        guard let wakeTime = self.wakeTime else { return false; }
+		guard let value:String = value?.getValue() else
+		{
+			didFinish(false)
+			return;
+		}
+		
+		
+		guard let wakeTime = self.wakeTime else
+		{
+			didFinish(false)
+			return;
+			
+		}
         
         let formatter = DateFormatter()
         formatter.defaultDate = Date();
         formatter.dateFormat = "h:mm a"
         
         if let wake = formatter.date(from: wakeTime.time),
-            var sleep = formatter.date(from: sleepTime.time)
+            var sleep = formatter.date(from: value)
         {
             // If the sleep time is actually "before" the wake time (like they go to sleep at 1am and wake up at 11 am),
             // then we need to add a day to the sleep date, to make the math work right.
@@ -188,17 +196,21 @@ public class ACScheduleViewController : BasicSurveyViewController {
             if sleep.timeIntervalSince(wake) < 28800
             {
                 error = "Please set a minimum of 8 hours of wake time.".localized("error4")
-                return false;
+				set(error: error)
+				didFinish(false)
+				return
             }
             
             if sleep.timeIntervalSince(wake) > 18 * 60 * 60 && shouldLimitWakeTime
             {
                 error = " " //Please enter less than 18 hours of wake time.".localized("error5")
-                return false;
+				set(error: error)
+
+                return didFinish(false);
             }
         }
         
-        return true;
+        return didFinish(true);
     
     }
 	
