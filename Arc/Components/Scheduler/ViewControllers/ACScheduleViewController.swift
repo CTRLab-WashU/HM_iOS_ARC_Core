@@ -7,7 +7,9 @@
 //
 
 import Foundation
-public class ACScheduleViewController : SurveyNavigationViewController {
+public class ACScheduleViewController : BasicSurveyViewController {
+    
+    public var participantId:Int?
     
 	open override func templateForQuestion(id questionId:String) -> Dictionary<String, String> {
         return [:]
@@ -24,23 +26,23 @@ public class ACScheduleViewController : SurveyNavigationViewController {
     // schedule_6, schedule_7: Sunday
     
 	enum QuestionIndex : String, CaseIterable {
-		case wake_time, sleep_time
+		case wake_time, sleep_time, sleep_confirm
 		
 		var day:Int? {
 			switch self {
 			case .wake_time, .sleep_time:
 				return 1
+            default:
+                return nil
 			}
 		}
 		static var wakeTimeQuestion:Array<QuestionIndex> {
-			return [.wake_time,
-				 ]
+			return [.wake_time,]
 
 			
 		}
 		static var sleepTimeQuestion:Array<QuestionIndex> {
-			return [.sleep_time,
-					]
+			return [.sleep_time,]
 		
 		
         }
@@ -59,18 +61,25 @@ public class ACScheduleViewController : SurveyNavigationViewController {
 	var error:String?
     
     public var shouldLimitWakeTime = false
-	override open func loadSurvey(template:String) {
-		survey = Arc.shared.surveyController.load(survey: template)
-		self.surveyId = Arc.shared.surveyController.get(surveyResponse: "availability")?.id ??
-			Arc.shared.surveyController.create(surveyResponse: "availability",type: SurveyType.schedule)
-		shouldShowHelpButton = true
+    
+    
+    public override init(file: String, surveyId:String? = nil) {
+        
+        if Arc.shared.surveyController.get(surveyResponse: "availability")?.id == nil
+        {
+            _ = Arc.shared.surveyController.create(surveyResponse: "availability",type: SurveyType.schedule)
+        }
+        
+        super.init(file: file, surveyId: "availability")
+	
+//        shouldShowHelpButton = true
 		
 		shouldNavigateToNextState = false
 		
 		questions = survey.questions
 		
 		for question in questions  {
-			guard let v = Arc.shared.surveyController.getResponse(forQuestion: question.questionId, fromSurveyResponse: surveyId!) else  {
+            guard let v = Arc.shared.surveyController.getResponse(forQuestion: question.questionId, fromSurveyResponse: self.surveyId) else  {
 				continue
 			}
 			guard let index = QuestionIndex(rawValue: question.questionId) else {
@@ -93,9 +102,19 @@ public class ACScheduleViewController : SurveyNavigationViewController {
             }
 		}
 	}
-	
-	override open func questionDisplayed(input:SurveyInput, index:String) {
-		let qIndex = QuestionIndex(rawValue: index)!
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder);
+    }
+    
+    public override func didPresentQuestion(input: SurveyInput?, questionId: String) {
+        
+        guard let input = input else
+        {
+            return;
+        }
+        
+		let qIndex = QuestionIndex(rawValue: questionId)!
 
         if qIndex == .wake_time, let wakeTime = self.wakeTime
         {
@@ -107,21 +126,25 @@ public class ACScheduleViewController : SurveyNavigationViewController {
         }
 	}
     
-    public override func onFinishSetup(index: String) {
-        if let newValue = getValue(), isValid(value: newValue, index: index)
-        {
-            enableNextButton();
-        }
-        else
-        {
-            disableNextButton();
-        }
-        setError(message:error)
-    }
-    
-    public override func valueChanged(index: String) {
+    public override func didFinishSetup() {
         
-        if let newValue = getValue(), isValid(value: newValue, index: index)
+        let questionId = self.getCurrentQuestion();
+        
+        if let newValue = self.getInput()?.getValue(), isValid(value: newValue, questionId: questionId)
+        {
+            self.enableNextButton();
+        }
+        else
+        {
+            self.disableNextButton();
+        }
+//        setError(message:error)
+    }
+    
+    public override func didChangeValue() {
+        let questionId = self.getCurrentQuestion();
+        
+        if let newValue = self.getInput()?.getValue(), isValid(value: newValue, questionId: questionId)
         {
             enableNextButton();
         }
@@ -129,12 +152,18 @@ public class ACScheduleViewController : SurveyNavigationViewController {
         {
             disableNextButton();
         }
-        setError(message:error)
+//        setError(message:error)
     }
     
-    public override func isValid(value: QuestionResponse, index: String) -> Bool {
+    public override func isValid(value: QuestionResponse?, questionId: String) -> Bool {
      	error = nil
         
+        if questionId == QuestionIndex.sleep_confirm.rawValue
+        {
+            return true;
+        }
+        
+        guard let value = value else { return false; }
         guard let sleepTime = self.sleepTime else {return !value.isEmpty()};
         guard let wakeTime = self.wakeTime else { return false; }
         
@@ -178,6 +207,11 @@ public class ACScheduleViewController : SurveyNavigationViewController {
 		super.valueSelected(value: value, index: index)
 
 		let index = QuestionIndex(rawValue: index)!
+        if index == .sleep_confirm
+        {
+            self.generateSchedule();
+            return;
+        }
         
         let dayTime = DayTime(time: value.value as! String, day: 0);
         
@@ -190,45 +224,59 @@ public class ACScheduleViewController : SurveyNavigationViewController {
             self.sleepTime = dayTime;
         }
 		
-        
-		//If we say yes to the rest of the weekdays being the same
-		//set those days to the selections chosen for monday
-		
-		//this is the id of the final question
-		//once we've answered the final question lets produce results
-        
-        if index == .wake_time
+	}
+    
+    public override func customViewController(forQuestion question: Survey.Question) -> UIViewController?
+    {
+        if question.questionId == "sleep_confirm"
         {
-            return;
+            let vc:ScheduleEndViewController = .get();
+            return vc;
         }
         
+        return nil;
+        
+    }
+    
+    open func didFinishScheduling() {
+        
+        
+        //If we have a latest test then we shouldn't be going straight into anything.
+        if Arc.shared.studyController.latestTest == nil && isChangingSchedule == false{
+            _ = Arc.shared.startTestIfAvailable()
+        }
+        Arc.shared.nextAvailableState()
+    }
+    
+    private func generateSchedule()
+    {
         guard let wakeTime = self.wakeTime, let sleepTime = self.sleepTime else
         {
             return;
         }
-		
-		let _ = Arc.shared.scheduleController.delete(schedulesForParticipant: self.participantId!)
-		
-		for day in 0 ... 6 {
-			let weekDay = WeekDay.init(rawValue: Int64(day))!
-			let _ = Arc.shared.scheduleController.create(entry: wakeTime.time,
-														endTime: sleepTime.time,
-														weekDay: weekDay,
-														participantId: self.participantId!)
-		}
-		let _ = Arc.shared.scheduleController.get(confirmedSchedule: self.participantId!)
-
-		
-
-		//Probably see where the app wants to go next
-		if let top = self.topViewController as? SurveyViewController {
-			top.surveyView.nextButton?.showSpinner(color: UIColor(white: 1.0, alpha: 0.8), backgroundColor:UIColor(named:"Primary") )
-		}
-	
-	
-        MHController.dataContext.performAndWait {
-
         
+        let _ = Arc.shared.scheduleController.delete(schedulesForParticipant: self.participantId!)
+        
+        for day in 0 ... 6 {
+            let weekDay = WeekDay.init(rawValue: Int64(day))!
+            let _ = Arc.shared.scheduleController.create(entry: wakeTime.time,
+                                                         endTime: sleepTime.time,
+                                                         weekDay: weekDay,
+                                                         participantId: self.participantId!)
+        }
+        let _ = Arc.shared.scheduleController.get(confirmedSchedule: self.participantId!)
+        
+        
+        
+        //Probably see where the app wants to go next
+        if let top = self.topViewController as? SurveyViewController {
+            top.surveyView.nextButton?.showSpinner(color: UIColor(white: 1.0, alpha: 0.8), backgroundColor:UIColor(named:"Primary") )
+        }
+        
+        
+        MHController.dataContext.performAndWait {
+            
+            
             // If firstTest is set, that means we've probably recently re-installed the app, and are recreating a schedule.
             // So set beginningOfStudy to be the session_date of the first test.
             // Othwerwise, we'll just let beginningOfStudy's get handler set the date for us.
@@ -239,36 +287,36 @@ public class ACScheduleViewController : SurveyNavigationViewController {
             
             let date = Arc.shared.studyController.beginningOfStudy;
             if self.isChangingSchedule {
-				
+                
                 let studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
                 let sessions = Arc.shared.studyController.getUpcomingSessions(withLimit: 5)
-				var dayIndex:Int?
-				var afterDate:Date?
-				for session in sessions {
-					if dayIndex == nil {
-						dayIndex = Int(session.day)
-					}
-					if dayIndex == Int(session.day) {
-						afterDate = session.sessionDate
-					}
-				}
-				
+                var dayIndex:Int?
+                var afterDate:Date?
+                for session in sessions {
+                    if dayIndex == nil {
+                        dayIndex = Int(session.day)
+                    }
+                    if dayIndex == Int(session.day) {
+                        afterDate = session.sessionDate
+                    }
+                }
+                
                 for study in studies {
-                    	Arc.shared.notificationController.clear(sessionNotifications: Int(study.studyID))
+                    Arc.shared.notificationController.clear(sessionNotifications: Int(study.studyID))
                     Arc.shared.studyController.clear(sessions: Int(study.studyID), afterDate: afterDate!)
-
+                    
                 }
             } else {
                 _ = Arc.shared.studyController.createAllStudyPeriods(startingID: 0, startDate: date)
             }
             var studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
             for i in 0 ..< studies.count{
-				
+                
                 let study = studies[i]
-				
-				let sc = Arc.shared.studyController
+                
+                let sc = Arc.shared.studyController
                 sc.createTestSessions(studyId: Int(study.studyID), isRescheduling: self.isChangingSchedule);
-               
+                
                 
                 _ = Arc.shared.studyController.mark(confirmed: Int(study.studyID))
                 Arc.shared.notificationController.clear(sessionNotifications: Int(study.studyID))
@@ -288,7 +336,7 @@ public class ACScheduleViewController : SurveyNavigationViewController {
             studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
             
             Arc.shared.notificationController.schedule(upcomingSessionNotificationsWithLimit: 32)
-             _ = Arc.shared.notificationController.scheduleDateConfirmationsForUpcomingStudy()
+            _ = Arc.shared.notificationController.scheduleDateConfirmationsForUpcomingStudy()
             Arc.shared.sessionController.uploadSchedule(studyPeriods: studies)
             
             if let study = studies.first
@@ -303,23 +351,11 @@ public class ACScheduleViewController : SurveyNavigationViewController {
                 self?.view.hideSpinner()
                 if let top = self?.topViewController as? SurveyViewController {
                     top.surveyView.nextButton?.hideSpinner()
-
+                    
                 }
                 self?.didFinishScheduling()
             }
         }
-
-		
-
-	}
-    open func didFinishScheduling() {
-        
-        
-        //If we have a latest test then we shouldn't be going straight into anything.
-        if Arc.shared.studyController.latestTest == nil && isChangingSchedule == false{
-            _ = Arc.shared.startTestIfAvailable()
-        }
-        Arc.shared.nextAvailableState()
     }
 	
 }

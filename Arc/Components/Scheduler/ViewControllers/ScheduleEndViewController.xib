@@ -14,9 +14,6 @@
         <array key="Roboto-Bold.ttf">
             <string>Roboto-Bold</string>
         </array>
-        <array key="Roboto-Medium.ttf">
-            <string>Roboto-Medium</string>
-        </array>
         <array key="Roboto-Regular.ttf">
             <string>Roboto-Regular</string>
         </array>
@@ -33,32 +30,6 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fav-Ek-JRe" customClass="HMMarkupButton" customModule="HMMarkup">
-                    <rect key="frame" x="8" y="20" width="80" height="32"/>
-                    <color key="backgroundColor" white="1" alpha="0.14701947770000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="32" id="Agr-76-rbo"/>
-                        <constraint firstAttribute="width" constant="80" id="cOM-vB-4pL"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
-                    <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                    <inset key="imageEdgeInsets" minX="-4" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <state key="normal" title="BACK" image="cut-ups/icons/arrow_left_blue">
-                        <color key="titleColor" name="Primary"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="16"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="button_back"/>
-                        <userDefinedRuntimeAttribute type="number" keyPath="numberOfLines">
-                            <integer key="value" value="1"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="backPressed:" destination="-1" eventType="touchUpInside" id="Qef-LJ-UZT"/>
-                    </connections>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Great! Starting tomorrow, we’ll only send you reminders between 7:00 AM and 11:00 PM." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCE-ep-AMn" customClass="HMMarkupLabel" customModule="HMMarkup">
                     <rect key="frame" x="24" y="68" width="327" height="122"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="26"/>
@@ -68,10 +39,11 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="availability_confirm"/>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2PP-q1-Lor" customClass="HMMarkupButton" customModule="HMMarkup">
-                    <rect key="frame" x="48" y="553" width="279" height="32"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2PP-q1-Lor" customClass="ACButton" customModule="ArcUIKit">
+                    <rect key="frame" x="48" y="539" width="279" height="32"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="32" id="Sxh-fl-iKY"/>
+                        <constraint firstAttribute="height" priority="999" constant="32" id="Sxh-fl-iKY"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <state key="normal" title="Change Times">
@@ -85,7 +57,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oHK-Gp-JMt" customClass="ACButton" customModule="ArcUIKit">
-                    <rect key="frame" x="24" y="609" width="327" height="34"/>
+                    <rect key="frame" x="24" y="595" width="327" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" priority="999" constant="48" id="vrm-tF-jlR"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="18"/>
                     <state key="normal" title="OKAY">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -110,15 +85,13 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="oHK-Gp-JMt" secondAttribute="trailing" constant="24" id="0G6-K8-Ura"/>
-                <constraint firstItem="Fav-Ek-JRe" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="7Qv-xV-6c3"/>
                 <constraint firstItem="hCE-ep-AMn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="9q9-FU-0sc"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="oHK-Gp-JMt" secondAttribute="bottom" constant="24" id="LBB-Mp-L2R"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hCE-ep-AMn" secondAttribute="trailing" constant="24" id="RwH-5M-IhL"/>
-                <constraint firstItem="Fav-Ek-JRe" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="e4W-1B-LoJ"/>
                 <constraint firstItem="oHK-Gp-JMt" firstAttribute="top" secondItem="2PP-q1-Lor" secondAttribute="bottom" constant="24" id="fbH-Gc-a2l"/>
+                <constraint firstItem="hCE-ep-AMn" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="48" id="iqx-iK-j0U"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="2PP-q1-Lor" secondAttribute="trailing" constant="48" id="m23-it-p72"/>
                 <constraint firstItem="oHK-Gp-JMt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="olc-fK-JDW"/>
-                <constraint firstItem="hCE-ep-AMn" firstAttribute="top" secondItem="Fav-Ek-JRe" secondAttribute="bottom" constant="16" id="oyc-GC-VEO"/>
                 <constraint firstItem="2PP-q1-Lor" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="48" id="pul-eL-skG"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -126,7 +99,6 @@
         </view>
     </objects>
     <resources>
-        <image name="cut-ups/icons/arrow_left_blue" width="16" height="16"/>
         <namedColor name="Primary">
             <color red="0.0" green="0.37299999594688416" blue="0.5220000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
