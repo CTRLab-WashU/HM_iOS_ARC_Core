@@ -21,7 +21,10 @@ public class InfoView: ACTemplateView {
 	}
 	var infoContent:InfoContentView!
 	var miscContainer:UIStackView!
+	var additionalContent:UIStackView!
+
 	var inputContainer:UIStackView!
+	var errorLabel:UILabel!
 	var inputItem:SurveyInput? {
 		didSet {
 			self.inputItem?.inputDelegate = inputDelegate
@@ -38,6 +41,7 @@ public class InfoView: ACTemplateView {
 	}
 	public func setInput(_ view:(UIView & SurveyInput)?) {
 		inputItem = view
+		view?.supplementaryViews(for: self.miscContainer)
 		inputContainer.removeSubviews()
 
 		if let view = view {
@@ -46,12 +50,24 @@ public class InfoView: ACTemplateView {
 			inputContainer.removeSubviews()
 		}
 	}
-	public func setMiscContent(_ view:UIView?) {
+	public func setAdditionalContent(_ view:UIView?) {
+		if let view = view {
+			additionalContent.addArrangedSubview(view)
+		} else {
+			additionalContent.removeSubviews()
+		}
+	}
+	public func setAdditionalFooterContent(_ view:UIView?) {
 		if let view = view {
 			miscContainer.addArrangedSubview(view)
 		} else {
 			miscContainer.removeSubviews()
 		}
+	}
+	public func setError(message:String?) {
+		errorLabel.text = message
+		inputItem?.setError(message: message)
+
 	}
 	public func setHeading(_ text:String?) {
 		infoContent.setHeader(text)
@@ -78,6 +94,14 @@ public class InfoView: ACTemplateView {
 		
 		}
 		inputContainer = view.stack {
+			$0.axis = .horizontal
+			$0.alignment = .top
+			
+		}
+		errorLabel = view.acLabel {
+			Roboto.Style.error($0)
+		}
+		additionalContent = view.stack {
 			$0.axis = .horizontal
 			$0.alignment = .top
 			

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C5143959224EA6FD000BF1CB /* ACSignatureNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5143958224EA6FD000BF1CB /* ACSignatureNavigationController.swift */; };
 		C5192A6722C518AC00223B69 /* UIDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D101422C2846E00B43E42 /* UIDSL.swift */; };
-		C5192A6822C518AC00223B69 /* ConstraintDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D101622C2852C00B43E42 /* ConstraintDSL.swift */; };
 		C5192A6D22C5198F00223B69 /* UIDSL+ArcUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5192A6B22C5190D00223B69 /* UIDSL+ArcUIKit.swift */; };
 		C5192A6F22C519D900223B69 /* UIDSL+ArcCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5192A6E22C519D900223B69 /* UIDSL+ArcCore.swift */; };
 		C5192A7522C51F5000223B69 /* Drawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5192A6522C3E04300223B69 /* Drawing.swift */; };
@@ -193,6 +192,10 @@
 		C54D104B22C28A1D00B43E42 /* ACCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50FC3BA22330F2C00143EA8 /* ACCalendarView.swift */; };
 		C54D104F22C29DA700B43E42 /* SurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D104E22C29DA700B43E42 /* SurveyView.swift */; };
 		C54E8E1122E64CE00080BFC1 /* SymbolsTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54E8E1022E64CE00080BFC1 /* SymbolsTutorialViewController.swift */; };
+		C54E8E1B22E7B6330080BFC1 /* ConstraintDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54E8E1A22E7B6330080BFC1 /* ConstraintDSL.swift */; };
+		C54E8E1E22E800780080BFC1 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54E8E1C22E800780080BFC1 /* CircularProgressView.swift */; };
+		C54E8E2322E88D590080BFC1 /* StepperProgressview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54E8E2222E88D590080BFC1 /* StepperProgressview.swift */; };
+		C54E8E2622E88DC60080BFC1 /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54E8E2522E88DC60080BFC1 /* ProgressViewController.swift */; };
 		C556BA2D22CA4B3D0057B54B /* ACTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C556BA2C22CA4B3D0057B54B /* ACTemplateView.swift */; };
 		C556BA2F22CA5B4C0057B54B /* ACHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C556BA2E22CA5B4C0057B54B /* ACHomeView.swift */; };
 		C56BBCA3221490DF0025A318 /* ACTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56BBCA2221490DF0025A318 /* ACTextView.swift */; };
@@ -226,6 +229,9 @@
 		C589B50E21ED001700389342 /* ACAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C589B50D21ED001700389342 /* ACAuthViewController.swift */; };
 		C58C96F1228201CE001BDE11 /* HMOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C96F0228201CE001BDE11 /* HMOperation.swift */; };
 		C58D92832294AA1E000AD89F /* HMMarkupButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D92822294AA1E000AD89F /* HMMarkupButton.swift */; };
+		C593227122E890DA00528FF5 /* ACProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C593227022E890DA00528FF5 /* ACProgressView.swift */; };
+		C593227322E8916300528FF5 /* BlockProgressview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C593227222E8916300528FF5 /* BlockProgressview.swift */; };
+		C593227522E8BB0F00528FF5 /* AC2FAuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C593227422E8BB0F00528FF5 /* AC2FAuthenticationViewController.swift */; };
 		C5A43CCF22CA648700C10BC0 /* ACHorizontalBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A43CCE22CA648700C10BC0 /* ACHorizontalBar.swift */; };
 		C5B2601C22135F7300BFF778 /* ArcUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B2601322135F7200BFF778 /* ArcUIKit.framework */; };
 		C5B2602122135F7300BFF778 /* ArcUIKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2602022135F7300BFF778 /* ArcUIKitTests.swift */; };
@@ -469,9 +475,12 @@
 		C54D101022C2743F00B43E42 /* QuestionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionType.swift; sourceTree = "<group>"; };
 		C54D101222C2745A00B43E42 /* QuestionStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionStyle.swift; sourceTree = "<group>"; };
 		C54D101422C2846E00B43E42 /* UIDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDSL.swift; sourceTree = "<group>"; };
-		C54D101622C2852C00B43E42 /* ConstraintDSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintDSL.swift; sourceTree = "<group>"; };
 		C54D104E22C29DA700B43E42 /* SurveyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyView.swift; sourceTree = "<group>"; };
 		C54E8E1022E64CE00080BFC1 /* SymbolsTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolsTutorialViewController.swift; sourceTree = "<group>"; };
+		C54E8E1A22E7B6330080BFC1 /* ConstraintDSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintDSL.swift; sourceTree = "<group>"; };
+		C54E8E1C22E800780080BFC1 /* CircularProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
+		C54E8E2222E88D590080BFC1 /* StepperProgressview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperProgressview.swift; sourceTree = "<group>"; };
+		C54E8E2522E88DC60080BFC1 /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		C556BA2C22CA4B3D0057B54B /* ACTemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTemplateView.swift; sourceTree = "<group>"; };
 		C556BA2E22CA5B4C0057B54B /* ACHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACHomeView.swift; sourceTree = "<group>"; };
 		C56BBCA2221490DF0025A318 /* ACTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTextView.swift; sourceTree = "<group>"; };
@@ -494,6 +503,9 @@
 		C589B50D21ED001700389342 /* ACAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACAuthViewController.swift; sourceTree = "<group>"; };
 		C58C96F0228201CE001BDE11 /* HMOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMOperation.swift; sourceTree = "<group>"; };
 		C58D92822294AA1E000AD89F /* HMMarkupButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMMarkupButton.swift; sourceTree = "<group>"; };
+		C593227022E890DA00528FF5 /* ACProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACProgressView.swift; sourceTree = "<group>"; };
+		C593227222E8916300528FF5 /* BlockProgressview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockProgressview.swift; sourceTree = "<group>"; };
+		C593227422E8BB0F00528FF5 /* AC2FAuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AC2FAuthenticationViewController.swift; sourceTree = "<group>"; };
 		C5A43CCE22CA648700C10BC0 /* ACHorizontalBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACHorizontalBar.swift; sourceTree = "<group>"; };
 		C5B2601322135F7200BFF778 /* ArcUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ArcUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5B2601522135F7300BFF778 /* ArcUIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArcUIKit.h; sourceTree = "<group>"; };
@@ -657,7 +669,7 @@
 			children = (
 				C54AE91621C81B5C00DEC360 /* UILabel+Extensions.swift */,
 				C54D101422C2846E00B43E42 /* UIDSL.swift */,
-				C54D101622C2852C00B43E42 /* ConstraintDSL.swift */,
+				C54E8E1A22E7B6330080BFC1 /* ConstraintDSL.swift */,
 				C537A1AD228B74E20098A4CD /* Window+Overlay.swift */,
 				C56D6C5322CBA6E000C3F8EA /* UIView + Pulse.swift */,
 				C548B79022C54D630039DBCB /* UIControl+Closure.swift */,
@@ -901,6 +913,7 @@
 		C54AE94B21C81B5C00DEC360 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C54E8E1322E790230080BFC1 /* Progress */,
 				C51A7D8A22D8C30800854B13 /* Onboarding */,
 				C54AE97F21C81B5C00DEC360 /* LoadingScreenViewController.swift */,
 				C54AE98D21C81B5C00DEC360 /* LoadingScreenViewController.xib */,
@@ -1026,6 +1039,7 @@
 				C54AE97821C81B5C00DEC360 /* WelcomeViewController.swift */,
 				C54AE97921C81B5C00DEC360 /* WelcomeViewController.xib */,
 				C5F77F36222F095200BECAE1 /* SignatureViewController.swift */,
+				C593227422E8BB0F00528FF5 /* AC2FAuthenticationViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1201,6 +1215,42 @@
 				C54E8E1022E64CE00080BFC1 /* SymbolsTutorialViewController.swift */,
 			);
 			path = SymbolsTest;
+			sourceTree = "<group>";
+		};
+		C54E8E1322E790230080BFC1 /* Progress */ = {
+			isa = PBXGroup;
+			children = (
+				C54E8E2422E88D910080BFC1 /* Viewcontrollers */,
+				C54E8E1422E7906F0080BFC1 /* views */,
+			);
+			path = Progress;
+			sourceTree = "<group>";
+		};
+		C54E8E1422E7906F0080BFC1 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				C54E8E2922E88DFE0080BFC1 /* supporting views */,
+				C593227022E890DA00528FF5 /* ACProgressView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		C54E8E2422E88D910080BFC1 /* Viewcontrollers */ = {
+			isa = PBXGroup;
+			children = (
+				C54E8E2522E88DC60080BFC1 /* ProgressViewController.swift */,
+			);
+			path = Viewcontrollers;
+			sourceTree = "<group>";
+		};
+		C54E8E2922E88DFE0080BFC1 /* supporting views */ = {
+			isa = PBXGroup;
+			children = (
+				C54E8E2222E88D590080BFC1 /* StepperProgressview.swift */,
+				C54E8E1C22E800780080BFC1 /* CircularProgressView.swift */,
+				C593227222E8916300528FF5 /* BlockProgressview.swift */,
+			);
+			path = "supporting views";
 			sourceTree = "<group>";
 		};
 		C58129F922E244BF00CD1883 /* Grid Test */ = {
@@ -1661,6 +1711,7 @@
 				C54D103622C28A1D00B43E42 /* DurationView.swift in Sources */,
 				C54AEA1821C81B5F00DEC360 /* SymbolSelectButton.swift in Sources */,
 				C54AEA1721C81B5F00DEC360 /* PricesTestController.swift in Sources */,
+				C593227122E890DA00528FF5 /* ACProgressView.swift in Sources */,
 				C54AE9F621C81B5F00DEC360 /* NotificationController.swift in Sources */,
 				C54AE9F721C81B5F00DEC360 /* MHController.swift in Sources */,
 				C54D103E22C28A1D00B43E42 /* SliderView.swift in Sources */,
@@ -1679,12 +1730,14 @@
 				C5E1530B22C64B630066FD6B /* PrivacyStack.swift in Sources */,
 				C54AEA0321C81B5F00DEC360 /* BorderedTextField.swift in Sources */,
 				C54AE9FF21C81B5F00DEC360 /* MHAlertView.swift in Sources */,
+				C54E8E2622E88DC60080BFC1 /* ProgressViewController.swift in Sources */,
 				C54AEA3B21C81B5F00DEC360 /* SurveyResponse.swift in Sources */,
 				C54AEA3D21C81B5F00DEC360 /* Introduction.swift in Sources */,
 				C54AE9DA21C81B5F00DEC360 /* UIView+Extensions.swift in Sources */,
 				C54AEA2621C81B5F00DEC360 /* AboutViewController.swift in Sources */,
 				C58129F822E20BE000CD1883 /* TutorialCompleteView.swift in Sources */,
 				C54D101322C2745A00B43E42 /* QuestionStyle.swift in Sources */,
+				C54E8E2322E88D590080BFC1 /* StepperProgressview.swift in Sources */,
 				C51A7D8722D7EC5900854B13 /* ParticipationView.swift in Sources */,
 				C54AE9E121C81B5F00DEC360 /* HMLog.swift in Sources */,
 				C54AEA2221C81B5F00DEC360 /* ACContactNavigationController.swift in Sources */,
@@ -1699,6 +1752,7 @@
 				C54D104022C28A1D00B43E42 /* TimeView.swift in Sources */,
 				C54AE9DF21C81B5F00DEC360 /* Date+Extensions.swift in Sources */,
 				C54AE9E421C81B5F00DEC360 /* StatusCode.swift in Sources */,
+				C593227322E8916300528FF5 /* BlockProgressview.swift in Sources */,
 				C54AEA2B21C81B5F00DEC360 /* AuthController.swift in Sources */,
 				C57E9C862236C232009F6228 /* StartDateShiftViewController.swift in Sources */,
 				C5192A6F22C519D900223B69 /* UIDSL+ArcCore.swift in Sources */,
@@ -1708,6 +1762,7 @@
 				C54AE9D921C81B5F00DEC360 /* UIViewController+Extensions.swift in Sources */,
 				C54AE9F021C81B5F00DEC360 /* AppNavigationController.swift in Sources */,
 				C54AE9E721C81B5F00DEC360 /* SessionInfoResponse.swift in Sources */,
+				C593227522E8BB0F00528FF5 /* AC2FAuthenticationViewController.swift in Sources */,
 				C54AEA2C21C81B5F00DEC360 /* LoginHelpView.swift in Sources */,
 				C54AE9D621C81B5F00DEC360 /* Arc+Auth.swift in Sources */,
 				C52B75D421C8369400498571 /* arc.xcdatamodeld in Sources */,
@@ -1737,6 +1792,7 @@
 				C54AEA0C21C81B5F00DEC360 /* SymbolsTestViewController.swift in Sources */,
 				C54AEA0221C81B5F00DEC360 /* HMCodable.swift in Sources */,
 				C54AEA1421C81B5F00DEC360 /* TestManagerController.swift in Sources */,
+				C54E8E1E22E800780080BFC1 /* CircularProgressView.swift in Sources */,
 				C54AE9ED21C81B5F00DEC360 /* HMRestAPI.swift in Sources */,
 				C54AEA0A21C81B5F00DEC360 /* GridTestViewController.swift in Sources */,
 				C54AE9DC21C81B5F00DEC360 /* Set+Extensions.swift in Sources */,
@@ -1769,8 +1825,8 @@
 				C583C0F222136E3B0043DFA7 /* ACLabel.swift in Sources */,
 				C5192A7722C5231900223B69 /* Georgia.swift in Sources */,
 				C56D6C5722CBF25900C3F8EA /* Automation.swift in Sources */,
-				C5192A6822C518AC00223B69 /* ConstraintDSL.swift in Sources */,
 				C5192A7522C51F5000223B69 /* Drawing.swift in Sources */,
+				C54E8E1B22E7B6330080BFC1 /* ConstraintDSL.swift in Sources */,
 				C5A43CCF22CA648700C10BC0 /* ACHorizontalBar.swift in Sources */,
 				C5192A7822C5231900223B69 /* Roboto.swift in Sources */,
 				C5192A7F22C5235E00223B69 /* UILabel+Extensions.swift in Sources */,

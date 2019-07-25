@@ -52,6 +52,13 @@ public struct Roboto {
 			.family(Roboto.family)
 			.boldFont()
 			.size(26)
+		public static let subHeading = UIFont(name: "Roboto", size: 21)!
+			.family(Roboto.family)
+			.size(26)
+		public static let subHeadingBold = UIFont(name: "Roboto", size: 21)!
+			.family(Roboto.family)
+			.boldFont()
+			.size(26)
 		public static let italic = UIFont(name: "Roboto", size: 18)!
 			.family(Roboto.family)
 			.italicFont()
@@ -144,6 +151,17 @@ public struct Roboto {
 		}
 		public static func bodyBold(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
 			label.font = Roboto.Font.bodyBold
+			label.numberOfLines = 0
+			label.textColor = color
+		}
+		public static func subHeading(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
+			label.font = Roboto.Font.subHeading
+			label.numberOfLines = 0
+			
+			label.textColor = color
+		}
+		public static func subHeadingBold(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
+			label.font = Roboto.Font.subHeadingBold
 			label.numberOfLines = 0
 			label.textColor = color
 		}

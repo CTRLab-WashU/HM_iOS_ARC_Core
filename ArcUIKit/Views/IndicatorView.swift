@@ -34,7 +34,7 @@ import UIKit
 	var path:UIBezierPath?
     override public init(frame: CGRect) {
         super.init(frame: frame)
-        
+        translatesAutoresizingMaskIntoConstraints = false
         
     }
     

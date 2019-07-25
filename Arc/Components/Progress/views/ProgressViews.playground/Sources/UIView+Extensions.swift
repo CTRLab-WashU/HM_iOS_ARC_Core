@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ArcUIKit
 public extension UIView {
     static public func get<T:UIView>(nib:String? = nil) -> T{
 		//For multi-module environments get the bundle for the class
@@ -17,18 +16,6 @@ public extension UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }
-	public func attachTo(view:UIView?) {
-		guard let view = view else {return}
-		layout {
-			
-			// select an anchor give a priority of 999 (almost Required)
-			$0.top == view.topAnchor ~ 999
-			$0.trailing == view.trailingAnchor ~ 999
-			$0.bottom == view.bottomAnchor ~ 999
-			$0.leading == view.leadingAnchor ~ 999
-			
-		}
-	}
     public func anchor(view:UIView) {
         self.addSubview(view)
         let left = view.leftAnchor.constraint(equalTo: self.leftAnchor);
@@ -68,13 +55,9 @@ public extension UIView {
         
         self.layoutSubviews()
     }
-	
-	
 	@discardableResult public func showSpinner(color:UIColor? = nil, backgroundColor:UIColor? = nil) -> UIActivityIndicatorView {
-		
 		self.hideSpinner()
 		let spinner = UIActivityIndicatorView()
-		
 		spinner.style = .white
 		if let color = color {
 			spinner.color = color

@@ -111,7 +111,7 @@ open class IntroViewController: CustomViewController<InfoView> {
 					
 				}
 			}
-			customView.setMiscContent(button)
+			customView.setAdditionalFooterContent(button)
 		}
     }
 	public func updateNextbutton() {

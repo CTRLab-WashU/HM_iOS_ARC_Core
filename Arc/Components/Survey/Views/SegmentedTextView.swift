@@ -25,6 +25,7 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTra
 	
 	//MARK: Text Input: Either override or assign default values to get
 	//desired behavior
+	
 	public var keyboardType: UIKeyboardType = .numberPad
 	override open var inputAccessoryView: UIView? {
 		let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x:0, y:0, width:320, height:50))
@@ -41,6 +42,8 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTra
 		
 		doneToolbar.items = items
 		doneToolbar.sizeToFit()
+		
+		
 		return doneToolbar
 	}
 	
@@ -62,6 +65,7 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTra
 	public override func awakeFromNib() {
 		super.awakeFromNib()
 		updateValue(newValue: [])
+		
 		inputDelegate?.didFinishSetup()
 	}
 	

@@ -21,9 +21,8 @@ extension HMMarkupNode {
 		switch delimiter {
 		case "*":
 			self = .strong(children)
-		case "_":
-			return nil
-			//self = .emphasis(children)
+		case "^":
+			self = .emphasis(children)
 		case "~":
 			self = .delete(children)
 		case "`":

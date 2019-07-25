@@ -10,15 +10,6 @@ import UIKit
 
 open class SurveyNavigationViewController: UINavigationController, UINavigationControllerDelegate, SurveyInput, SurveyInputDelegate {
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
     public var orientation: UIStackView.Alignment = .center
     

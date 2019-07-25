@@ -16,7 +16,19 @@ struct OnboardingConfig {
 }
 
 open class BasicSurveyViewController: UINavigationController, SurveyInputDelegate {
-
+	public var helpButton: UIBarButtonItem?
+	public var isShowingHelpButton = false{
+		didSet {
+			if shouldShowHelpButton {
+				displayHelpButton(shouldShowHelpButton)
+			} else {
+				displayHelpButton(false)
+				
+			}
+		}
+	}
+	public var shouldShowHelpButton = false
+	public var shouldShowBackButton = true
 	public var survey:Survey
 	var questions = Array<Survey.Question>()
 	var subQuestions:[Survey.Question]?
@@ -34,7 +46,39 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		super.init(nibName: nil, bundle: nil)
 		addController()
 	}
+	
+	open func displayHelpButton(_ shouldShow:Bool) {
+		if shouldShow {
+			
+			var rightButton:UIBarButtonItem? = nil
+			if helpButton == nil {
+				
+				let helpButton = UIButton(type: .custom)
+				helpButton.frame = CGRect(x: 0, y: 0, width: 60, height: 10)
+				helpButton.setTitle("HELP".localized("help"), for: .normal)
+				helpButton.titleLabel?.font = UIFont(name: "Roboto-Medium", size: 14)
+				helpButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -16)
+				helpButton.setTitleColor(UIColor(named: "Primary"), for: .normal)
+				helpButton.addTarget(self, action: #selector(self.onHelp), for: .touchUpInside)
+				
+				rightButton = UIBarButtonItem(customView: helpButton)
+			}
+			topViewController?.navigationItem.rightBarButtonItem = rightButton
+			
+			
+		} else {
+			self.navigationItem.rightBarButtonItem = nil
+			helpButton = nil
+		}
+	}
+	@objc open func onHelp() {
+		//Supply project specific handler to prevent white screen
+		let helpState = Arc.shared.appNavigation.defaultHelpState()
+		Arc.shared.appNavigation.navigate(vc: helpState, direction: .toRight)
+		
+	}
 	public func setCompleted() {
+		onCompleted()
 		//If this survey is being stored in core data
 		//mark it as filled out.
 		_ = Arc.shared.surveyController.mark(filled: surveyId)
@@ -44,6 +88,9 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		if shouldNavigateToNextState {
 			Arc.shared.nextAvailableState()
 		}
+	}
+	public func onCompleted(){
+		
 	}
 	required public init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
@@ -56,6 +103,35 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		
 		return questions[currentIndex].questionId
 	}
+	func addSpinner(color:UIColor?, backGroundColor:UIColor?) {
+		OperationQueue.main.addOperation {[weak self] in
+
+			if let vc:CustomViewController<InfoView> = self?.getTopViewController(){
+				
+				
+				vc.customView.nextButton?.showSpinner(color: color, backgroundColor: backGroundColor)
+			}
+		}
+	}
+	
+	func hideSpinner() {
+		OperationQueue.main.addOperation { [weak self] in
+
+			if let vc:CustomViewController<InfoView> = self?.getTopViewController(){
+				vc.customView.nextButton?.hideSpinner()
+			}
+		}
+	}
+	func set(error:String?) {
+		OperationQueue.main.addOperation { [weak self] in
+			
+			if let vc:CustomViewController<InfoView> = self?.getTopViewController(){
+				vc.customView.setError(message: error)
+				
+			}
+		}
+	}
+
 	func getInput() -> SurveyInput? {
 		if let vc:CustomViewController<InfoView> = getTopViewController() {
 			return vc.customView.inputItem
@@ -105,6 +181,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		}
 		
 	}
+	
 	func viewControllerStyle(_ question: Survey.Question) {
 		if var input = topViewController as? SurveyInput {
 			input.inputDelegate = self
@@ -133,7 +210,8 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 					
 				}
 			}
-			vc.customView.setMiscContent(button)
+			vc.customView.setAdditionalFooterContent(button)
+			
 		}
 		if let input = question.type?.create(inputWithQuestion: question) as? (UIView & SurveyInput) {
 			vc.customView.setInput(input)
@@ -170,7 +248,9 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 
 	}
 	open func valueSelected(value:QuestionResponse, index:String) {
-		
+		guard value.type != .none else {
+			return
+		}
 		let question = Arc.shared.surveyController.get(question: index)
 		
 		let _ = Arc.shared.surveyController.set(response: value,
@@ -183,7 +263,12 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 	
 	open func templateForQuestion(id: String) -> Dictionary<String, String> {return [:]}
 	
-	open func didPresentQuestion(input: SurveyInput?, questionId:String) {}
+	open func didPresentQuestion(input: SurveyInput?, questionId:String) {
+		if let value = Arc.shared.surveyController.getResponse(forQuestion: questionId, fromSurveyResponse: surveyId){
+			input?.setValue(value)
+		}
+		
+	}
 	
 	open func didFinishSetup() {}
 	
@@ -201,9 +286,10 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		}
 
 	}
-	open func isValid(value:QuestionResponse?, questionId: String) -> Bool {
+	
+	open func isValid(value:QuestionResponse?, questionId: String, didFinish:@escaping ((Bool)->Void)) {
 		getInput()?.setError(message: nil)
-		return true
+		didFinish(true)
 	}
 	public func didChangeValue() {
 		
@@ -214,48 +300,49 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 												 forSurveyResponse: self.surveyId)
 	}
 	public func nextPressed(input: SurveyInput?, value: QuestionResponse?) {
-		guard isValid(value: value,
-					  questionId: questions[currentIndex].questionId) else {
-						return
-		}
-		if let value = value {
-			
-			valueSelected(value: value, index: questions[currentIndex].questionId)
-		
-		} else {
-			valueSelected(value: AnyResponse(type: .none, value: nil), index: questions[currentIndex].questionId)
-		}
-		var nextQuestion = questions.index(currentIndex, offsetBy: 1, limitedBy: questions.count - 1)
-		
-		guard currentIndex < questions.count else {
-			//Move on to the next step
-			return
-		}
-		guard let value = getInput()?.getValue(),  value.value != nil else {
-			if let nextQ = nextQuestion  {
-				let question = questions[nextQ]
-				self.addController(customViewController(forQuestion: question))
-			} else {
-				//No questions were added, move on to the next step
-				setCompleted()
+		isValid(value: value, questionId: questions[currentIndex].questionId) { [weak self] valid in
+			OperationQueue.main.addOperation {
+				guard valid else {return}
+				guard let wSelf = self else {return}
+				if let value = value {
+					
+					wSelf.valueSelected(value: value, index: wSelf.questions[wSelf.currentIndex].questionId)
+					
+				} else {
+					wSelf.valueSelected(value: AnyResponse(type: .none, value: nil), index: wSelf.questions[wSelf.currentIndex].questionId)
+				}
+				var nextQuestion = wSelf.questions.index(wSelf.currentIndex, offsetBy: 1, limitedBy: wSelf.questions.count - 1)
+				
+				guard wSelf.currentIndex < wSelf.questions.count else {
+					//Move on to the next step
+					return
+				}
+				guard let value = wSelf.getInput()?.getValue(),  value.value != nil else {
+					if let nextQ = nextQuestion  {
+						let question = wSelf.questions[nextQ]
+						wSelf.addController(wSelf.customViewController(forQuestion: question))
+					} else {
+						//No questions were added, move on to the next step
+						wSelf.setCompleted()
+					}
+					return
+				}
+				
+				
+				let question = wSelf.questions[wSelf.currentIndex]
+				//Check to see if any questions were added as a result of a choice
+				wSelf.updateNextQuestion(question: question, answer: value)
+				nextQuestion = wSelf.questions.index(wSelf.currentIndex, offsetBy: 1, limitedBy: wSelf.questions.count - 1)
+				
+				if nextQuestion != nil {
+					
+					wSelf.addController()
+				} else {
+					//No questions were added, move on to the next step
+					wSelf.setCompleted()
+				}
 			}
-			return
 		}
-		
-		
-		let question = questions[currentIndex]
-		//Check to see if any questions were added as a result of a choice
-		updateNextQuestion(question: question, answer: value)
-		nextQuestion = questions.index(currentIndex, offsetBy: 1, limitedBy: questions.count - 1)
-
-		if nextQuestion != nil {
-			
-			self.addController()
-		} else {
-			//No questions were added, move on to the next step
-			setCompleted()
-		}
-
 	}
 	
 	open override func popViewController(animated: Bool) -> UIViewController? {

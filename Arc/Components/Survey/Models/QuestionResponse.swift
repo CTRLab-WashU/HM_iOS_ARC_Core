@@ -15,7 +15,9 @@ public protocol QuestionResponse : Codable {
 }
 public extension QuestionResponse {
     //Each control can have different representations of empty
-    
+	func getValue<T>() -> T? {
+		return value as? T
+	}
 	public func isEmpty() -> Bool {
 		if let type = type {
 			switch type {

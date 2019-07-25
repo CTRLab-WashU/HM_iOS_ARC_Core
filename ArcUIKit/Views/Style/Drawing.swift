@@ -12,6 +12,17 @@ public protocol ACDrawable{
 	func draw()
 }
 public struct Drawing {
+	public struct CircularBar : ACDrawable {
+		var radius:CGFloat
+		var strokeWidth:CGFloat
+		
+		public func draw() {
+			
+		}
+		
+		
+	}
+	
 	public struct HorizontalBar : ACDrawable {
 		public var rect:CGRect
 		public var bounds:CGRect

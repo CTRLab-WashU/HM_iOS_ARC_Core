@@ -182,6 +182,9 @@ open class SurveyController : MHController {
 			fatalError("Invalid survey id '\(surveyId)' supplied.")
 		}
 	}
+	open func getValue<T>(forQuestion questionId:String, fromSurveyResponse surveyId:String) -> T? {
+		return getResponse(forQuestion: questionId, fromSurveyResponse: surveyId)?.getValue()
+	}
     open func getResponse(forQuestion questionId:String, fromSurveyResponse surveyId:String) -> QuestionResponse? {
         
         if let surveyResponse = get(surveyResponse: surveyId) {
