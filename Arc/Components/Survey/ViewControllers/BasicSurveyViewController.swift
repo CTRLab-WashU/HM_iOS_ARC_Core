@@ -16,6 +16,9 @@ struct OnboardingConfig {
 }
 
 open class BasicSurveyViewController: UINavigationController, SurveyInputDelegate {
+	public var app:Arc {
+		return Arc.shared
+	}
 	public var helpButton: UIBarButtonItem?
 	public var isShowingHelpButton = false{
 		didSet {
@@ -37,14 +40,47 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 	public var surveyId:String
 	public var shouldNavigateToNextState:Bool = true
     public init(file:String, surveyId:String? = nil) {
-		survey = Arc.shared.surveyController.load(survey: file)
-        self.surveyId = surveyId ?? Arc.shared.surveyController.create();
+		
+		
+		let newSurvey = Arc.shared.surveyController.load(survey: file)
+		survey = newSurvey
 		questions = survey.questions
 		
 		subQuestions = survey.subQuestions
 		
-		super.init(nibName: nil, bundle: nil)
+
+		var newId:String?
+		//If we have a current study running
+		if let i = Arc.shared.studyController.getCurrentStudyPeriod()?.studyID  {
+			
+			let studyId = Int(i)
+			//And there is a session running
+			if let sessionId = Arc.shared.currentTestSession  {
+				let session = Arc.shared.studyController.get(session: sessionId, inStudy: studyId)
+				
+				//find a matching surveyResponse for the type of the new survey
+				if	let surveyType = newSurvey.type,
+					let data = session.surveyFor(surveyType: surveyType){
+					Arc.shared.surveyController.mark(startDate: data.id!)
+					//We're going to use this id now.
+					newId = data.id!
+					
+				}
+				
+			}
+			
+			
+		}
+		if newId == nil {
+			newId = surveyId ?? Arc.shared.surveyController.create(type:newSurvey.type);
+
+		}
 		
+		self.surveyId = newId!
+		
+
+		super.init(nibName: nil, bundle: nil)
+
 	}
 	
 	open func displayHelpButton(_ shouldShow:Bool) {
@@ -145,6 +181,8 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 	override open func viewDidLoad() {
         super.viewDidLoad()
 		addController()
+		Arc.shared.surveyController.mark(startDate: self.surveyId)
+
     }
 	open func customViewController(forQuestion question:Survey.Question) -> UIViewController? {
 		return nil
