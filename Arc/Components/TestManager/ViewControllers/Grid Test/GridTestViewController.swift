@@ -54,7 +54,9 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 
     override open func viewDidLoad() {
         super.viewDidLoad()
-        ACState.testCount += 1
+		if shouldAutoProceed {
+        	ACState.testCount += 1
+		}
 		let app = Arc.shared
 		let studyId = Int(app.studyController.getCurrentStudyPeriod()?.studyID ?? -1)
 		if let sessionId = app.currentTestSession, shouldAutoProceed {

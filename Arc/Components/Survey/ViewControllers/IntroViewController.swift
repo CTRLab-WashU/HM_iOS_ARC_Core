@@ -101,15 +101,30 @@ open class IntroViewController: CustomViewController<InfoView> {
 		
         
 		style.set(view: customView, heading: heading, subheading: subheading, content: content, template: template)
-		if style == .test {
+		if style == .gridTest || style == .priceTest || style == .symbolTest {
 			let button = HMMarkupButton()
 			button.setTitle("View a Tutorial", for: .normal)
 			Roboto.Style.bodyBold(button.titleLabel!, color:.white)
 			Roboto.PostProcess.link(button)
 			button.addAction {[weak self] in
-				self?.present(PricesTestTutorialViewController(), animated: true) {
-					
+				
+				//TODO: This will soon be depricated
+				if self?.style == .gridTest {
+					self?.present(GridTestTutorialViewController(), animated: true) {
+						
+					}
 				}
+				if self?.style == .priceTest {
+					self?.present(PricesTestTutorialViewController(), animated: true) {
+						
+					}
+				}
+				if self?.style == .symbolTest {
+					self?.present(SymbolsTutorialViewController(), animated: true) {
+						
+					}
+				}
+				
 			}
 			customView.setAdditionalFooterContent(button)
 		}
