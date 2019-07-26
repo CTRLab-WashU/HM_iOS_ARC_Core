@@ -343,9 +343,21 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 
 	}
 	
+	
 	open func isValid(value:QuestionResponse?, questionId: String, didFinish:@escaping ((Bool)->Void)) {
-		getInput()?.setError(message: nil)
-		didFinish(true)
+		if let input = getInput(){
+			input.setError(message: nil)
+			if value?.value == nil {
+				didFinish(false)
+			} else {
+				didFinish(true)
+			}
+			
+		} else {
+			didFinish(true)
+
+		}
+		
 	}
 	public func didChangeValue() {
 		
