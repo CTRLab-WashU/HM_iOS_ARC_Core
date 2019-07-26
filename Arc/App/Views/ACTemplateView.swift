@@ -11,7 +11,7 @@ import ArcUIKit
 import HMMarkup
 open class ACTemplateView: UIView, UIScrollViewDelegate {
 	var root:UIScrollView!
-	var backgroundView:UIView!
+	var backgroundView:UIImageView!
 	public var nextButton:ACButton?
 	var renderer:HMMarkupRenderer!
 	var shouldShowScrollIndicator: Bool = true
@@ -33,6 +33,19 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 	func build() {
 		if root != nil {
 			root.removeFromSuperview()
+		}
+		let v = self
+		backgroundView = image {
+			$0.backgroundColor = .clear
+			$0.layout {
+				
+				// select an anchor give a priority of 999 (almost Required)
+				$0.top == v.topAnchor ~ 999
+				$0.trailing == v.trailingAnchor ~ 999
+				$0.bottom == v.bottomAnchor ~ 999
+				$0.leading == v.leadingAnchor ~ 999
+				
+			}
 		}
 		root = scroll {[weak self] in
 			
