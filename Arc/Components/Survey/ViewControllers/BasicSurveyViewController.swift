@@ -280,7 +280,16 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		}
 		vc.customView.inputDelegate = self
 		
-		vc.customView.nextButton?.addTarget(self, action: #selector(nextButtonPressed(sender:)), for: .primaryActionTriggered)
+        if let style = question.style, style == .impasse
+        {
+            vc.customView.nextButton?.isEnabled = false;
+            vc.customView.nextButton?.isHidden = true;
+        }
+        else
+        {
+            vc.customView.nextButton?.addTarget(self, action: #selector(nextButtonPressed(sender:)), for: .primaryActionTriggered)
+        }
+		
 		didPresentQuestion(input: vc.customView.inputItem, questionId: question.questionId)
 
 
