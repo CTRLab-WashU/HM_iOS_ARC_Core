@@ -51,17 +51,21 @@ open class PricesTestController : TestController<PriceTestResponse> {
     
     //create a response
     public func createResponse(id:String = UUID().uuidString, withTest priceTest:PriceTest) -> String {
+        var response = self.createPriceTestResponse(id: id, withTest: priceTest);
+        return save(id: id, obj: response).id!
+    }
+    
+    public func createPriceTestResponse(id:String = UUID().uuidString, withTest priceTest:PriceTest) -> PriceTestResponse
+    {
         var response = PriceTestResponse(id: id)
         
         for item in priceTest.items {
             var choice = PriceTestResponse.Choice(item: item)
             choice.correct_index = Int.random(in: 0...1)
             response.sections.append(choice)
-            
         }
         
-        
-        return save(id: id, obj: response).id!
+        return response;
     }
     
     //read in a response

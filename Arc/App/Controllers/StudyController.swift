@@ -413,15 +413,15 @@ open class StudyController : MHController {
 	// Also creates the first Date Reminder notification for 4 weeks before the start of the Arc.
 	// The first Arc is created on startDate, and each subsequent Arc is created N weeks from that.
 	
-	open func createAllStudyPeriods(startingID:Int, startDate:Date)
+	@discardableResult open func createAllStudyPeriods(startingID:Int, startDate:Date) -> Array<StudyPeriod>
 	{
 		var nextStartDate:Date = startDate;
 		var nextId:Int = startingID;
-		
+        var studyPeriods:Array<StudyPeriod> = Array();
 		while ArcStartDays[nextId] != nil
 		{
-			createStudyPeriod(forDate: nextStartDate);
-			
+			let sp = createStudyPeriod(forDate: nextStartDate);
+            studyPeriods.append(sp);
 			nextId += 1;
 			if let days = ArcStartDays[nextId]
 			{
@@ -432,7 +432,9 @@ open class StudyController : MHController {
                 break;
 			}
 		}
-//        save();
+        save()
+        return studyPeriods;
+        
 	}
 	
 	// gets the weeks until the next visit, if there is another visit after the current one.

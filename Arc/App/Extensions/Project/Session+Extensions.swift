@@ -140,6 +140,40 @@ public extension Session {
 			break
 		}
 	}
+    
+    
+    public func createGridTest() -> GridTestResponse
+    {
+        let controller = Arc.shared.gridTestController
+        let test = controller.createGridTestResponse(numSections: 2)
+        return test;
+    }
+    
+    public func createPriceTest() -> PriceTestResponse
+    {
+        let controller =  Arc.shared.pricesTestController
+        let priceTest = controller.loadTest(index: Int(sessionID), file: PricesTestViewController.testVersion)
+        let response = controller.createPriceTestResponse(withTest: priceTest)
+        return response;
+    }
+    
+    public func createSymbolsTest() -> SymbolsTestResponse
+    {
+        let controller = Arc.shared.symbolsTestController
+        let test = controller.generateTest(numSections: 12, numSymbols: 8)
+        let response = controller.createSymbolsTestResponse(withTest: test)
+        return response;
+    }
+    
+    public func createSurveyTest(surveyType:SurveyType) -> SurveyResponse
+    {
+        let surveyController = Arc.shared.surveyController
+        let survey = surveyController.createSurveyResponse(type: surveyType)
+        return survey
+    }
+    
+    
+    
 	public func getSurveyFor(surveyType:SurveyType) -> JSONData?
 	{
 		let data = sessionData as! Set<JSONData>
@@ -147,22 +181,6 @@ public extension Session {
 			return obj.type == surveyType.rawValue
 		})
 	}
-	
-//	func clearNotifications()
-//	{
-//		let request:NSFetchRequest<NotificationEntry> = NSFetchRequest<NotificationEntry>(entityName: "NotificationEntry");
-//
-//
-//		request.predicate = NSPredicate(format: "notificationIdentifier beginswith %@ AND visitID = %d AND sessionID = %d", "TestSession", self.testVisit!.visitID, self.sessionID);
-//		request.sortDescriptors = [NSSortDescriptor(key:"scheduledAt", ascending:true)];
-//		let notifications = NotificationEntry.getNotifications(withFetchRequest: request);
-//		NotificationEntry.manageDeleteNotifications(notifications: notifications);
-//	}
-//
-//	override func dictionaryOfAttributes(excludedKeys: NSSet) -> AnyObject {
-//		let ex = excludedKeys.addingObjects(from: ["startSignature", "endSignature", "uploaded", "testVisit", "sessionDayIndex", "hasTakenChronotype", "hasTakenWake"]);
-//		return super.dictionaryOfAttributes(excludedKeys: ex as NSSet);
-//	}
-//
+
 
 }

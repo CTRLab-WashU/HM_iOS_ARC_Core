@@ -284,9 +284,11 @@ public class ACScheduleViewController : BasicSurveyViewController {
         if let top = self.topViewController as? SurveyViewController {
             top.surveyView.nextButton?.showSpinner(color: UIColor(white: 1.0, alpha: 0.8), backgroundColor:UIColor(named:"Primary") )
         }
+        self.disableNextButton()
+        self.view.showSpinner(color: nil, backgroundColor: UIColor(white: 0, alpha: 0.25));
         
-        
-        MHController.dataContext.performAndWait {
+        MHController.dataContext.perform {
+            
             
             
             // If firstTest is set, that means we've probably recently re-installed the app, and are recreating a schedule.
@@ -298,6 +300,10 @@ public class ACScheduleViewController : BasicSurveyViewController {
             }
             
             let date = Arc.shared.studyController.beginningOfStudy;
+            
+            // If we're changing a schedule, we first have to make sure to clear any existing notifications,
+            // and any sessions after afterDate
+            
             if self.isChangingSchedule {
                 
                 let studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
@@ -318,9 +324,13 @@ public class ACScheduleViewController : BasicSurveyViewController {
                     Arc.shared.studyController.clear(sessions: Int(study.studyID), afterDate: afterDate!)
                     
                 }
-            } else {
+            }
+            // Otherwise, we need to make sure to initialize all of the study periods
+            else
+            {
                 _ = Arc.shared.studyController.createAllStudyPeriods(startingID: 0, startDate: date)
             }
+            
             var studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
             for i in 0 ..< studies.count{
                 
@@ -360,6 +370,7 @@ public class ACScheduleViewController : BasicSurveyViewController {
             Arc.shared.studyController.save()
             
             DispatchQueue.main.async { [weak self] in
+                self?.enableNextButton()
                 self?.view.hideSpinner()
                 if let top = self?.topViewController as? SurveyViewController {
                     top.surveyView.nextButton?.hideSpinner()

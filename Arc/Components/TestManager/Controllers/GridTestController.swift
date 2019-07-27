@@ -148,10 +148,16 @@ open class GridTestController : TestController<GridTestResponse> {
     
     //create a response
     public func createResponse(id:String = UUID().uuidString, numSections:Int) -> String {
-        let gridTest = GridTestResponse(id: id, numSections:numSections)
+        let gridTest = self.createGridTestResponse(id: id, numSections: numSections);
         
         //We must return an id
         return save(id: id, obj: gridTest).id!
+    }
+    
+    public func createGridTestResponse(id:String = UUID().uuidString, numSections: Int) -> GridTestResponse
+    {
+        let gridTest = GridTestResponse(id: id, numSections:numSections)
+        return gridTest;
     }
     
     //read in a response
