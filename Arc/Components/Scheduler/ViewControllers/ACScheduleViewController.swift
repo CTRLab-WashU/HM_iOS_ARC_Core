@@ -284,7 +284,7 @@ public class ACScheduleViewController : BasicSurveyViewController {
         if let top = self.topViewController as? SurveyViewController {
             top.surveyView.nextButton?.showSpinner(color: UIColor(white: 1.0, alpha: 0.8), backgroundColor:UIColor(named:"Primary") )
         }
-        self.disableNextButton()
+        
         self.view.showSpinner(color: nil, backgroundColor: UIColor(white: 0, alpha: 0.25));
         
         MHController.dataContext.perform {
@@ -370,7 +370,6 @@ public class ACScheduleViewController : BasicSurveyViewController {
             Arc.shared.studyController.save()
             
             DispatchQueue.main.async { [weak self] in
-                self?.enableNextButton()
                 self?.view.hideSpinner()
                 if let top = self?.topViewController as? SurveyViewController {
                     top.surveyView.nextButton?.hideSpinner()

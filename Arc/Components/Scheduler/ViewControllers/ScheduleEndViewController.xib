@@ -22,6 +22,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScheduleEndViewController" customModule="Arc" customModuleProvider="target">
             <connections>
                 <outlet property="message" destination="hCE-ep-AMn" id="cqT-f7-4we"/>
+                <outlet property="okayButton" destination="oHK-Gp-JMt" id="XLk-v4-nJw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
