@@ -221,7 +221,7 @@ public class ACScheduleViewController : BasicSurveyViewController {
 		let index = QuestionIndex(rawValue: index)!
         if index == .sleep_confirm
         {
-            self.generateSchedule();
+            self.generateTestSessions();
             return;
         }
         
@@ -234,6 +234,7 @@ public class ACScheduleViewController : BasicSurveyViewController {
         else if index == .sleep_time
         {
             self.sleepTime = dayTime;
+            self.saveAvailabilitySchedule();
         }
 		
 	}
@@ -260,7 +261,7 @@ public class ACScheduleViewController : BasicSurveyViewController {
         Arc.shared.nextAvailableState()
     }
     
-    private func generateSchedule()
+    private func saveAvailabilitySchedule()
     {
         guard let wakeTime = self.wakeTime, let sleepTime = self.sleepTime else
         {
@@ -278,7 +279,11 @@ public class ACScheduleViewController : BasicSurveyViewController {
         }
         let _ = Arc.shared.scheduleController.get(confirmedSchedule: self.participantId!)
         
-        
+    }
+    
+    
+    private func generateTestSessions()
+    {
         
         //Probably see where the app wants to go next
         if let top = self.topViewController as? SurveyViewController {
