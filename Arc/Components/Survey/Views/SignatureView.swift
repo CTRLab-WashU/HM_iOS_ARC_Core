@@ -91,10 +91,10 @@ open class SignatureView: BorderedUIView, SurveyInput {
         super.touchesEnded(touches, with: event)
 
         parentScrollView?.isScrollEnabled = true
-
+        state = .dirty
         signatureDelegate?.signatureViewContentChanged(state: .dirty)
 		inputDelegate?.didChangeValue()
-        state = .dirty
+        
 //        didChangeValue?()
 		
     }
@@ -110,9 +110,10 @@ open class SignatureView: BorderedUIView, SurveyInput {
     public func clear(){
         path = UIBezierPath()
         self.setNeedsDisplay()
+        state = .empty
         signatureDelegate?.signatureViewContentChanged(state: .empty)
 		inputDelegate?.didChangeValue()
-        state = .empty
+        
 //        didChangeValue?()
     }
     public func save() -> UIImage?{
