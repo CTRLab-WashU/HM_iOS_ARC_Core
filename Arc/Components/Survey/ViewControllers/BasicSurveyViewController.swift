@@ -229,6 +229,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 	func instructionStyle(_ question:Survey.Question, presentableVc:UIViewController? = nil) {
 		// Do any additional setup after loading the view.
 		let vc:CustomViewController<InfoView> = getTopViewController()!
+		
 		vc.customView.backgroundView.image = UIImage(named: "availability_bg", in: Bundle(for: self.classForCoder), compatibleWith: nil)
 		vc.customView.infoContent.alignment = .center
 		vc.customView.backgroundColor = UIColor(named:"Primary")!
@@ -239,6 +240,15 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		vc.customView.setHeading(question.prompt)
 		vc.customView.setSubHeading(question.subTitle)
 		vc.customView.setContentLabel(question.detail)
+		vc.customView.infoContent.headingLabel?.textAlignment = .center
+		vc.customView.infoContent.contentLabel?.textAlignment = .center
+		vc.customView.infoContent.subheadingLabel?.textAlignment = .center
+		vc.customView.infoContent.alignment = .center
+		vc.customView.spacerView.isHidden = false
+		vc.customView.topSpacer.isHidden = false
+		vc.customView.infoContent.layout {
+			$0.centerY == vc.customView.infoContent.superview!.centerYAnchor - 40 ~ 999
+		}
 		if let presentable = presentableVc {
 			let button = HMMarkupButton()
 			button.setTitle("View a Tutorial", for: .normal)
@@ -254,15 +264,15 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		}
 		if let input = question.type?.create(inputWithQuestion: question) as? (UIView & SurveyInput) {
 			vc.customView.setInput(input)
+		} else {
+			vc.customView.inputContainer.isHidden = true
 		}
 		vc.customView.inputDelegate = self
 		
 		vc.customView.nextButton?.addTarget(self, action: #selector(nextButtonPressed(sender:)), for: .primaryActionTriggered)
-		//		pushViewController(vc, animated: true)
-		
-		
+
 		didPresentQuestion(input: vc.customView.inputItem, questionId: question.questionId)
-	
+		
 	}
 	func questionStyle(_ question:Survey.Question) {
 		// Do any additional setup after loading the view.

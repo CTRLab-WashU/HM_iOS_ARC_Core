@@ -70,7 +70,8 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 				//This vew allows the footer to stack from the bottom of the screen up.
 				//Once space runs out the view will expand downward and become scrollable.
 				spacerView = $0.view {
-					
+					$0.accessibilityLabel = "spacer"
+					$0.translatesAutoresizingMaskIntoConstraints = false
 					$0.isHidden = true
 					$0.setContentHuggingPriority(UILayoutPriority(rawValue: 200), for: .vertical)
 				}

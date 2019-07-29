@@ -22,9 +22,9 @@ public class InfoView: ACTemplateView {
 	var infoContent:InfoContentView!
 	var miscContainer:UIStackView!
 	var additionalContent:UIStackView!
-
 	var inputContainer:UIStackView!
 	var errorLabel:UILabel!
+	var topSpacer:UIView!
 	var inputItem:SurveyInput? {
 		didSet {
 			self.inputItem?.inputDelegate = inputDelegate
@@ -106,6 +106,12 @@ public class InfoView: ACTemplateView {
 	}
 	override open func content(_ view: UIView) {
 		super.content(view)
+		
+		topSpacer = view.view {
+			$0.translatesAutoresizingMaskIntoConstraints = false
+			$0.isHidden = true
+			$0.setContentHuggingPriority(UILayoutPriority(200), for: .vertical)
+		}
 		
 		infoContent = view.infoContent {_ in
 		
