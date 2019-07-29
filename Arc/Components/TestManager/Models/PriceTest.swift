@@ -45,6 +45,7 @@ public struct PriceTestResponse : HMTestCodable {
     var sections:Array<Choice>
     
     init(id:String) {
+        self.id = id
         sections = []
     }
 }

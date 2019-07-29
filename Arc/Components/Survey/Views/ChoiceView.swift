@@ -8,7 +8,7 @@
 
 import UIKit
 import ArcUIKit
-@IBDesignable open class ChoiceView : ACView {
+@IBDesignable open class ChoiceView : UIView {
     public enum State {
         case radio, checkBox
         
@@ -59,9 +59,10 @@ import ArcUIKit
     public var didFinishSetup: (() -> ())?
 
     override open func awakeFromNib() {
-        self.layer.cornerRadius = 6.0
+        self.wrappedView.layer.cornerRadius = 6.0
     }
 
+    @IBOutlet weak var wrappedView: ACView!
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var label: UILabel!
 	var isExclusive:Bool = false
@@ -90,7 +91,7 @@ import ArcUIKit
     func set(state:State) {
         button.setImage(state.unselectedImage, for: .normal)
         button.setImage(state.selectedImage, for: .selected)
-        self.cornerRadius = state.cornerRadius
+        self.wrappedView.cornerRadius = state.cornerRadius
         
     }
     @IBAction func tapped(_ sender: Any) {
@@ -99,9 +100,9 @@ import ArcUIKit
     }
     
     func updateColors() {
-        self.backgroundColor = (_isSelected) ? UIColor(named: "Primary Selection") : nil
-        self.borderColor = ((_isSelected) ? UIColor(named: "Primary") : UIColor(named: "Primary Selected")) ?? .clear
-        self.borderThickness = (_isSelected) ? 2.0 : 1.0
+        self.wrappedView.backgroundColor = (_isSelected) ? UIColor(named: "Primary Selection") : nil
+        self.wrappedView.borderColor = ((_isSelected) ? UIColor(named: "Primary") : UIColor(named: "Primary Selected")) ?? .clear
+        self.wrappedView.borderThickness = (_isSelected) ? 2.0 : 1.0
         if (_isSelected) {
             label.font = UIFont(name: "Roboto-Black", size: 18)
         } else {

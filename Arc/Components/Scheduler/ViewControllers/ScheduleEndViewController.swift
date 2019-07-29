@@ -8,10 +8,11 @@
 
 import UIKit
 import HMMarkup
-
+import ArcUIKit
 open class ScheduleEndViewController: UIViewController, SurveyInput {
     
 
+    @IBOutlet weak var okayButton: ACButton!
     @IBOutlet weak var message: HMMarkupLabel!
     
     override open func viewDidLoad() {
@@ -29,6 +30,7 @@ open class ScheduleEndViewController: UIViewController, SurveyInput {
     }
     
     @IBAction func okayPressed(_ sender: Any) {
+        self.okayButton.isEnabled = false;
         self.inputDelegate?.nextPressed(input: nil, value: nil);
     }
     

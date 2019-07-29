@@ -52,11 +52,15 @@ open class SurveyController : MHController {
     
     open func create(surveyResponse id:String = UUID().uuidString, type:SurveyType? = nil)  -> String {
         
-		let surveyResponse = SurveyResponse(id: id, type: type ?? .unknown)
-		
-		
+        let surveyResponse = self.createSurveyResponse(surveyResponse: id, type: type)
         return save(id: id, obj: surveyResponse).id!
 
+    }
+    
+    open func createSurveyResponse(surveyResponse id:String = UUID().uuidString, type:SurveyType? = nil) -> SurveyResponse
+    {
+        let surveyResponse = SurveyResponse(id: id, type: type ?? .unknown)
+        return surveyResponse;
     }
     
     

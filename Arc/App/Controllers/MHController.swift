@@ -60,6 +60,24 @@ open class MHController {
             fatalError("Invalid value : \(error)")
         }
     }
+    
+    public func createNewJSONData<T:HMCodable>(id:String, obj:T) -> JSONData
+    {
+        do {
+            var saved = obj
+            saved.id = id
+            let savedData = try JSONEncoder().encode(saved)
+            
+            let json:JSONData = JSONData(context: MHController.dataContext)
+            json.id = id
+            json.type = "\(obj.type!.rawValue)"
+            json.data = savedData
+            return json;
+        } catch {
+            fatalError("Invalid value : \(error)")
+        }
+    }
+    
     public func fetch(id:String) -> JSONData? {
         do {
         let fetch:NSFetchRequest<JSONData> = JSONData.fetchRequest()

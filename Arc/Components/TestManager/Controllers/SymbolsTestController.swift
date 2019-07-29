@@ -129,6 +129,12 @@ open class SymbolsTestController : TestController<SymbolsTestResponse> {
         })
     }
     public func createResponse(withTest symbolsTest:SymbolsTest, id:String = UUID().uuidString) -> String {
+        var response = self.createSymbolsTestResponse(withTest: symbolsTest, id: id);
+        return save(id:id, obj:response).id!
+    }
+    
+    public func createSymbolsTestResponse(withTest symbolsTest:SymbolsTest, id:String = UUID().uuidString) -> SymbolsTestResponse
+    {
         var response = SymbolsTestResponse(id:id)
         
         for item in symbolsTest.sections {
@@ -136,11 +142,10 @@ open class SymbolsTestController : TestController<SymbolsTestResponse> {
             section.correct = item.correct
             section.options = convertSymbols(symbolSet: item.options)
             section.choices = convertSymbols(symbolSet: item.choices)
-            
-            
             response.sections.append(section)
         }
-        return save(id:id, obj:response).id!
+        
+        return response;
     }
 	
 	public func get(questionCount id:String) -> Int {
