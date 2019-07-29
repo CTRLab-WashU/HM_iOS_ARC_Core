@@ -28,7 +28,7 @@ public class NotificationPermissionView: ACTemplateView {
 	override public func footer(_ view: UIView) {
 		view.stack {
 			$0.axis = .horizontal
-			$0.alignment = .top
+			$0.alignment = .bottom
 			$0.distribution = .fillEqually
 			$0.view {
 				$0.backgroundColor = .clear

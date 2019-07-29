@@ -53,8 +53,10 @@ public class InfoView: ACTemplateView {
 	public func setAdditionalContent(_ view:UIView?) {
 		if let view = view {
 			additionalContent.addArrangedSubview(view)
+			additionalContent.isHidden = false
 		} else {
 			additionalContent.removeSubviews()
+			additionalContent.isHidden = true
 		}
 	}
 	public func setAdditionalFooterContent(_ view:UIView?) {
@@ -96,20 +98,21 @@ public class InfoView: ACTemplateView {
 		inputContainer = view.stack {
 			$0.axis = .horizontal
 			$0.alignment = .top
-			
+			$0.spacing = 8
+
 		}
 		errorLabel = view.acLabel {
 			Roboto.Style.error($0)
 		}
+		
+		//Hide this view when not in use
 		additionalContent = view.stack {
-			$0.axis = .horizontal
-			$0.alignment = .top
-			
+			$0.axis = .vertical
+			$0.alignment = .fill
+			$0.spacing = 20
+			$0.isHidden = true
 		}
-		view.view {
-			$0.setContentHuggingPriority(.defaultLow, for: .vertical)
-			$0.backgroundColor = .clear
-		}
+
 	}
 	
 	public override func footer(_ view:UIView) {
@@ -122,7 +125,7 @@ public class InfoView: ACTemplateView {
 			//Use this container to insert views as seen fit
 			self?.miscContainer = $0.stack {
 				$0.axis = .vertical
-				
+				$0.accessibilityLabel = "Misc Container"
 				
 			}
 			self?.nextButton = $0.acButton {

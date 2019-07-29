@@ -224,6 +224,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		if var input = topViewController as? SurveyInput {
 			input.inputDelegate = self
 		}
+
 	}
 	func instructionStyle(_ question:Survey.Question, presentableVc:UIViewController? = nil) {
 		// Do any additional setup after loading the view.
@@ -258,6 +259,8 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		
 		vc.customView.nextButton?.addTarget(self, action: #selector(nextButtonPressed(sender:)), for: .primaryActionTriggered)
 		//		pushViewController(vc, animated: true)
+		
+		
 		didPresentQuestion(input: vc.customView.inputItem, questionId: question.questionId)
 	
 	}
@@ -281,6 +284,8 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		vc.customView.inputDelegate = self
 		
 		vc.customView.nextButton?.addTarget(self, action: #selector(nextButtonPressed(sender:)), for: .primaryActionTriggered)
+		
+		
 		didPresentQuestion(input: vc.customView.inputItem, questionId: question.questionId)
 
 
@@ -352,7 +357,6 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 			} else {
 				didFinish(true)
 			}
-			
 		} else {
 			didFinish(true)
 
@@ -386,7 +390,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 					//Move on to the next step
 					return
 				}
-				guard let value = wSelf.getInput()?.getValue(),  value.value != nil else {
+				guard let value = value, value.value != nil else {
 					if let nextQ = nextQuestion  {
 						let question = wSelf.questions[nextQ]
 						wSelf.addController(wSelf.customViewController(forQuestion: question))

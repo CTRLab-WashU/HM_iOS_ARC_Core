@@ -15,6 +15,7 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 	public var nextButton:ACButton?
 	var renderer:HMMarkupRenderer!
 	var shouldShowScrollIndicator: Bool = true
+	var spacerView:UIView!
 	var scrollIndicatorView: UIView!
 	var scrollIndicatorLabel:UILabel!
 
@@ -64,7 +65,12 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 				
 				//This will be where the main content of a view should go.
 				content($0)
-				$0.view {
+				
+				//This vew allows the footer to stack from the bottom of the screen up.
+				//Once space runs out the view will expand downward and become scrollable.
+				spacerView = $0.view {
+					
+					$0.isHidden = true
 					$0.setContentHuggingPriority(UILayoutPriority(rawValue: 200), for: .vertical)
 				}
 				
