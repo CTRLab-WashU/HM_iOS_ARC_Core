@@ -257,6 +257,7 @@
 		C5E1E3962257ECC200255812 /* ACChangeAvailabilityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5E1E3942257ECC200255812 /* ACChangeAvailabilityViewController.xib */; };
 		C5E1E3982257ECDE00255812 /* ACScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1E3972257ECDE00255812 /* ACScheduleViewController.swift */; };
 		C5E3924B22EA3A8F007CB3B6 /* ContactInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E3924A22EA3A8F007CB3B6 /* ContactInfoResponse.swift */; };
+		C5E3925022EB76AD007CB3B6 /* ResendCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E3924F22EB76AD007CB3B6 /* ResendCodeViewController.swift */; };
 		C5F77F37222F095200BECAE1 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F77F36222F095200BECAE1 /* SignatureViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -538,6 +539,7 @@
 		C5E1E3942257ECC200255812 /* ACChangeAvailabilityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACChangeAvailabilityViewController.xib; sourceTree = "<group>"; };
 		C5E1E3972257ECDE00255812 /* ACScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACScheduleViewController.swift; sourceTree = "<group>"; };
 		C5E3924A22EA3A8F007CB3B6 /* ContactInfoResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoResponse.swift; sourceTree = "<group>"; };
+		C5E3924F22EB76AD007CB3B6 /* ResendCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResendCodeViewController.swift; sourceTree = "<group>"; };
 		C5F77F34222F094000BECAE1 /* SignatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureView.swift; sourceTree = "<group>"; };
 		C5F77F36222F095200BECAE1 /* SignatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureViewController.swift; sourceTree = "<group>"; };
 		C5F77F38222F15DD00BECAE1 /* SignatureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignatureView.xib; sourceTree = "<group>"; };
@@ -1060,6 +1062,7 @@
 				C54AE97921C81B5C00DEC360 /* WelcomeViewController.xib */,
 				C5F77F36222F095200BECAE1 /* SignatureViewController.swift */,
 				C593227422E8BB0F00528FF5 /* AC2FAuthenticationViewController.swift */,
+				C5E3924F22EB76AD007CB3B6 /* ResendCodeViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1701,6 +1704,7 @@
 				C54AEA2421C81B5F00DEC360 /* ACContactViewController.swift in Sources */,
 				C5143959224EA6FD000BF1CB /* ACSignatureNavigationController.swift in Sources */,
 				C593227C22EA397C00528FF5 /* ScheduleEndViewController.swift in Sources */,
+				C5E3925022EB76AD007CB3B6 /* ResendCodeViewController.swift in Sources */,
 				C54AE9D121C81B5F00DEC360 /* ACState.swift in Sources */,
 				C54D104822C28A1D00B43E42 /* ACPickerView.swift in Sources */,
 				C523B38622CA76450074337D /* UIViewController + CustomView.swift in Sources */,
