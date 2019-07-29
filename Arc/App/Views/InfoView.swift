@@ -41,34 +41,49 @@ public class InfoView: ACTemplateView {
 	}
 	public func setInput(_ view:(UIView & SurveyInput)?) {
 		inputItem = view
+		
 		view?.supplementaryViews(for: self.miscContainer)
+		if miscContainer.subviews.count > 0 {
+			miscContainer.isHidden = false
+		}
 		inputContainer.removeSubviews()
 
 		if let view = view {
 			inputContainer.addArrangedSubview(view)
+			inputContainer.alignment = inputItem?.orientation ?? .top
 		} else {
 			inputContainer.removeSubviews()
 		}
 	}
 	public func setAdditionalContent(_ view:UIView?) {
 		if let view = view {
-			additionalContent.addArrangedSubview(view)
 			additionalContent.isHidden = false
+
+			additionalContent.addArrangedSubview(view)
 		} else {
-			additionalContent.removeSubviews()
 			additionalContent.isHidden = true
+
+			additionalContent.removeSubviews()
 		}
 	}
 	public func setAdditionalFooterContent(_ view:UIView?) {
 		if let view = view {
+			miscContainer.isHidden = false
 			miscContainer.addArrangedSubview(view)
+			
 		} else {
+			miscContainer.isHidden = true
+
 			miscContainer.removeSubviews()
 		}
 	}
 	public func setError(message:String?) {
 		errorLabel.text = message
 		inputItem?.setError(message: message)
+		if let _ = message {
+			spacerView.isHidden = false
+		}
+	
 
 	}
 	public func setHeading(_ text:String?) {
@@ -126,7 +141,7 @@ public class InfoView: ACTemplateView {
 			self?.miscContainer = $0.stack {
 				$0.axis = .vertical
 				$0.accessibilityLabel = "Misc Container"
-				
+				$0.isHidden = true
 			}
 			self?.nextButton = $0.acButton {
 				$0.primaryColor = UIColor(named:"Secondary")!
