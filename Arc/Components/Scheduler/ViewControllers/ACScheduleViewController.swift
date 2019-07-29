@@ -26,7 +26,7 @@ public class ACScheduleViewController : BasicSurveyViewController {
     // schedule_6, schedule_7: Sunday
     
 	enum QuestionIndex : String, CaseIterable {
-		case wake_time, sleep_time, sleep_confirm
+		case start, wake_time, sleep_time, sleep_confirm
 		
 		var day:Int? {
 			switch self {
@@ -156,6 +156,7 @@ public class ACScheduleViewController : BasicSurveyViewController {
         error = nil
         if questionId == QuestionIndex.sleep_confirm.rawValue
 			|| questionId == QuestionIndex.wake_time.rawValue
+			|| questionId == QuestionIndex.start.rawValue
         {
 			didFinish(true)
             return;
@@ -224,7 +225,9 @@ public class ACScheduleViewController : BasicSurveyViewController {
             self.generateTestSessions();
             return;
         }
-        
+		if index == .start {
+			return
+		}
         let dayTime = DayTime(time: value.value as! String, day: 0);
         
         if index == .wake_time
