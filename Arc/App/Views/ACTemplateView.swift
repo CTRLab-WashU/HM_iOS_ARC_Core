@@ -38,6 +38,7 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 		let v = self
 		backgroundView = image {
 			$0.backgroundColor = .clear
+			$0.contentMode = .scaleAspectFit
 			$0.layout {
 				
 				// select an anchor give a priority of 999 (almost Required)
