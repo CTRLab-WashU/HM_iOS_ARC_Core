@@ -46,6 +46,7 @@ open class SliderView: UIView, SurveyInput {
     */
 	open override func awakeFromNib() {
 		super.awakeFromNib()
+		updateText(nil)
 		inputDelegate?.didFinishSetup()
 	}
 	public func setHidesSelectedAfterFirst(value:Bool) {
@@ -103,7 +104,10 @@ open class SliderView: UIView, SurveyInput {
         //sliderContainer.clipsToBounds = false
         //self.bringSubviewToFront(valueSlider)
         valueSlider.layer.zPosition = 10000
-        valueLabel.text = "\(Int(valueSlider.value))"
+		if  let value = _value {
+			valueLabel.text = "\(value)"
+
+		}
 
         minLabel.text = minMessage?.localized(minMessage ?? "")
         maxLabel.text = maxMessage?.localized(maxMessage ?? "")
