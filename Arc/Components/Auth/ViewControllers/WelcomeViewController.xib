@@ -36,10 +36,35 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="nM1-4E-mY7">
-                    <rect key="frame" x="79.5" y="483" width="216" height="160"/>
+                    <rect key="frame" x="67.5" y="483" width="240" height="160"/>
                     <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="2K2-uK-FSQ">
+                            <rect key="frame" x="0.0" y="0.0" width="240" height="30"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OfG-Rv-UYw" customClass="HMMarkupButton" customModule="HMMarkup">
+                                    <rect key="frame" x="0.0" y="0.0" width="106" height="30"/>
+                                    <state key="normal" title="About This App"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="aboutapp_header"/>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="aboutPressed:" destination="-1" eventType="touchUpInside" id="tML-0u-NkZ"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evM-Qz-X7r" customClass="HMMarkupButton" customModule="HMMarkup">
+                                    <rect key="frame" x="134" y="0.0" width="106" height="30"/>
+                                    <state key="normal" title="Privacy Policy"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="privacy_linked"/>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="privacyPressed:" destination="-1" eventType="touchUpInside" id="g0D-Hu-Ndu"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0KY-bW-aN9" customClass="ACButton" customModule="ArcUIKit">
-                            <rect key="frame" x="0.0" y="0.0" width="216" height="48"/>
+                            <rect key="frame" x="12" y="62" width="216" height="48"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" priority="999" constant="216" id="NwP-N3-ajU"/>
@@ -62,33 +87,8 @@
                                 <action selector="signInPressed:" destination="-1" eventType="touchUpInside" id="TWX-Mh-c3r"/>
                             </connections>
                         </button>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="2K2-uK-FSQ">
-                            <rect key="frame" x="64" y="80" width="88" height="30"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OfG-Rv-UYw" customClass="HMMarkupButton" customModule="HMMarkup">
-                                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                    <state key="normal" title="About This App"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="aboutapp_header"/>
-                                    </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="aboutPressed:" destination="-1" eventType="touchUpInside" id="tML-0u-NkZ"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evM-Qz-X7r" customClass="HMMarkupButton" customModule="HMMarkup">
-                                    <rect key="frame" x="58" y="0.0" width="30" height="30"/>
-                                    <state key="normal" title="Privacy Policy"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="privacy_linked"/>
-                                    </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="privacyPressed:" destination="-1" eventType="touchUpInside" id="g0D-Hu-Ndu"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                        </stackView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v1.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ae7-Xv-MhH">
-                            <rect key="frame" x="88" y="142" width="40.5" height="18"/>
+                            <rect key="frame" x="100" y="142" width="40.5" height="18"/>
                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                             <color key="textColor" name="Primary Text"/>
                             <nil key="highlightedColor"/>
