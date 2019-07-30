@@ -46,7 +46,7 @@ public struct Roboto {
 		
 		public static let heading = UIFont(name: "Roboto", size: 26)!
 			.family(Roboto.family)
-			.face(Roboto.Face.regular)
+			.face(Roboto.Face.medium)
 			.size(26)
 		public static let headingBold = UIFont(name: "Roboto", size: 26)!
 			.family(Roboto.family)
