@@ -23,7 +23,8 @@ open class InstructionNavigationController: UINavigationController, SurveyInputD
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-		
+		_ = displayIntro(index: 0)
+
     }
 	@discardableResult
 	open func load(instructions template:String) -> Introduction {
@@ -43,7 +44,6 @@ open class InstructionNavigationController: UINavigationController, SurveyInputD
 	
 	override open func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		_ = displayIntro(index: 0)
 	}
 	public func didChangeValue() {
 		

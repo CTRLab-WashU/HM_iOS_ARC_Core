@@ -31,6 +31,8 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 		
 	}
 	
+	/// creates the views contents
+	/// Creates an imageview and scrollview in front of it. 
 	func build() {
 		if root != nil {
 			root.removeFromSuperview()
