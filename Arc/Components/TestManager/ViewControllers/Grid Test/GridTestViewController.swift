@@ -20,6 +20,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         case none
         case image
         case fCell
+		case answers
     }
     
     public var mode:Mode = .none
@@ -43,8 +44,9 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
     private var symbols:[UIImage] = [#imageLiteral(resourceName: "key"),
                                      #imageLiteral(resourceName: "phone"),
                                      #imageLiteral(resourceName: "pen")]
-    
-    private let IMAGE_HEIGHT = 105
+	public var revealedIndexPaths:[IndexPath] = []
+	
+	var IMAGE_HEIGHT = 105
     private let IMAGE_ROWS = 5
     private let LETTER_HEIGHT = 46
     private let LETTER_ROWS = 10
@@ -284,7 +286,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
     
     open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch mode {
-        case .image:
+        case .image, .answers:
             return 25
 
         case .fCell:
@@ -300,12 +302,18 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: type, for: indexPath)
         let index = indexPath.row
         
-        if (mode == .image) {
+        if (mode == .image || mode == .answers) {
             
             let iCell = cell as! GridImageCell
-            
-            iCell.image.isHidden = true;
-            if phase == 0 {
+			
+			if mode != .answers {
+            	iCell.image.isHidden = true;
+			} else {
+				if collectionView.indexPathsForSelectedItems?.contains(indexPath) ?? false{
+					iCell.image.isHidden = true
+				}
+ 			}
+			if phase == 0 {
                 let value = controller.get(item: index, section: testNumber, gridType: .image)
                 if value > -1 {
                     iCell.setImage(image: self.symbols[value]);
@@ -422,7 +430,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
     }
 
 	func overlayCell(at indexPath:IndexPath) -> UIView? {
-		if mode == .image {
+		if mode == .image || mode == .answers {
 			if let c = collectionView.cellForItem(at: indexPath) as? GridImageCell {
 				c.overlay()
 				c.highlight()
@@ -440,7 +448,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 	}
     //MARK: Flow layout
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if mode == .image {
+        if mode == .image || mode == .answers {
             return CGSize(width: 60, height: IMAGE_HEIGHT)
 
         } else if mode == .fCell {
@@ -452,7 +460,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
     }
     
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        if mode == .image {
+        if mode == .image || mode == .answers {
             return 2
             
         } else if mode == .fCell {
@@ -464,7 +472,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
     }
     
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        if mode == .image {
+        if mode == .image || mode == .answers {
             return 1
             
         } else if mode == .fCell {
@@ -475,7 +483,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         }
     }
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        if mode == .image {
+        if mode == .image || mode == .answers {
             return UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
             
         } else if mode == .fCell {

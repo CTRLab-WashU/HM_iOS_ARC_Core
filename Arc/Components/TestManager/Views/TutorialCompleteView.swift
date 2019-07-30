@@ -77,6 +77,9 @@ public class TutorialCompleteView: ACTemplateView {
 		}
 	}
 	public override func footer(_ view: UIView) {
+		view.view {
+			$0.backgroundColor = .clear
+		}
 		nextButton = view.acButton {
 			$0.translatesAutoresizingMaskIntoConstraints = false
 			$0.setTitle("Next".localized("button_next"), for: .normal)

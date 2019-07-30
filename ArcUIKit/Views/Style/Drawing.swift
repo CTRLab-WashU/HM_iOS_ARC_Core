@@ -23,6 +23,49 @@ public struct Drawing {
 		
 	}
 	
+	public struct CheckMark : ACDrawable {
+		var originPoint:CGPoint = .zero
+		var keyFrames:[CGPoint] = []
+		var path:UIBezierPath = UIBezierPath()
+		var center:CGPoint = .zero
+		var offset:CGPoint = .zero
+		var progress:CGFloat = 0
+		
+		init() {
+			path.lineWidth = 14.0
+			
+			keyFrames = [CGPoint(x: -20, y: -20),
+						 CGPoint(x: 0, y: 0),
+						 CGPoint(x: 40, y: -40)]
+		}
+		public func draw() {
+			let context = UIGraphicsGetCurrentContext()
+			path.removeAllPoints()
+			var start = CGPoint(x: originPoint.x + keyFrames[0].x,
+								y: originPoint.y + keyFrames[0].y)
+			var end = CGPoint(x: originPoint.x + keyFrames[1].x,
+							  y: originPoint.y + keyFrames[1].y)
+			path.move(to: start)
+			
+			if progress < 0.5 {
+				
+				let keyProgress = CGFloat(Math.clamp(Double(progress * 2.0)))
+				path.addLine(to: Math.lerp(a: start, b: end, t: keyProgress))
+			} else {
+				path.addLine(to:end)
+				start = end
+				end = CGPoint(x: originPoint.x + keyFrames[2].x,
+							  y: originPoint.y + keyFrames[2].y)
+				
+				let keyProgress = CGFloat(Math.clamp(Double((progress - 0.5)  * 2.0)))
+				path.addLine(to: Math.lerp(a: start, b: end, t: keyProgress))
+				
+			}
+			context?.setStrokeColor(UIColor(named:"Primary Info")!.cgColor)
+			path.stroke()
+		}
+	}
+	
 	public struct HorizontalBar : ACDrawable {
 		public var rect:CGRect
 		public var bounds:CGRect

@@ -40,8 +40,11 @@ class TutorialView: UIStackView {
 				$0.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 20)
 				self?.closeButton = $0.button {
 					$0.setImage(UIImage(named:"cut-ups/icons/X-to-close"), for: .normal)
+					$0.imageView?.contentMode = .scaleAspectFit
 					$0.tintColor = UIColor(named:"Highlight")
-					
+					$0.layout {
+						$0.height == 30
+					}
 				}
 				$0.acHorizontalBar {
 					$0.relativeWidth = 0
@@ -72,13 +75,15 @@ class TutorialView: UIStackView {
 					$0.trailing == v.superview!.trailingAnchor ~ 999
 					$0.bottom == v.superview!.bottomAnchor ~ 999
 					$0.leading == v.superview!.leadingAnchor ~ 999
-					$0.height == v.superview!.heightAnchor ~ 999
 				}
 			}
 		}
 		headerView.layout { [weak self] in
-			$0.height == 60
+			
+			$0.top == self!.safeAreaLayoutGuide.topAnchor ~ 999
+
 			$0.width == self!.widthAnchor ~ 999
+			
 			
 		}
 	}

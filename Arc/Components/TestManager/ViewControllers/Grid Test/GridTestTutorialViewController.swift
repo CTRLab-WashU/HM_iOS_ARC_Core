@@ -10,13 +10,21 @@ import UIKit
 import ArcUIKit
 class GridTestTutorialViewController: ACTutorialViewController, GridTestViewControllerDelegate {
 	
+	enum TestPhase {
+		case start, fs, fsTimed, recall, end
+		
+		
+	}
+	
 	let test:GridTestViewController = .get()
 	
 	var selectionMade = false
 	var isMakingSelections = false
 	var maxGridSelected = 3
 	var gridSelected = 0
+	var phase:TestPhase = .start
     override func viewDidLoad() {
+		duration = 20
         super.viewDidLoad()
 		test.shouldAutoProceed = false
 		test.delegate = self
@@ -24,6 +32,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 		addChild(test)
 		customView.setContent(viewController: test)
 		test.tapOnTheFsLabel.isHidden = true
+		test.IMAGE_HEIGHT = 95
         // Do any additional setup after loading the view.
     }
 	override func viewDidAppear(_ animated: Bool) {
@@ -36,40 +45,75 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 		currentHint?.removeFromSuperview()
 		
 	}
-	func didSelect(_ enableInteraction:Bool = false){
+	func didSelect(){
 		view.window?.clearOverlay()
 		view.removeHighlight()
+		
 		currentHint?.removeFromSuperview()
-		if !isMakingSelections {
+		switch phase {
+		
+		
+		case .start:
+			tutorialAnimation.resume()
+
+			break
+	
+		case .recall:
+			
+			removeHint(hint: "hint")
+			tutorialAnimation.time = 10
+
+			addHint(hint: "hint")
 
 			tutorialAnimation.resume()
-		}
-		selectionMade = true
-		test.collectionView.isUserInteractionEnabled = enableInteraction
+			
+		case .fs:
+			tutorialAnimation.resume()
 
+			test.collectionView.isUserInteractionEnabled = false
+		
+		case .fsTimed:
+			
+			test.collectionView.isUserInteractionEnabled = true
+
+		
+		
+		case .end:
+			tutorialAnimation.time = 19
+			tutorialAnimation.resume()
+			break
+		}
+		
+		selectionMade = true
 	}
 	
 	func didSelectGrid(indexPath: IndexPath) {
 		gridSelected += 1
+		
+		
 		if isMakingSelections && gridSelected == maxGridSelected {
-			isMakingSelections = false
+			test.collectionView.isUserInteractionEnabled = false
+			removeHint(hint: "hint")
+			phase = .end
 		}
-		didSelect(isMakingSelections)
+		didSelect()
 	}
 	
 	func didSelectLetter(indexPath: IndexPath) {
-			didSelect(isMakingSelections)
+			didSelect()
 	}
 	
 	func didDeselectGrid(indexPath: IndexPath) {
 		
 		gridSelected -= 1
-		
-		didSelect(isMakingSelections)
+		if isMakingSelections && gridSelected == maxGridSelected {
+			phase = .recall
+		}
+		didSelect()
 	}
 	
 	func didDeselectLeter(indexPath: IndexPath) {
-		didSelect(isMakingSelections)
+		didSelect()
 	}
 	
 	
@@ -97,6 +141,8 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 				$0.buttonTitle = "I'm Ready"
 				let p = weakSelf.progress
 				$0.onTap = { [weak self] in
+					
+					weakSelf.phase = .start
 					Animate().duration(2.9).run {
 						t in
 						weakSelf.customView.progressBar.config.progress = CGFloat(Math.lerp(a: Double(p), b: 0.29, t: Double(t)))
@@ -110,7 +156,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 					$0.centerY == weakSelf.view.centerYAnchor
 					$0.centerX == weakSelf.view.centerXAnchor
 
-					$0.width == weakSelf.test.collectionView.widthAnchor
+					$0.width == weakSelf.test.collectionView.widthAnchor - 20
 					
 				}
 			}
@@ -135,7 +181,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 					$0.centerY == weakSelf.view.centerYAnchor
 					$0.centerX == weakSelf.view.centerXAnchor
 					
-					$0.width == weakSelf.test.collectionView.widthAnchor
+					$0.width == weakSelf.test.collectionView.widthAnchor - 20
 					
 				}
 			}
@@ -158,7 +204,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			}
 			weakSelf.progress = 0.4
 			weakSelf.tutorialAnimation.pause()
-
+			weakSelf.phase = .fs
 			let index = weakSelf.test.fIndexPaths[weakSelf.test.fIndexPaths.count/2]
 			guard let cell = weakSelf.test.overlayCell(at: index) else {
 				return
@@ -175,8 +221,8 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 					$0.trailing <= weakSelf.view.safeAreaLayoutGuide.trailingAnchor - 24
 					$0.bottom <= weakSelf.view.safeAreaLayoutGuide.bottomAnchor - 24
 					
-					$0.width == weakSelf.test.collectionView.widthAnchor
-					$0.height == 80
+//					$0.width == weakSelf.test.collectionView.widthAnchor - 20
+					$0.height == 60
 					
 					$0.centerY == cell.centerYAnchor + 80 ~ 500
 					$0.centerX == cell.centerXAnchor ~ 500
@@ -199,7 +245,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 				$0.buttonTitle = "I'm Ready"
 				$0.onTap = { [weak self] in
 					self?.didSelect()
-
+					weakSelf.phase = .fsTimed
 					weakSelf.isMakingSelections = false
 					weakSelf.test.collectionView.isUserInteractionEnabled = true
 
@@ -231,10 +277,13 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 
 			weakSelf.tutorialAnimation.pause()
 			weakSelf.view.window?.overlayView(withShapes: [])
+			weakSelf.test.collectionView.isUserInteractionEnabled = false
+			weakSelf.phase = .fs
 			weakSelf.currentHint = weakSelf.view.window?.hint {
 				$0.content = "*Nice work!*\nDon't worry if you didn't find them all."
 				$0.buttonTitle = "Next"
 				$0.onTap = {
+					weakSelf.phase = .recall
 					weakSelf.didSelect()
 					weakSelf.test.clearGrids()
 					weakSelf.buildStartScreen(message: "In the final part of the test, you will select the three boxes where these items were located in part one.",
@@ -258,12 +307,12 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			}
 			weakSelf.test.displayGrid()
 			weakSelf.test.collectionView.isUserInteractionEnabled = true
-			weakSelf.tutorialAnimation.pause()
+			weakSelf.addHint(hint: "hint")
 			weakSelf.isMakingSelections = true
 
 			
 		}
-		state.addCondition(atTime: progress(seconds: 10), flagName: "end") { [weak self] in
+		state.addCondition(atTime: progress(seconds: 20), flagName: "end") { [weak self] in
 			guard let weakSelf = self else {
 				return
 			}
@@ -282,7 +331,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			}
 		}
 		var image:UIImageView!
-		let stack = view.stack {
+		let _ = view.stack {
 			$0.translatesAutoresizingMaskIntoConstraints = false
 			$0.distribution = .fillEqually
 			$0.axis = .horizontal
@@ -322,5 +371,48 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			}
 		}
 	}
+	func removeHint(hint:String) {
+		_ = state.removeCondition(with: hint)
+	}
+	func addHint(hint:String, seconds:TimeInterval = 3.0) {
+		let time = tutorialAnimation.time + seconds
+		print("HINT:", time)
+		state.addCondition(atTime: progress(seconds:time), flagName: hint) {
+			[weak self] in
+			guard let weakSelf = self else {
+				return
+			}
+			weakSelf.tutorialAnimation.pause()
+			let index = weakSelf.test.symbolIndexPaths[min(2, weakSelf.gridSelected)]
+			guard let cell = weakSelf.test.overlayCell(at: index) else {
+				return
+			}
+			weakSelf.currentHint = weakSelf.view.window?.hint {
+				$0.content = """
+				*Hint:* One item was located
+				in this box. Tap here.
+				""".localized("popup_tutorial_boxhint")
+				
+				
+				$0.layout {
+					$0.centerX == weakSelf.view.centerXAnchor
+					$0.width == 252
+					
+					if index.row/5 > 2 {
+						//If above
+						$0.bottom == cell.topAnchor + 40
 
+					} else {
+						
+						$0.top == cell.bottomAnchor + 40
+
+					}
+					
+				}
+			}
+			
+		}
+		
+		
+	}
 }
