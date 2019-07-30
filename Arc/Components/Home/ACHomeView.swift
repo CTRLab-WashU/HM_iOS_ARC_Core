@@ -63,11 +63,7 @@ public class ACHomeView: ACTemplateView {
     */
 	public override init() {
 		super.init()
-		if Arc.environment?.isDebug == true {
-			debugButton.isHidden = true
-		} else {
-			debugButton.isHidden = false
-		}
+        debugButton.isHidden = (Arc.environment?.isDebug ?? false) == false
 		separator.setNeedsDisplay()
 	}
 	public override func didMoveToWindow() {

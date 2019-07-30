@@ -97,11 +97,10 @@ open class NotificationController : MHController
 		for test in tests
 		{
 			
-            let title = notificationTitle(for: test)
-			let body = title;
+			let body = notificationTitle(for: test)
 			let date = test.sessionDate! as Date
 			
-			let newNotification = scheduleNotification(date: date, title: title, body: body, identifierPrefix: "TestSession");
+			let newNotification = scheduleNotification(date: date, title: "", body: body, identifierPrefix: "TestSession");
 			
 			newNotification.studyID = study.studyID;
 			newNotification.sessionID = test.sessionID;
@@ -160,11 +159,10 @@ open class NotificationController : MHController
             guard test.startTime == nil && test.missedSession == false else {
                 continue
             }
-            let title = "It's time to take a quick test!".localized("notification_take");
-            let body = title;
+            let body = notificationTitle(for: test);
             let date = test.sessionDate! as Date
             
-            let newNotification = scheduleNotification(date: date, title: title, body: body, identifierPrefix: "TestSession");
+            let newNotification = scheduleNotification(date: date, title: "", body: body, identifierPrefix: "TestSession");
             if let study = test.study {
                 newNotification.studyID = study.studyID;
                 study.hasScheduledNotifications = true;
