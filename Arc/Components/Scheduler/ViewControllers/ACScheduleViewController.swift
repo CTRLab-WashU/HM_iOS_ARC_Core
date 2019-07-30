@@ -61,7 +61,9 @@ public class ACScheduleViewController : BasicSurveyViewController {
 	var error:String?
     
     public var shouldLimitWakeTime = false
-    
+    public var minWakeTime = 8
+    public var maxWakeTime = 18
+
     
     public override init(file: String, surveyId:String? = nil) {
         
@@ -194,17 +196,17 @@ public class ACScheduleViewController : BasicSurveyViewController {
                 sleep = sleep.addingDays(days: 1);
             }
             
-            if sleep.timeIntervalSince(wake) < 28800
+            if sleep.timeIntervalSince(wake) < Double(minWakeTime * 3600)
             {
-                error = "Please set a minimum of 8 hours of wake time.".localized("error4")
+                error = "Please set a minimum of {HOURS} hours of wake time.".localized("availability_minimum_error").replacingOccurrences(of: "{HOURS}", with: "\(minWakeTime)")
 				set(error: error)
 				didFinish(false)
 				return
             }
             
-            if sleep.timeIntervalSince(wake) > 18 * 60 * 60 && shouldLimitWakeTime
+            if (sleep.timeIntervalSince(wake) > Double(maxWakeTime * 3600)) && shouldLimitWakeTime
             {
-                error = " " //Please enter less than 18 hours of wake time.".localized("error5")
+                error = "Please set a maximum of {HOURS} hours of availability.".localized("availability_maximum_error").replacingOccurrences(of: "{HOURS}", with: "\(maxWakeTime)")
 				set(error: error)
 
                 return didFinish(false);
