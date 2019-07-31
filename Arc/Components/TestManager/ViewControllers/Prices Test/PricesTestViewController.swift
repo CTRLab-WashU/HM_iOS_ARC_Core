@@ -126,9 +126,9 @@ public class PricesTestViewController: ArcViewController {
 	public func resetController() {
 		displayTimer?.invalidate();
 		
-		topButton._isSelected = false;
+        topButton.set(selected: false);
 		topButton.isUserInteractionEnabled = true;
-		bottomButton._isSelected = false;
+		bottomButton.set(selected: false);
 		bottomButton.isUserInteractionEnabled = true;
 	}
 	
@@ -262,8 +262,7 @@ public class PricesTestViewController: ArcViewController {
             topButton.set(selected: true)
             bottomButton.set(selected: false)
             
-            let p = controller.set(goodPrice: 1, id: responseID, index: itemIndex)
-//            print(p.toString())
+            _ = controller.set(goodPrice: 1, id: responseID, index: itemIndex)
 			delegate?.didSelectGoodPrice(1)
 
         }
@@ -275,8 +274,7 @@ public class PricesTestViewController: ArcViewController {
             topButton.set(selected: false)
             bottomButton.set(selected: true)
             
-            let p = controller.set(goodPrice: 0, id: responseID, index: itemIndex)
-//            print(p.toString())
+            _ = controller.set(goodPrice: 0, id: responseID, index: itemIndex)
 			delegate?.didSelectGoodPrice(0)
         }
     }

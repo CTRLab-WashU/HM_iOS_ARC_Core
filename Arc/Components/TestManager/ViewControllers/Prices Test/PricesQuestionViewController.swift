@@ -51,7 +51,7 @@ open class PricesQuestionViewController: UIViewController {
     public func didSelect(id:Int) {
 		
         _ = controller.mark(timeTouched: responseId, index: questionIndex)
-        let p = controller.set(choice: id, id: responseId, index: questionIndex)
+        _ = controller.set(choice: id, id: responseId, index: questionIndex)
 		if shouldAutoProceed {
         	selectQuestion()
 		}
@@ -104,15 +104,12 @@ open class PricesQuestionViewController: UIViewController {
             
             let string = controller.get(option: priceIndex, forQuestion: index, id: id)!
             
-            b.set(message: "\("".localized("money_prefix"))\(string)") //setTitle("\(string)", for: .normal)
+            b.set(message: "\("".localized("money_prefix"))\(string)")
             b.isHidden = false
             
-            //b.set(selected: false)
+            b.set(selected: false, shouldUpdateColors: false)
         }
             
-            
-            
-        
     }
     
     public func buildButtonStackView() {
@@ -130,20 +127,18 @@ open class PricesQuestionViewController: UIViewController {
         
         topButton.tapped = {
             [weak self] view in
-            //self?.topButton.set(selected: true)
             if self?.topButton.getSelected() == false {
+                self?.topButton.set(selected: true)
                 self?.didSelect(id: 0)
             }
-            self?.topButton.updateState()
         }
         
         bottomButton.tapped = {
             [weak self] view in
-            //self?.bottomButton.set(selected: true)
             if self?.bottomButton.getSelected() == false {
+                self?.bottomButton.set(selected: true)
                 self?.didSelect(id: 1)
             }
-            self?.bottomButton.updateState()
         }
         
         buttons.append(topButton)
