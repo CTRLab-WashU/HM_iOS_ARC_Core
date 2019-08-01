@@ -122,8 +122,8 @@ open class PricesQuestionViewController: UIViewController {
         topButton.button.titleLabel?.numberOfLines = 1
         bottomButton.button.titleLabel?.numberOfLines = 1
         
-        topButton.set(state: .radio)
-        bottomButton.set(state: .radio)
+        topButton.set(state: .centeredText)
+        bottomButton.set(state: .centeredText)
         
         topButton.tapped = {
             [weak self] view in
