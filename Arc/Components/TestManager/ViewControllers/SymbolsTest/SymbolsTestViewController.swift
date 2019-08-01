@@ -12,7 +12,9 @@ import UIKit
 public protocol SymbolsTestViewControllerDelegate : class {
 	func didSelect(index:Int)
 }
-public class SymbolsTestViewController: UIViewController {
+public class SymbolsTestViewController: UIViewController, TestProgressViewControllerDelegate {
+	
+	
     public var symbols:[Int:UIImage] = [0: #imageLiteral(resourceName: "symbol_0"),
                                          1: #imageLiteral(resourceName: "symbol_1"),
                                          2: #imageLiteral(resourceName: "symbol_2"),
@@ -175,9 +177,15 @@ public class SymbolsTestViewController: UIViewController {
         delegate?.didSelect(index: sender.tag)
         if questionIndex >= controller.get(questionCount: responseID) - 1 {
 			if !isPracticeTest {
-
-			_  = controller.mark(filled: responseID)
-				Arc.shared.nextAvailableState()
+			
+				let nextMessage = (ACState.testCount == 3) ? "Well done!" : "Loading next test..."
+				
+				let vc = TestProgressViewController(title: "Symbols Test Complete!", subTitle: nextMessage, count: 0)
+				vc.delegate = self
+				self.addChild(vc)
+				self.view.anchor(view: vc.view)
+				vc.set(count: ACState.testCount - 1)
+				vc.waitAndExit(time: 3.0)
 			}
             
         }
@@ -189,6 +197,16 @@ public class SymbolsTestViewController: UIViewController {
         }
         
     }
+	
+	public func testProgressDidComplete() {
+		if !isPracticeTest {
+			
+			
+			
+			_  = controller.mark(filled: responseID)
+			Arc.shared.nextAvailableState()
+		}
+	}
 	public func next() {
 		questionIndex += 1
 		layoutOptionsAndChoices();

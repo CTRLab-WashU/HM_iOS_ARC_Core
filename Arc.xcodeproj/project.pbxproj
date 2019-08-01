@@ -258,6 +258,9 @@
 		C5E1E3982257ECDE00255812 /* ACScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1E3972257ECDE00255812 /* ACScheduleViewController.swift */; };
 		C5E3924B22EA3A8F007CB3B6 /* ContactInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E3924A22EA3A8F007CB3B6 /* ContactInfoResponse.swift */; };
 		C5E3925022EB76AD007CB3B6 /* ResendCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E3924F22EB76AD007CB3B6 /* ResendCodeViewController.swift */; };
+		C5E7212822F10D25004B9E26 /* TestProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E7212722F10D25004B9E26 /* TestProgressViewController.swift */; };
+		C5E7212A22F10D9C004B9E26 /* TestProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E7212922F10D9C004B9E26 /* TestProgressView.swift */; };
+		C5E7212C22F1C9D3004B9E26 /* ACColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E7212B22F1C9D3004B9E26 /* ACColor.swift */; };
 		C5F77F37222F095200BECAE1 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F77F36222F095200BECAE1 /* SignatureViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -540,6 +543,9 @@
 		C5E1E3972257ECDE00255812 /* ACScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACScheduleViewController.swift; sourceTree = "<group>"; };
 		C5E3924A22EA3A8F007CB3B6 /* ContactInfoResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoResponse.swift; sourceTree = "<group>"; };
 		C5E3924F22EB76AD007CB3B6 /* ResendCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResendCodeViewController.swift; sourceTree = "<group>"; };
+		C5E7212722F10D25004B9E26 /* TestProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestProgressViewController.swift; sourceTree = "<group>"; };
+		C5E7212922F10D9C004B9E26 /* TestProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestProgressView.swift; sourceTree = "<group>"; };
+		C5E7212B22F1C9D3004B9E26 /* ACColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACColor.swift; sourceTree = "<group>"; };
 		C5F77F34222F094000BECAE1 /* SignatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureView.swift; sourceTree = "<group>"; };
 		C5F77F36222F095200BECAE1 /* SignatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureViewController.swift; sourceTree = "<group>"; };
 		C5F77F38222F15DD00BECAE1 /* SignatureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignatureView.xib; sourceTree = "<group>"; };
@@ -628,6 +634,7 @@
 				C5192A6422C3DFA800223B69 /* Fonts */,
 				C5192A6522C3E04300223B69 /* Drawing.swift */,
 				C523B38722CA8AF80074337D /* Animate.swift */,
+				C5E7212B22F1C9D3004B9E26 /* ACColor.swift */,
 			);
 			path = Style;
 			sourceTree = "<group>";
@@ -972,6 +979,7 @@
 		C54AE95121C81B5C00DEC360 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C5E7212722F10D25004B9E26 /* TestProgressViewController.swift */,
 				C58129F922E244BF00CD1883 /* Grid Test */,
 				C5C2B12322D39386002CB4C5 /* Prices Test */,
 				C54E8E0F22E647ED0080BFC1 /* SymbolsTest */,
@@ -1010,6 +1018,7 @@
 				C56D6C5822CD0DFE00C3F8EA /* TutorialView.swift */,
 				C5C2B12A22D3F205002CB4C5 /* TestInfoView.swift */,
 				C58129F722E20BE000CD1883 /* TutorialCompleteView.swift */,
+				C5E7212922F10D9C004B9E26 /* TestProgressView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1711,10 +1720,12 @@
 				C54D104222C28A1D00B43E42 /* PasswordView.swift in Sources */,
 				C54AE9E321C81B5F00DEC360 /* Algorithms.swift in Sources */,
 				C54AEA0D21C81B5F00DEC360 /* InstructionNavigationController.swift in Sources */,
+				C5E7212A22F10D9C004B9E26 /* TestProgressView.swift in Sources */,
 				C56D6C5B22CD2B9F00C3F8EA /* ACTutorialViewController.swift in Sources */,
 				C54AEA3E21C81B5F00DEC360 /* IntroViewController.swift in Sources */,
 				4CB0BAC522E8FA7B00ABB348 /* ContactInfoResponse.swift in Sources */,
 				C54AEA3221C81B5F00DEC360 /* ScheduleEntry+Extensions.swift in Sources */,
+				C5E7212822F10D25004B9E26 /* TestProgressViewController.swift in Sources */,
 				C58C96F1228201CE001BDE11 /* HMOperation.swift in Sources */,
 				C5C7F715228F65C50086315B /* ArcTranslation.swift in Sources */,
 				C54D104A22C28A1D00B43E42 /* DateRangeView.swift in Sources */,
@@ -1860,6 +1871,7 @@
 				C5A43CCF22CA648700C10BC0 /* ACHorizontalBar.swift in Sources */,
 				C5192A7822C5231900223B69 /* Roboto.swift in Sources */,
 				C5192A7F22C5235E00223B69 /* UILabel+Extensions.swift in Sources */,
+				C5E7212C22F1C9D3004B9E26 /* ACColor.swift in Sources */,
 				C578B8D622A859A60038DDF0 /* ACView.swift in Sources */,
 				C5B2602C2213606600BFF778 /* ACButton.swift in Sources */,
 				C5D085CC22D7828300043513 /* HintView.swift in Sources */,

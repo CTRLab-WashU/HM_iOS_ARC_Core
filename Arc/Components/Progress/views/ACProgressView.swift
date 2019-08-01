@@ -52,9 +52,11 @@ class ACProgressView: ACTemplateView {
 						$0.layout {
 							$0.height == 64 ~ 999
 						}
-						let config = CircularProgressView.Config(strokeWidth: 6,
-																 trackColor: #colorLiteral(red: 0.400000006, green: 0.7799999714, blue: 0.7799999714, alpha: 1),
-																 barColor: #colorLiteral(red: 0.04300000146, green: 0.1220000014, blue: 0.3330000043, alpha: 1))
+						var config = Drawing.CircularBar()
+						
+						config.strokeWidth =  6
+						config.trackColor = #colorLiteral(red: 0.400000006, green: 0.7799999714, blue: 0.7799999714, alpha: 1)
+						config.barColor = #colorLiteral(red: 0.04300000146, green: 0.1220000014, blue: 0.3330000043, alpha: 1)
 						
 						for _ in 0 ... 3 {
 							$0.circularProgress {

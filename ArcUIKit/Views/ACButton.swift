@@ -42,14 +42,12 @@ import HMMarkup
 	}
 	
     open override func draw(_ rect: CGRect) {
-		let config = Drawing.GradientButton(rect: rect,
-											  bounds: bounds,
-											  cornerRadius: cornerRadius,
+		let config = Drawing.GradientButton(cornerRadius: cornerRadius,
 											  primaryColor: primaryColor,
 											  secondaryColor: secondaryColor,
 											  isSelected: isSelected,
 											  isEnabled: isEnabled)
-        config.draw()
+        config.draw(rect)
     }
     override open func setup(isSelected:Bool){
         super.setup(isSelected:isSelected)

@@ -31,7 +31,7 @@ public class ParticipationView: ACTemplateView {
 	public override func content(_ view: UIView) {
 		view.infoContent {
 			$0.alignment = .leading
-			$0.textColor = UIColor(named:"Primary Text")
+			$0.textColor = ACColor.primaryText
 			$0.setHeader("Thank you for your time.")
 			$0.setSeparatorWidth(0.15)
 			$0.setContent("Your study coordinator will be notified that you do not wish to participate at this time. Your study coordinator may also contact you to confirm this information.")

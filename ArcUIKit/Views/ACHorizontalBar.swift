@@ -69,8 +69,6 @@ public class ACHorizontalBar: UIView {
 	}
 	init() {
 		config = Drawing.HorizontalBar(
-			rect: .zero,
-			bounds:	.zero,
 			cornerRadius: 0,
 			primaryColor: UIColor(red:0.97,
 								  green:0.75,
@@ -78,16 +76,13 @@ public class ACHorizontalBar: UIView {
 								  alpha:1),
 			progress: 1.0)
 		super.init(frame: .zero)
-		config.rect = frame
-		config.bounds = bounds
 		backgroundColor = .clear
 		
 	}
 	
 	required init?(coder: NSCoder) {
 		config = Drawing.HorizontalBar(
-			rect: .zero,
-			bounds:	.zero,
+			
 			cornerRadius: 0,
 			primaryColor: UIColor(red:0.97,
 								  green:0.75,
@@ -95,8 +90,6 @@ public class ACHorizontalBar: UIView {
 								  alpha:1),
 			progress: 1.0)
 		super.init(coder: coder)
-		config.rect = frame
-		config.bounds = bounds
 		backgroundColor = .clear
 
 	}
@@ -104,9 +97,7 @@ public class ACHorizontalBar: UIView {
      Only override draw() if you perform custom drawing.
      An empty implementation adversely affects performance during animation.*/
     override public func draw(_ rect: CGRect) {
-		config.rect = rect
-		config.bounds = bounds
-		config.draw()
+		config.draw(rect)
 		
     }
 	

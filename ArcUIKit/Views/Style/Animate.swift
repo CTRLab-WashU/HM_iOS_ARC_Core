@@ -10,6 +10,13 @@ import Foundation
 import CoreGraphics
 
 public struct Math{
+	public static func toRadians(_ number: Double) -> Double {
+		return number * .pi / 180
+	}
+	public static func toDegrees(_ number: Double) -> Double {
+		return number * 180 / .pi
+	}
+	
 	public static func lerp<T:FloatingPoint> (a:T, b:T, t:T) -> T{
 		
 		return (a + t * (b - a))
@@ -46,13 +53,14 @@ public struct Math{
 }
 
 
-public struct Animate {
+public class Animate {
 	
 	
 	private var _delay:Double = 0.0
 	private var _duration:Double = 0.2
 	private var _curve:Math.Curve = .linear
 	private var _progress:Double = 0
+	
 	public var time:Double {
 		get {
 			return max(0.0, (updater?.time ?? 0.0) - (updater?.delay ?? 0.0))
@@ -97,7 +105,7 @@ public struct Animate {
 		s.updater?.run(update)
 		return s
 	}
-	public mutating func stop(forceEnd:Bool = false){
+	public func stop(forceEnd:Bool = false){
 		guard let updater = updater else {
 			return
 		}
@@ -106,7 +114,7 @@ public struct Animate {
 		} else {
 			updater.stop()
 		}
-		self.updater = nil
+		
 	}
 	public func pause() {
 		updater?.pause()
@@ -131,9 +139,13 @@ public struct Animate {
 		var delay:Double = 0
 		var maxTime:Double = 1.0
 		var curve:Math.Curve = .linear
+		private var id = UUID().uuidString
 		init() {
 		}
 		func start() {
+			print("started:\(id)")
+			displayLink?.invalidate()
+			displayLink = nil
 			displayLink = CADisplayLink(target: self, selector: #selector(loop))
 			displayLink?.add(to: .current, forMode: .common)
 		}
@@ -144,10 +156,12 @@ public struct Animate {
 			displayLink?.isPaused = false
 		}
 		func stop() {
+			
 			displayLink?.invalidate()
 			displayLink = nil
+			
 			update = nil
-			print("stopped")
+			print("stopped:\(id)")
 		}
 		public func run(_ update:@escaping (Double)->Bool) {
 			
@@ -156,7 +170,7 @@ public struct Animate {
 			start()
 		}
 		@objc private func loop() {
-//			print("updating: \(_current)")
+			print("updating: \(id):\(time)")
 			guard let dl = displayLink else {
 				
 				stop()
