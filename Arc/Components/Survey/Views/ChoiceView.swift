@@ -60,19 +60,17 @@ import ArcUIKit
 
     override open func awakeFromNib() {
         self.wrappedView.layer.cornerRadius = 6.0
+        self.button.isUserInteractionEnabled = false
+        self.wrappedView.isUserInteractionEnabled = false
     }
-
+    
     @IBOutlet weak var wrappedView: ACView!
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var label: UILabel!
 	var isExclusive:Bool = false
     var needsImmediateResponse:Bool = false
-    var _isSelected = false {
-        didSet {
-            button.isSelected = _isSelected
-            updateColors()
-        }
-    }
+    private var _isSelected = false
+    
     var tapped:((ChoiceView)->Void)?
     
     func getMessage() -> String? {
@@ -85,8 +83,11 @@ import ArcUIKit
         label.text = message?.localized(message ?? "")
     }
     
-    func set(selected:Bool) {
+    func set(selected:Bool, shouldUpdateColors:Bool=true) {
         _isSelected = selected
+        if shouldUpdateColors {
+            updateColors()
+        }
     }
     func set(state:State) {
         button.setImage(state.unselectedImage, for: .normal)
@@ -100,6 +101,7 @@ import ArcUIKit
     }
     
     func updateColors() {
+        self.button.isSelected = _isSelected
         self.wrappedView.backgroundColor = (_isSelected) ? UIColor(named: "Primary Selection") : nil
         self.wrappedView.borderColor = ((_isSelected) ? UIColor(named: "Primary") : UIColor(named: "Primary Selected")) ?? .clear
         self.wrappedView.borderThickness = (_isSelected) ? 2.0 : 1.0
@@ -111,28 +113,38 @@ import ArcUIKit
         self.layoutSubviews()
     }
     
-    func updateState() {
-        if (_isSelected) {
-            self._isSelected = false
-        } else {
-            self._isSelected = true
-        }
-    }
     
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         if (needsImmediateResponse == true) {
             tapped?(self)
+        }
+    }
+    
+    override open func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesMoved(touches, with: event)
+        guard let location = touches.first?.location(in: self) else { return }
+        if (location.x < 0)
+            || (location.y < 0)
+            || (location.x > self.frame.width)
+            || (location.y > self.frame.height)
+        {
             updateColors()
         }
     }
     
     override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
-        tapped?(self)
         if (needsImmediateResponse == true) {
             updateColors()
+        } else {
+            tapped?(self)
         }
+    }
+    
+    override open func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        updateColors()
     }
     
 }
