@@ -102,17 +102,25 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 			$0.width == self!.widthAnchor ~ 999
 			$0.height == self!.heightAnchor ~ 999
 		}
+
 		self.scrollIndicatorView = scrollIndicator {
-			let v = $0
-			
+			$0.configure(with: IndicatorView.Config(primaryColor: ACColor.primaryText,
+												 secondaryColor: ACColor.primaryText,
+												 textColor: .white,
+												 cornerRadius: 20.0,
+												 arrowEnabled: false))
+			$0.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 			$0.acLabel{
+				$0.textAlignment = .center
 				$0.text = "Scroll".localized("")
+				Roboto.Style.body($0, color: ACColor.secondary)
 				$0.layout {
-					$0.top == v.topAnchor + 20 ~ 999
-					$0.trailing == v.trailingAnchor + 20 ~ 999
-					$0.bottom == v.bottomAnchor + 20 ~ 999
-					$0.leading == v.leadingAnchor + 20 ~ 999
+					
+//					$0.trailing >= v.safeAreaLayoutGuide.trailingAnchor + 20 ~ 999
+					$0.bottom == v.safeAreaLayoutGuide.bottomAnchor - 20 ~ 999
+//					$0.leading >= v.safeAreaLayoutGuide.leadingAnchor + 20 ~ 999
 					$0.width >= 80
+					$0.centerX == v.centerXAnchor
 					$0.height >= 40
 				}
 			}

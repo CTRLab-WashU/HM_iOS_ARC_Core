@@ -11,17 +11,25 @@ import UIKit
 
 @IBDesignable public class IndicatorView:UIView {
     public struct Config {
-        let primaryColor:UIColor
-        let secondaryColor:UIColor
-        let textColor:UIColor
-        let cornerRadius:CGFloat
-		let arrowEnabled:Bool
+        public let primaryColor:UIColor
+        public let secondaryColor:UIColor
+        public let textColor:UIColor
+        public let cornerRadius:CGFloat
+		public let arrowEnabled:Bool
+		
+		public init(primaryColor:UIColor, secondaryColor:UIColor,textColor:UIColor,cornerRadius:CGFloat,arrowEnabled:Bool) {
+			self.primaryColor = primaryColor
+			self.secondaryColor = secondaryColor
+			self.textColor = textColor
+			self.cornerRadius = cornerRadius
+			self.arrowEnabled = arrowEnabled
+		}
     }
-    @IBInspectable var primaryColor:UIColor = .black
-    @IBInspectable var secondaryColor:UIColor = .black
+    @IBInspectable public var primaryColor:UIColor = .black
+    @IBInspectable public var secondaryColor:UIColor = .black
     
     
-    @IBInspectable var cornerRadius:CGFloat = 0 {
+    @IBInspectable public var cornerRadius:CGFloat = 0 {
         didSet {
             layer.cornerRadius = cornerRadius
         }
