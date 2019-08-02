@@ -88,7 +88,7 @@ open class MultipleChoiceView : UIView,  SurveyInput {
 			}
 			return AnyResponse(type: .checkbox, value: selected, textValue: options.joined(separator: ","))
 
-		case .radio:
+		case .radio, .button:
 			return AnyResponse(type: .choice, value: selected.first, textValue: options.first)
 
 		}

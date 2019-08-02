@@ -134,8 +134,8 @@ open class PricesQuestionViewController: UIViewController, TestProgressViewContr
         topButton.button.titleLabel?.numberOfLines = 1
         bottomButton.button.titleLabel?.numberOfLines = 1
         
-        topButton.set(state: .radio)
-        bottomButton.set(state: .radio)
+        topButton.set(state: .button)
+        bottomButton.set(state: .button)
         
         topButton.tapped = {
             [weak self] view in

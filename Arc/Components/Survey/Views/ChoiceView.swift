@@ -10,13 +10,15 @@ import UIKit
 import ArcUIKit
 @IBDesignable open class ChoiceView : UIView {
     public enum State {
-        case radio, checkBox
+        case radio, checkBox, button
         
         var unselectedImage:UIImage? {
             get {
                 switch self {
                 case .checkBox:
                     return UIImage(named: "cut-ups/checkbox/unselected")
+                case .button:
+                    return nil
                 default:
                     return UIImage(named: "cut-ups/radio/unselected")
                 }
@@ -28,6 +30,8 @@ import ArcUIKit
                 switch self {
                 case .checkBox:
                     return UIImage(named: "cut-ups/checkbox/selected")
+                case .button:
+                    return nil
                 default:
                     //return UIImage(named: "cut-ups/radio/selected")
                     return UIImage(named: "cut-ups/radio/selected alt")
@@ -93,7 +97,10 @@ import ArcUIKit
         button.setImage(state.unselectedImage, for: .normal)
         button.setImage(state.selectedImage, for: .selected)
         self.wrappedView.cornerRadius = state.cornerRadius
-        
+        if state == .button {
+            label.textAlignment = .center
+            button.isHidden = true
+        }
     }
     @IBAction func tapped(_ sender: Any) {
         //tapped?(self)
