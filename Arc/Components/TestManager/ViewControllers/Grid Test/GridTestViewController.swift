@@ -15,7 +15,9 @@ public protocol GridTestViewControllerDelegate : class {
 	func didDeselectLeter(indexPath:IndexPath)
 	
 }
-open class GridTestViewController: ArcViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+open class GridTestViewController: ArcViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, TestProgressViewControllerDelegate {
+	
+	
     public enum Mode {
         case none
         case image
@@ -92,7 +94,8 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 
 			
 		_ = controller.start(test: responseId)
-		_ = controller.mark(filled: responseId)
+		_  = controller.mark(filled: responseId)
+
 		if shouldAutoProceed {
 			displayPreSymbols();
 		}
@@ -266,7 +269,16 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         
         if testNumber >= controller.get(testCount: responseId)
         {
-			Arc.shared.nextAvailableState()
+			_ = controller.mark(filled: responseId)
+			let nextMessage = (ACState.testCount == 3) ? "Well done!" : "Loading next test..."
+			
+			let vc = TestProgressViewController(title: "Symbols Test Complete!", subTitle: nextMessage, count: 0)
+			vc.delegate = self
+			self.addChild(vc)
+			self.view.anchor(view: vc.view)
+			vc.set(count: ACState.testCount - 1)
+			vc.waitAndExit(time: 3.0)
+			
         }
         else
         {
@@ -274,7 +286,10 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         }
         
     }
-    
+	public func testProgressDidComplete() {
+		Arc.shared.nextAvailableState()
+
+	}
     open func maybeEndTest()
     {
         if controller.get(numChoicesFor: responseId, testIndex: testNumber) >= 3

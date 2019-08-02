@@ -8,6 +8,9 @@
 
 import Foundation
 import HMMarkup
+public protocol TranslationKey {
+	var rawValue:String { get }
+}
 public struct ArcTranslation : Codable  {
     public struct Map : Codable {
         public var map:Dictionary<String, String>?
@@ -25,6 +28,16 @@ public extension String {
         }
         return self
     }
+	func localized(_ key:TranslationKey) -> String {
+		let key = key.rawValue
+		if let config = HMMarkupRenderer.config,
+			config.shouldTranslate,
+			let translation = config.translation
+		{
+			return translation[key] ?? self
+		}
+		return self
+	}
 }
 
 

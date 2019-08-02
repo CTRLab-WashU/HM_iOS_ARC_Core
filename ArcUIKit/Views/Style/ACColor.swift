@@ -8,6 +8,13 @@
 
 import UIKit
 public struct ACColor {
+	
+	//Badges
+	static public let badgeText:UIColor = UIColor(named:"Badge Text")!
+	static public let badgeBackground:UIColor = UIColor(named:"Badge Background")!
+
+	
+	//Primary App colors
 	static public let primary:UIColor = UIColor(named:"Primary")!
 	static public let primaryGradient:UIColor = UIColor(named:"Primary Gradient")!
 	static public let primaryInfo:UIColor = UIColor(named:"Primary Info")!

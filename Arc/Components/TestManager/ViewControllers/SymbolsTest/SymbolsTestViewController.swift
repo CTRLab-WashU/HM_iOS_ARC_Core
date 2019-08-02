@@ -177,10 +177,11 @@ public class SymbolsTestViewController: UIViewController, TestProgressViewContro
         delegate?.didSelect(index: sender.tag)
         if questionIndex >= controller.get(questionCount: responseID) - 1 {
 			if !isPracticeTest {
-			
+				_  = controller.mark(filled: responseID)
+
 				let nextMessage = (ACState.testCount == 3) ? "Well done!" : "Loading next test..."
 				
-				let vc = TestProgressViewController(title: "Symbols Test Complete!", subTitle: nextMessage, count: 0)
+				let vc = TestProgressViewController(title: "Prices Test Complete!", subTitle: nextMessage, count: 0)
 				vc.delegate = self
 				self.addChild(vc)
 				self.view.anchor(view: vc.view)
@@ -200,10 +201,7 @@ public class SymbolsTestViewController: UIViewController, TestProgressViewContro
 	
 	public func testProgressDidComplete() {
 		if !isPracticeTest {
-			
-			
-			
-			_  = controller.mark(filled: responseID)
+	
 			Arc.shared.nextAvailableState()
 		}
 	}

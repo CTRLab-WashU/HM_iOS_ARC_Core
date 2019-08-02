@@ -9,7 +9,9 @@
 import UIKit
 
 
-open class PricesQuestionViewController: UIViewController {
+open class PricesQuestionViewController: UIViewController, TestProgressViewControllerDelegate {
+	
+	
     //@IBOutlet var buttons: [UIButton]!
     
     @IBOutlet weak var questionLabel: UILabel!
@@ -67,12 +69,22 @@ open class PricesQuestionViewController: UIViewController {
         if let value = questions.subtracting(presentedQuestions).randomElement() {
             presentQuestion(index: value, id: responseId)
         } else {
-			
-			_  = controller.mark(filled: responseId)
-			
-			//If the delegate implements this method and returns false it will not proceed automatically.
 			if delegate?.shouldEndTest() ?? true {
-				Arc.shared.nextAvailableState()
+
+				_  = controller.mark(filled: responseId)
+
+				let nextMessage = (ACState.testCount == 3) ? "Well done!" : "Loading next test..."
+				
+				let vc = TestProgressViewController(title: "Symbols Test Complete!", subTitle: nextMessage, count: 0)
+				vc.delegate = self
+				self.addChild(vc)
+				self.view.anchor(view: vc.view)
+				vc.set(count: ACState.testCount - 1)
+				vc.waitAndExit(time: 3.0)
+				
+
+			
+			
 			}
         }
     }
@@ -146,6 +158,9 @@ open class PricesQuestionViewController: UIViewController {
         buttonStack.addArrangedSubview(topButton)
         buttonStack.addArrangedSubview(bottomButton)
     }
-    
+	public func testProgressDidComplete() {
+		//If the delegate implements this method and returns false it will not proceed automatically.
+		Arc.shared.nextAvailableState()
+	}
 }
 
