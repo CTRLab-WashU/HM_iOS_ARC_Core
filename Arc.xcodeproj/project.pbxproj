@@ -36,6 +36,8 @@
 		C52B760021C83B6400498571 /* HMMarkup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52B75DC21C83B2A00498571 /* HMMarkup.framework */; };
 		C52B760121C83CEA00498571 /* HMMarkupLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE93C21C81B5C00DEC360 /* HMMarkupLabel.swift */; };
 		C537A1AE228B74E20098A4CD /* Window+Overlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C537A1AD228B74E20098A4CD /* Window+Overlay.swift */; };
+		C53B123822F348F900BACA9A /* ACTodayProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B123722F348F900BACA9A /* ACTodayProgressViewController.swift */; };
+		C53B123A22F34C1700BACA9A /* ACTodayProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B123922F34C1700BACA9A /* ACTodayProgressView.swift */; };
 		C540B5B1221E0FD000B539A4 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C540B5B0221E0FD000B539A4 /* LanguageViewController.swift */; };
 		C548B79122C54D630039DBCB /* UIControl+Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = C548B79022C54D630039DBCB /* UIControl+Closure.swift */; };
 		C54AE8F821C81B2F00DEC360 /* Arc.h in Headers */ = {isa = PBXBuildFile; fileRef = C54AE8EA21C81B2F00DEC360 /* Arc.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -245,6 +247,7 @@
 		C5C2B12722D3D66C002CB4C5 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C2B12622D3D66B002CB4C5 /* InfoView.swift */; };
 		C5C2B12922D3ECBB002CB4C5 /* InfoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C2B12822D3ECBB002CB4C5 /* InfoContentView.swift */; };
 		C5C2B12B22D3F205002CB4C5 /* TestInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C2B12A22D3F205002CB4C5 /* TestInfoView.swift */; };
+		C5C3AFD222F37AC4006F482E /* TranslationKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C3AFD122F37AC4006F482E /* TranslationKey.swift */; };
 		C5C7F715228F65C50086315B /* ArcTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C7F714228F65C50086315B /* ArcTranslation.swift */; };
 		C5CCD7AC22DE6A61002A788A /* OnboardingSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CCD7AB22DE6A61002A788A /* OnboardingSurveyViewController.swift */; };
 		C5CCD7AE22DF717D002A788A /* AsyncAwait.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CCD7AD22DF717D002A788A /* AsyncAwait.swift */; };
@@ -325,6 +328,8 @@
 		C52B75F721C83B4700498571 /* HMMarkupRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMMarkupRenderer.swift; sourceTree = "<group>"; };
 		C52B75F821C83B4700498571 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C537A1AD228B74E20098A4CD /* Window+Overlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Window+Overlay.swift"; sourceTree = "<group>"; };
+		C53B123722F348F900BACA9A /* ACTodayProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTodayProgressViewController.swift; sourceTree = "<group>"; };
+		C53B123922F34C1700BACA9A /* ACTodayProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTodayProgressView.swift; sourceTree = "<group>"; };
 		C540B5B0221E0FD000B539A4 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
 		C548B79022C54D630039DBCB /* UIControl+Closure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Closure.swift"; sourceTree = "<group>"; };
 		C54AE8E721C81B2F00DEC360 /* Arc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Arc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -530,6 +535,7 @@
 		C5C2B12622D3D66B002CB4C5 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InfoView.swift; path = Arc/App/Views/InfoView.swift; sourceTree = SOURCE_ROOT; };
 		C5C2B12822D3ECBB002CB4C5 /* InfoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoContentView.swift; sourceTree = "<group>"; };
 		C5C2B12A22D3F205002CB4C5 /* TestInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestInfoView.swift; sourceTree = "<group>"; };
+		C5C3AFD122F37AC4006F482E /* TranslationKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationKey.swift; sourceTree = "<group>"; };
 		C5C7F714228F65C50086315B /* ArcTranslation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArcTranslation.swift; sourceTree = "<group>"; };
 		C5CCD7AB22DE6A61002A788A /* OnboardingSurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSurveyViewController.swift; sourceTree = "<group>"; };
 		C5CCD7AD22DF717D002A788A /* AsyncAwait.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncAwait.swift; sourceTree = "<group>"; };
@@ -785,6 +791,7 @@
 				C54AE90821C81B5C00DEC360 /* State.swift */,
 				C54AE90921C81B5C00DEC360 /* JSONData.swift */,
 				C54AE90A21C81B5C00DEC360 /* Phase.swift */,
+				C5C3AFD122F37AC4006F482E /* TranslationKey.swift */,
 				C5C7F714228F65C50086315B /* ArcTranslation.swift */,
 			);
 			path = Models;
@@ -979,7 +986,6 @@
 		C54AE95121C81B5C00DEC360 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				C5E7212722F10D25004B9E26 /* TestProgressViewController.swift */,
 				C58129F922E244BF00CD1883 /* Grid Test */,
 				C5C2B12322D39386002CB4C5 /* Prices Test */,
 				C54E8E0F22E647ED0080BFC1 /* SymbolsTest */,
@@ -1018,7 +1024,6 @@
 				C56D6C5822CD0DFE00C3F8EA /* TutorialView.swift */,
 				C5C2B12A22D3F205002CB4C5 /* TestInfoView.swift */,
 				C58129F722E20BE000CD1883 /* TutorialCompleteView.swift */,
-				C5E7212922F10D9C004B9E26 /* TestProgressView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1265,6 +1270,8 @@
 			children = (
 				C54E8E2922E88DFE0080BFC1 /* supporting views */,
 				C593227022E890DA00528FF5 /* ACProgressView.swift */,
+				C53B123922F34C1700BACA9A /* ACTodayProgressView.swift */,
+				C5E7212922F10D9C004B9E26 /* TestProgressView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -1273,6 +1280,8 @@
 			isa = PBXGroup;
 			children = (
 				C54E8E2522E88DC60080BFC1 /* ProgressViewController.swift */,
+				C53B123722F348F900BACA9A /* ACTodayProgressViewController.swift */,
+				C5E7212722F10D25004B9E26 /* TestProgressViewController.swift */,
 			);
 			path = Viewcontrollers;
 			sourceTree = "<group>";
@@ -1783,6 +1792,7 @@
 				C54AE9E121C81B5F00DEC360 /* HMLog.swift in Sources */,
 				C54AEA2221C81B5F00DEC360 /* ACContactNavigationController.swift in Sources */,
 				C54AEA4421C81B5F00DEC360 /* SurveyController.swift in Sources */,
+				C5C3AFD222F37AC4006F482E /* TranslationKey.swift in Sources */,
 				C54D104F22C29DA700B43E42 /* SurveyView.swift in Sources */,
 				C54AE9EF21C81B5F00DEC360 /* ArcViewController.swift in Sources */,
 				C5CCD7AC22DE6A61002A788A /* OnboardingSurveyViewController.swift in Sources */,
@@ -1806,6 +1816,7 @@
 				C593227522E8BB0F00528FF5 /* AC2FAuthenticationViewController.swift in Sources */,
 				C54AEA2C21C81B5F00DEC360 /* LoginHelpView.swift in Sources */,
 				C54AE9D621C81B5F00DEC360 /* Arc+Auth.swift in Sources */,
+				C53B123A22F34C1700BACA9A /* ACTodayProgressView.swift in Sources */,
 				C52B75D421C8369400498571 /* arc.xcdatamodeld in Sources */,
 				C58129FB22E249EE00CD1883 /* GridTestTutorialViewController.swift in Sources */,
 				C54AEA1121C81B5F00DEC360 /* PricesTestViewController.swift in Sources */,
@@ -1824,6 +1835,7 @@
 				C5F77F37222F095200BECAE1 /* SignatureViewController.swift in Sources */,
 				C54AEA3721C81B5F00DEC360 /* ScheduleController+ScheduleEntry.swift in Sources */,
 				C54AE9E921C81B5F00DEC360 /* TestSession.swift in Sources */,
+				C53B123822F348F900BACA9A /* ACTodayProgressViewController.swift in Sources */,
 				C54AE9F321C81B5F00DEC360 /* ProxyManager.swift in Sources */,
 				C54AEA0021C81B5F00DEC360 /* PrimaryButton.swift in Sources */,
 				C5C2B12B22D3F205002CB4C5 /* TestInfoView.swift in Sources */,
