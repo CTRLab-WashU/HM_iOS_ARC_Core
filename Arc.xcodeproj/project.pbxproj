@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DB76D7122F3B3D900EE36A0 /* SymbolsTestTutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DB76D7022F3B3D900EE36A0 /* SymbolsTestTutorialViewController.xib */; };
 		4CB0BAC522E8FA7B00ABB348 /* ContactInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0BAC422E8FA7B00ABB348 /* ContactInfoResponse.swift */; };
 		C5143959224EA6FD000BF1CB /* ACSignatureNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5143958224EA6FD000BF1CB /* ACSignatureNavigationController.swift */; };
 		C5192A6722C518AC00223B69 /* UIDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D101422C2846E00B43E42 /* UIDSL.swift */; };
@@ -296,6 +297,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2DB76D7022F3B3D900EE36A0 /* SymbolsTestTutorialViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SymbolsTestTutorialViewController.xib; sourceTree = "<group>"; };
 		4C58E91622E934730024F666 /* ScheduleEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEndViewController.swift; sourceTree = "<group>"; };
 		4CB0BAC422E8FA7B00ABB348 /* ContactInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoResponse.swift; sourceTree = "<group>"; };
 		C50FC3BA22330F2C00143EA8 /* ACCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACCalendarView.swift; sourceTree = "<group>"; };
@@ -1246,6 +1248,7 @@
 			children = (
 				C54AE95421C81B5C00DEC360 /* SymbolsTestViewController.swift */,
 				C54AE95621C81B5C00DEC360 /* SymbolsTestViewController.xib */,
+				2DB76D7022F3B3D900EE36A0 /* SymbolsTestTutorialViewController.xib */,
 				C54E8E1022E64CE00080BFC1 /* SymbolsTutorialViewController.swift */,
 			);
 			path = SymbolsTest;
@@ -1606,6 +1609,7 @@
 				C54AEA6421C81B5F00DEC360 /* Roboto-Medium.ttf in Resources */,
 				C54AEA1021C81B5F00DEC360 /* PricesQuestionViewController.xib in Resources */,
 				C54D104322C28A1D00B43E42 /* PasswordView.xib in Resources */,
+				2DB76D7122F3B3D900EE36A0 /* SymbolsTestTutorialViewController.xib in Resources */,
 				C54AEA6D21C81B5F00DEC360 /* Roboto-BlackItalic.ttf in Resources */,
 				C54AE9FA21C81B5F00DEC360 /* CancelButton.xib in Resources */,
 				C54AEA0E21C81B5F00DEC360 /* SymbolsTestViewController.xib in Resources */,

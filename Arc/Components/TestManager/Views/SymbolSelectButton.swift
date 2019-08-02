@@ -14,6 +14,7 @@ open class SymbolSelectButton: UIButton {
     var touchTime:Date?
     
     override open func awakeFromNib() {
+        super.awakeFromNib()
         //self.layer.borderColor = UIColor(white: 128.0/255.0, alpha: 1.0).cgColor;
         //self.layer.borderWidth = 2;
         //self.layer.cornerRadius = 6;
@@ -51,12 +52,14 @@ open class SymbolSelectButton: UIButton {
 open class SymbolContainer: UIView {
     
     override open func awakeFromNib() {
+        super.awakeFromNib()
         self.layer.borderColor = UIColor(white: 128.0/255.0, alpha: 1.0).cgColor;
         self.layer.borderWidth = 2;
         self.layer.cornerRadius = 6;
     }
     
     override open func layoutSubviews() {
+        super.layoutSubviews()
         if shadowOpacity > 0.0 {
             self.addShadow()
         }

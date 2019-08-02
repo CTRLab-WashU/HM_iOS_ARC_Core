@@ -12,8 +12,7 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 	
 	
 	
-	
-	var test:SymbolsTestViewController = .get()
+    var test:SymbolsTestViewController = .get(nib: "SymbolsTestTutorialViewController", bundle: Bundle(for: SymbolsTestViewController.self))
 	var selectionMade:Bool = false
 	var questionsAnswered = 0
     override func viewDidLoad() {
@@ -96,7 +95,7 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 			guard let weakSelf = self else {
 				return
 			}
-			weakSelf.test.option2.isHidden = false
+            weakSelf.test.option2.alpha = 1.0
 			weakSelf.test.option2.overlay()
 			weakSelf.tutorialAnimation.pause()
 			weakSelf.currentHint = weakSelf.view.window?.hint {
@@ -124,8 +123,8 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 			guard let weakSelf = self else {
 				return
 			}
-			weakSelf.test.option1.isHidden = false
-			weakSelf.test.option3.isHidden = false
+            weakSelf.test.option1.alpha = 1.0
+            weakSelf.test.option3.alpha = 1.0
 			weakSelf.test.choiceContainer.overlay()
 			weakSelf.tutorialAnimation.pause()
 
@@ -153,8 +152,8 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 			guard let weakSelf = self else {
 				return
 			}
-			weakSelf.test.choice1.isHidden = false
-			weakSelf.test.choice2.isHidden = false
+            weakSelf.test.choice1.alpha = 1.0
+            weakSelf.test.choice2.alpha = 1.0
 			weakSelf.test.selectionContainer.overlay()
 			weakSelf.tutorialAnimation.pause()
 			
@@ -183,7 +182,6 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 			}
 			weakSelf.test.view.isUserInteractionEnabled = true
 
-			weakSelf.test.messageLabel.text = "Tap the *bottom tile that matches* a tile on the top."
 			weakSelf.addHint(hint: "hint")
 
 			
@@ -218,7 +216,7 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 				return
 			}
 			weakSelf.view.window?.overlayView(withShapes: [.roundedRect(selection.0, 8.0), .roundedRect(selection.1, 8.0)])
-			selection.0.highlight()
+            selection.0.highlight()
 			weakSelf.currentHint = weakSelf.view.window?.hint {
 				$0.content = """
 				Tap this matching tile.
@@ -226,7 +224,7 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 				
 				
 				$0.layout {
-					$0.bottom == weakSelf.view.bottomAnchor + 30
+					$0.bottom == weakSelf.view.bottomAnchor - 30
 					$0.centerX == weakSelf.view.centerXAnchor
 					$0.width == 252
 					

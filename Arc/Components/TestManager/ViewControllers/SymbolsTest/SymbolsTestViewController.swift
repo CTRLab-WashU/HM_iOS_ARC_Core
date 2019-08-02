@@ -31,13 +31,10 @@ public class SymbolsTestViewController: UIViewController, TestProgressViewContro
     @IBOutlet public weak var option2: UIView!
     @IBOutlet public weak var option3: UIView!
 	
-	@IBOutlet weak var messageLabel: UILabel!
-	
-	@IBOutlet weak var orLabel: UILabel!
 	@IBOutlet weak var selectionContainer: UIView!
 	
 	@IBOutlet public weak var choiceContainer: UIView!
-	@IBOutlet public weak var choice1: UIView!
+    @IBOutlet public weak var choice1: UIView!
     @IBOutlet public weak var choice2: UIView!
 	public var isPracticeTest:Bool = false
 	public weak var delegate:SymbolsTestViewControllerDelegate?
@@ -54,7 +51,7 @@ public class SymbolsTestViewController: UIViewController, TestProgressViewContro
 			guard let optionView = [option1, option2, option3][option] else {
 				return nil
 			}
-			return (correct == 0) ? (choice1, optionView) : (choice2, optionView)
+            return (correct == 0) ? (choice1, optionView) : (choice2, optionView)
 		}
 		set {
 			
@@ -100,14 +97,14 @@ public class SymbolsTestViewController: UIViewController, TestProgressViewContro
         
 		if isPracticeTest {
 			layoutOptionsAndChoices()
-			
-			option1.isHidden = true
-			option2.isHidden = true
-			option3.isHidden = true
-			
-			choice1.isHidden = true
-			choice2.isHidden = true
-			
+            
+            option1.alpha = 0
+            option2.alpha = 0
+            option3.alpha = 0
+            
+            choice1.alpha = 0
+            choice2.alpha = 0
+            
 		}
     }
     override open func viewDidAppear(_ animated: Bool) {
@@ -124,8 +121,6 @@ public class SymbolsTestViewController: UIViewController, TestProgressViewContro
     public func layoutOptionsAndChoices(){
         
         let choicesAndOptions = test!.sections[questionIndex]
-		
-        
         
         //Set each of the options
         configureOption(view: option1, symbolSet: choicesAndOptions.options[0])
