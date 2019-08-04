@@ -8,7 +8,9 @@
 
 import Foundation
 import ArcUIKit
-
+public protocol ACTodayProgressViewDelegate : class {
+	func nextPressed()
+}
 public class ACTodayProgressView : UIView {
 	private weak var backgroundImage:UIImageView!
 	private var progressViews:[CircularProgressView] = []
@@ -19,11 +21,14 @@ public class ACTodayProgressView : UIView {
 	private weak var badgeLabel:ACLabel!
 	private var animations:[String:Animate] = [:]
 	private weak var button:ACButton!
+	public weak var delegate:ACTodayProgressViewDelegate?
 	public override init(frame: CGRect) {
 		super.init(frame: .zero)
 		translatesAutoresizingMaskIntoConstraints = false
 		backgroundColor = ACColor.primaryInfo
-
+		var animationParams:Animate.Config = Animate.Config()
+		animationParams.duration = 0.3
+		animationParams.delay = 0.5
 		backgroundImage = image {
 			$0.image = UIImage(named: "finished_bg", in: Bundle(for: self.classForCoder), compatibleWith: nil)
 			$0.contentMode = .scaleAspectFill
@@ -35,9 +40,11 @@ public class ACTodayProgressView : UIView {
 				$0.bottom == bottomAnchor
 				$0.leading == leadingAnchor
 			}
+			$0.fadeIn(animationParams)
 		}
 		
-		
+		animationParams.duration = 1.0
+
 		contentStack = stack {[unowned self] in
 			let stack = $0
 			$0.layout {
@@ -51,12 +58,17 @@ public class ACTodayProgressView : UIView {
 				stack.setCustomSpacing(34, after: $0)
 				Roboto.Style.headingBold($0, color: ACColor.secondaryText)
 				$0.text = "progress_schedule_header"
+				animationParams.delay = 0.8
+				$0.fadeIn(animationParams)
+					.translate(animationParams)
+				
 			}
 			
 			$0.stack {
 				stack.setCustomSpacing(32, after: $0)
 
 				for i in 1 ... 4 {
+					
 					let v = $0.circularProgress {
 						$0.layout {
 							$0.width == 64
@@ -68,16 +80,24 @@ public class ACTodayProgressView : UIView {
 						$0.config.trackColor = ACColor.primary
 						$0.checkConfig.scale = 0.5
 						$0.progress = 0
+						$0.isHidden = true
 					}
 					progressViews.append(v)
+					animationParams.delay = 1.0
+
+					$0.fadeIn(animationParams)
+						.translate(animationParams)
 				}
 			}
 			self.sessionCompletionLabel = $0.acLabel {
 				stack.setCustomSpacing(22, after: $0)
-
+				
 				Roboto.Style.subHeading($0, color: ACColor.secondaryText)
 				$0.text = "Test"
-				
+				animationParams.delay = 1.2
+
+				$0.fadeIn(animationParams)
+					.translate(animationParams)
 				
 			}
 			self.sessionRemainingLabel = $0.acLabel {
@@ -85,8 +105,10 @@ public class ACTodayProgressView : UIView {
 				
 				Roboto.Style.subHeading($0, color: ACColor.secondaryText)
 				$0.text = "Test"
-				
-				
+				animationParams.delay = 1.4
+
+				$0.fadeIn(animationParams)
+					.translate(animationParams)
 			}
 			self.badgeLabel = $0.acLabel {
 
@@ -95,13 +117,18 @@ public class ACTodayProgressView : UIView {
 				$0.clipsToBounds = true
 				Roboto.Style.badge($0)
 				$0.text = "progress_schedule_status2"
+				animationParams.delay = 1.4
+
+				$0.fadeIn(animationParams)
+					.translate(animationParams)
+				
 			}
 			
 		}
 		
 		button = acButton {
 			$0.layout {
-				$0.bottom == safeAreaLayoutGuide.bottomAnchor
+				$0.bottom == safeAreaLayoutGuide.bottomAnchor - 24
 				$0.leading == safeAreaLayoutGuide.leadingAnchor + 32
 				$0.trailing == safeAreaLayoutGuide.trailingAnchor - 32
 
@@ -111,6 +138,15 @@ public class ACTodayProgressView : UIView {
 			$0.secondaryColor = ACColor.secondaryText
 			$0.setTitle("".localized(ACTranslationKey.button_next), for: .normal)
 			$0.setTitleColor(ACColor.badgeText, for: .normal)
+			
+			$0.addAction { [weak self] in
+				self?.delegate?.nextPressed()
+			}
+			
+			animationParams.delay = 1.6
+			
+			$0.fadeIn(animationParams)
+				.translate(animationParams)
 		}
 		
 		
@@ -185,33 +221,6 @@ public class ACTodayProgressView : UIView {
 	}
 	
 	
-	private func fadeIn(view:UIView, delay:Double, duration:Double) {
-		animations["bg"] = Animate().delay(0.2)
-			.duration(0.8)
-			.curve(.easeOut)
-			.run({ [weak self](time) -> Bool in
-				
-				view.alpha = CGFloat(time)
-				
-				return true
-			})
-	}
-	private func fadeInAndTranslate(view:UIView, translation:CGPoint, delay:Double, duration:Double) {
-		let id = UUID().uuidString
-		animations[id] = Animate().delay(delay)
-			.duration(duration)
-			.curve(.easeOut)
-			.run({ [weak self] (time) -> Bool in
-				
-				let value = CGFloat(Math.lerp(a: 1.0, b: 0.0, t: time))
-				
-				view.alpha = CGFloat(time)
-				view.transform = CGAffineTransform.identity.translatedBy(x: translation.x * value, y: translation.y * value)
-				
-				if time >= 1.0 {
-					self?.animations.removeValue(forKey: id)
-				}
-				return true
-			})
-	}
+
+	
 }

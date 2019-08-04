@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class FinishedNavigationController: SurveyNavigationViewController {
+open class FinishedNavigationController: BasicSurveyViewController {
     override open func viewDidLoad() {
         super.viewDidLoad()
 		//self.isNavigationBarHidden = true
@@ -18,20 +18,7 @@ open class FinishedNavigationController: SurveyNavigationViewController {
 		Arc.shared.studyController.mark(finished: session, studyId: study)
 
     }
-	override open func loadSurvey(template:String) {
-		survey = Arc.shared.surveyController.load(survey: template)
-		
-		
-		//Shuffle the questions
-		questions = survey?.questions ?? []
-		
-		
-	}
 	
-	override open func questionDisplayed(input:SurveyInput, index:String) {
-		
-		
-	}
 	
 	//Override this to write to other controllers
 	override open func valueSelected(value:QuestionResponse, index:String) {

@@ -75,11 +75,11 @@ open class PricesQuestionViewController: UIViewController, TestProgressViewContr
 
 				let nextMessage = (ACState.testCount == 3) ? "Well done!" : "Loading next test..."
 				
-				let vc = TestProgressViewController(title: "Symbols Test Complete!", subTitle: nextMessage, count: 0)
+				let vc = TestProgressViewController(title: "Prices Test Complete!", subTitle: nextMessage, count: ACState.testTaken - 1)
 				vc.delegate = self
 				self.addChild(vc)
 				self.view.anchor(view: vc.view)
-				vc.set(count: ACState.testCount - 1)
+				vc.set(count: ACState.testTaken)
 				vc.waitAndExit(time: 3.0)
 				
 

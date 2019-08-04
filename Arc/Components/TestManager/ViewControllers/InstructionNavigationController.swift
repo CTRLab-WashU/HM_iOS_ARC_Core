@@ -14,7 +14,7 @@ open class InstructionNavigationController: UINavigationController, SurveyInputD
 	
 	
 	var app = Arc.shared
-	public var instructions:[Introduction.Instruction]?
+	public var instructions:[Survey.Question]?
 	public var nextVc:UIViewController?
 	public var nextState:State?
 	public var titleOverride:String?
@@ -27,13 +27,13 @@ open class InstructionNavigationController: UINavigationController, SurveyInputD
 
     }
 	@discardableResult
-	open func load(instructions template:String) -> Introduction {
+	open func load(instructions template:String) -> Survey {
 		guard let asset = NSDataAsset(name: template) else {
 			fatalError("Missing data asset: \(template)")
 		}
 		do {
-			let intro = try JSONDecoder().decode(Introduction.self, from: asset.data)
-			instructions = intro.instructions
+			let intro = try JSONDecoder().decode(Survey.self, from: asset.data)
+			instructions = intro.questions
 
 			return intro
 		} catch {
@@ -79,15 +79,15 @@ open class InstructionNavigationController: UINavigationController, SurveyInputD
 		{
 			let instruction = instructions[index]
 			let vc:IntroViewController = IntroViewController()
-			vc.style = IntroViewControllerStyle(rawValue: instruction.style ?? "standard")!
+			vc.style = IntroViewControllerStyle(rawValue: instruction.style?.rawValue ?? "standard")!
 			vc.loadViewIfNeeded()
 			vc.nextButtonTitle = instruction.nextButtonTitle
             vc.nextButtonImage = instruction.nextButtonImage
 			self.pushViewController(vc, animated: true)
 //
 			vc.set(heading:     titleOverride ?? instruction.title,
-				   subheading:  instruction.subtitle,
-				   content:     instruction.preface)
+				   subheading:  instruction.subTitle,
+				   content:     instruction.prompt)
 			vc.inputDelegate = self
 			
 			return true

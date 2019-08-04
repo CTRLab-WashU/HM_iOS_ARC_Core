@@ -8,17 +8,19 @@
 
 import UIKit
 
-public class ACTodayProgressViewController: CustomViewController<ACTodayProgressView> {
+public class ACTodayProgressViewController: CustomViewController<ACTodayProgressView>, ACTodayProgressViewDelegate {
+	
+	
 	public struct Config{
 		public struct SessionData {
-			var started:Bool = false
-			var progress:Int = 0
-			var total:Int = 3
+			public var started:Bool = false
+			public var progress:Int = 0
+			public var total:Int = 3
 		}
 		
 		
 		
-		var sessionsCompleted:Int {
+		public var sessionsCompleted:Int {
 			var complete:Int = 0
 			for session in sessionData {
 				if session.progress == session.total {
@@ -29,7 +31,7 @@ public class ACTodayProgressViewController: CustomViewController<ACTodayProgress
 		}
 		
 		
-		var sessionsStarted:Int {
+		public var sessionsStarted:Int {
 			var started:Int = 0
 			for session in sessionData {
 				if session.started == true {
@@ -39,14 +41,19 @@ public class ACTodayProgressViewController: CustomViewController<ACTodayProgress
 			return started
 		}
 		
-		var totalSessions:Int = 4
-		var sessionData:[SessionData]
-		
+		public var totalSessions:Int = 4
+		public var sessionData:[SessionData] = []
+		public init() {
+			
+		}
 		
 	}
-	public init(with config:Config = testConfig) {
+	public init() {
 		super.init(nibName: nil, bundle: nil)
-		
+		guard let config = ACTodayProgressViewController.todaysProgress() else {
+			return
+		}
+		customView.delegate = self
 		let isComplete = config.sessionsStarted == config.totalSessions
 		if isComplete {
 			customView.set(completed: true)
@@ -57,6 +64,7 @@ public class ACTodayProgressViewController: CustomViewController<ACTodayProgress
 			customView.set(sessionsCompleted: config.sessionsCompleted)
 			customView.set(sessionsRemaining: config.totalSessions - config.sessionsStarted)
 		}
+		
 		for index in 0 ..< config.sessionData.count {
 			let session = config.sessionData[index]
 			
@@ -75,8 +83,71 @@ public class ACTodayProgressViewController: CustomViewController<ACTodayProgress
         // Do any additional setup after loading the view.
 		
     }
-    
+	
+	public func nextPressed() {
+		Arc.shared.nextAvailableState()
+	}
+	static public func todaysProgress() -> Config? {
+		let c = Arc.shared.studyController
+		guard let study = c.getCurrentStudyPeriod() else {
+			return nil
+		}
+		var config = ACTodayProgressViewController.Config()
+		
+		guard let currentSessionId = Arc.shared.currentTestSession else {
+			assertionFailure("No session running, add code to fetch previous session.")
+			return nil
+		}
+		let currentSession = c.get(session: currentSessionId)
+		var sessions = c.get(allSessionsForStudy: Int(study.studyID	))
+		if let d = currentSession?.sessionDayIndex {
+			sessions = sessions.filter {
+				return $0.sessionDayIndex == d
+			}
+		}
+		config.totalSessions = sessions.count
 
+		for sessionData in sessions {
+			let day = Int(sessionData.day)
+			
+			
+			let studyId = Int(study.studyID)
+			let week = Int(sessionData.week)
+			let session = Int(sessionData.session)
+			var progress = 0
+			var totalTest = 3
+			
+			if c.get(numberOfTestTakenOfType: .priceTest,
+				   inStudy: studyId,
+				   week:week,
+				   day:day,
+				   session: session) != 0 {
+				progress += 1
+			}
+			if c.get(numberOfTestTakenOfType: .gridTest,
+					 inStudy: studyId,
+					 week:week,
+					 day:day,
+					 session: session) != 0 {
+				progress += 1
+			}
+			if c.get(numberOfTestTakenOfType: .symbolsTest,
+					 inStudy: studyId,
+					 week:week,
+					 day:day,
+					 session: session) != 0 {
+				progress += 1
+			}
+			let started = (sessionData.missedSession || sessionData.startTime != nil || sessionData.expirationDate!.addingHours(hours: 2).timeIntervalSince1970 < Date().timeIntervalSince1970)
+			
+			config.sessionData.append(ACTodayProgressViewController.Config.SessionData(started:started,
+																					   progress: progress,
+																					   total: totalTest))
+		}
+		
+		return config
+		
+	}
     /*
     // MARK: - Navigation
 
@@ -88,10 +159,4 @@ public class ACTodayProgressViewController: CustomViewController<ACTodayProgress
     */
 
 }
-public var testConfig = ACTodayProgressViewController.Config(totalSessions: 4,
-																		 sessionData: [
-																			ACTodayProgressViewController.Config.SessionData(started: true, progress: 3, total: 3),
-																			ACTodayProgressViewController.Config.SessionData(started: true, progress: 3, total: 3),
-																			ACTodayProgressViewController.Config.SessionData(started: true, progress: 3, total: 3),
-																			ACTodayProgressViewController.Config.SessionData(started: true, progress: 3, total: 3)
-	])
+
