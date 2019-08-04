@@ -198,7 +198,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		let style = question.style ?? .none
 		switch style {
 			
-		case .instruction:
+		case .instruction, .test:
 			instructionStyle(question)
 		case .none:
 			questionStyle(question)
@@ -215,6 +215,8 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		case .symbols:
 			instructionStyle(question, presentableVc: SymbolsTutorialViewController())
 			
+			
+		
 			
 		}
 		

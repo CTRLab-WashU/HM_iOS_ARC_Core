@@ -10,7 +10,7 @@ import UIKit
 import HMMarkup
 import ArcUIKit
 public enum IntroViewControllerStyle : String {
-	case standard, dark, test, gridTest, symbolTest, priceTest
+	case standard, dark, test, grids, symbols, prices
 	
 	public func set(view:InfoView, heading:String?, subheading:String?, content:String?, template:[String:String] = [:]) {
 		switch self {
@@ -18,15 +18,40 @@ public enum IntroViewControllerStyle : String {
 			view.setHeading(heading)
 			view.setSubHeading(subheading)
 			view.setContentText(content, template: template)
-		case .test, .gridTest, .symbolTest, .priceTest:
+		case .test:
+			view.topSpacer.isHidden = false
+			
+			view.setHeading(subheading)
+			view.setContentText(content, template: template)
+			view.backgroundColor = UIColor(named:"Primary Info")
+			view.infoContent.alignment = .center
+			
+		case .grids:
 			view.setSubHeading(heading)
 			view.setHeading(subheading)
 			view.setSeparatorWidth(0.0)
 			view.setContentText(content, template: template)
 			view.backgroundColor = UIColor(named:"Primary Info")
 			view.infoContent.alignment = .leading
-			
-			
+			view.backgroundView.image = UIImage(named: "grids_bg", in: Bundle(for: view.classForCoder), compatibleWith: nil)
+
+		case .symbols:
+			view.setSubHeading(heading)
+			view.setHeading(subheading)
+			view.setSeparatorWidth(0.0)
+			view.setContentText(content, template: template)
+			view.backgroundColor = UIColor(named:"Primary Info")
+			view.infoContent.alignment = .leading
+			view.backgroundView.image = UIImage(named: "symbols_bg", in: Bundle(for: view.classForCoder), compatibleWith: nil)
+
+		case .prices:
+			view.setSubHeading(heading)
+			view.setHeading(subheading)
+			view.setSeparatorWidth(0.0)
+			view.setContentText(content, template: template)
+			view.backgroundColor = UIColor(named:"Primary Info")
+			view.infoContent.alignment = .leading
+			view.backgroundView.image = UIImage(named: "prices_bg", in: Bundle(for: view.classForCoder), compatibleWith: nil)
 		
 		case .dark:
 			view.setSubHeading(heading)
@@ -101,7 +126,7 @@ open class IntroViewController: CustomViewController<InfoView> {
 		
         
 		style.set(view: customView, heading: heading, subheading: subheading, content: content, template: template)
-		if style == .gridTest || style == .priceTest || style == .symbolTest {
+		if style == .grids || style == .prices || style == .symbols {
 			let button = HMMarkupButton()
 			button.setTitle("View a Tutorial", for: .normal)
 			Roboto.Style.bodyBold(button.titleLabel!, color:.white)
@@ -109,17 +134,17 @@ open class IntroViewController: CustomViewController<InfoView> {
 			button.addAction {[weak self] in
 				
 				//TODO: This will soon be depricated
-				if self?.style == .gridTest {
+				if self?.style == .grids {
 					self?.present(GridTestTutorialViewController(), animated: true) {
 						
 					}
 				}
-				if self?.style == .priceTest {
+				if self?.style == .prices {
 					self?.present(PricesTestTutorialViewController(), animated: true) {
 						
 					}
 				}
-				if self?.style == .symbolTest {
+				if self?.style == .symbols {
 					self?.present(SymbolsTutorialViewController(), animated: true) {
 						
 					}
@@ -163,7 +188,7 @@ open class IntroViewController: CustomViewController<InfoView> {
     }
 	open override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		if style != .standard {
+		if style != .standard && style != .test {
 			customView.setSeparatorWidth(0.15)
 		}
 
