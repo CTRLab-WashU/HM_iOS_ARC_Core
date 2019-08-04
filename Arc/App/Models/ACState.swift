@@ -20,7 +20,49 @@ public enum ACState : String, State, CaseIterable {
 	
 	static var tests:[ACState] {return [.gridTest, .priceTest, .symbolsTest] }
 	static public var testCount = 0
+	static public var testTaken:Int {
+		let c = Arc.shared.studyController
+		guard let study = c.getCurrentStudyPeriod() else {
+			return 0
+		}
+		let studyId = Int(study.studyID)
 
+		guard let currentSessionId = Arc.shared.currentTestSession else {
+			return 0
+		}
+		guard let sessionData = c.get(session: currentSessionId) else {
+			return 0
+		}
+		
+		let day = Int(sessionData.day)
+		
+		
+		let week = Int(sessionData.week)
+		let session = Int(sessionData.session)
+		var progress = 0
+		if c.get(numberOfTestTakenOfType: .priceTest,
+				 inStudy: studyId,
+				 week:week,
+				 day:day,
+				 session: session) != 0 {
+			progress += 1
+		}
+		if c.get(numberOfTestTakenOfType: .gridTest,
+				 inStudy: studyId,
+				 week:week,
+				 day:day,
+				 session: session) != 0 {
+			progress += 1
+		}
+		if c.get(numberOfTestTakenOfType: .symbolsTest,
+				 inStudy: studyId,
+				 week:week,
+				 day:day,
+				 session: session) != 0 {
+			progress += 1
+		}
+		return progress
+	}
 	
 	public func surveyTypeForState() -> SurveyType {
 		return SurveyType(rawValue: self.rawValue) ?? .unknown
@@ -91,7 +133,7 @@ public enum ACState : String, State, CaseIterable {
 			
 			let controller:InstructionNavigationController = .get()
 			controller.nextVc = vc
-			controller.titleOverride = "Test \(ACState.testCount) of 3"
+			controller.titleOverride = "Test \(ACState.testTaken + 1) of 3"
 			
 			controller.load(instructions: "TestingIntro-Grids")
 			newController = controller
@@ -101,7 +143,7 @@ public enum ACState : String, State, CaseIterable {
 			let vc:PricesTestViewController = .get()
 			let controller:InstructionNavigationController = .get()
 			controller.nextVc = vc
-			controller.titleOverride = "Test \(ACState.testCount) of 3"
+			controller.titleOverride = "Test \(ACState.testTaken + 1) of 3"
 			
 			controller.load(instructions: "TestingIntro-Prices")
 			
@@ -111,7 +153,7 @@ public enum ACState : String, State, CaseIterable {
 			let vc:SymbolsTestViewController = .get()
 			let controller:InstructionNavigationController = .get()
 			controller.nextVc = vc
-			controller.titleOverride = "Test \(ACState.testCount) of 3"
+			controller.titleOverride = "Test \(ACState.testTaken + 1) of 3"
 			
 			controller.load(instructions: "TestingIntro-Symbols")
 			
@@ -119,8 +161,7 @@ public enum ACState : String, State, CaseIterable {
 		case .home:
 			break
 		case .thankYou:
-			let vc:FinishedNavigationController = .get()
-			vc.loadSurvey(template: "finished")
+			let vc:FinishedNavigationController = FinishedNavigationController(file: "finished")
 			ACState.testCount = 0
 			newController = vc
 		
