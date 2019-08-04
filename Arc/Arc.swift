@@ -111,11 +111,11 @@ open class Arc : ArcApi {
         self.environment = environment
         
         HMAPI.baseUrl = environment.baseUrl ?? ""
-        
+		CoreDataStack.useMockContainer = environment.mockData
+
         _ = MHController.dataContext
         
         _ = HMAPI.shared
-        CoreDataStack.useMockContainer = environment.mockData
         HMRestAPI.shared.blackHole = environment.blockApiRequests
         Arc.shared.appNavigation = environment.appNavigation
         Arc.shared.studyController = environment.studyController
