@@ -55,12 +55,25 @@ public struct Math{
 
 public class Animate {
 	
+	public struct Config {
+		public var delay:Double = 0.0
+		public var duration:Double = 0.2
+		public var curve:Math.Curve = .easeOut
+		public var translation:CGPoint?
+		public var rotation:CGFloat?
+		public var scale:CGSize?
+		
+		public init() {
+			
+		}
+	}
+	
 	
 	private var _delay:Double = 0.0
 	private var _duration:Double = 0.2
-	private var _curve:Math.Curve = .linear
+	private var _curve:Math.Curve = .easeOut
 	private var _progress:Double = 0
-	
+	var id:String = UUID().uuidString
 	public var time:Double {
 		get {
 			return max(0.0, (updater?.time ?? 0.0) - (updater?.delay ?? 0.0))
@@ -70,6 +83,11 @@ public class Animate {
 		}
 	}
 	fileprivate var updater:UpdateLooper?
+	
+	
+	
+	
+	
 	public init() {
 		
 		
@@ -98,6 +116,7 @@ public class Animate {
 	public func run(_ update:@escaping (Double)->Bool) -> Animate {
 		var s = self
 		s.updater = UpdateLooper()
+		s.updater?.id = id
 		s.updater?.time = 0
 		s.updater?.maxTime = _duration
 		s.updater?.curve = _curve
@@ -139,11 +158,11 @@ public class Animate {
 		var delay:Double = 0
 		var maxTime:Double = 1.0
 		var curve:Math.Curve = .linear
-		private var id = UUID().uuidString
+		public var id = UUID().uuidString
 		init() {
 		}
 		func start() {
-			print("started:\(id)")
+			//print("started:\(id)")
 			displayLink?.invalidate()
 			displayLink = nil
 			displayLink = CADisplayLink(target: self, selector: #selector(loop))
@@ -159,9 +178,9 @@ public class Animate {
 			
 			displayLink?.invalidate()
 			displayLink = nil
-			
+			UIView.animations.removeValue(forKey: id)
 			update = nil
-			print("stopped:\(id)")
+			//print("stopped:\(id)")
 		}
 		public func run(_ update:@escaping (Double)->Bool) {
 			
@@ -170,7 +189,7 @@ public class Animate {
 			start()
 		}
 		@objc private func loop() {
-			print("updating: \(id):\(time)")
+			//print("updating: \(id):\(time)")
 			guard let dl = displayLink else {
 				
 				stop()
@@ -216,4 +235,75 @@ public class Animate {
 		}
 	}
 	
+}
+public extension UIView {
+	static var animations:[String:Animate] = [:]
+	
+	
+	@discardableResult func fadeIn(_ config:Animate.Config) -> UIView {
+		return fadeIn(duration: config.duration, delay: config.delay)
+	}
+	
+	@discardableResult func fadeIn(duration:Double = 0.5, delay:Double = 0.0) -> UIView {
+		
+		let view = self
+		view.alpha = 0
+		let animation = Animate()
+		UIView.animations[animation.id] = animation.delay(delay)
+			.duration(duration)
+			.curve(.easeOut)
+			.run({  (time) -> Bool in
+				
+				
+				view.alpha = CGFloat(time)
+				
+				return true
+			})
+		return view
+	}
+	
+	@discardableResult func fadeOut(_ config:Animate.Config) -> UIView {
+		return fadeOut(duration: config.duration, delay: config.delay)
+	}
+	
+	@discardableResult func fadeOut(duration:Double = 0.5, delay:Double = 0.0)  -> UIView{
+		let animation = Animate()
+		let view = self
+
+		UIView.animations[animation.id] = animation.delay(delay)
+			.duration(duration)
+			.curve(.easeOut)
+			.run({  (time) -> Bool in
+				
+				
+				view.alpha = CGFloat(1.0 - time)
+				
+				return true
+			})
+		return view
+	}
+	
+	@discardableResult func translate(_ config:Animate.Config) -> UIView {
+		return translate(duration: config.duration, translation: config.translation ?? CGPoint(x: 0, y: 40.0), delay: config.delay)
+		
+	}
+	
+	@discardableResult func translate(duration:Double = 0.5, translation:CGPoint = CGPoint(x: 0, y: 40.0), delay:Double = 0.0) -> UIView {
+		let animation = Animate()
+		let view = self
+
+		UIView.animations[animation.id] = animation.delay(delay)
+			.duration(duration)
+			.curve(.easeOut)
+			.run({  (time) -> Bool in
+				
+				let value = CGFloat(1.0 - time)
+				
+				view.transform = CGAffineTransform.identity.translatedBy(x: translation.x * value, y: translation.y * value)
+				
+				return true
+			})
+		return view
+
+	}
 }
