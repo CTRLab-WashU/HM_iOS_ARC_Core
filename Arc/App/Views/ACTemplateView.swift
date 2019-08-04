@@ -40,13 +40,13 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 		let v = self
 		backgroundView = image {
 			$0.backgroundColor = .clear
-			$0.contentMode = .scaleAspectFit
+			$0.contentMode = .scaleAspectFill
 			$0.layout {
 				
 				// select an anchor give a priority of 999 (almost Required)
 				$0.top == v.topAnchor ~ 999
 				$0.trailing == v.trailingAnchor ~ 999
-				$0.bottom == v.bottomAnchor ~ 999
+				$0.bottom <= v.bottomAnchor ~ 999
 				$0.leading == v.leadingAnchor ~ 999
 				
 			}
