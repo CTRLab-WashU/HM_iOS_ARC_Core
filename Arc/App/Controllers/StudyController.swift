@@ -98,17 +98,17 @@ open class StudyController : MHController {
 	// Creates a new Arc, sets the visitStartDate and visitEndDate, increments DNDataManager's visitCount
 	
 	@discardableResult
-	open func createStudyPeriod(forDate: Date) -> StudyPeriod
+	open func createStudyPeriod(forDate: Date, studyId:Int) -> StudyPeriod
 	{
 		
 		HMLog("Creating StudyPeriod \(self.studyCount) at date: \(DateFormatter.localizedString(from: forDate, dateStyle: .short, timeStyle: .none))");
 		let newStudyPeriod:StudyPeriod = new()
-		newStudyPeriod.studyID = Int64(studyCount);
+		newStudyPeriod.studyID = Int64(studyId);
 		newStudyPeriod.startDate = forDate.startOfDay();
 		newStudyPeriod.endDate = forDate.startOfDay().addingDays(days: DAYS_PER_STUDY).endOfDay();
 		newStudyPeriod.userStartDate = newStudyPeriod.startDate;
 		newStudyPeriod.userEndDate = newStudyPeriod.endDate;
-		studyCount = studyCount + 1;
+		
         
 		return newStudyPeriod;
 	}
@@ -420,7 +420,7 @@ open class StudyController : MHController {
         var studyPeriods:Array<StudyPeriod> = Array();
 		while ArcStartDays[nextId] != nil
 		{
-			let sp = createStudyPeriod(forDate: nextStartDate);
+			let sp = createStudyPeriod(forDate: nextStartDate, studyId: nextId);
             studyPeriods.append(sp);
 			nextId += 1;
 			if let days = ArcStartDays[nextId]
