@@ -21,11 +21,9 @@
                 <outlet property="choice1" destination="S44-b9-i8k" id="fE2-FJ-dh8"/>
                 <outlet property="choice2" destination="rhg-DU-d6k" id="afU-nn-h88"/>
                 <outlet property="choiceContainer" destination="q7T-FB-Bkt" id="N72-NJ-tyM"/>
-                <outlet property="messageLabel" destination="dkS-Oy-sCV" id="1lv-a3-beN"/>
                 <outlet property="option1" destination="lg3-kg-K0w" id="Hta-6S-KQQ"/>
                 <outlet property="option2" destination="4bH-QF-14l" id="Okk-65-5zm"/>
                 <outlet property="option3" destination="d7b-eg-ZNZ" id="NJ2-QY-QlP"/>
-                <outlet property="orLabel" destination="hU0-74-1FC" id="gcB-ct-zZL"/>
                 <outlet property="selectionContainer" destination="Kmp-AY-gM2" id="VYY-0l-yQv"/>
                 <outlet property="view" destination="cvj-uP-Z3K" id="8mC-37-43S"/>
             </connections>
