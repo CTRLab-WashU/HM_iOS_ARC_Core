@@ -287,7 +287,6 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 										secondary: UIColor(named:"Primary Gradient"),
 										textColor: .white)
 		vc.customView.setHeading(question.prompt)
-		vc.customView.setSeparatorWidth(0.15)
 		vc.customView.setContentLabel(question.detail)
 		
 		if let input = question.type?.create(inputWithQuestion: question) as? (UIView & SurveyInput) {
@@ -298,6 +297,8 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 
         if let style = question.style, style == .impasse
         {
+			vc.customView.setSeparatorWidth(0.15)
+
             vc.customView.nextButton?.isEnabled = false;
             vc.customView.nextButton?.isHidden = true;
         }
