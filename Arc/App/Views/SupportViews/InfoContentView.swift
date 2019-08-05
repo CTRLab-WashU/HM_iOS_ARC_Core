@@ -48,6 +48,13 @@ public class InfoContentView: UIStackView {
 			}
 		}
 	}
+	public func addSpacer()
+	{
+		view {
+			$0.backgroundColor = .clear
+			
+		}
+	}
 	public func setHeader(_ text:String?)
 	{
 		if let view = headingLabel {
@@ -56,7 +63,7 @@ public class InfoContentView: UIStackView {
 			headingLabel = acLabel {
 				$0.textAlignment = .left
 				
-				Roboto.Style.heading($0,
+				Roboto.Style.headingMedium($0,
 										 color:textColor)
 				$0.text = text
 				

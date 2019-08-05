@@ -92,6 +92,9 @@ public class InfoView: ACTemplateView {
 	public func setSeparatorWidth(_ width:CGFloat) {
 		infoContent.setSeparatorWidth(width)
 	}
+	public func addSpacer() {
+		infoContent.addSpacer()
+	}
 	public func setSubHeading(_ text:String?) {
 		infoContent.setSubHeader(text)
 

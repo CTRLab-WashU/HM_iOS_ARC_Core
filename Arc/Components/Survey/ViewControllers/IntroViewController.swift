@@ -19,10 +19,22 @@ public enum IntroViewControllerStyle : String {
 			view.setSubHeading(subheading)
 			view.setContentText(content, template: template)
 		case .test:
-			view.topSpacer.isHidden = false
-			
+			view.addSpacer()
 			view.setHeading(subheading)
-			view.setContentText(content, template: template)
+			view.addSpacer()
+			view.setContentLabel(content, template: template)
+			
+			Roboto.Style.headingBlack(			view.infoContent.headingLabel!
+				, color: ACColor.secondary)
+			
+			view.infoContent.headingLabel!.layout {
+				$0.centerY == view.centerYAnchor - 40
+			}
+			view.nextButton!.layout {
+				$0.bottom == view.safeAreaLayoutGuide.bottomAnchor - 24
+			}
+			view.infoContent.headingLabel?.textAlignment = .center
+			view.infoContent.contentLabel?.textAlignment = .center
 			view.backgroundColor = UIColor(named:"Primary Info")
 			view.infoContent.alignment = .center
 			

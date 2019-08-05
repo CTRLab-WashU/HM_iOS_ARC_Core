@@ -86,7 +86,7 @@ public class ACHomeView: ACTemplateView {
 				$0.axis = .vertical
 				$0.distribution = .fill
 				self?.headingLabel = $0.acLabel {
-					Roboto.Style.heading($0)
+					Roboto.Style.headingMedium($0)
 				}
 				self?.separator = $0.acHorizontalBar {
 					$0.relativeWidth = relWidth

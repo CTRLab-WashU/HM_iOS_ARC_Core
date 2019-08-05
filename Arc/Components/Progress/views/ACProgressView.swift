@@ -31,7 +31,7 @@ class ACProgressView: ACTemplateView {
 					$0.spacing = 20
 					
 					$0.acLabel {
-						Roboto.Style.heading($0, color: .black)
+						Roboto.Style.headingMedium($0, color: .black)
 						$0.text = "Today's Sessions".localized("progress_daily_header")
 						
 					}
@@ -90,7 +90,7 @@ class ACProgressView: ACTemplateView {
 					$0.isLayoutMarginsRelativeArrangement = true
 					$0.layoutMargins = UIEdgeInsets(top: 24, left: 24, bottom: 24, right: 24)
 					$0.acLabel {
-						Roboto.Style.heading($0, color: .black)
+						Roboto.Style.headingMedium($0, color: .black)
 						$0.text = "This Week".localized("progress_weekly_header")
 						
 					}

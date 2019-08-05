@@ -49,9 +49,13 @@ public struct Roboto {
 			.boldFont()
 			
 		
-		public static let heading = UIFont(name: "Roboto", size: 26)!
+		public static let headingMedium = UIFont(name: "Roboto", size: 26)!
 			.family(Roboto.family)
 			.face(Roboto.Face.medium)
+			.size(26)
+		public static let headingBlack = UIFont(name: "Roboto", size: 26)!
+			.family(Roboto.family)
+			.face(Roboto.Face.black)
 			.size(26)
 		public static let headingBold = UIFont(name: "Roboto", size: 26)!
 			.family(Roboto.family)
@@ -175,14 +179,19 @@ public struct Roboto {
 			label.numberOfLines = 0
 			label.textColor = color
 		}
-		public static func heading(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
-			label.font = Roboto.Font.heading
+		public static func headingMedium(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
+			label.font = Roboto.Font.headingMedium
 			label.numberOfLines = 0
 			
 			label.textColor = color
 		}
 		public static func headingBold(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
 			label.font = Roboto.Font.headingBold
+			label.numberOfLines = 0
+			label.textColor = color
+		}
+		public static func headingBlack(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
+			label.font = Roboto.Font.headingBlack
 			label.numberOfLines = 0
 			label.textColor = color
 		}
@@ -195,7 +204,7 @@ public struct Roboto {
 			label.textColor = color
 		}
 		public static func heading(_ label:UITextView, color:UIColor? = UIColor(named:"Primary Text")) {
-			label.font = Roboto.Font.heading
+			label.font = Roboto.Font.headingMedium
 			
 			label.textColor = color
 		}
