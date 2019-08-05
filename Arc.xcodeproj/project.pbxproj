@@ -209,6 +209,8 @@
 		C56D6C5922CD0DFE00C3F8EA /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56D6C5822CD0DFE00C3F8EA /* TutorialView.swift */; };
 		C56D6C5B22CD2B9F00C3F8EA /* ACTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56D6C5A22CD2B9F00C3F8EA /* ACTutorialViewController.swift */; };
 		C56D6C5D22CD3FE800C3F8EA /* PricesTestTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56D6C5C22CD3FE800C3F8EA /* PricesTestTutorialViewController.swift */; };
+		C578771322F8BED10068E46B /* TestCountDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C578771222F8BED10068E46B /* TestCountDownView.swift */; };
+		C578771522F8BF260068E46B /* TestCountDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C578771422F8BF260068E46B /* TestCountDownViewController.swift */; };
 		C578B8D622A859A60038DDF0 /* ACView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C578B8D522A859A60038DDF0 /* ACView.swift */; };
 		C57E9C862236C232009F6228 /* StartDateShiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E9C852236C232009F6228 /* StartDateShiftViewController.swift */; };
 		C58129F822E20BE000CD1883 /* TutorialCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58129F722E20BE000CD1883 /* TutorialCompleteView.swift */; };
@@ -507,6 +509,8 @@
 		C56D6C5822CD0DFE00C3F8EA /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		C56D6C5A22CD2B9F00C3F8EA /* ACTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTutorialViewController.swift; sourceTree = "<group>"; };
 		C56D6C5C22CD3FE800C3F8EA /* PricesTestTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricesTestTutorialViewController.swift; sourceTree = "<group>"; };
+		C578771222F8BED10068E46B /* TestCountDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCountDownView.swift; sourceTree = "<group>"; };
+		C578771422F8BF260068E46B /* TestCountDownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCountDownViewController.swift; sourceTree = "<group>"; };
 		C578B8D522A859A60038DDF0 /* ACView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACView.swift; sourceTree = "<group>"; };
 		C57E9C852236C232009F6228 /* StartDateShiftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartDateShiftViewController.swift; sourceTree = "<group>"; };
 		C57E9C872236CE67009F6228 /* ACPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPickerView.swift; sourceTree = "<group>"; };
@@ -1275,6 +1279,7 @@
 				C593227022E890DA00528FF5 /* ACProgressView.swift */,
 				C53B123922F34C1700BACA9A /* ACTodayProgressView.swift */,
 				C5E7212922F10D9C004B9E26 /* TestProgressView.swift */,
+				C578771222F8BED10068E46B /* TestCountDownView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -1285,6 +1290,7 @@
 				C54E8E2522E88DC60080BFC1 /* ProgressViewController.swift */,
 				C53B123722F348F900BACA9A /* ACTodayProgressViewController.swift */,
 				C5E7212722F10D25004B9E26 /* TestProgressViewController.swift */,
+				C578771422F8BF260068E46B /* TestCountDownViewController.swift */,
 			);
 			path = Viewcontrollers;
 			sourceTree = "<group>";
@@ -1729,6 +1735,7 @@
 				C5E3925022EB76AD007CB3B6 /* ResendCodeViewController.swift in Sources */,
 				C54AE9D121C81B5F00DEC360 /* ACState.swift in Sources */,
 				C54D104822C28A1D00B43E42 /* ACPickerView.swift in Sources */,
+				C578771522F8BF260068E46B /* TestCountDownViewController.swift in Sources */,
 				C523B38622CA76450074337D /* UIViewController + CustomView.swift in Sources */,
 				C54D104222C28A1D00B43E42 /* PasswordView.swift in Sources */,
 				C54AE9E321C81B5F00DEC360 /* Algorithms.swift in Sources */,
@@ -1778,6 +1785,7 @@
 				C54AEA1F21C81B5F00DEC360 /* GridTestCells.swift in Sources */,
 				C54AEA3321C81B5F00DEC360 /* ScheduleEntry+CoreDataClass.swift in Sources */,
 				C54AEA3421C81B5F00DEC360 /* SchedulerNavigationController.swift in Sources */,
+				C578771322F8BED10068E46B /* TestCountDownView.swift in Sources */,
 				C54D103222C28A1D00B43E42 /* SurveyInputView.swift in Sources */,
 				C54AE9CF21C81B5F00DEC360 /* ACEnvironment.swift in Sources */,
 				C54AE9EE21C81B5F00DEC360 /* ToggleButton.swift in Sources */,

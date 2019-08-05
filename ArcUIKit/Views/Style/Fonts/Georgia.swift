@@ -26,6 +26,9 @@ public struct Georgia {
 		static public let largeTitle = UIFont(name: "Georgia", size: 42)!
 			.family(Georgia.family)
 			.size(42)
+		static public let veryLargeTitle = UIFont(name: "Georgia", size: 42)!
+			.family(Georgia.family)
+			.size(96)
 
 		
 	}
@@ -44,6 +47,12 @@ public struct Georgia {
 		}
 		static public func largeTitle(_ label:UILabel, color:UIColor = #colorLiteral(red: 0.2349999994, green: 0.2349999994, blue: 0.2349999994, alpha: 1)) {
 			label.font = Georgia.Font.largeTitle
+			label.numberOfLines = 0
+			label.textColor = color
+			
+		}
+		static public func veryLargeTitle(_ label:UILabel, color:UIColor = ACColor.primaryInfo) {
+			label.font = Georgia.Font.veryLargeTitle
 			label.numberOfLines = 0
 			label.textColor = color
 			

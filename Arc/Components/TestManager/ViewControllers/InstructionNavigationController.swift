@@ -106,7 +106,8 @@ open class InstructionNavigationController: UINavigationController, SurveyInputD
 				app.appNavigation.navigate(state: nextState, direction: .toRight)
 			} else {
 				if let vc = nextVc {
-					app.appNavigation.navigate(vc: vc, direction: .toRight)
+					let countVc = TestCountDownViewController(nextVc: vc)
+					app.appNavigation.navigate(vc: countVc, direction: .toRight)
 
 				} else {
 					fatalError("Failed to set either state or view controller.")
