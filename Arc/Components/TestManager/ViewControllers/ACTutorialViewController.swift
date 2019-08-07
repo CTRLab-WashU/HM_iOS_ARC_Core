@@ -78,7 +78,7 @@ class ACTutorialViewController: CustomViewController<TutorialView>, TutorialComp
 	var duration:Double = 10.0
 	override func viewDidLoad() {
         super.viewDidLoad()
-		tutorialAnimation = tutorialAnimation.duration(duration)
+		tutorialAnimation = tutorialAnimation.duration(duration).curve(.linear)
 		state = TutorialState()
 		customView.closeButton.addAction { [weak self] in
 			self?.dismiss(animated: true) {
