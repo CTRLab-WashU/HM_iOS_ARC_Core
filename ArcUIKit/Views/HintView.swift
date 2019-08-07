@@ -10,6 +10,7 @@ import UIKit
 import HMMarkup
 public class HintView : IndicatorView {
 	var titleLabel:ACLabel!
+	private var bar:ACHorizontalBar!
 	public var button:ACButton!
 	public var content:String? {
 		get {
@@ -27,7 +28,7 @@ public class HintView : IndicatorView {
 		}
 		set {
 			button.isHidden = (newValue == nil)
-			
+			bar.isHidden = button.isHidden
 			button.setTitle(newValue, for: .normal)
 			Roboto.PostProcess.link(button)
 
@@ -37,18 +38,29 @@ public class HintView : IndicatorView {
 	
 	public init() {
 		super.init(frame: .zero)
-		titleLabel = acLabel {
-			$0.isHidden = true
-			$0.textAlignment = .center
-			Roboto.Style.body($0, color:.black)
+		stack {
+			
+			$0.isLayoutMarginsRelativeArrangement = true
+			$0.layoutMargins = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+			titleLabel = $0.acLabel {
+				$0.isHidden = true
+				$0.textAlignment = .center
+				Roboto.Style.body($0, color:.black)
+				
+			}
 		}
-		acHorizontalBar {
+		
+		bar = acHorizontalBar {
+			$0.isHidden = true
 			$0.relativeWidth = 1.0
 			$0.layout {
 				$0.height == 2
 			}
 		}
 		button = acButton {
+			$0.layout {
+				$0.height == 36 ~ 500
+			}
 			$0.isHidden = true
 			$0.primaryColor = .clear
 			$0.secondaryColor = .clear
@@ -59,7 +71,7 @@ public class HintView : IndicatorView {
 			}
 		}
 		container?.isLayoutMarginsRelativeArrangement = true
-		container?.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+		container?.layoutMargins = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
 		configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
 											 secondaryColor: UIColor(named:"HintFill")!,
 											 textColor: .black,

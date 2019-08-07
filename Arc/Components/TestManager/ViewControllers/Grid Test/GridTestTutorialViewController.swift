@@ -374,6 +374,44 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 	func removeHint(hint:String) {
 		_ = state.removeCondition(with: hint)
 	}
+	func addDoubleHint(hint:String, seconds:TimeInterval = 3.0) {
+		let time = tutorialAnimation.time + seconds
+		print("HINT:", time, ":",  progress(seconds:time))
+		state.addCondition(atTime: progress(seconds:time), flagName: hint) {
+			[weak self] in
+			guard let weakSelf = self else {
+				return
+			}
+			weakSelf.tutorialAnimation.pause()
+			let index = weakSelf.test.symbolIndexPaths[min(2, weakSelf.gridSelected)]
+			guard let cell = weakSelf.test.overlayCell(at: index) else {
+				return
+			}
+			weakSelf.currentHint = weakSelf.view.window?.hint {
+				$0.content  = "".localized("popup_tutorial_boxhint")
+				
+				
+				$0.layout {
+					$0.centerX == weakSelf.view.centerXAnchor
+					$0.width == 252
+					
+					if index.row/5 > 2 {
+						//If above
+						$0.bottom == cell.topAnchor + 40
+						
+					} else {
+						
+						$0.top == cell.bottomAnchor + 40
+						
+					}
+					
+				}
+			}
+			
+		}
+		
+		
+	}
 	func addHint(hint:String, seconds:TimeInterval = 3.0) {
 		let time = tutorialAnimation.time + seconds
 		print("HINT:", time, ":",  progress(seconds:time))
