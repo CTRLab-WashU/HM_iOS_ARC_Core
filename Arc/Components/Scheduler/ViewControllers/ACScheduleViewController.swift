@@ -63,7 +63,7 @@ public class ACScheduleViewController : BasicSurveyViewController {
     public var shouldLimitWakeTime = false
     public var minWakeTime = 8
     public var maxWakeTime = 18
-
+	public var shouldTestImmediately = true
     
     public override init(file: String, surveyId:String? = nil) {
         
@@ -260,7 +260,7 @@ public class ACScheduleViewController : BasicSurveyViewController {
         
         
         //If we have a latest test then we shouldn't be going straight into anything.
-        if Arc.shared.studyController.latestTest == nil && isChangingSchedule == false{
+        if Arc.shared.studyController.latestTest == nil && isChangingSchedule == false && shouldTestImmediately{
             _ = Arc.shared.startTestIfAvailable()
         }
         Arc.shared.nextAvailableState()
