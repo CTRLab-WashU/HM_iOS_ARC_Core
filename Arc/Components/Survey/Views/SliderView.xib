@@ -28,7 +28,7 @@
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ts4-ZP-owV">
                             <rect key="frame" x="0.0" y="32" width="346" height="50"/>
                             <subviews>
-                                <view contentMode="scaleToFill" verticalHuggingPriority="252" translatesAutoresizingMaskIntoConstraints="NO" id="xxa-ff-uc8" customClass="BorderedView" customModule="Arc" customModuleProvider="target">
+                                <view hidden="YES" contentMode="scaleToFill" verticalHuggingPriority="252" translatesAutoresizingMaskIntoConstraints="NO" id="xxa-ff-uc8" customClass="BorderedView" customModule="Arc" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="346" height="50"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SHM-bd-kN4">

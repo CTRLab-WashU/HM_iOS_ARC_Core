@@ -67,7 +67,6 @@ class TutorialState {
 
 
 class ACTutorialViewController: CustomViewController<TutorialView>, TutorialCompleteViewDelegate {
-	var currentHint:HintView?
 	var tutorialAnimation:Animate = Animate()
 	var progress:CGFloat = 0 {
 		didSet {

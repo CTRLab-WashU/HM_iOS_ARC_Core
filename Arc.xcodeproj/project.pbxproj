@@ -202,6 +202,7 @@
 		C54E8E2622E88DC60080BFC1 /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54E8E2522E88DC60080BFC1 /* ProgressViewController.swift */; };
 		C556BA2D22CA4B3D0057B54B /* ACTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C556BA2C22CA4B3D0057B54B /* ACTemplateView.swift */; };
 		C556BA2F22CA5B4C0057B54B /* ACHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C556BA2E22CA5B4C0057B54B /* ACHomeView.swift */; };
+		C56057F622F9F6AC00EDA919 /* ProgressFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56057F522F9F6AC00EDA919 /* ProgressFlag.swift */; };
 		C56BBCA3221490DF0025A318 /* ACTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56BBCA2221490DF0025A318 /* ACTextView.swift */; };
 		C56BBCA52214AF5B0025A318 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56BBCA42214AF5B0025A318 /* Common.swift */; };
 		C56D6C5422CBA6E000C3F8EA /* UIView + Pulse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56D6C5322CBA6E000C3F8EA /* UIView + Pulse.swift */; };
@@ -240,6 +241,7 @@
 		C593227522E8BB0F00528FF5 /* AC2FAuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C593227422E8BB0F00528FF5 /* AC2FAuthenticationViewController.swift */; };
 		C593227B22EA397C00528FF5 /* ScheduleEndViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C593227922EA397B00528FF5 /* ScheduleEndViewController.xib */; };
 		C593227C22EA397C00528FF5 /* ScheduleEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C593227A22EA397C00528FF5 /* ScheduleEndViewController.swift */; };
+		C59D6EEF22FA21B20037B671 /* ACHomeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59D6EEE22FA21B20037B671 /* ACHomeTabViewController.swift */; };
 		C5A43CCF22CA648700C10BC0 /* ACHorizontalBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A43CCE22CA648700C10BC0 /* ACHorizontalBar.swift */; };
 		C5B2601C22135F7300BFF778 /* ArcUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B2601322135F7200BFF778 /* ArcUIKit.framework */; };
 		C5B2602122135F7300BFF778 /* ArcUIKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2602022135F7300BFF778 /* ArcUIKitTests.swift */; };
@@ -502,6 +504,7 @@
 		C54E8E2522E88DC60080BFC1 /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		C556BA2C22CA4B3D0057B54B /* ACTemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTemplateView.swift; sourceTree = "<group>"; };
 		C556BA2E22CA5B4C0057B54B /* ACHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACHomeView.swift; sourceTree = "<group>"; };
+		C56057F522F9F6AC00EDA919 /* ProgressFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressFlag.swift; sourceTree = "<group>"; };
 		C56BBCA2221490DF0025A318 /* ACTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTextView.swift; sourceTree = "<group>"; };
 		C56BBCA42214AF5B0025A318 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		C56D6C5322CBA6E000C3F8EA /* UIView + Pulse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Pulse.swift"; sourceTree = "<group>"; };
@@ -529,6 +532,7 @@
 		C593227422E8BB0F00528FF5 /* AC2FAuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AC2FAuthenticationViewController.swift; sourceTree = "<group>"; };
 		C593227922EA397B00528FF5 /* ScheduleEndViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScheduleEndViewController.xib; sourceTree = "<group>"; };
 		C593227A22EA397C00528FF5 /* ScheduleEndViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleEndViewController.swift; sourceTree = "<group>"; };
+		C59D6EEE22FA21B20037B671 /* ACHomeTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACHomeTabViewController.swift; sourceTree = "<group>"; };
 		C5A43CCE22CA648700C10BC0 /* ACHorizontalBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACHorizontalBar.swift; sourceTree = "<group>"; };
 		C5B2601322135F7200BFF778 /* ArcUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ArcUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5B2601522135F7300BFF778 /* ArcUIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArcUIKit.h; sourceTree = "<group>"; };
@@ -1046,6 +1050,7 @@
 		C54AE96D21C81B5C00DEC360 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C59D6EEE22FA21B20037B671 /* ACHomeTabViewController.swift */,
 				C54AE96E21C81B5C00DEC360 /* ACContactNavigationController.swift */,
 				C54AE96F21C81B5C00DEC360 /* ACContactViewController.xib */,
 				C54AE97021C81B5C00DEC360 /* ACContactViewController.swift */,
@@ -1268,6 +1273,7 @@
 			children = (
 				C54E8E2422E88D910080BFC1 /* Viewcontrollers */,
 				C54E8E1422E7906F0080BFC1 /* views */,
+				C56057F722F9F6B100EDA919 /* Models */,
 			);
 			path = Progress;
 			sourceTree = "<group>";
@@ -1303,6 +1309,14 @@
 				C593227222E8916300528FF5 /* BlockProgressview.swift */,
 			);
 			path = "supporting views";
+			sourceTree = "<group>";
+		};
+		C56057F722F9F6B100EDA919 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C56057F522F9F6AC00EDA919 /* ProgressFlag.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		C58129F922E244BF00CD1883 /* Grid Test */ = {
@@ -1742,6 +1756,7 @@
 				C54AEA0D21C81B5F00DEC360 /* InstructionNavigationController.swift in Sources */,
 				C5E7212A22F10D9C004B9E26 /* TestProgressView.swift in Sources */,
 				C56D6C5B22CD2B9F00C3F8EA /* ACTutorialViewController.swift in Sources */,
+				C56057F622F9F6AC00EDA919 /* ProgressFlag.swift in Sources */,
 				C54AEA3E21C81B5F00DEC360 /* IntroViewController.swift in Sources */,
 				4CB0BAC522E8FA7B00ABB348 /* ContactInfoResponse.swift in Sources */,
 				C54AEA3221C81B5F00DEC360 /* ScheduleEntry+Extensions.swift in Sources */,
@@ -1759,6 +1774,7 @@
 				C54D103A22C28A1D00B43E42 /* MultilineTextView.swift in Sources */,
 				C54AE9F921C81B5F00DEC360 /* AppController.swift in Sources */,
 				C56D6C5922CD0DFE00C3F8EA /* TutorialView.swift in Sources */,
+				C59D6EEF22FA21B20037B671 /* ACHomeTabViewController.swift in Sources */,
 				C54D103322C28A1D00B43E42 /* ContainerButton.swift in Sources */,
 				C54AE9EA21C81B5F00DEC360 /* HMRequestHelper.swift in Sources */,
 				C5E1E34F2253E84900255812 /* ACWakeSurveyViewController.swift in Sources */,
@@ -2230,7 +2246,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9RQ4636JA2;
 				INFOPLIST_FILE = ArcTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2249,7 +2265,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9RQ4636JA2;
 				INFOPLIST_FILE = ArcTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

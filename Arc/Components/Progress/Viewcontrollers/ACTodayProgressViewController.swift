@@ -50,6 +50,8 @@ public class ACTodayProgressViewController: CustomViewController<ACTodayProgress
 	}
 	public init() {
 		super.init(nibName: nil, bundle: nil)
+		set(flag: .baseline_completed)
+		//Todo: Have this injected instead this behavior is needed elsewhere in the app.
 		guard let config = ACTodayProgressViewController.todaysProgress() else {
 			return
 		}

@@ -1,6 +1,6 @@
 //
 //  SignatureView.swift
-//  CRI
+//  ARC
 //
 //  Created by Philip Hayes on 3/5/19.
 //  Copyright © 2019 healthyMedium. All rights reserved.

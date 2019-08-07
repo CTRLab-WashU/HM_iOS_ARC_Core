@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ArcUIKit
+
 
 open class ArcViewController: UIViewController {
 	public var app:Arc {
@@ -17,13 +19,21 @@ open class ArcViewController: UIViewController {
 			
 		}
 	}
+	public var currentHint:HintView?
     override open func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
-
+	open func get(flag:ProgressFlag) -> Bool {
+		return app.appController.flags[flag.rawValue] ?? false
+	}
+	open func set(flag:ProgressFlag) {
+		app.appController.flags[flag.rawValue] = true
+	}
+	open func remove(flag:ProgressFlag) {
+		app.appController.flags[flag.rawValue] = false
+	}
     /*
     // MARK: - Navigation
 

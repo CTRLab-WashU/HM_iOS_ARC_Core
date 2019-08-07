@@ -42,6 +42,12 @@ public class HintView : IndicatorView {
 			$0.textAlignment = .center
 			Roboto.Style.body($0, color:.black)
 		}
+		acHorizontalBar {
+			$0.relativeWidth = 1.0
+			$0.layout {
+				$0.height == 2
+			}
+		}
 		button = acButton {
 			$0.isHidden = true
 			$0.primaryColor = .clear

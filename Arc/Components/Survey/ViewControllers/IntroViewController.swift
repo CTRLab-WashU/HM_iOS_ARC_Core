@@ -87,6 +87,7 @@ open class IntroViewController: CustomViewController<InfoView> {
     var subheading:String?
     var content:String?
 	var nextButtonTitle:String?
+	var tutorialButton:HMMarkupButton?
 	weak var inputDelegate:SurveyInputDelegate? {
 		get {
 			return customView.inputDelegate
@@ -140,11 +141,18 @@ open class IntroViewController: CustomViewController<InfoView> {
 		style.set(view: customView, heading: heading, subheading: subheading, content: content, template: template)
 		if style == .grids || style == .prices || style == .symbols {
 			let button = HMMarkupButton()
+			tutorialButton = button
 			button.setTitle("View a Tutorial", for: .normal)
 			Roboto.Style.bodyBold(button.titleLabel!, color:.white)
 			Roboto.PostProcess.link(button)
+			
+			
+			
 			button.addAction {[weak self] in
-				
+				self?.currentHint?.removeFromSuperview()
+				self?.view.window?.clearOverlay()
+				self?.view.window?.removeHighlight()
+				self?.set(flag: .tutorial_complete)
 				//TODO: This will soon be depricated
 				if self?.style == .grids {
 					self?.present(GridTestTutorialViewController(), animated: true) {
@@ -164,6 +172,18 @@ open class IntroViewController: CustomViewController<InfoView> {
 				
 			}
 			customView.setAdditionalFooterContent(button)
+			if !get(flag: .first_tutorial) {
+				set(flag: .first_tutorial)
+				currentHint = customView.nextButton!.hint {
+					$0.content = "".localized(ACTranslationKey.popup_tutorial_view)
+					$0.layout {
+						$0.width == customView.nextButton!.widthAnchor
+						$0.height == customView.nextButton!.heightAnchor
+						$0.centerX == customView.nextButton!.centerXAnchor
+						$0.centerY == customView.nextButton!.centerYAnchor
+					}
+				}
+			}
 		}
     }
 	public func updateNextbutton() {
@@ -202,6 +222,31 @@ open class IntroViewController: CustomViewController<InfoView> {
 		super.viewDidAppear(animated)
 		if style != .standard && style != .test {
 			customView.setSeparatorWidth(0.15)
+		}
+		guard let tutorialButton = tutorialButton else {
+			return
+		}
+		
+		if get(flag: .tutorial_complete)
+			&& !get(flag: .tutorial_grats) {
+			
+			set(flag: .tutorial_grats)
+			tutorialButton.overlay()
+			currentHint = view.window?.hint {
+				$0.content = "".localized(ACTranslationKey.popup_tutorial_complete)
+				$0.layout {
+					$0.bottom == tutorialButton.topAnchor - 20
+					$0.centerX == tutorialButton.centerXAnchor
+					$0.width == tutorialButton.widthAnchor
+				}
+				$0.buttonTitle = "".localized(ACTranslationKey.popup_gotit)
+				$0.onTap = { [weak self] in
+					self?.currentHint?.removeFromSuperview()
+					self?.view.window?.clearOverlay()
+					self?.view.window?.removeHighlight()
+				}
+			}
+			
 		}
 
 	}

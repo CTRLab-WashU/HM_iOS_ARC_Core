@@ -6,16 +6,17 @@ public enum OverlayShape {
 		
 		switch self {
 		case .rect(let view):
-			var rect = parent?.convert(view.frame, from: view) ?? view.bounds
+			var rect = view.superview?.convert(view.frame, to: nil) ?? view.bounds
 			rect = rect.insetBy(dx: -8, dy: -8)
 			return UIBezierPath.init(rect: rect)
 		case .circle(let view):
-			var rect = parent?.convert(view.frame, from: view) ?? view.bounds
+			var rect = view.superview?.convert(view.frame, to: nil) ?? view.bounds
 			rect = rect.insetBy(dx: -8, dy: -8)
 
 			return UIBezierPath(arcCenter: CGPoint(x: rect.midX, y: rect.midY), radius: max(rect.width/2, rect.height/2) , startAngle: CGFloat.pi , endAngle: CGFloat.pi + CGFloat.pi * 2, clockwise: true)
 		case .roundedRect(let view, let cornerRadius):
-			var rect = parent?.convert(view.bounds, from: view) ?? view.bounds
+			var rect = view.superview?.convert(view.frame, to: nil) ?? view.bounds
+			
 			rect = rect.insetBy(dx: -8, dy: -8)
 
 			return UIBezierPath(roundedRect: rect, cornerRadius: cornerRadius)

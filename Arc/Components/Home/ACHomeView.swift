@@ -71,10 +71,20 @@ public class ACHomeView: ACTemplateView {
 		
 
 	}
-	public func highlightTutorialTargets() {
-//		 tutorialTarget?.highlight()
-//		window?.overlayView(view: self, withShapes: [.roundedRect(tutorialTarget!, 8.0)])
+	public func highlightTutorialTargets() -> HintView? {
+		
+		tutorialTarget?.overlay()
+		return window?.hint { [unowned self] in
+			$0.content = "".localized(ACTranslationKey.popup_begin)
+			$0.layout {
+				$0.centerX == self.tutorialTarget!.centerXAnchor
+				$0.top == self.tutorialTarget!.bottomAnchor + 12
+				
+
+			}
+		}
 	}
+	
 	public required init?(coder: NSCoder) {
 		super.init(coder: coder)
 	}
@@ -104,6 +114,8 @@ public class ACHomeView: ACTemplateView {
 					$0.addAction {
 						[weak self] in
 						self?.delegate?.beginPressed()
+						self?.window?.removeHighlight()
+						self?.window?.clearOverlay()
 					}
 				}
 			}
@@ -111,8 +123,10 @@ public class ACHomeView: ACTemplateView {
 			
 			self.debugButton = view.acButton {
 				$0.setTitle("DEBUG", for: .normal)
-				$0.addAction {
+				$0.addAction { [weak self] in
 					Arc.shared.debugSchedule()
+					self?.window?.removeHighlight()
+					self?.window?.clearOverlay()
 				}
 
 			}

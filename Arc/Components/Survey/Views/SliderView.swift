@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import ArcUIKit
 open class SliderView: UIView, SurveyInput {
     public var didFinishSetup: (() -> ())?
     
@@ -29,7 +29,7 @@ open class SliderView: UIView, SurveyInput {
     public var didChangeValue: (() -> ())?
 	public var tryNext:(() -> ())?
 	public weak var inputDelegate: SurveyInputDelegate?
-
+	public weak var hint:HintView?
     var first = true
 	var hideSelectedAfterFirst = false
     //Setting this will override all future instances created
@@ -48,6 +48,17 @@ open class SliderView: UIView, SurveyInput {
 		super.awakeFromNib()
 		updateText(nil)
 		inputDelegate?.didFinishSetup()
+		self.hint = hint {
+			$0.content = "".localized(ACTranslationKey.popup_drag)
+			$0.layout {
+				$0.bottom == valueSlider.topAnchor - 32
+				$0.centerX == valueSlider.centerXAnchor
+				$0.width >= 232
+				$0.height >= 68
+				$0.width <= self.widthAnchor
+				
+			}
+		}
 	}
 	public func setHidesSelectedAfterFirst(value:Bool) {
 		hideSelectedAfterFirst = value
@@ -55,6 +66,7 @@ open class SliderView: UIView, SurveyInput {
     public func hideSelectedContainer() {
 		//Prevents layout change when toggled off
         selectedContainer.alpha = 0
+		self.hint?.removeFromSuperview()
     }
     
     public func getValue() -> QuestionResponse? {

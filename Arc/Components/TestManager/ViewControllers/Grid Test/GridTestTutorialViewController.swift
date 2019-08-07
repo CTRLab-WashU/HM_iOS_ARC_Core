@@ -376,7 +376,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 	}
 	func addHint(hint:String, seconds:TimeInterval = 3.0) {
 		let time = tutorialAnimation.time + seconds
-		print("HINT:", time)
+		print("HINT:", time, ":",  progress(seconds:time))
 		state.addCondition(atTime: progress(seconds:time), flagName: hint) {
 			[weak self] in
 			guard let weakSelf = self else {

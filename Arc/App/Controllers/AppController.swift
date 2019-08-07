@@ -23,15 +23,20 @@ open class AppController : MHController {
 			defaults.synchronize();
 		}
 	}
-	public var coachMarks:[String:Bool]? {
+	public var flags:[String:Bool] {
 		get {
 			
-			return defaults.dictionary(forKey:"coachMarks") as? [String : Bool];
+			guard let value =  defaults.dictionary(forKey:"applicationFlags") as? [String : Bool] else {
+				defaults.setValue([:], forKey:"applicationFlags");
+
+				return defaults.dictionary(forKey:"applicationFlags") as! [String : Bool];
+			}
 			
+			return value
 		}
 		set (newVal)
 		{
-			defaults.setValue(newVal, forKey:"coachMarks");
+			defaults.setValue(newVal, forKey:"applicationFlags");
 			defaults.synchronize();
 		}
 	}
