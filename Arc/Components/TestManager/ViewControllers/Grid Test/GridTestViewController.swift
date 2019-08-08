@@ -461,6 +461,29 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 		}
 		return nil
 	}
+	func overlayCells(at indexPaths:[IndexPath]) {
+		
+		let shapes = indexPaths.map {
+			return OverlayShape.rect(collectionView.cellForItem(at: $0)!)
+		}
+		view.window?.overlayView(withShapes: shapes)
+		for indexPath in indexPaths {
+			if mode == .image || mode == .answers {
+				if let c = collectionView.cellForItem(at: indexPath) as? GridImageCell {
+					
+					c.highlight(radius: 0.0)
+					
+				}
+			}
+			if mode == .fCell {
+				if let c = collectionView.cellForItem(at: indexPath) as? GridFCell {
+					
+					c.highlight(radius: c.frame.width/2)
+					
+				}
+			}
+		}
+	}
     //MARK: Flow layout
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if mode == .image || mode == .answers {

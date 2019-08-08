@@ -11,7 +11,7 @@ import ArcUIKit
 class GridTestTutorialViewController: ACTutorialViewController, GridTestViewControllerDelegate {
 	
 	enum TestPhase {
-		case start, fs, fsTimed, recall, end
+		case start, fs, fsTimed, recallFirstStep, recallFirstChoiceMade, recallSecondChoiceMade, showingReminder, recall, end
 		
 		
 	}
@@ -20,6 +20,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 	
 	var selectionMade = false
 	var isMakingSelections = false
+	var lockIncorrect = false
 	var maxGridSelected = 3
 	var gridSelected = 0
 	var phase:TestPhase = .start
@@ -46,42 +47,69 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 		
 	}
 	func didSelect(){
-		view.window?.clearOverlay()
-		view.removeHighlight()
+		
 		
 		currentHint?.removeFromSuperview()
 		switch phase {
 		
 		
 		case .start:
+			view.window?.clearOverlay()
+			view.removeHighlight()
 			tutorialAnimation.resume()
 
 			break
-	
-		case .recall:
-			
+		case .recallFirstStep:
+			view.window?.clearOverlay()
+			view.removeHighlight()
 			removeHint(hint: "hint")
 			tutorialAnimation.time = 10
+			addFirstHint(hint: "hint")
+			tutorialAnimation.resume()
 
-			addHint(hint: "hint")
+		case .recallFirstChoiceMade, .recallSecondChoiceMade:
+			view.window?.clearOverlay()
+			view.removeHighlight()
+			removeHint(hint: "hint")
+			tutorialAnimation.time = 10
+			needHelp()
+			tutorialAnimation.resume()
+
+
+		case .recall:
+			view.window?.clearOverlay()
+			view.removeHighlight()
+			removeHint(hint: "hint")
+
+			needHelp()
 
 			tutorialAnimation.resume()
 			
 		case .fs:
+			view.window?.clearOverlay()
+			view.removeHighlight()
 			tutorialAnimation.resume()
 
 			test.collectionView.isUserInteractionEnabled = false
 		
 		case .fsTimed:
-			
+			view.window?.clearOverlay()
+			view.removeHighlight()
 			test.collectionView.isUserInteractionEnabled = true
 
 		
 		
 		case .end:
+			view.window?.clearOverlay()
+			view.removeHighlight()
+			removeHint(hint: "hint")
+
 			tutorialAnimation.time = 19
 			tutorialAnimation.resume()
 			break
+		case .showingReminder:
+			removeHint(hint: "hint")
+
 		}
 		
 		selectionMade = true
@@ -90,12 +118,18 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 	func didSelectGrid(indexPath: IndexPath) {
 		gridSelected += 1
 		
-		
-		if isMakingSelections && gridSelected == maxGridSelected {
+		switch gridSelected  {
+		case 1:
+			phase = .recallFirstChoiceMade
+		case 2:
+			phase = .recallSecondChoiceMade
+		case 3:
 			test.collectionView.isUserInteractionEnabled = false
-			removeHint(hint: "hint")
 			phase = .end
+		default:
+			phase = .recallFirstStep
 		}
+		
 		didSelect()
 	}
 	
@@ -106,9 +140,24 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 	func didDeselectGrid(indexPath: IndexPath) {
 		
 		gridSelected -= 1
-		if isMakingSelections && gridSelected == maxGridSelected {
-			phase = .recall
+		
+		
+		switch gridSelected  {
+		case 0:
+			phase = .recallFirstStep
+		case 1:
+			phase = .recallFirstChoiceMade
+		case 2:
+			phase = .recallSecondChoiceMade
+		case 3:
+			test.collectionView.isUserInteractionEnabled = false
+			removeHint(hint: "hint")
+			phase = .end
+		default:
+			phase = .recallFirstStep
 		}
+		
+		
 		didSelect()
 	}
 	
@@ -283,7 +332,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 				$0.content = "*Nice work!*\nDon't worry if you didn't find them all."
 				$0.buttonTitle = "Next"
 				$0.onTap = {
-					weakSelf.phase = .recall
+					weakSelf.phase = .recallFirstStep
 					weakSelf.didSelect()
 					weakSelf.test.clearGrids()
 					weakSelf.buildStartScreen(message: "In the final part of the test, you will select the three boxes where these items were located in part one.",
@@ -307,7 +356,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			}
 			weakSelf.test.displayGrid()
 			weakSelf.test.collectionView.isUserInteractionEnabled = true
-			weakSelf.addHint(hint: "hint")
+			weakSelf.needHelp()
 			weakSelf.isMakingSelections = true
 
 			
@@ -374,6 +423,70 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 	func removeHint(hint:String) {
 		_ = state.removeCondition(with: hint)
 	}
+	func needHelp() {
+		
+		let time = tutorialAnimation.time + 3
+		print("HINT:", time, ":",  progress(seconds:time))
+		state.addCondition(atTime: progress(seconds:time), flagName: "hint") {
+			[weak self] in
+			guard let weakSelf = self else {
+				return
+			}
+			weakSelf.tutorialAnimation.pause()
+			
+			
+			//Otherwise let's give them a choice.
+			weakSelf.currentHint = weakSelf.view.window?.hint {
+				$0.content  = "".localized("popup_tutorial_needhelp")
+				$0.buttonTitle = "".localized(ACTranslationKey.popup_tutorial_remindme)
+				$0.onTap = {[weak self] in
+					weakSelf.currentHint?.removeFromSuperview()
+					//Remove the hint so that it will fire again
+					self?.removeHint(hint: "hint")
+					//If they selected one we'll show the double hint.
+					if self?.gridSelected == 1 {
+						self?.addDoubleHint(hint: "hint", seconds: 0.0)
+						self?.tutorialAnimation.resume()
+						self?.phase = .showingReminder
+					//If they selected two, then we show the single hint
+					} else if self?.gridSelected == 2 {
+						self?.addFinalHint(hint: "hint", seconds: 0.0)
+						self?.tutorialAnimation.resume()
+						self?.phase = .showingReminder
+
+					} else {
+						//Otherwise show the first,
+						//the user has removed a selection before this hint appeared
+						self?.addFirstHint(hint: "hint", seconds: 0.0)
+						self?.tutorialAnimation.resume()
+					}
+					
+				}
+				
+				$0.layout {
+					$0.centerX == weakSelf.view.centerXAnchor
+					$0.centerY == weakSelf.view.centerYAnchor
+					
+				}
+			}
+			
+		}
+	}
+	func continueTutorial() {
+		
+			test.collectionView.overlay()
+			currentHint = view.window?.hint {
+				$0.content  = "".localized(ACTranslationKey.popup_tutorial_tapbox)
+				
+				
+				$0.layout {
+					$0.bottom == test.collectionView.topAnchor - 20
+					$0.centerX == view.centerXAnchor
+					
+				}
+			}
+
+	}
 	func addDoubleHint(hint:String, seconds:TimeInterval = 3.0) {
 		let time = tutorialAnimation.time + seconds
 		print("HINT:", time, ":",  progress(seconds:time))
@@ -383,27 +496,20 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 				return
 			}
 			weakSelf.tutorialAnimation.pause()
-			let index = weakSelf.test.symbolIndexPaths[min(2, weakSelf.gridSelected)]
-			guard let cell = weakSelf.test.overlayCell(at: index) else {
-				return
+			let selected = weakSelf.test.collectionView.indexPathsForSelectedItems ?? []
+			let index = weakSelf.test.symbolIndexPaths.filter {
+				return !selected.contains($0)
 			}
+			weakSelf.test.overlayCells(at: index)
+			
 			weakSelf.currentHint = weakSelf.view.window?.hint {
-				$0.content  = "".localized("popup_tutorial_boxhint")
-				
+				$0.content  = "".localized("popup_tutorial_tapbox2")
 				
 				$0.layout {
 					$0.centerX == weakSelf.view.centerXAnchor
 					$0.width == 252
-					
-					if index.row/5 > 2 {
-						//If above
-						$0.bottom == cell.topAnchor + 40
-						
-					} else {
-						
-						$0.top == cell.bottomAnchor + 40
-						
-					}
+					$0.bottom == weakSelf.test.collectionView.topAnchor - 20
+				
 					
 				}
 			}
@@ -412,7 +518,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 		
 		
 	}
-	func addHint(hint:String, seconds:TimeInterval = 3.0) {
+	func addFinalHint(hint:String, seconds:TimeInterval = 3.0) {
 		let time = tutorialAnimation.time + seconds
 		print("HINT:", time, ":",  progress(seconds:time))
 		state.addCondition(atTime: progress(seconds:time), flagName: hint) {
@@ -429,7 +535,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 				$0.content = """
 				*Hint:* One item was located
 				in this box. Tap here.
-				""".localized("popup_tutorial_boxhint")
+				""".localized(ACTranslationKey.popup_tutorial_tapbox3)
 				
 				
 				$0.layout {
@@ -444,6 +550,47 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 						
 						$0.top == cell.bottomAnchor + 40
 
+					}
+					
+				}
+			}
+			
+		}
+		
+		
+	}
+	func addFirstHint(hint:String, seconds:TimeInterval = 3.0) {
+		let time = tutorialAnimation.time + seconds
+		print("HINT:", time, ":",  progress(seconds:time))
+		state.addCondition(atTime: progress(seconds:time), flagName: hint) {
+			[weak self] in
+			guard let weakSelf = self else {
+				return
+			}
+			weakSelf.tutorialAnimation.pause()
+			let index = weakSelf.test.symbolIndexPaths[min(2, weakSelf.gridSelected)]
+			guard let cell = weakSelf.test.overlayCell(at: index) else {
+				return
+			}
+			weakSelf.currentHint = weakSelf.view.window?.hint {
+				$0.content = """
+				*Hint:* One item was located
+				in this box. Tap here.
+				""".localized(ACTranslationKey.popup_tutorial_boxhint)
+				
+				
+				$0.layout {
+					$0.centerX == weakSelf.view.centerXAnchor
+					$0.width == 252
+					
+					if index.row/5 > 2 {
+						//If above
+						$0.bottom == cell.topAnchor + 40
+						
+					} else {
+						
+						$0.top == cell.bottomAnchor + 40
+						
 					}
 					
 				}
