@@ -45,8 +45,9 @@ public class AC2FAuthenticationViewController: BasicSurveyViewController {
 	
 	public override func didPresentQuestion(input: SurveyInput?, questionId: String) {
 		
-		if let view = input as? (SegmentedTextView & UIKeyInput) {
+		if let view = input as? (SegmentedTextView) {
 			view.set(length: 6)
+			
 		}
 		
 		if questionId == "2fa" {
