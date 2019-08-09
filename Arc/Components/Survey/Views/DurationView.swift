@@ -11,7 +11,7 @@ open class DurationView: UIView, SurveyInput{
     public var orientation: UIStackView.Alignment = .top
     
 	@IBOutlet weak var picker: UIDatePicker!
-	public weak var inputDelegate: SurveyInputDelegate?
+	public weak var surveyInputDelegate: SurveyInputDelegate?
 
 	
 	let calendar = Calendar.current
@@ -61,7 +61,7 @@ open class DurationView: UIView, SurveyInput{
 		
 	}
     @IBAction func valueChanged(_ sender: Any) {
-        self.inputDelegate?.didChangeValue();
+        self.surveyInputDelegate?.didChangeValue();
         
     }
     

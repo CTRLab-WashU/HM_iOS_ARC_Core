@@ -10,7 +10,7 @@ import UIKit
 
 class ACPickerView: UIView, SurveyInput, UIPickerViewDelegate, UIPickerViewDataSource {
    
-	public weak var inputDelegate: SurveyInputDelegate?
+	public weak var surveyInputDelegate: SurveyInputDelegate?
 
 
     public var orientation: UIStackView.Alignment = .top
@@ -26,7 +26,7 @@ class ACPickerView: UIView, SurveyInput, UIPickerViewDelegate, UIPickerViewDataS
         super.awakeFromNib()
         picker.delegate = self
         picker.dataSource = self
-        inputDelegate?.didFinishSetup()
+        surveyInputDelegate?.didFinishSetup()
 
         
     }
@@ -60,7 +60,7 @@ class ACPickerView: UIView, SurveyInput, UIPickerViewDelegate, UIPickerViewDataS
     
     
     @IBAction func valueChanged(_ sender: Any) {
-        self.inputDelegate?.didChangeValue();
+        self.surveyInputDelegate?.didChangeValue();
         
     }
     
@@ -76,6 +76,6 @@ class ACPickerView: UIView, SurveyInput, UIPickerViewDelegate, UIPickerViewDataS
         return _question?.answers?[row].value as? String ?? _items?[row] 
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        inputDelegate?.didChangeValue()
+        surveyInputDelegate?.didChangeValue()
     }
 }

@@ -24,7 +24,7 @@ public protocol SurveyInput {
 	func supplementaryViews(for view:UIView)
 	var orientation:UIStackView.Alignment {get set}
     var distribution:UIStackView.Distribution {get set}
-	var inputDelegate:SurveyInputDelegate? {get set}
+	var surveyInputDelegate:SurveyInputDelegate? {get set}
     var isBottomAnchored:Bool {get}
     var parentScrollView:UIScrollView? {get set}
     

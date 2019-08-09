@@ -15,7 +15,7 @@ open class SurveyView : ACTemplateView, SurveyInput, SurveyInputDelegate {
 	
 	
 	
-	public weak var inputDelegate: SurveyInputDelegate?
+	public weak var surveyInputDelegate: SurveyInputDelegate?
 
 	public var orientation: UIStackView.Alignment = .top
 	var nextPressed:((SurveyInput?, QuestionResponse?)->Void)?
@@ -102,7 +102,7 @@ open class SurveyView : ACTemplateView, SurveyInput, SurveyInputDelegate {
 				$0.addAction { [weak self] in
 					let value = self?.input?.getValue()
 					
-					self?.inputDelegate?.nextPressed(input: self?.input, value: value)
+					self?.surveyInputDelegate?.nextPressed(input: self?.input, value: value)
 				}
 			}
 		}
@@ -138,7 +138,7 @@ open class SurveyView : ACTemplateView, SurveyInput, SurveyInputDelegate {
 
 		
 		
-		inputDelegate?.didFinishSetup()
+		surveyInputDelegate?.didFinishSetup()
 		
 	}
 	
@@ -178,7 +178,7 @@ open class SurveyView : ACTemplateView, SurveyInput, SurveyInputDelegate {
 			return
 		}
 		input = question?.type?.create(inputWithQuestion: question)
-		input?.inputDelegate = self
+		input?.surveyInputDelegate = self
 		input?.parentScrollView = root
 		container.alignment = input?.orientation ?? .top
 		if container.arrangedSubviews.isEmpty, let input = input as? UIView {
@@ -218,32 +218,32 @@ open class SurveyView : ACTemplateView, SurveyInput, SurveyInputDelegate {
 		errorLabel.text = message
 	}
 	public func didChangeValue() {
-		inputDelegate?.didChangeValue()
+		surveyInputDelegate?.didChangeValue()
 		self.updateButtonState(question)
 		
 	}
 	
 	public func nextPressed(input: SurveyInput?, value: QuestionResponse?) {
-		inputDelegate?.nextPressed(input: input, value: value)
+		surveyInputDelegate?.nextPressed(input: input, value: value)
 	}
 	
 	
 	public func templateForQuestion(id: String) -> Dictionary<String, String> {
-		return inputDelegate?.templateForQuestion(id: id) ?? [:]
+		return surveyInputDelegate?.templateForQuestion(id: id) ?? [:]
 	}
 	
 	
 	public func didFinishSetup() {
-		inputDelegate?.didFinishSetup()
+		surveyInputDelegate?.didFinishSetup()
 		self.updateButtonState(question)
 	}
 	
 	public func tryNextPressed() {
 		if self.nextButton?.isEnabled == true {
 			if let value = self.input?.getValue() {
-				inputDelegate?.nextPressed(input: self.input, value: value)
+				surveyInputDelegate?.nextPressed(input: self.input, value: value)
 			} else {
-				inputDelegate?.nextPressed(input: nil, value: nil)
+				surveyInputDelegate?.nextPressed(input: nil, value: nil)
 			}
 		}
 	}

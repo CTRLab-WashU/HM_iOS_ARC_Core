@@ -16,12 +16,12 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 	
 	public var orientation: UIStackView.Alignment = .center
 	
-	weak public var inputDelegate:SurveyInputDelegate? {
+	weak public var surveyInputDelegate:SurveyInputDelegate? {
 		get {
-			return surveyView.inputDelegate
+			return surveyView.surveyInputDelegate
 		}
 		set {
-			surveyView.inputDelegate = newValue
+			surveyView.surveyInputDelegate = newValue
 		}
 	}
 	
@@ -130,7 +130,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 	/// This value is created via Json files loaded by the parent SurveyNavigationViewController
 	func displayQuestion(question:Survey.Question) {
 		
-		let template = inputDelegate?.templateForQuestion(id: question.questionId) ?? [:]
+		let template = surveyInputDelegate?.templateForQuestion(id: question.questionId) ?? [:]
 		
 		surveyView.displayQuestion(withQuestion: question, template: template)
 
@@ -139,7 +139,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
         super.viewWillAppear(animated)
         self.loadQuestion(questionIndex: questionIndex ?? "")
 
-       	inputDelegate?.didFinishSetup()
+       	surveyInputDelegate?.didFinishSetup()
         
     }
 	public func getValue() -> QuestionResponse? {

@@ -13,7 +13,7 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
 
     public var orientation: UIStackView.Alignment = .center
     
-	open weak var inputDelegate: SurveyInputDelegate?
+	open weak var surveyInputDelegate: SurveyInputDelegate?
 
 	var app = Arc.shared
     public var survey:Survey! = nil
@@ -356,7 +356,7 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
 		if let helpPressed = helpPressed {
 			vc.helpPressed = helpPressed
 		}
-		vc.inputDelegate = self
+		vc.surveyInputDelegate = self
 		vc.surveyId = surveyId
 	
 		self.pushViewController(vc, animated: true)

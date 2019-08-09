@@ -224,7 +224,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 	
 	func viewControllerStyle(_ question: Survey.Question) {
 		if var input = topViewController as? SurveyInput {
-			input.inputDelegate = self
+			input.surveyInputDelegate = self
 		}
 
 	}

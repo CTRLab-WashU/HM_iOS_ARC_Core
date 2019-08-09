@@ -15,7 +15,7 @@ import HMMarkup
 public class InfoView: ACTemplateView {
 	weak var inputDelegate:SurveyInputDelegate? {
 		didSet {
-			self.inputItem?.inputDelegate = inputDelegate
+			self.inputItem?.surveyInputDelegate = inputDelegate
 
 		}
 	}
@@ -27,7 +27,7 @@ public class InfoView: ACTemplateView {
 	var topSpacer:UIView!
 	var inputItem:SurveyInput? {
 		didSet {
-			self.inputItem?.inputDelegate = inputDelegate
+			self.inputItem?.surveyInputDelegate = inputDelegate
 		}
 	}
 	public func setTextColor(_ color:UIColor?) {

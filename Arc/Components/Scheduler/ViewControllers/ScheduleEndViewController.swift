@@ -31,7 +31,7 @@ open class ScheduleEndViewController: UIViewController, SurveyInput {
     
     @IBAction func okayPressed(_ sender: Any) {
         self.okayButton.isEnabled = false;
-        self.inputDelegate?.nextPressed(input: nil, value: nil);
+        self.surveyInputDelegate?.nextPressed(input: nil, value: nil);
     }
     
     
@@ -44,7 +44,7 @@ open class ScheduleEndViewController: UIViewController, SurveyInput {
     
     public var orientation: UIStackView.Alignment = UIStackView.Alignment.bottom
     
-    public var inputDelegate: SurveyInputDelegate?;
+    public var surveyInputDelegate: SurveyInputDelegate?;
     
     
 }

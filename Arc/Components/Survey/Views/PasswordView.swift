@@ -14,12 +14,12 @@ open class PasswordView : UIView, SurveyInput, UITextFieldDelegate {
 	@IBOutlet weak var textField:UITextField!
 	@IBOutlet weak var secureButton:UIButton!
 	@IBOutlet weak var borderView:BorderedUIView!
-	public weak var inputDelegate: SurveyInputDelegate?
+	public weak var surveyInputDelegate: SurveyInputDelegate?
 	override open func awakeFromNib() {
 		super.awakeFromNib()
         set(secure: false)
 		textField.inputAccessoryView = getInputAccessoryView(selector: #selector(PasswordView.doneButtonAction))
-		inputDelegate?.didFinishSetup()
+		surveyInputDelegate?.didFinishSetup()
 	}
 	
 	@IBAction func toggleSecure(_ sender: Any) {
@@ -41,7 +41,7 @@ open class PasswordView : UIView, SurveyInput, UITextFieldDelegate {
 		textField.text = String(describing: value?.value as? String ?? "")
 	}
 	@objc func doneButtonAction() {
-        inputDelegate?.tryNextPressed()
+        surveyInputDelegate?.tryNextPressed()
 		textField.resignFirstResponder()
 	}
 	public func setError(message: String?) {

@@ -8,7 +8,7 @@
 
 import UIKit
 open class MultipleChoiceView : UIView,  SurveyInput {
-	public weak var inputDelegate: SurveyInputDelegate?
+	public weak var surveyInputDelegate: SurveyInputDelegate?
 
 	
     public var orientation: UIStackView.Alignment = .top
@@ -44,7 +44,7 @@ open class MultipleChoiceView : UIView,  SurveyInput {
             views.append(o)
             stack.addArrangedSubview(o)
         }
-		inputDelegate?.didFinishSetup()
+		surveyInputDelegate?.didFinishSetup()
     }
     
     private func selectView(view:ChoiceView) {
@@ -63,7 +63,7 @@ open class MultipleChoiceView : UIView,  SurveyInput {
             view.set(selected: !view.getSelected())
 
         }
-        inputDelegate?.didChangeValue()
+        surveyInputDelegate?.didChangeValue()
     }
 
     public func getValue() -> QuestionResponse? {

@@ -10,7 +10,7 @@ import UIKit
 import ArcUIKit
 public class NotificationPermissionViewController: CustomViewController<NotificationPermissionView>, SurveyInput {
 	
-	public weak var inputDelegate: SurveyInputDelegate?
+	public weak var surveyInputDelegate: SurveyInputDelegate?
 
 	public var orientation: UIStackView.Alignment = .center
 	
@@ -31,8 +31,8 @@ public class NotificationPermissionViewController: CustomViewController<Notifica
 		Arc.shared.notificationController.authenticateNotifications { [weak self] (granted, error) in
 			OperationQueue.main.addOperation {
 				self?._didAllow = granted
-				self?.inputDelegate?.didChangeValue()
-				self?.inputDelegate?.tryNextPressed()
+				self?.surveyInputDelegate?.didChangeValue()
+				self?.surveyInputDelegate?.tryNextPressed()
 			}
 			
 		}

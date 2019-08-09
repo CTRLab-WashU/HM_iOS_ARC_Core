@@ -9,7 +9,8 @@
 import UIKit
 import ArcUIKit
 public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTraits{
-	public weak var inputDelegate: SurveyInputDelegate?
+	
+	public weak var surveyInputDelegate: SurveyInputDelegate?
 
     public var orientation: UIStackView.Alignment = .top
    
@@ -54,7 +55,7 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTra
 	
 	@objc func doneButtonAction() {
 		if shouldTryNext {
-        	inputDelegate?.tryNextPressed()
+        	surveyInputDelegate?.tryNextPressed()
 		}
 		resignFirstResponder()
 	}
@@ -66,7 +67,8 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTra
 		super.awakeFromNib()
 		updateValue(newValue: [])
 		
-		inputDelegate?.didFinishSetup()
+		surveyInputDelegate?.didFinishSetup()
+		
 	}
 	
 	public func set(length:UInt) {
@@ -145,7 +147,7 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTra
 			index += 1
 			view.layoutSubviews()
 		}
-		inputDelegate?.didChangeValue()
+		surveyInputDelegate?.didChangeValue()
 	}
 	
 	public func getValue() -> QuestionResponse? {

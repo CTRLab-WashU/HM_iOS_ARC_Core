@@ -15,7 +15,7 @@ class ResendCodeViewController: CustomViewController<InfoView>, SurveyInput{
 	var orientation: UIStackView.Alignment = .top
 
 	
-	var inputDelegate: SurveyInputDelegate?
+	var surveyInputDelegate: SurveyInputDelegate?
 	
 	var participantId:String
 	init(id:String) {

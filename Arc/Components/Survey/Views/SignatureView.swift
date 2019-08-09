@@ -24,7 +24,7 @@ open class SignatureView: BorderedUIView, SurveyInput {
     public var orientation: UIStackView.Alignment = .bottom
   
     
-	public weak var inputDelegate: SurveyInputDelegate?
+	public weak var surveyInputDelegate: SurveyInputDelegate?
 
     public var path:UIBezierPath = UIBezierPath()
     public var state:SignatureViewContentState = .empty
@@ -45,7 +45,7 @@ open class SignatureView: BorderedUIView, SurveyInput {
     open override func didMoveToSuperview() {
         super.didMoveToSuperview()
         isExclusiveTouch = true
-        inputDelegate?.didFinishSetup()
+        surveyInputDelegate?.didFinishSetup()
 //		didFinishSetup?()
     }
     // Only override draw() if you perform custom drawing.
@@ -93,7 +93,7 @@ open class SignatureView: BorderedUIView, SurveyInput {
         parentScrollView?.isScrollEnabled = true
         state = .dirty
         signatureDelegate?.signatureViewContentChanged(state: .dirty)
-		inputDelegate?.didChangeValue()
+		surveyInputDelegate?.didChangeValue()
         
 //        didChangeValue?()
 		
@@ -112,7 +112,7 @@ open class SignatureView: BorderedUIView, SurveyInput {
         self.setNeedsDisplay()
         state = .empty
         signatureDelegate?.signatureViewContentChanged(state: .empty)
-		inputDelegate?.didChangeValue()
+		surveyInputDelegate?.didChangeValue()
         
 //        didChangeValue?()
     }

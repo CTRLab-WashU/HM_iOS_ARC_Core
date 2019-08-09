@@ -28,7 +28,7 @@ open class SliderView: UIView, SurveyInput {
     
     public var didChangeValue: (() -> ())?
 	public var tryNext:(() -> ())?
-	public weak var inputDelegate: SurveyInputDelegate?
+	public weak var surveyInputDelegate: SurveyInputDelegate?
 	public weak var hint:HintView?
     var first = true
 	var hideSelectedAfterFirst = false
@@ -47,7 +47,7 @@ open class SliderView: UIView, SurveyInput {
 	open override func awakeFromNib() {
 		super.awakeFromNib()
 		updateText(nil)
-		inputDelegate?.didFinishSetup()
+		surveyInputDelegate?.didFinishSetup()
 		self.hint = hint {
 			$0.content = "".localized(ACTranslationKey.popup_drag)
 			$0.layout {
@@ -135,7 +135,7 @@ open class SliderView: UIView, SurveyInput {
             if SliderView.hideSelection ?? hideSelectedAfterFirst {
 				hideSelectedContainer()
 			}
-            inputDelegate?.didChangeValue()
+            surveyInputDelegate?.didChangeValue()
 		} else {
 			
 		}

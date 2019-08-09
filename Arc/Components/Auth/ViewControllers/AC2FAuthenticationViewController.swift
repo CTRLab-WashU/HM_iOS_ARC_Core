@@ -45,11 +45,13 @@ public class AC2FAuthenticationViewController: BasicSurveyViewController {
 	
 	public override func didPresentQuestion(input: SurveyInput?, questionId: String) {
 		
-		if let view = input as? SegmentedTextView {
+		if let view = input as? (SegmentedTextView & UIKeyInput) {
 			view.set(length: 6)
+			view.textContentType
 		}
 		
 		if questionId == "2fa" {
+			
 			addResendCodeButton()
 		}
 		super.didPresentQuestion(input: input, questionId: questionId)
@@ -217,7 +219,8 @@ public struct TwoFactorAuth {
 			return;
 		}
 		let req = ConfirmationCode.Request(participant_id: id)
-		confirmationCode.execute(data: req) { (urlResponse, hmResponse, fault) in
+		print(req.toString())
+		confirmationCode.execute(data: req, params: nil) { (urlResponse, hmResponse, fault) in
 			if hmResponse?.response?.success ?? false == true {
 				didFinish(Result.success(id))
 			} else {
