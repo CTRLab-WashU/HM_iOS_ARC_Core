@@ -50,7 +50,8 @@ open class StartDateShiftViewController: SurveyNavigationViewController {
     open override func templateForQuestion(questionId: String) -> Dictionary<String, String> {
         super.templateForQuestion(questionId: questionId)
         guard let index = QuestionId(rawValue: questionId) else {return [:]}
-        if index == .user_schedule_2 {
+		
+		if index == .user_schedule_2 {
             #warning("Use arc length")
             return ["start":  dates[selectedDate].localizedFormat(template:longFormat),
                     "DATE1":  dates[selectedDate].localizedFormat(template:longFormat),
@@ -72,7 +73,7 @@ open class StartDateShiftViewController: SurveyNavigationViewController {
             
             picker.set(dates.map({ (dateItem) -> String in
                 //TODO: Refactor for reusability as needed
-                return "\(dateItem.localizedFormat(template:mediumFormat)) - \(dateItem.addingDays(days: 7).localizedFormat(template:mediumFormat))"
+                return "\(dateItem.localizedFormat(template:mediumFormat)) - \(dateItem.addingDays(days: 6).localizedFormat(template:mediumFormat))"
             }))
             picker.setValue(AnyResponse(type: .picker, value: selectedDate))
             break
