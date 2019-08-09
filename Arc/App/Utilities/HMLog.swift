@@ -70,7 +70,7 @@ open class LogManager: NSObject {
     
 }
 //silence all log messages for production
-public func HMLog(_ s: String, quiet:Bool = false, silent:Bool = true)
+public func HMLog(_ s: String, quiet:Bool = false, silent:Bool = !(Arc.environment?.isDebug ?? false))
 {
 	if !silent {
 		if !quiet

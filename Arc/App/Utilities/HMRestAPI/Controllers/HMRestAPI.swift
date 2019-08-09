@@ -67,10 +67,10 @@ open class HMRestAPI : NSObject, URLSessionDelegate, URLSessionTaskDelegate {
         baseUrl = URL(string: url)
     }
     public func execute(backendRequest: BackendRequest) -> URLSessionDataTask? {
-//        HMLog("Executing------------------------------")
-//        HMLog(backendRequest.endPoint)
-//
-//        HMLog(String(data: backendRequest.data ?? Data(), encoding: .utf8) ?? "")
+        HMLog("Executing------------------------------")
+        HMLog(backendRequest.endPoint)
+
+        HMLog(String(data: backendRequest.data ?? Data(), encoding: .utf8) ?? "")
         if blackHole {
             backendRequest.didSucceed(with: Data(), response: HTTPURLResponse(url: URL(string: backendRequest.endPoint)!, statusCode: 200, httpVersion: nil, headerFields: nil))
             return nil
@@ -124,17 +124,17 @@ open class HMRestAPI : NSObject, URLSessionDelegate, URLSessionTaskDelegate {
                 }
                 return
             }
-//            HMLog("Reponse---------------------------------")
-//            
-//            HMLog(response?.url?.absoluteString ?? "")
-//            HMLog(String(data: data, encoding: .utf8) ?? "")
-//            HMLog("Decoded Response---------------------------------")
-//
-//            do {
-//                HMLog(try JSONDecoder().decode(HMResponse.self, from: data).toString());
-//            } catch {
-//                HMLog(error.localizedDescription)
-//            }
+            HMLog("Reponse---------------------------------")
+			
+            HMLog(response?.url?.absoluteString ?? "")
+            HMLog(String(data: data, encoding: .utf8) ?? "")
+            HMLog("Decoded Response---------------------------------")
+
+            do {
+                HMLog(try JSONDecoder().decode(HMResponse.self, from: data).toString());
+            } catch {
+                HMLog(error.localizedDescription)
+            }
 			
 			backendRequest.didSucceed(with: data, response: r)
             

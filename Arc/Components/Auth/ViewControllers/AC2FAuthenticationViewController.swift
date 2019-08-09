@@ -47,7 +47,6 @@ public class AC2FAuthenticationViewController: BasicSurveyViewController {
 		
 		if let view = input as? (SegmentedTextView & UIKeyInput) {
 			view.set(length: 6)
-			view.textContentType
 		}
 		
 		if questionId == "2fa" {
