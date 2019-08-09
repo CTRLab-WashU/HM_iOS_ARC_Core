@@ -187,4 +187,95 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTra
             }
         }
     }
+	
+//	public func text(in range: UITextRange) -> String? {
+//		<#code#>
+//	}
+//	
+//	public func replace(_ range: UITextRange, withText text: String) {
+//		<#code#>
+//	}
+//	
+//	public var selectedTextRange: UITextRange?
+//	
+//	public var markedTextRange: UITextRange?
+//	
+//	public var markedTextStyle: [NSAttributedString.Key : Any]?
+//	
+//	public func setMarkedText(_ markedText: String?, selectedRange: NSRange) {
+//		<#code#>
+//	}
+//	
+//	public func unmarkText() {
+//		<#code#>
+//	}
+//	
+//	public var beginningOfDocument: UITextPosition
+//	
+//	public var endOfDocument: UITextPosition
+//	
+//	public func textRange(from fromPosition: UITextPosition, to toPosition: UITextPosition) -> UITextRange? {
+//		<#code#>
+//	}
+//	
+//	public func position(from position: UITextPosition, offset: Int) -> UITextPosition? {
+//		<#code#>
+//	}
+//	
+//	public func position(from position: UITextPosition, in direction: UITextLayoutDirection, offset: Int) -> UITextPosition? {
+//		<#code#>
+//	}
+//	
+//	public func compare(_ position: UITextPosition, to other: UITextPosition) -> ComparisonResult {
+//		<#code#>
+//	}
+//	
+//	public func offset(from: UITextPosition, to toPosition: UITextPosition) -> Int {
+//		<#code#>
+//	}
+//	
+//	public var inputDelegate: UITextInputDelegate?
+//	
+//	public var tokenizer: UITextInputTokenizer
+//	
+//	public func position(within range: UITextRange, farthestIn direction: UITextLayoutDirection) -> UITextPosition? {
+//		<#code#>
+//	}
+//	
+//	public func characterRange(byExtending position: UITextPosition, in direction: UITextLayoutDirection) -> UITextRange? {
+//		<#code#>
+//	}
+//	
+//	public func baseWritingDirection(for position: UITextPosition, in direction: UITextStorageDirection) -> UITextWritingDirection {
+//		<#code#>
+//	}
+//	
+//	public func setBaseWritingDirection(_ writingDirection: UITextWritingDirection, for range: UITextRange) {
+//		<#code#>
+//	}
+//	
+//	public func firstRect(for range: UITextRange) -> CGRect {
+//		<#code#>
+//	}
+//	
+//	public func caretRect(for position: UITextPosition) -> CGRect {
+//		<#code#>
+//	}
+//	
+//	public func selectionRects(for range: UITextRange) -> [UITextSelectionRect] {
+//		<#code#>
+//	}
+//	
+//	public func closestPosition(to point: CGPoint) -> UITextPosition? {
+//		<#code#>
+//	}
+//	
+//	public func closestPosition(to point: CGPoint, within range: UITextRange) -> UITextPosition? {
+//		<#code#>
+//	}
+//	
+//	public func characterRange(at point: CGPoint) -> UITextRange? {
+//		<#code#>
+//	}
+	
 }
