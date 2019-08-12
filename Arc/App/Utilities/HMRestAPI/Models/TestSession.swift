@@ -78,7 +78,10 @@ public struct FullTestSession : Codable {
 		session_date = session.sessionDate?.timeIntervalSince1970
 		start_time = session.startTime?.timeIntervalSince1970
 		participant_id = "\(Arc.shared.participantId!)"
-		interrupted = (session.interrupted) ? 1 : 0
+		if let interrupted = session.interrupted {
+			self.interrupted = interrupted as? Int64
+
+		}
 		missed_session = (session.missedSession) ? 1 : 0
 		finished_session = (session.finishedSession) ? 1 : 0
 		

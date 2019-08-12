@@ -877,7 +877,7 @@ open class StudyController : MHController {
 	open func mark(interrupted:Bool,  sessionId:Int, studyId:Int)
 	{
 		let session = get(session: sessionId, inStudy: studyId)
-		session.interrupted = interrupted;
+		session.interrupted = interrupted as NSNumber;
 		save();
 	}
 	open func mark(finished sessionId:Int, studyId:Int)

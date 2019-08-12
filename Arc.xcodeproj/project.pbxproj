@@ -245,6 +245,7 @@
 
 /* Begin PBXFileReference section */
 		C50FC3BA22330F2C00143EA8 /* ACCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACCalendarView.swift; sourceTree = "<group>"; };
+		C511778222FE0095004AE623 /* arc 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "arc 4.xcdatamodel"; sourceTree = "<group>"; };
 		C5143957224E837C000BF1CB /* arc 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "arc 3.xcdatamodel"; sourceTree = "<group>"; };
 		C5143958224EA6FD000BF1CB /* ACSignatureNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSignatureNavigationController.swift; sourceTree = "<group>"; };
 		C52B75DC21C83B2A00498571 /* HMMarkup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HMMarkup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2063,11 +2064,12 @@
 		C54AE94821C81B5C00DEC360 /* arc.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				C511778222FE0095004AE623 /* arc 4.xcdatamodel */,
 				C5143957224E837C000BF1CB /* arc 3.xcdatamodel */,
 				C54AE94921C81B5C00DEC360 /* mHealth.xcdatamodel */,
 				C54AE94A21C81B5C00DEC360 /* mHealth 2.xcdatamodel */,
 			);
-			currentVersion = C5143957224E837C000BF1CB /* arc 3.xcdatamodel */;
+			currentVersion = C511778222FE0095004AE623 /* arc 4.xcdatamodel */;
 			path = arc.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
