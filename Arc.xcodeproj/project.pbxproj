@@ -243,6 +243,7 @@
 		C593227C22EA397C00528FF5 /* ScheduleEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C593227A22EA397C00528FF5 /* ScheduleEndViewController.swift */; };
 		C59D6EEF22FA21B20037B671 /* ACHomeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59D6EEE22FA21B20037B671 /* ACHomeTabViewController.swift */; };
 		C5A43CCF22CA648700C10BC0 /* ACHorizontalBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A43CCE22CA648700C10BC0 /* ACHorizontalBar.swift */; };
+		C5AB56122302030F00129E03 /* WeekStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB56112302030F00129E03 /* WeekStepperView.swift */; };
 		C5B2601C22135F7300BFF778 /* ArcUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B2601322135F7200BFF778 /* ArcUIKit.framework */; };
 		C5B2602122135F7300BFF778 /* ArcUIKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2602022135F7300BFF778 /* ArcUIKitTests.swift */; };
 		C5B2602322135F7300BFF778 /* ArcUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = C5B2601522135F7300BFF778 /* ArcUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -534,6 +535,7 @@
 		C593227A22EA397C00528FF5 /* ScheduleEndViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleEndViewController.swift; sourceTree = "<group>"; };
 		C59D6EEE22FA21B20037B671 /* ACHomeTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACHomeTabViewController.swift; sourceTree = "<group>"; };
 		C5A43CCE22CA648700C10BC0 /* ACHorizontalBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACHorizontalBar.swift; sourceTree = "<group>"; };
+		C5AB56112302030F00129E03 /* WeekStepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekStepperView.swift; sourceTree = "<group>"; };
 		C5B2601322135F7200BFF778 /* ArcUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ArcUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5B2601522135F7300BFF778 /* ArcUIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArcUIKit.h; sourceTree = "<group>"; };
 		C5B2601622135F7300BFF778 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1307,6 +1309,7 @@
 				C54E8E2222E88D590080BFC1 /* StepperProgressview.swift */,
 				C54E8E1C22E800780080BFC1 /* CircularProgressView.swift */,
 				C593227222E8916300528FF5 /* BlockProgressview.swift */,
+				C5AB56112302030F00129E03 /* WeekStepperView.swift */,
 			);
 			path = "supporting views";
 			sourceTree = "<group>";
@@ -1850,6 +1853,7 @@
 				C54AEA1121C81B5F00DEC360 /* PricesTestViewController.swift in Sources */,
 				C5C2B12522D3A2B3002CB4C5 /* PromptDetailView.swift in Sources */,
 				C54AEA1621C81B5F00DEC360 /* SymbolsTestController.swift in Sources */,
+				C5AB56122302030F00129E03 /* WeekStepperView.swift in Sources */,
 				C5E1E3982257ECDE00255812 /* ACScheduleViewController.swift in Sources */,
 				C54AE9EC21C81B5F00DEC360 /* HMAPI+Convenience.swift in Sources */,
 				C54AE9F221C81B5F00DEC360 /* UINavigationProxy.swift in Sources */,
