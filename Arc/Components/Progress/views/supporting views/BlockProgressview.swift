@@ -18,24 +18,41 @@ public class BlockProgressview: UIStackView {
 		super.init(frame: .zero)
 		spacing = 4
 		axis = .horizontal
+		alignment = .center
 		distribution = .fillEqually
 	}
-	public func set(count:Int, current:Int) {
+	public func set(count:Int, current:Int?) {
 		removeSubviews()
 		
 		for i in 0 ..< count {
 			view {
 				$0.layer.cornerRadius = 2
-				if i < current {
-					$0.backgroundColor = color
-				} else if i == current {
-					$0.backgroundColor = color
-
+				
+				if let current = current {
+					if i < current {
+						$0.backgroundColor = color
+						$0.layout {
+							$0.height == 32
+						}
+					} else if i == current {
+						$0.backgroundColor = color
+						$0.layout {
+							$0.height == 42
+						}
+					} else {
+						$0.backgroundColor = .clear
+						$0.layer.borderColor = color.cgColor
+						$0.layer.borderWidth = 1
+						$0.layout {
+							$0.height == 32
+						}
+						
+					}
 				} else {
-					$0.backgroundColor = .clear
-					$0.layer.borderColor = color.cgColor
-					$0.layer.borderWidth = 1
-					
+					$0.backgroundColor = color
+					$0.layout {
+						$0.height == 32
+					}
 				}
 			}
 			

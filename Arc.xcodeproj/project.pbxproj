@@ -210,6 +210,7 @@
 		C56D6C5922CD0DFE00C3F8EA /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56D6C5822CD0DFE00C3F8EA /* TutorialView.swift */; };
 		C56D6C5B22CD2B9F00C3F8EA /* ACTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56D6C5A22CD2B9F00C3F8EA /* ACTutorialViewController.swift */; };
 		C56D6C5D22CD3FE800C3F8EA /* PricesTestTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56D6C5C22CD3FE800C3F8EA /* PricesTestTutorialViewController.swift */; };
+		C57480AC23035B2E00EFC901 /* CircularProgressGroupStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57480AB23035B2E00EFC901 /* CircularProgressGroupStackView.swift */; };
 		C578771322F8BED10068E46B /* TestCountDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C578771222F8BED10068E46B /* TestCountDownView.swift */; };
 		C578771522F8BF260068E46B /* TestCountDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C578771422F8BF260068E46B /* TestCountDownViewController.swift */; };
 		C578B8D622A859A60038DDF0 /* ACView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C578B8D522A859A60038DDF0 /* ACView.swift */; };
@@ -259,6 +260,7 @@
 		C5CCD7AE22DF717D002A788A /* AsyncAwait.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CCD7AD22DF717D002A788A /* AsyncAwait.swift */; };
 		C5D085CC22D7828300043513 /* HintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D085CB22D7828300043513 /* HintView.swift */; };
 		C5D0F6FA220B477B00F04942 /* MHScrollingAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5D0F6F9220B477B00F04942 /* MHScrollingAlertView.xib */; };
+		C5DA181823047063003C84C2 /* ACEarningsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DA181723047063003C84C2 /* ACEarningsView.swift */; };
 		C5E0DDB922A5B7D20034DEDF /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0DDB822A5B7D20034DEDF /* IndicatorView.swift */; };
 		C5E1530B22C64B630066FD6B /* PrivacyStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1530A22C64B630066FD6B /* PrivacyStack.swift */; };
 		C5E1E34F2253E84900255812 /* ACWakeSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1E34E2253E84900255812 /* ACWakeSurveyViewController.swift */; };
@@ -513,6 +515,7 @@
 		C56D6C5822CD0DFE00C3F8EA /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		C56D6C5A22CD2B9F00C3F8EA /* ACTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTutorialViewController.swift; sourceTree = "<group>"; };
 		C56D6C5C22CD3FE800C3F8EA /* PricesTestTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricesTestTutorialViewController.swift; sourceTree = "<group>"; };
+		C57480AB23035B2E00EFC901 /* CircularProgressGroupStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressGroupStackView.swift; sourceTree = "<group>"; };
 		C578771222F8BED10068E46B /* TestCountDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCountDownView.swift; sourceTree = "<group>"; };
 		C578771422F8BF260068E46B /* TestCountDownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCountDownViewController.swift; sourceTree = "<group>"; };
 		C578B8D522A859A60038DDF0 /* ACView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACView.swift; sourceTree = "<group>"; };
@@ -553,6 +556,7 @@
 		C5CCD7AD22DF717D002A788A /* AsyncAwait.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncAwait.swift; sourceTree = "<group>"; };
 		C5D085CB22D7828300043513 /* HintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintView.swift; sourceTree = "<group>"; };
 		C5D0F6F9220B477B00F04942 /* MHScrollingAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MHScrollingAlertView.xib; sourceTree = "<group>"; };
+		C5DA181723047063003C84C2 /* ACEarningsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACEarningsView.swift; sourceTree = "<group>"; };
 		C5E0DDB822A5B7D20034DEDF /* IndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorView.swift; sourceTree = "<group>"; };
 		C5E1530A22C64B630066FD6B /* PrivacyStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyStack.swift; sourceTree = "<group>"; };
 		C5E1E34E2253E84900255812 /* ACWakeSurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACWakeSurveyViewController.swift; sourceTree = "<group>"; };
@@ -1285,6 +1289,7 @@
 			children = (
 				C54E8E2922E88DFE0080BFC1 /* supporting views */,
 				C593227022E890DA00528FF5 /* ACProgressView.swift */,
+				C5DA181723047063003C84C2 /* ACEarningsView.swift */,
 				C53B123922F34C1700BACA9A /* ACTodayProgressView.swift */,
 				C5E7212922F10D9C004B9E26 /* TestProgressView.swift */,
 				C578771222F8BED10068E46B /* TestCountDownView.swift */,
@@ -1310,6 +1315,7 @@
 				C54E8E1C22E800780080BFC1 /* CircularProgressView.swift */,
 				C593227222E8916300528FF5 /* BlockProgressview.swift */,
 				C5AB56112302030F00129E03 /* WeekStepperView.swift */,
+				C57480AB23035B2E00EFC901 /* CircularProgressGroupStackView.swift */,
 			);
 			path = "supporting views";
 			sourceTree = "<group>";
@@ -1794,6 +1800,7 @@
 				C593227122E890DA00528FF5 /* ACProgressView.swift in Sources */,
 				C54AE9F621C81B5F00DEC360 /* NotificationController.swift in Sources */,
 				C54AE9F721C81B5F00DEC360 /* MHController.swift in Sources */,
+				C57480AC23035B2E00EFC901 /* CircularProgressGroupStackView.swift in Sources */,
 				C54D103E22C28A1D00B43E42 /* SliderView.swift in Sources */,
 				C54AEA1921C81B5F00DEC360 /* FCollectionContainerView.swift in Sources */,
 				C54D103C22C28A1D00B43E42 /* TextSegment.swift in Sources */,
@@ -1831,6 +1838,7 @@
 				C556BA2F22CA5B4C0057B54B /* ACHomeView.swift in Sources */,
 				C54AEA0421C81B5F00DEC360 /* BorderedUIView.swift in Sources */,
 				C54AEA3C21C81B5F00DEC360 /* QuestionResponse.swift in Sources */,
+				C5DA181823047063003C84C2 /* ACEarningsView.swift in Sources */,
 				C54D104022C28A1D00B43E42 /* TimeView.swift in Sources */,
 				C54AE9DF21C81B5F00DEC360 /* Date+Extensions.swift in Sources */,
 				C54AE9E421C81B5F00DEC360 /* StatusCode.swift in Sources */,

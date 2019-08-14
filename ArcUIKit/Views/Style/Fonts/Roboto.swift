@@ -40,6 +40,11 @@ public struct Roboto {
 			.family(Roboto.family)
 			.face(Roboto.Face.regular)
 			.size(18)
+		public static let disclaimer = UIFont(name: "Roboto", size: 14)!
+			
+			.family(Roboto.family)
+			.face(Roboto.Face.regular)
+			.size(14)
 		public static let badge = UIFont(name: "Roboto", size: 16)!
 			
 			.family(Roboto.family)
@@ -50,7 +55,6 @@ public struct Roboto {
 			
 		
 		public static let headingMedium = UIFont(name: "Roboto", size: 26)!
-			.family(Roboto.family)
 			.face(Roboto.Face.medium)
 			.size(26)
 		public static let headingBlack = UIFont(name: "Roboto", size: 26)!
@@ -75,6 +79,80 @@ public struct Roboto {
 	
 	}
 	
+	
+	public struct Style {
+		
+		public static func error(_ label:UILabel) {
+			label.font = Roboto.Font.italic
+			label.numberOfLines = 0
+			label.textColor = #colorLiteral(red: 0.6000000238, green: 0, blue: 0, alpha: 1)
+			
+		}
+		public static func body(_ label:UILabel, color:UIColor? = UIColor(named: "primary Text")) {
+			label.font = Roboto.Font.body
+			label.numberOfLines = 0
+			label.textColor = color
+		}
+		public static func disclaimer(_ label:UILabel, color:UIColor? = UIColor(named: "primary Text")) {
+			label.font = Roboto.Font.disclaimer
+			label.numberOfLines = 0
+			label.textColor = color
+		}
+		public static func badge(_ label:UILabel, color:UIColor? = ACColor.badgeText) {
+			label.font = Roboto.Font.badge
+			label.numberOfLines = 0
+			label.textColor = color
+		}
+		public static func bodyBold(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
+			label.font = Roboto.Font.bodyBold
+			label.numberOfLines = 0
+			label.textColor = color
+		}
+		public static func subHeading(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
+			label.font = Roboto.Font.subHeading
+			label.numberOfLines = 0
+			
+			label.textColor = color
+		}
+		public static func subHeadingBold(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
+			label.font = Roboto.Font.subHeadingBold
+			label.numberOfLines = 0
+			label.textColor = color
+		}
+		public static func headingMedium(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
+			label.font = Roboto.Font.headingMedium
+			label.numberOfLines = 0
+			
+			label.textColor = color
+		}
+		public static func headingBold(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
+			label.font = Roboto.Font.headingBold
+			label.numberOfLines = 0
+			label.textColor = color
+		}
+		public static func headingBlack(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
+			label.font = Roboto.Font.headingBlack
+			label.numberOfLines = 0
+			label.textColor = color
+		}
+		public static func body(_ label:UITextView, color:UIColor? = UIColor(named:"Primary Text")) {
+			label.font = Roboto.Font.body
+			label.textColor = color
+		}
+		public static func bodyBold(_ label:UITextView, color:UIColor? = UIColor(named:"Primary Text")) {
+			label.font = Roboto.Font.bodyBold
+			label.textColor = color
+		}
+		public static func heading(_ label:UITextView, color:UIColor? = UIColor(named:"Primary Text")) {
+			label.font = Roboto.Font.headingMedium
+			
+			label.textColor = color
+		}
+		public static func headingBold(_ label:UITextView, color:UIColor? = UIColor(named:"Primary Text")) {
+			label.font = Roboto.Font.headingBold
+			label.textColor = color
+		}
+	}
 	///Attributes for various uses
 	public struct Attributes {
 		public static let link = [ NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.foregroundColor: UIColor(named: "Primary") ?? .blue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.medium) ] as [NSAttributedString.Key : Any]
@@ -143,74 +221,6 @@ public struct Roboto {
 			paragraphStyle.lineSpacing = 7
 			attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
 			textView.attributedText = attributedString
-		}
-	}
-	public struct Style {
-		
-		public static func error(_ label:UILabel) {
-			label.font = Roboto.Font.italic
-			label.numberOfLines = 0
-			label.textColor = #colorLiteral(red: 0.6000000238, green: 0, blue: 0, alpha: 1)
-			
-		}
-		public static func body(_ label:UILabel, color:UIColor? = UIColor(named: "primary Text")) {
-			label.font = Roboto.Font.body
-			label.numberOfLines = 0
-			label.textColor = color
-		}
-		public static func badge(_ label:UILabel, color:UIColor? = ACColor.badgeText) {
-			label.font = Roboto.Font.badge
-			label.numberOfLines = 0
-			label.textColor = color
-		}
-		public static func bodyBold(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
-			label.font = Roboto.Font.bodyBold
-			label.numberOfLines = 0
-			label.textColor = color
-		}
-		public static func subHeading(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
-			label.font = Roboto.Font.subHeading
-			label.numberOfLines = 0
-			
-			label.textColor = color
-		}
-		public static func subHeadingBold(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
-			label.font = Roboto.Font.subHeadingBold
-			label.numberOfLines = 0
-			label.textColor = color
-		}
-		public static func headingMedium(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
-			label.font = Roboto.Font.headingMedium
-			label.numberOfLines = 0
-			
-			label.textColor = color
-		}
-		public static func headingBold(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
-			label.font = Roboto.Font.headingBold
-			label.numberOfLines = 0
-			label.textColor = color
-		}
-		public static func headingBlack(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
-			label.font = Roboto.Font.headingBlack
-			label.numberOfLines = 0
-			label.textColor = color
-		}
-		public static func body(_ label:UITextView, color:UIColor? = UIColor(named:"Primary Text")) {
-			label.font = Roboto.Font.body
-			label.textColor = color
-		}
-		public static func bodyBold(_ label:UITextView, color:UIColor? = UIColor(named:"Primary Text")) {
-			label.font = Roboto.Font.bodyBold
-			label.textColor = color
-		}
-		public static func heading(_ label:UITextView, color:UIColor? = UIColor(named:"Primary Text")) {
-			label.font = Roboto.Font.headingMedium
-			
-			label.textColor = color
-		}
-		public static func headingBold(_ label:UITextView, color:UIColor? = UIColor(named:"Primary Text")) {
-			label.font = Roboto.Font.headingBold
-			label.textColor = color
 		}
 	}
 	
