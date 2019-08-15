@@ -113,6 +113,9 @@ public class ACHomeView: ACTemplateView {
 					$0.setTitle("BEGIN".localized("button_begin"), for: .normal)
 					$0.addAction {
 						[weak self] in
+                        MHController.dataContext.performAndWait {
+                            Arc.shared.notificationController.shceduleMissedTestNotification()
+                        }
 						self?.delegate?.beginPressed()
 						self?.window?.removeHighlight()
 						self?.window?.clearOverlay()

@@ -376,6 +376,9 @@ public class ACScheduleViewController : BasicSurveyViewController {
                 Arc.shared.scheduleController.upload(confirmedSchedule: Int(study.studyID));
             }
             
+            MHController.dataContext.performAndWait {
+                Arc.shared.notificationController.shceduleMissedTestNotification()
+            }
             
             Arc.shared.studyController.save()
             
