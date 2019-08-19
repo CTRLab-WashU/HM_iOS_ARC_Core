@@ -10,6 +10,8 @@ import ArcUIKit
 
 public class ACCircularProgressGroupStackView : UIStackView {
 	private var progressViews:[CircularProgressView] = []
+	public var config = Drawing.CircularBar()
+
 	public init() {
 		super.init(frame: .zero)
 		translatesAutoresizingMaskIntoConstraints = false
@@ -27,7 +29,6 @@ public class ACCircularProgressGroupStackView : UIStackView {
 	}
 	
 	public func addProgressViews(count:Int) {
-		var config = Drawing.CircularBar()
 		
 		config.strokeWidth =  6
 		config.trackColor = #colorLiteral(red: 0.400000006, green: 0.7799999714, blue: 0.7799999714, alpha: 1)

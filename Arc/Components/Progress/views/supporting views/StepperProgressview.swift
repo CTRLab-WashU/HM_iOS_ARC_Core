@@ -13,7 +13,7 @@ public class StepperProgressView : UIView {
 	public var progress:CGFloat = 0.5
 	public var pos:CGFloat?
 	public var config:Config = Config()
-	
+	public let endRectView:UIView = UIView()
 	var outlinePath:UIBezierPath = UIBezierPath()
 	var fillPath:UIBezierPath = UIBezierPath()
 	
@@ -21,15 +21,20 @@ public class StepperProgressView : UIView {
 	public override init(frame: CGRect) {
 		super.init(frame: frame)
 		backgroundColor = .clear
-		
+		build()
 		
 	}
 	
 	
 	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
+
 	}
-	
+	func build() {
+		endRectView.backgroundColor = .clear
+		self.addSubview(endRectView)
+
+	}
 	public override func draw(_ rect: CGRect) {
 		super.draw(rect)
 		
@@ -43,6 +48,8 @@ public class StepperProgressView : UIView {
 		if let pos = pos {
 			endRect = CGRect(x: pos - frame.height/2, y: rect.midY - frame.height/2.0, width: frame.height, height: frame.height)
 		}
+		endRectView.frame = endRect
+
 		fillPath.move(to: CGPoint(x: rect.minX + config.barWidth / 2.0, y: rect.midY))
 		fillPath.addLine(to: CGPoint(x: endRect.midX , y: endRect.midY))
 		context?.setStrokeColor(config.foregroundColor.cgColor)

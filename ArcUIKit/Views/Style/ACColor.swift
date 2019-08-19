@@ -9,10 +9,17 @@
 import UIKit
 public struct ACColor {
 	
+	//Goals
+	static public let goalHeader:UIColor = UIColor(named:"Goal Header")!
+	static public let calendarItemBackground:UIColor = UIColor(named: "Calendar Item Background")!
 	//Badges
 	static public let badgeText:UIColor = UIColor(named:"Badge Text")!
 	static public let badgeBackground:UIColor = UIColor(named:"Badge Background")!
+	static public let badgeGradientStart:UIColor =  UIColor(named:"Badge Gradient Start")!
+	static public let badgeGradientEnd:UIColor = UIColor(named:"Badge Gradient End")!
+	static public let badgeGray:UIColor = UIColor(named:"Badge Gray")!
 
+	
 	
 	//Primary App colors
 	static public let primary:UIColor = UIColor(named:"Primary")!

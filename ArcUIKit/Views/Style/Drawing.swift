@@ -157,7 +157,6 @@ public struct Drawing {
 			path.fill()
 		}
 	}
-	
 	public struct GradientButton : ACDrawable {
 		var cornerRadius:CGFloat
 		var primaryColor:UIColor
@@ -165,7 +164,8 @@ public struct Drawing {
 		var isSelected:Bool
 		var isEnabled:Bool
 		
-	
+		
+		
 		public func draw(_ rect:CGRect) {
 			let path = UIBezierPath(roundedRect: rect,
 									byRoundingCorners: .allCorners,
@@ -174,8 +174,8 @@ public struct Drawing {
 			let context = UIGraphicsGetCurrentContext()
 			
 			let colors = (!isSelected && isEnabled) ? [secondaryColor.cgColor,
-																	 primaryColor.cgColor] : [primaryColor.cgColor,
-																									 primaryColor.cgColor]
+													   primaryColor.cgColor] : [primaryColor.cgColor,
+																				primaryColor.cgColor]
 			
 			let colorSpace = CGColorSpaceCreateDeviceRGB()
 			
@@ -188,6 +188,60 @@ public struct Drawing {
 			let startPoint = CGPoint.zero
 			let endPoint = CGPoint(x:0, y:rect.height)
 			context?.drawLinearGradient(gradient, start: startPoint, end: endPoint, options:[])
+		}
+	}
+
+	
+	public struct BadgeGradient : ACDrawable {
+		
+		public var cornerRadius:CGFloat = 6.0
+		public var primaryColor:UIColor = ACColor.badgeGradientStart
+		public var secondaryColor:UIColor = ACColor.badgeGradientEnd
+		public var borderColor:UIColor = ACColor.badgeBackground
+		public var isUnlocked:Bool = false
+		public var startPoint:CGPoint? = nil
+		public var endPoint:CGPoint? = nil
+		
+		public init() {
+			
+		}
+		public func draw(_ rect:CGRect) {
+			var path = UIBezierPath(roundedRect: rect,
+									byRoundingCorners: .allCorners,
+									cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
+			path.addClip()
+			let context = UIGraphicsGetCurrentContext()
+			
+			let colors = (isUnlocked) ? [secondaryColor.cgColor,
+													   primaryColor.cgColor] : [UIColor.clear.cgColor,
+																				UIColor.clear.cgColor]
+			
+			let colorSpace = CGColorSpaceCreateDeviceRGB()
+			
+			let colorLocations:[CGFloat] = [0.0, 1.0]
+			
+			let gradient = CGGradient(colorsSpace: colorSpace,
+									  colors: colors as CFArray,
+									  locations: colorLocations)!
+			let startPoint = self.startPoint ?? CGPoint.zero
+			let endPoint = self.endPoint ?? CGPoint(x:rect.width, y:0)
+			
+			context?.drawLinearGradient(gradient, start: startPoint, end: endPoint, options:[])
+			path = UIBezierPath(roundedRect: rect.insetBy(dx: 1, dy: 1),
+									byRoundingCorners: .allCorners,
+									cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
+			path.lineWidth = 2
+			if isUnlocked {
+				context?.setStrokeColor(borderColor.cgColor)
+				path.setLineDash(nil, count:0, phase: 0)
+				path.stroke()
+			} else {
+				let dashPattern: [CGFloat] = [4.0, 4.0]
+				path.setLineDash(dashPattern, count: dashPattern.count, phase: 0)
+				context?.setStrokeColor(ACColor.badgeGray.cgColor)
+				path.stroke()
+
+			}
 		}
 	}
 }

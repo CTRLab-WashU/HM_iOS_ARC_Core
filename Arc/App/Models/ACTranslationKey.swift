@@ -30,7 +30,9 @@ public enum ACTranslationKey : String, TranslationKey {
 
 	case notification4_lastday
 
-	case notification_testproctor
+	case notification_testproctor_header
+
+	case notification_testproctor_body
 
 	case dateshift_picker
 
@@ -80,6 +82,10 @@ public enum ACTranslationKey : String, TranslationKey {
 
 	case onboarding_nocommit_body
 
+	case onboarding_nocommit_landing_header
+
+	case onboarding_nocommit_landing_body
+
 	case onboarding_commit_header
 
 	case onboarding_commit_body
@@ -92,7 +98,9 @@ public enum ACTranslationKey : String, TranslationKey {
 
 	case onboarding_notifications_header2
 
-	case onboarding_notifications_body2
+	case onboarding_notifications_body2_ios
+
+	case onboarding_notifications_body2_android
 
 	case availability_header
 
@@ -110,6 +118,8 @@ public enum ACTranslationKey : String, TranslationKey {
 
 	case availability_change_linked
 
+	case availability_change_confirm
+
 	case idverify_header
 
 	case idverify_body
@@ -117,8 +127,6 @@ public enum ACTranslationKey : String, TranslationKey {
 	case idverify_undo
 
 	case home_header1
-
-	case home_body1
 
 	case home_header2
 
@@ -139,6 +147,10 @@ public enum ACTranslationKey : String, TranslationKey {
 	case home_header6
 
 	case home_body_6
+
+	case home_header7
+
+	case home_body7
 
 	case resources_header
 
@@ -240,6 +252,8 @@ public enum ACTranslationKey : String, TranslationKey {
 
 	case faq_tech_q5
 
+	case faq_tech_q6
+
 	case faq_tech_a1
 
 	case faq_tech_a2
@@ -249,6 +263,8 @@ public enum ACTranslationKey : String, TranslationKey {
 	case faq_tech_a4
 
 	case faq_tech_a5
+
+	case faq_tech_a6
 
 	case faq_earnings_header
 
@@ -312,6 +328,10 @@ public enum ACTranslationKey : String, TranslationKey {
 
 	case progress_nextcycle
 
+	case progress_cycledates
+
+	case earnings_body0
+
 	case earnings_body1
 
 	case earnings_weektotal
@@ -326,27 +346,25 @@ public enum ACTranslationKey : String, TranslationKey {
 
 	case earnings_4of4_body
 
-	case earnings_4of4_incomplete
-
-	case earnings_4of4_complete
-
 	case earnings_2aday_header
 
 	case earnings_2aday_body
-
-	case earnings_2aday_incomplete
-
-	case earnings_2aday_complete
 
 	case earnings_21tests_header
 
 	case earnings_21tests_body
 
-	case earnings_21tests_incomplete
+	case earnings_bonus_incomplete
 
-	case earnings_21tests_complete
+	case earnings_bonus_complete
 
 	case earnings_details_header
+
+	case earnings_sync
+
+	case earnings_sync_justnow
+
+	case earnings_sync_datetime
 
 	case earnings_details_subheader1
 
@@ -556,6 +574,10 @@ public enum ACTranslationKey : String, TranslationKey {
 
 	case progress_schedule_header
 
+	case progress_practice_body1
+
+	case progress_practice_body2
+
 	case progress_schedule_body1
 
 	case progress_schedule_body2
@@ -600,6 +622,10 @@ public enum ACTranslationKey : String, TranslationKey {
 
 	case progress_studytotals_goals
 
+	case progress_endoftest_syncing
+
+	case progress_endoftest_nosync
+
 	case login_error1
 
 	case login_error2
@@ -611,6 +637,8 @@ public enum ACTranslationKey : String, TranslationKey {
 	case button_begin
 
 	case button_back
+
+	case button_sendnewcode
 
 	case button_submittime
 
@@ -629,6 +657,8 @@ public enum ACTranslationKey : String, TranslationKey {
 	case button_signin
 
 	case button_beginsurvey
+
+	case button_begintest
 
 	case button_okay
 
@@ -665,6 +695,8 @@ public enum ACTranslationKey : String, TranslationKey {
 	case popup_tutorial_welcome
 
 	case popup_tutorial_quit
+
+	case popup_tutorial_price_intro
 
 	case popup_tutorial_choose1
 
@@ -717,6 +749,8 @@ public enum ACTranslationKey : String, TranslationKey {
 	case popup_tutorial_needhelp
 
 	case popup_tutorial_remindme
+
+	case popup_tour
 
 	case popup_tab_home
 
@@ -799,4 +833,3 @@ public enum ACTranslationKey : String, TranslationKey {
 	case footnote_symbol
 
 }
-

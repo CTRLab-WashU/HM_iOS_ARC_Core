@@ -4,8 +4,8 @@ public class CircularProgressView : UIView {
 	
 	public struct Config {
 		var strokeWidth:CGFloat = 10
-		var trackColor:UIColor = .black
-		var barColor:UIColor = .blue
+		var trackColor:UIColor = ACColor.highlight
+		var barColor:UIColor = ACColor.primaryInfo
 		
 	}
 	private var completeAnimation = Animate().duration(0.5).curve(.easeOut)

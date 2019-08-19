@@ -186,7 +186,6 @@ class ACProgressView: ACTemplateView {
 							
 						}
 					}
-					//#error("I stopped here")
 					$0.stack {
 						$0.acLabel {
 							Roboto.Style.subHeading($0, color: .white)

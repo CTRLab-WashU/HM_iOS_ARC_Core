@@ -17,15 +17,33 @@ public extension UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }
-	public func attachTo(view:UIView?) {
+	public func attachTo(view:UIView?, margins:UIEdgeInsets? = .zero) {
 		guard let view = view else {return}
+		if let margins = margins {
+			view.layoutMargins = margins
+		}
 		layout {
 			
 			// select an anchor give a priority of 999 (almost Required)
-			$0.top == view.topAnchor ~ 999
-			$0.trailing == view.trailingAnchor ~ 999
-			$0.bottom == view.bottomAnchor ~ 999
-			$0.leading == view.leadingAnchor ~ 999
+			$0.top == view.layoutMarginsGuide.topAnchor ~ 999
+			$0.trailing == view.layoutMarginsGuide.trailingAnchor ~ 999
+			$0.bottom == view.layoutMarginsGuide.bottomAnchor ~ 999
+			$0.leading == view.layoutMarginsGuide.leadingAnchor ~ 999
+			
+		}
+	}
+	public func safeAttachTo(view:UIView?, margins:UIEdgeInsets? = .zero) {
+		guard let view = view else {return}
+		if let margins = margins {
+			view.layoutMargins = margins
+		}
+		layout {
+			
+			// select an anchor give a priority of 999 (almost Required)
+			$0.top == view.safeAreaLayoutGuide.topAnchor ~ 999
+			$0.trailing == view.layoutMarginsGuide.trailingAnchor ~ 999
+			$0.bottom == view.safeAreaLayoutGuide.bottomAnchor ~ 999
+			$0.leading == view.layoutMarginsGuide.leadingAnchor ~ 999
 			
 		}
 	}

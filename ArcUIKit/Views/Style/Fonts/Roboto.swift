@@ -72,6 +72,14 @@ public struct Roboto {
 			.family(Roboto.family)
 			.boldFont()
 			.size(22)
+		public static let goalHeading = UIFont(name: "Roboto-Medium", size: 20)!
+//			.family(Roboto.family)
+//			.face(Roboto.Face.medium)
+//			.size(20)
+		public static let goalReward = UIFont(name: "Roboto", size: 16)!
+			.family(Roboto.family)
+			.boldFont()
+			.size(16)
 		public static let italic = UIFont(name: "Roboto", size: 18)!
 			.family(Roboto.family)
 			.italicFont()
@@ -93,6 +101,7 @@ public struct Roboto {
 			label.numberOfLines = 0
 			label.textColor = color
 		}
+		
 		public static func disclaimer(_ label:UILabel, color:UIColor? = UIColor(named: "primary Text")) {
 			label.font = Roboto.Font.disclaimer
 			label.numberOfLines = 0
@@ -113,6 +122,18 @@ public struct Roboto {
 			label.numberOfLines = 0
 			
 			label.textColor = color
+		}
+		public static func goalHeading(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
+			label.font = Roboto.Font.goalHeading
+			label.numberOfLines = 0
+			label.textColor = color
+		}
+		
+		public static func goalReward(_ label:UILabel, color:UIColor? = UIColor(named: "primary Text")) {
+			label.font = Roboto.Font.goalReward
+			label.numberOfLines = 1
+			label.textColor = color
+			label.textAlignment = .center
 		}
 		public static func subHeadingBold(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
 			label.font = Roboto.Font.subHeadingBold
