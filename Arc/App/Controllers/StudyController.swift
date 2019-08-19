@@ -1219,10 +1219,15 @@ open class StudyController : MHController {
 	// clears all useful data from the Session. It only keeps data related to start date, which Arc it's part of,
 	// and whether or not it was finished or missed.
 	
-	open func clearData(sessionId:Int)
+	open func clearData(sessionId:Int, force:Bool = false)
 	{
 		guard let session = get(session: sessionId) else {
 			return
+		}
+		if !force {
+			guard session.startSignature != nil else {
+				return
+			}
 		}
 		let relationships = session.entity.relationshipsByName;
 		
