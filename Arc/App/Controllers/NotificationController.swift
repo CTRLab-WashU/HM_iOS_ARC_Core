@@ -221,14 +221,16 @@ open class NotificationController : MHController
     {
         let predicate = NSPredicate(format: "scheduledAt < %@", NSDate());
         let sortDescriptors = [NSSortDescriptor(key:"scheduledAt", ascending:true)];
+		MHController.dataContext.performAndWait {
+			
 		
+
 		guard let results = self.fetch(predicate: predicate, sort: sortDescriptors) else {
 			return
 		}
 
 		
-        MHController.dataContext.perform {
-            
+		
 
 			
 			for r in results
