@@ -192,7 +192,7 @@ open class GridTestController : TestController<GridTestResponse> {
             if testIndex < test.sections.count {
                 return test.sections[testIndex].choices.count
             }
-            return test.sections.count - 1
+            return 0
         } catch {
             fatalError(error.localizedDescription)
         }
