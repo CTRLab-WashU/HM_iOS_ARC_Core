@@ -53,7 +53,7 @@ public class GoalDayTile: UIView {
 extension UIView {
 	@discardableResult
 	public func goalDayTile(apply closure: (GoalDayTile) -> Void) -> GoalDayTile {
-		custom(GoalDayTile(), apply: closure)
+		return custom(GoalDayTile(), apply: closure)
 	}
 }
 

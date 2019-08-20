@@ -32,6 +32,6 @@ public class FourOfFourGoalView : GoalView {
 extension UIView {
 	@discardableResult
 	public func fourOfFourGoalView(apply closure: (FourOfFourGoalView) -> Void) -> FourOfFourGoalView {
-		custom(FourOfFourGoalView(), apply: closure)
+		return custom(FourOfFourGoalView(), apply: closure)
 	}
 }

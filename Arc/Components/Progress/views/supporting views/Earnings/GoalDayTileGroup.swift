@@ -52,7 +52,7 @@ public class GoalDayTileGroup: UIStackView {
 extension UIView {
 	@discardableResult
 	public func goalDayTileGroup(apply closure: (GoalDayTileGroup) -> Void) -> GoalDayTileGroup {
-		custom(GoalDayTileGroup(), apply: closure)
+		return custom(GoalDayTileGroup(), apply: closure)
 	}
 
 }
