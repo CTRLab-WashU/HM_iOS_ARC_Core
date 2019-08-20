@@ -164,8 +164,10 @@ open class GridTestController : TestController<GridTestResponse> {
         case .distraction:
             grid = currentTests[section].fGrid.values
         }
+        let row = (index / grid[0].count)
+        let col = (index % grid[0].count)
         
-       return (index / (grid[0].count), index % (grid[0].count))
+       return (col, row)
     }
     public func get(item index:Int, section:Int, gridType:GridTestController.GridType) -> Int {
             var grid:Array<Array<Int>> = []
