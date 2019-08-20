@@ -136,6 +136,7 @@ public class ACEarningsView : ACTemplateView {
 					$0.acButton {
 						$0.primaryColor = ACColor.secondary
 						$0.secondaryColor = ACColor.secondaryGradient
+						$0.setTitleColor(ACColor.badgeText, for: .normal)
 						$0.setTitle("".localized(ACTranslationKey.button_viewfaq), for: .normal)
 					}
 					
