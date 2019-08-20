@@ -175,6 +175,27 @@ open class NotificationController : MHController
         
         //        save();
     }
+    
+    open func shceduleMissedTestNotification() {
+        self.clearMissedTestNotifications()
+        let sessions = Arc.shared.studyController.getUpcomingSessions(withLimit: 32)
+        var count = 1
+        for session in sessions {
+            if count%4 == 0 {
+                // get session time
+                guard let testTime = session.expirationDate else { continue }
+                // schedule missed test notif for new time
+                let body = "You've missed your tests. If you're unable to finish this week, please contact your site coordinator.".localized("notification_missed") //comment: "Notification for missed test sessions"
+                scheduleNotification(date: testTime, title: "", body: body, identifierPrefix: "MissedTestNotification")
+            }
+            count += 1
+        }
+    }
+    
+    fileprivate func clearMissedTestNotifications() {
+        clearNotifications(withIdentifierPrefix: "MissedTestNotification")
+    }
+    
     func clearDateReminders()
     {
         clearNotifications(withIdentifierPrefix: "DateReminder");
@@ -305,15 +326,6 @@ open class NotificationController : MHController
         return fetch(predicate: predicate, sort: sortDescriptors) ?? []
        
     }
-	
-	open func schedule(missedTestsNotification studyId:Int, fireDate:Date = Date().addingMinutes(minutes: 1))
-	{
-		let body = "You've missed your tests. If you're unable to finish this week, please contact your site coordinator.".localized("notification_missed") //comment: "Notification for missed test sessions"
-		
-		let newNotification = scheduleNotification(date: fireDate, title: "", body: body, identifierPrefix: "MissedTests-\(studyId)");
-		newNotification.studyID = Int64(studyId);
-		save();
-	}
 	
 	open func has(scheduledDateReminder studyId:Int) -> Bool
 	{
