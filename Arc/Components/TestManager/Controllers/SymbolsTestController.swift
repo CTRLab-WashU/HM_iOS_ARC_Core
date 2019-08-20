@@ -24,6 +24,36 @@ open class SymbolsTestController : TestController<SymbolsTestResponse> {
         }
         return test
     }
+    
+    public func generateTutorialTest() -> SymbolsTest {
+        var test = SymbolsTest()
+        let sectionOne = SymbolsTest.Section(options: [SymbolsTest.SymbolSet(symbols: [7,2]),
+                                                       SymbolsTest.SymbolSet(symbols: [0,7]),
+                                                       SymbolsTest.SymbolSet(symbols: [3,4])],
+                                             choices: [SymbolsTest.SymbolSet(symbols: [3,4]),
+                                                       SymbolsTest.SymbolSet(symbols: [2,6])],
+                                             correct: 1)
+        
+        let sectionTwo = SymbolsTest.Section(options: [SymbolsTest.SymbolSet(symbols: [6,1]),
+                                                       SymbolsTest.SymbolSet(symbols: [7,0]),
+                                                       SymbolsTest.SymbolSet(symbols: [1,5])],
+                                             choices: [SymbolsTest.SymbolSet(symbols: [1,4]),
+                                                       SymbolsTest.SymbolSet(symbols: [7,0])],
+                                             correct: 2)
+        
+        let sectionThree = SymbolsTest.Section(options: [SymbolsTest.SymbolSet(symbols: [6,2]),
+                                                       SymbolsTest.SymbolSet(symbols: [6,0]),
+                                                       SymbolsTest.SymbolSet(symbols: [3,4])],
+                                             choices: [SymbolsTest.SymbolSet(symbols: [6,2]),
+                                                       SymbolsTest.SymbolSet(symbols: [7,0])],
+                                             correct: 1)
+
+        test.sections.append(sectionOne)
+        test.sections.append(sectionTwo)
+        test.sections.append(sectionThree)
+        return test
+    }
+    
     // if two sets have the same values, in any order, the compare function will return true.
     // so [1,2] and [2,1] would be considered the "same" for our purposes.
     private func compareSets(s1:SymbolsTest.SymbolSet, s2:SymbolsTest.SymbolSet) -> Bool

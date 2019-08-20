@@ -78,7 +78,7 @@ public class SymbolsTestViewController: UIViewController, TestProgressViewContro
 			responseID = controller.createResponse(withTest: test!, id: responseID)
 		} else {
 			//Will be stored in core data, but not retrieved for server upload.
-        	test = controller.generateTest(numSections: 12, numSymbols: 8)
+            test = controller.generateTutorialTest()
         	responseID = controller.createResponse(withTest: test!)
 		}
         

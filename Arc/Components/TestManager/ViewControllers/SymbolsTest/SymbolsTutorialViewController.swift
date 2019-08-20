@@ -9,9 +9,16 @@
 import UIKit
 import ArcUIKit
 class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewControllerDelegate {
-	
-	
-	
+
+    public var symbols:[Int:UIImage] = [0: UIImage(named: "tutorial_symbol 1", in: Bundle(for: SymbolsTutorialViewController.self), compatibleWith: nil)!,
+                                        1: UIImage(named: "tutorial_symbol 2", in: Bundle(for: SymbolsTutorialViewController.self), compatibleWith: nil)!,
+                                        2: UIImage(named: "tutorial_symbol 3", in: Bundle(for: SymbolsTutorialViewController.self), compatibleWith: nil)!,
+                                        3: UIImage(named: "tutorial_symbol 4", in: Bundle(for: SymbolsTutorialViewController.self), compatibleWith: nil)!,
+                                        4: UIImage(named: "tutorial_symbol 5", in: Bundle(for: SymbolsTutorialViewController.self), compatibleWith: nil)!,
+                                        5: UIImage(named: "tutorial_symbol 6", in: Bundle(for: SymbolsTutorialViewController.self), compatibleWith: nil)!,
+                                        6: UIImage(named: "tutorial_symbol 7", in: Bundle(for: SymbolsTutorialViewController.self), compatibleWith: nil)!,
+                                        7: UIImage(named: "tutorial_symbol 8", in: Bundle(for: SymbolsTutorialViewController.self), compatibleWith: nil)!]
+    
     var test:SymbolsTestViewController = .get(nib: "SymbolsTestTutorialViewController", bundle: Bundle(for: SymbolsTestViewController.self))
 	var selectionMade:Bool = false
 	var questionsAnswered = 0
@@ -26,7 +33,8 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 		addChild(test)
 		customView.setContent(viewController: test)
 		
-		
+		self.test.symbols = self.symbols
+        
         // Do any additional setup after loading the view.
     }
 	override public func viewWillDisappear(_ animated: Bool) {
