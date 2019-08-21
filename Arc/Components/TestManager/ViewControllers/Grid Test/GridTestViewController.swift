@@ -36,6 +36,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
     public var maybeEndTimer:Timer?
 	public var isVisible = true
 	public var shouldAutoProceed = true
+    public var isPracticeTest = false
 	public var fIndexPaths:[IndexPath] = []
 	public var symbolIndexPaths:[IndexPath] = []
     var interstitial:InterstitialView = .get()
@@ -71,11 +72,13 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 			tests = controller.createTest(numberOfTests: 2)
 			_ = controller.createResponse(id: responseId, numSections: 2)
 //			print(responseId)
-		} else {
-		
+		} else if !isPracticeTest {
         	tests = controller.createTest(numberOfTests: 2)
         	responseId = controller.createResponse(numSections: 2)
-		}
+        } else {
+            tests = controller.createTutorialTest()
+            responseId = controller.createResponse(numSections: 1)
+        }
 		collectionView.register(UINib(nibName: "GridFCell", bundle: Bundle(for: GridFCell.self)), forCellWithReuseIdentifier: "fCell")
 		collectionView.register(UINib(nibName: "GridImageCell", bundle: Bundle(for: GridImageCell.self)), forCellWithReuseIdentifier: "imageCell")
 

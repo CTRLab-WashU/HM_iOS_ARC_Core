@@ -27,6 +27,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
     override func viewDidLoad() {
 		duration = 20
         super.viewDidLoad()
+        test.isPracticeTest = true
 		test.shouldAutoProceed = false
 		test.delegate = self
 		setupScript()
@@ -254,7 +255,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			weakSelf.progress = 0.4
 			weakSelf.tutorialAnimation.pause()
 			weakSelf.phase = .fs
-			let index = weakSelf.test.fIndexPaths[weakSelf.test.fIndexPaths.count/2]
+			let index = weakSelf.test.fIndexPaths[3]
 			guard let cell = weakSelf.test.overlayCell(at: index) else {
 				return
 			}
