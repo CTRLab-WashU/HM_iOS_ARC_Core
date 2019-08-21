@@ -23,6 +23,8 @@
 		C51A7D9022D8CDAE00854B13 /* BasicSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51A7D8F22D8CDAE00854B13 /* BasicSurveyViewController.swift */; };
 		C523B38622CA76450074337D /* UIViewController + CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C523B38522CA76450074337D /* UIViewController + CustomView.swift */; };
 		C523B38822CA8AF80074337D /* Animate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C523B38722CA8AF80074337D /* Animate.swift */; };
+		2D5711F422EB3AB500E7F881 /* Earnings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5711F322EB3AB500E7F881 /* Earnings.swift */; };
+		2D5711F722EB815E00E7F881 /* StudyProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5711F622EB815E00E7F881 /* StudyProgress.swift */; };
 		C52B75D421C8369400498571 /* arc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C54AE94821C81B5C00DEC360 /* arc.xcdatamodeld */; };
 		C52B75D521C837A200498571 /* Session+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE90E21C81B5C00DEC360 /* Session+Extensions.swift */; };
 		C52B75E521C83B2A00498571 /* HMMarkup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52B75DC21C83B2A00498571 /* HMMarkup.framework */; };
@@ -334,6 +336,8 @@
 		C51A7D8F22D8CDAE00854B13 /* BasicSurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicSurveyViewController.swift; sourceTree = "<group>"; };
 		C523B38522CA76450074337D /* UIViewController + CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + CustomView.swift"; sourceTree = "<group>"; };
 		C523B38722CA8AF80074337D /* Animate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animate.swift; sourceTree = "<group>"; };
+		2D5711F322EB3AB500E7F881 /* Earnings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Earnings.swift; sourceTree = "<group>"; };
+		2D5711F622EB815E00E7F881 /* StudyProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyProgress.swift; sourceTree = "<group>"; };
 		C52B75DC21C83B2A00498571 /* HMMarkup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HMMarkup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C52B75DE21C83B2A00498571 /* HMMarkup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HMMarkup.h; sourceTree = "<group>"; };
 		C52B75DF21C83B2A00498571 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -895,6 +899,8 @@
 				C5E3924A22EA3A8F007CB3B6 /* ContactInfoResponse.swift */,
 				C54AE91F21C81B5C00DEC360 /* StatusCode.swift */,
 				C54AE92021C81B5C00DEC360 /* HMFault.swift */,
+				2D5711F322EB3AB500E7F881 /* Earnings.swift */,
+				2D5711F622EB815E00E7F881 /* StudyProgress.swift */,
 				C54AE92121C81B5C00DEC360 /* HMRequest.swift */,
 				C54AE92221C81B5C00DEC360 /* SessionInfoResponse.swift */,
 				C54AE92321C81B5C00DEC360 /* ScheduleResponse.swift */,
@@ -1839,6 +1845,7 @@
 				C54AEA1821C81B5F00DEC360 /* SymbolSelectButton.swift in Sources */,
 				C54AEA1721C81B5F00DEC360 /* PricesTestController.swift in Sources */,
 				C593227122E890DA00528FF5 /* ACProgressView.swift in Sources */,
+				2D5711F422EB3AB500E7F881 /* Earnings.swift in Sources */,
 				C54AE9F621C81B5F00DEC360 /* NotificationController.swift in Sources */,
 				C54AE9F721C81B5F00DEC360 /* MHController.swift in Sources */,
 				C57480AC23035B2E00EFC901 /* CircularProgressGroupStackView.swift in Sources */,
@@ -1941,6 +1948,8 @@
 				C54AE9E221C81B5F00DEC360 /* FatalErrorUtil.swift in Sources */,
 				C54AEA1521C81B5F00DEC360 /* GridTestController.swift in Sources */,
 				C54AE9E821C81B5F00DEC360 /* ScheduleResponse.swift in Sources */,
+				2D5711F722EB815E00E7F881 /* StudyProgress.swift in Sources */,
+				C54AEA4821C81B5F00DEC360 /* TextSegment.swift in Sources */,
 				C54AEA3A21C81B5F00DEC360 /* ACSurveyType.swift in Sources */,
 				C5C2B12922D3ECBB002CB4C5 /* InfoContentView.swift in Sources */,
 				C54AEA0121C81B5F00DEC360 /* CancelButton.swift in Sources */,

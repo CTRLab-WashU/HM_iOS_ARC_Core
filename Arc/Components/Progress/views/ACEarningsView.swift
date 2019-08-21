@@ -129,8 +129,8 @@ public class ACEarningsView : ACTemplateView {
 					
 					
 					self.totalSessionsGoal = $0.totalSessionGoalView {
-						$0.set(titleText: "21 Sessions")
-						$0.set(isUnlocked: true)
+						$0.set(titleText: "21 Sessions".localized(ACTranslationKey.earnings_21tests_header))
+						$0.set(isUnlocked: false)
 						
 					}
 					$0.acButton {

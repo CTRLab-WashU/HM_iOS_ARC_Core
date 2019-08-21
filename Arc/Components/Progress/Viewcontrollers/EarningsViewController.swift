@@ -15,11 +15,15 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-		customView.earningsBodyLabel.text = "".localized(ACTranslationKey.earnings_body0)
-		customView.bonusGoalsBodyLabel.text = "".localized(ACTranslationKey.earnings_bonus_body)
+		setGoal()
+		
     }
 	
 	public func setGoal() {
+		customView.earningsBodyLabel.text = "".localized(ACTranslationKey.earnings_body0)
+		customView.bonusGoalsBodyLabel.text = "".localized(ACTranslationKey.earnings_bonus_body)
+		
+		
 		
 	}
 	

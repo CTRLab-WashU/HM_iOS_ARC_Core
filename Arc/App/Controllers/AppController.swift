@@ -9,6 +9,18 @@
 import Foundation
 open class AppController : MHController {
 	public var testCount:Int = 0
+	
+	public func store<T:Codable>(value:T?, forKey key:String) {
+		defaults.setValue(value?.encode(), forKey:key);
+		defaults.synchronize();
+	}
+	public func read<T:Codable>(key:String) -> T? {
+		guard let value:T =  defaults.data(forKey: key)?.decode() else {
+			
+			return nil
+		}
+		return value
+	}
 	public var isParticipating:Bool {
 		get {
 			if let value = (defaults.value(forKey:"isParticipating") as? Bool)
@@ -41,6 +53,25 @@ open class AppController : MHController {
 		}
 	}
 	
+	//Use this to track the last time something had been fetched.
+	//Api calls, periodic checks, event triggers
+	public var lastFetched:[String:TimeInterval] {
+		get {
+			
+			guard let value =  defaults.dictionary(forKey:"lastFetched") as? [String : TimeInterval] else {
+				defaults.setValue([:], forKey:"lastFetched");
+				
+				return defaults.dictionary(forKey:"lastFetched") as! [String : TimeInterval];
+			}
+			
+			return value
+		}
+		set (newVal)
+		{
+			defaults.setValue(newVal, forKey:"lastFetched");
+			defaults.synchronize();
+		}
+	}
     public var locale:ACLocale {
         return ACLocale(rawValue: "\(language ?? "en")_\(country ?? "US")") ?? .en_US
     }
