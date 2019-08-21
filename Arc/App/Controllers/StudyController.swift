@@ -1250,4 +1250,68 @@ open class StudyController : MHController {
 		Arc.shared.notificationController.clearPastNotifications();
 		
 	}
+	
+	
+	/// gets a days progress for all sessions that day
+	/// - Parameter sessionDay: selects the day to filter to
+	public func todaysProgress(sessionDay:Int64? = nil) -> TodaysProgess? {
+		guard let study = getCurrentStudyPeriod() else {
+			return nil
+		}
+		var config = TodaysProgess()
+		
+		guard let currentSessionId = Arc.shared.currentTestSession else {
+			assertionFailure("No session running, add code to fetch previous session.")
+			return nil
+		}
+		let currentSession = get(session: currentSessionId)
+		var sessions = get(allSessionsForStudy: Int(study.studyID	))
+		if let d = sessionDay ?? currentSession?.sessionDayIndex {
+			sessions = sessions.filter {
+				return $0.sessionDayIndex == d
+			}
+		}
+		config.totalSessions = sessions.count
+		
+		for sessionData in sessions {
+			let day = Int(sessionData.day)
+			
+			
+			let studyId = Int(study.studyID)
+			let week = Int(sessionData.week)
+			let session = Int(sessionData.session)
+			var progress = 0
+			var totalTest = 3
+			
+			if get(numberOfTestTakenOfType: .priceTest,
+					 inStudy: studyId,
+					 week:week,
+					 day:day,
+					 session: session) != 0 {
+				progress += 1
+			}
+			if get(numberOfTestTakenOfType: .gridTest,
+					 inStudy: studyId,
+					 week:week,
+					 day:day,
+					 session: session) != 0 {
+				progress += 1
+			}
+			if get(numberOfTestTakenOfType: .symbolsTest,
+					 inStudy: studyId,
+					 week:week,
+					 day:day,
+					 session: session) != 0 {
+				progress += 1
+			}
+			let started = (sessionData.missedSession || sessionData.startTime != nil || sessionData.expirationDate!.addingHours(hours: 2).timeIntervalSince1970 < Date().timeIntervalSince1970)
+			
+			config.sessionData.append(TodaysProgess.SessionData(started:started,
+																					   progress: progress,
+																					   total: totalTest))
+		}
+		
+		return config
+		
+	}
 }

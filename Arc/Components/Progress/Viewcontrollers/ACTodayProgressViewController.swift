@@ -11,48 +11,12 @@ import UIKit
 public class ACTodayProgressViewController: CustomViewController<ACTodayProgressView>, ACTodayProgressViewDelegate {
 	
 	
-	public struct Config{
-		public struct SessionData {
-			public var started:Bool = false
-			public var progress:Int = 0
-			public var total:Int = 3
-		}
-		
-		
-		
-		public var sessionsCompleted:Int {
-			var complete:Int = 0
-			for session in sessionData {
-				if session.progress == session.total {
-					complete += 1
-				}
-			}
-			return complete
-		}
-		
-		
-		public var sessionsStarted:Int {
-			var started:Int = 0
-			for session in sessionData {
-				if session.started == true {
-					started += 1
-				}
-			}
-			return started
-		}
-		
-		public var totalSessions:Int = 4
-		public var sessionData:[SessionData] = []
-		public init() {
-			
-		}
-		
-	}
+	
 	public init() {
 		super.init(nibName: nil, bundle: nil)
 		set(flag: .baseline_completed)
 		//Todo: Have this injected instead this behavior is needed elsewhere in the app.
-		guard let config = ACTodayProgressViewController.todaysProgress() else {
+		guard let config = Arc.shared.studyController.todaysProgress() else {
 			return
 		}
 		customView.delegate = self
@@ -89,67 +53,7 @@ public class ACTodayProgressViewController: CustomViewController<ACTodayProgress
 	public func nextPressed() {
 		Arc.shared.nextAvailableState()
 	}
-	static public func todaysProgress() -> Config? {
-		let c = Arc.shared.studyController
-		guard let study = c.getCurrentStudyPeriod() else {
-			return nil
-		}
-		var config = ACTodayProgressViewController.Config()
-		
-		guard let currentSessionId = Arc.shared.currentTestSession else {
-			assertionFailure("No session running, add code to fetch previous session.")
-			return nil
-		}
-		let currentSession = c.get(session: currentSessionId)
-		var sessions = c.get(allSessionsForStudy: Int(study.studyID	))
-		if let d = currentSession?.sessionDayIndex {
-			sessions = sessions.filter {
-				return $0.sessionDayIndex == d
-			}
-		}
-		config.totalSessions = sessions.count
-
-		for sessionData in sessions {
-			let day = Int(sessionData.day)
-			
-			
-			let studyId = Int(study.studyID)
-			let week = Int(sessionData.week)
-			let session = Int(sessionData.session)
-			var progress = 0
-			var totalTest = 3
-			
-			if c.get(numberOfTestTakenOfType: .priceTest,
-				   inStudy: studyId,
-				   week:week,
-				   day:day,
-				   session: session) != 0 {
-				progress += 1
-			}
-			if c.get(numberOfTestTakenOfType: .gridTest,
-					 inStudy: studyId,
-					 week:week,
-					 day:day,
-					 session: session) != 0 {
-				progress += 1
-			}
-			if c.get(numberOfTestTakenOfType: .symbolsTest,
-					 inStudy: studyId,
-					 week:week,
-					 day:day,
-					 session: session) != 0 {
-				progress += 1
-			}
-			let started = (sessionData.missedSession || sessionData.startTime != nil || sessionData.expirationDate!.addingHours(hours: 2).timeIntervalSince1970 < Date().timeIntervalSince1970)
-			
-			config.sessionData.append(ACTodayProgressViewController.Config.SessionData(started:started,
-																					   progress: progress,
-																					   total: totalTest))
-		}
-		
-		return config
-		
-	}
+	
     /*
     // MARK: - Navigation
 
