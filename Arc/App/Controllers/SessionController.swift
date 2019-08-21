@@ -22,17 +22,7 @@ open class SessionController:MHController {
 		
 		return newSession;
 	}
-	open func getUploadedSessions() -> [Session]
-	{
-		let predicate = NSPredicate(format: "uploaded == TRUE");
-		let sortDescriptors = [NSSortDescriptor(key:"sessionDate", ascending:true)];
-		
-		let results:[Session] = fetch(predicate: predicate, sort: sortDescriptors) ?? []
-		return results;
-		
-		
-		
-	}
+	
 	
 	open func getFinishedSessionsForUploading() -> [Session]
 	{
@@ -78,19 +68,7 @@ open class SessionController:MHController {
 			}
 		}
 	}
-	open func clearUploadedSessions()
-	{
-		
-		MHController.dataContext.perform {
-			let sessions = self.getUploadedSessions();
-			
-			for i in 0..<sessions.count
-			{
-				Arc.shared.studyController.clearData(sessionId: Int(sessions[i].sessionID))
-				
-			}
-		}
-	}
+	
 	open func sendMissedSessions()
 	{
 		MHController.dataContext.perform {
@@ -165,8 +143,6 @@ open class SessionController:MHController {
 				HMLog("Session: \(full.session_id ?? ""), received response \(data?.toString() ?? "") on \(Date())", silent: false)
 				if data?.errors.count == 0 {
 					session.uploaded = true
-
-					Arc.shared.studyController.clearData(sessionId: Int(session.sessionID), force: true)
 					if md5 == data?.response?.md5 {
 						self.save()
 					} else {
