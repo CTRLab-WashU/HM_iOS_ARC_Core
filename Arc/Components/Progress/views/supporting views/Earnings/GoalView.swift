@@ -108,6 +108,6 @@ public class GoalView: UIView {
 extension UIView {
 	@discardableResult
 	public func goalView(apply closure: (GoalView) -> Void) -> GoalView {
-		custom(GoalView(), apply: closure)
+		return custom(GoalView(), apply: closure)
 	}
 }

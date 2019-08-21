@@ -44,6 +44,6 @@ public class TwoADayGoalView : GoalView {
 extension UIView {
 	@discardableResult
 	public func twoADayGoalView(apply closure: (TwoADayGoalView) -> Void) -> TwoADayGoalView {
-		custom(TwoADayGoalView(), apply: closure)
+		return custom(TwoADayGoalView(), apply: closure)
 	}
 }

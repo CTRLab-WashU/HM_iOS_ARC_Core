@@ -65,6 +65,6 @@ public class TotalSessionGoalView : GoalView {
 extension UIView {
 	@discardableResult
 	public func totalSessionGoalView(apply closure: (TotalSessionGoalView) -> Void) -> TotalSessionGoalView {
-		custom(TotalSessionGoalView(), apply: closure)
+		return custom(TotalSessionGoalView(), apply: closure)
 	}
 }
