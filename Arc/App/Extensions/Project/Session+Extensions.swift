@@ -89,10 +89,10 @@ public extension Session {
 		}
 		
 		// and now clear out any data we don't absolutely need to keep the app running
-		self.completeTime = nil;
+//		self.completeTime = nil;
 		self.endSignature = nil;
 		self.startSignature = nil;
-		self.startTime = nil;
+//		self.startTime = nil;
 		self.willUpgradePhone = false;
 		self.interrupted = false;
 		
@@ -104,18 +104,18 @@ public extension Session {
 		
 	}
 	
-	public func createSurveyFor(surveyType:SurveyType) {
+	public func createSurveyFor(surveyType:SurveyType, id:String = UUID().uuidString) {
 		switch surveyType {
 		case .edna, .ema, .context, .mindfulness, .chronotype, .wake:
 			let surveyController = Arc.shared.surveyController
-			let survey = surveyController.create(type: surveyType)
+			let survey = surveyController.create(surveyResponse: id, type: surveyType)
 			let data = surveyController.fetch(id: survey)
 			data?.type = surveyType.rawValue
 			self.addToSessionData(data!)
 			
 		case .gridTest:
 			let controller = Arc.shared.gridTestController
-			let test = controller.createResponse(numSections: 2)
+			let test = controller.createResponse(id: id, numSections: 2)
 			let data = controller.fetch(id: test)
 			data?.type = surveyType.rawValue
             self.addToSessionData(data!)
@@ -123,7 +123,7 @@ public extension Session {
 		case .priceTest:
 			let controller =  Arc.shared.pricesTestController
 			let priceTest = controller.loadTest(index: Int(sessionID), file: PricesTestViewController.testVersion)
-			let response = controller.createResponse(withTest: priceTest)
+			let response = controller.createResponse(id: id, withTest: priceTest)
 			let data = controller.fetch(id: response)
 			data?.type = surveyType.rawValue
 			self.addToSessionData(data!)
@@ -131,7 +131,7 @@ public extension Session {
 		case .symbolsTest:
 			let controller = Arc.shared.symbolsTestController
 			let test = controller.generateTest(numSections: 12, numSymbols: 8)
-			let response = controller.createResponse(withTest: test)
+			let response = controller.createResponse(withTest: test, id:id)
 			let data = controller.fetch(id: response)
 			data?.type = surveyType.rawValue
 			self.addToSessionData(data!)

@@ -264,15 +264,18 @@ open class StudyController : MHController {
             guard let testSession = obj as? Session else {
                 continue
             }
-            guard let file = testSession.getSurveyFor(surveyType: surveyType) else {
-                continue
-                
-            }
-            guard file.isFilledOut else {
-                continue
-            }
+			let uploaded = testSession.uploaded
+
+				guard let file = testSession.getSurveyFor(surveyType: surveyType) else {
+					continue
+					
+				}
+				guard file.isFilledOut else {
+					continue
+				}
             let isFinished = testSession.finishedSession
-            
+			
+			
             let isMissed = testSession.missedSession
             
             let isStarted = testSession.startTime != nil
@@ -280,31 +283,33 @@ open class StudyController : MHController {
             let isCurrentTest = Arc.shared.currentTestSession == Int(testSession.sessionID)
             
             let isExpired = testSession.expirationDate?.compare(Date()) != .orderedDescending && !isStarted
-            
+			
+			var weekMatches = true
+			
+			var dayMatches = true
+			
+			var sessionMatches = true
+			
             //If the app is terminated forcibly during a test it will take up until the expiration for it to get marked missed.
             let isRecentlyAbandoned = isStarted && !isCurrentTest && !isFinished
             
+			
+			
+				guard !isMissed && !isExpired else {
+					//The test was found but the session was missed
+					continue
+				}
+				
+				guard !isRecentlyAbandoned else {
+					continue
+				}
+				
+				//The test was NOT missed and WAS started
+				guard isStarted else {
+					continue
+				}
             
-            guard !isMissed && !isExpired else {
-                //The test was found but the session was missed
-                continue
-            }
-            
-            guard !isRecentlyAbandoned else {
-                continue
-            }
-            
-            //The test was NOT missed and WAS started
-            guard isStarted else {
-                continue
-            }
-            
-            var weekMatches = true
-            
-            var dayMatches = true
-            
-            var sessionMatches = true
-            
+			
             if let week = week {
                 
                 weekMatches = testSession.week == Int64(week)
@@ -874,7 +879,7 @@ open class StudyController : MHController {
 	open func mark(interrupted:Bool,  sessionId:Int, studyId:Int)
 	{
 		let session = get(session: sessionId, inStudy: studyId)
-		session.interrupted = interrupted;
+		session.interrupted = interrupted as NSNumber;
 		save();
 	}
 	open func mark(finished sessionId:Int, studyId:Int)
@@ -1216,9 +1221,16 @@ open class StudyController : MHController {
 	// clears all useful data from the Session. It only keeps data related to start date, which Arc it's part of,
 	// and whether or not it was finished or missed.
 	
-	open func clearData(sessionId:Int, studyId:Int)
+	open func clearData(sessionId:Int, force:Bool = false)
 	{
-		let session = get(session: sessionId, inStudy: studyId)
+		guard let session = get(session: sessionId) else {
+			return
+		}
+		if !force {
+			guard session.startSignature != nil else {
+				return
+			}
+		}
 		let relationships = session.entity.relationshipsByName;
 		
 		// delete all of the relationships
@@ -1231,18 +1243,27 @@ open class StudyController : MHController {
 			
 			if let v = session.value(forKey: name) as? NSManagedObject
 			{
+				print("deleting: \(name):\(v)")
 				delete(v);
 			}
 		}
 		
 		// and now clear out any data we don't absolutely need to keep the app running
-		session.completeTime = nil;
+//		session.completeTime = nil;
 		session.endSignature = nil;
 		session.startSignature = nil;
-		session.startTime = nil;
+//		session.startTime = nil;
 		session.willUpgradePhone = false;
 		session.interrupted = false;
-		
+		let types:[SurveyType] = [.edna, .ema, .context, .mindfulness, .chronotype, .wake, .gridTest, .priceTest, .symbolsTest]
+		for type in types {
+			guard let file = session.getSurveyFor(surveyType: type) else {
+				continue
+			}
+			file.uploaded = true
+			session.createSurveyFor(surveyType: type, id: file.id ?? UUID().uuidString)
+			file.isFilledOut = true
+		}
 		save();
 		
 		// and now, delete any notifications
