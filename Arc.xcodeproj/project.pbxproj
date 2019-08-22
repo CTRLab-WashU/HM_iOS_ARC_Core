@@ -205,6 +205,7 @@
 		C556BA2D22CA4B3D0057B54B /* ACTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C556BA2C22CA4B3D0057B54B /* ACTemplateView.swift */; };
 		C556BA2F22CA5B4C0057B54B /* ACHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C556BA2E22CA5B4C0057B54B /* ACHomeView.swift */; };
 		C55F8CC7230D7B98006D43BD /* TodaysProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F8CC6230D7B98006D43BD /* TodaysProgress.swift */; };
+		C55F8CC9230D89AC006D43BD /* Study+Expressible.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F8CC8230D89AC006D43BD /* Study+Expressible.swift */; };
 		C56057F622F9F6AC00EDA919 /* ProgressFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56057F522F9F6AC00EDA919 /* ProgressFlag.swift */; };
 		C56BBCA3221490DF0025A318 /* ACTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56BBCA2221490DF0025A318 /* ACTextView.swift */; };
 		C56BBCA52214AF5B0025A318 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56BBCA42214AF5B0025A318 /* Common.swift */; };
@@ -524,6 +525,7 @@
 		C556BA2C22CA4B3D0057B54B /* ACTemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTemplateView.swift; sourceTree = "<group>"; };
 		C556BA2E22CA5B4C0057B54B /* ACHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACHomeView.swift; sourceTree = "<group>"; };
 		C55F8CC6230D7B98006D43BD /* TodaysProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaysProgress.swift; sourceTree = "<group>"; };
+		C55F8CC8230D89AC006D43BD /* Study+Expressible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Study+Expressible.swift"; sourceTree = "<group>"; };
 		C56057F522F9F6AC00EDA919 /* ProgressFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressFlag.swift; sourceTree = "<group>"; };
 		C56BBCA2221490DF0025A318 /* ACTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTextView.swift; sourceTree = "<group>"; };
 		C56BBCA42214AF5B0025A318 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
@@ -837,6 +839,7 @@
 				C57E865F23073770009B4BFC /* ACTranslationKey.swift */,
 				C5C7F714228F65C50086315B /* ArcTranslation.swift */,
 				C55F8CC6230D7B98006D43BD /* TodaysProgress.swift */,
+				C55F8CC8230D89AC006D43BD /* Study+Expressible.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1925,6 +1928,7 @@
 				C54AE9F221C81B5F00DEC360 /* UINavigationProxy.swift in Sources */,
 				C54AEA0921C81B5F00DEC360 /* GridTest.swift in Sources */,
 				C54AEA3121C81B5F00DEC360 /* Schedule+CoreDataClass.swift in Sources */,
+				C55F8CC9230D89AC006D43BD /* Study+Expressible.swift in Sources */,
 				C54E8E1122E64CE00080BFC1 /* SymbolsTutorialViewController.swift in Sources */,
 				C54AE9D321C81B5F00DEC360 /* State.swift in Sources */,
 				C54AE9F421C81B5F00DEC360 /* StudyController.swift in Sources */,

@@ -26,6 +26,7 @@ public struct Drawing {
 		public var trackColor:UIColor = .black
 		public var barColor:UIColor = .blue
 		public var progress:Double = 0
+		public var size:CGFloat =  24
 		
 		public init() {
 			
@@ -34,7 +35,7 @@ public struct Drawing {
 			let context = UIGraphicsGetCurrentContext()
 			trackPath.removeAllPoints()
 			trackPath.addArc(withCenter: CGPoint(x: rect.midX, y: rect.midY),
-							 radius: rect.height/2.0 - strokeWidth,
+							 radius: size/2.0 - strokeWidth,
 							 startAngle: startAngle,
 							 endAngle: startAngle + endAngle,
 							 clockwise: true)
@@ -46,7 +47,7 @@ public struct Drawing {
 			if progress > 0 {
 				barEdgePath.lineCapStyle = .round
 				barEdgePath.addArc(withCenter: CGPoint(x: rect.midX, y: rect.midY),
-								   radius: rect.height/2.0 - strokeWidth,
+								   radius: size/2.0 - strokeWidth,
 								   startAngle: startAngle - 0.01 ,
 								   endAngle: startAngle + endAngle * CGFloat(progress) + 0.01,
 								   clockwise: true)
@@ -57,7 +58,7 @@ public struct Drawing {
 			barPath.removeAllPoints()
 			barPath.lineCapStyle = .round
 			barPath.addArc(withCenter: CGPoint(x: rect.midX, y: rect.midY),
-						   radius: rect.height/2.0 - strokeWidth,
+						   radius: size/2.0 - strokeWidth,
 						   startAngle: startAngle,
 						   endAngle: startAngle + endAngle * CGFloat(progress),
 						   clockwise: true)
@@ -74,6 +75,11 @@ public struct Drawing {
 		public var color:UIColor = ACColor.highlight
 		public var radius:CGFloat = 100.0
 		public var alpha:CGFloat = 1.0
+		public var size:CGFloat = 200.0 {
+			didSet {
+				radius = size/2.0
+			}
+		}
 		private var path:UIBezierPath = UIBezierPath()
 		
 		public init() {
@@ -102,6 +108,13 @@ public struct Drawing {
 		public var progress:Double = 0
 		public var scale:CGFloat = 1.0
 		
+		public var defaultSize:CGFloat = 60
+		public var size:CGFloat = 60 {
+			didSet {
+				scale = size / defaultSize
+
+			}
+		}
 		public init() {
 			path.lineWidth = 14.0
 			

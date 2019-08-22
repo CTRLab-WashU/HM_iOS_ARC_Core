@@ -12,30 +12,33 @@ class ACProgressView: ACTemplateView {
 	private var startDay:Date?
 	
 	//Today section variables
-	private var todaySection:UIView!
-	private var headerLabel:ACLabel!
-	private var progressViews:ACCircularProgressGroupStackView!
-	private var progressViewStack:UIStackView!
-	private var todaysSessionCompletionLabel:ACLabel!
-
+	var todaySection:UIView!
+	var headerLabel:ACLabel!
+	var progressViews:ACCircularProgressGroupStackView!
+	var progressViewStack:UIStackView!
+	var todaysSessionCompletionLabel:ACLabel!
+	var todaysSessionRemainingLabel:ACLabel!
 	//This week section variables
-	private var weekSection:UIView!
-	private var weekHeaderLabel:ACLabel!
-	private var weekProgressView:ACWeekStepperView!
-	private var noticeLabel:ACLabel!
-	private var dayOfWeekLabel:ACLabel!
-	private var startDateLabel:ACLabel!
-	private var endDateLabel:ACLabel!
+	var weekSection:UIView!
+	var weekHeaderLabel:ACLabel!
+	var weekProgressView:ACWeekStepperView!
+	var noticeLabel:ACLabel!
+	var dayOfWeekLabel:ACLabel!
+	var startDateLabel:ACLabel!
+	var endDateLabel:ACLabel!
 	
 	//This study section variables
-	private var studySection:UIView!
-	private var studyHeaderLabel:ACLabel!
-	private var weekOfStudyLabel:ACLabel!
-	private var blockProgressView:BlockProgressview!
-	private var joinDateLabel:ACLabel!
-	private var finishDateLabel:ACLabel!
-	private var timeBetweenTestWeeksLabel:ACLabel!
-	public var viewFaqButton:ACButton!
+	var studySection:UIView!
+	var studyHeaderLabel:ACLabel!
+	var weekOfStudyLabel:ACLabel!
+	var blockProgressView:BlockProgressview!
+	var joinDateLabel:ACLabel!
+	var finishDateLabel:ACLabel!
+	var timeBetweenTestWeeksLabel:ACLabel!
+	var nextWeekStack:UIStackView!
+	var nextTestingCycle:ACLabel!
+	var viewFaqButton:ACButton!
+
 	override func content(_ view: UIView) {
 		if let v = view as? UIStackView {
 			v.layoutMargins = .zero
@@ -74,16 +77,27 @@ class ACProgressView: ACTemplateView {
 						$0.layout {
 							$0.height == 64 ~ 999
 						}
-						$0.addProgressViews(count: 4)
-						$0.set(progress: 0.9, for: 2)
+						
+					}
+					$0.stack {
+						$0.axis = .vertical
+						$0.alignment = .leading
+						
+						$0.stack {
+							
+							self.todaysSessionCompletionLabel = $0.acLabel {
+								Roboto.Style.body($0, color: #colorLiteral(red: 0.04300000146, green: 0.1220000014, blue: 0.3330000043, alpha: 1))
+								
+								$0.text = "*2* Complete"
+							}
+							self.todaysSessionRemainingLabel = $0.acLabel {
+								Roboto.Style.body($0)
+								$0.text = "| *1* Remaining"
+							}
+						}
 					}
 					
 					
-					self.todaysSessionCompletionLabel = $0.acLabel {
-						Roboto.Style.body($0, color: #colorLiteral(red: 0.04300000146, green: 0.1220000014, blue: 0.3330000043, alpha: 1))
-
-						$0.text = "*2* Complete | *1* Remaining"
-					}
 				}
 			}
 			self.weekSection =  $0.view {
@@ -117,9 +131,12 @@ class ACProgressView: ACTemplateView {
 					
 					self.dayOfWeekLabel = $0.acLabel {
 						Roboto.Style.subHeading($0)
-						$0.text = "Day *6* of *7*".localized("progess_weeklystatus")
+						
 					}
-					
+					self.noticeLabel = $0.acLabel {
+						Roboto.Style.body($0)
+						
+					}
 
 					self.weekProgressView = $0.weekStepperProgress {
 						$0.set(step: 0, of: ["S", "M", "T", "W", "T", "F", "S"])
@@ -160,7 +177,7 @@ class ACProgressView: ACTemplateView {
 					
 				}
 			}
-			self.studySection = $0.view {
+			self.studySection = $0.view { [unowned self] in
 				
 				//This Study
 				$0.backgroundColor = ACColor.primaryInfo
@@ -187,19 +204,19 @@ class ACProgressView: ACTemplateView {
 						}
 					}
 					$0.stack {
-						$0.acLabel {
+						self.weekOfStudyLabel = $0.acLabel {
 							Roboto.Style.subHeading($0, color: .white)
-							$0.text = "Day *6* of *7*".localized(ACTranslationKey.progress_studystatus)
+							$0.text = "".localized(ACTranslationKey.progress_studystatus)
 						}
 					}
 					
 					
 					
-					$0.blockProgress {
+					self.blockProgressView = $0.blockProgress {
 						$0.layout {
 							$0.height == 42
 						}
-						$0.set(count: 12, current: 4)
+						
 					}
 					
 					$0.stack {
@@ -210,11 +227,9 @@ class ACProgressView: ACTemplateView {
 							$0.text = "".localized(ACTranslationKey.progress_joindate)
 							
 						}
-						$0.acLabel {
+						self.joinDateLabel = $0.acLabel {
 							Roboto.Style.body($0, color: .white)
-							$0.text = Date().localizedFormat(template: ACDateStyle.longWeekdayMonthDay.rawValue,
-															 options: 0,
-															 locale: nil)
+							
 						}
 					}
 					
@@ -238,11 +253,9 @@ class ACProgressView: ACTemplateView {
 								$0.numberOfLines = 1
 							}
 						}
-						$0.acLabel {
+						self.finishDateLabel = $0.acLabel {
 							Roboto.Style.body($0, color:.white)
-							$0.text = Date().addingDays(days: 6).localizedFormat(template: ACDateStyle.longWeekdayMonthDay.rawValue,
-																				 options: 0,
-																				 locale: nil)
+							
 						}
 					}
 					
@@ -255,18 +268,28 @@ class ACProgressView: ACTemplateView {
 							Roboto.Style.body($0, color: ACColor.highlight)
 							$0.text = "".localized(ACTranslationKey.progress_timebtwtesting)
 						}
-						$0.acLabel {
+						self.timeBetweenTestWeeksLabel = $0.acLabel {
 							
-							var components = DateComponents()
-							var calendar = Calendar.current
-							calendar.locale = Locale(identifier: Arc.shared.appController.locale.string)
-							components.month = 3
 							
-							DateComponentsFormatter.localizedString(from: components, unitsStyle: DateComponentsFormatter.UnitsStyle.full)
 							Roboto.Style.body($0, color:.white)
-							$0.text = Date().addingDays(days: 6).localizedFormat(template: ACDateStyle.longWeekdayMonthDay.rawValue,
-																				 options: 0,
-																				 locale: nil)
+							
+						}
+					}
+					
+					self.nextWeekStack = $0.stack {
+						$0.axis = .vertical
+						$0.spacing = 8.0
+						
+						
+						$0.acLabel {
+							Roboto.Style.body($0, color: ACColor.highlight)
+							$0.text = "".localized(ACTranslationKey.progress_nextcycle)
+						}
+						self.nextTestingCycle = $0.acLabel {
+							
+							
+							Roboto.Style.body($0, color:.white)
+							
 						}
 					}
 					

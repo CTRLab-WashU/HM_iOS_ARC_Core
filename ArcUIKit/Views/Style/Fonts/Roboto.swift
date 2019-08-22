@@ -49,7 +49,8 @@ public struct Roboto {
 			
 			.family(Roboto.family)
 			.face(Roboto.Face.regular)
-			.size(18)
+			.size(16)
+		
 		public static let bodyBold = Font.body
 			.boldFont()
 			
@@ -76,9 +77,12 @@ public struct Roboto {
 //			.family(Roboto.family)
 //			.face(Roboto.Face.medium)
 //			.size(20)
-		public static let goalReward = UIFont(name: "Roboto", size: 16)!
+		public static let goalRewardBold = UIFont(name: "Roboto", size: 16)!
 			.family(Roboto.family)
 			.boldFont()
+			.size(16)
+		public static let goalReward = UIFont(name: "Roboto", size: 16)!
+			.family(Roboto.family)
 			.size(16)
 		public static let italic = UIFont(name: "Roboto", size: 18)!
 			.family(Roboto.family)
@@ -97,6 +101,8 @@ public struct Roboto {
 			
 		}
 		public static func body(_ label:UILabel, color:UIColor? = UIColor(named: "primary Text")) {
+			label.backgroundColor = .clear
+
 			label.font = Roboto.Font.body
 			label.numberOfLines = 0
 			label.textColor = color
@@ -108,10 +114,14 @@ public struct Roboto {
 			label.textColor = color
 		}
 		public static func badge(_ label:UILabel, color:UIColor? = ACColor.badgeText) {
-			label.font = Roboto.Font.badge
+			label.backgroundColor = ACColor.badgeBackground
+			label.layer.cornerRadius = 4
+			label.clipsToBounds = true
+			label.font = Roboto.Font.goalReward
 			label.numberOfLines = 0
 			label.textColor = color
 		}
+		
 		public static func bodyBold(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
 			label.font = Roboto.Font.bodyBold
 			label.numberOfLines = 0
@@ -129,6 +139,12 @@ public struct Roboto {
 			label.textColor = color
 		}
 		
+		public static func goalRewardBold(_ label:UILabel, color:UIColor? = UIColor(named: "primary Text")) {
+			label.font = Roboto.Font.goalRewardBold
+			label.numberOfLines = 1
+			label.textColor = color
+			label.textAlignment = .center
+		}
 		public static func goalReward(_ label:UILabel, color:UIColor? = UIColor(named: "primary Text")) {
 			label.font = Roboto.Font.goalReward
 			label.numberOfLines = 1

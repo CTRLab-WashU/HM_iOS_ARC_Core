@@ -21,40 +21,39 @@ public class BlockProgressview: UIStackView {
 		alignment = .center
 		distribution = .fillEqually
 	}
-	public func set(count:Int, current:Int?) {
+	public func set(count:Int, progress:Int, current:Int?) {
 		removeSubviews()
 		
 		for i in 0 ..< count {
 			view {
 				$0.layer.cornerRadius = 2
 				
-				if let current = current {
-					if i < current {
-						$0.backgroundColor = color
-						$0.layout {
-							$0.height == 32
-						}
-					} else if i == current {
+				if i <= progress {
+					$0.backgroundColor = color
+					//If we set current make that block larger than the rest
+					if i == current {
 						$0.backgroundColor = color
 						$0.layout {
 							$0.height == 42
 						}
+					//Otherwise just fill it in
 					} else {
-						$0.backgroundColor = .clear
-						$0.layer.borderColor = color.cgColor
-						$0.layer.borderWidth = 1
 						$0.layout {
 							$0.height == 32
 						}
-						
 					}
+					//If progress hasn't reached this far hollow it out. 
 				} else {
-					$0.backgroundColor = color
+					$0.backgroundColor = .clear
+					$0.layer.borderColor = color.cgColor
+					$0.layer.borderWidth = 1
 					$0.layout {
 						$0.height == 32
 					}
+					
 				}
 			}
+			
 			
 		}
 	}

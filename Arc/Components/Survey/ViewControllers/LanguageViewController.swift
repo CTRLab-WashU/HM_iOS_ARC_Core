@@ -66,6 +66,9 @@ public enum ACLocale : String{
         let values = string.components(separatedBy: "_")
         return (values[0], values[1])
     }
+	func getLocale() -> Locale {
+		return Locale(identifier: string)
+	}
     var availablePriceTest:String {
 	let value = "prices/\(self.rawValue)/price_sets"
        return value

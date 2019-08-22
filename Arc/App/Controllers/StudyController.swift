@@ -95,6 +95,8 @@ open class StudyController : MHController {
 			}
 		}
 	}
+	
+
 	// Creates a new Arc, sets the visitStartDate and visitEndDate, increments DNDataManager's visitCount
 	
 	@discardableResult
@@ -1276,16 +1278,23 @@ open class StudyController : MHController {
 	/// gets a days progress for all sessions that day
 	/// - Parameter sessionDay: selects the day to filter to
 	public func todaysProgress(sessionDay:Int64? = nil) -> TodaysProgess? {
+		
 		guard let study = getCurrentStudyPeriod() else {
 			return nil
 		}
 		var config = TodaysProgess()
 		
-		guard let currentSessionId = Arc.shared.currentTestSession else {
-			assertionFailure("No session running, add code to fetch previous session.")
+		var currentSessionId = Arc.shared.currentTestSession
+		if currentSessionId == nil {
+			if let todaysSessions = get(sessionsOnDay: Date(), studyId: Int(study.studyID)).first {
+			
+				currentSessionId = Int(todaysSessions.sessionID)
+			}
+		}
+		guard let id = currentSessionId else {
 			return nil
 		}
-		let currentSession = get(session: currentSessionId)
+		let currentSession = get(session: id)
 		var sessions = get(allSessionsForStudy: Int(study.studyID	))
 		if let d = sessionDay ?? currentSession?.sessionDayIndex {
 			sessions = sessions.filter {
@@ -1303,28 +1312,30 @@ open class StudyController : MHController {
 			let session = Int(sessionData.session)
 			var progress = 0
 			var totalTest = 3
+			MHController.dataContext.performAndWait {
+				if get(numberOfTestTakenOfType: .priceTest,
+					   inStudy: studyId,
+					   week:week,
+					   day:day,
+					   session: session) != 0 {
+					progress += 1
+				}
+				if get(numberOfTestTakenOfType: .gridTest,
+					   inStudy: studyId,
+					   week:week,
+					   day:day,
+					   session: session) != 0 {
+					progress += 1
+				}
+				if get(numberOfTestTakenOfType: .symbolsTest,
+					   inStudy: studyId,
+					   week:week,
+					   day:day,
+					   session: session) != 0 {
+					progress += 1
+				}
+			}
 			
-			if get(numberOfTestTakenOfType: .priceTest,
-					 inStudy: studyId,
-					 week:week,
-					 day:day,
-					 session: session) != 0 {
-				progress += 1
-			}
-			if get(numberOfTestTakenOfType: .gridTest,
-					 inStudy: studyId,
-					 week:week,
-					 day:day,
-					 session: session) != 0 {
-				progress += 1
-			}
-			if get(numberOfTestTakenOfType: .symbolsTest,
-					 inStudy: studyId,
-					 week:week,
-					 day:day,
-					 session: session) != 0 {
-				progress += 1
-			}
 			let started = (sessionData.missedSession || sessionData.startTime != nil || sessionData.expirationDate!.addingHours(hours: 2).timeIntervalSince1970 < Date().timeIntervalSince1970)
 			
 			config.sessionData.append(TodaysProgess.SessionData(started:started,

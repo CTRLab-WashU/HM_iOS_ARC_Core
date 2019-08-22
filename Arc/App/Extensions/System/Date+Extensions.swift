@@ -99,7 +99,9 @@ public extension Date {
         return components.day ?? -1
     }
     
-    
+	
+	/// Returns a tuple where the first index is the weekDay and the second is the day of that month
+	/// - Parameter gregorian: The calendar used to provide values
     public func weekdayOfMonth(calendar:Calendar =  Calendar(identifier: .gregorian)) -> (Int,Int) {
         
         var components = calendar.dateComponents([.year,.weekday, .month, .day, .weekOfMonth], from: self);

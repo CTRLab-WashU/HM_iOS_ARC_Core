@@ -15,10 +15,10 @@ public class GoalRewardView: UIView {
 		didSet {
 			backgroundView.config.isUnlocked = isUnlocked
 			if isUnlocked {
-				Roboto.Style.goalReward(titleLabel, color: ACColor.badgeText)
+				Roboto.Style.goalRewardBold(titleLabel, color: ACColor.badgeText)
 
 			} else {
-				Roboto.Style.goalReward(titleLabel, color:.gray)
+				Roboto.Style.goalRewardBold(titleLabel, color:.gray)
 
 			}
 		}
@@ -34,7 +34,7 @@ public class GoalRewardView: UIView {
 			self.titleLabel = $0.acLabel {
 				$0.attachTo(view: $0.superview)
 
-				Roboto.Style.goalReward($0, color: ACColor.badgeText)
+				Roboto.Style.goalRewardBold($0, color: ACColor.badgeText)
 			}
 		}
 	}

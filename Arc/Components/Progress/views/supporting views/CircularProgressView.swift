@@ -37,6 +37,7 @@ public class CircularProgressView : UIView {
 			
 		}
 	}
+	
 	private var completeProgress:Double = 0 {
 		didSet {
 			setNeedsDisplay()
@@ -66,7 +67,10 @@ public class CircularProgressView : UIView {
 		
 		
 	}
-	
+	public override var intrinsicContentSize: CGSize {
+			return  CGSize(width:config.size, height:config.size)
+	}
+		
 	override public func draw(_ rect: CGRect) {
 		super.draw(rect)
 		//Draw the radial circle using its own progress

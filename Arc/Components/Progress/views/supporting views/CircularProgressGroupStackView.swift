@@ -11,15 +11,30 @@ import ArcUIKit
 public class ACCircularProgressGroupStackView : UIStackView {
 	private var progressViews:[CircularProgressView] = []
 	public var config = Drawing.CircularBar()
+	public var checkConfig = Drawing.CheckMark()
+	public var ellipseConfig = Drawing.Ellipse()
+	private var contentStack:UIStackView!
 
 	public init() {
 		super.init(frame: .zero)
+		
+		config.strokeWidth =  6
+		config.trackColor = ACColor.highlight
+		config.barColor = ACColor.primaryInfo
+		config.size = 64
+		checkConfig.strokeColor = ACColor.highlight
+		checkConfig.size = 34
+		ellipseConfig.size = 64
+		ellipseConfig.color = ACColor.primaryInfo
+		
 		translatesAutoresizingMaskIntoConstraints = false
-		axis = .horizontal
-		
-		distribution = .fillEqually
-		spacing = 8
-		
+		axis = .vertical
+		alignment = .leading
+		contentStack = stack {
+			$0.distribution = .fillEqually
+			$0.spacing = 8
+			
+		}
 		
 
 	}
@@ -30,16 +45,33 @@ public class ACCircularProgressGroupStackView : UIStackView {
 	
 	public func addProgressViews(count:Int) {
 		
-		config.strokeWidth =  6
-		config.trackColor = #colorLiteral(red: 0.400000006, green: 0.7799999714, blue: 0.7799999714, alpha: 1)
-		config.barColor = #colorLiteral(red: 0.04300000146, green: 0.1220000014, blue: 0.3330000043, alpha: 1)
+		
+		
 		
 		for _ in 0 ..< count {
-			progressViews.append (circularProgress {
+			progressViews.append (contentStack.circularProgress {
+				//Make sure to pass in updated configurations
+
 				$0.config = config
+				$0.checkConfig = checkConfig
+				$0.ellipseConfig = ellipseConfig
 				$0.progress = 0
 			})
 		}
+	}
+	
+	public func addProgressView(progress:Double) {
+		
+		
+		
+		progressViews.append (contentStack.circularProgress {
+			
+			//Make sure to pass in updated configurations
+			$0.config = config
+			$0.checkConfig = checkConfig
+			$0.ellipseConfig = ellipseConfig
+			$0.progress = progress
+		})
 	}
 	public func set(progress:Double, for index:Int) {
 		progressViews[index].progress = progress

@@ -112,9 +112,7 @@ public class ACTodayProgressView : UIView {
 			}
 			self.badgeLabel = $0.acLabel {
 
-				$0.backgroundColor = ACColor.badgeBackground
-				$0.layer.cornerRadius = 4
-				$0.clipsToBounds = true
+				
 				Roboto.Style.badge($0)
 				$0.text = "progress_schedule_status2"
 				animationParams.delay = 1.4

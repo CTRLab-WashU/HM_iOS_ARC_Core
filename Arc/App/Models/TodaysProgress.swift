@@ -12,6 +12,10 @@ public struct TodaysProgess {
 		public var started:Bool = false
 		public var progress:Int = 0
 		public var total:Int = 3
+		
+		public func getTotalProgress() -> Double {
+			return Double(progress) / Double(total)
+		}
 	}
 	
 	
@@ -36,9 +40,11 @@ public struct TodaysProgess {
 		}
 		return started
 	}
-	
+
 	public var totalSessions:Int = 4
 	public var sessionData:[SessionData] = []
+	
+	
 	public init() {
 		
 	}
