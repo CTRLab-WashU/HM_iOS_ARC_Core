@@ -20,7 +20,11 @@ public class FourOfFourGoalView : GoalView {
 			$0.layout {
 				$0.height == 56 ~ 999
 			}
+			$0.alignment = .center
 			$0.config.strokeWidth = 4
+			$0.config.size = 56
+			$0.ellipseConfig.size = 56
+			$0.checkConfig.size = 25
 			$0.addProgressViews(count: 4)
 		}
 	}

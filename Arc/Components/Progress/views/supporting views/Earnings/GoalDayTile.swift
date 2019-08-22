@@ -34,6 +34,9 @@ public class GoalDayTile: UIView {
 
 				}
 				$0.config.strokeWidth = 2
+				$0.config.size = 24
+				$0.ellipseConfig.size = 11
+				$0.checkConfig.size = 25
 				$0.config.trackColor = ACColor.highlight
 				$0.config.barColor = ACColor.primary
 			}

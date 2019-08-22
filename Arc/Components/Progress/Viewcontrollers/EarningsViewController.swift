@@ -10,6 +10,8 @@ import UIKit
 
 public class EarningsViewController: CustomViewController<ACEarningsView> {
 	var thisStudy:ThisStudyExpressible = Arc.shared.studyController
+	var thisWeek:ThisWeekExpressible = Arc.shared.studyController
+
 	var lastUpdated:TimeInterval?
 	var earningsData:EarningOverview?
 	var dateFormatter = DateFormatter()
@@ -59,6 +61,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		
 		updateBodyText()
 		
+		customView.twoADayGoal.add(tiles: thisWeek.daysArray.suffix(7))
 		guard let earnings = earningsData?.response?.earnings else {
 			return
 		}

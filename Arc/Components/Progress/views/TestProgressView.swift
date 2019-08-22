@@ -63,12 +63,13 @@ public class TestProgressView:UIView {
 			$0.config.trackColor = ACColor.primary
 			$0.config.barColor = ACColor.highlight
 			$0.config.strokeWidth = 20
+			$0.config.size = 216
 			
 			$0.ellipseConfig.color = ACColor.highlight
 			$0.ellipseConfig.alpha = 0
-			
+			$0.ellipseConfig.size = 216
 			$0.checkConfig.strokeColor = ACColor.primaryInfo
-			$0.checkConfig.scale = 1.5
+			$0.checkConfig.size = 100
 			$0.layout {
 				$0.centerX == self.centerXAnchor
 				$0.centerY == self.centerYAnchor + 40

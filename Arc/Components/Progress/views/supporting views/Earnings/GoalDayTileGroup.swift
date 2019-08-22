@@ -30,7 +30,7 @@ public class GoalDayTileGroup: UIStackView {
 		goalDayTile {
 			
 			$0.progressView.progress = progress
-			$0.titleLabel.text = name
+			$0.titleLabel.text = "*\(name)*"
 			
 			if arrangedSubviews.count % 2 == 1 {
 				$0.backgroundColor = ACColor.calendarItemBackground
