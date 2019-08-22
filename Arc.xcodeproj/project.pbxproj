@@ -207,6 +207,7 @@
 		C55F8CC7230D7B98006D43BD /* TodaysProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F8CC6230D7B98006D43BD /* TodaysProgress.swift */; };
 		C55F8CC9230D89AC006D43BD /* Study+Expressible.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F8CC8230D89AC006D43BD /* Study+Expressible.swift */; };
 		C55F8CCB230EC3B8006D43BD /* EarningsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F8CCA230EC3B8006D43BD /* EarningsController.swift */; };
+		C55F8CCD230F0FF0006D43BD /* GoalsGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F8CCC230F0FF0006D43BD /* GoalsGroup.swift */; };
 		C56057F622F9F6AC00EDA919 /* ProgressFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56057F522F9F6AC00EDA919 /* ProgressFlag.swift */; };
 		C56BBCA3221490DF0025A318 /* ACTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56BBCA2221490DF0025A318 /* ACTextView.swift */; };
 		C56BBCA52214AF5B0025A318 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56BBCA42214AF5B0025A318 /* Common.swift */; };
@@ -528,6 +529,7 @@
 		C55F8CC6230D7B98006D43BD /* TodaysProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaysProgress.swift; sourceTree = "<group>"; };
 		C55F8CC8230D89AC006D43BD /* Study+Expressible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Study+Expressible.swift"; sourceTree = "<group>"; };
 		C55F8CCA230EC3B8006D43BD /* EarningsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningsController.swift; sourceTree = "<group>"; };
+		C55F8CCC230F0FF0006D43BD /* GoalsGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsGroup.swift; sourceTree = "<group>"; };
 		C56057F522F9F6AC00EDA919 /* ProgressFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressFlag.swift; sourceTree = "<group>"; };
 		C56BBCA2221490DF0025A318 /* ACTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTextView.swift; sourceTree = "<group>"; };
 		C56BBCA42214AF5B0025A318 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
@@ -1450,6 +1452,7 @@
 			isa = PBXGroup;
 			children = (
 				C5DA18612305C2EC003C84C2 /* GoalView.swift */,
+				C55F8CCC230F0FF0006D43BD /* GoalsGroup.swift */,
 				C5DA18652305F6E9003C84C2 /* GoalBackgroundView.swift */,
 				C57ABE1E23060BD7000C9315 /* GoalRewardView.swift */,
 				C57E866323074FE0009B4BFC /* GoalDayTileGroup.swift */,
@@ -1807,6 +1810,7 @@
 				C54D104422C28A1D00B43E42 /* MultipleChoiceView.swift in Sources */,
 				C56D6C5D22CD3FE800C3F8EA /* PricesTestTutorialViewController.swift in Sources */,
 				C54AEA2421C81B5F00DEC360 /* ACContactViewController.swift in Sources */,
+				C55F8CCD230F0FF0006D43BD /* GoalsGroup.swift in Sources */,
 				C5143959224EA6FD000BF1CB /* ACSignatureNavigationController.swift in Sources */,
 				C593227C22EA397C00528FF5 /* ScheduleEndViewController.swift in Sources */,
 				C5E3925022EB76AD007CB3B6 /* ResendCodeViewController.swift in Sources */,
