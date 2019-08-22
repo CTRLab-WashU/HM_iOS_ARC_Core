@@ -47,6 +47,43 @@ open class GridTestController : TestController<GridTestResponse> {
         currentTests = tests
         return tests
     }
+    
+    public func createTutorialTest() -> [GridTest] {
+        var tests = [GridTest]()
+
+        guard let asset = NSDataAsset(name: "grid_test_tutorial", bundle: Bundle(for: GridTestController.self)) else {
+            fatalError("Couldn't find grid tutorial json asset")
+        }
+        do {
+            let jsonResult = try JSONSerialization.jsonObject(with: asset.data, options: .allowFragments)
+            let tutorialDict = jsonResult as! [String:Array<[String:Int]>]
+            let imageGridSize = GridTest.Size(width: 5, height: 5)
+            let fGridSize = GridTest.Size(width: 6, height: 10)
+            var gridTest = GridTest(imageGridSize: imageGridSize, fGridSize: fGridSize)
+            for symbol in tutorialDict["symbols"]! {
+                let x = symbol["x"]! as Int
+                let y = symbol["y"]! as Int
+                let id = symbol["image_id"]! as Int
+                gridTest.imageGrid.values[y][x] = id
+                gridTest.imageGrid.symbols.append(GridTest.Grid.Symbol(symbol: id, x: x, y: y))
+            }
+            
+            for f in tutorialDict["f_locations"]! {
+                let x = f["x"]! as Int
+                let y = f["y"]! as Int
+                gridTest.fGrid.values[y][x] = 1
+                gridTest.fGrid.symbols.append(GridTest.Grid.Symbol(symbol: 1, x: x, y: y))
+            }
+
+            tests.append(gridTest)
+
+        } catch {
+            fatalError("Couldn't convert asset to json")
+        }
+        
+        currentTests = tests
+        return tests
+    }
 	
     private func populateImages(for grid:GridTest.Grid, numSymbols:Int) -> GridTest.Grid {
         if grid.size.height < numSymbols {
