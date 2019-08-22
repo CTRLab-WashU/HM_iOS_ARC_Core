@@ -10,6 +10,11 @@ import UIKit
 import ArcUIKit
 public extension Notification.Name {
 	static let ACHomeStartOnboarding = Notification.Name(rawValue: "ACHomeStartOnboarding")
+	static let ACSessionUploadComplete = Notification.Name(rawValue: "ACSessionUploadComplete")
+	static let ACEarningsUpdated = Notification.Name(rawValue: "ACEarningsUpdated")
+	static let ACEarningDetailsUpdated = Notification.Name(rawValue: "ACEarningDetailsUpdated")
+
+
 }
 class ACHomeTabViewController: UITabBarController {
 	

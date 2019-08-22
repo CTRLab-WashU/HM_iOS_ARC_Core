@@ -10,6 +10,10 @@ import Foundation
 import ArcUIKit
 public class ACEarningsView : ACTemplateView {
 	weak var headerLabel:ACLabel! //.earnings_body0
+	var thisWeeksEarningsLabel:ACLabel!
+	var thisStudysEarningsLabel:ACLabel!
+	var lastSyncedLabel:ACLabel!
+	var viewDetailsButton:ACButton!
 	weak var earningsBodyLabel:ACLabel! //.earnings_body0 || .earnings_body1
 	weak var syncLabel:ACLabel!
 	weak var bonusGoalsSection:UIView!
@@ -58,7 +62,48 @@ public class ACEarningsView : ACTemplateView {
 							Roboto.Style.body($0, color: .white)
 						}
 					}
-					
+					$0.stack {
+						$0.distribution = .fillEqually
+						$0.stack {
+							$0.axis = .vertical
+							$0.alignment = .center
+							$0.acLabel {
+								$0.textAlignment = .center
+
+								Roboto.Style.body($0, color:ACColor.highlight)
+								$0.text = "".localized(ACTranslationKey.earnings_weektotal)
+							}
+							self.thisWeeksEarningsLabel = $0.acLabel {
+								$0.textAlignment = .center
+
+								Roboto.Style.earningsBold($0, color:.white)
+								$0.text = "$0.00"
+							}
+						}
+						$0.stack {
+							$0.axis = .vertical
+							$0.alignment = .center
+							$0.acLabel {
+								$0.textAlignment = .center
+								
+								Roboto.Style.body($0, color:ACColor.highlight)
+								$0.text = "".localized(ACTranslationKey.earnings_weektotal)
+							}
+							self.thisStudysEarningsLabel = $0.acLabel {
+								$0.textAlignment = .center
+								
+								Roboto.Style.earningsBold($0, color:.white)
+								$0.text = "$0.00"
+							}
+						}
+					}
+				
+					self.lastSyncedLabel = $0.acLabel {
+						$0.textAlignment = .center
+
+						Roboto.Style.subBody($0, color:UIColor(red:0.71, green:0.73, blue:0.8, alpha:1))
+						$0.text = "".localized(ACTranslationKey.earnings_sync)
+					}
 				}
 			}
 			

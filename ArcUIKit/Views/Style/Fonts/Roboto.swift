@@ -40,6 +40,11 @@ public struct Roboto {
 			.family(Roboto.family)
 			.face(Roboto.Face.regular)
 			.size(18)
+		public static let subBody = UIFont(name: "Roboto", size: 16)!
+			
+			.family(Roboto.family)
+			.face(Roboto.Face.regular)
+			.size(16)
 		public static let disclaimer = UIFont(name: "Roboto", size: 14)!
 			
 			.family(Roboto.family)
@@ -58,6 +63,10 @@ public struct Roboto {
 		public static let headingMedium = UIFont(name: "Roboto", size: 26)!
 			.face(Roboto.Face.medium)
 			.size(26)
+		public static let earningsBold = UIFont(name: "Roboto", size: 32)!
+			.face(Roboto.Face.medium)
+			.boldFont()
+			.size(32)
 		public static let headingBlack = UIFont(name: "Roboto", size: 26)!
 			.family(Roboto.family)
 			.face(Roboto.Face.black)
@@ -107,7 +116,13 @@ public struct Roboto {
 			label.numberOfLines = 0
 			label.textColor = color
 		}
-		
+		public static func subBody(_ label:UILabel, color:UIColor? = UIColor(named: "primary Text")) {
+			label.backgroundColor = .clear
+			
+			label.font = Roboto.Font.subBody
+			label.numberOfLines = 0
+			label.textColor = color
+		}
 		public static func disclaimer(_ label:UILabel, color:UIColor? = UIColor(named: "primary Text")) {
 			label.font = Roboto.Font.disclaimer
 			label.numberOfLines = 0
@@ -124,6 +139,11 @@ public struct Roboto {
 		
 		public static func bodyBold(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
 			label.font = Roboto.Font.bodyBold
+			label.numberOfLines = 0
+			label.textColor = color
+		}
+		public static func earningsBold(_ label:UILabel, color:UIColor? = .white) {
+			label.font = Roboto.Font.earningsBold
 			label.numberOfLines = 0
 			label.textColor = color
 		}

@@ -85,6 +85,8 @@ open class Arc : ArcApi {
 	public var appNavigation:AppNavigationController = BaseAppNavigationController()
 	
 	public var controllerRegistry:ArcControllerRegistry = ArcControllerRegistry()
+	
+	public var earningsController:EarningsController = EarningsController()
 	//Back this value up with local storage.
 	//When the app terminates this value is released,
 	//This will cause background processes to crash when fired.

@@ -111,6 +111,8 @@ class ProgressViewController: CustomViewController<ACProgressView> {
 		case .baseline:
 			hideSections(value:false)
 			customView.nextWeekStack.isHidden = true
+			customView.weekOfStudyLabel.isHidden = true
+			customView.blockProgressView.isHidden = true
 		case .active, .activeBaseline:
 			hideSections(value: false)
 			customView.nextWeekStack.isHidden = true

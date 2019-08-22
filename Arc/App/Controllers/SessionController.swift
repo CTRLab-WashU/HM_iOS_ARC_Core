@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 open class SessionController:MHController {
-	
+	private var sessionUploads:Set<Int64> = []
 	@discardableResult
 	open func create(sessionAt date:Date) -> Session
 	{
@@ -156,8 +156,9 @@ open class SessionController:MHController {
 		let full:FullTestSession = .init(withSession: session)
 		//HMLog(full.toString())
 		let md5 = full.encode()?.MD5()
+		sessionUploads.insert(session.sessionID)
 		let submitTest:HMAPIRequest<FullTestSession, HMResponse> = .post("submit-test")
-		submitTest.execute(data: full) { (response, data, _) in
+		submitTest.execute(data: full) { [unowned self] (response, data, _) in
             guard !HMRestAPI.shared.blackHole else {
                 return
             }
@@ -168,6 +169,8 @@ open class SessionController:MHController {
 					Arc.shared.studyController.clearData(sessionId: Int(session.sessionID), force: true)
 					if md5 == data?.response?.md5 {
 						self.save()
+						self.sessionUploads.remove(session.sessionID)
+						NotificationCenter.default.post(name: .ACSessionUploadComplete, object: self.sessionUploads)
 					} else {
 						HMLog("\(md5 ?? "") does not match \(data?.response?.md5 ?? "")")
 					}
@@ -221,6 +224,7 @@ open class SessionController:MHController {
 		let data:TestScheduleRequestData = .init(withStudyPeriods: studyPeriods)
 		
 		let md5 = data.encode()?.MD5()
+		
 		let submitTestSchedule:HMAPIRequest<TestScheduleRequestData, HMResponse> = .post("submit-test-schedule")
 		print(data.toString())
 		submitTestSchedule.execute(data: data) { (response, obj, _) in

@@ -25,6 +25,15 @@ open class ArcViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+	
+	open func apply(forVersion version:String) {
+		let major:Int = Int(version.components(separatedBy: ".")[0]) ?? 0
+		let minor:Int = Int(version.components(separatedBy: ".")[1]) ?? 0
+		let patch:Int = Int(version.components(separatedBy: ".")[2]) ?? 0
+		for flag in ProgressFlag.prefilledFlagsFor(major: major, minor: minor, patch: patch) {
+			set(flag: flag)
+		}
+	}
 	open func get(flag:ProgressFlag) -> Bool {
 		return app.appController.flags[flag.rawValue] ?? false
 	}

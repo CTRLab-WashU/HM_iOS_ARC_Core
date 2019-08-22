@@ -206,6 +206,7 @@
 		C556BA2F22CA5B4C0057B54B /* ACHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C556BA2E22CA5B4C0057B54B /* ACHomeView.swift */; };
 		C55F8CC7230D7B98006D43BD /* TodaysProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F8CC6230D7B98006D43BD /* TodaysProgress.swift */; };
 		C55F8CC9230D89AC006D43BD /* Study+Expressible.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F8CC8230D89AC006D43BD /* Study+Expressible.swift */; };
+		C55F8CCB230EC3B8006D43BD /* EarningsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F8CCA230EC3B8006D43BD /* EarningsController.swift */; };
 		C56057F622F9F6AC00EDA919 /* ProgressFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56057F522F9F6AC00EDA919 /* ProgressFlag.swift */; };
 		C56BBCA3221490DF0025A318 /* ACTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56BBCA2221490DF0025A318 /* ACTextView.swift */; };
 		C56BBCA52214AF5B0025A318 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56BBCA42214AF5B0025A318 /* Common.swift */; };
@@ -526,6 +527,7 @@
 		C556BA2E22CA5B4C0057B54B /* ACHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACHomeView.swift; sourceTree = "<group>"; };
 		C55F8CC6230D7B98006D43BD /* TodaysProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaysProgress.swift; sourceTree = "<group>"; };
 		C55F8CC8230D89AC006D43BD /* Study+Expressible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Study+Expressible.swift"; sourceTree = "<group>"; };
+		C55F8CCA230EC3B8006D43BD /* EarningsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningsController.swift; sourceTree = "<group>"; };
 		C56057F522F9F6AC00EDA919 /* ProgressFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressFlag.swift; sourceTree = "<group>"; };
 		C56BBCA2221490DF0025A318 /* ACTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTextView.swift; sourceTree = "<group>"; };
 		C56BBCA42214AF5B0025A318 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
@@ -954,6 +956,7 @@
 				C54AE93621C81B5C00DEC360 /* MHController.swift */,
 				C54AE93721C81B5C00DEC360 /* SlidePresentAnimationController.swift */,
 				C54AE93821C81B5C00DEC360 /* AppController.swift */,
+				C55F8CCA230EC3B8006D43BD /* EarningsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1870,6 +1873,7 @@
 				C54AEA3321C81B5F00DEC360 /* ScheduleEntry+CoreDataClass.swift in Sources */,
 				C54AEA3421C81B5F00DEC360 /* SchedulerNavigationController.swift in Sources */,
 				C578771322F8BED10068E46B /* TestCountDownView.swift in Sources */,
+				C55F8CCB230EC3B8006D43BD /* EarningsController.swift in Sources */,
 				C54D103222C28A1D00B43E42 /* SurveyInputView.swift in Sources */,
 				C54AE9CF21C81B5F00DEC360 /* ACEnvironment.swift in Sources */,
 				C54AE9EE21C81B5F00DEC360 /* ToggleButton.swift in Sources */,

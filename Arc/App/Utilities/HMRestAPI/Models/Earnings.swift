@@ -42,6 +42,9 @@ public struct EarningOverview : Codable {
 			}
         }
     }
+	
+	var response:Response?
+	var errors:[String:[String]]
 }
 
 
