@@ -17,7 +17,7 @@ public enum SurveyAvailabilityStatus {
 }
 open class Arc : ArcApi {
 	
-	var ARC_VERSION_INFO_KEY = "MH_VERSION"
+	var ARC_VERSION_INFO_KEY = "CFBundleShortVersionString"
 	var APP_VERSION_INFO_KEY = "CFBundleShortVersionString"
     public var APP_PRIVACY_POLICY_URL = ""
     public var WELCOME_LOGO:UIImage? = nil
@@ -57,7 +57,7 @@ open class Arc : ArcApi {
 	lazy public var deviceString = {deviceInfo();}()
 	lazy public var deviceId = AppController().deviceId
 	lazy public var versionString = {info?[APP_VERSION_INFO_KEY] as? String ?? ""}()
-	lazy public var arcVersion:Int = {arcInfo?[ARC_VERSION_INFO_KEY] as? Int ?? 0;}()
+	lazy public var arcVersion = {arcInfo?[ARC_VERSION_INFO_KEY] as? String ?? "";}()
     //A map of all of the possible states in the application
 	
     static public let shared = Arc()
@@ -247,6 +247,7 @@ open class Arc : ArcApi {
 		sessionController.sendMissedSessions()
 		sessionController.sendSignatures()
 		sessionController.clearUploadedSessions()
+		
 		if !appController.testScheduleUploaded{
 			let studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
 			Arc.shared.sessionController.uploadSchedule(studyPeriods: studies)
