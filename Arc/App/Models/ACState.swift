@@ -40,6 +40,7 @@ public enum ACState : String, State, CaseIterable {
 		let week = Int(sessionData.week)
 		let session = Int(sessionData.session)
 		var progress = 0
+		
 		if c.get(numberOfTestTakenOfType: .priceTest,
 				 inStudy: studyId,
 				 week:week,

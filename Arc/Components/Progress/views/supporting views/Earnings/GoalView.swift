@@ -86,6 +86,9 @@ public class GoalView: UIView {
 		self.buildContent(view: self.contentStack)
 
 	}
+	public func clear() {
+		
+	}
 	public func set(titleText:String) {
 		 goalTitleLabel.text = titleText
 	}

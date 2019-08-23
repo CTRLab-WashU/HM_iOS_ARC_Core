@@ -20,12 +20,16 @@ open class ArcViewController: UIViewController {
 		}
 	}
 	public var currentHint:HintView?
+	
     override open func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-	
+	open override func viewDidDisappear(_ animated: Bool) {
+		super.viewDidDisappear(animated)
+		NotificationCenter.default.removeObserver(self)
+	}
 	open func apply(forVersion version:String) {
 		let major:Int = Int(version.components(separatedBy: ".")[0]) ?? 0
 		let minor:Int = Int(version.components(separatedBy: ".")[1]) ?? 0
@@ -43,6 +47,8 @@ open class ArcViewController: UIViewController {
 	open func remove(flag:ProgressFlag) {
 		app.appController.flags[flag.rawValue] = false
 	}
+	
+	
     /*
     // MARK: - Navigation
 

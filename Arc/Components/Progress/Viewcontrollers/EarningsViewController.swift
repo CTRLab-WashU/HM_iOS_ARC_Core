@@ -19,19 +19,32 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		
         super.viewDidLoad()
 		dateFormatter.locale = app.appController.locale.getLocale()
-		dateFormatter.setLocalizedDateFormatFromTemplate("MMM dd 'at' hh:mm a")
+		dateFormatter.dateFormat = "MMM dd 'at' hh:mm a"
 		NotificationCenter.default.addObserver(self, selector: #selector(updateEarnings(notification:)), name: .ACEarningsUpdated, object: nil)
 		lastUpdated = app.appController.lastFetched["EarningsOverview"]
 		earningsData = Arc.shared.appController.read(key: "EarningsOverview")
-		
+		customView.viewDetailsButton.addAction {
+			[weak self] in
+			guard let weakSelf = self else {
+				return
+			}
+			self?.navigationController?.pushViewController(EarningsDetailViewController(), animated: true)
+		}
         // Do any additional setup after loading the view.
 		setGoals()
 		
     }
 	@objc public func updateEarnings(notification:Notification) {
-		lastUpdated = app.appController.lastFetched["EarningsOverview"]
-		earningsData = Arc.shared.appController.read(key: "EarningsOverview")
-
+		
+		OperationQueue.main.addOperation { [weak self] in
+			guard let weakSelf = self else {
+				return
+			}
+			weakSelf.lastUpdated = weakSelf.app.appController.lastFetched["EarningsOverview"]
+			weakSelf.earningsData = Arc.shared.appController.read(key: "EarningsOverview")
+			weakSelf.setGoals()
+		}
+		
 	}
 	
 	fileprivate func updateBodyText() {
@@ -56,6 +69,47 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		}
 	}
 	
+	fileprivate func fourofFourGoal(_ fourOfFourGoal:EarningOverview.Response.Earnings.Goal) {
+		let components = fourOfFourGoal.progress_components
+		
+		for component in components.enumerated() {
+			let index = component.offset
+			let value = component.element
+			customView.fourofFourGoal.set(progress:Double(value)/100.0, for: index)
+		}
+		
+		customView.fourofFourGoal.set(isUnlocked: fourOfFourGoal.completed)
+		customView.fourofFourGoal.set(bodyText: "".localized(ACTranslationKey.earnings_4of4_body)
+			.replacingOccurrences(of: "{AMOUNT}", with: fourOfFourGoal.value))
+		customView.fourofFourGoal.goalRewardView.set(text: fourOfFourGoal.value)
+	}
+	
+	fileprivate func twoADayGoal(_ twoADay:EarningOverview.Response.Earnings.Goal) {
+		let components = twoADay.progress_components
+		for component in components.enumerated() {
+			let index = component.offset
+			let value = component.element
+			customView.twoADayGoal.set(progress:Double(min(2, value))/2.0, forIndex: index)
+		}
+		customView.twoADayGoal.set(isUnlocked: twoADay.completed)
+		customView.twoADayGoal.set(bodyText: "".localized(ACTranslationKey.earnings_2aday_body)
+			.replacingOccurrences(of: "{AMOUNT}", with: twoADay.value))
+		customView.twoADayGoal.goalRewardView.set(text: twoADay.value)
+	}
+	
+	fileprivate func totalSessionsGoal(_ totalSessions:EarningOverview.Response.Earnings.Goal) {
+		for component in totalSessions.progress_components.enumerated() {
+			let value = component.element
+			customView.totalSessionsGoal.set(total: 21.0)
+			customView.totalSessionsGoal.set(current: value)
+			
+		}
+		customView.totalSessionsGoal.set(isUnlocked: totalSessions.completed)
+		customView.totalSessionsGoal.set(bodyText: "".localized(ACTranslationKey.earnings_21tests_body)
+			.replacingOccurrences(of: "{AMOUNT}", with: totalSessions.value))
+		customView.totalSessionsGoal.goalRewardView.set(text: totalSessions.value)
+	}
+	
 	public func setGoals() {
 		
 		
@@ -68,55 +122,17 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		customView.thisWeeksEarningsLabel.text = earnings.total_earnings
 		customView.thisStudysEarningsLabel.text = earnings.cycle_earnings
 		
-		
-		if let fourOfFourGoal = earnings.goals["4-out-of-4"] {
-			
-			let components = fourOfFourGoal.progress_components.sorted {
-				$0.key < $1.key
+		for goal in earnings.goals {
+			switch goal.name {
+			case "4-out-of-4":
+				fourofFourGoal(goal)
+			case "2-a-day":
+				twoADayGoal(goal)
+			case "21-sessions":
+				totalSessionsGoal(goal)
+			default:
+				break
 			}
-			
-			for component in components.enumerated() {
-				let index = component.offset
-				let value = component.element.value
-				customView.fourofFourGoal.set(progress:Double(value)/100.0, for: index)
-			}
-			
-			customView.fourofFourGoal.set(isUnlocked: fourOfFourGoal.completed)
-			customView.fourofFourGoal.set(bodyText: "".localized(ACTranslationKey.earnings_21tests_body)
-				.replacingOccurrences(of: "{AMOUNT}", with: fourOfFourGoal.value))
-			customView.fourofFourGoal.goalRewardView.set(text: fourOfFourGoal.value)
-
-		}
-		
-		if let twoADay = earnings.goals["2-a-day"] {
-			let components = twoADay.progress_components.sorted {
-				$0.key < $1.key
-			}
-			for component in components.enumerated() {
-				let index = component.offset
-				let value = component.element.value
-				customView.twoADayGoal.set(progress:Double(min(2, value))/2.0, forIndex: index)
-			}
-			customView.twoADayGoal.set(isUnlocked: twoADay.completed)
-			customView.twoADayGoal.set(bodyText: "".localized(ACTranslationKey.earnings_21tests_body)
-				.replacingOccurrences(of: "{AMOUNT}", with: twoADay.value))
-			customView.twoADayGoal.goalRewardView.set(text: twoADay.value)
-
-		}
-		
-		if let totalSessions = earnings.goals["21-sessions"] {
-			
-			for component in totalSessions.progress_components.enumerated() {
-				let value = component.element.value
-				customView.totalSessionsGoal.set(total: 21.0)
-				customView.totalSessionsGoal.set(current: value)
-
-			}
-			customView.totalSessionsGoal.set(isUnlocked: totalSessions.completed)
-			customView.totalSessionsGoal.set(bodyText: "".localized(ACTranslationKey.earnings_21tests_body)
-				.replacingOccurrences(of: "{AMOUNT}", with: totalSessions.value))
-			customView.totalSessionsGoal.goalRewardView.set(text: totalSessions.value)
-
 		}
 	}
 	

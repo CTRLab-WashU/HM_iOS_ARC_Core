@@ -89,6 +89,7 @@ open class SessionController:MHController {
 				Arc.shared.studyController.clearData(sessionId: Int(sessions[i].sessionID))
 				
 			}
+			NotificationCenter.default.post(name: .ACSessionUploadComplete, object: self.sessionUploads)
 		}
 	}
 	open func sendMissedSessions()

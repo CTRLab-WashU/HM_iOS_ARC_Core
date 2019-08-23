@@ -253,90 +253,95 @@ open class StudyController : MHController {
 	//NOTE that if you're trying to get a currently running Test Session, you should probably use DNDataManager's currentTestSession value.
 	
     open func get(numberOfTestTakenOfType surveyType:SurveyType, inStudy studyId:Int, week:Int? = nil, day:Int? = nil, session:Int? = nil) -> Int {
-        guard let study = get(study: studyId) else {
-            fatalError("Invalid study ID")
-        }
-        guard let tests = study.sessions else {
-            return 0
-        }
-        var total = 0
-        for obj in tests {
-            
-            
-            guard let testSession = obj as? Session else {
-                continue
-            }
-			let uploaded = testSession.uploaded
+		var total = 0
+		MHController.dataContext.performAndWait {
+			
+			
+			guard let study = get(study: studyId) else {
+				fatalError("Invalid study ID")
+			}
+			guard let tests = study.sessions else {
+				return
+			}
 
-				guard let file = testSession.getSurveyFor(surveyType: surveyType) else {
+			for obj in tests {
+				
+				
+				guard let testSession = obj as? Session else {
 					continue
+				}
+				let uploaded = testSession.uploaded
+
+					guard let file = testSession.getSurveyFor(surveyType: surveyType) else {
+						continue
+						
+					}
+					guard file.isFilledOut else {
+						continue
+					}
+				let isFinished = testSession.finishedSession
+				
+				
+				let isMissed = testSession.missedSession
+				
+				let isStarted = testSession.startTime != nil
+				
+				let isCurrentTest = Arc.shared.currentTestSession == Int(testSession.sessionID)
+				
+				let isExpired = testSession.expirationDate?.compare(Date()) != .orderedDescending && !isStarted
+				
+				var weekMatches = true
+				
+				var dayMatches = true
+				
+				var sessionMatches = true
+				
+				//If the app is terminated forcibly during a test it will take up until the expiration for it to get marked missed.
+				let isRecentlyAbandoned = isStarted && !isCurrentTest && !isFinished
+				
+				
+				
+					guard !isMissed && !isExpired else {
+						//The test was found but the session was missed
+						continue
+					}
+				
+					guard !isRecentlyAbandoned else {
+						continue
+					}
+				
+					//The test was NOT missed and WAS started
+					guard isStarted else {
+						continue
+					}
+				
+				
+				if let week = week {
+					
+					weekMatches = testSession.week == Int64(week)
 					
 				}
-				guard file.isFilledOut else {
-					continue
-				}
-            let isFinished = testSession.finishedSession
-			
-			
-            let isMissed = testSession.missedSession
-            
-            let isStarted = testSession.startTime != nil
-            
-            let isCurrentTest = Arc.shared.currentTestSession == Int(testSession.sessionID)
-            
-            let isExpired = testSession.expirationDate?.compare(Date()) != .orderedDescending && !isStarted
-			
-			var weekMatches = true
-			
-			var dayMatches = true
-			
-			var sessionMatches = true
-			
-            //If the app is terminated forcibly during a test it will take up until the expiration for it to get marked missed.
-            let isRecentlyAbandoned = isStarted && !isCurrentTest && !isFinished
-            
-			
-			
-				guard !isMissed && !isExpired else {
-					//The test was found but the session was missed
-					continue
+				
+				if let day = day {
+					
+					dayMatches = testSession.day == Int64(day)
+					
 				}
 				
-				guard !isRecentlyAbandoned else {
-					continue
+				if let session = session {
+					
+					sessionMatches = testSession.session == Int64(session)
+					
 				}
 				
-				//The test was NOT missed and WAS started
-				guard isStarted else {
-					continue
+				//The test is either the current test being taken and meets requirements
+				//Or there was a test found matching these requirements in the past
+				if (weekMatches && dayMatches && sessionMatches) {
+					total += 1
 				}
-            
-			
-            if let week = week {
-                
-                weekMatches = testSession.week == Int64(week)
-                
-            }
-            
-            if let day = day {
-                
-                dayMatches = testSession.day == Int64(day)
-                
-            }
-            
-            if let session = session {
-                
-                sessionMatches = testSession.session == Int64(session)
-                
-            }
-            
-            //The test is either the current test being taken and meets requirements
-            //Or there was a test found matching these requirements in the past
-            if (weekMatches && dayMatches && sessionMatches) {
-                total += 1
-            }
-            
-        }
+				
+			}
+		}
         return total
     }
     

@@ -109,7 +109,7 @@ open class IntroViewController: CustomViewController<InfoView> {
         // Do any additional setup after loading the view.
 		if let nav = self.navigationController, nav.viewControllers.count > 1 {
 			let backButton = UIButton(type: .custom)
-			backButton.frame = CGRect(x: 0, y: 0, width: 80, height: 40)
+			backButton.frame = CGRect(x: 0, y: 0, width: 80, height: 32)
 			backButton.setImage(UIImage(named: "cut-ups/icons/arrow_left_white"), for: .normal)
 			backButton.setTitle("BACK".localized("button_back"), for: .normal)
 			backButton.titleLabel?.font = UIFont(name: "Roboto-Medium", size: 14)

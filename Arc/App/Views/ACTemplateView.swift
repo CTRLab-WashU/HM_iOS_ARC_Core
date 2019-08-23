@@ -9,6 +9,8 @@
 import UIKit
 import ArcUIKit
 import HMMarkup
+
+
 open class ACTemplateView: UIView, UIScrollViewDelegate {
 	var root:UIScrollView!
 	var backgroundView:UIImageView!
@@ -51,7 +53,7 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 				
 			}
 		}
-		root = scroll {[weak self] in
+		root = scroll {[unowned self] in
 			
 			
 			let v = $0.stack {
@@ -89,18 +91,18 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 				$0.trailing == v.superview!.trailingAnchor ~ 999
 				$0.bottom == v.superview!.bottomAnchor ~ 999
 				$0.leading == v.superview!.leadingAnchor ~ 999
-				$0.width == self!.widthAnchor ~ 999
-				$0.height >= self!.safeAreaLayoutGuide.heightAnchor ~ 500
+				$0.width == self.widthAnchor ~ 999
+				$0.height >= self.safeAreaLayoutGuide.heightAnchor ~ 500
 			}
 			
 		}
-		root.layout { [weak self] in
+		root.layout { [unowned self] in
 			$0.top == safeAreaLayoutGuide.topAnchor ~ 999
 			$0.trailing == safeAreaLayoutGuide.trailingAnchor ~ 999
 			$0.bottom == safeAreaLayoutGuide.bottomAnchor ~ 999
 			$0.leading == safeAreaLayoutGuide.leadingAnchor ~ 999
-			$0.width == self!.widthAnchor ~ 999
-			$0.height == self!.heightAnchor ~ 999
+			$0.width == self.widthAnchor ~ 999
+			$0.height == self.heightAnchor ~ 999
 		}
 
 		self.scrollIndicatorView = scrollIndicator {

@@ -12,6 +12,9 @@ public protocol EarningsControllerDelegate {
 	func didUpdateEarnings()
 }
 open class EarningsController {
+	static public var overviewKey = "EarningsOverview"
+	static public var detailKey = "EarningsDetail"
+
 	static let earningsController = EarningsController()
 	lazy var thisWeek:ThisWeekExpressible = {Arc.shared.studyController}()
 	lazy var thisStudy:ThisStudyExpressible = {Arc.shared.studyController}()
@@ -25,19 +28,19 @@ open class EarningsController {
 		if uploads?.isEmpty == true {
 			
 			
-			MHController.dataContext.perform { [unowned self] in
+			OperationQueue().addOperation { [unowned self] in
 				
 				//Perform request and fire notifications notifying the system of updates
-				if let overview = Await(fetchEarnings).execute(EarningRequestData(cycle: self.thisStudy.week, day: self.thisWeek.day)) {
-					Arc.shared.appController.lastFetched["EarningsOverview"] = Date().timeIntervalSince1970
-					Arc.shared.appController.store(value: overview, forKey: "EarningsOverview")
+				if let overview = Await(fetchEarnings).execute(EarningRequestData(cycle: nil, day: nil)) {
+					Arc.shared.appController.lastFetched[EarningsController.overviewKey] = Date().timeIntervalSince1970
+					Arc.shared.appController.store(value: overview, forKey: EarningsController.overviewKey)
 					NotificationCenter.default.post(name: .ACEarningsUpdated, object: overview)
 				}
 				
 				
 				if let detail = Await(fetchEarningDetails).execute(()) {
-					Arc.shared.appController.lastFetched["EarningsDetail"] = Date().timeIntervalSince1970
-					Arc.shared.appController.store(value: detail, forKey: "EarningsDetail")
+					Arc.shared.appController.lastFetched[EarningsController.detailKey] = Date().timeIntervalSince1970
+					Arc.shared.appController.store(value: detail, forKey: EarningsController.detailKey)
 					NotificationCenter.default.post(name: .ACEarningDetailsUpdated, object: detail)
 
 					

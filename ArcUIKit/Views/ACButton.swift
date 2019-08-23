@@ -30,8 +30,8 @@ import HMMarkup
 		super.init(frame:.zero)
 		Roboto.Style.bodyBold(titleLabel!)
 		layout {
-			$0.width >= 216 ~ 999
-			$0.height >= 48 ~ 999
+			$0.width >= 216 ~ 950
+			$0.height >= 48 ~ 950
 			$0.height == 48 ~ 250
 			//$0.bottom >= self.bottomAnchor - 40 ~ 250
 		}

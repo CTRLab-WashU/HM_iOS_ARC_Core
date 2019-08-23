@@ -127,6 +127,7 @@ open class HMRestAPI : NSObject, URLSessionDelegate, URLSessionTaskDelegate {
             HMLog("Reponse---------------------------------")
 			
             HMLog(response?.url?.absoluteString ?? "")
+			HMLog("\n\n")
             HMLog(String(data: data, encoding: .utf8) ?? "")
             HMLog("Decoded Response---------------------------------")
 

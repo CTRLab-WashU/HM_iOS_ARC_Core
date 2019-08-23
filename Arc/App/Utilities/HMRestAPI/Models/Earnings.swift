@@ -20,8 +20,8 @@ public struct EarningOverview : Codable {
 			public var day:Int
             public var cycle_earnings:String
             
-            public var goals:Dictionary<String, Goal>
-			public var sessions:Dictionary<String, Session>
+            public var goals:Array<Goal>
+//			public var sessions:Dictionary<String, Session>
             public struct Goal : Codable {
                 public var name:String
                 public var value:String
@@ -29,7 +29,7 @@ public struct EarningOverview : Codable {
                 public var amount_earned:String
                 public var completed:Bool
 				public var completed_on:TimeInterval?
-                public var progress_components:Dictionary<String, Int>
+                public var progress_components:Array<Int>
             }
 			
 			public struct Session : Codable {
@@ -52,11 +52,11 @@ public struct EarningDetail : Codable {
     
     public struct Response : Codable {
         public var success:Bool
-        public var earnings:Earnings
+        public var earnings:Earnings?
 
         public struct Earnings : Codable {
             public var total_earnings:String
-            public var cycles:[Cycle]
+            public var cycles:[Cycle]?
             
             public struct Cycle : Codable {
                 public var cycle:Int
@@ -74,6 +74,8 @@ public struct EarningDetail : Codable {
             }
         }
     }
+	var response:Response?
+	var errors:[String:[String]]
 }
 
 public struct EarningRequestData:Codable {

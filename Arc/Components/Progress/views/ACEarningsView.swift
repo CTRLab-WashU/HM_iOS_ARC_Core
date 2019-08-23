@@ -104,6 +104,13 @@ public class ACEarningsView : ACTemplateView {
 						Roboto.Style.subBody($0, color:UIColor(red:0.71, green:0.73, blue:0.8, alpha:1))
 						$0.text = "".localized(ACTranslationKey.earnings_sync)
 					}
+					
+					self.viewDetailsButton = $0.acButton {
+						$0.primaryColor = ACColor.secondary
+						$0.secondaryColor = ACColor.secondaryGradient
+						$0.setTitleColor(ACColor.badgeText, for: .normal)
+						$0.setTitle("".localized(ACTranslationKey.button_viewdetails), for: .normal)
+					}
 				}
 			}
 			

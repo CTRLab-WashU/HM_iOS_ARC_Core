@@ -21,7 +21,11 @@ public class TwoADayGoalView : GoalView {
 		//If you don't have anything to set use _ in
 		self.progressGroup = view.goalDayTileGroup { _ in}
 	}
+	public override func clear() {
+		progressGroup.clear()
+	}
 	public func add(tiles:[String]) {
+		clear()
 		for i in tiles {
 			add(tile: i, progress: 0.0)
 		}
@@ -33,6 +37,7 @@ public class TwoADayGoalView : GoalView {
 		}
 		
 	}
+	
 	public func add(tile:String, progress:Double) {
 		progressGroup.add(tile: tile, progress: progress)
 	}
