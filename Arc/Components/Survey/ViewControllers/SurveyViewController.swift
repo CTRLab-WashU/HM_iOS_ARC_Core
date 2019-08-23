@@ -45,6 +45,8 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
     var questionIndex:String?
     var surveyId:String?
 
+    var keyboardFrame:CGRect?
+    
 	open var renderer:HMMarkupRenderer!
     private var controller = Arc.shared.surveyController
 
@@ -76,6 +78,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
             //self.navigationItem.setLeftBarButton(leftButton, animated: true)
             self.navigationItem.leftBarButtonItem = leftButton
 			NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: UIResponder.keyboardDidShowNotification, object: nil)
 			NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 			
 		}
@@ -86,15 +89,22 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
         let attrString = NSAttributedString(string: "Privacy Policy".localized("privacy_linked"), attributes: attributes)
         privacyPolicyButton.setAttributedTitle(attrString, for: .normal)
     }
-	@objc func keyboardWillShow(notification: NSNotification) {
-		print("keyboardWillShow")
-		setBottomScrollInset(value: 40)
-	}
-	
+
+    @objc func keyboardWillShow(notification: NSNotification) {
+        print("keyboardWillShow")
+        guard let userInfo = notification.userInfo , let kbFrame:CGRect = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect  else { return  }
+        keyboardFrame = kbFrame
+    }
+    
+    @objc func keyboardDidShow(notification: NSNotification) {
+        print("keyboardDidShow")
+    }
+    
 	@objc func keyboardWillHide(notification: NSNotification){
 		print("keyboardWillHide")
 		setBottomScrollInset(value: 0)
-
+        scrollView.setContentOffset(.zero, animated: true)
+        keyboardFrame = nil
 	}
 	open override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
@@ -103,7 +113,14 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
     override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.navigationBar.backgroundColor = view.backgroundColor
-        
+        if keyboardFrame != nil, let frame = (input as? UIView)?.frame {
+            let temp = container.convert(frame, to: nil)
+            if keyboardFrame!.intersects (temp) {
+                var offset = scrollView.contentOffset
+                offset.y += 80
+                scrollView.setContentOffset(offset, animated: true)
+            }
+        }
     }
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
