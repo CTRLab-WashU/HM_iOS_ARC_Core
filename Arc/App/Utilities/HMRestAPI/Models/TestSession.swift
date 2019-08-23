@@ -77,7 +77,7 @@ public struct FullTestSession : Codable {
 		session_id = "\(session.sessionID)"
 		session_date = session.sessionDate?.timeIntervalSince1970
 		start_time = session.startTime?.timeIntervalSince1970
-		participant_id = "\(Arc.shared.participantId!)"
+		participant_id = Arc.shared.formattedParticipantId
 		if let interrupted = session.interrupted {
 			self.interrupted = interrupted as? Int64
 
@@ -186,7 +186,7 @@ public struct CognitiveTestSession : Codable {
 		session_id = "\(session.sessionID)"
 		sessionDate = session.sessionDate?.timeIntervalSince1970
 		startTime = session.startTime?.timeIntervalSince1970
-		participant_id = "\(Arc.shared.participantId!)"
+		participant_id = Arc.shared.formattedParticipantId
 		
 		missedSession = (session.missedSession) ? 1 : 0
 		finishedSession = (session.finishedSession) ? 1 : 0
@@ -237,7 +237,7 @@ public struct SurveySession : Codable {
 		session_id = "\(session.sessionID)"
 		sessionDate = session.sessionDate?.timeIntervalSince1970
 		startTime = session.startTime?.timeIntervalSince1970
-		participant_id = "\(Arc.shared.participantId!)"
+		participant_id = Arc.shared.formattedParticipantId
 		
 		missedSession = (session.missedSession) ? 1 : 0
 		finishedSession = (session.finishedSession) ? 1 : 0

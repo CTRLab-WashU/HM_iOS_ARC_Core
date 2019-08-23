@@ -17,7 +17,7 @@ public enum SurveyAvailabilityStatus {
 }
 open class Arc : ArcApi {
 	
-	var ARC_VERSION_INFO_KEY = "MH_VERSION"
+	var ARC_VERSION_INFO_KEY = "CFBundleShortVersionString"
 	var APP_VERSION_INFO_KEY = "CFBundleShortVersionString"
     public var APP_PRIVACY_POLICY_URL = ""
     public var WELCOME_LOGO:UIImage? = nil
@@ -53,6 +53,8 @@ open class Arc : ArcApi {
         }
         return nil
     }()
+	
+	public let idFormatter:NumberFormatter = NumberFormatter()
     public var translationIndex = 1
 	lazy public var deviceString = {deviceInfo();}()
 	lazy public var deviceId = AppController().deviceId
@@ -96,7 +98,10 @@ open class Arc : ArcApi {
 			appController.participantId = newValue
 		}
 	}
-    
+	public var formattedParticipantId:String {
+		let value = NSNumber(integerLiteral: participantId ?? 0)
+		return idFormatter.string(from: value) ?? "000000"
+	}
 	public var currentStudy:Int?
 	public var availableTestSession:Int?
 	public var currentTestSession:Int?
@@ -108,12 +113,14 @@ open class Arc : ArcApi {
 	}
     static public func configureWithEnvironment(environment:ArcEnvironment) {
         self.environment = environment
-        
+
         HMAPI.baseUrl = environment.baseUrl ?? ""
         
         _ = MHController.dataContext
         
         _ = HMAPI.shared
+		Arc.shared.idFormatter.minimumIntegerDigits = environment.participantIdLength
+
         CoreDataStack.useMockContainer = environment.mockData
         HMRestAPI.shared.blackHole = environment.blockApiRequests
         Arc.shared.appNavigation = environment.appNavigation

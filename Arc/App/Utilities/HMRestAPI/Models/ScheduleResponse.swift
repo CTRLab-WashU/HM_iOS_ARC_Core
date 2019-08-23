@@ -62,10 +62,10 @@ public struct TestScheduleRequestData : Codable {
 
 
 	public init(withStudyPeriod studyPeriod: StudyPeriod) {
+		
 
 
-
-		participant_id = "\(Arc.shared.participantId!)"
+		participant_id = Arc.shared.formattedParticipantId
 		if let objs = studyPeriod.sessions {
 			sessions = objs.map({ (obj) -> Entry in
 				let s = obj as! Session
@@ -91,7 +91,7 @@ public struct TestScheduleRequestData : Codable {
 		
 		
 		var allSessions:[Entry] = []
-		participant_id = "\(Arc.shared.participantId!)"
+		participant_id = Arc.shared.formattedParticipantId
 		for studyPeriod in studyPeriods {
 			if let objs = studyPeriod.sessions {
 				let sessions = objs.map({ (obj) -> Entry in
@@ -157,7 +157,7 @@ public struct WakeSleepScheduleRequestData : Codable {
 		
 
 		
-		participant_id = "\(Arc.shared.participantId!)"
+		participant_id = Arc.shared.formattedParticipantId
 		let schedule = Arc.shared.scheduleController.get(confirmedSchedule: Arc.shared.participantId!)
 		let entries = schedule!.entries.sorted { (lhs, rhs) -> Bool in
 			return lhs.day < rhs.day
@@ -192,6 +192,6 @@ public struct HeartbeatRequestData : Codable {
 		device_id = Arc.shared.deviceId
 		device_info = Arc.shared.deviceInfo()
 		app_version = Arc.shared.versionString
-		participant_id = "\(Arc.shared.participantId!)"
+		participant_id = Arc.shared.formattedParticipantId
 	}
 }
