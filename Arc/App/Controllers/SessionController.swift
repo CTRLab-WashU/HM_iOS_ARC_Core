@@ -151,6 +151,9 @@ open class SessionController:MHController {
         
     }
 	open func uploadSession(session:Session) {
+		guard !HMRestAPI.shared.blackHole else {
+			return
+		}
 		guard session.uploaded == false else {
 			return
 		}
@@ -160,9 +163,7 @@ open class SessionController:MHController {
 		sessionUploads.insert(session.sessionID)
 		let submitTest:HMAPIRequest<FullTestSession, HMResponse> = .post("submit-test")
 		submitTest.execute(data: full) { [unowned self] (response, data, _) in
-            guard !HMRestAPI.shared.blackHole else {
-                return
-            }
+			
 			MHController.dataContext.performAndWait {
 				HMLog("Session: \(full.session_id ?? ""), received response \(data?.toString() ?? "") on \(Date())", silent: false)
 				if data?.errors.count == 0 {
@@ -183,6 +184,10 @@ open class SessionController:MHController {
 		}
 	}
 	open func uploadSchedule(studyPeriod:StudyPeriod) {
+		guard !HMRestAPI.shared.blackHole else {
+			Arc.shared.appController.testScheduleUploaded = true
+			return
+		}
 		guard studyPeriod.scheduleUploaded == false else {
 			return
 		}
@@ -192,10 +197,7 @@ open class SessionController:MHController {
 		let submitTestSchedule:HMAPIRequest<TestScheduleRequestData, HMResponse> = .post("submit-test-schedule")
 		submitTestSchedule.execute(data: data) { (response, obj, _) in
 			HMLog("Participant: \(data.participant_id ?? ""), received response \(obj?.toString() ?? "") on \(Date())", silent: false)
-            guard !HMRestAPI.shared.blackHole else {
-                Arc.shared.appController.testScheduleUploaded = true
-                return
-            }
+			
 			MHController.dataContext.performAndWait {
 				
 				if obj?.errors.count == 0 {
@@ -222,6 +224,10 @@ open class SessionController:MHController {
 	}
 	
 	open func uploadSchedule(studyPeriods:[StudyPeriod]) {
+		guard !HMRestAPI.shared.blackHole else {
+			Arc.shared.appController.testScheduleUploaded = true
+			return
+		}
 		let data:TestScheduleRequestData = .init(withStudyPeriods: studyPeriods)
 		
 		let md5 = data.encode()?.MD5()
@@ -231,10 +237,7 @@ open class SessionController:MHController {
 		submitTestSchedule.execute(data: data) { (response, obj, _) in
 			HMLog("Participant: \(data.participant_id ?? ""), received response \(obj?.toString() ?? "") on \(Date())")
 			MHController.dataContext.performAndWait {
-                guard !HMRestAPI.shared.blackHole else {
-                    Arc.shared.appController.testScheduleUploaded = true
-                    return
-                }
+				
 				if obj?.errors.count == 0 {
 					studyPeriods.forEach({$0.scheduleUploaded = true})
 					if md5 == obj?.response?.md5 {
