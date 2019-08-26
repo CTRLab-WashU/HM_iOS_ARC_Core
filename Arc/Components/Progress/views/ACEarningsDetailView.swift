@@ -119,10 +119,12 @@ public class ACEarningsDetailView : ACTemplateView {
 	public func set(synched:TimeInterval) {
 		var time = ""
 		if #available(iOS 13.0, *) {
-			let dateFormatter:RelativeDateTimeFormatter = RelativeDateTimeFormatter()
-			dateFormatter.locale = Arc.shared.appController.locale.getLocale()
-
-			time = dateFormatter.localizedString(for: Date(), relativeTo:  Date(timeIntervalSince1970: synched))
+			//TODO: Update for iOS 13, right now, this is commented out because
+			//it does not build in xcode 10. 
+//			let dateFormatter:RelativeDateTimeFormatter = RelativeDateTimeFormatter()
+//			dateFormatter.locale = Arc.shared.appController.locale.getLocale()
+//
+//			time = dateFormatter.localizedString(for: Date(), relativeTo:  Date(timeIntervalSince1970: synched))
 		} else {
 			// Fallback on earlier versions
 			let dateFormatter:DateFormatter = DateFormatter()
