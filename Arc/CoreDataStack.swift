@@ -31,25 +31,29 @@ open class CoreDataStack {
         return defaults
     }
     
-    lazy public var mockPersistantContainer: NSPersistentContainer = {
-        
-        let container = NSPersistentContainer(name: "arc", managedObjectModel: self.managedObjectModel)
-        let description = NSPersistentStoreDescription()
-        description.type = NSInMemoryStoreType
-        description.shouldAddStoreAsynchronously = false // Make it simpler in test env
-        
-        container.persistentStoreDescriptions = [description]
-        container.loadPersistentStores { (description, error) in
-            // Check if the data store is in memory
-            precondition( description.type == NSInMemoryStoreType )
-            
-            // Check if creating container wrong
-            if let error = error {
-                fatalError("Create an in-mem coordinator failed \(error)")
-            }
-        }
-        return container
-    }()
+	lazy public var mockPersistantContainer: NSPersistentContainer = {
+		
+		
+		return initializeMockStore()
+	}()
+	public func initializeMockStore() -> NSPersistentContainer {
+		let container = NSPersistentContainer(name: "arc", managedObjectModel: self.managedObjectModel)
+		let description = NSPersistentStoreDescription()
+		description.type = NSInMemoryStoreType
+		description.shouldAddStoreAsynchronously = false // Make it simpler in test env
+		
+		container.persistentStoreDescriptions = [description]
+		container.loadPersistentStores { (description, error) in
+			// Check if the data store is in memory
+			precondition( description.type == NSInMemoryStoreType )
+			
+			// Check if creating container wrong
+			if let error = error {
+				fatalError("Create an in-mem coordinator failed \(error)")
+			}
+		}
+		return container
+	}
     
     lazy public var persistentContainer: NSPersistentContainer = {
 		
