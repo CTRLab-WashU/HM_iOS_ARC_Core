@@ -40,7 +40,7 @@ public class PromptDetailView: UIStackView {
 		spacing = 10
 		promptLabel = acLabel {
 			$0.text = ""
-			Roboto.Style.headingMedium($0)
+			Roboto.Style.heading($0)
 			
 			
 		}

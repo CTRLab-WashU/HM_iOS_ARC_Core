@@ -61,7 +61,8 @@ public struct Roboto {
 		public static let bodyBold = Font.body
 			.boldFont()
 			
-		
+		public static let heading = UIFont(name: "Roboto", size: 26)!
+
 		public static let headingMedium = UIFont(name: "Roboto-Medium", size: 26)!
 		public static let earningsBold = UIFont(name: "Roboto-medium", size: 32)!
 		
@@ -179,6 +180,12 @@ public struct Roboto {
 		public static func subHeadingBold(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
 			label.font = Roboto.Font.subHeadingBold
 			label.numberOfLines = 0
+			label.textColor = color
+		}
+		public static func heading(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
+			label.font = Roboto.Font.heading
+			label.numberOfLines = 0
+			
 			label.textColor = color
 		}
 		public static func headingMedium(_ label:UILabel, color:UIColor? = UIColor(named:"Primary Text")) {
