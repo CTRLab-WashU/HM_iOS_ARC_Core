@@ -103,7 +103,7 @@ open class StudyController : MHController {
 	open func createStudyPeriod(forDate: Date, studyId:Int) -> StudyPeriod
 	{
 		
-		HMLog("Creating StudyPeriod \(self.studyCount) at date: \(DateFormatter.localizedString(from: forDate, dateStyle: .short, timeStyle: .none))");
+		HMLog("Creating StudyPeriod \(studyId) at date: \(DateFormatter.localizedString(from: forDate, dateStyle: .short, timeStyle: .none))");
 		let newStudyPeriod:StudyPeriod = new()
 		newStudyPeriod.studyID = Int64(studyId);
 		newStudyPeriod.startDate = forDate.startOfDay();
@@ -1103,24 +1103,40 @@ open class StudyController : MHController {
         
         return times;
     }
-	open func delete(sessionsUpTo sessionId:Int, inStudy studyId: Int) {
-        print("Deleting sessions upto \(sessionId)")
-		guard let study = get(study: studyId), let sessions = study.sessions else {
-			fatalError("Invalid study ID")
-		}
-		var deleted:[Session] = []
-		for s in sessions {
-			let session = s as! Session
-			if session.sessionID <= Int64(sessionId){
-				deleted.append(session)
+	open func delete(sessionsUpTo sessionId:Int, inStudy studyId: Int, destroySessionsEntirely:Bool=false) {
+		MHController.dataContext.performAndWait {
+			guard let study = get(study: studyId), let sessions = study.sessions else {
+				fatalError("Invalid study ID")
 			}
+			var deleted:[Session] = []
+			for s in sessions {
+				let session = s as! Session
+				if session.sessionID <= Int64(sessionId){
+					deleted.append(session)
+				}
+			}
+			if destroySessionsEntirely {
+				HMLog("Deleting sessions upto \(sessionId)")
+			} else {
+				HMLog("Clearing sessions upto \(sessionId)")
+			}
+			for session in deleted {
+				
+				if destroySessionsEntirely {
+					session.study = nil
+					study.removeFromSessions(session)
+					delete(session)
+					
+				} else {
+					clearData(sessionId: Int(session.sessionID))
+					
+				}
+			}
+			
+			
+			save()
 		}
-		for session in deleted {
-			session.study = nil
-			study.removeFromSessions(session)
-			delete(session)
-		}
-		save()
+		
 	}
 	
 	// Returns an array of Sessions from the given index (0-6). This is not correlated with days of the week,
