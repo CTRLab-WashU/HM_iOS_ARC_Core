@@ -262,6 +262,9 @@ open class Arc : ArcApi {
 	}
 	
 	public func sendHeartBeat() {
+		guard !HMRestAPI.shared.blackHole else {
+			return
+		}
 		HMAPI.deviceHeartbeat.execute(data: HeartbeatRequestData()) { (response, data, _) in
 			HMLog("Participant: \(self.participantId ?? -1), received response \(data?.toString() ?? "") on \(Date())")
 
