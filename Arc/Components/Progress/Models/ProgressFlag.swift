@@ -22,6 +22,9 @@ public enum ProgressFlag : String {
 	case baseline_onboarding_progress
 	case baseline_onboarding_earnings
 	case baseline_onboarding_resources
+    case grids_tutorial_shown
+    case symbols_tutorial_shown
+    case prices_tutorial_shown
 	
 	//For every version add a new case that runs for that version specifically.
 	static public func prefilledFlagsFor(major:Int, minor:Int, patch:Int) -> Set<ProgressFlag> {

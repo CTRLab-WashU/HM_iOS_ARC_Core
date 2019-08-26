@@ -36,6 +36,9 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 		self.test.symbols = self.symbols
         
         // Do any additional setup after loading the view.
+        if self.get(flag: .symbols_tutorial_shown) == false {
+            self.customView.firstTutorialRun()
+        }
     }
 	override public func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
@@ -44,6 +47,12 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 		currentHint?.removeFromSuperview()
 		
 	}
+    
+    override func finishTutorial() {
+        self.set(flag: .symbols_tutorial_shown)
+        super.finishTutorial()
+    }
+
 	func didSelect(_ enableInteraction:Bool = false){
 		view.window?.clearOverlay()
 		view.removeHighlight()

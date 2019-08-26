@@ -21,7 +21,9 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 		pricesTest.delegate = self
 		pricesTest.autoStart = false
 		setupScript()
-		
+        if self.get(flag: .prices_tutorial_shown) == false {
+            self.customView.firstTutorialRun()
+        }
     }
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
@@ -34,6 +36,10 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 		currentHint?.removeFromSuperview()
 
 	}
+    override func finishTutorial() {
+        self.set(flag: .prices_tutorial_shown)
+        super.finishTutorial()
+    }
 	func didSelectPrice(_ option: Int) {
 		view.window?.clearOverlay()
 		currentHint?.removeFromSuperview()
