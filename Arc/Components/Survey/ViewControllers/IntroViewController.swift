@@ -172,8 +172,19 @@ open class IntroViewController: CustomViewController<InfoView> {
 				
 			}
 			customView.setAdditionalFooterContent(button)
-			if !get(flag: .first_tutorial) {
-				set(flag: .first_tutorial)
+            
+            var showTutorialPrompt = false
+            switch self.style {
+            case .prices:
+                showTutorialPrompt = !get(flag: .prices_tutorial_shown)
+            case .symbols:
+                showTutorialPrompt = !get(flag: .symbols_tutorial_shown)
+            case .grids:
+                showTutorialPrompt = !get(flag: .grids_tutorial_shown)
+            default:
+                break
+            }
+			if showTutorialPrompt {
 				currentHint = customView.nextButton!.hint {
 					$0.content = "".localized(ACTranslationKey.popup_tutorial_view)
 					$0.layout {
