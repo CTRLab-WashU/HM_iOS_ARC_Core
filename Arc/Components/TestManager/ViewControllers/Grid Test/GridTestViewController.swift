@@ -457,8 +457,8 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 		}
 		if mode == .fCell {
 			if let c = collectionView.cellForItem(at: indexPath) as? GridFCell {
-				c.overlay(radius: c.frame.width/2)
-				c.highlight(radius: c.frame.width/2)
+                // Calling overlay and highlight together here was causing the overlay to disappear
+                // Instead, calling on the cell this function returns works
 				return c
 			}
 		}
