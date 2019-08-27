@@ -21,7 +21,7 @@ public struct EarningOverview : Codable {
             public var cycle_earnings:String
             
             public var goals:Array<Goal>
-//			public var sessions:Dictionary<String, Session>
+			public var new_achievements:Array<Achievement>
             public struct Goal : Codable {
                 public var name:String
                 public var value:String
@@ -32,13 +32,10 @@ public struct EarningOverview : Codable {
                 public var progress_components:Array<Int>
             }
 			
-			public struct Session : Codable {
+			public struct Achievement : Codable {
 				public var name:String
-				public var value:String
-				public var progress:Int
 				public var amount_earned:String
-				public var completed:Int
-				public var completed_on:TimeInterval?
+			
 			}
         }
     }

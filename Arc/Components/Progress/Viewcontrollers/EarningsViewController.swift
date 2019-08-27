@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import ArcUIKit
 public class EarningsViewController: CustomViewController<ACEarningsView> {
 	var thisStudy:ThisStudyExpressible = Arc.shared.studyController
 	var thisWeek:ThisWeekExpressible = Arc.shared.studyController
@@ -15,14 +15,55 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 	var lastUpdated:TimeInterval?
 	var earningsData:EarningOverview?
 	var dateFormatter = DateFormatter()
+	var isPostTest:Bool = false
+	
+	public init(isPostTest:Bool) {
+		super.init(nibName: nil, bundle: nil)
+		self.isPostTest = isPostTest
+	}
+	
+	required init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+	}
+	
 	override public func viewDidLoad() {
 		
         super.viewDidLoad()
+		customView.root.refreshControl = UIRefreshControl()
+		customView.root.addSubview(customView.root.refreshControl!)
+		customView.root.refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
+		
+		customView.root.alwaysBounceVertical = true
+		
+		//When in post test mode perform modifications 
+		if isPostTest {
+			customView.backgroundView.image = UIImage(named: "finished_bg", in: Bundle(for: self.classForCoder), compatibleWith: nil)
+			customView.button.isHidden = true
+			customView.nextButton?.isHidden = false
+			customView.earningsSection.backgroundColor = .clear
+			customView.button.isHidden = true
+			customView.headerLabel.textAlignment = .center
+			customView.headerLabel.text = "".localized(ACTranslationKey.progress_earnings_header)
+			
+			customView.viewDetailsButton.isHidden = true
+			customView.separator.isHidden = true
+			customView.earningsBodyLabel.isHidden = true
+			customView.lastSyncedLabel.isHidden = true
+			
+			customView.bonusGoalsSection.backgroundColor = .clear
+			customView.bonusGoalsHeader.textAlignment = .center
+			customView.bonusGoalsSeparator.isHidden = true
+			
+			customView.bonusGoalsBodyLabel.textAlignment = .center
+			Roboto.Style.body(customView.bonusGoalsBodyLabel, color:.white)
+			
+			
+			
+		}
 		dateFormatter.locale = app.appController.locale.getLocale()
 		dateFormatter.dateFormat = "MMM dd 'at' hh:mm a"
 		NotificationCenter.default.addObserver(self, selector: #selector(updateEarnings(notification:)), name: .ACEarningsUpdated, object: nil)
-		lastUpdated = app.appController.lastFetched["EarningsOverview"]
-		earningsData = Arc.shared.appController.read(key: "EarningsOverview")
+		
 		customView.viewDetailsButton.addAction {
 			[weak self] in
 			guard let weakSelf = self else {
@@ -31,18 +72,35 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 			self?.navigationController?.pushViewController(EarningsDetailViewController(), animated: true)
 		}
         // Do any additional setup after loading the view.
-		setGoals()
+		
 		
     }
+	@objc func refresh(sender:AnyObject)
+	{
+		
+		//my refresh code here..
+		print("refreshing")
+		NotificationCenter.default.post(name: .ACSessionUploadComplete, object: Arc.shared.sessionController.sessionUploads)
+	}
+	public override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		lastUpdated = app.appController.lastFetched["EarningsOverview"]
+		earningsData = Arc.shared.appController.read(key: "EarningsOverview")
+		setGoals()
+	}
 	@objc public func updateEarnings(notification:Notification) {
 		
 		OperationQueue.main.addOperation { [weak self] in
+
 			guard let weakSelf = self else {
 				return
 			}
+			weakSelf.customView.root.refreshControl?.endRefreshing()
+
 			weakSelf.lastUpdated = weakSelf.app.appController.lastFetched["EarningsOverview"]
 			weakSelf.earningsData = Arc.shared.appController.read(key: "EarningsOverview")
 			weakSelf.setGoals()
+			
 		}
 		
 	}
@@ -119,6 +177,12 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		guard let earnings = earningsData?.response?.earnings else {
 			return
 		}
+		if isPostTest {
+			for a in earnings.new_achievements {
+				customView.add(reward: (a.name, a.amount_earned))
+			}
+		}
+		
 		customView.thisWeeksEarningsLabel.text = earnings.total_earnings
 		customView.thisStudysEarningsLabel.text = earnings.cycle_earnings
 		

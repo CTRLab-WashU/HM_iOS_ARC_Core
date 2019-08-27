@@ -9,7 +9,8 @@
 import UIKit
 
 public class ACTodayProgressViewController: CustomViewController<ACTodayProgressView>, ACTodayProgressViewDelegate {
-	
+	var thisStudy:ThisStudyExpressible = Arc.shared.studyController
+	var thisWeek:ThisWeekExpressible = Arc.shared.studyController
 	
 	
 	public init() {
@@ -51,7 +52,14 @@ public class ACTodayProgressViewController: CustomViewController<ACTodayProgress
     }
 	
 	public func nextPressed() {
-		Arc.shared.nextAvailableState()
+		
+		//TODO: put an earnings available check for studies that do not
+		//present earnings to the user.
+		if thisStudy.studyState == .baseline {
+			Arc.shared.nextAvailableState()
+		} else {
+			Arc.shared.appNavigation.navigate(vc: EarningsViewController(isPostTest: true), direction: .toLeft)
+		}
 	}
 	
     /*

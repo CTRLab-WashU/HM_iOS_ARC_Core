@@ -39,8 +39,8 @@ open class EarningsDetailViewController : CustomViewController<ACEarningsDetailV
 
 		customView.root.alwaysBounceVertical = true
 		
-		NotificationCenter.default.addObserver(self, selector: #selector(didSynch(notification:)), name: .ACEarningDetailsUpdated, object: nil)
-		didSynch(notification:  nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(didSync(notification:)), name: .ACEarningDetailsUpdated, object: nil)
+		didSync(notification:  nil)
 		
 	}
 	
@@ -53,8 +53,8 @@ open class EarningsDetailViewController : CustomViewController<ACEarningsDetailV
 		
 		//my refresh code here..
 		print("refreshing")
+		NotificationCenter.default.post(name: .ACSessionUploadComplete, object: Arc.shared.sessionController.sessionUploads)
 		
-		customView.root.refreshControl?.endRefreshing()
 	}
 	@objc func backPressed()
 	{
@@ -62,12 +62,13 @@ open class EarningsDetailViewController : CustomViewController<ACEarningsDetailV
 		self.navigationController?.popViewController(animated: true)
 		
 	}
-	@objc func didSynch(notification:Notification?) {
+	@objc func didSync(notification:Notification?) {
 		OperationQueue.main.addOperation { [weak self] in
-			
 			guard let weakSelf = self else{
 				return
 			}
+			weakSelf.customView.root.refreshControl?.endRefreshing()
+
 			if let fetchDate = weakSelf.app.appController.lastFetched[EarningsController.detailKey] {
 				weakSelf.customView.set(synched: fetchDate)
 			}

@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 open class SessionController:MHController {
-	private var sessionUploads:Set<Int64> = []
+	public var sessionUploads:Set<Int64> = []
 	@discardableResult
 	open func create(sessionAt date:Date) -> Session
 	{
@@ -172,7 +172,9 @@ open class SessionController:MHController {
 					if md5 == data?.response?.md5 {
 						self.save()
 						self.sessionUploads.remove(session.sessionID)
-						NotificationCenter.default.post(name: .ACSessionUploadComplete, object: self.sessionUploads)
+						if self.sessionUploads.isEmpty {
+							NotificationCenter.default.post(name: .ACSessionUploadComplete, object: self.sessionUploads)
+						}
 					} else {
 						HMLog("\(md5 ?? "") does not match \(data?.response?.md5 ?? "")")
 					}

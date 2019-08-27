@@ -1,5 +1,5 @@
 import Foundation
-public enum ACTranslationKey : String, TranslationKey {
+public enum ACTranslationKey : String {
 	case app_name
 
 	case country_key
@@ -290,7 +290,9 @@ public enum ACTranslationKey : String, TranslationKey {
 
 	case progress_daily_header
 
-	case progess_dailystatus
+	case progress_dailystatus_complete
+
+	case progress_dailystatus_remaining
 
 	case progress_weekly_header
 
@@ -568,11 +570,15 @@ public enum ACTranslationKey : String, TranslationKey {
 
 	case grids_overlay3
 
+	case grids_overlay3_pt2
+
 	case grids_subheader_boxes
 
 	case grids_complete
 
 	case progress_schedule_header
+
+	case progress_baseline_notice
 
 	case progress_practice_body1
 
@@ -698,6 +704,18 @@ public enum ACTranslationKey : String, TranslationKey {
 
 	case popup_tutorial_price_intro
 
+	case prices_tutorial_item1
+
+	case prices_tutorial_price1
+
+	case prices_tutorial_item2
+
+	case prices_tutorial_price2
+
+	case prices_tutorial_price1_match
+
+	case prices_tutorial_price2_match
+
 	case popup_tutorial_choose1
 
 	case popup_tutorial_greatchoice1
@@ -715,6 +733,8 @@ public enum ACTranslationKey : String, TranslationKey {
 	case popup_tutorial_tilestop
 
 	case popup_tutorial_tilesbottom
+
+	case popup_tutorial_middle_instructions
 
 	case popup_tutorial_tiletap
 
@@ -762,7 +782,7 @@ public enum ACTranslationKey : String, TranslationKey {
 
 	case popup_nicejob
 
-	case day_abbrev_sunsat
+	case day_abbrev_sun
 
 	case day_abbrev_mon
 
@@ -774,11 +794,15 @@ public enum ACTranslationKey : String, TranslationKey {
 
 	case day_abbrev_fri
 
+	case day_abbrev_sat
+
 	case status_ongoing
 
 	case status_inprogress
 
 	case status_done
+
+	case status_done_withdate
 
 	case status_nonedone
 
@@ -831,5 +855,15 @@ public enum ACTranslationKey : String, TranslationKey {
 	case month_december
 
 	case footnote_symbol
+
+	case earnings_symbol
+
+	case time_format
+
+	case format_date
+
+	case money_prefix
+
+	case money_suffix
 
 }

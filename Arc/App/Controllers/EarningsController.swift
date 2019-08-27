@@ -28,7 +28,7 @@ open class EarningsController {
 		if uploads?.isEmpty == true {
 			
 			
-			OperationQueue().addOperation { [unowned self] in
+			OperationQueue().addOperation {
 				
 				//Perform request and fire notifications notifying the system of updates
 				if let overview = Await(fetchEarnings).execute(EarningRequestData(cycle: nil, day: nil)) {

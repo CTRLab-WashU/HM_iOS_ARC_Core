@@ -9,18 +9,29 @@
 import Foundation
 import ArcUIKit
 public class ACEarningsView : ACTemplateView {
+	weak var earningsSection:UIView!
+
 	weak var headerLabel:ACLabel! //.earnings_body0
+	weak var separator:ACHorizontalBar!
+	weak var newGoalsStack:UIStackView!
 	var thisWeeksEarningsLabel:ACLabel!
 	var thisStudysEarningsLabel:ACLabel!
 	var lastSyncedLabel:ACLabel!
 	var viewDetailsButton:ACButton!
 	weak var earningsBodyLabel:ACLabel! //.earnings_body0 || .earnings_body1
-	weak var syncLabel:ACLabel!
+	
+	
+	
 	weak var bonusGoalsSection:UIView!
+	weak var bonusGoalsHeader:ACLabel!
+	weak var bonusGoalsSeparator:ACHorizontalBar!
 	weak var bonusGoalsBodyLabel:ACLabel!
 	weak var fourofFourGoal:FourOfFourGoalView!
 	weak var twoADayGoal:TwoADayGoalView!
 	weak var totalSessionsGoal:TotalSessionGoalView!
+	
+	weak var button:ACButton!
+	
 	public override func content(_ view: UIView) {
 		if let v = view as? UIStackView {
 			v.layoutMargins = .zero
@@ -31,7 +42,7 @@ public class ACEarningsView : ACTemplateView {
 			$0.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 			
 			//MARK: Earnings Header
-			$0.view {
+			self.earningsSection = $0.view {
 				
 				//Earnings
 				$0.backgroundColor = ACColor.primaryInfo
@@ -49,7 +60,7 @@ public class ACEarningsView : ACTemplateView {
 						
 					}
 					
-					$0.acHorizontalBar {
+					self.separator = $0.acHorizontalBar {
 						$0.relativeWidth = 0.15
 						$0.color = UIColor(named: "HorizontalSeparator")
 						$0.layout {
@@ -97,7 +108,14 @@ public class ACEarningsView : ACTemplateView {
 							}
 						}
 					}
-				
+					
+					self.newGoalsStack = $0.stack {
+						$0.axis = .vertical
+						$0.spacing = 8
+						$0.distribution = .fillEqually
+						$0.alignment = .center
+					}
+					
 					self.lastSyncedLabel = $0.acLabel {
 						$0.textAlignment = .center
 
@@ -127,13 +145,13 @@ public class ACEarningsView : ACTemplateView {
 					$0.spacing = 20
 					$0.isLayoutMarginsRelativeArrangement = true
 					$0.layoutMargins = UIEdgeInsets(top: 24, left: 24, bottom: 48, right: 24)
-					$0.acLabel {
+					self.bonusGoalsHeader = $0.acLabel {
 						Roboto.Style.headingMedium($0, color: ACColor.badgeText)
 						$0.text = "Bonus Goals".localized(ACTranslationKey.earnings_bonus_header)
 						
 					}
 					
-					$0.acHorizontalBar {
+					self.bonusGoalsSeparator = $0.acHorizontalBar {
 						$0.relativeWidth = 0.15
 						$0.color = UIColor(named: "HorizontalSeparator")
 						$0.layout {
@@ -185,17 +203,55 @@ public class ACEarningsView : ACTemplateView {
 						$0.set(isUnlocked: false)
 						
 					}
-					$0.acButton {
+					self.button = $0.acButton {
 						$0.primaryColor = ACColor.secondary
 						$0.secondaryColor = ACColor.secondaryGradient
 						$0.setTitleColor(ACColor.badgeText, for: .normal)
 						$0.setTitle("".localized(ACTranslationKey.button_viewfaq), for: .normal)
 					}
 					
+					
 				}
 			}
 			
 			
+		}
+		
+		self.nextButton = acButton {
+			$0.isHidden = true
+			$0.layout {
+				$0.bottom == safeAreaLayoutGuide.bottomAnchor
+				$0.leading == safeAreaLayoutGuide.leadingAnchor
+				$0.trailing == safeAreaLayoutGuide.trailingAnchor
+			}
+			$0.primaryColor = ACColor.secondary
+			$0.secondaryColor = ACColor.secondaryGradient
+			$0.setTitleColor(ACColor.badgeText, for: .normal)
+			$0.setTitle("".localized(ACTranslationKey.button_next), for: .normal)
+		}
+	}
+	
+	func add(reward:(name:String, value:String)) {
+		newGoalsStack.goalBackgroundView {
+			$0.layout {
+				$0.height == 40 ~ 999
+			}
+			$0.stack {
+				$0.attachTo(view: $0.superview, margins: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+				
+				$0.acLabel {
+					$0.textAlignment = .left
+					Roboto.Style.goalReward($0, color: ACColor.badgeText)
+					$0.text = reward.name
+				}
+				
+				$0.acLabel {
+					$0.textAlignment = .right
+					Roboto.Style.goalRewardBold($0, color: ACColor.badgeText)
+					$0.text = reward.value
+					
+				}
+			}
 		}
 	}
 }
