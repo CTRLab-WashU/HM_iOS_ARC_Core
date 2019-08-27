@@ -35,7 +35,11 @@
 
 import Foundation
 public struct SessionInfoResponse : Codable {
-	
+	public struct DeviceState : Codable {
+		public var os_type:String
+		public var os_version:String
+		public var app_version:String
+	}
 	public struct TestState : Codable {
 		public var session_date : TimeInterval
 		public var week : Int
@@ -53,9 +57,11 @@ public struct SessionInfoResponse : Codable {
         
 	}
 	public struct Body : Codable {
-		var success : Bool?
-		public var first_test : TestState?
-		public var latest_test : TestState?
+		public var success : Bool?
+		public var first_test: TestState?
+		public var latest_test: TestState?
+		public var current_device: DeviceState?
+		public var previous_device: DeviceState?
 
 	}
 	

@@ -58,6 +58,11 @@ fileprivate func fetchEarnings(request:EarningRequestData,  didFinish:@escaping 
 
 	
 	HMAPI.getEarningOverview.execute(data: request) { (urlResponse, data, err) in
+		if let err = err {
+			HMLog(err.toString())
+			didFinish(nil)
+			return
+		}
 		didFinish(data)
 	}
 }
@@ -67,6 +72,11 @@ fileprivate func fetchEarningDetails(request:Void,  didFinish:@escaping (Earning
 	
 	
 	HMAPI.getEarningDetail.execute(data: nil) { (urlResponse, data, err) in
+		if let err = err {
+			HMLog(err.toString())
+			didFinish(nil)
+			return
+		}
 		didFinish(data)
 	}
 }

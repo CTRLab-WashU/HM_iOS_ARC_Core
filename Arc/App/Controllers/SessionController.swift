@@ -229,7 +229,9 @@ open class SessionController:MHController {
 			return
 		}
 		let data:TestScheduleRequestData = .init(withStudyPeriods: studyPeriods)
-		
+		guard data.sessions.count > 0 else {
+			return
+		}
 		let md5 = data.encode()?.MD5()
 		
 		let submitTestSchedule:HMAPIRequest<TestScheduleRequestData, HMResponse> = .post("submit-test-schedule")
