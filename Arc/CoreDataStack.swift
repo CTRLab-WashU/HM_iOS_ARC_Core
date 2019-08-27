@@ -101,50 +101,42 @@ open class CoreDataStack {
         return managedObjectModel
     }()
     public func saveContext () {
-        guard !CoreDataStack.isSaving else {
-            
-//            print("Blocked save")
-            return
-            
-        }
-//        print("Starting save....")
+		DispatchQueue.main.async {[unowned self] in
+			var context = self.persistentContainer.viewContext
+			if context.hasChanges {
+				context.performAndWait {
 
-        CoreDataStack.isSaving = true
-        var context = persistentContainer.viewContext
-        if context.hasChanges {
-            context.performAndWait {
+					do {
+							try context.save()
 
-				do {
-						try context.save()
-
-					
-				} catch {
-					// Replace this implementation with code to handle the error appropriately.
-					// fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-					let nserror = error as NSError
-					assertionFailure("Unresolved error \(nserror), \(nserror.userInfo)")
+						
+					} catch {
+						// Replace this implementation with code to handle the error appropriately.
+						// fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+						let nserror = error as NSError
+						assertionFailure("Unresolved error \(nserror), \(nserror.userInfo)")
+					}
 				}
 			}
-        }
-		context = MHController.dataContext
-		if context.hasChanges {
-            context.performAndWait {
+			context = MHController.dataContext
+			if context.hasChanges {
+				context.performAndWait {
 
-				do {
+					do {
 
-						try context.save()
+							try context.save()
 
-				} catch {
-					// Replace this implementation with code to handle the error appropriately.
-					// fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-					let nserror = error as NSError
-					assertionFailure("Unresolved error \(nserror), \(nserror.userInfo)")
+					} catch {
+						// Replace this implementation with code to handle the error appropriately.
+						// fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+						let nserror = error as NSError
+						assertionFailure("Unresolved error \(nserror), \(nserror.userInfo)")
+					}
 				}
-            }
+			}
 		}
 //        print("Ending save.")
 
-        CoreDataStack.isSaving = false
 
     }
 }
