@@ -13,7 +13,9 @@ public typealias FailureHandler = (Error) -> Void
 public enum BackendRequestMethod: String {
     case get = "GET", post = "POST", put = "PUT", delete = "DELETE", patch = "PATCH"
 }
-
+public enum HMRestAPIError : Error {
+	case noResponse
+}
 public protocol BackendRequest {
     var endPoint: String { get }
     var method: BackendRequestMethod { get }
@@ -50,11 +52,19 @@ public extension BackendRequest {
         task = HMRestAPI.shared.execute(backendRequest: self)
     }
 }
+struct RequestToken:Hashable {
+	let url:URL
+	let data:Data?
+}
 open class HMRestAPI : NSObject, URLSessionDelegate, URLSessionTaskDelegate {
     static public let shared = HMRestAPI()
     public var baseUrl:URL! = nil
     public var session:URLSession?
     public var blackHole:Bool = false
+	typealias completionHandler = (Data, URLResponse?) -> Void
+	typealias failureHandler = (Error, URLResponse?) -> Void
+	var tasks = [RequestToken : [(completionHandler, failureHandler)]]()
+	
 	override public init() {
         super.init()
         session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
@@ -113,36 +123,65 @@ open class HMRestAPI : NSObject, URLSessionDelegate, URLSessionTaskDelegate {
         
         //Update request with query
         urlRequest.url = urlComponents?.url
-        
-       
-        
-        let task = session!.dataTask(with: urlRequest) { (data, response, error) in
-            
-            guard let data = data, let r = response, error == nil else {
-                if let error = error {
-                    backendRequest.didFail(with: error, response: response)
-                }
-                return
-            }
-            HMLog("Reponse---------------------------------")
-			
-            HMLog(response?.url?.absoluteString ?? "")
-			HMLog("\n\n")
-            HMLog(String(data: data, encoding: .utf8) ?? "")
-            HMLog("Decoded Response---------------------------------")
+		var task : URLSessionDataTask?
 
-            do {
-                HMLog(try JSONDecoder().decode(HMResponse.self, from: data).toString());
-            } catch {
-                HMLog(error.localizedDescription)
-            }
-			
-			backendRequest.didSucceed(with: data, response: r)
-            
-        }
-        
-        task.resume()
-        return task
+        DispatchQueue.main.async {
+			let token = RequestToken(url: url, data: backendRequest.data)
+			if self.tasks.keys.contains(token) {
+				self.tasks[token]?.append((backendRequest.didSucceed, backendRequest.didFail))
+			} else {
+				self.tasks[token] = [(backendRequest.didSucceed, backendRequest.didFail)]
+				task = self.session!.dataTask(with: urlRequest) { (data, response, error) in
+					DispatchQueue.main.async {
+						
+						
+						
+						
+					guard let completionHandlers = self.tasks[token] else {return}
+						
+						if let error = error {
+							HMLog("Failing \(completionHandlers.count) reponses")
+							completionHandlers.forEach {$0.1(error, response)}
+							self.tasks.removeValue(forKey: token)
+
+							return
+						}
+						guard let data = data, let r = response else {
+							completionHandlers.forEach{$0.1(HMRestAPIError.noResponse, nil)}
+							self.tasks.removeValue(forKey: token)
+
+							return
+						}
+						
+						HMLog("\n\n")
+						HMLog(String(data: data, encoding: .utf8) ?? "")
+						HMLog("Decoded Response---------------------------------")
+						do {
+							HMLog(try JSONDecoder().decode(HMResponse.self, from: data).toString());
+						} catch {
+							HMLog(error.localizedDescription)
+						}
+						
+						
+						HMLog("Responding to \(completionHandlers.count) \(token.url) handlers")
+						completionHandlers.forEach {
+							$0.0(data, response)
+						}
+						self.tasks.removeValue(forKey: token)
+						
+						
+					}
+				}
+				task?.resume()
+				
+			}
+		}
+		
+		
+		
+		return task
+		
+		
     }
 //	public func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
 //		let credential = URLCredential(trust: challenge.protectionSpace.serverTrust!)
