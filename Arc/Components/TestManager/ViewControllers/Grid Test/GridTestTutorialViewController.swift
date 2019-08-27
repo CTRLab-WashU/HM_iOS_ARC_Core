@@ -36,6 +36,9 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 		test.tapOnTheFsLabel.isHidden = true
 		test.IMAGE_HEIGHT = 95
         // Do any additional setup after loading the view.
+        if self.get(flag: .grids_tutorial_shown) == false {
+            self.customView.firstTutorialRun()
+        }
     }
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
@@ -47,6 +50,10 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 		currentHint?.removeFromSuperview()
 		
 	}
+    override func finishTutorial() {
+        self.set(flag: .grids_tutorial_shown)
+        super.finishTutorial()
+    }
 	func didSelect(){
 		
 		
@@ -165,10 +172,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 	func didDeselectLeter(indexPath: IndexPath) {
 		didSelect()
 	}
-	
-	
 
-	
 	func setupScript() {
 		state.addCondition(atTime: progress(seconds: 0), flagName: "start-0") { [weak self] in
 			guard let weakSelf = self else {
