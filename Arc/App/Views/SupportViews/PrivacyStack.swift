@@ -27,10 +27,19 @@ public class PrivacyStack: UIView {
 				
 			}
 			
+            let attributes:[NSAttributedString.Key:Any] = [
+                .foregroundColor : UIColor(named: "Primary") as Any,
+                .font : UIFont(name: "Roboto-Bold", size: 16.0) as Any,
+                .underlineStyle: NSUnderlineStyle.single.rawValue
+            ]
+            let privacyTitle = NSAttributedString(string: "Privacy Policy".localized("privacy_linked"), attributes: attributes)
+            
 			self?.button = $0.button {
-				$0.setTitle("Privacy Policy".localized("privacy_linked"),
-									  for: .normal)
-				Roboto.PostProcess.link($0)
+                $0.setAttributedTitle(privacyTitle, for: .normal)
+                $0.setTitle("Privacy Policy".localized("privacy_linked"),
+                            for: .normal)
+                $0.setTitleColor(UIColor(named: "Primary"), for: .normal)
+                Roboto.PostProcess.link($0)
 			}
 		}
 		.layout { [weak self] in

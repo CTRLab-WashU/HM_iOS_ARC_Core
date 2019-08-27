@@ -65,6 +65,7 @@ public class HintView : IndicatorView {
 			$0.primaryColor = .clear
 			$0.secondaryColor = .clear
 			$0.tintColor = .black
+            $0.titleLabel?.textColor = .black
 			Roboto.PostProcess.link($0)
 			$0.addAction { [weak self] in
 				self?.onTap?()

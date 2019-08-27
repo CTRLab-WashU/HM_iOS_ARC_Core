@@ -14,8 +14,8 @@ import HMMarkup
 public class InfoContentView: UIStackView {
 	weak var headingLabel: UILabel?
 	weak var subheadingLabel: UILabel?
-	weak var contentLabel: UILabel?
-	weak var contentTextView: UITextView?
+	weak var contentLabel: HMMarkupLabel?
+	weak var contentTextView: HMMarkupTextView?
 	weak var separator:ACHorizontalBar!
 
 	var textColor = UIColor(named: "Secondary Text")
@@ -103,7 +103,9 @@ public class InfoContentView: UIStackView {
 				$0.layout {
 					$0.width == self.widthAnchor ~ 400
 				}
-				
+                
+                $0.spacing = 5.5
+                $0.markupText()
 			}
 		}
 		//Roboto.PostProcess.renderMarkup(contentTextView!, template: template)

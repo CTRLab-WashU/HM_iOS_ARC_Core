@@ -12,7 +12,7 @@ import UIKit
     @IBInspectable public var translationKey:String?
     
     open var renderer:HMMarkupRenderer!
-    @IBInspectable var spacing:CGFloat = 1.33
+    @IBInspectable public var spacing:CGFloat = 1.33
     
     open var template:Dictionary<String, String> = [:]
     
@@ -50,7 +50,7 @@ import UIKit
 @IBDesignable open class HMMarkupTextView: UITextView {
     
     open var renderer:HMMarkupRenderer!
-    @IBInspectable var spacing:CGFloat = 1.33
+    @IBInspectable public var spacing:CGFloat = 1.33
     private var _originalText:String?
     override open var text: String? {
         didSet {

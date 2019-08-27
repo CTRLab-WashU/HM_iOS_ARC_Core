@@ -263,6 +263,9 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			guard let cell = weakSelf.test.overlayCell(at: index) else {
 				return
 			}
+            cell.highlight(radius: cell.frame.width/2)
+            cell.overlay(radius: cell.frame.width/2)
+
 			weakSelf.test.collectionView.isUserInteractionEnabled = true
 
 			weakSelf.currentHint = weakSelf.view.window?.hint {
