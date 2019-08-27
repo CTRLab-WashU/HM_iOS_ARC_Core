@@ -1262,7 +1262,7 @@ open class StudyController : MHController {
 			session.createSurveyFor(surveyType: type, id: file.id ?? UUID().uuidString)
 			file.isFilledOut = true
 		}
-		save();
+		
 		
 		// and now, delete any notifications
 		
