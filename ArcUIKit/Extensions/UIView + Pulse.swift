@@ -11,8 +11,7 @@ import QuartzCore
 
 func createAnimatedLayer(from view: UIView, strokeColor: UIColor, fillColor: UIColor, overlayShape:OverlayShape) -> CAShapeLayer {
 	let layer = CAShapeLayer()
-	//    let path = OverlayShape.rect(view).path()
-	let path = overlayShape.path()
+    let path = overlayShape.path(forView: view)
 	layer.frame = view.bounds
 	layer.path = path.cgPath
 	layer.strokeColor = strokeColor.cgColor
