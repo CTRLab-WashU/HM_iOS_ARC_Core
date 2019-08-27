@@ -293,6 +293,7 @@
 		C5E7212A22F10D9C004B9E26 /* TestProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E7212922F10D9C004B9E26 /* TestProgressView.swift */; };
 		C5E7212C22F1C9D3004B9E26 /* ACColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E7212B22F1C9D3004B9E26 /* ACColor.swift */; };
 		C5F77F37222F095200BECAE1 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F77F36222F095200BECAE1 /* SignatureViewController.swift */; };
+		E86732322315808800844F91 /* ACHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86732312315808800844F91 /* ACHomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -613,6 +614,7 @@
 		C5F77F36222F095200BECAE1 /* SignatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureViewController.swift; sourceTree = "<group>"; };
 		C5F77F38222F15DD00BECAE1 /* SignatureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignatureView.xib; sourceTree = "<group>"; };
 		C5F77F3A22306CFA00BECAE1 /* DateRangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRangeView.swift; sourceTree = "<group>"; };
+		E86732312315808800844F91 /* ACHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACHomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1108,6 +1110,7 @@
 				C54AE97021C81B5C00DEC360 /* ACContactViewController.swift */,
 				C54AE97121C81B5C00DEC360 /* HomeViewController.xib */,
 				C54AE97221C81B5C00DEC360 /* AboutViewController.swift */,
+				E86732312315808800844F91 /* ACHomeViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1937,6 +1940,7 @@
 				C57ABE1F23060BD7000C9315 /* GoalRewardView.swift in Sources */,
 				C54AE9D621C81B5F00DEC360 /* Arc+Auth.swift in Sources */,
 				C53B123A22F34C1700BACA9A /* ACTodayProgressView.swift in Sources */,
+				E86732322315808800844F91 /* ACHomeViewController.swift in Sources */,
 				C55F8CD3230F1BCA006D43BD /* EarningDetailGoalView.swift in Sources */,
 				C52B75D421C8369400498571 /* arc.xcdatamodeld in Sources */,
 				C58129FB22E249EE00CD1883 /* GridTestTutorialViewController.swift in Sources */,
