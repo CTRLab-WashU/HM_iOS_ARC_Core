@@ -29,11 +29,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 	override public func viewDidLoad() {
 		
         super.viewDidLoad()
-		customView.root.refreshControl = UIRefreshControl()
-		customView.root.addSubview(customView.root.refreshControl!)
-		customView.root.refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
 		
-		customView.root.alwaysBounceVertical = true
 		
 		//When in post test mode perform modifications 
 		if isPostTest {
@@ -59,6 +55,12 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 			
 			
 			
+		} else {
+			customView.root.refreshControl = UIRefreshControl()
+			customView.root.addSubview(customView.root.refreshControl!)
+			customView.root.refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
+			
+			customView.root.alwaysBounceVertical = true
 		}
 		dateFormatter.locale = app.appController.locale.getLocale()
 		dateFormatter.dateFormat = "MMM dd 'at' hh:mm a"
