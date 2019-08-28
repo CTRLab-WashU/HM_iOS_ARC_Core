@@ -81,7 +81,7 @@ open class SessionController:MHController {
 	open func clearUploadedSessions()
 	{
 		
-		MHController.dataContext.perform {
+		MHController.dataContext.performAndWait {
 			let sessions = self.getUploadedSessions();
 			
 			for i in 0..<sessions.count
@@ -89,6 +89,7 @@ open class SessionController:MHController {
 				Arc.shared.studyController.clearData(sessionId: Int(sessions[i].sessionID))
 				
 			}
+			
 		}
 	}
 	open func sendMissedSessions()

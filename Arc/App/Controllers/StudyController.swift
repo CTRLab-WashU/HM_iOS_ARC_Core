@@ -1264,9 +1264,8 @@ open class StudyController : MHController {
 		}
 		
 		
-		// and now, delete any notifications
 		
-		Arc.shared.notificationController.clearPastNotifications();
+		
 		
 	}
 }

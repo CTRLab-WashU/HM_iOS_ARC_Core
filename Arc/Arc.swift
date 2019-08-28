@@ -242,10 +242,14 @@ open class Arc : ArcApi {
 	}
     
     public func uploadTestData() {
+		guard currentTestSession == nil else {
+			return
+		}
 		sessionController.sendFinishedSessions()
 		sessionController.sendMissedSessions()
 		sessionController.sendSignatures()
 		sessionController.clearUploadedSessions()
+		notificationController.clearPastNotifications();
 		if !appController.testScheduleUploaded{
 			let studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
 			Arc.shared.sessionController.uploadSchedule(studyPeriods: studies)
