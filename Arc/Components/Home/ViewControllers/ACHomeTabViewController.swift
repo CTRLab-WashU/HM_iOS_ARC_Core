@@ -10,7 +10,13 @@ import UIKit
 import ArcUIKit
 public extension Notification.Name {
 	static let ACHomeStartOnboarding = Notification.Name(rawValue: "ACHomeStartOnboarding")
+	
+	//This will be used when the application triggers an earnings refresh
+	//after finishing all uploads. 
 	static let ACSessionUploadComplete = Notification.Name(rawValue: "ACSessionUploadComplete")
+	
+	//This is to be used when the user manually refreshes the earnings call
+	static let ACStartEarningsRefresh = Notification.Name("ACStartEarningsRefresh")
 	static let ACEarningsUpdated = Notification.Name(rawValue: "ACEarningsUpdated")
 	static let ACEarningDetailsUpdated = Notification.Name(rawValue: "ACEarningDetailsUpdated")
 

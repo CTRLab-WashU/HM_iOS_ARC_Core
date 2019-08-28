@@ -80,7 +80,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		
 		//my refresh code here..
 		print("refreshing")
-		NotificationCenter.default.post(name: .ACSessionUploadComplete, object: Arc.shared.sessionController.sessionUploads)
+		NotificationCenter.default.post(name: .ACStartEarningsRefresh, object: nil)
 	}
 	public override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
