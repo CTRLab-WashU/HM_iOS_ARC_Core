@@ -82,7 +82,7 @@ public class TutorialCompleteView: ACTemplateView {
 		}
 		nextButton = view.acButton {
 			$0.translatesAutoresizingMaskIntoConstraints = false
-			$0.setTitle("Next".localized("button_next"), for: .normal)
+			$0.setTitle("Close".localized("button_close"), for: .normal)
 			$0.addAction { [weak self] in
 				self?.tutorialDelegate?.closePressed()
 			}
