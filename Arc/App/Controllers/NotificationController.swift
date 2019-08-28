@@ -219,16 +219,18 @@ open class NotificationController : MHController
     
 	open func clearPastNotifications()
     {
-        let predicate = NSPredicate(format: "scheduledAt < %@", NSDate());
-        let sortDescriptors = [NSSortDescriptor(key:"scheduledAt", ascending:true)];
 		
-		guard let results = self.fetch(predicate: predicate, sort: sortDescriptors) else {
+		MHController.dataContext.performAndWait {
+		
+		let predicate = NSPredicate(format: "scheduledAt < %@", NSDate());
+		let sortDescriptors = [NSSortDescriptor(key:"scheduledAt", ascending:true)];
+
+			guard let results:[NotificationEntry] = self.fetch(predicate: predicate, sort: sortDescriptors), results.count > 0 else {
 			return
 		}
 
 		
-        MHController.dataContext.perform {
-            
+		
 
 			
 			for r in results

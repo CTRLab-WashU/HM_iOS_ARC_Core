@@ -124,17 +124,17 @@ open class HMRestAPI : NSObject, URLSessionDelegate, URLSessionTaskDelegate {
                 }
                 return
             }
-//            HMLog("Reponse---------------------------------")
-//            
-//            HMLog(response?.url?.absoluteString ?? "")
-//            HMLog(String(data: data, encoding: .utf8) ?? "")
-//            HMLog("Decoded Response---------------------------------")
-//
-//            do {
-//                HMLog(try JSONDecoder().decode(HMResponse.self, from: data).toString());
-//            } catch {
-//                HMLog(error.localizedDescription)
-//            }
+            HMLog("Reponse---------------------------------")
+            
+            HMLog(response?.url?.absoluteString ?? "")
+            HMLog(String(data: data, encoding: .utf8) ?? "")
+            HMLog("Decoded Response---------------------------------")
+
+            do {
+                HMLog(try JSONDecoder().decode(HMResponse.self, from: data).toString());
+            } catch {
+                HMLog(error.localizedDescription)
+            }
 			
 			backendRequest.didSucceed(with: data, response: r)
             

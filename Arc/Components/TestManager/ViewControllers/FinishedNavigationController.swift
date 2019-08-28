@@ -27,7 +27,10 @@ open class FinishedNavigationController: SurveyNavigationViewController {
 		
 		
 	}
-	
+	open override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		Arc.shared.currentTestSession = nil
+	}
 	override open func onQuestionDisplayed(input:SurveyInput, index:String) {
 		
 		
@@ -48,7 +51,7 @@ open class FinishedNavigationController: SurveyNavigationViewController {
 			Arc.shared.studyController.mark(interrupted:false, sessionId: session, studyId: study)
 
 		}
-		Arc.shared.currentTestSession = nil
+		
 		
 	}
 

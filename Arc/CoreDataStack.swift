@@ -31,25 +31,29 @@ open class CoreDataStack {
         return defaults
     }
     
-    lazy public var mockPersistantContainer: NSPersistentContainer = {
-        
-        let container = NSPersistentContainer(name: "arc", managedObjectModel: self.managedObjectModel)
-        let description = NSPersistentStoreDescription()
-        description.type = NSInMemoryStoreType
-        description.shouldAddStoreAsynchronously = false // Make it simpler in test env
-        
-        container.persistentStoreDescriptions = [description]
-        container.loadPersistentStores { (description, error) in
-            // Check if the data store is in memory
-            precondition( description.type == NSInMemoryStoreType )
-            
-            // Check if creating container wrong
-            if let error = error {
-                fatalError("Create an in-mem coordinator failed \(error)")
-            }
-        }
-        return container
-    }()
+	lazy public var mockPersistantContainer: NSPersistentContainer = {
+		
+		
+		return initializeMockStore()
+	}()
+	public func initializeMockStore() -> NSPersistentContainer {
+		let container = NSPersistentContainer(name: "arc", managedObjectModel: self.managedObjectModel)
+		let description = NSPersistentStoreDescription()
+		description.type = NSInMemoryStoreType
+		description.shouldAddStoreAsynchronously = false // Make it simpler in test env
+		
+		container.persistentStoreDescriptions = [description]
+		container.loadPersistentStores { (description, error) in
+			// Check if the data store is in memory
+			precondition( description.type == NSInMemoryStoreType )
+			
+			// Check if creating container wrong
+			if let error = error {
+				fatalError("Create an in-mem coordinator failed \(error)")
+			}
+		}
+		return container
+	}
     
     lazy public var persistentContainer: NSPersistentContainer = {
 		
@@ -97,50 +101,33 @@ open class CoreDataStack {
         return managedObjectModel
     }()
     public func saveContext () {
-        guard !CoreDataStack.isSaving else {
-            
-//            print("Blocked save")
-            return
-            
-        }
-//        print("Starting save....")
 
-        CoreDataStack.isSaving = true
-        var context = persistentContainer.viewContext
-        if context.hasChanges {
-//            context.performAndWait {
-
+		
+		DispatchQueue.main.async {
+			
+			var context = MHController.dataContext
+			if context.hasChanges {
+				context.performAndWait {
+				
 				do {
-						try context.save()
-
+					
+					try context.save()
 					
 				} catch {
 					// Replace this implementation with code to handle the error appropriately.
 					// fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
 					let nserror = error as NSError
+					
 					assertionFailure("Unresolved error \(nserror), \(nserror.userInfo)")
 				}
 			}
-//        }
-		context = MHController.dataContext
-		if context.hasChanges {
-//            context.performAndWait {
-
-				do {
-
-						try context.save()
-
-				} catch {
-					// Replace this implementation with code to handle the error appropriately.
-					// fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-					let nserror = error as NSError
-					assertionFailure("Unresolved error \(nserror), \(nserror.userInfo)")
-				}
-//            }
+			}
 		}
+	}
+		
 //        print("Ending save.")
 
-        CoreDataStack.isSaving = false
+//        CoreDataStack.isSaving = false
 
-    }
+			
 }

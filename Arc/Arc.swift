@@ -17,7 +17,7 @@ public enum SurveyAvailabilityStatus {
 }
 open class Arc : ArcApi {
 	
-	var ARC_VERSION_INFO_KEY = "MH_VERSION"
+	var ARC_VERSION_INFO_KEY = "CFBundleShortVersionString"
 	var APP_VERSION_INFO_KEY = "CFBundleShortVersionString"
     public var APP_PRIVACY_POLICY_URL = ""
     public var WELCOME_LOGO:UIImage? = nil
@@ -53,11 +53,13 @@ open class Arc : ArcApi {
         }
         return nil
     }()
+	
+	public let idFormatter:NumberFormatter = NumberFormatter()
     public var translationIndex = 1
 	lazy public var deviceString = {deviceInfo();}()
 	lazy public var deviceId = AppController().deviceId
 	lazy public var versionString = {info?[APP_VERSION_INFO_KEY] as? String ?? ""}()
-	lazy public var arcVersion:Int = {arcInfo?[ARC_VERSION_INFO_KEY] as? Int ?? 0;}()
+	lazy public var arcVersion = {arcInfo?[ARC_VERSION_INFO_KEY] as? String ?? "";}()
     //A map of all of the possible states in the application
 	
     static public let shared = Arc()
@@ -96,7 +98,10 @@ open class Arc : ArcApi {
 			appController.participantId = newValue
 		}
 	}
-    
+	public var formattedParticipantId:String {
+		let value = NSNumber(integerLiteral: participantId ?? 0)
+		return idFormatter.string(from: value) ?? "000000"
+	}
 	public var currentStudy:Int?
 	public var availableTestSession:Int?
 	public var currentTestSession:Int?
@@ -108,12 +113,14 @@ open class Arc : ArcApi {
 	}
     static public func configureWithEnvironment(environment:ArcEnvironment) {
         self.environment = environment
-        
+
         HMAPI.baseUrl = environment.baseUrl ?? ""
         
         _ = MHController.dataContext
         
         _ = HMAPI.shared
+		Arc.shared.idFormatter.minimumIntegerDigits = environment.participantIdLength
+
         CoreDataStack.useMockContainer = environment.mockData
         HMRestAPI.shared.blackHole = environment.blockApiRequests
         Arc.shared.appNavigation = environment.appNavigation
@@ -156,18 +163,18 @@ open class Arc : ArcApi {
 	
 	
 	
-    
-    public func displayAlert(message:String, options:[MHAlertView.ButtonType], isScrolling:Bool = false){
+    @discardableResult
+    public func displayAlert(message:String, options:[MHAlertView.ButtonType], isScrolling:Bool = false) -> MHAlertView {
         let view:MHAlertView = (isScrolling) ? .get(nib: "MHScrollingAlertView") : .get()
         view.alpha = 0
         
         guard let window = UIApplication.shared.keyWindow else {
-            return
+            return view
         }
         
         guard let _ = window.rootViewController else {
             
-            return
+            return view
         }
         window.constrain(view: view)
         view.set(message: message, buttons: options)
@@ -176,6 +183,7 @@ open class Arc : ArcApi {
         }) { (_) in
             
         }
+		return view
     }
     public func setCountry(key:String?) {
         appController.country = key
@@ -234,9 +242,14 @@ open class Arc : ArcApi {
 	}
     
     public func uploadTestData() {
+		guard currentTestSession == nil else {
+			return
+		}
 		sessionController.sendFinishedSessions()
 		sessionController.sendMissedSessions()
 		sessionController.sendSignatures()
+		sessionController.clearUploadedSessions()
+		notificationController.clearPastNotifications();
 		if !appController.testScheduleUploaded{
 			let studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
 			Arc.shared.sessionController.uploadSchedule(studyPeriods: studies)
@@ -482,6 +495,46 @@ open class Arc : ArcApi {
             
         }
     }
+	fileprivate var dataPage:Int = 0
+	public func debugData() {
+		guard let study = studyController.getCurrentStudyPeriod() else {
+			return
+		}
+		guard let sessions = study.sessions?.array as? [Session] else {return}
+		let data = sessions.map {
+			return FullTestSession(withSession: $0)
+		}
+		if dataPage > data.count {
+			dataPage = 0
+		}
+		if dataPage < 0 {
+			dataPage = data.count - 1
+		}
+		let view = displayAlert(message: data[dataPage].toString(),
+			options:  [
+				.default("Next Page", {
+					[weak self] in
+					self?.dataPage += 1
+					
+					self?.debugData()
+					
+				}),
+				.default("Previous Page", {[weak self] in
+					self?.dataPage -= 1
+
+					self?.debugData()
+					
+				}),
+
+				.default("Notifications", {[weak self] in self?.debugNotifications()}),
+				.default("Schedule", {[weak self] in self?.debugSchedule()}),
+																   .cancel("Close", {})],
+			isScrolling: true)
+		view.messageLabel.textAlignment = .left
+		view.messageLabel.font = UIFont.systemFont(ofSize: 12)
+
+		
+	}
     public func debugSchedule() {
         let dateFrame = studyController.getCurrentStudyPeriod()?.userStartDate ?? Date()
         let lastFetch = appController.lastBackgroundFetch?.localizedFormat()
@@ -504,6 +557,7 @@ open class Arc : ArcApi {
             
             \(list)
             """, options:  [.default("Notifications", {[weak self] in self?.debugNotifications()}),
+							.default("Data", {[weak self] in self?.debugData()}),
                             .cancel("Close", {})],
                  isScrolling: true)
     }
@@ -521,6 +575,7 @@ open class Arc : ArcApi {
             Date Reminders:
             \(preTestNotifications)
             """, options:  [.default("Schedule", {[weak self] in self?.debugSchedule()}),
+							.default("Data", {[weak self] in self?.debugData()}),
                             .cancel("Close", {})],
                  isScrolling: true)
     }

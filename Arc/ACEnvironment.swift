@@ -9,6 +9,7 @@
 import Foundation
 
 public protocol ArcEnvironment {
+	var participantIdLength:Int {get}
     var mockData:Bool {get}
     var blockApiRequests:Bool {get}
     var baseUrl:String? {get}
@@ -47,7 +48,11 @@ public protocol ArcEnvironment {
 }
 
 public extension ArcEnvironment {
-    
+	
+	public var participantIdLength:Int {
+		return 6
+	}
+	
     //This will trigger a flag that causes coredata to use a mock
     //persistent store, an in-memory database. 
     public var mockData:Bool {return false}

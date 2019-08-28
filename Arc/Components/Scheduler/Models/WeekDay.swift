@@ -7,7 +7,7 @@
 //
 
 import Foundation
-public enum WeekDay : Int64, Equatable, Comparable, Strideable {
+public enum WeekDay : Int64, Equatable, Comparable, Strideable, CaseIterable {
 	case sunday, monday, tuesday, wednesday, thursday, friday, saturday, none
 	
     static public func from(rawValue:Int64) -> WeekDay {
