@@ -31,14 +31,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" placeholderIntrinsicWidth="288" placeholderIntrinsicHeight="300" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="1DZ-Kx-WAa">
-                    <rect key="frame" x="43.5" y="183.5" width="288" height="300"/>
+                    <rect key="frame" x="43.5" y="80" width="288" height="487"/>
                     <subviews>
                         <view contentMode="scaleToFill" placeholderIntrinsicWidth="288" placeholderIntrinsicHeight="104.5" translatesAutoresizingMaskIntoConstraints="NO" id="8SC-Oo-a7f">
                             <rect key="frame" x="0.0" y="0.0" width="288" height="104.5"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
-                        <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="qcO-EW-dFm">
-                            <rect key="frame" x="0.0" y="114.5" width="288" height="60"/>
+                        <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="qcO-EW-dFm">
+                            <rect key="frame" x="0.0" y="114.5" width="288" height="36"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.30000001192092896" translatesAutoresizingMaskIntoConstraints="NO" id="0Es-5H-REM" customClass="ACLabel" customModule="ArcUIKit">
                                     <rect key="frame" x="0.0" y="0.0" width="288" height="0.0"/>
@@ -51,7 +51,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.30000001192092896" translatesAutoresizingMaskIntoConstraints="NO" id="rEo-Tc-W1Y" customClass="ACLabel" customModule="ArcUIKit">
-                                    <rect key="frame" x="0.0" y="20" width="288" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="12" width="288" height="0.0"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="40" id="WVc-Lm-9e8"/>
                                         <constraint firstAttribute="width" constant="288" id="ZYc-px-E2A"/>
@@ -61,7 +61,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is this a good price?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ry4-bz-xcA" customClass="ACLabel" customModule="ArcUIKit">
-                                    <rect key="frame" x="0.0" y="40" width="288" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="24" width="288" height="0.0"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="30" id="Cr5-PL-yf0"/>
                                     </constraints>
@@ -72,13 +72,13 @@
                                         <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="price_test_isgood"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gFZ-wv-brY">
-                                    <rect key="frame" x="0.0" y="60" width="288" height="0.0"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="gFZ-wv-brY">
+                                    <rect key="frame" x="0.0" y="36" width="288" height="0.0"/>
                                 </stackView>
                             </subviews>
                         </stackView>
                         <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VbF-85-xCy">
-                            <rect key="frame" x="0.0" y="151.5" width="288" height="148.5"/>
+                            <rect key="frame" x="0.0" y="338.5" width="288" height="148.5"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                     </subviews>
@@ -86,10 +86,10 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="1DZ-Kx-WAa" secondAttribute="bottom" priority="999" constant="20" id="Grw-9X-Bnt"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="1DZ-Kx-WAa" secondAttribute="bottom" constant="100" id="Grw-9X-Bnt"/>
                 <constraint firstItem="1DZ-Kx-WAa" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="HuR-Sx-ymO"/>
-                <constraint firstItem="1DZ-Kx-WAa" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="WJy-Yi-sCv"/>
-                <constraint firstItem="1DZ-Kx-WAa" firstAttribute="top" relation="greaterThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="eBD-Id-eqf"/>
+                <constraint firstItem="1DZ-Kx-WAa" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" priority="999" id="dfH-BO-neB"/>
+                <constraint firstItem="1DZ-Kx-WAa" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="60" id="eBD-Id-eqf"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="887" y="195"/>

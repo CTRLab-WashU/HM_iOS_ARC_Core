@@ -59,7 +59,7 @@ public class HintView : IndicatorView {
 		}
 		button = acButton {
 			$0.layout {
-				$0.height == 36 ~ 500
+				$0.height == 28
 			}
 			$0.isHidden = true
 			$0.primaryColor = .clear
