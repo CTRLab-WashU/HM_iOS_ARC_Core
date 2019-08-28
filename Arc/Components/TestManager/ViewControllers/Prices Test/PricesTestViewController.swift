@@ -35,6 +35,7 @@ public class PricesTestViewController: ArcViewController {
         
         
     }
+    var isTutorial:Bool = false
 	public static var tutorialVersion:String {
 		return "priceSets-en-US-tutorial"
 	}
@@ -69,6 +70,7 @@ public class PricesTestViewController: ArcViewController {
 			} else {
 			
 				test = controller.loadTest(index: 0, file: PricesTestViewController.testVersion )
+                self.isTutorial = false
 				responseID = controller.createResponse(withTest: test!)
 			}
 			
@@ -79,6 +81,7 @@ public class PricesTestViewController: ArcViewController {
 			let controller =  Arc.shared.pricesTestController
 			test = controller.loadTest(index: 0,
 												file: PricesTestViewController.tutorialVersion)
+            self.isTutorial = true
 			
 			responseID = controller.createResponse(withTest: test!)
 		}
@@ -146,7 +149,10 @@ public class PricesTestViewController: ArcViewController {
 		
 		topLabel?.text = item.item
 		
-		let correctPrice = "".localized("money_prefix") + item.price
+        var correctPrice = "".localized("money_prefix") + item.price
+        if self.isTutorial {
+            correctPrice = item.price
+        }
 		bottomLabel?.text = correctPrice
 		
 		bottomLabel?.resizeFontForSingleWords();
@@ -161,6 +167,7 @@ public class PricesTestViewController: ArcViewController {
 		//Present controller
 		questionDisplay = .get()
 		questionDisplay?.responseId = responseID
+        questionDisplay?.isTutorial = self.isTutorial
 //		questionDisplay?.selectQuestion()
 		return questionDisplay!
 	}
