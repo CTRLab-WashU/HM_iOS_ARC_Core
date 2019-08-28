@@ -31,6 +31,7 @@ open class PricesQuestionViewController: UIViewController, TestProgressViewContr
     var questionIndex = 0
     var questions:Set<Int> = []
     var presentedQuestions:Set<Int> = []
+    var isTutorial:Bool = false
     override open func viewDidLoad() {
         super.viewDidLoad();
 
@@ -116,7 +117,11 @@ open class PricesQuestionViewController: UIViewController, TestProgressViewContr
             
             let string = controller.get(option: priceIndex, forQuestion: index, id: id)!
             
-            b.set(message: "\("".localized("money_prefix"))\(string)")
+            if isTutorial {
+                b.set(message: string)
+            } else {
+                b.set(message: "\("".localized("money_prefix"))\(string)")
+            }
             b.isHidden = false
             
             b.set(selected: false, shouldUpdateColors: false)
