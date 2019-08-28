@@ -10,8 +10,18 @@ import Foundation
 
 @IBDesignable open class ACView: UIView  {
 	
-	@IBInspectable public var borderColor:UIColor = UIColor.black
-	@IBInspectable public var borderThickness:CGFloat = 0.0
+    @IBInspectable public var borderColor:UIColor = UIColor.black {
+        didSet {
+            layer.borderColor = borderColor.cgColor
+        }
+    }
+    
+    @IBInspectable public var borderThickness:CGFloat = 0.0 {
+        didSet {
+            print(borderThickness)
+            layer.borderWidth = borderThickness
+        }
+    }
 	@IBInspectable public var cornerRadius:CGFloat = 0.0 {
 		didSet {
 			layer.cornerRadius = cornerRadius
