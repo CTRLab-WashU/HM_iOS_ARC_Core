@@ -26,6 +26,7 @@ public class TestCountDownViewController: CustomViewController<TestCountDownView
     }
 	override public func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
+        self.customView.countLabel.font = UIFont(name: "Georgia-Italic", size: 96)
 		Animate().duration(0).delay(1.0).run { [weak self]
 			t in
 			self?.customView.countLabel.text = "2"
