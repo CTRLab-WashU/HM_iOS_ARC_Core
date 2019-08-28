@@ -54,7 +54,7 @@ class ProgressViewController: CustomViewController<ACProgressView> {
 				customView.progressViews.addProgressView(progress: session.getTotalProgress())
 			}
 			
-			customView.todaysSessionCompletionLabel.text = "".localized(ACTranslationKey.progess_dailystatus)
+			customView.todaysSessionCompletionLabel.text = "".localized(ACTranslationKey.progress_dailystatus_complete)
 				.replacingOccurrences(of: "{#}", with: "\(today.sessionsCompleted)")
 			
 			if today.totalSessions - today.sessionsStarted == 0 {

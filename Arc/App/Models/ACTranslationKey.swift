@@ -1,5 +1,5 @@
 import Foundation
-public enum ACTranslationKey : String {
+public enum ACTranslationKey : String, TranslationKey {
 	case app_name
 
 	case country_key
