@@ -58,7 +58,7 @@ public extension UILabel
 	
     // Resizes font size so that single words won't wrap characters if they're too long to fit
     
-    public func resizeFontForSingleWords()
+    func resizeFontForSingleWords()
     {
         guard let currentFont = self.font else { return; }
         guard let currentText = self.text else { return; }

@@ -270,7 +270,7 @@ open class StudyController : MHController {
 				guard let testSession = obj as? Session else {
 					continue
 				}
-				let uploaded = testSession.uploaded
+				// let uploaded = testSession.uploaded
 
 					guard let file = testSession.getSurveyFor(surveyType: surveyType) else {
 						continue
@@ -1332,7 +1332,7 @@ open class StudyController : MHController {
 			let week = Int(sessionData.week)
 			let session = Int(sessionData.session)
 			var progress = 0
-			var totalTest = 3
+            let totalTest = 3
 			MHController.dataContext.performAndWait {
 				if get(numberOfTestTakenOfType: .priceTest,
 					   inStudy: studyId,

@@ -11,7 +11,7 @@ import Foundation
 
 
 public extension Encodable {
-	public func encode(outputFormatting: JSONEncoder.OutputFormatting? = [.prettyPrinted, .sortedKeys]) -> Data? {
+    func encode(outputFormatting: JSONEncoder.OutputFormatting? = [.prettyPrinted, .sortedKeys]) -> Data? {
         do {
             let encoder = JSONEncoder()
 			if let outputFormatting = outputFormatting {
@@ -24,7 +24,7 @@ public extension Encodable {
         }
         
     }
-	public func toString(outputFormatting:JSONEncoder.OutputFormatting? =  [.prettyPrinted, .sortedKeys]) -> String {
+    func toString(outputFormatting:JSONEncoder.OutputFormatting? =  [.prettyPrinted, .sortedKeys]) -> String {
 		
 		guard let data = self.encode(outputFormatting: outputFormatting), let string = String(data: data, encoding: .utf8) else {
             return ""
@@ -33,7 +33,7 @@ public extension Encodable {
     }
 }
 public extension Data {
-    public func decode<T:Decodable>() -> T? {
+    func decode<T:Decodable>() -> T? {
         do {
             return try JSONDecoder().decode(T.self, from: self)
         } catch {
@@ -42,7 +42,7 @@ public extension Data {
         }
         
     }
-    public mutating func appendString(value:String?) {
+    mutating func appendString(value:String?) {
         guard let data = value?.data(using: String.Encoding.utf8) else {
             return
         }

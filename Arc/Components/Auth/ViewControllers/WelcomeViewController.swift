@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Arc
 
 open class WelcomeViewController: UIViewController {
 

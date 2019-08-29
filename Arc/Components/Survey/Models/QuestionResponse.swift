@@ -18,7 +18,7 @@ public extension QuestionResponse {
 	func getValue<T>() -> T? {
 		return value as? T
 	}
-	public func isEmpty() -> Bool {
+    func isEmpty() -> Bool {
 		if let type = type {
 			switch type {
 			case .none, .text, .time, .duration, .password, .segmentedText, .multilineText, .number, .calendar:

@@ -12,7 +12,7 @@ extension StudyController : ThisStudyExpressible {
 		if studyState == .inactive, let study = getUpcomingStudyPeriod() {
 			let start = study.userStartDate?.localizedFormat(template: ACDateStyle.mediumWeekDayMonthDay.rawValue)
 			let end = study.userEndDate?.localizedFormat(template: ACDateStyle.mediumWeekDayMonthDay.rawValue)
-			return "\(start) - \(end)"
+            return "\(String(describing: start)) - \(String(describing: end))"
 		}
 		
 		return ""
@@ -40,7 +40,7 @@ extension StudyController : ThisStudyExpressible {
 			return .inactive
 		}
 		
-		return .complete
+		// return .complete
 
 	}
 	public var totalWeeks: Int {

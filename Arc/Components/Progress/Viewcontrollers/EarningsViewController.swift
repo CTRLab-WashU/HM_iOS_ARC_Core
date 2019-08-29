@@ -68,7 +68,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		
 		customView.viewDetailsButton.addAction {
 			[weak self] in
-			guard let weakSelf = self else {
+            guard self != nil else {
 				return
 			}
 			self?.navigationController?.pushViewController(EarningsDetailViewController(), animated: true)

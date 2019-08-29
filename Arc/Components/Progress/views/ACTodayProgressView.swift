@@ -67,7 +67,7 @@ public class ACTodayProgressView : UIView {
 			$0.stack {
 				stack.setCustomSpacing(32, after: $0)
 
-				for i in 1 ... 4 {
+                for _ in 1 ... 4 {
 					
 					let v = $0.circularProgress {
 						$0.layout {

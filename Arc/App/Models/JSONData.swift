@@ -8,7 +8,7 @@
 
 import Foundation
 public extension JSONData {
-    public func get<T:Codable>() -> T? {
+    func get<T:Codable>() -> T? {
 		do{
         guard let data = self.data else {
             return nil

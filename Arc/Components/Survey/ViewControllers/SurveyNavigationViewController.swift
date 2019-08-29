@@ -172,7 +172,7 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
 	open func valueChanged(index:String) {
 		
 		let question = Arc.shared.surveyController.get(question: index)
-		guard let surveyId = self.surveyId else {
+        guard self.surveyId != nil else {
 			return
 		}
 		let _ = Arc.shared.surveyController.mark(responseTime: question.questionId,

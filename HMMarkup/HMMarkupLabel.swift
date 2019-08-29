@@ -42,7 +42,7 @@ import UIKit
         paragraphStyle.lineSpacing = spacing
         paragraphStyle.alignment = self.textAlignment
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
-        attributedString.addAttributes([.foregroundColor : self.textColor], range: NSMakeRange(0, attributedString.length))
+        attributedString.addAttributes([.foregroundColor : self.textColor!], range: NSMakeRange(0, attributedString.length))
         self.attributedText = attributedString
     }
     
@@ -76,7 +76,7 @@ import UIKit
         paragraphStyle.lineSpacing = spacing
         paragraphStyle.alignment = self.textAlignment
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
-        attributedString.addAttributes([.foregroundColor : self.textColor], range: NSMakeRange(0, attributedString.length))
+        attributedString.addAttributes([.foregroundColor : self.textColor!], range: NSMakeRange(0, attributedString.length))
         self.attributedText = attributedString
     }
     

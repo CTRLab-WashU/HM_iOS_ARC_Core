@@ -131,7 +131,7 @@ open class SliderView: UIView, SurveyInput {
         if !first {
             _value = sender.value
 			
-			print("printvalue:\(valueLabel.text)")
+            print("printvalue:\(String(describing: valueLabel.text))")
             if SliderView.hideSelection ?? hideSelectedAfterFirst {
 				hideSelectedContainer()
 			}

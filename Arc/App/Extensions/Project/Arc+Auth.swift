@@ -10,24 +10,24 @@ import Foundation
 
 public extension Arc {
     
-    public func isAuthorized() -> Bool {
+    func isAuthorized() -> Bool {
         return authController.isAuthorized()
     }
-    public func clearAuth() {
+    func clearAuth() {
         authController.clear()
     }
     
-    public func setAuth(userName:String) {
+    func setAuth(userName:String) {
         _ = authController.set(username: userName)
     }
-    public func setAuth(password:String) {
+    func setAuth(password:String) {
         _ = authController.set(password: password)
     }
-    public func setAuth(username:String, password:String) {
+    func setAuth(username:String, password:String) {
         setAuth(userName: username)
         setAuth(password: password)
     }
-	public func authenticate(completion:@escaping ((Int64?, String?)->())) {
+    func authenticate(completion:@escaping ((Int64?, String?)->())) {
         authController.authenticate(completion: completion)
     }
 }

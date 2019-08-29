@@ -14,7 +14,7 @@ public enum ACDateStyle:String {
 
 public extension Date {
     
-	public func localizedString(dateStyle:DateFormatter.Style = .short, timeStyle:DateFormatter.Style = .short) -> String
+    func localizedString(dateStyle:DateFormatter.Style = .short, timeStyle:DateFormatter.Style = .short) -> String
 	{
 		return DateFormatter.localizedString(from: self, dateStyle: dateStyle, timeStyle: timeStyle);
 	}
@@ -27,14 +27,14 @@ public extension Date {
        let v = df.string(from: self);
         return v
     }
-	public func filenameSafeString() -> String
+    func filenameSafeString() -> String
 	{
 		let df = DateFormatter();
 		df.dateFormat = "yyyy-MM-dd-HH-mm-ss";
 		return df.string(from: self);
 	}
 	
-    static public func random(in range: ClosedRange<Date>) -> Date {
+    static func random(in range: ClosedRange<Date>) -> Date {
         if range.lowerBound.timeIntervalSince1970 > range.upperBound.timeIntervalSince1970 {
             let val = Double.random(in: range.upperBound.timeIntervalSince1970...range.lowerBound.timeIntervalSince1970)
             return Date(timeIntervalSince1970: val)
@@ -50,39 +50,39 @@ public extension Date {
     }
     
     /// Returns the amount of years from another date
-    public func years(from date: Date) -> Int {
+    func years(from date: Date) -> Int {
         return Calendar.current.dateComponents([.year], from: date, to: self).year ?? 0
     }
     /// Returns the amount of months from another date
-    public func months(from date: Date) -> Int {
+    func months(from date: Date) -> Int {
         return Calendar.current.dateComponents([.month], from: date, to: self).month ?? 0
     }
     /// Returns the amount of weeks from another date
-    public func weeks(from date: Date) -> Int {
+    func weeks(from date: Date) -> Int {
         return Calendar.current.dateComponents([.weekOfMonth], from: date, to: self).weekOfMonth ?? 0
     }
     /// Returns the amount of days from another date
-    public func days(from date: Date) -> Int {
+    func days(from date: Date) -> Int {
         return Calendar.current.dateComponents([.day], from: date, to: self).day ?? 0
     }
     /// Returns the amount of hours from another date
-    public func hours(from date: Date) -> Int {
+    func hours(from date: Date) -> Int {
         return Calendar.current.dateComponents([.hour], from: date, to: self).hour ?? 0
     }
     /// Returns the amount of minutes from another date
-    public func minutes(from date: Date) -> Int {
+    func minutes(from date: Date) -> Int {
         return Calendar.current.dateComponents([.minute], from: date, to: self).minute ?? 0
     }
     /// Returns the amount of seconds from another date
-    public func seconds(from date: Date) -> Int {
+    func seconds(from date: Date) -> Int {
         return Calendar.current.dateComponents([.second], from: date, to: self).second ?? 0
     }
     /// Returns the amount of nanoseconds from another date
-    public func nanoseconds(from date: Date) -> Int {
+    func nanoseconds(from date: Date) -> Int {
         return Calendar.current.dateComponents([.nanosecond], from: date, to: self).nanosecond ?? 0
     }
     /// Returns the a custom time interval description from another date
-    public func offset(from date: Date) -> String {
+    func offset(from date: Date) -> String {
         if years(from: date)   > 0 { return "\(years(from: date))y"   }
         if months(from: date)  > 0 { return "\(months(from: date))M"  }
         if weeks(from: date)   > 0 { return "\(weeks(from: date))w"   }
@@ -93,7 +93,7 @@ public extension Date {
         if nanoseconds(from: date) > 0 { return "\(nanoseconds(from: date))ns" }
         return ""
     }
-    public func dayOfMonth(calendar:Calendar =  Calendar(identifier: .gregorian)) -> Int {
+    func dayOfMonth(calendar:Calendar =  Calendar(identifier: .gregorian)) -> Int {
         
         var components = calendar.dateComponents([.year,.weekday, .month, .day, .weekOfMonth], from: self);
         return components.day ?? -1
@@ -102,7 +102,7 @@ public extension Date {
 	
 	/// Returns a tuple where the first index is the weekDay and the second is the day of that month
 	/// - Parameter gregorian: The calendar used to provide values
-    public func weekdayOfMonth(calendar:Calendar =  Calendar(identifier: .gregorian)) -> (Int,Int) {
+    func weekdayOfMonth(calendar:Calendar =  Calendar(identifier: .gregorian)) -> (Int,Int) {
         
         var components = calendar.dateComponents([.year,.weekday, .month, .day, .weekOfMonth], from: self);
         return (weekDay: components.weekday ?? -1, day: components.day ?? -1)
@@ -112,14 +112,14 @@ public extension Date {
 	// This ignores the actual time of the Dates, and instead gives you a general count of days.
 	// So for instance, a date of 01/02/2017 0:00:01 still counts as 1 day since 01/01/2017 23:59:59
 	
-	public func daysSince(date:Date) -> Int
+    func daysSince(date:Date) -> Int
 	{
         return Calendar.current.dateComponents([.day], from: date.startOfDay(), to: self.startOfDay()).day ?? 0
 
 	}
 	
     // creates a Date object with the same year, month, and day components of the given date, with a time of 00:00:00
-    public func startOfDay() -> Date
+    func startOfDay() -> Date
     {
         let calendar:Calendar = Calendar(identifier: .gregorian);
         var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: self);
@@ -133,7 +133,7 @@ public extension Date {
     
     // creates a Date object with the same year, month, and day components of the given date, with a time of 23:59:59
     
-    public func endOfDay() -> Date
+    func endOfDay() -> Date
     {
         let calendar:Calendar = Calendar(identifier: .gregorian);
         var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: self);
@@ -143,35 +143,35 @@ public extension Date {
         
         return calendar.date(from: components)!;
     }
-    public func isToday() -> Bool {
+    func isToday() -> Bool {
         let today = Date()
         if self > today.startOfDay() && self < today.endOfDay() {
             return true
         }
         return false
     }
-    public func isTomorrow() -> Bool {
+    func isTomorrow() -> Bool {
         let today = Date()
         if self > today.endOfDay() && self < today.addingDays(days: 1).endOfDay() {
             return true
         }
         return false
     }
-    public func addingYears(years:Int) -> Date
+    func addingYears(years:Int) -> Date
     {
         let calendar:Calendar = Calendar(identifier: .gregorian);
         var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: self);
         components.month = components.year! + years;
         return calendar.date(from: components)!;
     }
-    public func addingMonths(months:Int) -> Date
+    func addingMonths(months:Int) -> Date
     {
         let calendar:Calendar = Calendar(identifier: .gregorian);
         var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: self);
         components.month = components.month! + months;
         return calendar.date(from: components)!;
     }
-	public func addingDays(days:Int) -> Date
+    func addingDays(days:Int) -> Date
 	{
 		let calendar:Calendar = Calendar(identifier: .gregorian);
 		var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: self);
@@ -179,24 +179,24 @@ public extension Date {
 		return calendar.date(from: components)!;
 	}
 	
-	public func addingHours(hours:Int) -> Date
+    func addingHours(hours:Int) -> Date
 	{
 		return self.addingTimeInterval(TimeInterval(hours * 60 * 60));
 	}
 	
-	public func addingMinutes(minutes:Int) -> Date
+    func addingMinutes(minutes:Int) -> Date
 	{
 		return self.addingTimeInterval(TimeInterval(minutes * 60));
 	}
 	
-	public func addingWeeks(weeks:Int) -> Date
+    func addingWeeks(weeks:Int) -> Date
 	{
 		return self.addingTimeInterval(TimeInterval(weeks * 7 * 24 * 60 * 60));
 	}
 	// given two Date objects, it takes the year,month,day components from the first, and the hour, minute,second components from the second.
 	
 	
-	static public func combine(day:Date, time:Date) -> Date
+    static func combine(day:Date, time:Date) -> Date
 	{
 		let dayComponents = NSCalendar.current.dateComponents([.day, .month, .year], from: day);
 		let timeComponents = NSCalendar.current.dateComponents([ .second, .minute, .hour, .timeZone], from: time);
@@ -213,7 +213,7 @@ public extension Date {
 		let newDate = NSCalendar.current.date(from: bothComponents);
 		return newDate!;
 	}
-	public func JSONDate() -> Double{
+    func JSONDate() -> Double{
 		return self.timeIntervalSince1970
 		
 	}
@@ -221,12 +221,12 @@ public extension Date {
 	
 	// returns only the time component of the Date as a TimeInterval.
 	// So if the Date was 1/1/2017 8:15:00 AM, this would return 29700
-	public func timeIntervalSinceStartOfDay() -> TimeInterval
+    func timeIntervalSinceStartOfDay() -> TimeInterval
 	{
 		return self.timeIntervalSince(self.startOfDay());
 	}
 	
-	public func roundedTo(minutes:Int = 5) -> Date
+    func roundedTo(minutes:Int = 5) -> Date
 	{
 		let calendar:Calendar = Calendar(identifier: .gregorian);
 		var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: self);
@@ -237,7 +237,7 @@ public extension Date {
 }
 
 public extension ClosedRange where Bound == Date {
-    public func randomElement() -> Date? {
+    func randomElement() -> Date? {
         return Date.random(in: self)
     }
     
@@ -255,7 +255,7 @@ public extension ClosedRange where Bound == Date {
 }
 
 public extension TimeInterval {
-	public enum Unit : TimeInterval, RawRepresentable {
+    enum Unit : TimeInterval, RawRepresentable {
 		case second = 1.0, minute = 60.0, hour = 3600.0, day = 86400.0, week = 604800.0
 		
 		static public func + (lhs:Unit, rhs:TimeInterval) -> TimeInterval {
@@ -271,7 +271,7 @@ public extension TimeInterval {
 			return lhs.rawValue / rhs
 		}
 	}
-    public func format(units:NSCalendar.Unit = [.day, .hour, .minute, .second, .nanosecond]) -> String? {
+    func format(units:NSCalendar.Unit = [.day, .hour, .minute, .second, .nanosecond]) -> String? {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = units
         formatter.unitsStyle = .abbreviated
@@ -279,7 +279,7 @@ public extension TimeInterval {
         return formatter.string(from: self)
     }
     
-    public func localizedInterval() -> String
+    func localizedInterval() -> String
     {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute]
@@ -292,7 +292,7 @@ public extension TimeInterval {
 public extension DateComponentsFormatter
 {
     
-    static public func localizedString(forUnit unit:NSCalendar.Unit, style:DateComponentsFormatter.UnitsStyle) -> String
+    static func localizedString(forUnit unit:NSCalendar.Unit, style:DateComponentsFormatter.UnitsStyle) -> String
     {
         
         let formatter = DateComponentsFormatter()
