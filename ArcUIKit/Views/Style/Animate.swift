@@ -93,17 +93,17 @@ public class Animate {
 		
 	}
 	public func duration(_ value:Double) -> Animate {
-		var t = self
+        let t = self
 		t._duration = value
 		return t
 	}
 	public func delay(_ value:Double) -> Animate {
-		var t = self
+        let t = self
 		t._delay = value
 		return t
 	}
 	public func curve(_ value:Math.Curve) -> Animate {
-		var t = self
+        let t = self
 		t._curve = value
 		return t
 	}
@@ -114,7 +114,7 @@ public class Animate {
 	/// - Parameter update: <#update description#>
 	@discardableResult
 	public func run(_ update:@escaping (Double)->Bool) -> Animate {
-		var s = self
+        let s = self
 		s.updater = UpdateLooper()
 		s.updater?.id = id
 		s.updater?.time = 0
