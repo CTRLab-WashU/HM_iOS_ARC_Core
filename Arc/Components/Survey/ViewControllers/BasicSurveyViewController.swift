@@ -238,7 +238,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		vc.customView.setTextColor(UIColor(named: "Secondary Text"))
 		vc.customView.setButtonColor(primary: UIColor(named:"Secondary"),
 									 secondary: UIColor(named:"Secondary Gradient"),
-									 textColor: .black)
+                                     textColor: UIColor(named:"Badge Text")!)
 		vc.customView.setHeading(question.prompt)
 		vc.customView.setSubHeading(question.subTitle)
 		vc.customView.setContentLabel(question.detail)

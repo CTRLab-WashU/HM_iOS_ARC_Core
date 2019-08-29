@@ -37,6 +37,9 @@ public enum IntroViewControllerStyle : String {
 			view.infoContent.contentLabel?.textAlignment = .center
 			view.backgroundColor = UIColor(named:"Primary Info")
 			view.infoContent.alignment = .center
+            view.setButtonColor(primary: UIColor(named:"Secondary"),
+                                secondary: UIColor(named:"Secondary Gradient"),
+                                textColor: UIColor(named:"Badge Text")!)
 			
 		case .grids:
 			view.setSubHeading(heading)
@@ -46,6 +49,9 @@ public enum IntroViewControllerStyle : String {
 			view.backgroundColor = UIColor(named:"Primary Info")
 			view.infoContent.alignment = .leading
 			view.backgroundView.image = UIImage(named: "grids_bg", in: Bundle(for: view.classForCoder), compatibleWith: nil)
+            view.setButtonColor(primary: UIColor(named:"Secondary"),
+                                secondary: UIColor(named:"Secondary Gradient"),
+                                textColor: UIColor(named:"Badge Text")!)
 
 		case .symbols:
 			view.setSubHeading(heading)
@@ -55,6 +61,9 @@ public enum IntroViewControllerStyle : String {
 			view.backgroundColor = UIColor(named:"Primary Info")
 			view.infoContent.alignment = .leading
 			view.backgroundView.image = UIImage(named: "symbols_bg", in: Bundle(for: view.classForCoder), compatibleWith: nil)
+            view.setButtonColor(primary: UIColor(named:"Secondary"),
+                                secondary: UIColor(named:"Secondary Gradient"),
+                                textColor: UIColor(named:"Badge Text")!)
 
 		case .prices:
 			view.setSubHeading(heading)
@@ -64,6 +73,9 @@ public enum IntroViewControllerStyle : String {
 			view.backgroundColor = UIColor(named:"Primary Info")
 			view.infoContent.alignment = .leading
 			view.backgroundView.image = UIImage(named: "prices_bg", in: Bundle(for: view.classForCoder), compatibleWith: nil)
+            view.setButtonColor(primary: UIColor(named:"Secondary"),
+                                secondary: UIColor(named:"Secondary Gradient"),
+                                textColor: UIColor(named:"Badge Text")!)
 		
 		case .dark:
 			view.setSubHeading(heading)
