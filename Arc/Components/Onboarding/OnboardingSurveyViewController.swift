@@ -23,8 +23,16 @@ public class OnboardingSurveyViewController: BasicSurveyViewController {
 	}
 	
 	public override func valueSelected(value: QuestionResponse, index: String) {
+		super.valueSelected(value: value, index: index)
 		if index == "commitment" {
-			dump(value)
+			if let value:Int = value.getValue() {
+				if value == 0 {
+					app.appController.commitment = .committed
+				} else if value == 1 {
+					app.appController.commitment = .rebuked
+				}
+			
+			}
 		}
 	}
 	public override func isValid(value: QuestionResponse?, questionId: String, didFinish: @escaping ((Bool) -> ())) {

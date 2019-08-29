@@ -8,7 +8,7 @@
 
 import Foundation
 open class AppController : MHController {
-	public enum Commitment {
+	public enum Commitment : String, Codable {
 		case committed, rebuked
 	}
 	
@@ -149,13 +149,13 @@ open class AppController : MHController {
     }
     public var commitment:Commitment? {
         get {
-            return defaults.value(forKey:"commitment") as? Commitment
+			return Commitment(rawValue: defaults.string(forKey: "commitment") ?? "")
 			
         }
         set (newVal)
         {
-            defaults.setValue(newVal, forKey:"commitment");
-            defaults.synchronize();
+			defaults.setValue(newVal?.rawValue, forKey:"commitment");
+			defaults.synchronize();
         }
     }
     public var deviceId:String {
