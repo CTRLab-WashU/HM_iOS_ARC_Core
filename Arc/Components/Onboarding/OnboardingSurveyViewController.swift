@@ -21,6 +21,12 @@ public class OnboardingSurveyViewController: BasicSurveyViewController {
 		}
 		return nil
 	}
+	
+	public override func valueSelected(value: QuestionResponse, index: String) {
+		if index == "commitment" {
+			dump(value)
+		}
+	}
 	public override func isValid(value: QuestionResponse?, questionId: String, didFinish: @escaping ((Bool) -> ())) {
 	
 		super.isValid(value: value, questionId: questionId) {valid in
@@ -60,10 +66,7 @@ public class OnboardingSurveyViewController: BasicSurveyViewController {
 	}
 	
 	
-	public override func onCompleted() {
-		Arc.shared.appController.isOnboarded = true
-
-	}
+	
 }
 fileprivate func checkNotificationStatus(void:Void, didFinish: @escaping (Bool)->()) {
 	//A long running request

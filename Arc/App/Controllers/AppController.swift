@@ -8,6 +8,10 @@
 
 import Foundation
 open class AppController : MHController {
+	public enum Commitment {
+		case committed, rebuked
+	}
+	
 	public var testCount:Int = 0
 	
 	public func store<T:Codable>(value:T?, forKey key:String) {
@@ -143,17 +147,14 @@ open class AppController : MHController {
             defaults.synchronize();
         }
     }
-    public var isOnboarded:Bool {
+    public var commitment:Commitment? {
         get {
-            if let value = (defaults.value(forKey:"isOnboarded") as? Bool)
-            {
-                return value;
-            }
-            return false;
+            return defaults.value(forKey:"commitment") as? Commitment
+			
         }
         set (newVal)
         {
-            defaults.setValue(newVal, forKey:"isOnboarded");
+            defaults.setValue(newVal, forKey:"commitment");
             defaults.synchronize();
         }
     }
