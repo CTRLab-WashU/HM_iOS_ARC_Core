@@ -42,6 +42,8 @@
 		C53B123822F348F900BACA9A /* ACTodayProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B123722F348F900BACA9A /* ACTodayProgressViewController.swift */; };
 		C53B123A22F34C1700BACA9A /* ACTodayProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B123922F34C1700BACA9A /* ACTodayProgressView.swift */; };
 		C540B5B1221E0FD000B539A4 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C540B5B0221E0FD000B539A4 /* LanguageViewController.swift */; };
+		C5477C7A231868C80072425D /* RebukedCommitmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5477C79231868C80072425D /* RebukedCommitmentView.swift */; };
+		C5477C7C231868E10072425D /* RebukedCommitmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5477C7B231868E10072425D /* RebukedCommitmentViewController.swift */; };
 		C548B79122C54D630039DBCB /* UIControl+Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = C548B79022C54D630039DBCB /* UIControl+Closure.swift */; };
 		C54AE8F821C81B2F00DEC360 /* Arc.h in Headers */ = {isa = PBXBuildFile; fileRef = C54AE8EA21C81B2F00DEC360 /* Arc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C54AE9CE21C81B5F00DEC360 /* SharedAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C54AE90121C81B5B00DEC360 /* SharedAssets.xcassets */; };
@@ -364,6 +366,8 @@
 		C53B123722F348F900BACA9A /* ACTodayProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTodayProgressViewController.swift; sourceTree = "<group>"; };
 		C53B123922F34C1700BACA9A /* ACTodayProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTodayProgressView.swift; sourceTree = "<group>"; };
 		C540B5B0221E0FD000B539A4 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
+		C5477C79231868C80072425D /* RebukedCommitmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebukedCommitmentView.swift; sourceTree = "<group>"; };
+		C5477C7B231868E10072425D /* RebukedCommitmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebukedCommitmentViewController.swift; sourceTree = "<group>"; };
 		C548B79022C54D630039DBCB /* UIControl+Closure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Closure.swift"; sourceTree = "<group>"; };
 		C54AE8E721C81B2F00DEC360 /* Arc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Arc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C54AE8EA21C81B2F00DEC360 /* Arc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Arc.h; sourceTree = "<group>"; };
@@ -718,6 +722,8 @@
 				C5CCD7AB22DE6A61002A788A /* OnboardingSurveyViewController.swift */,
 				C51A7D8B22D8C33F00854B13 /* NotificationPermissionViewController.swift */,
 				C51A7D8D22D8C38300854B13 /* NotificationPermissionView.swift */,
+				C5477C7B231868E10072425D /* RebukedCommitmentViewController.swift */,
+				C5477C79231868C80072425D /* RebukedCommitmentView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -1841,6 +1847,7 @@
 				C56D6C5B22CD2B9F00C3F8EA /* ACTutorialViewController.swift in Sources */,
 				C56057F622F9F6AC00EDA919 /* ProgressFlag.swift in Sources */,
 				C54AEA3E21C81B5F00DEC360 /* IntroViewController.swift in Sources */,
+				C5477C7A231868C80072425D /* RebukedCommitmentView.swift in Sources */,
 				4CB0BAC522E8FA7B00ABB348 /* ContactInfoResponse.swift in Sources */,
 				C54AEA3221C81B5F00DEC360 /* ScheduleEntry+Extensions.swift in Sources */,
 				C5E7212822F10D25004B9E26 /* TestProgressViewController.swift in Sources */,
@@ -1967,6 +1974,7 @@
 				C54AE9E921C81B5F00DEC360 /* TestSession.swift in Sources */,
 				C53B123822F348F900BACA9A /* ACTodayProgressViewController.swift in Sources */,
 				C54AE9F321C81B5F00DEC360 /* ProxyManager.swift in Sources */,
+				C5477C7C231868E10072425D /* RebukedCommitmentViewController.swift in Sources */,
 				C54AEA0021C81B5F00DEC360 /* PrimaryButton.swift in Sources */,
 				C5C2B12B22D3F205002CB4C5 /* TestInfoView.swift in Sources */,
 				C5E1E3952257ECC200255812 /* ACChangeAvailabilityViewController.swift in Sources */,

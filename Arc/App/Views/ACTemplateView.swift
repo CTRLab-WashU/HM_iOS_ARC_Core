@@ -11,6 +11,16 @@ import ArcUIKit
 import HMMarkup
 
 
+/** ACTemplate view is a view that is automatically nested in a scrollview exposed as
+ 	"root"
+
+	There is an ImageView called backgroundView. It can be used to layer things behind all
+	content on the screen.
+
+	The when subclassing override the header, content, and footer functions accordingly to organize your views.
+
+	If a view becomes scrollable then a scroll indicator will appear on the screen.
+*/
 open class ACTemplateView: UIView, UIScrollViewDelegate {
 	var root:UIScrollView!
 	var backgroundView:UIImageView!
@@ -32,7 +42,10 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 		
 	}
-	
+	open override func didMoveToWindow() {
+		super.didMoveToWindow()
+		scrollIndicatorState(root)
+	}
 	/// creates the views contents
 	/// Creates an imageview and scrollview in front of it. 
 	func build() {
