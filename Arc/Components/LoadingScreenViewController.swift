@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Arc
+
 class LoadingScreenViewController: UIViewController {
 	@IBOutlet weak var progress:UIProgressView!
     override func viewDidLoad() {

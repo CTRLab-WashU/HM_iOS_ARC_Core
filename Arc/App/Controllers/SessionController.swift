@@ -141,7 +141,7 @@ open class SessionController:MHController {
                   //  HMLog("\(md5 ?? "") does not match \(data?.response?.md5 ?? "")")
                 //}
             } else {
-                print(data?.errors.toString())
+                print(data?.errors.toString() as Any)
             }
             
             
@@ -179,7 +179,7 @@ open class SessionController:MHController {
 						HMLog("\(md5 ?? "") does not match \(data?.response?.md5 ?? "")")
 					}
 				} else {
-					print(data?.errors.toString())
+                    print(data?.errors.toString() as Any)
 				}
 				
 			}

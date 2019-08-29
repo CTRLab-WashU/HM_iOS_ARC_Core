@@ -151,7 +151,7 @@ open class AuthController:MHController {
 				let controller = Arc.shared.scheduleController
 				for entry in data.wake_sleep_data {
 					
-					controller.create(entry: entry.wake,
+					let _ = controller.create(entry: entry.wake,
 									  endTime: entry.bed,
 									  weekDay: WeekDay.fromString(day: entry.weekday),
 									  participantId: participantID)

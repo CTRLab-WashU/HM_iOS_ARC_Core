@@ -208,17 +208,17 @@ open class Arc : ArcApi {
         config.shouldTranslate = shouldTranslate
         switch (country, language) {
         
-        case (nil, let l):
+        case (nil, _):
 			
             config.translation = matchesLanguage?.first?.map
 
             break
 
-        case (let c, nil):
+        case (_, nil):
             config.translation = matchesCountry?.first?.map
 
             break
-        case (let c, let l):
+        case (_, _):
             
             config.translation = matchesBoth?.first?.map
 
@@ -451,7 +451,7 @@ open class Arc : ArcApi {
         } else {
             
             if let upcoming = upcoming {
-                let d = DateFormatter()
+                // let d = DateFormatter()
                 let date = upcoming.sessionDate ?? Date()
                 
                 if date.isToday() {

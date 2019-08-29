@@ -270,7 +270,7 @@ open class StudyController : MHController {
 				guard let testSession = obj as? Session else {
 					continue
 				}
-				let uploaded = testSession.uploaded
+				// let uploaded = testSession.uploaded
 
 					guard let file = testSession.getSurveyFor(surveyType: surveyType) else {
 						continue

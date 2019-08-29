@@ -31,7 +31,7 @@ open class ACHomeViewController: CustomViewController<ACHomeView> {
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureState()
-        if let id = app.participantId {
+        if app.participantId != nil {
             Arc.shared.uploadTestData()
         }
     }
@@ -104,11 +104,11 @@ open class ACHomeViewController: CustomViewController<ACHomeView> {
     func configureState() {
         
         var upcoming:Session?
-        var completedStudy:Bool = false
+        // var completedStudy:Bool = false
         if let study = app.currentStudy {
             
             upcoming = app.studyController.get(upcomingSessions: Int(study)).first
-            completedStudy = (app.studyController.get(upcomingSessions: Int(study)).count == 0) && (app.studyController.getUpcomingStudyPeriod() == nil)
+            // completedStudy = (app.studyController.get(upcomingSessions: Int(study)).count == 0) && (app.studyController.getUpcomingStudyPeriod() == nil)
             self.study = study
             
             

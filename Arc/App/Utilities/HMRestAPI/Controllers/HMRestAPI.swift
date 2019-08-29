@@ -146,7 +146,7 @@ open class HMRestAPI : NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 
 							return
 						}
-						guard let data = data, let r = response else {
+                        guard let data = data, let _ = response else {
 							completionHandlers.forEach{$0.1(HMRestAPIError.noResponse, nil)}
 							self.tasks.removeValue(forKey: token)
 

@@ -48,7 +48,7 @@ open class StartDateShiftViewController: SurveyNavigationViewController {
     }
     
 	open override func templateForQuestion(id questionId: String) -> Dictionary<String, String> {
-		super.templateForQuestion(id: questionId)
+		let _ = super.templateForQuestion(id: questionId)
         guard let index = QuestionId(rawValue: questionId) else {return [:]}
 		
 		if index == .user_schedule_2 {
@@ -114,7 +114,7 @@ open class StartDateShiftViewController: SurveyNavigationViewController {
 
                 study.userStartDate = dates[selectedDate]
                 let new = Arc.shared.studyController.set(userStartDate: dates[selectedDate], forStudyId: Int(study.studyID))
-                print(new?.userStartDate?.localizedString())
+                print(new?.userStartDate?.localizedString() as Any)
                 
                let id = Int(study.studyID)
                 

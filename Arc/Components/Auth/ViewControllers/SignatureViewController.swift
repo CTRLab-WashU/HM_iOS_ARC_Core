@@ -38,7 +38,7 @@ class SignatureViewController: UIViewController, SignatureViewDelegate  {
         if signatureView.path.isEmpty {
             return
         }
-        if let img = signatureView.save()?.pngData()
+        if (signatureView.save()?.pngData()) != nil
         {
            
             
