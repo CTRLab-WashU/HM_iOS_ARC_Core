@@ -99,7 +99,7 @@ public struct HMRequest<S:Codable> : BackendRequest {
     }
 }
 public extension HMRequest {
-    public var params: [String : String] {
+    var params: [String : String] {
         get {
             var p = _params
             
@@ -112,7 +112,7 @@ public extension HMRequest {
             _params = newValue
         }
     }
-    public func didSucceed(with data: Data, response:URLResponse?) {
+    func didSucceed(with data: Data, response:URLResponse?) {
         //        print(String(data: data, encoding: String.Encoding.utf8))
         let decoder = JSONDecoder()
         var responseBody:S?
@@ -147,7 +147,7 @@ public extension HMRequest {
         success?(response,responseBody,err)
         
     }
-    public func didFail(with error: Error, response:URLResponse?) {
+    func didFail(with error: Error, response:URLResponse?) {
         if let unhandledFailure = unhandledFailure {
             unhandledFailure(error)
         }

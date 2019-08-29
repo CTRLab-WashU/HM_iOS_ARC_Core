@@ -1332,7 +1332,7 @@ open class StudyController : MHController {
 			let week = Int(sessionData.week)
 			let session = Int(sessionData.session)
 			var progress = 0
-			var totalTest = 3
+            let totalTest = 3
 			MHController.dataContext.performAndWait {
 				if get(numberOfTestTakenOfType: .priceTest,
 					   inStudy: studyId,

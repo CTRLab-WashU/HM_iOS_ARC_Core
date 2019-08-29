@@ -10,27 +10,27 @@ import Foundation
 
 public extension HMAPI {
     
-    static public func defaultHeaders() -> [String:String] {
+    static func defaultHeaders() -> [String:String] {
         return [
             "Accept":"application/json",
             "Content-Type":"application/json"
         ]
     }
     
-    static public func authHeaders() -> [String:String] {
+    static func authHeaders() -> [String:String] {
         	var headers = defaultHeaders()
         headers["Authorization"] = ""
         return headers
     }
     
-    static public func auth(completion:(()->())?) {
+    static func auth(completion:(()->())?) {
 
         
         completion?()
       
     }
     
-    static public func placeholder(completion:(()->Void)?){
+    static func placeholder(completion:(()->Void)?){
         completion?()
     }
     

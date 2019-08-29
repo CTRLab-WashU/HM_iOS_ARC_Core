@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 public extension Session {
 	
-	public func isAvailableForState(state:State) -> Bool {
+    func isAvailableForState(state:State) -> Bool {
 		
 		let surveyType = state.surveyTypeForState()
 		guard let survey = surveyFor(surveyType: surveyType) else {
@@ -21,7 +21,7 @@ public extension Session {
 
 	}
 	
-	public func isLastSession() -> Bool
+    func isLastSession() -> Bool
 	{
 		if self.study == nil || self.study!.sessions == nil
 		{
@@ -31,7 +31,7 @@ public extension Session {
 		return self.study!.sessions!.index(of: self) == self.study!.sessions!.count - 1;
 	}
 	
-	public func isFirstSession() -> Bool
+    func isFirstSession() -> Bool
 	{
 		if self.study == nil || self.study!.sessions == nil
 		{
@@ -41,11 +41,11 @@ public extension Session {
 		return self.study!.sessions!.index(of: self) == 0;
 	}
 	
-	public func hasTakenWakeSurvey() -> Bool
+    func hasTakenWakeSurvey() -> Bool
 	{
 		return true
 	}
-	public func typeNamesForSession() -> [String] {
+    func typeNamesForSession() -> [String] {
 		let data = sessionData as! Set<JSONData>
 		var set:Set<String> = []
 		for obj in data {
@@ -60,7 +60,7 @@ public extension Session {
 		return Array(set)
 	}
 	
-	public func surveyFor(surveyType:SurveyType) -> JSONData? {
+    func surveyFor(surveyType:SurveyType) -> JSONData? {
 		let data = sessionData as! Set<JSONData>
 		let obj = data.filter { (data) -> Bool in
 			return data.type == surveyType.rawValue
@@ -70,7 +70,7 @@ public extension Session {
 	// clears all useful data from the Session. It only keeps data related to start date, which Arc it's part of,
 	// and whether or not it was finished or missed.
 	
-	public func clearData()
+    func clearData()
 	{
 		let relationships = self.entity.relationshipsByName;
 		
@@ -104,7 +104,7 @@ public extension Session {
 		
 	}
 	
-	public func createSurveyFor(surveyType:SurveyType, id:String = UUID().uuidString) {
+    func createSurveyFor(surveyType:SurveyType, id:String = UUID().uuidString) {
 		switch surveyType {
 		case .edna, .ema, .context, .mindfulness, .chronotype, .wake:
 			let surveyController = Arc.shared.surveyController
@@ -142,14 +142,14 @@ public extension Session {
 	}
     
     
-    public func createGridTest() -> GridTestResponse
+    func createGridTest() -> GridTestResponse
     {
         let controller = Arc.shared.gridTestController
         let test = controller.createGridTestResponse(numSections: 2)
         return test;
     }
     
-    public func createPriceTest() -> PriceTestResponse
+    func createPriceTest() -> PriceTestResponse
     {
         let controller =  Arc.shared.pricesTestController
         let priceTest = controller.loadTest(index: Int(sessionID), file: PricesTestViewController.testVersion)
@@ -157,7 +157,7 @@ public extension Session {
         return response;
     }
     
-    public func createSymbolsTest() -> SymbolsTestResponse
+    func createSymbolsTest() -> SymbolsTestResponse
     {
         let controller = Arc.shared.symbolsTestController
         let test = controller.generateTest(numSections: 12, numSymbols: 8)
@@ -165,7 +165,7 @@ public extension Session {
         return response;
     }
     
-    public func createSurveyTest(surveyType:SurveyType) -> SurveyResponse
+    func createSurveyTest(surveyType:SurveyType) -> SurveyResponse
     {
         let surveyController = Arc.shared.surveyController
         let survey = surveyController.createSurveyResponse(type: surveyType)
@@ -174,7 +174,7 @@ public extension Session {
     
     
     
-	public func getSurveyFor(surveyType:SurveyType) -> JSONData?
+    func getSurveyFor(surveyType:SurveyType) -> JSONData?
 	{
 		let data = sessionData as! Set<JSONData>
 		return data.first(where: { (obj) -> Bool in

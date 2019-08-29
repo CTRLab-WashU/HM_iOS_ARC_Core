@@ -31,7 +31,7 @@ open class ACAuthViewController: SurveyNavigationViewController {
 //		print("Navigate to help")
 	}
 	override open func questionDisplayed(input:SurveyInput, index:String) {
-		var input = input
+        let input = input
 		if index == "auth_1" {
 //            if let view = input as? SegmentedTextView {
 //                view.set(length: 8)

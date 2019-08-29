@@ -9,7 +9,7 @@
 import CommonCrypto
 import Foundation
 public extension Data {
-	public func MD5() -> String {
+    func MD5() -> String {
 		let digestLength = Int(CC_MD5_DIGEST_LENGTH)
 		let md5Buffer = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: digestLength)
 		

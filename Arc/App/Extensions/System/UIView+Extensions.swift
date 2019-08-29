@@ -9,7 +9,7 @@
 import UIKit
 import ArcUIKit
 public extension UIView {
-    static public func get<T:UIView>(nib:String? = nil) -> T{
+    static func get<T:UIView>(nib:String? = nil) -> T{
 		//For multi-module environments get the bundle for the class
 		let bundle = Bundle(for: T.self)
 
@@ -17,7 +17,7 @@ public extension UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }
-	public func attachTo(view:UIView?, margins:UIEdgeInsets? = .zero) {
+    func attachTo(view:UIView?, margins:UIEdgeInsets? = .zero) {
 		guard let view = view else {return}
 		if let margins = margins {
 			view.layoutMargins = margins
@@ -32,7 +32,7 @@ public extension UIView {
 			
 		}
 	}
-	public func safeAttachTo(view:UIView?, margins:UIEdgeInsets? = .zero) {
+    func safeAttachTo(view:UIView?, margins:UIEdgeInsets? = .zero) {
 		guard let view = view else {return}
 		if let margins = margins {
 			view.layoutMargins = margins
@@ -47,7 +47,7 @@ public extension UIView {
 			
 		}
 	}
-    public func anchor(view:UIView) {
+    func anchor(view:UIView) {
         self.addSubview(view)
         let left = view.leftAnchor.constraint(equalTo: self.leftAnchor);
         let right = view.rightAnchor.constraint(equalTo: self.rightAnchor);
@@ -66,7 +66,7 @@ public extension UIView {
         
         self.layoutSubviews()
     }
-    public func constrain(view:UIView,insets:UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)) {
+    func constrain(view:UIView,insets:UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)) {
         self.layoutMargins = insets;
         self.addSubview(view)
         let left = view.leftAnchor.constraint(equalTo: self.layoutMarginsGuide.leftAnchor);
@@ -88,7 +88,7 @@ public extension UIView {
     }
 	
 	
-	@discardableResult public func showSpinner(color:UIColor? = nil, backgroundColor:UIColor? = nil) -> UIActivityIndicatorView {
+    @discardableResult func showSpinner(color:UIColor? = nil, backgroundColor:UIColor? = nil) -> UIActivityIndicatorView {
 		
 		self.hideSpinner()
 		let spinner = UIActivityIndicatorView()
@@ -116,7 +116,7 @@ public extension UIView {
 		return spinner
 	}
 	
-	public func hideSpinner()
+    func hideSpinner()
 	{
 		for s in self.subviews
 		{

@@ -259,7 +259,7 @@ open class AppController : MHController {
         return signature
     }
     public func save(signature image:UIImage, sessionId:Int64, tag:Int32) -> Bool {
-        var signature:Signature = new()
+        let signature:Signature = new()
         guard let data = image.pngData() else {
             return false
         }

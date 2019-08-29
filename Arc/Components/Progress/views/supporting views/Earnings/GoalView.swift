@@ -60,7 +60,7 @@ public class GoalView: UIView {
 				$0.isLayoutMarginsRelativeArrangement = true
 				$0.layoutMargins = UIEdgeInsets(top: 16, left: 12, bottom: 16, right: 12)
 				
-				var v = $0.view {
+                let v = $0.view {
 					$0.backgroundColor = .white
 					
 					

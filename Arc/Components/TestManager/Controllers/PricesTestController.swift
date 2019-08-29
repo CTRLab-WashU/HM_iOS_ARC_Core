@@ -51,7 +51,7 @@ open class PricesTestController : TestController<PriceTestResponse> {
     
     //create a response
     public func createResponse(id:String = UUID().uuidString, withTest priceTest:PriceTest) -> String {
-        var response = self.createPriceTestResponse(id: id, withTest: priceTest);
+        let response = self.createPriceTestResponse(id: id, withTest: priceTest);
         return save(id: id, obj: response).id!
     }
     

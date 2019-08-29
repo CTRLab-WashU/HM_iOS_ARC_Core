@@ -17,7 +17,7 @@ public extension ScheduleController {
      tuesday(23:00 - 00:30) = 'tuesday'(23:00 - 23:59) + 'wednesday'(00:00 + 00:30)
      */
     
-    public func create(entry startTime:String, endTime:String, weekDay:WeekDay, participantId:Int, shouldSave:Bool = true) -> ScheduleEntry? {
+    func create(entry startTime:String, endTime:String, weekDay:WeekDay, participantId:Int, shouldSave:Bool = true) -> ScheduleEntry? {
 		let entry:ScheduleEntry = new()
         entry.participantID = Int64(participantId)
         entry.availabilityStart = startTime
@@ -33,7 +33,7 @@ public extension ScheduleController {
         }
         return entry
     }
-	public func create(entries startTime:String, endTime:String, weekDays:ClosedRange<WeekDay>, participantId:Int) -> [ScheduleEntry]? {
+    func create(entries startTime:String, endTime:String, weekDays:ClosedRange<WeekDay>, participantId:Int) -> [ScheduleEntry]? {
         var entries:[ScheduleEntry] = []
         for day in weekDays {
 			_ = delete(weekDay: day, participantId: participantId)
@@ -52,7 +52,7 @@ public extension ScheduleController {
     
     
     //Get a schedule entry
-    public func get(scheduleForDay currentDate:Date, participantID:Int) -> ScheduleEntry {
+    func get(scheduleForDay currentDate:Date, participantID:Int) -> ScheduleEntry {
         
         let day = WeekDay.getDayOfWeek(currentDate)
         
@@ -63,7 +63,7 @@ public extension ScheduleController {
         return schedule
     }
     
-    public func get(startTimeForDate currentDate:Date, participantID:Int) -> Date {
+    func get(startTimeForDate currentDate:Date, participantID:Int) -> Date {
         let formatter = DateFormatter()
         formatter.defaultDate = currentDate
         formatter.dateFormat = "h:mm a"
@@ -74,7 +74,7 @@ public extension ScheduleController {
         return startTime
     }
     
-    public func get(endTimeForDate currentDate:Date, participantID:Int) -> Date {
+    func get(endTimeForDate currentDate:Date, participantID:Int) -> Date {
         let formatter = DateFormatter()
         formatter.defaultDate = currentDate
         formatter.dateFormat = "h:mm a"
@@ -90,12 +90,12 @@ public extension ScheduleController {
         return endTime
     }
     
-    public func get(allEntriesForId participantId:Int) -> [ScheduleEntry]? {
+    func get(allEntriesForId participantId:Int) -> [ScheduleEntry]? {
         let result:[ScheduleEntry]? = fetch(predicate: NSPredicate(format: "participantID == %i", participantId),
                                                 sort:[NSSortDescriptor(key: "weekday", ascending: true)])
-		for r in result! {
-//			print("\(r.day) \(String(describing: r.availabilityStart)) \(String(describing: r.availabilityEnd))")
-		}
+//        for r in result! {
+////            print("\(r.day) \(String(describing: r.availabilityStart)) \(String(describing: r.availabilityEnd))")
+//        }
         return result
         
     }
@@ -105,7 +105,7 @@ public extension ScheduleController {
      For wrap around day ranges just perform two separate gets
      Wednesday ... Tuesday = (Wendesday ... Saturday) + (Sunday ... Tuesday)
      */
-    public func get(entriesForDays days:ClosedRange<WeekDay>, forParticipant participantId:Int) -> [ScheduleEntry]? {
+    func get(entriesForDays days:ClosedRange<WeekDay>, forParticipant participantId:Int) -> [ScheduleEntry]? {
         
         let result:[ScheduleEntry]? = fetch(predicate: NSPredicate(format: "participantID == %i AND weekday<=%@ AND weekday>=%@", participantId, days.lowerBound.rawValue, days.upperBound.rawValue),
                                                 sort:[NSSortDescriptor(key: "weekday", ascending: true)])
@@ -113,7 +113,7 @@ public extension ScheduleController {
         return result
     }
     
-    public func get(entriesForDay day:WeekDay, forParticipant participantId:Int) -> [ScheduleEntry]? {
+    func get(entriesForDay day:WeekDay, forParticipant participantId:Int) -> [ScheduleEntry]? {
         let result:[ScheduleEntry]? = fetch(predicate: NSPredicate(format: "participantID == %i AND weekday==%i AND weekday>=%i", participantId, day.rawValue, day.rawValue))
         
         return result
@@ -122,7 +122,7 @@ public extension ScheduleController {
     
     
 	//Delete a schedule entry
-	public func delete(schedulesForParticipant participantId:Int) -> Bool {
+    func delete(schedulesForParticipant participantId:Int) -> Bool {
 		if let schedules:[Schedule] = fetch(predicate: NSPredicate(format: "participantID == %i", participantId), sort: nil) {
 			
 			for s in schedules {
@@ -136,7 +136,7 @@ public extension ScheduleController {
     
     
     //Delete a schedule entry
-	public func delete(scheduleId: Int, participantId:Int) -> Bool {
+    func delete(scheduleId: Int, participantId:Int) -> Bool {
 		if let schedules:[Schedule] = fetch(predicate: NSPredicate(format: "participantID == %i AND scheduleID==%@", participantId, "\(scheduleId)"), sort: nil) {
 			
 			for s in schedules {
@@ -150,7 +150,7 @@ public extension ScheduleController {
     ///create them here.
 	
 	
-	public func delete(weekDay:WeekDay, participantId:Int) -> Bool {
+    func delete(weekDay:WeekDay, participantId:Int) -> Bool {
 		if let result = get(participantId: participantId)?.first {
 			
 			let entries = result.entries.filter({ (entry) -> Bool in

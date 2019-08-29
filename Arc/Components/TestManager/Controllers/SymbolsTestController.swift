@@ -159,7 +159,7 @@ open class SymbolsTestController : TestController<SymbolsTestResponse> {
         })
     }
     public func createResponse(withTest symbolsTest:SymbolsTest, id:String = UUID().uuidString) -> String {
-        var response = self.createSymbolsTestResponse(withTest: symbolsTest, id: id);
+        let response = self.createSymbolsTestResponse(withTest: symbolsTest, id: id);
         return save(id:id, obj:response).id!
     }
     
