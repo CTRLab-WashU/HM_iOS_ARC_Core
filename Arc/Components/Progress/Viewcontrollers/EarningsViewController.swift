@@ -33,7 +33,8 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		
 		//When in post test mode perform modifications 
 		if isPostTest {
-			customView.backgroundView.image = UIImage(named: "finished_bg", in: Bundle(for: self.classForCoder), compatibleWith: nil)
+            customView.backgroundView.image = UIImage(named: "finished_bg", in: Bundle(for: self.classForCoder), compatibleWith: nil)
+            customView.backgroundColor = UIColor(named: "Primary Info")
 			customView.button.isHidden = true
 			customView.nextButton?.isHidden = false
 			customView.earningsSection.backgroundColor = .clear
@@ -49,11 +50,16 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 			customView.bonusGoalsSection.backgroundColor = .clear
 			customView.bonusGoalsHeader.textAlignment = .center
 			customView.bonusGoalsSeparator.isHidden = true
+            customView.bonusGoalsHeader.textColor = .white
+            customView.bonusGoalsBodyLabel.textColor = .white
 			
 			customView.bonusGoalsBodyLabel.textAlignment = .center
 			Roboto.Style.body(customView.bonusGoalsBodyLabel, color:.white)
-			
-			
+            
+            customView.earningsParentStack.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 88, right: 0)
+            
+            customView.nextButton?.addTarget(self, action: #selector(self.nextPressed), for: .touchUpInside)
+            
 			
 		} else {
 			customView.root.refreshControl = UIRefreshControl()
@@ -77,6 +83,11 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		
 		
     }
+    
+    @objc func nextPressed() {
+        Arc.shared.nextAvailableState()
+    }
+    
 	@objc func refresh(sender:AnyObject)
 	{
 		

@@ -20,7 +20,7 @@ public class ACEarningsView : ACTemplateView {
 	var viewDetailsButton:ACButton!
 	weak var earningsBodyLabel:ACLabel! //.earnings_body0 || .earnings_body1
 	
-	
+    weak var earningsParentStack:UIStackView!
 	
 	weak var bonusGoalsSection:UIView!
 	weak var bonusGoalsHeader:ACLabel!
@@ -36,7 +36,7 @@ public class ACEarningsView : ACTemplateView {
 		if let v = view as? UIStackView {
 			v.layoutMargins = .zero
 		}
-		view.stack { [unowned self] in
+		self.earningsParentStack = view.stack { [unowned self] in
 			$0.axis = .vertical
 			$0.isLayoutMarginsRelativeArrangement = true
 			$0.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -113,7 +113,6 @@ public class ACEarningsView : ACTemplateView {
 						$0.axis = .vertical
 						$0.spacing = 8
 						$0.distribution = .fillEqually
-						$0.alignment = .center
 					}
 					
 					self.lastSyncedLabel = $0.acLabel {
@@ -220,9 +219,9 @@ public class ACEarningsView : ACTemplateView {
 		self.nextButton = acButton {
 			$0.isHidden = true
 			$0.layout {
-				$0.bottom == safeAreaLayoutGuide.bottomAnchor
-				$0.leading == safeAreaLayoutGuide.leadingAnchor
-				$0.trailing == safeAreaLayoutGuide.trailingAnchor
+				$0.bottom == safeAreaLayoutGuide.bottomAnchor - 24
+				$0.leading == safeAreaLayoutGuide.leadingAnchor + 32
+				$0.trailing == safeAreaLayoutGuide.trailingAnchor - 32
 			}
 			$0.primaryColor = ACColor.secondary
 			$0.secondaryColor = ACColor.secondaryGradient
@@ -233,6 +232,7 @@ public class ACEarningsView : ACTemplateView {
 	
 	func add(reward:(name:String, value:String)) {
 		newGoalsStack.goalBackgroundView {
+            $0.config.isUnlocked = true
 			$0.layout {
 				$0.height == 40 ~ 999
 			}
