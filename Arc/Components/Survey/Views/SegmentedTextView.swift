@@ -164,7 +164,6 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTra
 	public func supplementaryViews(for view: UIView) {
 		let nav = Arc.shared.appNavigation
 		view.button {
-			#warning("No provided translation key.")
 			$0.setTitle("", for: .normal)
 		}
 		view.privacyStack {

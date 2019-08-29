@@ -52,7 +52,6 @@ open class StartDateShiftViewController: SurveyNavigationViewController {
         guard let index = QuestionId(rawValue: questionId) else {return [:]}
 		
 		if index == .user_schedule_2 {
-            #warning("Use arc length")
             return ["start":  dates[selectedDate].localizedFormat(template:longFormat),
                     "DATE1":  dates[selectedDate].localizedFormat(template:longFormat),
                     "end":  dates[selectedDate].addingDays(days: 6).localizedFormat(template:longFormat),

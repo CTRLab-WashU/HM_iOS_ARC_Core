@@ -27,8 +27,7 @@ public class ACEarningsDetailView : ACTemplateView {
 				return "2-A-Day Goal"
 			case .totalSessions:
 				return "21 Sessions Goal"
-			@unknown default:
-				return "Goal"
+			
 			}
 		}
 	}
