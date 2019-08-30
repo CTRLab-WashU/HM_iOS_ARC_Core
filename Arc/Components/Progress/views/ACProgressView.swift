@@ -293,7 +293,7 @@ class ACProgressView: ACTemplateView {
 						}
 					}
 					
-					$0.acButton {
+					self.viewFaqButton = $0.acButton {
 						$0.primaryColor = ACColor.secondary
 						$0.secondaryColor = ACColor.secondaryGradient
 						$0.setTitleColor(ACColor.badgeText, for: .normal)

@@ -79,7 +79,7 @@ open class Arc : ArcApi {
 	public var symbolsTestController:SymbolsTestController = SymbolsTestController()
 	
 	public var studyController:StudyController = StudyController()
-	
+    	
 	public var notificationController:NotificationController = NotificationController()
 	
 	public var appNavigation:AppNavigationController = BaseAppNavigationController()

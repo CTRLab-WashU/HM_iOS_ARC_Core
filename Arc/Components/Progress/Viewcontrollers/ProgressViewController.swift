@@ -45,8 +45,18 @@ class ProgressViewController: CustomViewController<ACProgressView> {
 		
 		thisStudyProgressSetup()
 		
-		
+		customView.viewFaqButton.addTarget(self, action: #selector(self.viewFaqPressed), for: .touchUpInside)
     }
+    
+    @objc func viewFaqPressed() {
+        print("viewFaqPressed")
+        self.navigationController?.pushViewController(FAQViewController(), animated: true);
+        
+        //        let topic = self.faqTopics[indexPath.row]; // get topic name from assets
+        //        let vc = FAQTopicViewController(faqTopic: topic);
+        //        self.navigationController?.pushViewController(vc, animated: true);
+    }
+    
 	func todaysProgressSetup() {
 		if let today = todaysProgress {
 			
