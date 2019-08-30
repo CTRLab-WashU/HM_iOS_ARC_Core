@@ -32,7 +32,7 @@ open class MHAlertView: UIView {
    
     public required init?(coder aDecoder: NSCoder) {
         //The message label will not exist at this point use a default first
-        markupRenderer = HMMarkupRenderer(baseFont: .systemFont(ofSize: 14))
+        markupRenderer = HMMarkupRenderer(baseFont: .systemFont(ofSize: 18))
         super.init(coder: aDecoder)
 
     }

@@ -21,7 +21,7 @@ import UIKit
     }
     override open func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        markupText()
+        //markupText()
     }
     override open func awakeFromNib() {
         super.awakeFromNib()
@@ -31,27 +31,17 @@ import UIKit
     
     public func markupText() {
 		
-        var text = self.text ?? ""
-        if let config = HMMarkupRenderer.config, config.shouldTranslate, let key = translationKey {
-            text = config.translation?[key] ?? text
-        }
-        renderer = HMMarkupRenderer(baseFont: self.font)
-		guard renderer.canRender(text: text) else {
-			return 
+		var text = self.text ?? ""
+		if HMMarkupRenderer.config?.shouldTranslate == true {
+			text = translationKey ?? self.text ?? ""
 		}
-        let attributedString = NSMutableAttributedString(attributedString: renderer.render(text: text))
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = spacing
-		
-        paragraphStyle.alignment = self.textAlignment
-		
-        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
-		
-
-		attributedString.addAttributes([.foregroundColor : self.textColor], range: NSMakeRange(0, attributedString.length))
-		
-		
-		
+		renderer = HMMarkupRenderer(baseFont: self.font ?? UIFont.systemFont(ofSize: 18.0))
+		let attributedString = NSMutableAttributedString(attributedString: renderer.render(text: text))
+		let paragraphStyle = NSMutableParagraphStyle()
+		paragraphStyle.lineSpacing = spacing
+		paragraphStyle.alignment = self.textAlignment
+		attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+		attributedString.addAttributes([.foregroundColor : self.textColor!], range: NSMakeRange(0, attributedString.length))
 		self.attributedText = attributedString
     }
     
