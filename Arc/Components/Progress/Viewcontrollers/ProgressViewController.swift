@@ -50,7 +50,8 @@ class ProgressViewController: CustomViewController<ACProgressView> {
     
     @objc func viewFaqPressed() {
         print("viewFaqPressed")
-        self.navigationController?.pushViewController(FAQViewController(), animated: true);
+        let vc:FAQViewController = .get()
+        self.navigationController?.pushViewController(vc, animated: true);
         
         //        let topic = self.faqTopics[indexPath.row]; // get topic name from assets
         //        let vc = FAQTopicViewController(faqTopic: topic);

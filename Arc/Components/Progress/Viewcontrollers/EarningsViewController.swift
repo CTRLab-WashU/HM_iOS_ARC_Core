@@ -67,7 +67,10 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 			customView.root.refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
 			
 			customView.root.alwaysBounceVertical = true
+            
+            customView.button.addTarget(self, action: #selector(self.viewFaqPressed), for: .touchUpInside)
 		}
+        
 		dateFormatter.locale = app.appController.locale.getLocale()
 		dateFormatter.dateFormat = "MMM dd 'at' hh:mm a"
 		NotificationCenter.default.addObserver(self, selector: #selector(updateEarnings(notification:)), name: .ACEarningsUpdated, object: nil)
@@ -86,6 +89,11 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
     
     @objc func nextPressed() {
         Arc.shared.nextAvailableState()
+    }
+    
+    @objc func viewFaqPressed() {
+        let vc:FAQViewController = .get()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 	@objc func refresh(sender:AnyObject)
