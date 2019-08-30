@@ -254,6 +254,10 @@ public struct Roboto {
 			
 			lineHeight(textView)
 		}
+		
+		/// Adds an underline to previously formatted text
+		///
+		/// - Parameter label: make sure you use this call after every time you set your text.
 		public static func link (_ label:UILabel) {
 			var attributes = Attributes.link
 			attributes[NSAttributedString.Key.foregroundColor] = label.textColor

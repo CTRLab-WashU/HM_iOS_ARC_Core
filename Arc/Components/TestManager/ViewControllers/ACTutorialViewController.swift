@@ -123,7 +123,8 @@ class ACTutorialViewController: CustomViewController<TutorialView>, TutorialComp
 		
 	}
 	func finishTutorial() {
-		progress = 1.0
+        guard progress != 1.0 else { return }
+        progress = 1.0
 		
 		currentHint?.removeFromSuperview()
 		

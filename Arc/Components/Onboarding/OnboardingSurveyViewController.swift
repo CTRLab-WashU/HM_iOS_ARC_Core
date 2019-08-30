@@ -15,9 +15,16 @@ public class OnboardingSurveyViewController: BasicSurveyViewController {
 
         // Do any additional setup after loading the view.
     }
+	open override var preferredStatusBarStyle: UIStatusBarStyle {
+		return .lightContent
+	}
+	
 	public override func customViewController(forQuestion question: Survey.Question) -> UIViewController? {
 		if question.state == "NotificationAccess" {
 			return NotificationPermissionViewController()
+		}
+		if question.state == "rebuked" {
+			return RebukedCommitmentViewController()
 		}
 		return nil
 	}

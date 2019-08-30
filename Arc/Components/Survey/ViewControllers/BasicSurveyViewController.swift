@@ -180,7 +180,18 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 	
 	override open func viewDidLoad() {
         super.viewDidLoad()
-		addController()
+		guard questions.count > 0 else {
+			assertionFailure("Cannot display survey with 0 questions.")
+			return
+		}
+		let question = questions[0]
+		if question.style == .viewController {
+			addController(customViewController(forQuestion: question))
+
+		} else {
+			addController()
+
+		}
 		Arc.shared.surveyController.mark(startDate: self.surveyId)
 
     }

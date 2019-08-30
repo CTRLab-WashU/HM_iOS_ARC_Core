@@ -68,12 +68,12 @@ extension UIWindow {
 	
 	public func clearOverlay() {
 		if let oldView = self.viewWithTag(UIWindow.overlayId) as? OverlayView {
+            oldView.tag = 0
 			UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear, animations: {
 				oldView.alpha = 0
 				
 			}, completion: { (stop) in
 				oldView.removeFromSuperview()
-				self.clearOverlay()
 			})
 		}
 	}
