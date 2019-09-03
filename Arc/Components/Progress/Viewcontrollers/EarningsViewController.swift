@@ -29,7 +29,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 	override public func viewDidLoad() {
 		
         super.viewDidLoad()
-		
+		customView.scrollIndicatorView.isHidden = true
 		
 		//When in post test mode perform modifications 
 		if isPostTest {
@@ -105,24 +105,34 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 	}
 	public override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		if isPostTest {
-			customView.showSpinner(color: ACColor.highlight, backgroundColor: ACColor.primaryInfo)
+		
 
+		if isPostTest && HMRestAPI.shared.isWaitingForTask(named: ["earning-details", "earning-overview"]){
+			customView.showSpinner(color: ACColor.highlight, backgroundColor: ACColor.primaryInfo)
+			customView.earningsParentStack.alpha = 0
 		}
+		
 	}
 	public override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
+		if isPostTest && !HMRestAPI.shared.isWaitingForTask(named: ["earning-details", "earning-overview"]){
+			customView.hideSpinner()
+			customView.earningsParentStack.fadeIn()
+
+		}
 		lastUpdated = app.appController.lastFetched["EarningsOverview"]
 		earningsData = Arc.shared.appController.read(key: "EarningsOverview")
 		setGoals()
 	}
 	@objc public func updateEarnings(notification:Notification) {
-		
 		OperationQueue.main.addOperation { [weak self] in
 
 			guard let weakSelf = self else {
 				return
 			}
+		
+			weakSelf.customView.earningsParentStack.fadeIn()
+
 			weakSelf.customView.hideSpinner()
 			weakSelf.customView.root.refreshControl?.endRefreshing()
 
@@ -207,6 +217,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 			return
 		}
 		if isPostTest {
+			customView.clearRewards()
 			for a in earnings.new_achievements {
 				customView.add(reward: (a.name, a.amount_earned))
 			}

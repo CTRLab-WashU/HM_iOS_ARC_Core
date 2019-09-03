@@ -183,6 +183,15 @@ open class HMRestAPI : NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 		
 		
     }
+	public func isWaitingForTask(named:[String]) -> Bool{
+		for task in tasks.keys {
+			if named.contains( task.url.lastPathComponent) {
+				return true
+			}
+			
+		}
+		return false
+	}
 //	public func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
 //		let credential = URLCredential(trust: challenge.protectionSpace.serverTrust!)
 //		completionHandler(URLSession.AuthChallengeDisposition.useCredential, credential)

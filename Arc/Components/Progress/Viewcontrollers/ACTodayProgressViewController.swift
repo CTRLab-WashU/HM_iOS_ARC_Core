@@ -47,7 +47,9 @@ public class ACTodayProgressViewController: CustomViewController<ACTodayProgress
 	override public func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+		if app.participantId != nil {
+			Arc.shared.uploadTestData()
+		}
 		
     }
 	
@@ -58,7 +60,7 @@ public class ACTodayProgressViewController: CustomViewController<ACTodayProgress
 		if thisStudy.studyState == .baseline {
 			Arc.shared.nextAvailableState()
 		} else {
-			Arc.shared.appNavigation.navigate(vc: EarningsViewController(isPostTest: true), direction: .toLeft)
+			Arc.shared.appNavigation.navigate(vc: EarningsViewController(isPostTest: true), direction: .toRight)
 		}
 	}
 	

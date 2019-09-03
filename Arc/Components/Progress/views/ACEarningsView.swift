@@ -229,7 +229,9 @@ public class ACEarningsView : ACTemplateView {
 			$0.setTitle("".localized(ACTranslationKey.button_next), for: .normal)
 		}
 	}
-	
+	func clearRewards() {
+		newGoalsStack.removeSubviews()
+	}
 	func add(reward:(name:String, value:String)) {
 		newGoalsStack.goalBackgroundView {
             $0.config.isUnlocked = true
@@ -240,8 +242,9 @@ public class ACEarningsView : ACTemplateView {
 				$0.attachTo(view: $0.superview, margins: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
 				
 				$0.acLabel {
-					$0.textAlignment = .left
 					Roboto.Style.goalReward($0, color: ACColor.badgeText)
+					$0.textAlignment = .left
+
 					$0.text = reward.name
 				}
 				

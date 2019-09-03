@@ -10,7 +10,7 @@ public class StepperProgressView : UIView {
 		public var outlineColor:UIColor = .black
 		
 	}
-	public var progress:CGFloat = 0.5
+	public var progress:CGFloat = 0.5 { didSet {setNeedsDisplay()}}
 	public var pos:CGFloat?
 	public var config:Config = Config()
 	public let endRectView:UIView = UIView()
