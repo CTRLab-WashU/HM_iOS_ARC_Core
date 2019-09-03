@@ -37,7 +37,8 @@ open class ACChangeAvailabilityViewController: UIViewController {
         if let vc = returnVC {
             Arc.shared.appNavigation.navigate(vc: vc, direction: .toLeft)
         } else {
-            Arc.shared.appNavigation.navigate(state: returnState, direction: .toLeft)
+            self.navigationController?.popViewController(animated: true)
+            //Arc.shared.appNavigation.navigate(state: returnState, direction: .toLeft)
         }
     }
     @IBAction public func changeSchedulePressed(_ sender: UIButton) {
