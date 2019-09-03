@@ -12,14 +12,13 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 	
 	enum TestPhase {
 		case start, fs, fsTimed, recallFirstStep, recallFirstChoiceMade, recallSecondChoiceMade, showingReminder, recall, end
-		
-		
 	}
 	
 	let test:GridTestViewController = .get()
 	
 	var selectionMade = false
 	var isMakingSelections = false
+    var showingSelectNextTwo = false
 	var lockIncorrect = false
 	var maxGridSelected = 3
 	var gridSelected = 0
@@ -57,7 +56,9 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 	func didSelect(){
 		
 		
-		currentHint?.removeFromSuperview()
+        if showingSelectNextTwo == false {
+            currentHint?.removeFromSuperview()
+        }
 		switch phase {
 		
 		
@@ -76,9 +77,12 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			tutorialAnimation.resume()
 
 		case .recallFirstChoiceMade, .recallSecondChoiceMade:
-			view.window?.clearOverlay()
-			view.removeHighlight()
-			removeHint(hint: "hint")
+            if showingSelectNextTwo == false {
+                view.window?.clearOverlay()
+                removeHint(hint: "hint")
+            }
+            showingSelectNextTwo = true
+            view.removeHighlight()
 			tutorialAnimation.time = 10
 			needHelp()
 			tutorialAnimation.resume()
@@ -128,6 +132,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 		
 		switch gridSelected  {
 		case 1:
+            maybeShowSelectNextTwoHint()
 			phase = .recallFirstChoiceMade
 		case 2:
 			phase = .recallSecondChoiceMade
@@ -152,6 +157,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 		
 		switch gridSelected  {
 		case 0:
+            maybeRemoveSelectNextTwoHint()
 			phase = .recallFirstStep
 		case 1:
 			phase = .recallFirstChoiceMade
@@ -440,6 +446,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			}
 			weakSelf.tutorialAnimation.pause()
 			
+            weakSelf.maybeRemoveSelectNextTwoHint()
 			
 			//Otherwise let's give them a choice.
 			weakSelf.currentHint = weakSelf.view.window?.hint {
@@ -477,21 +484,6 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			}
 			
 		}
-	}
-	func continueTutorial() {
-		
-			test.collectionView.overlay()
-			currentHint = view.window?.hint {
-				$0.content  = "".localized(ACTranslationKey.popup_tutorial_tapbox)
-				
-				
-				$0.layout {
-					$0.bottom == test.collectionView.topAnchor - 20
-					$0.centerX == view.centerXAnchor
-					
-				}
-			}
-
 	}
 	func addDoubleHint(hint:String, seconds:TimeInterval = 3.0) {
 		let time = tutorialAnimation.time + seconds
@@ -606,4 +598,32 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 		
 		
 	}
+    func maybeShowSelectNextTwoHint() {
+        showingSelectNextTwo = true
+        self.test.collectionView.overlay()
+        currentHint?.removeFromSuperview()
+        self.removeHint(hint: "hint")
+        self.currentHint = self.view.window?.hint {
+            $0.content = "".localized(ACTranslationKey.popup_tutorial_tapbox)
+            $0.layout {
+                $0.centerX == self.view.centerXAnchor
+                $0.width == 252
+                $0.bottom == self.test.collectionView.topAnchor - 20
+            }
+        }
+    }
+    
+    func maybeRemoveSelectNextTwoHint() {
+        guard let hint = self.currentHint else { return }
+        if hint.content == "".localized(ACTranslationKey.popup_tutorial_tapbox) {
+            self.currentHint?.removeFromSuperview()
+            self.currentHint = nil
+            showingSelectNextTwo = false
+            self.removeHint(hint: "hint")
+            
+        }
+        
+    }
+    
+
 }
