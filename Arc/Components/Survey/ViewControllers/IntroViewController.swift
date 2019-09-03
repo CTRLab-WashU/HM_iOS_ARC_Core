@@ -30,6 +30,9 @@ public enum IntroViewControllerStyle : String {
 			view.infoContent.headingLabel!.layout {
 				$0.centerY == view.centerYAnchor - 40
 			}
+            
+            view.infoContent.contentLabel?.textColor = UIColor(named: "Badge Gray")
+            
 			view.nextButton!.layout {
 				$0.bottom == view.safeAreaLayoutGuide.bottomAnchor - 24
 			}
