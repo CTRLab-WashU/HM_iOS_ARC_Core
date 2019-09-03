@@ -63,7 +63,8 @@ public class ACTodayProgressView : UIView {
 					.translate(animationParams)
 				
 			}
-			
+			//This is the group of four progress views in the
+			//middle of the page.
 			$0.stack {
 				stack.setCustomSpacing(32, after: $0)
 
@@ -78,6 +79,8 @@ public class ACTodayProgressView : UIView {
 						$0.config.strokeWidth = 6
 						$0.config.barColor = ACColor.highlight
 						$0.config.trackColor = ACColor.primary
+						$0.config.size = 64
+						$0.ellipseConfig.size = 64
 						$0.checkConfig.scale = 0.5
 						$0.progress = 0
 						$0.isHidden = true
