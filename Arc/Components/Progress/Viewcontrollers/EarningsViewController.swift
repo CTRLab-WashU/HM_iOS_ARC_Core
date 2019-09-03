@@ -103,6 +103,13 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		print("refreshing")
 		NotificationCenter.default.post(name: .ACStartEarningsRefresh, object: nil)
 	}
+	public override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		if isPostTest {
+			customView.showSpinner(color: ACColor.highlight, backgroundColor: ACColor.primaryInfo)
+
+		}
+	}
 	public override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		lastUpdated = app.appController.lastFetched["EarningsOverview"]
@@ -116,6 +123,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 			guard let weakSelf = self else {
 				return
 			}
+			weakSelf.customView.hideSpinner()
 			weakSelf.customView.root.refreshControl?.endRefreshing()
 
 			weakSelf.lastUpdated = weakSelf.app.appController.lastFetched["EarningsOverview"]
