@@ -49,9 +49,9 @@ open class MHAlertView: UIView {
 		delayTimer = nil
 		
 		
-		
 		messageLabel.attributedText = markupRenderer.render(text: message ?? "")
-		self.buttons = buttons
+		messageLabel.font = UIFont(name: "Roboto", size: 17)
+        self.buttons = buttons
 		buttonMap = [:]
 		stack.removeSubviews()
 		for button in buttons {
