@@ -178,6 +178,7 @@ public class ACTodayProgressView : UIView {
 		sessionRemainingLabel.isHidden = false
 		sessionRemainingLabel.text = "".localized(ACTranslationKey.progress_schedule_status1)
 			.replacingOccurrences(of: "{#}", with: "\(sessionsRemaining)")
+        sessionRemainingLabel.textColor = UIColor(named: "TodaysProgressMoreToGo")
 	}
 	public func set(completed:Bool) {
 		if completed {
