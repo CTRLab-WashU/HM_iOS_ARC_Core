@@ -175,7 +175,7 @@ public class PricesTestViewController: ArcViewController {
 	/// Displays the recall portion of the test. This controller is not timed.
 	/// As the user makes selections the test will progress and track their
 	/// response time.
-	public func showQuestionController() {
+	public func showQuestionController(alertView:MHAlertView) {
 		//Present controller
 		questionDisplay = .get()
 		questionDisplay?.responseId = responseID
@@ -185,6 +185,7 @@ public class PricesTestViewController: ArcViewController {
 			}
 			weakself.questionDisplay?.selectQuestion()
 		})
+		alertView.removeFromSuperview()
 		
 	}
 	

@@ -206,6 +206,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 			if let s = self {
 				s.tapOnTheFsLabel.isHidden = true
 			}
+			$0.removeFromSuperview()
 		})])
 
 		
@@ -221,7 +222,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 		Arc.shared.displayAlert(message: "Try to remember the location\nof the items!".localized("grid_transition_overlay"),
 									options: [.wait(waitTime: 2.0, {
 										self.displaySymbols()
-			
+										$0.removeFromSuperview()
 									})])
 
 		

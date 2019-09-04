@@ -15,16 +15,16 @@ open class MHAlertView: UIView {
 		case cancel(String, ()->())
 		
 		//Wait the specified amount of time
-		case wait(waitTime:TimeInterval, ()->())
+		case wait(waitTime:TimeInterval, (MHAlertView)->())
 		
 		//Delay input for a specified amount of time
-		case delayed(name:String, delayTime:TimeInterval, ()->())
+		case delayed(name:String, delayTime:TimeInterval, (MHAlertView)->())
 	}
 	var buttons:[ButtonType]?
 	
 	@IBOutlet weak var stack:UIStackView!
 	@IBOutlet weak var messageLabel:UILabel!
-	private var waitTimer:Timer?
+	private var waitTimers:[Timer] = []
 	private var delayTimer:Timer?
 	private var buttonMap: [UIView:ButtonType] = [:]
     
@@ -41,10 +41,15 @@ open class MHAlertView: UIView {
         markupRenderer = HMMarkupRenderer(baseFont: messageLabel.font)
 
 	}
+	public func set(message:String) {
+		messageLabel.attributedText = markupRenderer.render(text: message ?? "")
+
+	}
 	public func set(message:String?, buttons:[ButtonType]) {
 		//Clear timers in case of rapid reuse
-		waitTimer?.invalidate()
-		waitTimer = nil
+		
+		waitTimers.forEach {$0.invalidate()}
+		waitTimers = []
 		delayTimer?.invalidate()
 		delayTimer = nil
 		
@@ -82,15 +87,15 @@ open class MHAlertView: UIView {
 		
 		//We won't return a button here because there is no button to show.
 		case let .wait(waitTime, callBack):
-			waitTimer = Timer.scheduledTimer(withTimeInterval: waitTime, repeats: false) { (timer) in
-				callBack()
-				self.removeFromSuperview()
-			}
+			waitTimers.append( Timer.scheduledTimer(withTimeInterval: waitTime, repeats: false) { (timer) in
+				callBack(self)
+				
+			})
 			return nil
 		
 		//Here we return a button but also disable its use for a period of time
 		case let .delayed(title, delayTime, _):
-			waitTimer?.fireDate += delayTime
+			waitTimers.forEach { $0.fireDate += delayTime }
 			
 			//Create a button
 			let button:PrimaryButton = .get()
@@ -128,7 +133,7 @@ open class MHAlertView: UIView {
 			case let .cancel(_, callBack):
 				callBack()
 			case let .delayed(_, _, callBack):
-				callBack()
+				callBack(self)
 				
 			default:
 				break
@@ -141,10 +146,13 @@ open class MHAlertView: UIView {
 		if delayTimer?.isValid ?? false {
 			delayTimer?.invalidate()
 		}
-		if waitTimer?.isValid ?? false {
-	
-			waitTimer?.invalidate()
+		
+		waitTimers.forEach {
+			if $0.isValid {
+				$0.invalidate()
+			}
 		}
+		
 		UIView.animate(withDuration: 0.15, delay: 0.1, options: .curveEaseOut, animations: {
 			self.alpha = 0
 		}) { (_) in
