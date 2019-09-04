@@ -41,7 +41,7 @@ public class HintView : IndicatorView {
 		stack {
 			
 			$0.isLayoutMarginsRelativeArrangement = true
-			$0.layoutMargins = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+			$0.layoutMargins = UIEdgeInsets(top: 16, left: 8, bottom: 16, right: 8)
 			titleLabel = $0.acLabel {
 				$0.isHidden = true
 				$0.textAlignment = .center
@@ -59,7 +59,7 @@ public class HintView : IndicatorView {
 		}
 		button = acButton {
 			$0.layout {
-				$0.height == 28
+				$0.height == 32
 			}
 			$0.isHidden = true
 			$0.primaryColor = .clear
