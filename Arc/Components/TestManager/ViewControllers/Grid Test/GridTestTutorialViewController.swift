@@ -150,31 +150,6 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			didSelect()
 	}
 	
-	func didDeselectGrid(indexPath: IndexPath) {
-		
-		gridSelected -= 1
-		
-		
-		switch gridSelected  {
-		case 0:
-            maybeRemoveSelectNextTwoHint()
-			phase = .recallFirstStep
-		case 1:
-			phase = .recallFirstChoiceMade
-		case 2:
-			phase = .recallSecondChoiceMade
-		case 3:
-			test.collectionView.isUserInteractionEnabled = false
-			removeHint(hint: "hint")
-			phase = .end
-		default:
-			phase = .recallFirstStep
-		}
-		
-		
-		didSelect()
-	}
-	
 	func didDeselectLeter(indexPath: IndexPath) {
 		didSelect()
 	}
