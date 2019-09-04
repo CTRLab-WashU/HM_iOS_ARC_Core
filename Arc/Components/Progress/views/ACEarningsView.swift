@@ -98,7 +98,7 @@ public class ACEarningsView : ACTemplateView {
 								$0.textAlignment = .center
 								
 								Roboto.Style.body($0, color:ACColor.highlight)
-								$0.text = "".localized(ACTranslationKey.earnings_weektotal)
+								$0.text = "".localized(ACTranslationKey.earnings_studytotal)
 							}
 							self.thisStudysEarningsLabel = $0.acLabel {
 								$0.textAlignment = .center

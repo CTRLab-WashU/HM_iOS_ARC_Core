@@ -9,7 +9,7 @@
 import UIKit
 import ArcUIKit
 public class TestCountDownViewController: CustomViewController<TestCountDownView> {
-	public var nextVc:UIViewController
+	public var nextVc:UIViewController?
 	
 	init(nextVc:UIViewController) {
 		self.nextVc = nextVc
@@ -43,7 +43,8 @@ public class TestCountDownViewController: CustomViewController<TestCountDownView
 			guard let weakSelf = self else {
 				return false
 			}
-			weakSelf.present(weakSelf.nextVc, animated: false, completion: nil)
+			weakSelf.app.appNavigation.navigate(vc: weakSelf.nextVc!, direction: .toTop)
+			weakSelf.nextVc = nil
 			return true
 		}
 	}

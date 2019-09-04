@@ -51,6 +51,7 @@ public class TestProgressViewController: CustomViewController<TestProgressView> 
 	public func waitAndExit(time:TimeInterval) {
 		timer = Timer.scheduledTimer(withTimeInterval: time, repeats: false, block: {[weak self] (timer) in
 			self?.delegate?.testProgressDidComplete()
+			
 		})
 	}
 	
