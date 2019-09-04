@@ -336,7 +336,12 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
                 if value > -1 {
                     iCell.setImage(image: self.symbols[value]);
                     iCell.image.isHidden = false;
-					symbolIndexPaths.append(indexPath)
+                    symbolIndexPaths.append(indexPath)
+                }
+            } else if (self.isPracticeTest && phase == 2) {
+                let value = controller.get(item: index, section: testNumber, gridType: .image)
+                if value > -1 {
+                    iCell.setImage(image: self.symbols[value]);
                 }
             } else {
                 iCell.clear()
@@ -452,6 +457,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 			if let c = collectionView.cellForItem(at: indexPath) as? GridImageCell {
 				c.overlay()
 				c.highlight()
+                c.image.isHidden = false
 				return c
 			}
 		}
@@ -475,7 +481,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 				if let c = collectionView.cellForItem(at: indexPath) as? GridImageCell {
 					
 					c.highlight(radius: 0.0)
-					
+					c.image.isHidden = false
 				}
 			}
 			if mode == .fCell {

@@ -129,7 +129,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 	
 	func didSelectGrid(indexPath: IndexPath) {
 		gridSelected += 1
-		
+		showDot(on: indexPath)
 		switch gridSelected  {
 		case 1:
             maybeShowSelectNextTwoHint()
@@ -178,6 +178,11 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 	func didDeselectLeter(indexPath: IndexPath) {
 		didSelect()
 	}
+    
+    func showDot(on indexPath: IndexPath) {
+        guard let cell = self.test.collectionView.cellForItem(at: indexPath) as? GridImageCell else { return }
+        cell.dotView.isHidden = false
+    }
 
 	func setupScript() {
 		state.addCondition(atTime: progress(seconds: 0), flagName: "start-0") { [weak self] in
