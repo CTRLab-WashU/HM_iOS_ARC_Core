@@ -10,11 +10,14 @@ import UIKit
 open class GridImageCell:UICollectionViewCell
 {
     @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var dotView: BorderedView!
+    var isPracticeCell:Bool = false
     var touchLocation:CGPoint?
     var touchTime:Date?
     func setImage(image:UIImage?){
         
         self.image.image = image
+        self.image.backgroundColor = .clear
     }
     
     override open var isSelected: Bool {
@@ -22,11 +25,15 @@ open class GridImageCell:UICollectionViewCell
             if newValue == true
             {
                 self.backgroundColor = UIColor(red:0, green:0.37, blue:0.52, alpha:1) //UIColor(red: 13.0 / 255.0, green: 143.0 / 255.0, blue: 192.0 / 255.0, alpha: 1.0);
-                
+                self.image.isHidden = true
+                if isPracticeCell {
+                    self.dotView.isHidden = false
+                }
             }
             else
             {
                 self.backgroundColor = UIColor(red: 191.0/255.0, green: 215.0/255.0, blue: 224.0/255.0, alpha: 1.0) //UIColor(red: 182.0/255.0, green: 221.0/255.0, blue: 236.0/255.0, alpha: 1.0);
+                self.dotView.isHidden = true
             }
         }
     }
@@ -37,6 +44,10 @@ open class GridImageCell:UICollectionViewCell
         {
             touchLocation = t.location(in: self.window);
             touchTime = Date();
+        }
+        
+        if self.isPracticeCell && self.isSelected {
+            return
         }
         
         super.touchesBegan(touches, with: event)

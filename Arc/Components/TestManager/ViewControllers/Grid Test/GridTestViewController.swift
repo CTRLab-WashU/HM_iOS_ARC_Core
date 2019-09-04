@@ -11,7 +11,6 @@ import ArcUIKit
 public protocol GridTestViewControllerDelegate : class {
 	func didSelectGrid(indexPath:IndexPath)
 	func didSelectLetter(indexPath:IndexPath)
-	func didDeselectGrid(indexPath:IndexPath)
 	func didDeselectLeter(indexPath:IndexPath)
 	
 }
@@ -325,6 +324,8 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
             
             let iCell = cell as! GridImageCell
 			
+            iCell.isPracticeCell = self.isPracticeTest
+            
 			if mode != .answers {
             	iCell.image.isHidden = true;
 			} else {
@@ -337,7 +338,12 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
                 if value > -1 {
                     iCell.setImage(image: self.symbols[value]);
                     iCell.image.isHidden = false;
-					symbolIndexPaths.append(indexPath)
+                    symbolIndexPaths.append(indexPath)
+                }
+            } else if (self.isPracticeTest && phase == 2) {
+                let value = controller.get(item: index, section: testNumber, gridType: .image)
+                if value > -1 {
+                    iCell.setImage(image: self.symbols[value]);
                 }
             } else {
                 iCell.clear()
@@ -423,14 +429,12 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
     {
         if (collectionView.cellForItem(at: indexPath) as? GridImageCell) != nil
         {
+            guard !isPracticeTest else { return }
+            
             _ = controller.unsetValue(responseIndex: indexPath.row,
                                 questionIndex: testNumber,
                                 gridType: .image,
                                 id: responseId)
-			
-//			print(value.toString())
-			delegate?.didDeselectGrid(indexPath: indexPath)
-			
         }
         else if let c = collectionView.cellForItem(at: indexPath) as? GridFCell
         {
@@ -453,6 +457,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 			if let c = collectionView.cellForItem(at: indexPath) as? GridImageCell {
 				c.overlay()
 				c.highlight()
+                c.image.isHidden = false
 				return c
 			}
 		}
@@ -476,7 +481,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 				if let c = collectionView.cellForItem(at: indexPath) as? GridImageCell {
 					
 					c.highlight(radius: 0.0)
-					
+					c.image.isHidden = false
 				}
 			}
 			if mode == .fCell {

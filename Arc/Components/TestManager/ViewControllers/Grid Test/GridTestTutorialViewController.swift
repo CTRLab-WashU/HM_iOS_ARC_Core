@@ -129,7 +129,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 	
 	func didSelectGrid(indexPath: IndexPath) {
 		gridSelected += 1
-		
+		showDot(on: indexPath)
 		switch gridSelected  {
 		case 1:
             maybeShowSelectNextTwoHint()
@@ -150,34 +150,14 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			didSelect()
 	}
 	
-	func didDeselectGrid(indexPath: IndexPath) {
-		
-		gridSelected -= 1
-		
-		
-		switch gridSelected  {
-		case 0:
-            maybeRemoveSelectNextTwoHint()
-			phase = .recallFirstStep
-		case 1:
-			phase = .recallFirstChoiceMade
-		case 2:
-			phase = .recallSecondChoiceMade
-		case 3:
-			test.collectionView.isUserInteractionEnabled = false
-			removeHint(hint: "hint")
-			phase = .end
-		default:
-			phase = .recallFirstStep
-		}
-		
-		
-		didSelect()
-	}
-	
 	func didDeselectLeter(indexPath: IndexPath) {
 		didSelect()
 	}
+    
+    func showDot(on indexPath: IndexPath) {
+        guard let cell = self.test.collectionView.cellForItem(at: indexPath) as? GridImageCell else { return }
+        cell.dotView.isHidden = false
+    }
 
 	func setupScript() {
 		state.addCondition(atTime: progress(seconds: 0), flagName: "start-0") { [weak self] in

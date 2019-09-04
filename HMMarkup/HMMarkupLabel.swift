@@ -37,7 +37,11 @@ import UIKit
             text = config.translation?[key] ?? text
         }
         renderer = HMMarkupRenderer(baseFont: self.font)
+        //TODO:merge this with the attributes from the new render
+        //var prevAttributes = self.attributedText?.attributes(at: 0, effectiveRange: nil)
+
         let attributedString = NSMutableAttributedString(attributedString: renderer.render(text: text, template: self.template))
+        
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = spacing
         paragraphStyle.alignment = self.textAlignment

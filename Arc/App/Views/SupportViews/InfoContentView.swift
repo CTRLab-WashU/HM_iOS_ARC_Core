@@ -98,14 +98,14 @@ public class InfoContentView: UIStackView {
 
 				Roboto.Style.body($0,
 								  color:textColor)
-				$0.text = text
+				
+                $0.spacing = 5.5
+                
+                $0.text = text
 				
 				$0.layout {
 					$0.width == self.widthAnchor ~ 400
 				}
-                
-                $0.spacing = 5.5
-                $0.markupText()
 			}
 		}
 		//Roboto.PostProcess.renderMarkup(contentTextView!, template: template)
