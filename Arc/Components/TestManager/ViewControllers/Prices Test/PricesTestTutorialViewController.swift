@@ -105,6 +105,12 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 			weakSelf.pricesTest.priceDisplay.isUserInteractionEnabled = true
 			weakSelf.currentHint = self?.view.window?.hint {
 				$0.content = "The Prices test has two parts. *First, evaluate the price.*"
+                $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                        secondaryColor: UIColor(named:"HintFill")!,
+                                                        textColor: .black,
+                                                        cornerRadius: 8.0,
+                                                        arrowEnabled: true,
+                                                        arrowAbove: true))
 				$0.layout {
 					$0.top == weakSelf.pricesTest.priceDisplay.bottomAnchor + 10
 					$0.centerX == weakSelf.pricesTest.priceDisplay.centerXAnchor
@@ -126,6 +132,12 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 			weakSelf.tutorialAnimation.pause()
 			self?.currentHint = self?.view.window?.hint {
 				$0.content = "*What do you think?*\n Choose the answer that makes sense to you."
+                $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                        secondaryColor: UIColor(named:"HintFill")!,
+                                                        textColor: .black,
+                                                        cornerRadius: 8.0,
+                                                        arrowEnabled: true,
+                                                        arrowAbove: true))
 				$0.layout {
 					$0.top == weakSelf.pricesTest.priceDisplay.bottomAnchor + 10
 					$0.centerX == weakSelf.pricesTest.priceDisplay.centerXAnchor
@@ -181,6 +193,12 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 			weakSelf.tutorialAnimation.pause()
 			self?.currentHint = self?.view.window?.hint {
 				$0.content = "*What do you think?*\n Choose the answer that makes sense to you."
+                $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                        secondaryColor: UIColor(named:"HintFill")!,
+                                                        textColor: .black,
+                                                        cornerRadius: 8.0,
+                                                        arrowEnabled: true,
+                                                        arrowAbove: true))
 				$0.layout {
 					$0.top == weakSelf.pricesTest.priceDisplay.bottomAnchor + 10
 					$0.centerX == weakSelf.pricesTest.priceDisplay.centerXAnchor
@@ -239,7 +257,12 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 
 			self?.currentHint = self?.view.window?.hint {
 				$0.content = "*What do you think?*\nTry your best to recall the price from part one."
-				
+                $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                        secondaryColor: UIColor(named:"HintFill")!,
+                                                        textColor: .black,
+                                                        cornerRadius: 8.0,
+                                                        arrowEnabled: true,
+                                                        arrowAbove: true))
 				$0.layout {
 					$0.top == weakSelf.pricesQuestions.questionDisplay.bottomAnchor + 10
 					$0.centerX == weakSelf.pricesQuestions.questionDisplay.centerXAnchor
@@ -293,7 +316,12 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 			
 			self?.currentHint = self?.view.window?.hint {
 				$0.content = "*What do you think?*\nTry your best to recall the price from part one."
-				
+                $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                        secondaryColor: UIColor(named:"HintFill")!,
+                                                        textColor: .black,
+                                                        cornerRadius: 8.0,
+                                                        arrowEnabled: true,
+                                                        arrowAbove: true))
 				$0.layout {
 					$0.top == weakSelf.pricesQuestions.questionDisplay.bottomAnchor + 10
 					$0.centerX == weakSelf.pricesQuestions.questionDisplay.centerXAnchor

@@ -205,6 +205,12 @@ open class IntroViewController: CustomViewController<InfoView> {
 			if showTutorialPrompt {
 				currentHint = customView.nextButton!.hint {
 					$0.content = "".localized(ACTranslationKey.popup_tutorial_view)
+                    $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                            secondaryColor: UIColor(named:"HintFill")!,
+                                                            textColor: .black,
+                                                            cornerRadius: 8.0,
+                                                            arrowEnabled: true,
+                                                            arrowAbove: true))
 					$0.layout {
 						$0.width == customView.nextButton!.widthAnchor
 						$0.height == customView.nextButton!.heightAnchor
@@ -263,6 +269,12 @@ open class IntroViewController: CustomViewController<InfoView> {
 			tutorialButton.overlay()
 			currentHint = view.window?.hint {
 				$0.content = "".localized(ACTranslationKey.popup_tutorial_complete)
+                $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                        secondaryColor: UIColor(named:"HintFill")!,
+                                                        textColor: .black,
+                                                        cornerRadius: 8.0,
+                                                        arrowEnabled: true,
+                                                        arrowAbove: false))
 				$0.layout {
 					$0.bottom == tutorialButton.topAnchor - 20
 					$0.centerX == tutorialButton.centerXAnchor

@@ -50,6 +50,12 @@ open class SliderView: UIView, SurveyInput {
 		surveyInputDelegate?.didFinishSetup()
 		self.hint = hint {
 			$0.content = "".localized(ACTranslationKey.popup_drag)
+            $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                    secondaryColor: UIColor(named:"HintFill")!,
+                                                    textColor: .black,
+                                                    cornerRadius: 8.0,
+                                                    arrowEnabled: true,
+                                                    arrowAbove: false))
 			$0.layout {
 				$0.bottom == valueSlider.topAnchor - 32
 				$0.centerX == valueSlider.centerXAnchor

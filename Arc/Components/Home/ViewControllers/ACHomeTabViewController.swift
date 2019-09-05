@@ -80,6 +80,12 @@ class ACHomeTabViewController: UITabBarController {
 				$0.width == 232
 				$0.height == 146
 			}
+            $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                    secondaryColor: UIColor(named:"HintFill")!,
+                                                    textColor: .black,
+                                                    cornerRadius: 8.0,
+                                                    arrowEnabled: true,
+                                                    arrowAbove: false))
 			$0.content = "".localized(self.onboardingKeys[index])
 			$0.buttonTitle = "".localized(self.buttonKeys[index])
 			$0.onTap = {[unowned self] in

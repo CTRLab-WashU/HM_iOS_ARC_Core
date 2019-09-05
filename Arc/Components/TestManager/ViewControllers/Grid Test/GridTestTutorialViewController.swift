@@ -259,7 +259,13 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			weakSelf.currentHint = weakSelf.view.window?.hint {
 				$0.content = "Tap this letter F."
 				
-				
+                $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                        secondaryColor: UIColor(named:"HintFill")!,
+                                                        textColor: .black,
+                                                        cornerRadius: 8.0,
+                                                        arrowEnabled: true,
+                                                        arrowAbove: true))
+                
 				$0.layout {
 					$0.top >= weakSelf.view.safeAreaLayoutGuide.topAnchor + 24
 					$0.leading >= weakSelf.view.safeAreaLayoutGuide.leadingAnchor + 24
@@ -408,6 +414,12 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 				view.removeFromSuperview()
 				self?.didSelect()
 			}
+            $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                    secondaryColor: UIColor(named:"HintFill")!,
+                                                    textColor: .black,
+                                                    cornerRadius: 8.0,
+                                                    arrowEnabled: true,
+                                                    arrowAbove: true))
 			$0.layout {
 				$0.centerY == image.bottomAnchor + 100
 				$0.centerX == image.centerXAnchor
@@ -486,7 +498,12 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			
 			weakSelf.currentHint = weakSelf.view.window?.hint {
 				$0.content  = "".localized("popup_tutorial_tapbox2")
-				
+                $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                        secondaryColor: UIColor(named:"HintFill")!,
+                                                        textColor: .black,
+                                                        cornerRadius: 8.0,
+                                                        arrowEnabled: true,
+                                                        arrowAbove: false))
 				$0.layout {
 					$0.centerX == weakSelf.view.centerXAnchor
 					$0.width == 252
@@ -519,7 +536,13 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 				in this box. Tap here.
 				""".localized(ACTranslationKey.popup_tutorial_tapbox3)
 				
-				
+                $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                        secondaryColor: UIColor(named:"HintFill")!,
+                                                        textColor: .black,
+                                                        cornerRadius: 8.0,
+                                                        arrowEnabled: true,
+                                                        arrowAbove: false))
+                
 				$0.layout {
 					$0.centerX == weakSelf.view.centerXAnchor
 					$0.width == 252
@@ -560,7 +583,13 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 				in this box. Tap here.
 				""".localized(ACTranslationKey.popup_tutorial_boxhint)
 				
-				
+                $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                        secondaryColor: UIColor(named:"HintFill")!,
+                                                        textColor: .black,
+                                                        cornerRadius: 8.0,
+                                                        arrowEnabled: true,
+                                                        arrowAbove: true))
+                
 				$0.layout {
 					$0.centerX == weakSelf.view.centerXAnchor
 					$0.width == 252
@@ -589,6 +618,12 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
         self.removeHint(hint: "hint")
         self.currentHint = self.view.window?.hint {
             $0.content = "".localized(ACTranslationKey.popup_tutorial_tapbox)
+            $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                    secondaryColor: UIColor(named:"HintFill")!,
+                                                    textColor: .black,
+                                                    cornerRadius: 8.0,
+                                                    arrowEnabled: true,
+                                                    arrowAbove: false))
             $0.layout {
                 $0.centerX == self.view.centerXAnchor
                 $0.width == 252

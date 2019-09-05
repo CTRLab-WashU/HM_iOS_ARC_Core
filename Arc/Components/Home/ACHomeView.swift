@@ -76,6 +76,12 @@ public class ACHomeView: ACTemplateView {
 		tutorialTarget?.overlay()
 		return window?.hint { [unowned self] in
 			$0.content = "".localized(ACTranslationKey.popup_begin)
+            $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                    secondaryColor: UIColor(named:"HintFill")!,
+                                                    textColor: .black,
+                                                    cornerRadius: 8.0,
+                                                    arrowEnabled: true,
+                                                    arrowAbove: true))
 			$0.layout {
 				$0.centerX == self.tutorialTarget!.centerXAnchor
 				$0.top == self.tutorialTarget!.bottomAnchor + 12
