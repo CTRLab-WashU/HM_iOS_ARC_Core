@@ -22,6 +22,11 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
     var test:SymbolsTestViewController = .get(nib: "SymbolsTestTutorialViewController", bundle: Bundle(for: SymbolsTestViewController.self))
 	var selectionMade:Bool = false
 	var questionsAnswered = 0
+    
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
 		duration = 15
         super.viewDidLoad()

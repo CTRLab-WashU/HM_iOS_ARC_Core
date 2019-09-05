@@ -10,8 +10,9 @@ import UIKit
 
 open class InstructionNavigationController: UINavigationController, SurveyInputDelegate {
 	
-	
-	
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 	
 	var app = Arc.shared
 	public var instructions:[Survey.Question]?

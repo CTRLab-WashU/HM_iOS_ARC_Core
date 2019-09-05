@@ -13,6 +13,10 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 	enum TestPhase {
 		case start, fs, fsTimed, recallFirstStep, recallFirstChoiceMade, recallSecondChoiceMade, showingReminder, recall, end
 	}
+    
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 	
 	let test:GridTestViewController = .get()
 	

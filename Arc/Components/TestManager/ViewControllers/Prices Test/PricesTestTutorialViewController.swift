@@ -16,6 +16,10 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 	var pricesQuestions:PricesQuestionViewController!
 	var selectionMade = false
 	
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         self.duration = 43.5
         super.viewDidLoad()

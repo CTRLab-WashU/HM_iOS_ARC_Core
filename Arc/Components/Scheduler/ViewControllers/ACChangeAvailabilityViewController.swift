@@ -22,6 +22,10 @@ open class ACChangeAvailabilityViewController: UIViewController {
     
     @IBOutlet weak var changeDateButton: ACButton!
     
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if Arc.shared.studyController.getCurrentStudyPeriod() != nil {

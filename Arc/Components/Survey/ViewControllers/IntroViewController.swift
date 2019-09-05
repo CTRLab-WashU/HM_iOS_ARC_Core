@@ -116,7 +116,10 @@ open class IntroViewController: CustomViewController<InfoView> {
 	var shouldHideBackButton = false
     var isIntersitial = false
 
-	
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override open func viewDidLoad() {
         super.viewDidLoad()
 		
