@@ -102,9 +102,11 @@ public extension HMRequest {
     var params: [String : String] {
         get {
             var p = _params
-            
-            p["device_id"] = "\(HMAPI.shared.clientId ?? "")"
-            
+			
+			//If one is set don't overwrite it. Migration uses this.
+			if p["device_id"] == nil {
+            	p["device_id"] = "\(HMAPI.shared.clientId ?? "")"
+			}
             return p
             
         }

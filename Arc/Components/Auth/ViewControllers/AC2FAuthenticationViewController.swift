@@ -211,21 +211,21 @@ public enum VerifyError : Error {
 
 //A small library containing two factor auth utilities
 public struct TwoFactorAuth {
-	static func verifyParticipant(id:String, didFinish:@escaping (Result<String>)->()){
+	static func verifyParticipant(id:String, didFinish:@escaping (ACResult<String>)->()){
 		
 		if (Arc.environment?.blockApiRequests ?? false) == true
 		{
-			didFinish(Result.success(id));
+			didFinish(ACResult.success(id));
 			return;
 		}
 		let req = ConfirmationCode.Request(participant_id: id)
 		print(req.toString())
 		confirmationCode.execute(data: req, params: nil) { (urlResponse, hmResponse, fault) in
 			if hmResponse?.response?.success ?? false == true {
-				didFinish(Result.success(id))
+				didFinish(ACResult.success(id))
 			} else {
 			
-				didFinish(Result.error(VerifyError.invalidId))
+				didFinish(ACResult.error(VerifyError.invalidId))
 			}
 		}
 	}

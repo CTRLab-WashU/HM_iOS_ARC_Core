@@ -18,7 +18,7 @@
 
 import Foundation
 import CoreData
-public enum Result<T> {
+public enum ACResult<T> {
     case success(T)
     case error(Error)
 }

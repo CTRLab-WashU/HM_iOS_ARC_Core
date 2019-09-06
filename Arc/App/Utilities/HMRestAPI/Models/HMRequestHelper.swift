@@ -95,7 +95,42 @@ public enum HMAPIRequest<T:Codable,S:Codable> {
         request?.execute()
 
     }
-    
+	public func executeZip(data:Data, params:[String:String]? = nil, completion:((URLResponse?, S?, HMFault?)->Void)? = nil) {
+		var request:HMRequest<S>?
+		var method:BackendRequestMethod = .get
+		var requestUrl:String = ""
+		switch self {
+		case let .get(url):
+			method = .get
+			requestUrl = url
+			break
+		case let .post(url):
+			method = .post
+			requestUrl = url
+			
+			break
+		case let .put(url):
+			method = .put
+			requestUrl = url
+			
+			break
+		case let .patch(url):
+			method = .patch
+			requestUrl = url
+			
+			break
+		case let .delete(url):
+			method = .delete
+			requestUrl = url
+			
+			break
+			
+		}
+		request = createZipRequest(method: method, url: requestUrl, data: data, params: params, completion: completion)
+		
+		request?.execute()
+		
+	}
     public func executeMultipart(data:Data, params:[String:String]? = nil, completion:((URLResponse?, S?, HMFault?)->Void)? = nil) {
         var request:HMRequest<S>?
         var method:BackendRequestMethod = .get
@@ -164,6 +199,32 @@ public enum HMAPIRequest<T:Codable,S:Codable> {
         }
         return request
     }
+	 public func createZipRequest(method:BackendRequestMethod, url:String, data:Data, params:[String:String]? = nil, boundary:String = UUID().uuidString, completion:((URLResponse?, S?, HMFault?)->Void)? = nil) -> HMRequest<S> {
+		 var request = HMRequest<S>(method: method, endPoint: url)
+		request.headers = HMAPI.authHeaders()
+		request.headers?["Content-Type"] = "application/zip"
+		
+		request.data = data
+		
+		request.success = {
+			response, retval, err in
+			
+			if let c = completion {
+				c(response, retval, err)
+			}
+		}
+		
+		request.failure = { response in
+			
+		}
+		
+		request.unhandledFailure = {
+			err in
+			dump(err)
+		}
+		return request
+		
+	}
     public func createMultiPartRequest(method:BackendRequestMethod, url:String, data:Data, params:[String:String]? = nil, boundary:String = UUID().uuidString, completion:((URLResponse?, S?, HMFault?)->Void)? = nil) -> HMRequest<S> {
         var request = HMRequest<S>(method: method, endPoint: url)
         
