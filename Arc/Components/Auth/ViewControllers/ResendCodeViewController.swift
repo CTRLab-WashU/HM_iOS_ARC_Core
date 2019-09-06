@@ -73,7 +73,7 @@ class ResendCodeViewController: CustomViewController<InfoView>, SurveyInput{
 		let id = participantId
 		MHController.dataContext.perform {
 			
-			let result:Result<String> = Await(TwoFactorAuth.verifyParticipant).execute(id)
+			let result:ACResult<String> = Await(TwoFactorAuth.verifyParticipant).execute(id)
 			switch result {
 			case .error(_):
 				break;
