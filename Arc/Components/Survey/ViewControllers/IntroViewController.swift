@@ -211,6 +211,8 @@ open class IntroViewController: CustomViewController<InfoView> {
                                                             cornerRadius: 8.0,
                                                             arrowEnabled: true,
                                                             arrowAbove: true))
+                    $0.updateHintContainerMargins()
+                    $0.updateHintStackMargins()
 					$0.layout {
 						$0.width == customView.nextButton!.widthAnchor
 						$0.height == customView.nextButton!.heightAnchor
@@ -275,12 +277,14 @@ open class IntroViewController: CustomViewController<InfoView> {
                                                         cornerRadius: 8.0,
                                                         arrowEnabled: true,
                                                         arrowAbove: false))
+                $0.updateHintStackMargins()
 				$0.layout {
 					$0.bottom == tutorialButton.topAnchor - 20
 					$0.centerX == tutorialButton.centerXAnchor
 					$0.width == tutorialButton.widthAnchor
 				}
 				$0.buttonTitle = "".localized(ACTranslationKey.popup_gotit)
+                $0.updateHintContainerMargins()
 				$0.onTap = { [weak self] in
 					self?.currentHint?.removeFromSuperview()
 					self?.view.window?.clearOverlay()

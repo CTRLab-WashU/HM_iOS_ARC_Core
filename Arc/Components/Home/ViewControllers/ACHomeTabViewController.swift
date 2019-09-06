@@ -86,8 +86,10 @@ class ACHomeTabViewController: UITabBarController {
                                                     cornerRadius: 8.0,
                                                     arrowEnabled: true,
                                                     arrowAbove: false))
+            $0.updateHintStackMargins()
 			$0.content = "".localized(self.onboardingKeys[index])
 			$0.buttonTitle = "".localized(self.buttonKeys[index])
+            $0.updateHintContainerMargins()
 			$0.onTap = {[unowned self] in
 				hint.removeFromSuperview()
 				self.showTab(index: index + 1)

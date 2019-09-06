@@ -66,6 +66,7 @@ open class ACHomeViewController: CustomViewController<ACHomeView> {
                 $0.width == 232
                 $0.height == 146
             }
+            
             //$0.content = "".localized(ACTranslationKey.popup_nicejob)
             $0.buttonTitle = "".localized(ACTranslationKey.popup_tour)
             $0.onTap = {[unowned self] in
