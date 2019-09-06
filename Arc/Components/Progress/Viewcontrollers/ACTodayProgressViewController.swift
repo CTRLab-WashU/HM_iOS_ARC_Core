@@ -12,6 +12,9 @@ public class ACTodayProgressViewController: CustomViewController<ACTodayProgress
 	var thisStudy:ThisStudyExpressible = Arc.shared.studyController
 	var thisWeek:ThisWeekExpressible = Arc.shared.studyController
 	
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 	
 	public init() {
 		super.init(nibName: nil, bundle: nil)

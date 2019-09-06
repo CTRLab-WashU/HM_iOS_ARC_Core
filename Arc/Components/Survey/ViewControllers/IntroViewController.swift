@@ -116,7 +116,10 @@ open class IntroViewController: CustomViewController<InfoView> {
 	var shouldHideBackButton = false
     var isIntersitial = false
 
-	
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override open func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -202,6 +205,14 @@ open class IntroViewController: CustomViewController<InfoView> {
 			if showTutorialPrompt {
 				currentHint = customView.nextButton!.hint {
 					$0.content = "".localized(ACTranslationKey.popup_tutorial_view)
+                    $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                            secondaryColor: UIColor(named:"HintFill")!,
+                                                            textColor: .black,
+                                                            cornerRadius: 8.0,
+                                                            arrowEnabled: true,
+                                                            arrowAbove: true))
+                    $0.updateHintContainerMargins()
+                    $0.updateHintStackMargins()
 					$0.layout {
 						$0.width == customView.nextButton!.widthAnchor
 						$0.height == customView.nextButton!.heightAnchor
@@ -260,12 +271,20 @@ open class IntroViewController: CustomViewController<InfoView> {
 			tutorialButton.overlay()
 			currentHint = view.window?.hint {
 				$0.content = "".localized(ACTranslationKey.popup_tutorial_complete)
+                $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                        secondaryColor: UIColor(named:"HintFill")!,
+                                                        textColor: .black,
+                                                        cornerRadius: 8.0,
+                                                        arrowEnabled: true,
+                                                        arrowAbove: false))
+                $0.updateHintStackMargins()
 				$0.layout {
 					$0.bottom == tutorialButton.topAnchor - 20
 					$0.centerX == tutorialButton.centerXAnchor
 					$0.width == tutorialButton.widthAnchor
 				}
 				$0.buttonTitle = "".localized(ACTranslationKey.popup_gotit)
+                $0.updateHintContainerMargins()
 				$0.onTap = { [weak self] in
 					self?.currentHint?.removeFromSuperview()
 					self?.view.window?.clearOverlay()

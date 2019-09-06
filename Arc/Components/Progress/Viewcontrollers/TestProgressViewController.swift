@@ -14,6 +14,11 @@ public protocol TestProgressViewControllerDelegate : class {
 public class TestProgressViewController: CustomViewController<TestProgressView> {
 	public weak var delegate:TestProgressViewControllerDelegate?
 	private var timer:Timer?
+    
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
 	init(title:String, subTitle:String, count:Int, maxCount:Int = 3) {
 		
 		super.init(nibName: nil, bundle: nil)

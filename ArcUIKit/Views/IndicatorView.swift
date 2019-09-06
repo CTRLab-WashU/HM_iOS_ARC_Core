@@ -16,13 +16,15 @@ import UIKit
         public let textColor:UIColor
         public let cornerRadius:CGFloat
 		public let arrowEnabled:Bool
+        public let arrowAbove:Bool
 		
-		public init(primaryColor:UIColor, secondaryColor:UIColor,textColor:UIColor,cornerRadius:CGFloat,arrowEnabled:Bool) {
+        public init(primaryColor:UIColor, secondaryColor:UIColor,textColor:UIColor,cornerRadius:CGFloat,arrowEnabled:Bool,arrowAbove:Bool) {
 			self.primaryColor = primaryColor
 			self.secondaryColor = secondaryColor
 			self.textColor = textColor
 			self.cornerRadius = cornerRadius
 			self.arrowEnabled = arrowEnabled
+            self.arrowAbove = arrowAbove
 		}
     }
     @IBInspectable public var primaryColor:UIColor = .black
@@ -38,6 +40,7 @@ import UIKit
     var isSelected = false
     var isEnabled = true
     var isArrowEnabled = true
+    var isArrowAbove = false
 	var container:UIStackView?
 	var path:UIBezierPath?
     override public init(frame: CGRect) {
@@ -97,6 +100,7 @@ import UIKit
         primaryColor = config.primaryColor
         secondaryColor = config.secondaryColor
         isArrowEnabled = config.arrowEnabled
+        isArrowAbove = config.arrowAbove
         layer.cornerRadius = config.cornerRadius
         backgroundColor = .clear
         setNeedsDisplay()
@@ -105,25 +109,44 @@ import UIKit
     override public func draw(_ rect: CGRect) {
         super.draw(rect)
         var insetRect = rect
-		if isArrowEnabled {
-			insetRect = rect
-				.insetBy(dx: 0, dy: 5)
-				.offsetBy(dx: 0, dy: -5)
-		}
+        
+        // below
+        if isArrowEnabled && !isArrowAbove {
+            insetRect = rect
+                .insetBy(dx: 0, dy: 5)
+                .offsetBy(dx: 0, dy: -5)
+        }
 		
+        // above
+        if isArrowEnabled && isArrowAbove {
+            insetRect = rect
+                .insetBy(dx: 0, dy: 5)
+                .offsetBy(dx: 0, dy: 5)
+        }
+        
 		path = UIBezierPath(roundedRect:insetRect,
                                 byRoundingCorners: .allCorners,
                                 cornerRadii: CGSize(width: layer.cornerRadius, height: layer.cornerRadius))
 		
-		if isArrowEnabled {
-			path?.move(to: CGPoint(x: rect.midX, y: rect.maxY))
-			path?.addLine(to: CGPoint(x: rect.midX - 10, y: rect.maxY - 10))
-			path?.addLine(to: CGPoint(x: rect.midX + 10, y: rect.maxY - 10))
-			path?.addLine(to: CGPoint(x: rect.midX, y: rect.maxY))
-			path?.close()
-		}
+        // below
+        if isArrowEnabled && !isArrowAbove {
+            path?.move(to: CGPoint(x: rect.midX, y: rect.maxY))
+            path?.addLine(to: CGPoint(x: rect.midX - 10, y: rect.maxY - 10))
+            path?.addLine(to: CGPoint(x: rect.midX + 10, y: rect.maxY - 10))
+            path?.addLine(to: CGPoint(x: rect.midX, y: rect.maxY))
+            path?.close()
+        }
 		
-		
+
+        // above
+        if isArrowEnabled && isArrowAbove {
+            path?.move(to: CGPoint(x: rect.midX, y: rect.minY))
+            path?.addLine(to: CGPoint(x: rect.midX - 10, y: rect.minY + 10))
+            path?.addLine(to: CGPoint(x: rect.midX + 10, y: rect.minY + 10))
+            path?.addLine(to: CGPoint(x: rect.midX, y: rect.minY))
+            path?.close()
+        }
+        
         let context = UIGraphicsGetCurrentContext()
 		
 		path?.addClip()

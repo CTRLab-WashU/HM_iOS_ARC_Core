@@ -12,6 +12,7 @@ public class HintView : IndicatorView {
 	var titleLabel:ACLabel!
 	private var bar:ACHorizontalBar!
 	public var button:ACButton!
+    public var hintStack:UIStackView!
 	public var content:String? {
 		get {
 			return titleLabel.text
@@ -38,7 +39,7 @@ public class HintView : IndicatorView {
 	
 	public init() {
 		super.init(frame: .zero)
-		stack {
+		hintStack = stack {
 			
 			$0.isLayoutMarginsRelativeArrangement = true
 			$0.layoutMargins = UIEdgeInsets(top: 16, left: 8, bottom: 16, right: 8)
@@ -77,7 +78,8 @@ public class HintView : IndicatorView {
 											 secondaryColor: UIColor(named:"HintFill")!,
 											 textColor: .black,
 											 cornerRadius: 8.0,
-											 arrowEnabled: false))
+											 arrowEnabled: false,
+                                             arrowAbove: false))
 	}
 	required public init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
@@ -90,7 +92,26 @@ public class HintView : IndicatorView {
 		path?.lineWidth = 8
 		path?.stroke()
 	}
+    
+    public func updateHintContainerMargins() {
+        if isArrowEnabled && !isArrowAbove && !button.isHidden {
+            container?.layoutMargins = UIEdgeInsets(top: 8, left: 0, bottom: 22, right: 0)
+        }
+    }
+    
+    public func updateHintStackMargins() {
+        if isArrowEnabled && isArrowAbove {
+            hintStack.layoutMargins = UIEdgeInsets(top: 26, left: 8, bottom: 16, right: 8)
+        }
+        else if isArrowEnabled && !isArrowAbove {
+            hintStack.layoutMargins = UIEdgeInsets(top: 16, left: 8, bottom: 26, right: 8)
+        }
+        else {
+            hintStack.layoutMargins = UIEdgeInsets(top: 16, left: 8, bottom: 16, right: 8)
+        }
+    }
 }
+
 extension UIView {
 	
 	@discardableResult

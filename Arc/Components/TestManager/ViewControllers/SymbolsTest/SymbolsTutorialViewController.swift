@@ -22,6 +22,11 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
     var test:SymbolsTestViewController = .get(nib: "SymbolsTestTutorialViewController", bundle: Bundle(for: SymbolsTestViewController.self))
 	var selectionMade:Bool = false
 	var questionsAnswered = 0
+    
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
 		duration = 15
         super.viewDidLoad()
@@ -116,6 +121,14 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 			weakSelf.test.option2.overlay()
 			weakSelf.tutorialAnimation.pause()
 			weakSelf.currentHint = weakSelf.view.window?.hint {
+                $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                        secondaryColor: UIColor(named:"HintFill")!,
+                                                        textColor: .black,
+                                                        cornerRadius: 8.0,
+                                                        arrowEnabled: true,
+                                                        arrowAbove: true))
+                $0.updateHintContainerMargins()
+                $0.updateHintStackMargins()
 				$0.content = """
 				*This is a tile.*
 				Each tile includes a pair
@@ -146,6 +159,14 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 			weakSelf.tutorialAnimation.pause()
 
 			weakSelf.currentHint = weakSelf.view.window?.hint {
+                $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                        secondaryColor: UIColor(named:"HintFill")!,
+                                                        textColor: .black,
+                                                        cornerRadius: 8.0,
+                                                        arrowEnabled: true,
+                                                        arrowAbove: true))
+                $0.updateHintContainerMargins()
+                $0.updateHintStackMargins()
 				$0.content = """
 				You will see *three tiles* on the top of the screen…
 				"""
@@ -175,10 +196,18 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 			weakSelf.tutorialAnimation.pause()
 			
 			weakSelf.currentHint = weakSelf.view.window?.hint {
+                $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                        secondaryColor: UIColor(named:"HintFill")!,
+                                                        textColor: .black,
+                                                        cornerRadius: 8.0,
+                                                        arrowEnabled: true,
+                                                        arrowAbove: false))
+                $0.updateHintStackMargins()
 				$0.content = """
 				…and *two tiles* on the bottom.
 				"""
 				$0.buttonTitle = "Next"
+                $0.updateHintContainerMargins()
 				$0.onTap = { [weak self] in
 					
 					self?.didSelect()

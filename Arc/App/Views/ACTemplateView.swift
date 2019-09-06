@@ -123,7 +123,8 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 												 secondaryColor: ACColor.primaryText,
 												 textColor: .white,
 												 cornerRadius: 20.0,
-												 arrowEnabled: false))
+												 arrowEnabled: false,
+                                                 arrowAbove: false))
 			$0.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 			$0.acLabel{
 				$0.textAlignment = .center
