@@ -111,7 +111,7 @@ open class NotificationController : MHController
 //		save();
 	}
     
-    // Note: this function needs to be overriden when implementing and app
+    // Note: this function needs to be overriden when implementing an app that exhibits behavior other than this.
     func notificationTitle(for test: Session) -> String {
         var title = ""
         
@@ -122,7 +122,7 @@ open class NotificationController : MHController
                 title = "It's time for the first test of the week! Start your streak by completing this test by {TIME}.".localized("notification1_firstday")
             case 3:     //halfway point. Day 4, test 1
                 title = "You're halfway through the week. Keep it up! Today's first test will be available until {TIME}.".localized("notification1_halfway")
-            case 6:     //beginning of the final day. Day 7, test 1
+            case 6 where test.study?.studyID != 0, 7:     //beginning of the final day. Day 7, test 1
                 title = "You're on the last day of testing this week! Your first test of the day will be available until {TIME}.".localized("notification1_lastday")
             default:
                 title = "It's time for the first test of the day! This test will be avilable until {TIME}.".localized("notification1_default")
@@ -133,7 +133,8 @@ open class NotificationController : MHController
             title = "Your third test of the day is now available. Please complete this test by {TIME}.".localized("notification3_default")
         default:        //session 3
             switch test.day {
-            case 6:     //final test of final day. Day 7, test 4
+            case 6 where test.study?.studyID != 0, //final test of final day. if the studyId is not 0 Day 7, test 4
+				 7: //Or if the studyID == 0 which is the baseline. Then there are 8 days instead of 7
                 title = "It's time to take your last test of the week! Please finish it by {TIME}. Your coordinator will contact you about your earnings shortly.".localized("notification4_lastday")
             default:
                 title = "The last test of the day is here! Finish strong by completing this test by {TIME}.".localized("notification4_default")
