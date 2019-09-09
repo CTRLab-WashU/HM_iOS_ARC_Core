@@ -21,6 +21,7 @@ public class GoalRewardView: UIView {
 				Roboto.Style.goalRewardBold(titleLabel, color:.gray)
 
 			}
+			backgroundView.setNeedsDisplay()
 		}
 	}
 	public init() {

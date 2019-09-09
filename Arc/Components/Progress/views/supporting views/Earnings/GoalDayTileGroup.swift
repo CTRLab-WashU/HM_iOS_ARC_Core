@@ -44,6 +44,9 @@ public class GoalDayTileGroup: UIStackView {
 		removeSubviews()
 	}
 	public func set(progress:Double, forIndex index:Int) {
+		guard arrangedSubviews.count > 0 else {
+			return
+		}
 		if let tile = arrangedSubviews[index] as? GoalDayTile {
 			tile.set(progress: progress)
 		}

@@ -21,7 +21,8 @@ open class ACHomeViewController: CustomViewController<ACHomeView> {
     var study:Int?
     
     var thisWeek:ThisWeekExpressible = Arc.shared.studyController
-    
+	var thisStudy:ThisStudyExpressible = Arc.shared.studyController
+
     override open func viewDidLoad() {
         super.viewDidLoad()
         //        versionLabel.text = "v\(Arc.shared.versionString)"
@@ -46,10 +47,10 @@ open class ACHomeViewController: CustomViewController<ACHomeView> {
         }
         
         if get(flag: .baseline_completed) && !get(flag: .baseline_onboarding) {
-            if thisWeek.isBaseline {
+            if  thisStudy.studyState == .baseline {
                 showBaselineOboarding()
             }
-            else if !thisWeek.isBaseline {
+            else {
                 showPaidOnboarding()
             }
         }

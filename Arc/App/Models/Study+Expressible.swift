@@ -81,23 +81,30 @@ extension StudyController : ThisStudyExpressible {
 
 extension StudyController : ThisWeekExpressible {
 	public var daysArray: [String] {
-		switch getCurrentStudyPeriod() {
-		case .some(let week):
-			guard let start = week.userStartDate else {return []}
-			guard let end = week.userEndDate else {return []}
-			let formatter = DateFormatter()
-			formatter.dateFormat = "EEEEE"
-			formatter.locale = Arc.shared.appController.locale.getLocale()
-			var values:[String] = []
-			for i in 0 ... end.daysSince(date: start) {
-				let date = start.addingDays(days: i)
-				values.append(formatter.string(from: date))
-			
-			}
-			return values
-		default:
+		var w:StudyPeriod?
+		if let p = getCurrentStudyPeriod() {
+			w = p
+		}
+		if let p = getPastStudyPeriods().last {
+			w = p
+		}
+		guard let week = w else {
 			return []
 		}
+		guard let start = week.userStartDate else {return []}
+		guard let end = week.userEndDate else {return []}
+		let formatter = DateFormatter()
+		formatter.dateFormat = "EEEEE"
+		formatter.locale = Arc.shared.appController.locale.getLocale()
+		var values:[String] = []
+		for i in 0 ... end.daysSince(date: start) {
+			let date = start.addingDays(days: i)
+			values.append(formatter.string(from: date))
+			
+		}
+		
+		return values
+	
 	}
 	
 	public var day: Int {
@@ -131,7 +138,7 @@ extension StudyController : ThisWeekExpressible {
 		switch getCurrentStudyPeriod() {
 		case .some(let week):
 			guard var start = week.userStartDate else {return ""}
-			if isBaseline {
+			if studyState == .baseline || studyState == .activeBaseline {
 				start = start.addingDays(days: 1)
 			}
 			return start.localizedFormat(template:ACDateStyle.longWeekdayMonthDay.rawValue)
@@ -151,13 +158,6 @@ extension StudyController : ThisWeekExpressible {
 		}
 	}
 	
-	public var isBaseline: Bool {
-	
-		if totalDays > 6 && day == 0 {
-			return true
-		}
-		return false
-	}
 	
 	
 	

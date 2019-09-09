@@ -12,6 +12,7 @@ public class GoalView: UIView {
 	weak public var contentStack:UIStackView!
 	weak var goalRewardView:GoalRewardView!
 	weak var goalTitleLabel:ACLabel!
+	weak var doneLabel:ACLabel!
 	weak var goalBodyLabel:ACLabel!
     /*
     // Only override draw() if you perform custom drawing.
@@ -47,9 +48,21 @@ public class GoalView: UIView {
 				$0.stack {
 					$0.isLayoutMarginsRelativeArrangement = true
 					$0.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+					$0.axis = .horizontal
+					
+					$0.spacing = 8
 					$0.attachTo(view: $0.superview)
 					self.goalTitleLabel = $0.acLabel {
 						Roboto.Style.goalHeading($0, color: ACColor.badgeText)
+					}
+					self.doneLabel = $0.acLabel {
+						$0.isHidden = true
+						Roboto.Style.badge($0, color: ACColor.badgeText)
+						$0.text = "".localized(ACTranslationKey.status_done)
+						$0.textAlignment = .center
+					}
+					$0.view {
+						$0.backgroundColor = .clear
 					}
 				}
 				
@@ -96,6 +109,7 @@ public class GoalView: UIView {
 		goalBodyLabel.text = bodyText
 	}
 	public func set(isUnlocked:Bool) {
+		doneLabel.isHidden = !isUnlocked
 		goalRewardView.isUnlocked = isUnlocked
 	}
 	public func set(goalRewardText:String) {

@@ -17,7 +17,6 @@ public protocol ThisWeekExpressible {
 	var daysArray:[String] {get}
 	var startDate:String {get}
 	var endDate:String {get}
-	var isBaseline:Bool {get}
 }
 
 public protocol ThisStudyExpressible {

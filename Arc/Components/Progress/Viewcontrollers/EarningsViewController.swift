@@ -201,6 +201,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 			customView.totalSessionsGoal.set(current: value)
 			
 		}
+		
 		customView.totalSessionsGoal.set(isUnlocked: totalSessions.completed)
 		customView.totalSessionsGoal.set(bodyText: "".localized(ACTranslationKey.earnings_21tests_body)
 			.replacingOccurrences(of: "{AMOUNT}", with: totalSessions.value))
