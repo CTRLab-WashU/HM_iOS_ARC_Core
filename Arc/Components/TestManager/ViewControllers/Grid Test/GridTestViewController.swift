@@ -58,7 +58,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 
     override open func viewDidLoad() {
         super.viewDidLoad()
-		if shouldAutoProceed {
+		if shouldAutoProceed && !isPracticeTest {
         	ACState.testCount += 1
 		}
 		let app = Arc.shared

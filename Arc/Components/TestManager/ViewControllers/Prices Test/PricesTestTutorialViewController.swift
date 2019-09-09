@@ -25,6 +25,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
         super.viewDidLoad()
 		pricesTest.delegate = self
 		pricesTest.autoStart = false
+        pricesTest.isPracticeTest = true
 		setupScript()
         if self.get(flag: .prices_tutorial_shown) == false {
             self.customView.firstTutorialRun()

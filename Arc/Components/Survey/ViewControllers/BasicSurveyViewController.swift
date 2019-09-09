@@ -30,6 +30,12 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 			}
 		}
 	}
+    
+    var useDarkStatusBar:Bool = false
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return useDarkStatusBar ? .default : .lightContent
+    }
+    
 	public var shouldShowHelpButton = false
 	public var shouldShowBackButton = true
 	public var survey:Survey
@@ -243,6 +249,9 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		// Do any additional setup after loading the view.
 		let vc:CustomViewController<InfoView> = getTopViewController()!
 		
+        useDarkStatusBar = false
+        setNeedsStatusBarAppearanceUpdate()
+        
 		vc.customView.backgroundView.image = UIImage(named: "availability_bg", in: Bundle(for: self.classForCoder), compatibleWith: nil)
 		vc.customView.infoContent.alignment = .center
 		vc.customView.backgroundColor = UIColor(named:"Primary")!
@@ -291,6 +300,9 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		// Do any additional setup after loading the view.
 		let vc:CustomViewController<InfoView> = getTopViewController()!
 
+        useDarkStatusBar = true
+        setNeedsStatusBarAppearanceUpdate()
+        
 		vc.customView.infoContent.alignment = .leading
 		
 		vc.customView.setTextColor(UIColor(named: "Primary Text"))

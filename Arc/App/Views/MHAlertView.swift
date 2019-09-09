@@ -44,6 +44,7 @@ open class MHAlertView: UIView {
 	public func set(message:String) {
 		messageLabel.attributedText = markupRenderer.render(text: message)
 
+        messageLabel.font = UIFont(name: "Roboto", size: 17)
 	}
 	public func set(message:String?, buttons:[ButtonType]) {
 		//Clear timers in case of rapid reuse
