@@ -139,12 +139,14 @@ open class AuthController:MHController {
 		}
 		HMAPI.getWakeSleep.execute(data: nil, completion: { (res, obj, err) in
 			guard err == nil && obj?.errors.isEmpty ?? true else {
-				return completion() //The closure returns Void so this is valid syntax because the function also returns Void
+				completion()
+				return
 				
 				
 			}
 			guard let data = obj?.response?.wake_sleep_schedule else {
-				return completion()
+				completion()
+				return
 			}
 			
 			MHController.dataContext.performAndWait {

@@ -42,7 +42,7 @@ open class MHAlertView: UIView {
 
 	}
 	public func set(message:String) {
-		messageLabel.attributedText = markupRenderer.render(text: message ?? "")
+		messageLabel.attributedText = markupRenderer.render(text: message)
 
 	}
 	public func set(message:String?, buttons:[ButtonType]) {
