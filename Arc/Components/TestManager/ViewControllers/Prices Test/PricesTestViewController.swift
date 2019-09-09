@@ -27,6 +27,7 @@ public class PricesTestViewController: ArcViewController {
     var test:PriceTest?
     var responseID = ""
 	var autoStart = true
+    public var isPracticeTest = false
 	weak var delegate:PricesTestDelegate?
     public static var testVersion:String {
         
@@ -54,7 +55,7 @@ public class PricesTestViewController: ArcViewController {
 
     override open func viewDidLoad() {
         super.viewDidLoad()
-		if !autoStart {
+		if !autoStart && !isPracticeTest {
         	ACState.testCount += 1
 		}
 		
