@@ -38,11 +38,11 @@ class ResendCodeViewController: CustomViewController<InfoView>, SurveyInput{
 		Roboto.PostProcess.link(button)
 		button.contentHorizontalAlignment = .leading
 		
-		
-		button.addAction {//[weak self] in
-			
-		}
-		customView.setAdditionalContent(button)
+        button.addAction {[weak self] in
+            //self?.nextPressed(input: self?.getInput(), value: AnyResponse(type: .text, value: "0"))
+            self?.pressedNeedMoreHelp()
+        }
+        customView.setAdditionalContent(button)
 	}
 	
 	fileprivate func addSendNewCodeButton() {
@@ -65,6 +65,11 @@ class ResendCodeViewController: CustomViewController<InfoView>, SurveyInput{
 		addSendNewCodeButton()
 		
 		addNeedMoreHelpButton()
+    }
+    
+    func pressedNeedMoreHelp() {
+        let vc:AC2FAHelpViewController = .get()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 	@objc func sendCode() {

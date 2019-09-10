@@ -298,6 +298,8 @@
 		C5E7212C22F1C9D3004B9E26 /* ACColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E7212B22F1C9D3004B9E26 /* ACColor.swift */; };
 		C5F77F37222F095200BECAE1 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F77F36222F095200BECAE1 /* SignatureViewController.swift */; };
 		E86732322315808800844F91 /* ACHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86732312315808800844F91 /* ACHomeViewController.swift */; };
+		E898B20823282EA400FBF22D /* AC2FAHelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E898B20723282EA400FBF22D /* AC2FAHelpViewController.xib */; };
+		E898B20A2328339C00FBF22D /* AC2FAHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E898B2092328339C00FBF22D /* AC2FAHelpViewController.swift */; };
 		E8BA72E123198B8100823374 /* FAQTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8BA72D723198B8100823374 /* FAQTableViewCell.xib */; };
 		E8BA72E223198B8100823374 /* FAQAnswerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8BA72D823198B8100823374 /* FAQAnswerViewController.xib */; };
 		E8BA72E323198B8100823374 /* FAQTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BA72D923198B8100823374 /* FAQTopicViewController.swift */; };
@@ -640,6 +642,8 @@
 		C5F77F38222F15DD00BECAE1 /* SignatureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignatureView.xib; sourceTree = "<group>"; };
 		C5F77F3A22306CFA00BECAE1 /* DateRangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRangeView.swift; sourceTree = "<group>"; };
 		E86732312315808800844F91 /* ACHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACHomeViewController.swift; sourceTree = "<group>"; };
+		E898B20723282EA400FBF22D /* AC2FAHelpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AC2FAHelpViewController.xib; sourceTree = "<group>"; };
+		E898B2092328339C00FBF22D /* AC2FAHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AC2FAHelpViewController.swift; sourceTree = "<group>"; };
 		E8BA72D723198B8100823374 /* FAQTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FAQTableViewCell.xib; sourceTree = "<group>"; };
 		E8BA72D823198B8100823374 /* FAQAnswerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FAQAnswerViewController.xib; sourceTree = "<group>"; };
 		E8BA72D923198B8100823374 /* FAQTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQTopicViewController.swift; sourceTree = "<group>"; };
@@ -1190,6 +1194,8 @@
 				C5F77F36222F095200BECAE1 /* SignatureViewController.swift */,
 				C593227422E8BB0F00528FF5 /* AC2FAuthenticationViewController.swift */,
 				C5E3924F22EB76AD007CB3B6 /* ResendCodeViewController.swift */,
+				E898B20723282EA400FBF22D /* AC2FAHelpViewController.xib */,
+				E898B2092328339C00FBF22D /* AC2FAHelpViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1820,6 +1826,7 @@
 				E8BA72E223198B8100823374 /* FAQAnswerViewController.xib in Resources */,
 				C54AEA6921C81B5F00DEC360 /* Roboto-BoldItalic.ttf in Resources */,
 				C54D103D22C28A1D00B43E42 /* TextSegment.xib in Resources */,
+				E898B20823282EA400FBF22D /* AC2FAHelpViewController.xib in Resources */,
 				C54AEA1E21C81B5F00DEC360 /* FCollectionContainerView.xib in Resources */,
 				C54AEA7021C81B5F00DEC360 /* Roboto-Black.ttf in Resources */,
 				E8BA72FD23198BD800823374 /* ResourcesTableViewCell.xib in Resources */,
@@ -1961,6 +1968,7 @@
 				C54AE9EA21C81B5F00DEC360 /* HMRequestHelper.swift in Sources */,
 				E8BA72E423198B8100823374 /* FAQAnswerViewController.swift in Sources */,
 				C5E1E34F2253E84900255812 /* ACWakeSurveyViewController.swift in Sources */,
+				E898B20A2328339C00FBF22D /* AC2FAHelpViewController.swift in Sources */,
 				C54AEA0821C81B5F00DEC360 /* PriceTest.swift in Sources */,
 				C54AE9F821C81B5F00DEC360 /* SlidePresentAnimationController.swift in Sources */,
 				C5D24ED9230B337300146E37 /* PostTestEarningsView.swift in Sources */,
