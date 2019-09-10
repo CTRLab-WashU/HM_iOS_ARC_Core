@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import ArcUIKit
 
 public protocol SymbolsTestViewControllerDelegate : class {
 	func didSelect(index:Int)
@@ -33,6 +33,7 @@ public class SymbolsTestViewController: UIViewController, TestProgressViewContro
 	
 	@IBOutlet weak var selectionContainer: UIView!
 	
+    @IBOutlet weak var promptLabel: ACLabel!
 	@IBOutlet public weak var choiceContainer: UIView!
     @IBOutlet public weak var choice1: UIView!
     @IBOutlet public weak var choice2: UIView!

@@ -45,6 +45,10 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
             self.customView.firstTutorialRun()
         }
     }
+    override public func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        test.promptLabel.isHidden = true
+    }
 	override public func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		view.window?.clearOverlay()
@@ -75,6 +79,8 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 		tutorialAnimation.pause()
 		test.view.isUserInteractionEnabled = false
 		if test.questionIndex <= 1 {
+            test.promptLabel.translationKey = "symbols_match"
+            test.promptLabel.markupText()
 			currentHint = view.window?.hint { [weak self] in
 				if self?.test.questionIndex == 0 {
 					$0.content = """
@@ -155,6 +161,7 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 			}
             weakSelf.test.option1.alpha = 1.0
             weakSelf.test.option3.alpha = 1.0
+            weakSelf.test.promptLabel.isHidden = false
 			weakSelf.test.choiceContainer.overlay()
 			weakSelf.tutorialAnimation.pause()
 
