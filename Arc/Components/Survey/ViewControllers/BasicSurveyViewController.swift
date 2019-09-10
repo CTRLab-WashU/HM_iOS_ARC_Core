@@ -36,7 +36,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
         return useDarkStatusBar ? .default : .lightContent
     }
     
-	public var shouldShowHelpButton = false
+	public var shouldShowHelpButton = true
 	public var shouldShowBackButton = true
 	public var survey:Survey
 	var questions = Array<Survey.Question>()
@@ -45,9 +45,11 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 	var answeredQuestions:[Survey.Question] = []
 	public var surveyId:String
 	public var shouldNavigateToNextState:Bool = true
-    public init(file:String, surveyId:String? = nil) {
+    
+    public init(file:String, surveyId:String? = nil, showHelp:Bool? = true) {
 		
-		
+        shouldShowHelpButton = showHelp ?? true
+        
 		let newSurvey = Arc.shared.surveyController.load(survey: file)
 		survey = newSurvey
 		questions = survey.questions
@@ -86,7 +88,6 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		
 
 		super.init(nibName: nil, bundle: nil)
-
 	}
 	
 	open func displayHelpButton(_ shouldShow:Bool) {
@@ -302,6 +303,10 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 
         useDarkStatusBar = true
         setNeedsStatusBarAppearanceUpdate()
+        
+        if shouldShowHelpButton {
+            displayHelpButton(shouldShowHelpButton)
+        }
         
 		vc.customView.infoContent.alignment = .leading
 		
