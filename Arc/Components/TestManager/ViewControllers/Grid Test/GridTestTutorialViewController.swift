@@ -37,7 +37,6 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 		addChild(test)
 		customView.setContent(viewController: test)
 		test.tapOnTheFsLabel.isHidden = true
-		test.IMAGE_HEIGHT = 95
         // Do any additional setup after loading the view.
         if self.get(flag: .grids_tutorial_shown) == false {
             self.customView.firstTutorialRun()
@@ -272,9 +271,6 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 					$0.leading >= weakSelf.view.safeAreaLayoutGuide.leadingAnchor + 24
 					$0.trailing <= weakSelf.view.safeAreaLayoutGuide.trailingAnchor - 24
 					$0.bottom <= weakSelf.view.safeAreaLayoutGuide.bottomAnchor - 24
-					
-//					$0.width == weakSelf.test.collectionView.widthAnchor - 20
-					$0.height == 60
 					
 					$0.centerY == cell.centerYAnchor + 80 ~ 500
 					$0.centerX == cell.centerXAnchor ~ 500
