@@ -83,6 +83,7 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
             test.promptLabel.markupText()
 			currentHint = view.window?.hint { [weak self] in
 				if self?.test.questionIndex == 0 {
+                    self?.progress = 0.33
 					$0.content = """
 					*Great job!*
 					Let’s try a couple more
@@ -90,6 +91,7 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 					"""
 					$0.buttonTitle = "Next"
 				} else {
+                    self?.progress = 0.66
 					$0.content = """
 					*Nice!*
 					One more...
