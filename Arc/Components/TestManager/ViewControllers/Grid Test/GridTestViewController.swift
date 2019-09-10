@@ -51,12 +51,17 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 	
     private var IMAGE_HEIGHT:Int {
         get {
-            return self.isPracticeTest ? 83 : 105
+            return SMALLER_GRIDS ? 83 : 105
         }
     }
     private var IMAGE_WIDTH:Int {
         get {
-            return self.isPracticeTest ? 48 : 60
+            return SMALLER_GRIDS ? 48 : 60
+        }
+    }
+    private var SMALLER_GRIDS:Bool {
+        get {
+            return (self.isPracticeTest && Arc.shared.isIphoneSE())
         }
     }
     private let IMAGE_ROWS = 5
@@ -127,7 +132,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 		}
         
         self.collectionViewHeight.constant = CGFloat((IMAGE_HEIGHT*IMAGE_ROWS) + (LINE_SPACING*(IMAGE_ROWS-1)))
-        if self.isPracticeTest {
+        if SMALLER_GRIDS {
             collectionViewWidth.constant = IMAGE_GRID_TUTORIAL_WIDTH
         }
         
@@ -160,7 +165,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 		}
         
         self.collectionViewHeight.constant = CGFloat((LETTER_SIZE*LETTER_ROWS) + (LINE_SPACING*(LETTER_ROWS-1)) + LETTER_BUFFER)
-        if self.isPracticeTest {
+        if SMALLER_GRIDS {
             collectionViewWidth.constant = LETTER_GRID_TUTORIAL_WIDTH
         }
 
@@ -193,7 +198,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 		}
 		
 		self.collectionViewHeight.constant = CGFloat((LETTER_SIZE*LETTER_ROWS) + (LINE_SPACING*(LETTER_ROWS-1)) + LETTER_BUFFER)
-        if self.isPracticeTest {
+        if SMALLER_GRIDS {
             collectionViewWidth.constant = IMAGE_GRID_TUTORIAL_WIDTH
         }
 
@@ -527,7 +532,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
     
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         if mode == .image || mode == .answers {
-            return (self.isPracticeTest ? 2 : 3)
+            return (SMALLER_GRIDS ? 2 : 3)
         } else if mode == .fCell {
             return 2
         } else {
@@ -537,7 +542,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
     
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         if mode == .image || mode == .answers {
-            return (self.isPracticeTest ? 2 : 1)
+            return 1
         } else if mode == .fCell {
             return 1
         } else {
