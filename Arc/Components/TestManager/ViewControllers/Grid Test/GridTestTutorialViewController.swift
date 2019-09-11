@@ -28,7 +28,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 	var gridSelected = 0
 	var phase:TestPhase = .start
     override func viewDidLoad() {
-		duration = 20
+		duration = 25
         super.viewDidLoad()
         test.isPracticeTest = true
 		test.shouldAutoProceed = false
@@ -75,7 +75,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			view.window?.clearOverlay()
 			view.removeHighlight()
 			removeHint(hint: "hint")
-			tutorialAnimation.time = 10
+			tutorialAnimation.time = 11.5
 			addFirstHint(hint: "hint")
 			tutorialAnimation.resume()
 
@@ -119,7 +119,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			view.removeHighlight()
 			removeHint(hint: "hint")
 
-			tutorialAnimation.time = 19
+			tutorialAnimation.time = 24.5
 			tutorialAnimation.resume()
 			break
 		case .showingReminder:
@@ -280,7 +280,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			weakSelf.tutorialAnimation.pause()
 			weakSelf.view.window?.overlayView(withShapes: [])
 			weakSelf.currentHint = weakSelf.view.window?.hint {
-				$0.content = "*Perfect!*\nNow: *Tap all the F’s* you see as quickly as you can.\nYou will have 3 seconds."
+				$0.content = "*Perfect!*\nNow: *Tap all the F’s* you see as quickly as you can.\nYou will have 8 seconds."
 				$0.buttonTitle = "I'm Ready"
 				$0.onTap = { [weak self] in
 					self?.didSelect()
@@ -300,7 +300,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			
 		}
 		
-		state.addCondition(atTime: progress(seconds: 6.5), flagName: "fs-4") { [weak self] in
+		state.addCondition(atTime: progress(seconds: 11.5), flagName: "fs-4") { [weak self] in
 			guard let weakSelf = self else {
 				return
 			}
@@ -331,7 +331,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			
 		}
 		
-		state.addCondition(atTime: progress(seconds: 6.5), flagName: "symbols-0") { [weak self] in
+		state.addCondition(atTime: progress(seconds: 11.5), flagName: "symbols-0") { [weak self] in
 			guard let weakSelf = self else {
 				return
 			}
@@ -342,7 +342,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 
 			
 		}
-		state.addCondition(atTime: progress(seconds: 20), flagName: "end") { [weak self] in
+		state.addCondition(atTime: progress(seconds: 25), flagName: "end") { [weak self] in
 			guard let weakSelf = self else {
 				return
 			}
