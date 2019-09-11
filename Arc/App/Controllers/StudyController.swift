@@ -537,7 +537,7 @@ open class StudyController : MHController {
 		return true
 	}
 	
-	func cleanupSessionsBeforeLatest() {
+	public func cleanupSessionsBeforeLatest() {
 		//Delete old sessions
 		let studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
 		for i in 0 ..< studies.count {
