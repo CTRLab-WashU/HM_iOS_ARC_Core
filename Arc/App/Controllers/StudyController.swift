@@ -1223,7 +1223,7 @@ open class StudyController : MHController {
 			{
 				let test = tests[i] as! Session;
 				
-				if test.startTime != nil || test.finishedSession == true || test.missedSession == true
+				if test.startTime != nil || test.finishedSession == true || test.missedSession == true || test.uploaded == true
 				{
 					continue;
 				}
@@ -1298,14 +1298,14 @@ open class StudyController : MHController {
 	
 	/// gets a days progress for all sessions that day
 	/// - Parameter sessionDay: selects the day to filter to
-	public func todaysProgress(sessionDay:Int64? = nil) -> TodaysProgess? {
+	public func todaysProgress(sessionDay:Int64? = nil, currentSessionId:Int? = nil) -> TodaysProgess? {
 		
-		guard let study = getCurrentStudyPeriod() else {
+		guard let study = getCurrentStudyPeriod() ?? getPastStudyPeriods().last else {
 			return nil
 		}
 		var config = TodaysProgess()
 		
-		var currentSessionId = Arc.shared.currentTestSession
+		var currentSessionId = currentSessionId ?? Arc.shared.currentTestSession
 		if currentSessionId == nil {
 			if let todaysSessions = get(sessionsOnDay: Date(), studyId: Int(study.studyID)).first {
 			

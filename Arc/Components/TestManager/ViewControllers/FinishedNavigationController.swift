@@ -35,7 +35,7 @@ open class FinishedNavigationController: BasicSurveyViewController {
 			Arc.shared.studyController.mark(interrupted:false, sessionId: session, studyId: study)
 
 		}
-		Arc.shared.currentTestSession = nil
+		//Arc.shared.currentTestSession = nil
 		
 	}
 

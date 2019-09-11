@@ -28,6 +28,7 @@ extension StudyController : ThisStudyExpressible {
 			guard let start = study.userStartDate else {return .unknown}
 			
 			let day = Date().daysSince(date: start)
+			
 			if day == 0 {
 				return .baseline
 			}
@@ -36,8 +37,12 @@ extension StudyController : ThisStudyExpressible {
 			}
 			
 			return .active
-		} else {
+		} else if let _ = getUpcomingStudyPeriod() {
+			
+			
 			return .inactive
+		} else {
+			return .complete
 		}
 		
 		// return .complete

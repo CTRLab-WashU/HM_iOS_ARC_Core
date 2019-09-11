@@ -88,7 +88,12 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
     }
     
     @objc func nextPressed() {
-        Arc.shared.nextAvailableState()
+		if thisStudy.studyState == .inactive {
+			Arc.shared.appNavigation.navigate(vc: ACPostCycleFinishViewController(), direction: .toRight)
+		} else {
+			Arc.shared.nextAvailableState()
+
+		}
     }
     
     @objc func viewFaqPressed() {

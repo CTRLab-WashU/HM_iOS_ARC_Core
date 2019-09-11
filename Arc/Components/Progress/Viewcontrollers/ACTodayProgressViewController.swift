@@ -20,10 +20,11 @@ public class ACTodayProgressViewController: CustomViewController<ACTodayProgress
 		super.init(nibName: nil, bundle: nil)
 		set(flag: .baseline_completed)
 		//Todo: Have this injected instead this behavior is needed elsewhere in the app.
+		customView.delegate = self
 		guard let config = Arc.shared.studyController.todaysProgress() else {
 			return
 		}
-		customView.delegate = self
+		
 		let isComplete = config.sessionsStarted == config.totalSessions
 		if isComplete {
 			customView.set(completed: true)
@@ -41,6 +42,9 @@ public class ACTodayProgressViewController: CustomViewController<ACTodayProgress
 			customView.set(progress: Double(session.progress)/Double(session.total),
 						   for: index)
 		}
+		//We've completed the test and we need to let the app know
+		
+		Arc.shared.currentTestSession = nil
 		
 	}
 	
