@@ -12,6 +12,8 @@ open class FinishedNavigationController: BasicSurveyViewController {
     override open func viewDidLoad() {
         super.viewDidLoad()
 		//self.isNavigationBarHidden = true
+        shouldShowHelpButton = false
+        displayHelpButton(shouldShowHelpButton)
         // Do any additional setup after loading the view.
 		guard let session = Arc.shared.currentTestSession else {return}
 		guard let study = Arc.shared.currentStudy else {return}

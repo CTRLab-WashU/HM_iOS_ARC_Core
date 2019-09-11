@@ -19,7 +19,8 @@ public class HintView : IndicatorView {
 		}
 		set {
 			titleLabel.isHidden = (newValue == nil)
-
+            hintStack.isHidden = (newValue == nil)
+            
 			titleLabel.text = newValue
 		}
 	}
@@ -39,6 +40,7 @@ public class HintView : IndicatorView {
 	
 	public init() {
 		super.init(frame: .zero)
+        
 		hintStack = stack {
 			
 			$0.isLayoutMarginsRelativeArrangement = true
@@ -92,6 +94,10 @@ public class HintView : IndicatorView {
 		path?.lineWidth = 8
 		path?.stroke()
 	}
+    
+    public func hideBar() {
+        bar.isHidden = true
+    }
     
     public func updateHintContainerMargins() {
         if isArrowEnabled && !isArrowAbove && !button.isHidden {

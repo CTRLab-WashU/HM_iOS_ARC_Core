@@ -81,9 +81,11 @@ open class SurveyView : ACTemplateView, SurveyInput, SurveyInputDelegate {
 		//A container for miscelaneous views
 		self.views = view.stack {
 			$0.axis = .vertical
-			$0.alignment = .center
+			$0.alignment = .fill
 			$0.isLayoutMarginsRelativeArrangement = true
 			$0.layoutMargins.bottom = 20
+            $0.layoutMargins.left = 32
+            $0.layoutMargins.right = 32
 			input?.supplementaryViews(for: views)
 			
 			$0.layout {
@@ -91,10 +93,13 @@ open class SurveyView : ACTemplateView, SurveyInput, SurveyInputDelegate {
 				$0.height >= 20 ~ 999
 			}
 		}
+        //MARK: Next Button
 		view.stack { [weak self] in
 			$0.axis = .vertical
-			$0.alignment = .center
-			
+			$0.alignment = .fill
+            $0.layoutMargins.left = 8
+            $0.layoutMargins.right = 8
+            
 			self?.nextButton = $0.acButton {
 				$0.translatesAutoresizingMaskIntoConstraints = false
 				$0.setTitle("Next", for: .normal)

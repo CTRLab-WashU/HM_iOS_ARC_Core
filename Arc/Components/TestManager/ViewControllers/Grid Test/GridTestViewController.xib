@@ -19,6 +19,7 @@
             <connections>
                 <outlet property="collectionView" destination="7mB-Ww-cRj" id="Hec-Ae-qhB"/>
                 <outlet property="collectionViewHeight" destination="Pyq-AP-BS4" id="BS8-bb-zct"/>
+                <outlet property="collectionViewWidth" destination="ZaE-P6-Kyy" id="9y0-HJ-Uva"/>
                 <outlet property="tapOnTheFsLabel" destination="11X-8i-GZq" id="su6-UX-kKa"/>
                 <outlet property="view" destination="UyT-2f-psd" id="Mh3-eb-a5q"/>
             </connections>

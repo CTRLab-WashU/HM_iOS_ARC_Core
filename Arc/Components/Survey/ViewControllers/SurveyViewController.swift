@@ -78,6 +78,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 
             //self.navigationItem.setLeftBarButton(leftButton, animated: true)
             self.navigationItem.leftBarButtonItem = leftButton
+            
 			
 		}
         

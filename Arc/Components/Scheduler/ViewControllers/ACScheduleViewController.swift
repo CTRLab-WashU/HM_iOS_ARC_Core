@@ -65,7 +65,7 @@ public class ACScheduleViewController : BasicSurveyViewController {
     public var maxWakeTime = 18
 	public var shouldTestImmediately = true
     
-    public override init(file: String, surveyId:String? = nil) {
+    public override init(file: String, surveyId:String? = nil, showHelp:Bool? = true) {
         
         if Arc.shared.surveyController.get(surveyResponse: "availability")?.id == nil
         {

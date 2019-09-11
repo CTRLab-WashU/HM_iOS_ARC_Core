@@ -126,20 +126,22 @@ class ACTutorialViewController: CustomViewController<TutorialView>, TutorialComp
         guard progress != 1.0 else { return }
         progress = 1.0
 		
-		currentHint?.removeFromSuperview()
-		
-		customView.contentView?.removeFromParent()
-		customView.contentView?.view.removeFromSuperview()
-		
-		currentHint?.removeFromSuperview()
-		let finishView = TutorialCompleteView()
-		finishView.updateProgress(0.0)
-		
-		customView.removeArrangedSubview(customView.containerView)
-		customView.addArrangedSubview(finishView)
-		finishView.updateProgress(1.0)
-		
-		finishView.tutorialDelegate = self
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+            self.currentHint?.removeFromSuperview()
+            
+            self.customView.contentView?.removeFromParent()
+            self.customView.contentView?.view.removeFromSuperview()
+            
+            self.currentHint?.removeFromSuperview()
+            let finishView = TutorialCompleteView()
+            finishView.updateProgress(0.0)
+            
+            self.customView.removeArrangedSubview(self.customView.containerView)
+            self.customView.addArrangedSubview(finishView)
+            finishView.updateProgress(1.0)
+            
+            finishView.tutorialDelegate = self
+        })
 	}
     /*
     // MARK: - Navigation
