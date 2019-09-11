@@ -175,23 +175,15 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			guard let weakSelf = self else {
 				return
 			}
-			weakSelf.progress = 0.1
 			weakSelf.tutorialAnimation.pause()
 			weakSelf.test.displaySymbols()
 			weakSelf.view.window?.overlayView(withShapes: [])
 			weakSelf.currentHint = weakSelf.view.window?.hint {
 				$0.content = "The items will be placed in a grid of boxes. *Remember which box each item is in.* You will have 3 seconds."
 				$0.buttonTitle = "I'm Ready"
-				let p = weakSelf.progress
 				$0.onTap = { [weak self] in
 					
 					weakSelf.phase = .start
-					Animate().duration(2.9).run {
-						t in
-						weakSelf.customView.progressBar.config.progress = CGFloat(Math.lerp(a: Double(p), b: 0.29, t: Double(t)))
-						weakSelf.customView.progressBar.setNeedsDisplay()
-						return true
-					}
 					self?.didSelect()
 				}
 				
@@ -209,7 +201,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			guard let weakSelf = self else {
 				return
 			}
-			weakSelf.progress = 0.3
+			weakSelf.progress = 0.25
 			weakSelf.tutorialAnimation.pause()
 			weakSelf.test.displaySymbols()
 			weakSelf.view.window?.overlayView(withShapes: [])
@@ -245,7 +237,6 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			guard let weakSelf = self else {
 				return
 			}
-			weakSelf.progress = 0.4
 			weakSelf.tutorialAnimation.pause()
 			weakSelf.phase = .fs
 			let index = weakSelf.test.fIndexPaths[3]
@@ -296,14 +287,6 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 					weakSelf.phase = .fsTimed
 					weakSelf.isMakingSelections = false
 					weakSelf.test.collectionView.isUserInteractionEnabled = true
-
-					let p = weakSelf.progress
-					Animate().duration(2.9).run {
-						t in
-						weakSelf.customView.progressBar.config.progress = CGFloat(Math.lerp(a: Double(p), b: 0.7, t: Double(t)))
-						weakSelf.customView.progressBar.setNeedsDisplay()
-						return true
-					}
 				}
 				
 				$0.layout {
@@ -321,8 +304,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			guard let weakSelf = self else {
 				return
 			}
-			weakSelf.progress = 0.8
-
+			weakSelf.progress = 0.75
 			weakSelf.tutorialAnimation.pause()
 			weakSelf.view.window?.overlayView(withShapes: [])
 			weakSelf.test.collectionView.isUserInteractionEnabled = false
