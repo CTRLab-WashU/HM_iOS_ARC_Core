@@ -242,12 +242,6 @@ open class Arc : ArcApi {
 		return deviceString;
 	}
     
-    public func isIphoneSE() -> Bool {
-        let width:CGFloat = UIScreen.main.bounds.width
-        let height:CGFloat = UIScreen.main.bounds.height
-        return ((width == 320) && (height == 568))
-    }
-    
     public func uploadTestData() {
 		sessionController.sendFinishedSessions()
 		sessionController.sendMissedSessions()

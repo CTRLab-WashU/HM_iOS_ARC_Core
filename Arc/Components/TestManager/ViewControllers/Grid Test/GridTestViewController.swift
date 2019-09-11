@@ -61,7 +61,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
     }
     private var SMALLER_GRIDS:Bool {
         get {
-            return (self.isPracticeTest && Arc.shared.isIphoneSE())
+            return (self.isPracticeTest && (PhoneClass.getClass() == .iphoneSE))
         }
     }
     private let IMAGE_ROWS = 5
