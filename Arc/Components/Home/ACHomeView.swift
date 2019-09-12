@@ -184,6 +184,17 @@ public class ACHomeView: ACTemplateView {
 		case .finished:
 			heading = "You've finished the study!".localized("home_header5")
 			message = "There are no more tests to take.".localized("home_body5")
+            
+        case .postBaseline:
+            let schedule = Arc.shared.scheduleController.get(confirmedSchedule: Arc.shared.participantId!)
+            let s = schedule!.entries.first
+            let start = s?.availabilityStart as! String
+            let end = s?.availabilityEnd as! String
+            
+            heading = "*Your first testing cycle begins tomorrow.*".localized("home_header7")
+            message = "There will be 4 test sessions per day for 7 days.\n\nWe'll notify you *between {TIME1} and {TIME2}* when it's time to take a test.".localized("home_body7")
+                .replacingOccurrences(of: "{TIME1}", with: start)
+                .replacingOccurrences(of: "{TIME2}", with: end)
 		}
 		
 		
