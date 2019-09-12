@@ -44,12 +44,16 @@ public enum OverlayShape {
 }
 public class OverlayView: UIView {
 	override public func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-		for subview in subviews {
-			if !subview.isHidden && subview.isUserInteractionEnabled && subview.point(inside: convert(point, to: subview), with: event) {
-				return true
-			}
+		let maskPath = (layer.mask as? CAShapeLayer)?.path
+		if maskPath?.contains(point, using: .evenOdd, transform: .identity) == true {
+			print("contains: \(point)")
+			return true
+		} else {
+			print("does not contain: \(point)")
+
+			return false
 		}
-		return false
+		
 	}
 }
 extension UIView {
