@@ -77,3 +77,29 @@ import UIKit
     }
     
 }
+
+public enum PhoneClass {
+    case iphoneSE, iphone678, iphone678Plus, iphoneX, iphoneXR, iphoneMax
+    
+    public static func getClass() -> PhoneClass {
+        let width:CGFloat = UIScreen.main.bounds.width
+        let height:CGFloat = UIScreen.main.bounds.height
+        print("Dimensions are \(width) x \(height)")
+        switch (width, height) {
+        case (320, 568):
+            return .iphoneSE
+        case (375, 667):
+            return .iphone678
+        case (414, 736):
+            return .iphone678Plus
+        case (375, 812):
+            return .iphoneX
+        case (414, 896):
+            return .iphoneXR
+        case (414, 896):
+            return .iphoneMax
+        default:
+            return .iphone678   //should never get here, but this seems like the safest size class to fall back on
+        }
+    }
+}

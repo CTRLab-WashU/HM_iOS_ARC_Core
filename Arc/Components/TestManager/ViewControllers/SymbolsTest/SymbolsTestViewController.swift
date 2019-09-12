@@ -30,6 +30,7 @@ public class SymbolsTestViewController: UIViewController, TestProgressViewContro
     @IBOutlet public weak var option1: UIView!
     @IBOutlet public weak var option2: UIView!
     @IBOutlet public weak var option3: UIView!
+    @IBOutlet public weak var tileHeight:NSLayoutConstraint?
 	
 	@IBOutlet weak var selectionContainer: UIView!
 	
@@ -92,6 +93,18 @@ public class SymbolsTestViewController: UIViewController, TestProgressViewContro
         gradient2.frame = choice2.bounds
         gradient2.colors = [UIColor.white.cgColor, UIColor(red: 244.0/255.0, green: 244.0/255.0, blue: 244.0/255.0, alpha: 1.0).cgColor]
         choice2.layer.insertSublayer(gradient2, at: 0)
+        
+        self.setTileHeight()
+    }
+    func setTileHeight() {
+        switch PhoneClass.getClass() {
+        case .iphone678:
+            self.tileHeight?.constant = 164
+        case .iphone678Plus, .iphoneXR, .iphoneX, .iphoneMax:
+            self.tileHeight?.constant = 192
+        default:
+            return
+        }
     }
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
