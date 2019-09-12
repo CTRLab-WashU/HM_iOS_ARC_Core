@@ -19,7 +19,7 @@
 */
 import Foundation
 
-public struct HMFault : Codable {
+public struct HMFault : Codable, Error {
 	var message:String
 }
 

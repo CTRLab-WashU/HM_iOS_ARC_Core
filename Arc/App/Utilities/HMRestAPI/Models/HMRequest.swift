@@ -24,7 +24,7 @@ public struct HMRequest<S:Codable> : BackendRequest {
     
     
     public typealias SuccessHandler = (URLResponse?,S?, HMFault?) -> ()
-    public typealias RequestFailureHandler = (URLResponse) -> ()
+    public typealias RequestFailureHandler = (Error, URLResponse?) -> ()
     
     public var task:URLSessionDataTask?
     
@@ -91,8 +91,11 @@ public struct HMRequest<S:Codable> : BackendRequest {
         
         
         request.unhandledFailure = {
-            err in
+            err, response in
             dump(err)
+			if let c = completion {
+				c(response, nil, nil)
+			}
         }
         request.execute()
         return request;
@@ -142,7 +145,7 @@ public extension HMRequest {
                 
             } catch {
                 print("error decoding data for \(String(describing:response?.url))");
-                unhandledFailure?(error)
+                unhandledFailure?(error, response)
                 return
             }
         }
@@ -151,7 +154,7 @@ public extension HMRequest {
     }
     func didFail(with error: Error, response:URLResponse?) {
         if let unhandledFailure = unhandledFailure {
-            unhandledFailure(error)
+            unhandledFailure(error, response)
         }
     }
 }

@@ -56,10 +56,10 @@ public enum HMAPIRequest<T:Codable,S:Codable> {
     case put(String)
     case patch(String)
     case delete(String)
-    public func execute(data:T? = nil, completion:((URLResponse?, S?, HMFault?)->Void)? = nil) {
+    public func execute(data:T? = nil, completion:((URLResponse?, S?, Error?)->Void)? = nil) {
         self.execute(data: data, params: nil, completion: completion)
     }
-    public func execute(data:T? = nil, params:[String:String]? = nil, completion:((URLResponse?, S?, HMFault?)->Void)? = nil) {
+    public func execute(data:T? = nil, params:[String:String]? = nil, completion:((URLResponse?, S?, Error?)->Void)? = nil) {
         var request:HMRequest<S>?
         var method:BackendRequestMethod = .get
         var requestUrl:String = ""
@@ -95,7 +95,7 @@ public enum HMAPIRequest<T:Codable,S:Codable> {
         request?.execute()
 
     }
-	public func executeZip(data:Data, params:[String:String]? = nil, completion:((URLResponse?, S?, HMFault?)->Void)? = nil) {
+	public func executeZip(data:Data, params:[String:String]? = nil, completion:((URLResponse?, S?, Error?)->Void)? = nil) {
 		var request:HMRequest<S>?
 		var method:BackendRequestMethod = .get
 		var requestUrl:String = ""
@@ -169,7 +169,7 @@ public enum HMAPIRequest<T:Codable,S:Codable> {
     }
     
     
-    public func createRequest(method:BackendRequestMethod, url:String, data:T? = nil, params:[String:String]? = nil, completion:((URLResponse?, S?, HMFault?)->Void)? = nil) -> HMRequest<S> {
+    public func createRequest(method:BackendRequestMethod, url:String, data:T? = nil, params:[String:String]? = nil, completion:((URLResponse?, S?, Error?)->Void)? = nil) -> HMRequest<S> {
         var request = HMRequest<S>(method: method, endPoint: url)
         
         request.headers = HMAPI.authHeaders()
@@ -189,17 +189,22 @@ public enum HMAPIRequest<T:Codable,S:Codable> {
             }
         }
         
-        request.failure = { response in
-            
+        request.failure = { err, response in
+			if let c = completion {
+				c(response, nil, nil)
+			}
         }
         
         request.unhandledFailure = {
-            err in
-            dump(err)
+            err, response in
+            //dump(err)
+			if let c = completion {
+				c(response, nil, nil)
+			}
         }
         return request
     }
-	 public func createZipRequest(method:BackendRequestMethod, url:String, data:Data, params:[String:String]? = nil, boundary:String = UUID().uuidString, completion:((URLResponse?, S?, HMFault?)->Void)? = nil) -> HMRequest<S> {
+	 public func createZipRequest(method:BackendRequestMethod, url:String, data:Data, params:[String:String]? = nil, boundary:String = UUID().uuidString, completion:((URLResponse?, S?, Error?)->Void)? = nil) -> HMRequest<S> {
 		 var request = HMRequest<S>(method: method, endPoint: url)
 		request.headers = HMAPI.authHeaders()
 		request.headers?["Content-Type"] = "application/zip"
@@ -214,13 +219,18 @@ public enum HMAPIRequest<T:Codable,S:Codable> {
 			}
 		}
 		
-		request.failure = { response in
-			
+		request.failure = { err, response in
+			if let c = completion {
+				c(response, nil, err)
+			}
 		}
 		
 		request.unhandledFailure = {
-			err in
-			dump(err)
+			err, response in
+			//dump(err)
+			if let c = completion {
+				c(response, nil, err)
+			}
 		}
 		return request
 		
@@ -243,13 +253,18 @@ public enum HMAPIRequest<T:Codable,S:Codable> {
             }
         }
         
-        request.failure = { response in
-            
+        request.failure = { err, response in
+			if let c = completion {
+				c(response, nil, nil)
+			}
         }
         
         request.unhandledFailure = {
-            err in
+            err, response in
             dump(err)
+			if let c = completion {
+				c(response, nil, nil)
+			}
         }
         return request
         

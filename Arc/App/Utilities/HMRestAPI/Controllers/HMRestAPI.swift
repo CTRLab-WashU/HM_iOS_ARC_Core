@@ -8,7 +8,7 @@
 
 import Foundation
 public typealias SuccessHandler = () -> Void
-public typealias FailureHandler = (Error) -> Void
+public typealias FailureHandler = (Error, URLResponse?) -> Void
 
 public enum BackendRequestMethod: String {
     case get = "GET", post = "POST", put = "PUT", delete = "DELETE", patch = "PATCH"
@@ -130,6 +130,13 @@ open class HMRestAPI : NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 			if self.tasks.keys.contains(token) {
 				self.tasks[token]?.append((backendRequest.didSucceed, backendRequest.didFail))
 			} else {
+				//0 = to the successHandler for this tuple, 1 = to the failure handler
+				//completionHandlers.forEach {
+				//		$0.0(data, response)
+				//}
+				
+				//completionHandlers.forEach {$0.1(error, response)}
+
 				self.tasks[token] = [(backendRequest.didSucceed, backendRequest.didFail)]
 				task = self.session!.dataTask(with: urlRequest) { (data, response, error) in
 					DispatchQueue.main.async {
@@ -153,13 +160,20 @@ open class HMRestAPI : NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 							return
 						}
 						
-						HMLog("\n\n")
+						HMLog("\(url)\n\n")
 						HMLog(String(data: data, encoding: .utf8) ?? "")
 						HMLog("Decoded Response---------------------------------")
 						do {
-							HMLog(try JSONDecoder().decode(HMResponse.self, from: data).toString());
+							let obj = try JSONDecoder().decode(HMResponse.self, from: data).toString()
+							HMLog(obj);
 						} catch {
-							HMLog(error.localizedDescription)
+							//HMLog(error.localizedDescription)
+							completionHandlers.forEach {
+								$0.1(error, response)
+								
+							}
+							self.tasks.removeValue(forKey: token)
+							return
 						}
 						
 						
