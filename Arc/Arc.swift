@@ -566,5 +566,24 @@ open class Arc : ArcApi {
                             .cancel("Close", {})],
                  isScrolling: true)
     }
+	
+	public static func get(flag:ProgressFlag) -> Bool {
+		return Arc.shared.appController.flags[flag.rawValue] ?? false
+	}
+	public static func set(flag:ProgressFlag) {
+		Arc.shared.appController.flags[flag.rawValue] = true
+	}
+	public static func remove(flag:ProgressFlag) {
+		Arc.shared.appController.flags[flag.rawValue] = false
+	}
+	
+	public static func apply(forVersion version:String) {
+		let major:Int = Int(version.components(separatedBy: ".")[0]) ?? 0
+		let minor:Int = Int(version.components(separatedBy: ".")[1]) ?? 0
+		let patch:Int = Int(version.components(separatedBy: ".")[2]) ?? 0
+		for flag in ProgressFlag.prefilledFlagsFor(major: major, minor: minor, patch: patch) {
+			set(flag: flag)
+		}
+	}
 }
 
