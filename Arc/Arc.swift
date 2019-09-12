@@ -13,7 +13,7 @@ public protocol ArcApi {
 	
 }
 public enum SurveyAvailabilityStatus {
-    case available, laterToday, tomorrow, startingTomorrow(String), later(String, String), finished
+    case available, laterToday, tomorrow, startingTomorrow(String), later(String, String), finished, postBaseline
 }
 open class Arc : ArcApi {
 	
@@ -458,6 +458,10 @@ open class Arc : ArcApi {
                     
                     return .laterToday
                 } else if date.isTomorrow() {
+                    if Arc.shared.studyController.studyState == .baseline {
+                        return .postBaseline
+                    }
+                    
                     if Arc.shared.studyController.getCurrentStudyPeriod() == nil {
                         let dateString = date.localizedFormat(template: ACDateStyle.longWeekdayMonthDay.rawValue, options: 0, locale: nil)
                         return .startingTomorrow(dateString)
