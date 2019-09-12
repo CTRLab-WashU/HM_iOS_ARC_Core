@@ -32,7 +32,7 @@ public class ACTodayProgressViewController: CustomViewController<ACTodayProgress
 			customView.set(sessionsRemaining: nil)
 		} else {
 			customView.set(completed: false)
-			customView.set(sessionsCompleted: config.sessionsCompleted)
+			customView.set(sessionsCompleted: config.sessionsCompleted, isPlural: config.sessionsCompleted != 1)
 			customView.set(sessionsRemaining: config.totalSessions - config.sessionsStarted)
 		}
 		
