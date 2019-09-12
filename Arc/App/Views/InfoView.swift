@@ -41,7 +41,8 @@ public class InfoView: ACTemplateView {
 	}
 	public func setInput(_ view:(UIView & SurveyInput)?) {
 		inputItem = view
-		
+		inputItem?.parentScrollView = root
+
 		view?.supplementaryViews(for: self.miscContainer)
 		if miscContainer.subviews.count > 0 {
 			miscContainer.isHidden = false

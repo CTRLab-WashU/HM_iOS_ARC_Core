@@ -16,7 +16,11 @@ public protocol SignatureViewDelegate : class {
     
 }
 open class SignatureView: BorderedUIView, SurveyInput {
-    public var parentScrollView: UIScrollView?
+	public var parentScrollView: UIScrollView? {
+		didSet {
+			parentScrollView?.delaysContentTouches = false
+		}
+	}
     
 	
     public var isBottomAnchored: Bool = true
