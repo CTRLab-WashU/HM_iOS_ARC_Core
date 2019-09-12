@@ -19,9 +19,11 @@ public class ACTodayProgressView : UIView {
 	private weak var sessionCompletionLabel:ACLabel!
 	private weak var sessionRemainingLabel:ACLabel!
 	private weak var badgeLabel:ACLabel!
+    private weak var bottomLabel:ACLabel!
 	private var animations:[String:Animate] = [:]
 	private weak var button:ACButton!
 	public weak var delegate:ACTodayProgressViewDelegate?
+    var thisStudy:ThisStudyExpressible = Arc.shared.studyController
 	public override init(frame: CGRect) {
 		super.init(frame: .zero)
 		translatesAutoresizingMaskIntoConstraints = false
@@ -126,6 +128,25 @@ public class ACTodayProgressView : UIView {
 			}
 			
 		}
+        
+        if thisStudy.studyState == .baseline {
+            bottomLabel = acLabel {
+                
+                Roboto.Style.subHeading($0, color: ACColor.secondaryText)
+                $0.text = "progress_practice_body2"
+                $0.font = UIFont(name: "Roboto", size: 17)
+                animationParams.delay = 1.4
+                
+                $0.layout {
+                    $0.leading == safeAreaLayoutGuide.leadingAnchor + 17
+                    $0.trailing == safeAreaLayoutGuide.trailingAnchor - 17
+                    $0.bottom == safeAreaLayoutGuide.bottomAnchor - 100
+                }
+                
+                $0.fadeIn(animationParams)
+                    .translate(animationParams)
+            }
+        }
 		
 		button = acButton {
 			$0.layout {
