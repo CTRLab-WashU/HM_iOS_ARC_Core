@@ -10,9 +10,13 @@ import Foundation
 extension StudyController : ThisStudyExpressible {
 	public var nextTestCycle: String {
 		if studyState == .inactive, let study = getUpcomingStudyPeriod() {
-			let start = study.userStartDate?.localizedFormat(template: ACDateStyle.mediumWeekDayMonthDay.rawValue)
-			let end = study.userEndDate?.localizedFormat(template: ACDateStyle.mediumWeekDayMonthDay.rawValue)
-            return "\(String(describing: start)) - \(String(describing: end))"
+			guard let start = study.userStartDate?.localizedFormat(template: ACDateStyle.mediumWeekDayMonthDay.rawValue) else {
+				return ""
+			}
+			guard let end = study.userEndDate?.localizedFormat(template: ACDateStyle.mediumWeekDayMonthDay.rawValue) else {
+				return ""
+			}
+            return "\(start) - \(end)"
 		}
 		
 		return ""
@@ -55,7 +59,7 @@ extension StudyController : ThisStudyExpressible {
 	}
 	
 	public var joinedDate: String {
-		return beginningOfStudy.localizedFormat(template:ACDateStyle.longWeekdayMonthDay.rawValue)
+		return beginningOfStudy.localizedFormat(template:ACDateStyle.longWeekdayMonthDayYear.rawValue)
 	}
 	
 	public var finishDate: String {
@@ -65,7 +69,7 @@ extension StudyController : ThisStudyExpressible {
 		guard let lasSession = lastCycle.sessions?.lastObject as? Session else {
 			return ""
 		}
-		return lasSession.expirationDate!.localizedFormat(template:ACDateStyle.longWeekdayMonthDay.rawValue)
+		return lasSession.expirationDate!.localizedFormat(template:ACDateStyle.longWeekdayMonthDayYear.rawValue)
 	}
 	
 	public var timeBetweenTestingWeeks: String {
@@ -75,7 +79,7 @@ extension StudyController : ThisStudyExpressible {
 		
 		calendar.locale = Locale(identifier: Arc.shared.appController.locale.string)
 		
-		components.month = 2
+		components.month = 6
 		
 		return DateComponentsFormatter.localizedString(from: components, unitsStyle: DateComponentsFormatter.UnitsStyle.full) ?? ""
 	}

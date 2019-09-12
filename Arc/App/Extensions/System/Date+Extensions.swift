@@ -8,6 +8,7 @@
 
 import Foundation
 public enum ACDateStyle:String {
+	 case longWeekdayMonthDayYear = "EEEE, MMMM dd YYYY"
     case longWeekdayMonthDay = "EEEE, MMMM dd"
     case mediumWeekDayMonthDay = "EEE, MMM dd"
 }
