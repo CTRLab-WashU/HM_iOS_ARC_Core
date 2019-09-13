@@ -32,10 +32,11 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="efi-qX-YDc">
                     <rect key="frame" x="0.0" y="32" width="320" height="528"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap on the Fs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11X-8i-GZq" customClass="ACLabel" customModule="ArcUIKit">
-                            <rect key="frame" x="106" y="0.0" width="108" height="20"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap on the Fs" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11X-8i-GZq" customClass="ACLabel" customModule="ArcUIKit">
+                            <rect key="frame" x="22" y="0.0" width="276" height="20"/>
                             <constraints>
-                                <constraint firstAttribute="height" priority="999" constant="20" id="Th8-mY-BkH"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="20" id="Th8-mY-BkH"/>
+                                <constraint firstAttribute="width" constant="276" id="wuh-rl-oXQ"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                             <nil key="textColor"/>
@@ -64,6 +65,10 @@
                             </connections>
                         </collectionView>
                     </subviews>
+                    <constraints>
+                        <constraint firstItem="11X-8i-GZq" firstAttribute="leading" secondItem="efi-qX-YDc" secondAttribute="leading" constant="22" id="H4p-bR-VZ0"/>
+                        <constraint firstAttribute="trailing" secondItem="11X-8i-GZq" secondAttribute="trailing" constant="22" id="jta-GB-hcU"/>
+                    </constraints>
                 </stackView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
