@@ -56,6 +56,11 @@ open class ACHomeViewController: CustomViewController<ACHomeView> {
         }
     }
     
+    open override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        currentHint?.removeFromSuperview()
+    }
+    
     // Shown after the baseline test
     func showBaselineOboarding() {
         // view.window?.overlayView(withShapes: [])
