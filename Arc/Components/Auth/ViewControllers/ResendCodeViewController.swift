@@ -42,14 +42,14 @@ class ResendCodeViewController: CustomViewController<InfoView>, SurveyInput{
             //self?.nextPressed(input: self?.getInput(), value: AnyResponse(type: .text, value: "0"))
             self?.pressedNeedMoreHelp()
         }
-        customView.setAdditionalContent(button)
+        customView.infoContent.addArrangedSubview(button)
 	}
 	
 	fileprivate func addSendNewCodeButton() {
 		let sendCodeButton = ACButton()
 		sendCodeButton.setTitle("SEND NEW CODE", for: .normal)
 		sendCodeButton.addTarget(self, action: #selector(sendCode), for: .touchUpInside)
-		customView.setAdditionalContent(sendCodeButton)
+        customView.infoContent.addArrangedSubview(sendCodeButton)
 	}
 	
 	override func viewDidLoad() {

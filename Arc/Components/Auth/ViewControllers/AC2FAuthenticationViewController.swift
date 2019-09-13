@@ -30,7 +30,7 @@ public class AC2FAuthenticationViewController: BasicSurveyViewController {
 			
 			//Unhide the spacer to prevent the did receive code button from sitting at the bottom of the view. 
 			vc.customView.spacerView.isHidden = false
-			button.setTitle("Didn't recieve code?", for: .normal)
+			button.setTitle("Didn't receive code?", for: .normal)
 			button.setTitleColor(UIColor(named:"Primary"), for: .normal)
 			Roboto.Style.bodyBold(button.titleLabel!)
 			Roboto.PostProcess.link(button)

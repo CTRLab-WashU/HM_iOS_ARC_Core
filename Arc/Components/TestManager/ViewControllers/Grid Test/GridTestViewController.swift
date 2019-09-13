@@ -265,6 +265,12 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         
         collectionView.allowsSelection = true;
         tapOnTheFsLabel.isHidden = true
+        
+        if isPracticeTest {
+            tapOnTheFsLabel.isHidden = false
+            tapOnTheFsLabel.text = "Tap the boxes where the items were located in part one."
+        }
+        
         collectionView.allowsMultipleSelection = true;
         
         phase = 2
