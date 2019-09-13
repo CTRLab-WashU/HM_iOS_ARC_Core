@@ -119,10 +119,10 @@ extension StudyController : ThisWeekExpressible {
 	public var day: Int {
 		switch getCurrentStudyPeriod() {
 		case .some(let week):
-			guard let start = week.userStartDate else {return 0}
-			
-			return Date().daysSince(date: start)
-			
+			guard let session = Arc.shared.studyController.get(sessionsOnDay: Date(), studyId: Int(week.studyID)).first else {
+				return 0
+			}
+			return Int(session.day)
 		default:
 			return 0
 			

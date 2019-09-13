@@ -114,7 +114,7 @@ public extension ScheduleController {
     }
     
     func get(entriesForDay day:WeekDay, forParticipant participantId:Int) -> [ScheduleEntry]? {
-        let result:[ScheduleEntry]? = fetch(predicate: NSPredicate(format: "participantID == %i AND weekday==%i AND weekday>=%i", participantId, day.rawValue, day.rawValue))
+        let result:[ScheduleEntry]? = fetch(predicate: NSPredicate(format: "participantID == %i AND weekday==%i", participantId, day.rawValue))
         
         return result
 		

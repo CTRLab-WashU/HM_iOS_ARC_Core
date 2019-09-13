@@ -48,7 +48,7 @@ public class ACPostCycleFinishView : UIView {
 		animationParams.duration = 1.0
 		
 		contentStack = stack {[unowned self] in
-			let stack = $0
+			let _ = $0
 			$0.attachTo(view: self)
 			
 			$0.axis = .vertical
@@ -112,7 +112,7 @@ public class ACPostCycleFinishView : UIView {
 					$0.setTitle("".localized(ACTranslationKey.button_next), for: .normal)
 					$0.setTitleColor(ACColor.badgeText, for: .normal)
 					
-					$0.addAction { [weak self] in
+					$0.addAction {
 						Arc.shared.nextAvailableState()
 					}
 					
