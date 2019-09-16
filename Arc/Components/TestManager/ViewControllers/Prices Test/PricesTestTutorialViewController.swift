@@ -21,7 +21,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
     }
     
     override func viewDidLoad() {
-        self.duration = 43.5
+        self.duration = 33.5
         super.viewDidLoad()
 		pricesTest.delegate = self
 		pricesTest.autoStart = false
@@ -248,7 +248,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 			}
 		}
 		
-		state.addCondition(atTime: progress(seconds: 32.5), flagName: "question3-0") { [weak self] in
+		state.addCondition(atTime: progress(seconds: 22.6), flagName: "question3-0") { [weak self] in
 			guard let weakSelf = self else {
 				return
 			}
@@ -280,7 +280,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 			}
 		}
 		
-		state.addCondition(atTime: progress(seconds: 32.6), flagName: "questions3-1") { [weak self] in
+		state.addCondition(atTime: progress(seconds: 22.7), flagName: "questions3-1") { [weak self] in
 			guard let weakSelf = self else {
 				return
 			}
@@ -308,7 +308,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 			}
 		}
         
-		state.addCondition(atTime: progress(seconds: 42.5), flagName: "question3-2") { [weak self] in
+		state.addCondition(atTime: progress(seconds: 32.5), flagName: "question3-2") { [weak self] in
 			guard let weakSelf = self else {
 				return
 			}
@@ -341,7 +341,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 			}
 		}
         
-		state.addCondition(atTime: progress(seconds: 43.5), flagName: "end") { [weak self] in
+		state.addCondition(atTime: progress(seconds: 33.5), flagName: "end") { [weak self] in
 			guard let weakSelf = self else {
 				return
 			}
