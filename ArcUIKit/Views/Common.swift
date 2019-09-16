@@ -84,7 +84,6 @@ public enum PhoneClass {
     public static func getClass() -> PhoneClass {
         let width:CGFloat = UIScreen.main.bounds.width
         let height:CGFloat = UIScreen.main.bounds.height
-        print("Dimensions are \(width) x \(height)")
         switch (width, height) {
         case (320, 568):
             return .iphoneSE
