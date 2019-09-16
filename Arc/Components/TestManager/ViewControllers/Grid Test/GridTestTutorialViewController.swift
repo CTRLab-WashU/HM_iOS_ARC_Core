@@ -513,7 +513,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			}
 			weakSelf.tutorialAnimation.pause()
 			let index = weakSelf.test.symbolIndexPaths[min(2, weakSelf.gridSelected)]
-			guard let cell = weakSelf.test.overlayCell(at: index) else {
+			guard let _ = weakSelf.test.overlayCell(at: index) else {
 				return
 			}
 			weakSelf.currentHint = weakSelf.view.window?.hint {
@@ -534,17 +534,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 				$0.layout {
 					$0.centerX == weakSelf.view.centerXAnchor
 					$0.width == 252
-					
-					if index.row/5 > 2 {
-						//If above
-						$0.bottom == cell.topAnchor + 40
-
-					} else {
-						
-						$0.top == cell.bottomAnchor + 40
-
-					}
-					
+                    $0.bottom == weakSelf.test.collectionView.topAnchor - 20
 				}
 			}
 			

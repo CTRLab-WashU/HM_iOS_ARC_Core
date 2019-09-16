@@ -28,7 +28,7 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
     }
     
     override func viewDidLoad() {
-		duration = 15
+		duration = 42
         super.viewDidLoad()
 		
 		test.isPracticeTest = true
@@ -258,8 +258,8 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 	func removeHint(hint:String) {
 		_ = state.removeCondition(with: hint)
 	}
-	func addHint(hint:String) {
-		let time = tutorialAnimation.time + 3.0
+    func addHint(hint:String, forceFullHint:Bool = false) {
+		let time = tutorialAnimation.time + (forceFullHint ? 5.0 : 10.0)
 		print("HINT:", time)
 		state.addCondition(atTime: progress(seconds:time), flagName: hint) {
 			[weak self] in
@@ -270,21 +270,28 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 			guard let selection = weakSelf.test.correctSelection else {
 				return
 			}
-			weakSelf.view.window?.overlayView(withShapes: [.roundedRect(selection.0, 8.0), .roundedRect(selection.1, 8.0)])
-            selection.0.highlight()
-			weakSelf.currentHint = weakSelf.view.window?.hint {
-				$0.content = """
-				Tap this matching tile.
-				""".localized("popup_tutorial_tiletap")
-				
-				
-				$0.layout {
-					$0.bottom == weakSelf.view.bottomAnchor - 30
-					$0.centerX == weakSelf.view.centerXAnchor
-					$0.width == 252
-					
-				}
-			}
+            if weakSelf.test.questionIndex == 0 || forceFullHint {
+                weakSelf.view.window?.overlayView(withShapes: [.roundedRect(selection.0, 8.0), .roundedRect(selection.1, 8.0)])
+                selection.0.highlight()
+                weakSelf.currentHint = weakSelf.view.window?.hint {
+                    $0.content = """
+                Tap this matching tile.
+                """.localized("popup_tutorial_tiletap")
+                    
+                    
+                    $0.layout {
+                        $0.bottom == weakSelf.view.bottomAnchor - 30
+                        $0.centerX == weakSelf.view.centerXAnchor
+                        $0.width == 252
+                        
+                    }
+                }
+            } else {
+                selection.0.highlight()
+                weakSelf.removeHint(hint: "hint")
+                weakSelf.addHint(hint: "hint", forceFullHint: true)
+                weakSelf.tutorialAnimation.resume()
+            }
 			
 		}
 		

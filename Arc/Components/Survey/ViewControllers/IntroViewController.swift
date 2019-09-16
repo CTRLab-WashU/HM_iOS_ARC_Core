@@ -215,7 +215,7 @@ open class IntroViewController: CustomViewController<InfoView> {
                     $0.updateHintStackMargins()
 					$0.layout {
 						$0.width == customView.nextButton!.widthAnchor
-						$0.height == customView.nextButton!.heightAnchor
+						$0.height == customView.nextButton!.heightAnchor + 20
 						$0.centerX == customView.nextButton!.centerXAnchor
 						$0.centerY == customView.nextButton!.centerYAnchor
 					}
