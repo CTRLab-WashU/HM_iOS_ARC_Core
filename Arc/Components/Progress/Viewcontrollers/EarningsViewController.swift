@@ -33,42 +33,11 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		
 		//When in post test mode perform modifications 
 		if isPostTest {
-            customView.backgroundView.image = UIImage(named: "finished_bg", in: Bundle(for: self.classForCoder), compatibleWith: nil)
-            customView.backgroundColor = UIColor(named: "Primary Info")
-			customView.button.isHidden = true
-			customView.nextButton?.isHidden = false
-			customView.earningsSection.backgroundColor = .clear
-			customView.button.isHidden = true
-			customView.headerLabel.textAlignment = .center
-			customView.headerLabel.text = "".localized(ACTranslationKey.progress_earnings_header)
 			
-			customView.viewDetailsButton.isHidden = true
-			customView.separator.isHidden = true
-			customView.earningsBodyLabel.isHidden = true
-			customView.lastSyncedLabel.isHidden = true
-			
-			customView.bonusGoalsSection.backgroundColor = .clear
-			customView.bonusGoalsHeader.textAlignment = .center
-			customView.bonusGoalsSeparator.isHidden = true
-            customView.bonusGoalsHeader.textColor = .white
-            customView.bonusGoalsBodyLabel.textColor = .white
-			
-			customView.bonusGoalsBodyLabel.textAlignment = .center
-			Roboto.Style.body(customView.bonusGoalsBodyLabel, color:.white)
-            
-            customView.earningsParentStack.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 88, right: 0)
-            
-            customView.nextButton?.addTarget(self, action: #selector(self.nextPressed), for: .touchUpInside)
-            
+            configureForPostTest()
 			
 		} else {
-			customView.root.refreshControl = UIRefreshControl()
-			customView.root.addSubview(customView.root.refreshControl!)
-			customView.root.refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
-			
-			customView.root.alwaysBounceVertical = true
-            
-            customView.button.addTarget(self, action: #selector(self.viewFaqPressed), for: .touchUpInside)
+			configureForTab()
 		}
         
 		dateFormatter.locale = app.appController.locale.getLocale()
@@ -86,7 +55,44 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		
 		
     }
-    
+	
+	fileprivate func configureForTab() {
+		customView.root.refreshControl = UIRefreshControl()
+		customView.root.addSubview(customView.root.refreshControl!)
+		customView.root.refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
+		
+		customView.root.alwaysBounceVertical = true
+		
+		customView.button.addTarget(self, action: #selector(self.viewFaqPressed), for: .touchUpInside)
+	}
+	fileprivate func configureForPostTest() {
+		customView.backgroundView.image = UIImage(named: "finished_bg", in: Bundle(for: self.classForCoder), compatibleWith: nil)
+		customView.backgroundColor = UIColor(named: "Primary Info")
+		customView.button.isHidden = true
+		customView.nextButton?.isHidden = false
+		customView.earningsSection.backgroundColor = .clear
+		customView.button.isHidden = true
+		customView.headerLabel.textAlignment = .center
+		customView.headerLabel.text = "".localized(ACTranslationKey.progress_earnings_header)
+		
+		customView.viewDetailsButton.isHidden = true
+		customView.separator.isHidden = true
+		customView.earningsBodyLabel.isHidden = true
+		customView.lastSyncedLabel.isHidden = true
+		
+		customView.bonusGoalsSection.backgroundColor = .clear
+		customView.bonusGoalsHeader.textAlignment = .center
+		customView.bonusGoalsSeparator.isHidden = true
+		customView.bonusGoalsHeader.textColor = .white
+		customView.bonusGoalsBodyLabel.textColor = .white
+		
+		customView.bonusGoalsBodyLabel.textAlignment = .center
+		Roboto.Style.body(customView.bonusGoalsBodyLabel, color:.white)
+		
+		customView.earningsParentStack.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 88, right: 0)
+		
+		customView.nextButton?.addTarget(self, action: #selector(self.nextPressed), for: .touchUpInside)
+	}
     @objc func nextPressed() {
 		if thisStudy.studyState == .inactive {
 			Arc.shared.appNavigation.navigate(vc: ACPostCycleFinishViewController(), direction: .toRight)
@@ -111,10 +117,12 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 	public override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
-
+		
 		if isPostTest && HMRestAPI.shared.isWaitingForTask(named: ["earning-details", "earning-overview"]){
 			customView.showSpinner(color: ACColor.highlight, backgroundColor: ACColor.primaryInfo)
 			customView.earningsParentStack.alpha = 0
+			
+
 		}
 		
 	}

@@ -89,7 +89,7 @@ open class SessionController:MHController {
 				Arc.shared.studyController.clearData(sessionId: Int(sessions[i].sessionID))
 				
 			}
-			NotificationCenter.default.post(name: .ACSessionUploadComplete, object: self.sessionUploads)
+			
 		}
 	}
 	open func sendMissedSessions()
@@ -162,9 +162,15 @@ open class SessionController:MHController {
 		let md5 = full.encode()?.MD5()
 		sessionUploads.insert(session.sessionID)
 		let submitTest:HMAPIRequest<FullTestSession, HMResponse> = .post("submit-test")
-		submitTest.execute(data: full) { [unowned self] (response, data, _) in
+		submitTest.execute(data: full) { [unowned self] (response, data, err) in
 			
 			MHController.dataContext.performAndWait {
+				if let err = err {
+					 print(err.localizedDescription)
+					self.sessionUploads.remove(session.sessionID)
+					NotificationCenter.default.post(name: .ACSessionUploadFailure, object: self.sessionUploads)
+					return
+				}
 				HMLog("Session: \(full.session_id ?? ""), received response \(data?.toString() ?? "") on \(Date())", silent: false)
 				if data?.errors.count == 0 {
 					session.uploaded = true
@@ -180,6 +186,9 @@ open class SessionController:MHController {
 					}
 				} else {
                     print(data?.errors.toString() as Any)
+					self.sessionUploads.remove(session.sessionID)
+					NotificationCenter.default.post(name: .ACSessionUploadFailure, object: self.sessionUploads)
+
 				}
 				
 			}

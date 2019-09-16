@@ -14,7 +14,7 @@ public extension Notification.Name {
 	//This will be used when the application triggers an earnings refresh
 	//after finishing all uploads. 
 	static let ACSessionUploadComplete = Notification.Name(rawValue: "ACSessionUploadComplete")
-	
+	static let ACSessionUploadFailure = Notification.Name(rawValue:"ACSessionUploadFailure")
 	//This is to be used when the user manually refreshes the earnings call
 	static let ACStartEarningsRefresh = Notification.Name("ACStartEarningsRefresh")
 	static let ACEarningsUpdated = Notification.Name(rawValue: "ACEarningsUpdated")

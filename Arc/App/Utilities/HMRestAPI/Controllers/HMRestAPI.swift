@@ -200,6 +200,7 @@ open class HMRestAPI : NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 	public func isWaitingForTask(named:[String]) -> Bool{
 		for task in tasks.keys {
 			if named.contains( task.url.lastPathComponent) {
+				print("is waiting for:\(task)")
 				return true
 			}
 			
