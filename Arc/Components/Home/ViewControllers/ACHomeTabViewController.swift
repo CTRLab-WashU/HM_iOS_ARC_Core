@@ -78,7 +78,6 @@ class ACHomeTabViewController: UITabBarController {
 				$0.leading >= view.leadingAnchor + 24
 				$0.trailing <= view.trailingAnchor - 24
 				$0.width == 232
-				$0.height == 146
 			}
             $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
                                                     secondaryColor: UIColor(named:"HintFill")!,
