@@ -24,6 +24,7 @@ open class Arc : ArcApi {
     public var WELCOME_TEXT = ""
 	public var TEST_TIMEOUT:TimeInterval = 300; // 5 minute timeout if the application is closed
 	public var TEST_START_ALLOWANCE:TimeInterval = -300; // 5 minute window before actual start time
+    public var activeTab:Int = 0
 	var STORE_DATA = false
 	var FORGET_ON_RESTART = false
     lazy var arcInfo: NSDictionary? = {
