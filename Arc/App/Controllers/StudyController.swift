@@ -1322,22 +1322,19 @@ open class StudyController : MHController {
 		var config = TodaysProgess()
 		
 		var currentSessionId = currentSessionId ?? Arc.shared.currentTestSession
-		if currentSessionId == nil {
-			if let todaysSessions = get(sessionsOnDay: Date(), studyId: Int(study.studyID)).first {
-			
-				currentSessionId = Int(todaysSessions.sessionID)
-			}
-		}
-		guard let id = currentSessionId else {
-			return nil
-		}
-		let currentSession = get(session: id)
-		var sessions = get(allSessionsForStudy: Int(study.studyID	))
-		if let d = sessionDay ?? currentSession?.sessionDayIndex {
-			sessions = sessions.filter {
-				return $0.sessionDayIndex == d
-			}
-		}
+//        if currentSessionId == nil {
+        let sessions = get(sessionsOnDay: Date(), studyId: Int(study.studyID))
+//        }
+        guard sessions.count > 0 else {
+            return nil
+        }
+//        let currentSession = get(session: id)
+//        var sessions = get(allSessionsForStudy: Int(study.studyID    ))
+//        if let d = sessionDay ?? currentSession?.sessionDayIndex {
+//            sessions = sessions.filter {
+//                return $0.sessionDayIndex == d
+//            }
+//        }
 		config.totalSessions = sessions.count
 		
 		for sessionData in sessions {

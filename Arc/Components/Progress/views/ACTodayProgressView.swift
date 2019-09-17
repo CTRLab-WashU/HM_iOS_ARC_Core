@@ -210,6 +210,7 @@ public class ACTodayProgressView : UIView {
 	}
 	
 	public func set(progress:Double, for session:Int)  {
+        assert(session < progressViews.count)
 		let view = progressViews[session]
 
 		if progress < 0 {
