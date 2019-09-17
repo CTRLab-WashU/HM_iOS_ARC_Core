@@ -31,7 +31,13 @@ public class ACEarningsView : ACTemplateView {
 	weak var totalSessionsGoal:TotalSessionGoalView!
 	
 	weak var button:ACButton!
+	weak var gradientView:UIView!
+	weak var bottomGradient:CAGradientLayer?
 	
+	public override func layoutSubviews() {
+		super.layoutSubviews()
+		bottomGradient?.frame = gradientView.bounds
+	}
 	public override func content(_ view: UIView) {
 		if let v = view as? UIStackView {
 			v.layoutMargins = .zero
@@ -216,17 +222,27 @@ public class ACEarningsView : ACTemplateView {
 			
 		}
 		
-		self.nextButton = acButton {
+		self.gradientView = self.view {
 			$0.isHidden = true
+
 			$0.layout {
-				$0.bottom == safeAreaLayoutGuide.bottomAnchor - 24
-				$0.leading == safeAreaLayoutGuide.leadingAnchor + 32
-				$0.trailing == safeAreaLayoutGuide.trailingAnchor - 32
+				$0.bottom == self.bottomAnchor ~ 999
+				$0.trailing == self.trailingAnchor ~ 999
+				$0.leading == self.leadingAnchor ~ 999
+				$0.height == 96 ~ 999
 			}
-			$0.primaryColor = ACColor.secondary
-			$0.secondaryColor = ACColor.secondaryGradient
-			$0.setTitleColor(ACColor.badgeText, for: .normal)
-			$0.setTitle("".localized(ACTranslationKey.button_next), for: .normal)
+			bottomGradient(view: $0)
+			self.nextButton = $0.acButton {
+				$0.layout {
+					$0.bottom == safeAreaLayoutGuide.bottomAnchor - 24
+					$0.leading == safeAreaLayoutGuide.leadingAnchor + 32
+					$0.trailing == safeAreaLayoutGuide.trailingAnchor - 32
+				}
+				$0.primaryColor = ACColor.secondary
+				$0.secondaryColor = ACColor.secondaryGradient
+				$0.setTitleColor(ACColor.badgeText, for: .normal)
+				$0.setTitle("".localized(ACTranslationKey.button_next), for: .normal)
+			}
 		}
 	}
 	func clearRewards() {
@@ -256,5 +272,15 @@ public class ACEarningsView : ACTemplateView {
 				}
 			}
 		}
+	}
+	func bottomGradient(view:UIView){
+		let gradient = CAGradientLayer()
+		gradient.frame = view.bounds
+		gradient.colors = [	UIColor(red:0.04, green:0.12, blue:0.33, alpha:0).cgColor,	UIColor(red:0.04, green:0.12, blue:0.33, alpha:1).cgColor]
+		gradient.locations = [0, 1]
+		gradient.startPoint = CGPoint(x: 0.5, y: 0)
+		gradient.endPoint = CGPoint(x: 0.5, y: 0.51)
+		view.layer.addSublayer(gradient)
+		bottomGradient = gradient
 	}
 }

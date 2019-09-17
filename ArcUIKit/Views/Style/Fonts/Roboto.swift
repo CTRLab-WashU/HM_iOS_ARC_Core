@@ -281,7 +281,7 @@ public struct Roboto {
 			
 			
 			let paragraphStyle = NSMutableParagraphStyle()
-			paragraphStyle.lineSpacing = 7
+			paragraphStyle.lineSpacing = 5.5
 			attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
 			label.attributedText = attributedString
 		}
@@ -291,7 +291,7 @@ public struct Roboto {
 			
 			
 			let paragraphStyle = NSMutableParagraphStyle()
-			paragraphStyle.lineSpacing = 7
+			paragraphStyle.lineSpacing = 5.5
 			attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
 			textView.attributedText = attributedString
 		}

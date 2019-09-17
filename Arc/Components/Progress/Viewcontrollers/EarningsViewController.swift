@@ -69,9 +69,8 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		customView.backgroundView.image = UIImage(named: "finished_bg", in: Bundle(for: self.classForCoder), compatibleWith: nil)
 		customView.backgroundColor = UIColor(named: "Primary Info")
 		customView.button.isHidden = true
-		customView.nextButton?.isHidden = false
+		customView.gradientView?.isHidden = false
 		customView.earningsSection.backgroundColor = .clear
-		customView.button.isHidden = true
 		customView.headerLabel.textAlignment = .center
 		customView.headerLabel.text = "".localized(ACTranslationKey.progress_earnings_header)
 		
@@ -146,12 +145,14 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		
 			weakSelf.customView.earningsParentStack.fadeIn()
 
-			weakSelf.customView.hideSpinner()
-			weakSelf.customView.root.refreshControl?.endRefreshing()
+			
+			
 
 			weakSelf.lastUpdated = weakSelf.app.appController.lastFetched["EarningsOverview"]
 			weakSelf.earningsData = Arc.shared.appController.read(key: "EarningsOverview")
 			weakSelf.setGoals()
+			weakSelf.customView.hideSpinner()
+			weakSelf.customView.root.refreshControl?.endRefreshing()
 			
 		}
 		
@@ -266,3 +267,4 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
     */
 
 }
+
