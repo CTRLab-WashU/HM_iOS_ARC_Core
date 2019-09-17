@@ -16,6 +16,32 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 	var earningsData:EarningOverview?
 	var dateFormatter = DateFormatter()
 	var isPostTest:Bool = false
+    
+    // TODO
+    // This enum was copypasta'd from ACEarningsDetailView
+    // Don't do that
+    enum GoalDisplayName : String {
+        case testSession = "test-session"
+        case fourOfFour = "4-out-of-4"
+        case twoADay = "2-a-day"
+        case totalSessions =  "21-sessions"
+        
+        func getName() ->String {
+            switch self {
+                
+                
+            case .testSession:
+                return "Completed Test Session"
+            case .fourOfFour:
+                return "4 Out of 4 Goal"
+            case .twoADay:
+                return "2-A-Day Goal"
+            case .totalSessions:
+                return "21 Sessions Goal"
+                
+            }
+        }
+    }
 	
 	public init(isPostTest:Bool) {
 		super.init(nibName: nil, bundle: nil)
@@ -234,7 +260,8 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		if isPostTest {
 			customView.clearRewards()
 			for a in earnings.new_achievements {
-				customView.add(reward: (a.name, a.amount_earned))
+                let name = GoalDisplayName(rawValue: a.name)?.getName() ?? "Goal Name"
+				customView.add(reward: (name, a.amount_earned))
 			}
 		}
 		

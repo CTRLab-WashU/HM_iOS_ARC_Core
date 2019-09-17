@@ -34,9 +34,35 @@ class ACHomeTabViewController: UITabBarController {
 										 .popup_next,
 										 .popup_done]
 	
+    enum Tabs:Int {
+        case home = 0
+        case progress = 1
+        case earnings = 2
+        case resources = 3
+    }
+    
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if item == (self.tabBar.items as! [UITabBarItem])[0]{
+            Arc.shared.activeTab = Tabs.home.rawValue
+            print("home")
+        }
+        else if item == (self.tabBar.items as! [UITabBarItem])[1]{
+            Arc.shared.activeTab = Tabs.progress.rawValue
+            print("progress")
+        }
+        else if item == (self.tabBar.items as! [UITabBarItem])[2]{
+            Arc.shared.activeTab = Tabs.earnings.rawValue
+            print("earnings")
+        }
+        else if item == (self.tabBar.items as! [UITabBarItem])[3]{
+            Arc.shared.activeTab = Tabs.resources.rawValue
+            print("resources")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.selectedIndex = Arc.shared.activeTab
         // Do any additional setup after loading the view.
 		
     }
