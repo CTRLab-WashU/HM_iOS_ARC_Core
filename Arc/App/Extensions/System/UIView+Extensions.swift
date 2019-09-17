@@ -88,7 +88,7 @@ public extension UIView {
     }
 	
 	
-    @discardableResult func showSpinner(color:UIColor? = nil, backgroundColor:UIColor? = nil) -> UIActivityIndicatorView {
+	@discardableResult func showSpinner(color:UIColor? = nil, backgroundColor:UIColor? = nil, message:String? = nil, messageColor:UIColor? = .white) -> UIActivityIndicatorView {
 		
 		self.hideSpinner()
 		let spinner = UIActivityIndicatorView()
@@ -106,6 +106,20 @@ public extension UIView {
 		//        self.addSubview(spinner)
 		self.anchor(view: spinner)
 		spinner.alpha = 0
+		
+		if let message = message {
+			spinner.acLabel {
+				$0.layout {
+					$0.centerX == spinner.centerXAnchor
+					$0.centerY == spinner.centerYAnchor + 40
+					$0.width == spinner.widthAnchor ~ 999
+				}
+				Roboto.Style.body($0, color: messageColor ?? .black)
+				$0.textAlignment = .center
+				$0.text = message
+			}
+		}
+		
 		UIView.animate(withDuration: 0.6, delay: 0.0, options: .curveEaseInOut, animations: {
 			spinner.alpha = 1
 		}) { (s) in

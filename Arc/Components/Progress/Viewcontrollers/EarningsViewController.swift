@@ -143,8 +143,8 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		super.viewWillAppear(animated)
 		
 		
-		if isPostTest && HMRestAPI.shared.isWaitingForTask(named: ["earning-details", "earning-overview"]){
-			customView.showSpinner(color: ACColor.highlight, backgroundColor: ACColor.primaryInfo)
+		if isPostTest {
+			customView.showSpinner(color: ACColor.highlight, backgroundColor: ACColor.primaryInfo, message:"Just a moment while we update your earnings…")
 			customView.earningsParentStack.alpha = 0
 			
 
@@ -153,11 +153,11 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 	}
 	public override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		if isPostTest && !HMRestAPI.shared.isWaitingForTask(named: ["earning-details", "earning-overview"]){
-			customView.hideSpinner()
-			customView.earningsParentStack.fadeIn()
-
-		}
+//		if isPostTest && !HMRestAPI.shared.isWaitingForTask(named: ["earning-details", "earning-overview"]){
+//			customView.hideSpinner()
+//			customView.earningsParentStack.fadeIn()
+//
+//		}
 		lastUpdated = app.appController.lastFetched["EarningsOverview"]
 		earningsData = Arc.shared.appController.read(key: "EarningsOverview")
 		setGoals()
