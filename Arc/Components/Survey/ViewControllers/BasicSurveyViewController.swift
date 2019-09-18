@@ -300,7 +300,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 	func questionStyle(_ question:Survey.Question) {
 		// Do any additional setup after loading the view.
 		let vc:CustomViewController<InfoView> = getTopViewController()!
-
+        
         useDarkStatusBar = true
         setNeedsStatusBarAppearanceUpdate()
         
@@ -335,6 +335,8 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
             vc.customView.nextButton?.addTarget(self, action: #selector(nextButtonPressed(sender:)), for: .primaryActionTriggered)
         }
 		
+        disableNextButton(title: question.altNextButtonTitle ?? "Next")
+        
 		didPresentQuestion(input: vc.customView.inputItem, questionId: question.questionId)
 
 
@@ -375,15 +377,17 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
         guard let input:CustomViewController<InfoView> = self.getTopViewController() else {
             return
         }
-        input.customView.nextButton?.isEnabled = true;
+        
+        input.customView.enableNextButton()
     }
     
-    public func disableNextButton()
+    public func disableNextButton(title:String = "Next")
     {
         guard let input:CustomViewController<InfoView>  = self.getTopViewController() else {
             return
         }
-        input.customView.nextButton?.isEnabled = false;
+        
+        input.customView.disableNextButton(title: title)
     }
     
 	@objc public func nextButtonPressed(sender:Any) {
@@ -419,6 +423,8 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		let _ = Arc.shared.surveyController.mark(responseTime: question.questionId,
 												 question: question.prompt,
 												 forSurveyResponse: self.surveyId)
+        
+        enableNextButton()
 	}
 	public func nextPressed(input: SurveyInput?, value: QuestionResponse?) {
 		isValid(value: value, questionId: questions[currentIndex].questionId) { [weak self] valid in
