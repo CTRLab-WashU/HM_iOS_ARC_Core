@@ -39,6 +39,16 @@ public class InfoView: ACTemplateView {
 		nextButton?.setTitleColor(textColor, for: .normal)
 		
 	}
+    public func enableNextButton(title:String = "Next") {
+        nextButton?.isEnabled = true;
+        nextButton?.alpha = 1;
+        nextButton?.setTitle(title, for: .normal)
+    }
+    public func disableNextButton(title:String = "Next") {
+        nextButton?.isEnabled = false;
+        nextButton?.alpha = 0.5;
+        nextButton?.setTitle(title, for: .normal)
+    }
 	public func setInput(_ view:(UIView & SurveyInput)?) {
 		inputItem = view
 		inputItem?.parentScrollView = root
