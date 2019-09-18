@@ -29,10 +29,11 @@ public class ACEarningsView : ACTemplateView {
 	weak var fourofFourGoal:FourOfFourGoalView!
 	weak var twoADayGoal:TwoADayGoalView!
 	weak var totalSessionsGoal:TotalSessionGoalView!
-	
+	weak var bonusGoalContent:UIView!
 	weak var button:ACButton!
 	weak var gradientView:UIView!
 	weak var bottomGradient:CAGradientLayer?
+	weak var errorLabel:ACLabel!
 	
 	public override func layoutSubviews() {
 		super.layoutSubviews()
@@ -46,6 +47,14 @@ public class ACEarningsView : ACTemplateView {
 			$0.axis = .vertical
 			$0.isLayoutMarginsRelativeArrangement = true
 			$0.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+			
+			self.errorLabel = $0.acLabel {
+				$0.isHidden = true
+				$0.textAlignment = .center
+				
+				Roboto.Style.badge($0, color: .white)
+				$0.text = "progress_endoftest_nosync"
+			}
 			
 			//MARK: Earnings Header
 			self.earningsSection = $0.view {
@@ -174,7 +183,7 @@ public class ACEarningsView : ACTemplateView {
 			}
 
 			//MARK: Bonus Goals Content
-			$0.view { [unowned self] in
+			self.bonusGoalContent = $0.view { [unowned self] in
 				
 				//Bonus Goals
 				$0.backgroundColor = ACColor.primaryInfo

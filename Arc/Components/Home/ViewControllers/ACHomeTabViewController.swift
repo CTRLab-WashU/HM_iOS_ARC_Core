@@ -42,19 +42,24 @@ class ACHomeTabViewController: UITabBarController {
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        if item == (self.tabBar.items as! [UITabBarItem])[0]{
+		guard let items = self.tabBar.items else {
+			assertionFailure("No items in tab bar")
+			return
+		}
+		
+        if item == items[0]{
             Arc.shared.activeTab = Tabs.home.rawValue
             print("home")
         }
-        else if item == (self.tabBar.items as! [UITabBarItem])[1]{
+        else if item == items[1]{
             Arc.shared.activeTab = Tabs.progress.rawValue
             print("progress")
         }
-        else if item == (self.tabBar.items as! [UITabBarItem])[2]{
+        else if item == items[2]{
             Arc.shared.activeTab = Tabs.earnings.rawValue
             print("earnings")
         }
-        else if item == (self.tabBar.items as! [UITabBarItem])[3]{
+        else if item == items[3]{
             Arc.shared.activeTab = Tabs.resources.rawValue
             print("resources")
         }

@@ -16,7 +16,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 	var earningsData:EarningOverview?
 	var dateFormatter = DateFormatter()
 	var isPostTest:Bool = false
-    
+	var timeout:Timer?
     // TODO
     // This enum was copypasta'd from ACEarningsDetailView
     // Don't do that
@@ -81,17 +81,33 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		
 		
     }
-	
+	fileprivate func errorState() {
+		customView.earningsSection.isHidden = true
+		customView.bonusGoalsHeader.isHidden = true
+		customView.bonusGoalContent.isHidden = true
+		customView.errorLabel.isHidden = false
+		customView.hideSpinner()
+		customView.earningsParentStack.fadeIn()
+	}
 	fileprivate func configureForTab() {
-		customView.root.refreshControl = UIRefreshControl()
-		customView.root.addSubview(customView.root.refreshControl!)
-		customView.root.refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
-		
-		customView.root.alwaysBounceVertical = true
+//		customView.root.refreshControl = UIRefreshControl()
+//		customView.root.addSubview(customView.root.refreshControl!)
+//		customView.root.refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
+//
+//		customView.root.alwaysBounceVertical = true
 		
 		customView.button.addTarget(self, action: #selector(self.viewFaqPressed), for: .touchUpInside)
 	}
 	fileprivate func configureForPostTest() {
+		let lastUpdated = app.appController.lastFetched["EarningsOverview"]
+		timeout = Timer.init(fire: Date().addingTimeInterval(10.0), interval: 0.0, repeats: false) { [weak self] (timer) in
+			if lastUpdated == Arc.shared.appController.lastFetched["EarningsOverview"] {
+				self?.errorState()
+
+				
+			}
+		}
+		
 		customView.backgroundView.image = UIImage(named: "finished_bg", in: Bundle(for: self.classForCoder), compatibleWith: nil)
 		customView.backgroundColor = UIColor(named: "Primary Info")
 		customView.button.isHidden = true
@@ -144,7 +160,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		
 		
 		if isPostTest {
-			customView.showSpinner(color: ACColor.highlight, backgroundColor: ACColor.primaryInfo, message:"Just a moment while we update your earnings…")
+			customView.showSpinner(color: ACColor.highlight, backgroundColor: ACColor.primaryInfo, message:"progress_endoftest_syncing")
 			customView.earningsParentStack.alpha = 0
 			
 
@@ -168,7 +184,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 			guard let weakSelf = self else {
 				return
 			}
-		
+			weakSelf.timeout?.invalidate()
 			weakSelf.customView.earningsParentStack.fadeIn()
 
 			

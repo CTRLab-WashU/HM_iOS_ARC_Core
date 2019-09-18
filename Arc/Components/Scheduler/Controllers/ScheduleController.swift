@@ -93,5 +93,24 @@ open class ScheduleController : MHController {
         return false
     }
     
-    
+	open func generateSchedule(start:Date, end:Date) -> [ScheduleEntry] {
+		let scheduleController = Arc.shared.scheduleController
+		var entries:[ScheduleEntry] = []
+		for day in WeekDay.allCases {
+			dump(day)
+			let formatter = DateFormatter()
+			formatter.dateFormat = "h:mm a"
+			formatter.isLenient = true
+			
+			if let entry = scheduleController.create(entry: formatter.string(from: start),
+													 endTime: formatter.string(from: end),
+													 weekDay: day,
+													 participantId: Arc.shared.participantId!) {
+				
+				entries.append(entry)
+			}
+			
+		}
+		return entries
+	}
 }

@@ -49,7 +49,19 @@ public extension Date {
 
         }
     }
-    
+	static func time(year:Int, month:Int, day:Int, hour:Int, minute:Int) -> Date {
+		var dateComponents = DateComponents()
+		dateComponents.year = year
+		dateComponents.month = month
+		dateComponents.day = day
+		dateComponents.hour = hour
+		dateComponents.minute = minute
+		
+		// Create date from components
+		let userCalendar = Calendar.current // user calendar
+		
+		return userCalendar.date(from: dateComponents)!
+	}
     /// Returns the amount of years from another date
     func years(from date: Date) -> Int {
         return Calendar.current.dateComponents([.year], from: date, to: self).year ?? 0
