@@ -53,8 +53,10 @@ public final class HMMarkupRenderer {
             text = config.translation?[text] ?? text
         }
 		let elements = HMMarkupParser.parse(text: text)
-		let attributes = [NSAttributedString.Key.font: baseFont]
+		 // Whatever line spacing you want in points
 		
+		let attributes = [NSAttributedString.Key.font: baseFont]
+
 		return elements.map { $0.render(withAttributes: attributes) }.joined()
 	}
 	
