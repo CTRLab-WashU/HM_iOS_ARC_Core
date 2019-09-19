@@ -101,7 +101,7 @@ open class PricesQuestionViewController: UIViewController {
             
             let string = controller.get(option: priceIndex, forQuestion: index, id: id)!
             
-            b.set(message: "\("".localized("money_prefix"))\(string)") //setTitle("\(string)", for: .normal)
+            b.set(message: "\("$".localized("money_prefix"))\(string)") //setTitle("\(string)", for: .normal)
             b.isHidden = false
             
             //b.set(selected: false)
