@@ -121,6 +121,8 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
                 scrollView.setContentOffset(offset, animated: true)
             }
         }
+		scrollIndicatorState(scrollView)
+
     }
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
