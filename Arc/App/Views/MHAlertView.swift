@@ -32,7 +32,7 @@ open class MHAlertView: UIView {
    
     public required init?(coder aDecoder: NSCoder) {
         //The message label will not exist at this point use a default first
-        markupRenderer = HMMarkupRenderer(baseFont: UIFont(name: "Roboto", size: 18)!)
+        markupRenderer = HMMarkupRenderer(baseFont: .systemFont(ofSize: 18))
         super.init(coder: aDecoder)
 
     }
@@ -48,17 +48,9 @@ open class MHAlertView: UIView {
 		delayTimer?.invalidate()
 		delayTimer = nil
 		
-		let paragraphStyle = NSMutableParagraphStyle()
 		
-		paragraphStyle.lineSpacing = 5.5
-		paragraphStyle.alignment = .center
-		messageLabel.textAlignment = .center
+		
 		messageLabel.attributedText = markupRenderer.render(text: message ?? "")
-		if let mutable = messageLabel.attributedText {
-			let attr = NSMutableAttributedString(attributedString: mutable)
-			attr.addAttributes([NSAttributedString.Key.paragraphStyle:paragraphStyle], range: NSMakeRange(0, mutable.length))
-			messageLabel.attributedText = attr
-		}
 		self.buttons = buttons
 		buttonMap = [:]
 		stack.removeSubviews()

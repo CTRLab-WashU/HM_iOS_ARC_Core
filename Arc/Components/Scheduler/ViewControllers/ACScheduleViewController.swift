@@ -277,25 +277,6 @@ public class ACScheduleViewController : SurveyNavigationViewController {
 			
 		}
 		
-		let _ = Arc.shared.scheduleController.delete(schedulesForParticipant: self.participantId!)
-		
-		for day in 0 ... 6 {
-			let weekDay = WeekDay.init(rawValue: Int64(day))!
-			let wakeKey = QuestionIndex.allCases.filter({
-				$0.day == day && QuestionIndex.wakeTimeQuestion.contains($0)
-			}).first!
-			let sleepKey = QuestionIndex.allCases.filter({
-				$0.day == day && QuestionIndex.sleepTimeQuestion.contains($0)
-			}).first!
-
-			let wake = wakeSleeptimes[wakeKey]!.time
-			let sleep = wakeSleeptimes[sleepKey]!.time
-			let _ = Arc.shared.scheduleController.create(entry: wake,
-														endTime: sleep,
-														weekDay: weekDay,
-														participantId: self.participantId!)
-		}
-		let _ = Arc.shared.scheduleController.get(confirmedSchedule: self.participantId!)
 
 		
 
@@ -306,8 +287,31 @@ public class ACScheduleViewController : SurveyNavigationViewController {
 	
 	
 		//			DispatchQueue.global(qos: .userInteractive).async {
-        MHController.dataContext.performAndWait {
-
+        MHController.dataContext.perform { [unowned self] in
+			var sessions:[Session] = []
+			
+			if self.isChangingSchedule {
+				sessions = Arc.shared.studyController.get(sessionsOnDay: Date())
+			}
+			let _ = Arc.shared.scheduleController.delete(schedulesForParticipant: self.participantId!)
+			
+			for day in 0 ... 6 {
+				let weekDay = WeekDay.init(rawValue: Int64(day))!
+				let wakeKey = QuestionIndex.allCases.filter({
+					$0.day == day && QuestionIndex.wakeTimeQuestion.contains($0)
+				}).first!
+				let sleepKey = QuestionIndex.allCases.filter({
+					$0.day == day && QuestionIndex.sleepTimeQuestion.contains($0)
+				}).first!
+				
+				let wake = self.wakeSleeptimes[wakeKey]!.time
+				let sleep = self.wakeSleeptimes[sleepKey]!.time
+				let _ = Arc.shared.scheduleController.create(entry: wake,
+															 endTime: sleep,
+															 weekDay: weekDay,
+															 participantId: self.participantId!)
+			}
+			let schedule = Arc.shared.scheduleController.get(confirmedSchedule: self.participantId!)
         
             // If firstTest is set, that means we've probably recently re-installed the app, and are recreating a schedule.
             // So set beginningOfStudy to be the session_date of the first test.
@@ -321,22 +325,19 @@ public class ACScheduleViewController : SurveyNavigationViewController {
             if self.isChangingSchedule {
 				
                 let studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
-                let sessions = Arc.shared.studyController.getUpcomingSessions(withLimit: 5)
-				var dayIndex:Int?
-				var afterDate:Date?
-				for session in sessions {
-					if dayIndex == nil {
-						dayIndex = Int(session.day)
-					}
-					if dayIndex == Int(session.day) {
-						afterDate = session.sessionDate
-					}
-				}
+				//Using the sessions we grabbed before rescheduling figure out when to start scheduling
+				
 				
                 for study in studies {
                     	Arc.shared.notificationController.clear(sessionNotifications: Int(study.studyID))
-                    Arc.shared.studyController.clear(sessions: Int(study.studyID), afterDate: afterDate!)
+					if let lastSessionToday = sessions.last?.expirationDate {
+						
+						
+                    	Arc.shared.studyController.clear(sessions: Int(study.studyID), afterDate: lastSessionToday)
+					} else {
+						Arc.shared.studyController.clear(sessions: Int(study.studyID), afterDate: Date())
 
+					}
                 }
             } else {
                 _ = Arc.shared.studyController.createAllStudyPeriods(startingID: 0, startDate: date)

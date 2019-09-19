@@ -8,11 +8,11 @@
 
 import UIKit
 import HMMarkup
-
+import ArcUIKit
 open class IntroViewController: UIViewController {
     
-    @IBOutlet weak var headingLabel: UILabel!
-    @IBOutlet weak var subheadingLabel: UILabel!
+    @IBOutlet weak var headingLabel: ACLabel!
+    @IBOutlet weak var subheadingLabel: ACLabel!
     @IBOutlet weak var contentTextview: UITextView!
 	@IBOutlet weak var nextButton:UIButton!
     var nextButtonImage:String?
