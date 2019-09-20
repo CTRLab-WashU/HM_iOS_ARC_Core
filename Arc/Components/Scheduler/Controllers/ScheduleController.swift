@@ -34,6 +34,36 @@ open class ScheduleController : MHController {
 		save()
 		return schedule
 	}
+	open func get(rangeForCurrentDay date:Date, participantId:Int) -> ClosedRange<Date> {
+		var left = get(startTimeForDate: date, participantID: participantId)
+		var right = get(endTimeForDate: date, participantID: participantId)
+		
+		//If the date is before the left handle
+		if left > date{
+			
+			//To get date to fall into the range we will move left to be the right handle
+			right = left
+			
+			//This way the left handle is always before the date and the right handle is after the date this will prevent comparison errors.
+			left = left.addingDays(days: -1)
+			
+		}
+		return (left ... right)
+	}
+	open func get(rangeForUpcomingDay date:Date, participantId:Int) -> ClosedRange<Date> {
+		let left = get(startTimeForDate: date, participantID: participantId)
+		let right = get(endTimeForDate: date, participantID: participantId)
+		
+		
+		return (left ... right)
+	}
+	open func get(isActiveFor date:Date, participantId:Int) -> Bool {
+		let left = get(startTimeForDate: date, participantID: participantId)
+		let right = get(endTimeForDate: date, participantID: participantId)
+		
+		
+		return (left ... right).contains(date)
+	}
     //get a schedule (get all or one individually)
     open func get(participantId:Int) -> [Schedule]? {
         let result:[Schedule]? = fetch(predicate: NSPredicate(format: "participantID == %i", participantId))
