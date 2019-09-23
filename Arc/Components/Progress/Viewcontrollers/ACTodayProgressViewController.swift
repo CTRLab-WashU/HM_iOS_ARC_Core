@@ -18,7 +18,14 @@ public class ACTodayProgressViewController: CustomViewController<ACTodayProgress
 	
 	public init() {
 		super.init(nibName: nil, bundle: nil)
+        
+        // If we've finished the baseline then this must be a paid test
+        if get(flag: .baseline_completed) {
+            set(flag: .paid_test_completed)
+        }
+        
 		set(flag: .baseline_completed)
+        
 		//Todo: Have this injected instead this behavior is needed elsewhere in the app.
 		customView.delegate = self
 		guard let config = Arc.shared.studyController.todaysProgress() else {

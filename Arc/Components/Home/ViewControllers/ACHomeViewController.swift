@@ -50,7 +50,7 @@ open class ACHomeViewController: CustomViewController<ACHomeView> {
             if  thisStudy.studyState == .baseline {
                 showBaselineOboarding()
             }
-            else {
+            else if get(flag: .paid_test_completed) {
                 showPaidOnboarding()
             }
         }
@@ -97,9 +97,8 @@ open class ACHomeViewController: CustomViewController<ACHomeView> {
                 $0.width == 232
                 $0.height == 73
             }
-            $0.content = nil
+            $0.content = "testing"//.localized(ACTranslationKey.popup_nicejob)
             $0.buttonTitle = "".localized(ACTranslationKey.popup_next)
-            $0.hideBar()
             $0.onTap = {[unowned self] in
                 self.set(flag: .baseline_onboarding)
                 self.currentHint?.removeFromSuperview()
