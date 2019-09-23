@@ -40,7 +40,6 @@ public class HintView : IndicatorView {
 	
 	public init() {
 		super.init(frame: .zero)
-        
 		hintStack = stack {
 			
 			$0.isLayoutMarginsRelativeArrangement = true
@@ -62,7 +61,7 @@ public class HintView : IndicatorView {
 		}
 		button = acButton {
 			$0.layout {
-				$0.height == 32
+				$0.height == 36
 			}
 			$0.isHidden = true
 			$0.primaryColor = .clear
@@ -75,6 +74,7 @@ public class HintView : IndicatorView {
 			}
 		}
 		container?.isLayoutMarginsRelativeArrangement = true
+        container?.spacing = 0
 		container?.layoutMargins = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
 		configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
 											 secondaryColor: UIColor(named:"HintFill")!,

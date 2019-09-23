@@ -171,7 +171,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 				$0.layout {
 					$0.top == weakSelf.pricesTest.priceDisplay.bottomAnchor + 10
 					$0.centerX == weakSelf.pricesTest.priceDisplay.centerXAnchor
-					$0.width == weakSelf.pricesTest.priceDisplay.widthAnchor
+                    $0.width == 232
 				}
 			}
 		}
@@ -243,7 +243,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 				$0.layout {
 					$0.centerX == weakSelf.view.centerXAnchor
 					$0.centerY == weakSelf.view.centerYAnchor
-					$0.width == weakSelf.pricesTest.priceDisplay.widthAnchor
+					$0.width == 232
 				}
 			}
 		}
@@ -303,7 +303,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 				$0.layout {
 					$0.top == weakSelf.pricesQuestions.questionDisplay.bottomAnchor + 10
 					$0.centerX == weakSelf.pricesQuestions.questionDisplay.centerXAnchor
-					$0.width == weakSelf.pricesQuestions.questionDisplay.widthAnchor
+					$0.width == 232
 				}
 			}
 		}
