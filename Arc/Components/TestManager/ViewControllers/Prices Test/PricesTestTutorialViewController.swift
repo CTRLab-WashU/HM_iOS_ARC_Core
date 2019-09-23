@@ -77,7 +77,6 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
             self.finishTutorial()
             return
         }
-        self.progress = CGFloat(condition.time)
         tutorialAnimation.time = condition.time * duration
         resumeTutorialanimation()
     }
@@ -157,7 +156,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 			}
 			weakSelf.currentHint?.removeFromSuperview()
 			weakSelf.tutorialAnimation.pause()
-			
+			weakSelf.progress = 0.25
 			self?.currentHint = self?.view.window?.hint {
 				$0.content = "*Great choice!*\nLet's try another."
 				$0.buttonTitle = "Next"
@@ -223,6 +222,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 			weakSelf.pricesTest.priceDisplay.isUserInteractionEnabled = false
             weakSelf.view.window?.overlayView(withShapes: [])
             weakSelf.tutorialAnimation.pause()
+            weakSelf.progress = 0.5
 			self?.currentHint = self?.view.window?.hint {
 				$0.content = "*Another great choice!*\nLet's proceed to part two."
 				$0.buttonTitle = "Next"
@@ -286,7 +286,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 			}
 			weakSelf.currentHint?.removeFromSuperview()
 			weakSelf.tutorialAnimation.pause()
-			
+			weakSelf.progress = 0.75
 			self?.currentHint = self?.view.window?.hint {
 				$0.content = "*Great choice!*\nLet's try another."
 				$0.buttonTitle = "Next"
