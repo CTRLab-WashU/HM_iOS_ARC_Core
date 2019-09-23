@@ -171,8 +171,15 @@ public class ACHomeView: ACTemplateView {
 				.replacingOccurrences(of: "{DATE2}", with: endDate)
 			
 		case .tomorrow:
+            let schedule = Arc.shared.scheduleController.get(confirmedSchedule: Arc.shared.participantId!)
+            let s = schedule!.entries.first
+            let start = s!.availabilityStart
+            let end = s!.availabilityEnd
+            
 			heading = "You're done with today's tests.".localized("home_header3")
 			message = "We'll notify you tomorrow with your next test.".localized("home_body3")
+                .replacingOccurrences(of: "{TIME1}", with: start!)
+                .replacingOccurrences(of: "{TIME2}", with: end!)
 			
 		case .startingTomorrow(let date):
 			
