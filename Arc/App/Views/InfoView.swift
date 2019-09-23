@@ -118,6 +118,9 @@ public class InfoView: ACTemplateView {
 		infoContent.setContentLabel(text, template:template)
 		
 	}
+    public func getContentLabel() -> HMMarkupLabel {
+        return (infoContent?.contentLabel!)!
+    }
 	override open func content(_ view: UIView) {
 		super.content(view)
 		

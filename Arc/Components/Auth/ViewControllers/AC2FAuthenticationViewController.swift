@@ -53,6 +53,10 @@ public class AC2FAuthenticationViewController: BasicSurveyViewController {
 		if questionId == "2fa" {
 			
 			addResendCodeButton()
+            
+            let vc:CustomViewController<InfoView> = getTopViewController()!
+            let label = vc.customView.getContentLabel()
+            vc.customView.setContentLabel(label.text!.replacingOccurrences(of: "{digits}", with: "5555"))
 		}
 		super.didPresentQuestion(input: input, questionId: questionId)
 
