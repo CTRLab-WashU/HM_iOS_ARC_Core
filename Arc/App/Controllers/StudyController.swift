@@ -1024,54 +1024,45 @@ open class StudyController : MHController {
 	
 	// get test sessions on given day
 	// searches through all sessions, and finds sessions that fall between the start and end of a given day (Start of availability date and start of availability the next or previous day if date is before the start of the next day.)
+	open func get(sessionsInDateRange dateRange:ClosedRange<Date>) -> [Session] {
+		
+		let predicate = NSPredicate(format: "sessionDate>=%@ AND sessionDate<=%@",dateRange.lowerBound as NSDate, dateRange.upperBound as NSDate);
+		let sort = [NSSortDescriptor(key: "sessionDate", ascending: true)]
+		guard let tests:[Session] = fetch(predicate: predicate, sort: sort , limit: nil) else {
+			return []
+		}
+		return tests
+	}
+	open func get(sessionsOnFollowingDay date: Date) -> Array<Session>
+	{
+		guard let participantId = Arc.shared.participantId else {
+			return []
+		}
+		
+		
+		let dateRange = Arc.shared.scheduleController.get(rangeForUpcomingDay: date, participantId: participantId)
+		
+		let sessions = get(sessionsInDateRange: dateRange)
+		
+		
+		
+		
+		return sessions;
+	}
+	
 	open func get(sessionsOnDay date: Date) -> Array<Session>
 	{
 		guard let participantId = Arc.shared.participantId else {
 			return []
 		}
-	
-		var sessions:Array<Session> = Array();
-		
-		var left = Arc.shared.scheduleController.get(startTimeForDate: date, participantID: participantId)
-		var right = Arc.shared.scheduleController.get(endTimeForDate: date, participantID: participantId)
-		
-		//If the date is before the left handle
-		if left > date {
-			
-			//To get date to fall into the range we will move left to be the right handle
-			right = left
-			
-			//This way the left handle is always before the date and the right handle is after the date this will prevent comparison errors.
-			left = Arc.shared.scheduleController.get(startTimeForDate: date.addingDays(days: -1), participantID: participantId)
-			
-		}
-		
-
-		guard let tests:[Session] = fetch(predicate: nil, sort: [NSSortDescriptor(key: "sessionDate", ascending: true)], limit: nil) else {
-			return []
-		}
-		
-		for i in 0..<tests.count
-		{
-			let test = tests[i];
-			
-			if let sessionTime = test.sessionDate
-			{
-				if (left ... right).contains(sessionTime) {
-					sessions.append(test)
-				}
-				if sessionTime > right {
-					break
-				}
-				
-			}
-		}
 		
 		
-		sessions.sort { (a, b) -> Bool in
-			
-			return a.sessionDate!.compare(b.sessionDate! as Date) == .orderedAscending;
-		}
+		let dateRange = Arc.shared.scheduleController.get(rangeForCurrentDay: date, participantId: participantId)
+		
+		let sessions = get(sessionsInDateRange: dateRange)
+		
+		
+		
 		
 		return sessions;
 	}

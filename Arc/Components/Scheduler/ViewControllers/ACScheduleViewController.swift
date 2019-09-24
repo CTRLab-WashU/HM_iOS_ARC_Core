@@ -64,7 +64,7 @@ public class ACScheduleViewController : BasicSurveyViewController {
     public var minWakeTime = 8
     public var maxWakeTime = 18
 	public var shouldTestImmediately = true
-    
+	private var todaysSessions:[Session] = []
     public override init(file: String, surveyId:String? = nil, showHelp:Bool? = true) {
         
         if Arc.shared.surveyController.get(surveyResponse: "availability")?.id == nil
@@ -102,6 +102,9 @@ public class ACScheduleViewController : BasicSurveyViewController {
             {
                 self.sleepTime = DayTime(time: time, day: day);
             }
+		}
+		if self.isChangingSchedule {
+			todaysSessions = Arc.shared.studyController.get(sessionsOnFollowingDay: Date())
 		}
 	}
     
@@ -272,7 +275,8 @@ public class ACScheduleViewController : BasicSurveyViewController {
         {
             return;
         }
-        
+		
+		
         let _ = Arc.shared.scheduleController.delete(schedulesForParticipant: self.participantId!)
         
         for day in 0 ... 6 {
@@ -316,24 +320,21 @@ public class ACScheduleViewController : BasicSurveyViewController {
             
             if self.isChangingSchedule {
                 
-                let studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
-                let sessions = Arc.shared.studyController.getUpcomingSessions(withLimit: 5)
-                var dayIndex:Int?
-                var afterDate:Date?
-                for session in sessions {
-                    if dayIndex == nil {
-                        dayIndex = Int(session.day)
-                    }
-                    if dayIndex == Int(session.day) {
-                        afterDate = session.sessionDate
-                    }
-                }
-                
-                for study in studies {
-                    Arc.shared.notificationController.clear(sessionNotifications: Int(study.studyID))
-                    Arc.shared.studyController.clear(sessions: Int(study.studyID), afterDate: afterDate!)
-                    
-                }
+				let studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
+				//Using the sessions we grabbed before rescheduling figure out when to start scheduling
+				
+				
+				for study in studies {
+					Arc.shared.notificationController.clear(sessionNotifications: Int(study.studyID))
+					if let lastSessionToday = self.todaysSessions.last?.expirationDate {
+						
+						
+						Arc.shared.studyController.clear(sessions: Int(study.studyID), afterDate: lastSessionToday)
+					} else {
+						Arc.shared.studyController.clear(sessions: Int(study.studyID), afterDate: Date())
+						
+					}
+				}
             }
             // Otherwise, we need to make sure to initialize all of the study periods
             else

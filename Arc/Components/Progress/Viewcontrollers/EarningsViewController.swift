@@ -100,7 +100,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 	}
 	fileprivate func configureForPostTest() {
 		let lastUpdated = app.appController.lastFetched["EarningsOverview"]
-		timeout = Timer.init(fire: Date().addingTimeInterval(10.0), interval: 0.0, repeats: false) { [weak self] (timer) in
+		timeout = Timer.scheduledTimer(withTimeInterval: 15.0, repeats: false) { [weak self] (timer) in
 			if lastUpdated == Arc.shared.appController.lastFetched["EarningsOverview"] {
 				self?.errorState()
 
