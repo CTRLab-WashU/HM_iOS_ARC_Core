@@ -119,6 +119,10 @@ class ACTutorialViewController: CustomViewController<TutorialView>, TutorialComp
 		super.viewDidAppear(animated)
 		startTutorialAnimation()
 	}
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		stopTutorialanimation()
+	}
 	func handleStep(time:Double) {
 		
 	}
