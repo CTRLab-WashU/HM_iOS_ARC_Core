@@ -105,9 +105,7 @@ public enum ACState : String, State, CaseIterable {
 			
 
         case .changeStudyStart:
-            let controller:StartDateShiftViewController = .get()
-            controller.surveyType = .schedule
-            controller.loadSurvey(template: "changeStartDate")
+            let controller:StartDateShiftViewController = .init(file: "changeStartDate")
             return controller
 
 		case .contact:

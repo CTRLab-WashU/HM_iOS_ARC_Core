@@ -326,7 +326,7 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
         
     }
     //TODO: Refactor survey question display, keep in mind old versions of surveys
-    private func displayQuestion(index:String) -> Bool {
+    open func displayQuestion(index:String) -> Bool {
         let question = Arc.shared.surveyController.get(question: index)
 		currentQuestion = index
 
@@ -365,6 +365,8 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
 
 		self.isShowingHelpButton = true
 
+        //didPresentQuestion(input: vc.input!)
+        
 		return true
 		
     }

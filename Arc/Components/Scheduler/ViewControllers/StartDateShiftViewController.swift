@@ -10,7 +10,7 @@ import UIKit
 
 
 
-open class StartDateShiftViewController: SurveyNavigationViewController {
+open class StartDateShiftViewController: BasicSurveyViewController {
     enum QuestionId : String {
         case user_schedule_1, user_schedule_2
     }
@@ -25,26 +25,26 @@ open class StartDateShiftViewController: SurveyNavigationViewController {
     open override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let upcoming = upComingStudy, let userDate = upcoming.userStartDate else {
-            return
-        }
-        print(userDate.localizedString())
-        let date = upComingStudy?.startDate ?? Date()
-        for i in -7 ... 7 {
-            let d = date.startOfDay().addingDays(days: i)
-            guard Date().endOfDay().timeIntervalSince1970 < d.timeIntervalSince1970 else {
-                continue
-            }
-            
-            dates.append(d)
-        }
-        for i in 0 ..< dates.count {
-            let possibleDate = dates[i]
-            if possibleDate.compare(userDate) == .orderedSame{
-                selectedDate = i
-
-            }
-        }
+//        guard let upcoming = upComingStudy, let userDate = upcoming.userStartDate else {
+//            return
+//        }
+//        print(userDate.localizedString())
+//        let date = upComingStudy?.startDate ?? Date()
+//        for i in -7 ... 7 {
+//            let d = date.startOfDay().addingDays(days: i)
+//            guard Date().endOfDay().timeIntervalSince1970 < d.timeIntervalSince1970 else {
+//                continue
+//            }
+//
+//            dates.append(d)
+//        }
+//        for i in 0 ..< dates.count {
+//            let possibleDate = dates[i]
+//            if possibleDate.compare(userDate) == .orderedSame{
+//                selectedDate = i
+//
+//            }
+//        }
     }
     
 	open override func templateForQuestion(id questionId: String) -> Dictionary<String, String> {
@@ -60,15 +60,17 @@ open class StartDateShiftViewController: SurveyNavigationViewController {
         return [:]
     }
     
-    override open func questionDisplayed(input: SurveyInput, index: String) {
-        super.questionDisplayed(input: input, index: index)
-        guard let index = QuestionId(rawValue: index) else {return}
-        
+    override open func didPresentQuestion(input: SurveyInput?, questionId: String) {
+        super.didPresentQuestion(input: input, questionId: questionId)
+        guard let index = QuestionId(rawValue: questionId) else {return}
+        enableNextButton()
         switch index {
         case .user_schedule_1:
             guard let picker = input as? ACPickerView else {
                 fatalError("Wrong input type, needs ACPickerView")
             }
+            
+            loadDates()
             
             picker.set(dates.map({ (dateItem) -> String in
                 //TODO: Refactor for reusability as needed
@@ -86,14 +88,14 @@ open class StartDateShiftViewController: SurveyNavigationViewController {
             var store = ACCalendarStore(range: start ... end)
             store.selectedDateRange = (selectedStart ... selectedEnd)
             
-            input.setValue(AnyResponse(type: .calendar, value: store))
+            input?.setValue(AnyResponse(type: .calendar, value: store))
             
             
             break
         
         }
     }
-    
+        
     override open func valueSelected(value: QuestionResponse, index: String) {
         //super.onValueSelected(value: value, index: index)
         guard let index = QuestionId(rawValue: index) else {return}
@@ -131,6 +133,32 @@ open class StartDateShiftViewController: SurveyNavigationViewController {
             }
             break
             
+        }
+    }
+    
+    fileprivate func loadDates() {
+        guard let upcoming = upComingStudy, let userDate = upcoming.userStartDate else {
+            return
+        }
+        
+        dates = []
+        
+        print(userDate.localizedString())
+        let date = upComingStudy?.startDate ?? Date()
+        for i in -7 ... 7 {
+            let d = date.startOfDay().addingDays(days: i)
+            guard Date().endOfDay().timeIntervalSince1970 < d.timeIntervalSince1970 else {
+                continue
+            }
+            
+            dates.append(d)
+        }
+        for i in 0 ..< dates.count {
+            let possibleDate = dates[i]
+            if possibleDate.compare(userDate) == .orderedSame{
+                selectedDate = i
+                
+            }
         }
     }
     
