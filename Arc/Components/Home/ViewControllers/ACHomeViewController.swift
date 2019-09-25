@@ -93,11 +93,11 @@ open class ACHomeViewController: CustomViewController<ACHomeView> {
         currentHint = view.window?.hint {
             $0.layout {
                 $0.centerX == view.centerXAnchor
-                $0.centerY == view.bottomAnchor - 60
+                $0.centerY == view.bottomAnchor - 100
                 $0.width == 232
-                $0.height == 73
+                //$0.height == 73
             }
-            $0.content = "testing"//.localized(ACTranslationKey.popup_nicejob)
+            $0.content = "".localized(ACTranslationKey.popup_nicejob)
             $0.buttonTitle = "".localized(ACTranslationKey.popup_next)
             $0.onTap = {[unowned self] in
                 self.set(flag: .baseline_onboarding)

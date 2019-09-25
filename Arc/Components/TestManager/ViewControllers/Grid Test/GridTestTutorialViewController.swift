@@ -256,7 +256,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
                                                         arrowEnabled: true,
                                                         arrowAbove: true))
                 $0.updateHintContainerMargins()
-                $0.updateHintStackMargins()
+                $0.updateTitleStackMargins()
 				$0.layout {
 					$0.top >= weakSelf.view.safeAreaLayoutGuide.topAnchor + 24
 					$0.leading >= weakSelf.view.safeAreaLayoutGuide.leadingAnchor + 24
@@ -400,7 +400,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
                                                     arrowEnabled: true,
                                                     arrowAbove: true))
             $0.updateHintContainerMargins()
-            $0.updateHintStackMargins()
+            $0.updateTitleStackMargins()
 			$0.layout {
 				$0.centerY == image.bottomAnchor + 100
 				$0.centerX == image.centerXAnchor
@@ -489,7 +489,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
                                                         arrowEnabled: true,
                                                         arrowAbove: false))
                 $0.updateHintContainerMargins()
-                $0.updateHintStackMargins()
+                $0.updateTitleStackMargins()
 				$0.layout {
 					$0.centerX == weakSelf.view.centerXAnchor
 					$0.width == 252
@@ -529,7 +529,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
                                                         arrowEnabled: true,
                                                         arrowAbove: false))
                 $0.updateHintContainerMargins()
-                $0.updateHintStackMargins()
+                $0.updateTitleStackMargins()
                 
 				$0.layout {
 					$0.centerX == weakSelf.view.centerXAnchor
@@ -568,7 +568,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
                                                         arrowEnabled: true,
                                                         arrowAbove: true))
                 $0.updateHintContainerMargins()
-                $0.updateHintStackMargins()
+                $0.updateTitleStackMargins()
                 
 				$0.layout {
 					$0.centerX == weakSelf.view.centerXAnchor
@@ -605,7 +605,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
                                                     arrowEnabled: true,
                                                     arrowAbove: false))
             $0.updateHintContainerMargins()
-            $0.updateHintStackMargins()
+            $0.updateTitleStackMargins()
             $0.layout {
                 $0.centerX == self.view.centerXAnchor
                 $0.width == 252

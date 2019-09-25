@@ -116,7 +116,7 @@ class ACHomeTabViewController: UITabBarController {
                                                     cornerRadius: 8.0,
                                                     arrowEnabled: true,
                                                     arrowAbove: false))
-            $0.updateHintStackMargins()
+            $0.updateTitleStackMargins()
 			$0.content = "".localized(self.onboardingKeys[index])
 			$0.buttonTitle = "".localized(self.buttonKeys[index])
             $0.updateHintContainerMargins()

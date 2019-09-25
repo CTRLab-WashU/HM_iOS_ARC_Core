@@ -136,7 +136,7 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
                                                         arrowEnabled: true,
                                                         arrowAbove: true))
                 $0.updateHintContainerMargins()
-                $0.updateHintStackMargins()
+                $0.updateTitleStackMargins()
 				$0.content = """
 				*This is a tile.*
 				Each tile includes a pair
@@ -175,7 +175,7 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
                                                         arrowEnabled: true,
                                                         arrowAbove: true))
                 $0.updateHintContainerMargins()
-                $0.updateHintStackMargins()
+                $0.updateTitleStackMargins()
 				$0.content = """
 				You will see *three tiles* on the top of the screen…
 				"""
@@ -211,7 +211,7 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
                                                         cornerRadius: 8.0,
                                                         arrowEnabled: true,
                                                         arrowAbove: false))
-                $0.updateHintStackMargins()
+                $0.updateTitleStackMargins()
 				$0.content = """
 				…and *two tiles* on the bottom.
 				"""

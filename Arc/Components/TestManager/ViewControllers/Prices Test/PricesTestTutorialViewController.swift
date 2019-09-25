@@ -112,7 +112,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
                                                         arrowEnabled: true,
                                                         arrowAbove: true))
                 $0.updateHintContainerMargins()
-                $0.updateHintStackMargins()
+                $0.updateTitleStackMargins()
 				$0.layout {
 					$0.top == weakSelf.pricesTest.priceDisplay.bottomAnchor + 10
 					$0.centerX == weakSelf.pricesTest.priceDisplay.centerXAnchor
@@ -141,7 +141,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
                                                         arrowEnabled: true,
                                                         arrowAbove: true))
                 $0.updateHintContainerMargins()
-                $0.updateHintStackMargins()
+                $0.updateTitleStackMargins()
 				$0.layout {
 					$0.top == weakSelf.pricesTest.priceDisplay.bottomAnchor + 10
 					$0.centerX == weakSelf.pricesTest.priceDisplay.centerXAnchor
@@ -204,7 +204,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
                                                         arrowEnabled: true,
                                                         arrowAbove: true))
                 $0.updateHintContainerMargins()
-                $0.updateHintStackMargins()
+                $0.updateTitleStackMargins()
 				$0.layout {
 					$0.top == weakSelf.pricesTest.priceDisplay.bottomAnchor + 10
 					$0.centerX == weakSelf.pricesTest.priceDisplay.centerXAnchor
@@ -271,7 +271,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
                                                         arrowEnabled: true,
                                                         arrowAbove: true))
                 $0.updateHintContainerMargins()
-                $0.updateHintStackMargins()
+                $0.updateTitleStackMargins()
 				$0.layout {
 					$0.top == weakSelf.pricesQuestions.questionDisplay.bottomAnchor + 10
 					$0.centerX == weakSelf.pricesQuestions.questionDisplay.centerXAnchor
@@ -332,7 +332,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
                                                         arrowEnabled: true,
                                                         arrowAbove: true))
                 $0.updateHintContainerMargins()
-                $0.updateHintStackMargins()
+                $0.updateTitleStackMargins()
 				$0.layout {
 					$0.top == weakSelf.pricesQuestions.questionDisplay.bottomAnchor + 10
 					$0.centerX == weakSelf.pricesQuestions.questionDisplay.centerXAnchor

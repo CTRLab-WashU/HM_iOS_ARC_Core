@@ -57,7 +57,7 @@ open class SliderView: UIView, SurveyInput {
                                                     arrowEnabled: true,
                                                     arrowAbove: false))
             $0.updateHintContainerMargins()
-            $0.updateHintStackMargins()
+            $0.updateTitleStackMargins()
 			$0.layout {
 				$0.bottom == valueSlider.topAnchor - 32
 				$0.centerX == valueSlider.centerXAnchor
