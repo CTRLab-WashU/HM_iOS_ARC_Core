@@ -52,7 +52,7 @@ public class ACEarningsView : ACTemplateView {
 				$0.isHidden = true
 				$0.textAlignment = .center
 				
-				Roboto.Style.badge($0, color: .white)
+				Roboto.Style.body($0, color: .white)
 				$0.text = "progress_endoftest_nosync"
 			}
 			
