@@ -122,6 +122,7 @@ class ACTutorialViewController: CustomViewController<TutorialView>, TutorialComp
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		stopTutorialanimation()
+		currentHint?.removeFromSuperview()
 	}
 	func handleStep(time:Double) {
 		
