@@ -12,6 +12,12 @@ import HMMarkup
 public protocol ArcApi {
 	
 }
+public extension Notification.Name {
+	static let ACDateChangeNotification = Notification.Name(rawValue: "ACDateChangeNotification")
+	
+}
+
+
 public enum SurveyAvailabilityStatus {
     case available, laterToday, tomorrow, startingTomorrow(String), later(String, String), finished, postBaseline
 }
@@ -583,6 +589,27 @@ open class Arc : ArcApi {
 		for flag in ProgressFlag.prefilledFlagsFor(major: major, minor: minor, patch: patch) {
 			set(flag: flag)
 		}
+	}
+	public static func displayDateShift(state:State) {
+		let longFormat = ACDateStyle.longWeekdayMonthDay.rawValue
+		let upComingStudy = Arc.shared.studyController.getUpcomingStudyPeriod()
+		guard let upcoming = upComingStudy, let userDate = upcoming.userStartDate else {
+			return
+		}
+		let startDate = userDate.localizedFormat(template:longFormat)
+		let endDate = userDate.addingDays(days: 6).localizedFormat(template:longFormat)
+		let message = "*Your next testing cycle will be \(startDate) to \(endDate)*.\n\nPlease confirm these testing dates or adjust your schedule.".localized("notification_confirm_adjust_1")
+			.replacingOccurrences(of: "{DATE1}", with: startDate)
+			.replacingOccurrences(of: "{DATE2}", with: endDate)
+		Arc.shared.displayAlert(message: message,
+			options: [.default("CONFIRM".localized("button_confirm"), {}),
+					  .default("ADJUST SCHEDULE".localized("button_adjust_sched"), {
+						Arc.shared.appNavigation.navigate(state: state, direction: .toRight)
+						
+					}
+				)
+			]
+		)
 	}
 }
 

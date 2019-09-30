@@ -114,6 +114,7 @@ public class ACPostCycleFinishView : UIView {
 					
 					$0.addAction {
 						Arc.shared.nextAvailableState()
+						NotificationCenter.default.post(name: .ACDateChangeNotification, object: nil)
 					}
 					
 					animationParams.delay = 1.4
