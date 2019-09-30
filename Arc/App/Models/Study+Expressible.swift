@@ -21,7 +21,6 @@ extension StudyController : ThisStudyExpressible {
 		
 		return ""
 	}
-	
 	public var week: Int {
 		let previousStudiesCount = getPastStudyPeriods().count
 		let currentStudy = (getCurrentStudyPeriod() != nil) ? 1 : 0
@@ -30,13 +29,13 @@ extension StudyController : ThisStudyExpressible {
 	public var studyState:StudyState {
 		if let study = getCurrentStudyPeriod() {
 			guard let start = study.userStartDate else {return .unknown}
+		
 			
-			let day = Date().daysSince(date: start)
 			
-			if day == 0 {
-				return .baseline
-			}
 			if study.studyID == 0 {
+				if day == 0{
+					return .baseline
+				}
 				return .activeBaseline
 			}
 			
@@ -117,17 +116,13 @@ extension StudyController : ThisWeekExpressible {
 	}
 	
 	public var day: Int {
-		switch getCurrentStudyPeriod() {
-		case .some(let week):
-			guard let session = Arc.shared.studyController.get(sessionsOnDay: Date(), studyId: Int(week.studyID)).first else {
-				return 0
-			}
-			return Int(session.day)
-		default:
+		guard let session = Arc.shared.studyController.get(sessionsOnDay: Date()).first else {
 			return 0
-			
 		}
+		
+		return Int(session.day)
 	}
+
 	
 	public var totalDays: Int {
 		switch getCurrentStudyPeriod() {
