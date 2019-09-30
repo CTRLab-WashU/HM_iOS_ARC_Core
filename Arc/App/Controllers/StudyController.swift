@@ -1357,32 +1357,22 @@ open class StudyController : MHController {
 	/// - Parameter sessionDay: selects the day to filter to
 	public func todaysProgress(sessionDay:Int64? = nil, currentSessionId:Int? = nil) -> TodaysProgess? {
 		
-		guard let study = getCurrentStudyPeriod() ?? getPastStudyPeriods().last else {
-			return nil
-		}
+		
 		var config = TodaysProgess()
 		
-		var currentSessionId = currentSessionId ?? Arc.shared.currentTestSession
-//        if currentSessionId == nil {
-        let sessions = get(sessionsOnDay: Date(), studyId: Int(study.studyID))
-//        }
+	
+        let sessions = get(sessionsOnDay: Date())
         guard sessions.count > 0 else {
             return nil
         }
-//        let currentSession = get(session: id)
-//        var sessions = get(allSessionsForStudy: Int(study.studyID    ))
-//        if let d = sessionDay ?? currentSession?.sessionDayIndex {
-//            sessions = sessions.filter {
-//                return $0.sessionDayIndex == d
-//            }
-//        }
+
 		config.totalSessions = sessions.count
 		
 		for sessionData in sessions {
 			let day = Int(sessionData.day)
 			
 			
-			let studyId = Int(study.studyID)
+			let studyId = Int(sessionData.study!.studyID)
 			let week = Int(sessionData.week)
 			let session = Int(sessionData.session)
 			var progress = 0
