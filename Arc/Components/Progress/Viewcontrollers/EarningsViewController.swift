@@ -85,6 +85,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		customView.earningsSection.isHidden = true
 		customView.bonusGoalsHeader.isHidden = true
 		customView.bonusGoalContent.isHidden = true
+		customView.bonusGoalsSection.isHidden = true
 		customView.errorLabel.isHidden = false
 		customView.hideSpinner()
 		customView.earningsParentStack.fadeIn()
