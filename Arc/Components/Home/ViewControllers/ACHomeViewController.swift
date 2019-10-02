@@ -45,7 +45,7 @@ open class ACHomeViewController: CustomViewController<ACHomeView> {
             set(flag: .first_test_begin)
             
         }
-        
+		
         if get(flag: .baseline_completed) && !get(flag: .baseline_onboarding) {
             if  thisStudy.studyState == .baseline {
                 showBaselineOboarding()
@@ -55,7 +55,7 @@ open class ACHomeViewController: CustomViewController<ACHomeView> {
             }
         }
     }
-    
+
     open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         currentHint?.removeFromSuperview()

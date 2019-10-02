@@ -98,7 +98,6 @@ class ACHomeTabViewController: UITabBarController {
 		
 		views.sort {$0.frame.minX < $1.frame.minX}
 		let v = views[index]
-		dump(v)
 		view.window?.overlayView(withShapes: [.circle(v)])
 		view.isUserInteractionEnabled = false
 		view.window?.hint {
@@ -124,6 +123,7 @@ class ACHomeTabViewController: UITabBarController {
 				hint.removeFromSuperview()
 				self.showTab(index: index + 1)
 			}
+			$0.targetView = v
 		}
 	}
     /*

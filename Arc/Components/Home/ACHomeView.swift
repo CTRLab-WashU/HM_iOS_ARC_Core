@@ -90,6 +90,7 @@ public class ACHomeView: ACTemplateView {
 				
 
 			}
+			$0.targetView = self.tutorialTarget
 		}
 	}
 	

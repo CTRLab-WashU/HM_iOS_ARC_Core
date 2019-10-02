@@ -43,6 +43,10 @@ import UIKit
     var isArrowAbove = false
 	var container:UIStackView?
 	var path:UIBezierPath?
+	var pointerSize:CGFloat = 10.0
+	var radius:CGFloat = 8.0
+	public var pointerX:CGFloat = 0.0
+	public weak var targetView:UIView?
     override public init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
@@ -108,6 +112,17 @@ import UIKit
     }
     override public func draw(_ rect: CGRect) {
         super.draw(rect)
+		//If we have a target and everything is properly configured. Always convert rects from a parent view, not the view itself.
+		if let targetView = targetView ,
+			let targetFrame = targetView.superview?.convert(targetView.frame, to: nil),
+			let currentFrame = superview?.convert(frame, to: nil){
+			
+			pointerX = Math.clamp(targetFrame.midX - currentFrame.minX, minValue: 0 + layer.cornerRadius + pointerSize, maxValue: rect.width - layer.cornerRadius - pointerSize)
+			
+
+		} else {
+			pointerX = bounds.width/2.0
+		}
         var insetRect = rect
         
         // below
@@ -124,29 +139,78 @@ import UIKit
                 .offsetBy(dx: 0, dy: 5)
         }
         
-		path = UIBezierPath(roundedRect:insetRect,
-                                byRoundingCorners: .allCorners,
-                                cornerRadii: CGSize(width: layer.cornerRadius, height: layer.cornerRadius))
+		path = UIBezierPath()
 		
-        // below
-        if isArrowEnabled && !isArrowAbove {
-            path?.move(to: CGPoint(x: rect.midX, y: rect.maxY))
-            path?.addLine(to: CGPoint(x: rect.midX - 10, y: rect.maxY - 10))
-            path?.addLine(to: CGPoint(x: rect.midX + 10, y: rect.maxY - 10))
-            path?.addLine(to: CGPoint(x: rect.midX, y: rect.maxY))
-            path?.close()
-        }
-		
+		//1.
+		path?.move(to: CGPoint(x: insetRect.minX + layer.cornerRadius, y: insetRect.minY));
 
         // above
         if isArrowEnabled && isArrowAbove {
-            path?.move(to: CGPoint(x: rect.midX, y: rect.minY))
-            path?.addLine(to: CGPoint(x: rect.midX - 10, y: rect.minY + 10))
-            path?.addLine(to: CGPoint(x: rect.midX + 10, y: rect.minY + 10))
-            path?.addLine(to: CGPoint(x: rect.midX, y: rect.minY))
-            path?.close()
+
+			//2.
+			path?.addLine(to: CGPoint(x: pointerX - pointerSize, y: insetRect.minY));
+            path?.addLine(to: CGPoint(x:  pointerX, y: rect.minY))
+			path?.addLine(to: CGPoint(x: pointerX + pointerSize, y: insetRect.minY));
+
+			
         }
-        
+		//3.
+		//path?.addLine(to: CGPoint(x: insetRect.maxX - layer.cornerRadius, y: insetRect.minY));
+
+		
+		//4.
+		path?.addArc(withCenter: CGPoint(x: insetRect.maxX - layer.cornerRadius, y: insetRect.minY + layer.cornerRadius),
+					 radius: layer.cornerRadius,
+					 startAngle: CGFloat(Math.toRadians(270.0)),
+					 endAngle: CGFloat(Math.toRadians(0.0)),
+					 clockwise: true)
+		
+		
+		//5.
+		//path?.addLine(to: CGPoint(x: insetRect.maxX, y: insetRect.maxY - layer.cornerRadius))
+		
+		//6.
+		path?.addArc(withCenter: CGPoint(x: insetRect.maxX - layer.cornerRadius, y: insetRect.maxY - layer.cornerRadius),
+					 radius: layer.cornerRadius,
+					 startAngle: CGFloat(Math.toRadians(0.0)),
+					 endAngle: CGFloat(Math.toRadians(90.0)),
+					 clockwise: true)
+		
+		
+		//7.
+		//path?.addLine(to: CGPoint(x: insetRect.minX, y: insetRect.maxY - layer.cornerRadius))
+
+        // bottom
+        if isArrowEnabled && !isArrowAbove {
+			//8.
+			path?.addLine(to: CGPoint(x: pointerX + pointerSize, y: insetRect.maxY));
+			path?.addLine(to: CGPoint(x:  pointerX, y: rect.maxY))
+			path?.addLine(to: CGPoint(x: pointerX - pointerSize, y: insetRect.maxY));
+	
+        }
+		
+		//9.
+		//path?.addLine(to: CGPoint(x: insetRect.minX + layer.cornerRadius, y: insetRect.maxY))
+		
+		//10.
+		path?.addArc(withCenter: CGPoint(x: insetRect.minX + layer.cornerRadius, y: insetRect.maxY - layer.cornerRadius),
+					 radius: layer.cornerRadius,
+					 startAngle: CGFloat(Math.toRadians(90.0)),
+					 endAngle: CGFloat(Math.toRadians(180.0)),
+					 clockwise: true)
+		
+		//11.
+		//path?.addLine(to: CGPoint(x: insetRect.minX, y: insetRect.minY + layer.cornerRadius))
+		
+		//12.
+		path?.addArc(withCenter: CGPoint(x: insetRect.minX + layer.cornerRadius, y: insetRect.minY + layer.cornerRadius),
+					 radius: layer.cornerRadius,
+					 startAngle: CGFloat(Math.toRadians(180)),
+					 endAngle: CGFloat(Math.toRadians(270.0)),
+					 clockwise: true)
+		
+		
+		
         let context = UIGraphicsGetCurrentContext()
 		
 		path?.addClip()

@@ -30,6 +30,10 @@ public struct Math{
 		
 		return min(1.0, max(0.0, value))
 	}
+	public static func clamp<T:FloatingPoint>(_ value:T, minValue:T, maxValue:T) -> T {
+		
+		return min(maxValue, max(minValue, value))
+	}
 	public enum Curve {
 		case none, linear, easeIn, easeOut
 		
