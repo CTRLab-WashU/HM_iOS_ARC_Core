@@ -18,6 +18,10 @@ open class AppController : MHController {
 		defaults.setValue(value?.encode(), forKey:key);
 		defaults.synchronize();
 	}
+	public func delete(forKey key:String) {
+		defaults.removeObject(forKey: key)
+		defaults.synchronize();
+	}
 	public func read<T:Codable>(key:String) -> T? {
 		guard let value:T =  defaults.data(forKey: key)?.decode() else {
 			

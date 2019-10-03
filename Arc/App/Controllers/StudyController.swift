@@ -877,6 +877,16 @@ open class StudyController : MHController {
 		session.startTime = Date();
 		save();
 	}
+	open func mark(missed session:Session)
+	{
+		guard let studyId = session.study?.studyID else {
+			assertionFailure("Invalid session submitted, No study Id assigned.")
+			return
+		}
+		let session = get(session: Int(session.sessionID), inStudy: Int(studyId))
+		session.missedSession = true;
+		save()
+	}
 	open func mark(missed sessionId:Int, studyId:Int)
 	{
 		let session = get(session: sessionId, inStudy: studyId)
@@ -1160,6 +1170,19 @@ open class StudyController : MHController {
         
         return times;
     }
+	open func markMissed(sessionsUpTo sessionId:Int) {
+		MHController.dataContext.performAndWait {
+			let sessions:[Session] = fetch() ?? []
+			
+			for session in sessions {
+				if session.sessionID <= Int64(sessionId){
+					mark(missed: session)
+				}
+			}
+		}
+		
+	}
+	
 	open func delete(sessionsUpTo sessionId:Int, inStudy studyId: Int, destroySessionsEntirely:Bool=false) {
 		MHController.dataContext.performAndWait {
 			guard let study = get(study: studyId), let sessions = study.sessions else {
@@ -1344,6 +1367,8 @@ open class StudyController : MHController {
 			session.createSurveyFor(surveyType: type, id: file.id ?? UUID().uuidString)
 			file.isFilledOut = true
 		}
+		session.uploaded = true
+
 		save();
 		
 		// and now, delete any notifications

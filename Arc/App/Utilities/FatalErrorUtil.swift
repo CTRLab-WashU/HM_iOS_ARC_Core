@@ -9,7 +9,14 @@
 import Foundation
 // overrides Swift global `fatalError`
 func fatalError(_ message: @autoclosure () -> String = "", file: StaticString = #file, line: UInt = #line) -> Never {
-    
+	let log = """
+	*Message:* \(message())
+	
+	*File:* \(file)
+	
+	*Line:* \(line)
+	"""
+	Arc.shared.appController.store(value: ErrorReport(message: log), forKey: "error")
     FatalErrorUtil.fatalErrorClosure(message(), file, line)
 
 }
@@ -20,7 +27,16 @@ func unreachable() -> Never  {
         RunLoop.current.run()
     } while (true)
 }
-
+public struct ErrorReport : Codable, Error {
+	var message:String
+	var date:Date = Date()
+	public init(message:String) {
+		self.message = message
+	}
+	public var localizedDescription: String {
+		return message
+	}
+}
 public struct FatalErrorUtil {
     
     // 1
