@@ -103,7 +103,9 @@ open class AuthController:MHController {
 					MHController.dataContext.perform {
 						Arc.shared.studyController.firstTest = resObj?.response.first_test
 						Arc.shared.studyController.latestTest = resObj?.response.latest_test
-						
+						if Arc.shared.studyController.latestTest != nil {
+							Arc.apply(forVersion: "2.0.0")
+						}
 						let entry:AuthEntry = self.new()
 						entry.authDate = Date()
 						

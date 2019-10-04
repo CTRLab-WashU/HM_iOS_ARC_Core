@@ -38,7 +38,9 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 		customView.setContent(viewController: test)
 		test.tapOnTheFsLabel.isHidden = true
         // Do any additional setup after loading the view.
-        if self.get(flag: .grids_tutorial_shown) == false {
+		//If these flags are set then we don't have to hide the xbutton
+		
+        if self.get(flag: .grids_tutorial_shown) == false  {
             self.customView.firstTutorialRun()
         }
     }

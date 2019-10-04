@@ -119,7 +119,14 @@ class TutorialView: UIStackView {
 	}
     
     public func firstTutorialRun() {
+		
+		guard !Arc.get(flag: .tutorial_optional) else {
+			
+			//If these flags are set then we don't have to hide the xbutton for the first test run. 
+			return
+		}
         self.closeButton.isHidden = true
+		
         self.headerStack.layoutMargins = UIEdgeInsets(top: 8, left: 20, bottom: 8, right: 20)
     }
 	

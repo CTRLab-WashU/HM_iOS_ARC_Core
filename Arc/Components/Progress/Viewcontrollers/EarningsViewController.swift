@@ -57,8 +57,23 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
         super.viewDidLoad()
 		customView.scrollIndicatorView.isHidden = true
 		
-		//When in post test mode perform modifications 
+		//When in post test mode perform modifications
+		lastUpdated = app.appController.lastFetched["EarningsOverview"]
+
 		if isPostTest {
+			timeout = Timer.scheduledTimer(withTimeInterval: 15.0, repeats: false) { [weak self] (timer) in
+				
+				if let lastKnownUpdate = self?.lastUpdated,
+					let updated = Arc.shared.appController.lastFetched["EarningsOverview"],
+						 lastKnownUpdate == updated,
+						fabs(updated - Date().timeIntervalSince1970) > 10 * 60{
+					self?.errorState()
+
+				
+				}
+				
+			}
+			customView.nextButton?.addTarget(self, action: #selector(self.nextPressed), for: .touchUpInside)
 			
             configureForPostTest()
 			
@@ -100,15 +115,12 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		customView.button.addTarget(self, action: #selector(self.viewFaqPressed), for: .touchUpInside)
 	}
 	fileprivate func configureForPostTest() {
-		let lastUpdated = app.appController.lastFetched["EarningsOverview"]
-		timeout = Timer.scheduledTimer(withTimeInterval: 15.0, repeats: false) { [weak self] (timer) in
-			if lastUpdated == Arc.shared.appController.lastFetched["EarningsOverview"] {
-				self?.errorState()
-
-				
-			}
-		}
 		
+		customView.earningsSection.isHidden = false
+		customView.bonusGoalsHeader.isHidden = false
+		customView.bonusGoalContent.isHidden = false
+		customView.bonusGoalsSection.isHidden = false
+		customView.errorLabel.isHidden = true
 		customView.backgroundView.image = UIImage(named: "finished_bg", in: Bundle(for: self.classForCoder), compatibleWith: nil)
 		customView.backgroundColor = UIColor(named: "Primary Info")
 		customView.button.isHidden = true
@@ -133,7 +145,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		
 		customView.earningsParentStack.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 88, right: 0)
 		
-		customView.nextButton?.addTarget(self, action: #selector(self.nextPressed), for: .touchUpInside)
+		
 	}
     @objc func nextPressed() {
 		if thisStudy.studyState == .inactive {
@@ -160,7 +172,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		super.viewWillAppear(animated)
 		
 		
-		if isPostTest {
+		if isPostTest && fabs((lastUpdated ?? Date().timeIntervalSince1970) - Date().timeIntervalSince1970) > 10 * 60 {
 			customView.showSpinner(color: ACColor.highlight, backgroundColor: ACColor.primaryInfo, message:"progress_endoftest_syncing")
 			customView.earningsParentStack.alpha = 0
 			
@@ -239,7 +251,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 	}
 	
 	fileprivate func twoADayGoal(_ twoADay:EarningOverview.Response.Earnings.Goal) {
-		let components = twoADay.progress_components
+		let components = twoADay.progress_components.suffix(7)
 		for component in components.enumerated() {
 			let index = component.offset
 			let value = component.element

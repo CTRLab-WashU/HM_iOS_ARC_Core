@@ -1385,8 +1385,16 @@ open class StudyController : MHController {
 		
 		var config = TodaysProgess()
 		
-	
-        let sessions = get(sessionsOnDay: Date())
+		//Get a session representing today, this will have 4 sessions that belong to the same
+		//day (Schedule,Not logical) We want the study from this
+		//Getting the study after the last test will result in nil.
+		//This function will allow us to get that information until we are fully a day out from a study.
+		guard let studyId = get(sessionsOnDay: Date()).first?.study?.studyID else{
+			return nil
+		}
+		
+		//This will get sessions that have the same logical day regardless of date for a specific study
+		let sessions = get(sessionsFromDayIndex: day, studyId: Int(studyId))
         guard sessions.count > 0 else {
             return nil
         }
