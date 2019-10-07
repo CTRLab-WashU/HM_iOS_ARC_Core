@@ -41,6 +41,10 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 		//If these flags are set then we don't have to hide the xbutton
 		
         if self.get(flag: .grids_tutorial_shown) == false  {
+			if Arc.get(flag: .tutorial_optional) {
+				self.set(flag: .grids_tutorial_shown)
+			}
+
             self.customView.firstTutorialRun()
         }
     }

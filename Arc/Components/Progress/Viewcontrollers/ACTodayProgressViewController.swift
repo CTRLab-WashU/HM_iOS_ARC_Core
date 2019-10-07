@@ -22,6 +22,7 @@ public class ACTodayProgressViewController: CustomViewController<ACTodayProgress
         // If we've finished the baseline then this must be a paid test
         if get(flag: .baseline_completed) {
             set(flag: .paid_test_completed)
+			remove(flag: .tutorial_optional)
         }
         
 		set(flag: .baseline_completed)

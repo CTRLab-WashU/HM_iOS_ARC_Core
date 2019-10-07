@@ -42,6 +42,9 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
         
         // Do any additional setup after loading the view.
         if self.get(flag: .symbols_tutorial_shown) == false {
+			if Arc.get(flag: .tutorial_optional) {
+				self.set(flag: .symbols_tutorial_shown)
+			}
             self.customView.firstTutorialRun()
         }
     }

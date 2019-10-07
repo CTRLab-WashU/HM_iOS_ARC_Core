@@ -29,6 +29,9 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 		setupScript()
         if self.get(flag: .prices_tutorial_shown) == false {
             self.customView.firstTutorialRun()
+			if Arc.get(flag: .tutorial_optional) {
+				self.set(flag: .prices_tutorial_shown)
+			}
         }
     }
 	override func viewDidAppear(_ animated: Bool) {
