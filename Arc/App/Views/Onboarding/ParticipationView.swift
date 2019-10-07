@@ -34,7 +34,7 @@ public class ParticipationView: ACTemplateView {
 			$0.textColor = ACColor.primaryText
 			$0.setHeader("Thank you for your time.")
 			$0.setSeparatorWidth(0.15)
-			$0.setContent("Your study coordinator will be notified that you do not wish to participate at this time. Your study coordinator may also contact you to confirm this information.")
+			$0.setContent("Thank you for letting us know you are not able to commit to the study at this time. If you need any questions answered before continuing with the study, please contact the study team by clicking HELP in the upper right hand corner of the screen.")
 			
 		}
 	}
