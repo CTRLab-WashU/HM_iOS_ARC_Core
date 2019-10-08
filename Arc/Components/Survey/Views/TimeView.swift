@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ArcUIKit
 
 open class TimeView: UIView, SurveyInput {
 	public weak var surveyInputDelegate: SurveyInputDelegate?
@@ -14,7 +15,8 @@ open class TimeView: UIView, SurveyInput {
     public var orientation: UIStackView.Alignment = .top
     
 
-	@IBOutlet weak var picker:UIDatePicker!
+    @IBOutlet weak var parentStack: UIStackView!
+    @IBOutlet weak var picker:UIDatePicker!
     
     let calendar = Calendar.current
     
@@ -22,7 +24,8 @@ open class TimeView: UIView, SurveyInput {
     
     private var _value:String?
 	
-	
+	public weak var hint:HintView?
+    
     override open func awakeFromNib() {
         super.awakeFromNib()
 		
@@ -32,6 +35,31 @@ open class TimeView: UIView, SurveyInput {
             picker.setDate(date, animated: false)
         }
 		surveyInputDelegate?.didFinishSetup()
+        
+        if Arc.get(flag: .time_picker_hint_shown) == false {
+            let stackTop = parentStack.topAnchor.constraint(equalTo: self.topAnchor, constant: 62)
+            stackTop.isActive = true
+            
+            self.hint = hint {
+                $0.content = "".localized(ACTranslationKey.popup_scroll)
+                $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                        secondaryColor: UIColor(named:"HintFill")!,
+                                                        textColor: .black,
+                                                        cornerRadius: 8.0,
+                                                        arrowEnabled: true,
+                                                        arrowAbove: false))
+                $0.updateHintContainerMargins()
+                $0.updateTitleStackMargins()
+                $0.layout {
+                    $0.bottom == picker.topAnchor
+                    $0.centerX == picker.centerXAnchor
+                    $0.width >= 232
+                    $0.height >= 68
+                    $0.width <= self.widthAnchor
+                    
+                }
+            }
+        }
     }
  
     public func getValue() -> QuestionResponse? {
@@ -54,6 +82,10 @@ open class TimeView: UIView, SurveyInput {
     }
     
     @IBAction func valueChanged(_ sender: Any) {
+        // Hide the hint after the first TimeView
+        // The value must change to advance past the first TimeView, so this is safe
+        Arc.set(flag: .time_picker_hint_shown)
+        
         self.surveyInputDelegate?.didChangeValue();
     }
     
