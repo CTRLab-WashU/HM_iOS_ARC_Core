@@ -41,7 +41,7 @@ import UIKit
     var isEnabled = true
     var isArrowEnabled = true
     var isArrowAbove = false
-	var container:UIStackView?
+	public var container:UIStackView?
 	var path:UIBezierPath?
 	var pointerSize:CGFloat = 10.0
 	var radius:CGFloat = 8.0
