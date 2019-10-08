@@ -49,6 +49,7 @@ public class ACHomeView: ACTemplateView {
 	
 	public var debugButton: UIButton!
 	public var surveyButton: UIButton!
+    public var changeAvailabilityButton: UIButton!
 	var relSeparatorWidth:CGFloat = 0.15
 	var versionLabel: UILabel!
 	public var separator:ACHorizontalBar!
@@ -130,6 +131,7 @@ public class ACHomeView: ACTemplateView {
 						self?.window?.clearOverlay()
 					}
 				}
+                
 			}
 			
 			
@@ -150,9 +152,31 @@ public class ACHomeView: ACTemplateView {
 			
 	
 	}
+    
+    override open func footer(_ view: UIView) {
+        let attributes:[NSAttributedString.Key:Any] = [
+            .foregroundColor : UIColor(named: "Primary") as Any,
+            .font : UIFont(name: "Roboto-Bold", size: 16.0) as Any,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
+        let changeAvailabilityTitle = NSAttributedString(string: "Change Availability".localized(""), attributes: attributes)
+        
+        self.changeAvailabilityButton = view.button {
+            $0.setAttributedTitle(changeAvailabilityTitle, for: .normal)
+            $0.setTitle("Change Availability".localized(""),
+                        for: .normal)
+            $0.setTitleColor(UIColor(named: "Primary"), for: .normal)
+            
+            $0.addAction {
+                Arc.shared.appNavigation.navigate(state: ACState.changeStudyStart, direction: .toRight)
+            }
+        }
+    }
+    
 	public func setState(surveyStatus:SurveyAvailabilityStatus) {
 		surveyButton.isHidden = true
-		
+		changeAvailabilityButton.isHidden = true
+        
 		// Do any additional setup after loading the view.
 		switch surveyStatus {
 		case .available:
@@ -171,6 +195,8 @@ public class ACHomeView: ACTemplateView {
 				.replacingOccurrences(of: "{DATE1}", with: date)
 				.replacingOccurrences(of: "{DATE2}", with: endDate)
 			
+            changeAvailabilityButton.isHidden = false
+            
 		case .tomorrow:
             let schedule = Arc.shared.scheduleController.get(confirmedSchedule: Arc.shared.participantId!)
             let s = schedule!.entries.first
