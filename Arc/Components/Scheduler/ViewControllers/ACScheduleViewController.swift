@@ -291,7 +291,7 @@ public class ACScheduleViewController : SurveyNavigationViewController {
 			var sessions:[Session] = []
 			
 			if self.isChangingSchedule {
-				sessions = Arc.shared.studyController.get(sessionsOnDay: Date())
+				sessions = Arc.shared.studyController.get(sessionsOnFollowingDay: Date())
 			}
 			let _ = Arc.shared.scheduleController.delete(schedulesForParticipant: self.participantId!)
 			
