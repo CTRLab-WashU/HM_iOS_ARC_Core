@@ -536,9 +536,8 @@ open class Arc : ArcApi {
 		
 	}
     public func debugSchedule() {
-        let dateFrame = studyController.getCurrentStudyPeriod()?.userStartDate ?? Date()
         let lastFetch = appController.lastBackgroundFetch?.localizedFormat()
-        let list = studyController.getUpcomingSessions(withLimit: 32, startDate: dateFrame as NSDate)
+        let list = (studyController.getPastSessions(withLimit: 15).reversed() + studyController.getUpcomingSessions(withLimit: 32))
             .map({
                 " \($0.study?.studyID ?? -1)-\($0.sessionID): \($0.sessionDate?.localizedString() ?? "") \(($0.finishedSession) ? "√" : "\(($0.missedSession) ? "x" : "\(($0.startTime == nil) ? "-" : "o")")")"
                 

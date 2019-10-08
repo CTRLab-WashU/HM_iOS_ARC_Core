@@ -151,6 +151,9 @@ open class SessionController:MHController {
         
     }
 	open func uploadSession(session:Session) {
+		guard !HMRestAPI.shared.blackHole else {
+			return
+		}
 		guard session.uploaded == false else {
 			return
 		}

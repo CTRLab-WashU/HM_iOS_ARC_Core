@@ -176,7 +176,17 @@ open class StudyController : MHController {
         return study?.first
         
     }
-    
+	open func getPastSessions(withLimit limit:Int, startDate:NSDate = NSDate()) -> [Session]  {
+		let now = startDate
+		
+		let predicate = NSPredicate(format: "sessionDate<=%@", now);
+		let sortDescriptors = [NSSortDescriptor(key:"sessionDate", ascending:false)];
+		
+		
+		let results:[Session] =  fetch(predicate:predicate, sort:sortDescriptors, limit: limit) ?? []
+		
+		return results
+	}
     open func getUpcomingSessions(withLimit limit:Int, startDate:NSDate = NSDate()) -> [Session]  {
         let now = startDate
         
