@@ -31,8 +31,10 @@ public class NotificationPermissionViewController: CustomViewController<Notifica
 		Arc.shared.notificationController.authenticateNotifications { [weak self] (granted, error) in
 			OperationQueue.main.addOperation {
 				self?._didAllow = granted
+				Arc.shared.appController.isNotificationAuthorized = granted
 				self?.surveyInputDelegate?.didChangeValue()
 				self?.surveyInputDelegate?.tryNextPressed()
+				
 			}
 			
 		}

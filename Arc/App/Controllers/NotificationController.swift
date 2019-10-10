@@ -14,9 +14,18 @@ open class NotificationController : MHController
 		let options: UNAuthorizationOptions = [.alert, .sound, .badge];
 		
 		center.requestAuthorization(options: options, completionHandler: completion)
+	
+	}
+	open func isAuthorized(completion: @escaping (Bool)->()) {
+		let center = UNUserNotificationCenter.current()
+		
+		let options: UNAuthorizationOptions = [.alert, .sound, .badge];
+		
+		center.getNotificationSettings { (settings) in
+			completion(settings.authorizationStatus == .authorized)
+		}
 		
 	}
-	
     @discardableResult
 	open func scheduleNotification(date:Date, title:String, body:String, identifierPrefix:String = "") -> NotificationEntry
     {

@@ -43,6 +43,20 @@ open class AppController : MHController {
 			defaults.synchronize();
 		}
 	}
+	public var isNotificationAuthorized:Bool {
+		get {
+			if let value = (defaults.value(forKey:"isNotificationAuthorized") as? Bool)
+			{
+				return value;
+			}
+			return false;
+		}
+		set (newVal)
+		{
+			defaults.setValue(newVal, forKey:"isNotificationAuthorized");
+			defaults.synchronize();
+		}
+	}
 	public var flags:[String:Bool] {
 		get {
 			
