@@ -326,16 +326,12 @@ public class ACScheduleViewController : BasicSurveyViewController {
 				
 				for study in studies {
 					Arc.shared.notificationController.clear(sessionNotifications: Int(study.studyID))
-					if let lastSessionToday = self.todaysSessions.last?.expirationDate {
+					
+					Arc.shared.studyController.clear(sessionsAfterTodayInStudy:  Int(study.studyID))
 						
-						
-						Arc.shared.studyController.clear(sessions: Int(study.studyID), afterDate: lastSessionToday)
-					} else {
-						Arc.shared.studyController.clear(sessions: Int(study.studyID), afterDate: Date())
-						
-					}
 				}
             }
+			
             // Otherwise, we need to make sure to initialize all of the study periods
             else
             {
