@@ -43,7 +43,8 @@ class ProgressViewController: CustomViewController<ACProgressView> {
 		thisWeekProgressSetup()
 		
 		thisStudyProgressSetup()
-		
+		self.navigationController?.isNavigationBarHidden = true
+
 		customView.viewFaqButton.addTarget(self, action: #selector(self.viewFaqPressed), for: .touchUpInside)
     }
     
