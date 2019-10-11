@@ -518,8 +518,8 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 				return
 			}
 			weakSelf.tutorialAnimation.pause()
-			let index = weakSelf.test.symbolIndexPaths[min(2, weakSelf.gridSelected)]
-			guard let _ = weakSelf.test.overlayCell(at: index) else {
+            guard let index = weakSelf.test.symbolIndexPaths.first(where: {weakSelf.test.collectionView.cellForItem(at: $0)?.isSelected == false}) else { return }
+            guard let _ = weakSelf.test.overlayCell(at: index) else {
 				return
 			}
 			weakSelf.currentHint = weakSelf.view.window?.hint {
