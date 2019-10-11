@@ -122,23 +122,47 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 			$0.configure(with: IndicatorView.Config(primaryColor: ACColor.primaryText,
 												 secondaryColor: ACColor.primaryText,
 												 textColor: .white,
-												 cornerRadius: 20.0,
+												 cornerRadius: 24.0,
 												 arrowEnabled: false,
                                                  arrowAbove: false))
-			$0.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-			$0.acLabel{
-				$0.textAlignment = .center
-				$0.text = "Scroll".localized("")
-				Roboto.Style.body($0, color: ACColor.secondary)
-				$0.layout {
-					
-//					$0.trailing >= v.safeAreaLayoutGuide.trailingAnchor + 20 ~ 999
-					$0.bottom == v.safeAreaLayoutGuide.bottomAnchor - 20 ~ 999
-//					$0.leading >= v.safeAreaLayoutGuide.leadingAnchor + 20 ~ 999
-					$0.width >= 80
-					$0.centerX == v.centerXAnchor
-					$0.height >= 40
+//			$0.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+//			$0.stack {
+				$0.container!.isLayoutMarginsRelativeArrangement = true
+				$0.container!.layoutMargins = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+//				$0.spacing = 8
+//				$0.axis = .horizontal
+//				$0.alignment = .center
+//				$0.distribution = .fill
+			
+			
+			$0.container!.axis = .horizontal
+				$0.acLabel {
+					$0.textAlignment = .center
+					$0.text = "SHOW MORE".localized("")
+					Roboto.Style.bodyBold($0, color: ACColor.secondary)
+					$0.numberOfLines = 1
 				}
+				$0.image {
+					$0.image = UIImage(named: "cut-ups/icons/arrow_down_white")
+					$0.contentMode = .scaleAspectFit
+					$0.layout {
+						$0.width == 20 ~ 999
+						$0.height == 20 ~ 999
+					}
+//					$0.backgroundColor = .white
+
+				}
+				
+				
+//			}	
+			$0.layout {
+				
+				//					$0.trailing >= v.safeAreaLayoutGuide.trailingAnchor + 20 ~ 999
+				$0.bottom == v.safeAreaLayoutGuide.bottomAnchor - 20 ~ 999
+				//					$0.leading >= v.safeAreaLayoutGuide.leadingAnchor + 20 ~ 999
+//				$0.width >= 80
+				$0.centerX == v.centerXAnchor
+				$0.height >= 40
 			}
 		}
 		root.delegate = self

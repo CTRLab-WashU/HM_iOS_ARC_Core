@@ -70,6 +70,21 @@ public struct Drawing {
 		
 		
 	}
+	public struct Shadow {
+		var color:UIColor = .black
+		var offset:CGSize = .zero
+		var blur:CGFloat = 5.0
+	}
+//	public struct ShadowBorder : ACDrawable {
+//		var topShadow:Shadow = .init(color: ., offset: <#T##CGSize#>, blur: <#T##CGFloat#>)
+//		
+//		public func draw(_ rect: CGRect) {
+//			<#code#>
+//		}
+//		
+//		
+//	}
+	
 	public struct Ellipse : ACDrawable {
 
 		public var color:UIColor = ACColor.highlight

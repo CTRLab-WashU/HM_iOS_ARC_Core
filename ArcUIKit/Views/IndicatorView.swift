@@ -50,6 +50,24 @@ import UIKit
     override public init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
+		let s = UIStackView()
+		self.addSubview(s)
+		s.frame = self.bounds
+		s.alignment = .fill
+		s.axis = .vertical
+		s.spacing = 8
+		let v = self
+		s.layout {
+			
+			$0.top == v.topAnchor
+			$0.trailing == v.trailingAnchor
+			$0.bottom == v.bottomAnchor
+			$0.leading == v.leadingAnchor
+			
+		}
+		
+		
+		container = s
         
     }
     
@@ -62,26 +80,7 @@ import UIKit
 
     }
 	override func add(_ view: UIView) {
-		if container == nil {
-			let s = UIStackView()
-			self.addSubview(s)
-			s.frame = self.bounds
-			s.alignment = .fill
-			s.axis = .vertical
-			s.spacing = 8
-			let v = self
-			s.layout {
-
-				$0.top == v.topAnchor
-				$0.trailing == v.trailingAnchor
-				$0.bottom == v.bottomAnchor
-				$0.leading == v.leadingAnchor
-
-			}
-			
-			
-			container = s
-		}
+		
 		container?.addArrangedSubview(view)
 	}
 	
