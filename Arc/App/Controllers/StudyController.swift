@@ -194,8 +194,8 @@ open class StudyController : MHController {
 	open func getAllStudyPeriods() -> [StudyPeriod]
 	{
 		
-		
-		let results:[StudyPeriod] = fetch() ?? []
+		let sortDescriptors = [NSSortDescriptor(key:"userStartDate", ascending:true)];
+		let results:[StudyPeriod] = fetch(predicate:nil, sort: sortDescriptors) ?? []
 		
 		return results;
 		
