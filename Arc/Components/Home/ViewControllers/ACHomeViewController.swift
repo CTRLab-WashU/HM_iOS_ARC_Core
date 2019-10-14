@@ -65,7 +65,7 @@ open class ACHomeViewController: CustomViewController<ACHomeView> {
     // Shown after the baseline test
     func showBaselineOboarding() {
         // view.window?.overlayView(withShapes: [])
-        view.isUserInteractionEnabled = false
+        // view.isUserInteractionEnabled = false
         currentHint = view.window?.hint {
             $0.layout {
                 $0.centerX == view.centerXAnchor
@@ -90,7 +90,7 @@ open class ACHomeViewController: CustomViewController<ACHomeView> {
     // Shown after paid tests if the user has not previously completed the onboarding flow
     func showPaidOnboarding() {
         // view.window?.overlayView(withShapes: [])
-        view.isUserInteractionEnabled = false
+        // view.isUserInteractionEnabled = false
         currentHint = view.window?.hint {
             $0.layout {
                 $0.centerX == view.centerXAnchor
