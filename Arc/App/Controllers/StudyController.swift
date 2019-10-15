@@ -922,10 +922,26 @@ open class StudyController : MHController {
 		session.missedSession = true;
 		save()
 	}
+	open func mark(uploaded session:Session)
+	{
+		guard let studyId = session.study?.studyID else {
+			assertionFailure("Invalid session submitted, No study Id assigned.")
+			return
+		}
+		let session = get(session: Int(session.sessionID), inStudy: Int(studyId))
+		session.uploaded = true;
+		save()
+	}
 	open func mark(missed sessionId:Int, studyId:Int)
 	{
 		let session = get(session: sessionId, inStudy: studyId)
 		session.missedSession = true;
+		save()
+	}
+	open func mark(uploaded sessionId:Int, studyId:Int)
+	{
+		let session = get(session: sessionId, inStudy: studyId)
+		session.uploaded = true;
 		save()
 	}
 	open func mark(interrupted:Bool,  sessionId:Int, studyId:Int)
@@ -1217,7 +1233,18 @@ open class StudyController : MHController {
 		}
 		
 	}
-	
+	open func markUploaded(sessionsUpTo sessionId:Int) {
+		MHController.dataContext.performAndWait {
+			let sessions:[Session] = fetch() ?? []
+			
+			for session in sessions {
+				if session.sessionID <= Int64(sessionId){
+					mark(uploaded: session)
+				}
+			}
+		}
+		
+	}
 	open func delete(sessionsUpTo sessionId:Int, inStudy studyId: Int, destroySessionsEntirely:Bool=false) {
 		MHController.dataContext.performAndWait {
 			guard let study = get(study: studyId), let sessions = study.sessions else {
