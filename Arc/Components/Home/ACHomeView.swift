@@ -188,6 +188,13 @@ public class ACHomeView: ACTemplateView {
 			heading = "There are no tests to take right now.".localized("home_header2")
 			message = "You will receive a notification later today when it's time to take your next test.".localized("home_body2")
 			
+		case .laterThisCycle(let date):
+			heading = "There are no tests available right now.".localized("home_header4")
+			
+			message = "Your next tests will be available starting *{DATE1}* .".localized("home_body4")
+				.replacingOccurrences(of: "{DATE1}", with: date)
+			
+	
 		case .later(let date, let endDate):
 			heading = "There are no tests available right now.".localized("home_header4")
 			

@@ -19,7 +19,7 @@ public extension Notification.Name {
 
 
 public enum SurveyAvailabilityStatus {
-    case available, laterToday, tomorrow, startingTomorrow(String), later(String, String), finished, postBaseline
+    case available, laterToday, tomorrow, startingTomorrow(String), laterThisCycle(String), later(String, String), finished, postBaseline
 }
 open class Arc : ArcApi {
 	
@@ -441,8 +441,12 @@ open class Arc : ArcApi {
         var upcoming:Session?
         var session:Int?
         if let s = currentStudy {
-            
-            upcoming = studyController.get(upcomingSessions: Int(s)).first
+            //Get upcomming sessions ensuring that only valid test are considered
+            upcoming = studyController.get(upcomingSessions: Int(s))
+				.filter {$0.missedSession == false}
+				.filter {$0.completeTime == nil}
+				.filter {$0.uploaded == false}
+				.first
             
             if let sess = availableTestSession {
                 session = sess
@@ -474,7 +478,10 @@ open class Arc : ArcApi {
                         return .startingTomorrow(dateString)
                     }
                     return .tomorrow
-                } else {
+                } else if date < upcoming.study?.endDate ?? Date() {
+					let dateString = date.localizedFormat(template: ACDateStyle.longWeekdayMonthDay.rawValue, options: 0, locale: nil)
+					return .laterThisCycle(dateString)
+				} else {
                     let dateString = date.localizedFormat(template: ACDateStyle.longWeekdayMonthDay.rawValue, options: 0, locale: nil)
                     let endDateString = date.addingDays(days: 6).localizedFormat(template: ACDateStyle.longWeekdayMonthDay.rawValue, options: 0, locale: nil)
                     return .later(dateString, endDateString)
