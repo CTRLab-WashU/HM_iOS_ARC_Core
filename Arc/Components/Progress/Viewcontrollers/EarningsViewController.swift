@@ -92,6 +92,9 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 			}
 			self?.navigationController?.pushViewController(EarningsDetailViewController(), animated: true)
 		}
+        
+        self.navigationController?.isNavigationBarHidden = true
+        
         // Do any additional setup after loading the view.
 		
 		
