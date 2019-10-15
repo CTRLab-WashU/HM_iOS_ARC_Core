@@ -49,8 +49,10 @@ public extension Date {
 
         }
     }
-	static func time(year:Int, month:Int, day:Int, hour:Int, minute:Int) -> Date {
+	
+	static func time(year:Int?, month:Int?, day:Int?, hour:Int?, minute:Int?) -> Date {
 		var dateComponents = DateComponents()
+		
 		dateComponents.year = year
 		dateComponents.month = month
 		dateComponents.day = day
