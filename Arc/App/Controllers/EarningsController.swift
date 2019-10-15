@@ -40,7 +40,7 @@ open class EarningsController {
 			
 			//Perform request and fire notifications notifying the system of updates
 			
-			if let overview = Await(fetchEarnings).execute(EarningRequestData(cycle: nil, day: nil)) {
+			if let overview = Await(fetchEarnings).execute(()) {
 				Arc.shared.appController.lastFetched[EarningsController.overviewKey] = Date().timeIntervalSince1970
 				Arc.shared.appController.store(value: overview, forKey: EarningsController.overviewKey)
 				
@@ -63,10 +63,10 @@ open class EarningsController {
 	}
 }
 
-fileprivate func fetchEarnings(request:EarningRequestData,  didFinish:@escaping (EarningOverview?)->()) {
+fileprivate func fetchEarnings(request:Void,  didFinish:@escaping (EarningOverview?)->()) {
 
 	
-	HMAPI.getEarningOverview.execute(data: request) { (urlResponse, data, err) in
+	HMAPI.getEarningOverview.execute(data: nil) { (urlResponse, data, err) in
 		if let err = err {
 			HMLog(err.localizedDescription)
 			didFinish(nil)

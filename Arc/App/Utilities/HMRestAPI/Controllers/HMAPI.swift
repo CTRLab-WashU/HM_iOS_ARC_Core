@@ -31,7 +31,7 @@ open class HMAPI {
 
 	static public let getContactInfo:HMAPIRequest<Data, ContactInfoResponse> = .get("get-contact-info")
 
-    static public let getEarningOverview:HMAPIRequest<EarningRequestData, EarningOverview> = .get("/earning-overview")
+    static public let getEarningOverview:HMAPIRequest<Data, EarningOverview> = .get("/earning-overview")
     static public let getEarningDetail:HMAPIRequest<Data, EarningDetail> = .get("/earning-details")
     
     static public let getStudyProgress:HMAPIRequest<Data, StudyProgress> = .get("/study-progress")
