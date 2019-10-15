@@ -117,7 +117,7 @@ extension StudyController : ThisWeekExpressible {
 	
 	public var day: Int {
 		guard let session = Arc.shared.studyController.get(sessionsOnDay: Date()).first else {
-			return 0
+			return -1
 		}
 		
 		return Int(session.day)
