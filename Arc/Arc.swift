@@ -478,10 +478,12 @@ open class Arc : ArcApi {
                         return .startingTomorrow(dateString)
                     }
                     return .tomorrow
-                } else if date < upcoming.study?.endDate ?? Date() {
-					let dateString = date.localizedFormat(template: ACDateStyle.longWeekdayMonthDay.rawValue, options: 0, locale: nil)
-					return .laterThisCycle(dateString)
-				} else {
+                }
+//				else if date < upcoming.study?.endDate ?? Date() {
+//					let dateString = date.localizedFormat(template: ACDateStyle.longWeekdayMonthDay.rawValue, options: 0, locale: nil)
+//					return .laterThisCycle(dateString)
+//				}
+				else {
                     let dateString = date.localizedFormat(template: ACDateStyle.longWeekdayMonthDay.rawValue, options: 0, locale: nil)
                     let endDateString = date.addingDays(days: 6).localizedFormat(template: ACDateStyle.longWeekdayMonthDay.rawValue, options: 0, locale: nil)
                     return .later(dateString, endDateString)
