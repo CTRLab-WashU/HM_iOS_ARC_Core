@@ -504,6 +504,7 @@ open class StudyController : MHController {
 					}
 				}
 				session.day = sessionData.day
+				session.sessionDayIndex = sessionData.day
 				session.week = sessionData.week
 				session.sessionID = Int64(sessionID)
 				session.session = sessionData.session
