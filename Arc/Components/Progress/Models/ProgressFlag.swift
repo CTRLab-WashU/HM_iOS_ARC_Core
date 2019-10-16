@@ -28,9 +28,9 @@ public enum ProgressFlag : String {
 	static public func prefilledFlagsFor(major:Int, minor:Int, patch:Int) -> Set<ProgressFlag> {
 		var flags:Set<ProgressFlag> = []
 		switch (major, minor, patch) {
-		case let (major, _, _) where major < 2:
-			flags = flags.union([.tutorial_grats, .tutorial_complete, .first_test_begin, .baseline_completed, .tutorial_optional])
-			fallthrough
+		case let (major, _, _) where major < 2: 
+			flags = flags.union([.tutorial_grats, .tutorial_complete, .first_test_begin, .baseline_completed, .paid_test_completed, .tutorial_optional])
+	
 		case let (major, _, _) where major >= 2:
 			flags = flags.union([.tutorial_grats, .tutorial_complete, .first_test_begin, .baseline_completed, .baseline_onboarding, .paid_test_completed, .tutorial_optional, .grids_tutorial_shown, .symbols_tutorial_shown, .prices_tutorial_shown])
 			
