@@ -1300,7 +1300,7 @@ open class StudyController : MHController {
 			{
 				let test = tests[i] as! Session;
 				
-				if test.sessionDayIndex == Int64(index)
+				if test.day == Int64(index)
 				{
 					sessions.append(test);
 				}
