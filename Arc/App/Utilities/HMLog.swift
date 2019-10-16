@@ -13,7 +13,7 @@ open class LogManager: NSObject {
 
     static public let sharedInstance = LogManager();
     
-    public var logToFile:Bool = false;
+    public var logToFile:Bool = true;
     
    	public var fh: FileHandle?;
     public var fm = FileManager.default;

@@ -124,7 +124,7 @@ public class ACHomeView: ACTemplateView {
 					$0.addAction {
 						[weak self] in
                         MHController.dataContext.performAndWait {
-                            Arc.shared.notificationController.shceduleMissedTestNotification()
+                            Arc.shared.notificationController.scheduleMissedTestNotification()
                         }
 						self?.delegate?.beginPressed()
 						self?.window?.removeHighlight()

@@ -785,7 +785,7 @@ open class StudyController : MHController {
 		
 		save();
 	}
-	open func clear(sessionsAfterTodayInStudy studyId:Int)
+	open func clear(sessionsAfterTodayInStudy studyId:Int, includeToday:Bool = false)
 	{
 		guard let study = get(study: studyId) else {
 			fatalError("Invalid study ID")
@@ -803,10 +803,16 @@ open class StudyController : MHController {
 				{
 					continue;
 				}
-				
-				if test.day <= day {
-					continue
+				if includeToday {
+					if test.day < day {
+						continue
+					}
+				} else {
+					if test.day <= day {
+						continue
+					}
 				}
+				
 				sessionsToRemove.append(test);
 			}
 			

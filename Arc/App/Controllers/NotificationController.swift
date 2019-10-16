@@ -186,7 +186,7 @@ open class NotificationController : MHController
         //        save();
     }
     
-    open func shceduleMissedTestNotification() {
+    open func scheduleMissedTestNotification() {
         self.clearMissedTestNotifications()
         let sessions = Arc.shared.studyController.getUpcomingSessions(withLimit: 32)
         var count = 1
