@@ -28,6 +28,7 @@ open class ACHomeViewController: CustomViewController<ACHomeView> {
         //        versionLabel.text = "v\(Arc.shared.versionString)"
         //        configureState()
         
+        let _ = Arc.shared.appNavigation.viewForState(state: Arc.shared.appNavigation.defaultState())
     }
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
