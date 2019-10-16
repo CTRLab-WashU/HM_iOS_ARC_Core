@@ -33,8 +33,8 @@ open class EarningsDetailViewController : CustomViewController<ACEarningsDetailV
 			self.navigationItem.leftBarButtonItem = leftButton
 		
 		
-		customView.root.refreshControl = UIRefreshControl()
-		customView.root.addSubview(customView.root.refreshControl!)
+//		customView.root.refreshControl = UIRefreshControl()
+//		customView.root.addSubview(customView.root.refreshControl!)
 		customView.root.refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
 
 		customView.root.alwaysBounceVertical = true
@@ -43,7 +43,10 @@ open class EarningsDetailViewController : CustomViewController<ACEarningsDetailV
 		didSync(notification:  nil)
 		
 	}
-	
+	open override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		self.navigationController?.isNavigationBarHidden = false
+	}
 	open override var preferredStatusBarStyle: UIStatusBarStyle {
 		return .lightContent
 	}

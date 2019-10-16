@@ -94,7 +94,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		}
         
         self.navigationController?.isNavigationBarHidden = true
-        
+		
         // Do any additional setup after loading the view.
 		
 		
@@ -173,7 +173,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 	}
 	public override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		
+		self.navigationController?.isNavigationBarHidden = true
 		
 		if isPostTest && fabs((lastUpdated ?? Date().timeIntervalSince1970) - Date().timeIntervalSince1970) > 10 * 60 {
 			customView.showSpinner(color: ACColor.highlight, backgroundColor: ACColor.primaryInfo, message:"progress_endoftest_syncing")
