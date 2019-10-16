@@ -58,13 +58,13 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		customView.scrollIndicatorView.isHidden = true
 		
 		//When in post test mode perform modifications
-		lastUpdated = app.appController.lastFetched["EarningsOverview"]
+		lastUpdated = app.appController.lastFetched[EarningsController.overviewKey]
 
 		if isPostTest {
 			timeout = Timer.scheduledTimer(withTimeInterval: 15.0, repeats: false) { [weak self] (timer) in
 				
 				if let lastKnownUpdate = self?.lastUpdated,
-					let updated = Arc.shared.appController.lastFetched["EarningsOverview"],
+					let updated = Arc.shared.appController.lastFetched[EarningsController.overviewKey],
 						 lastKnownUpdate == updated,
 						fabs(updated - Date().timeIntervalSince1970) > 10 * 60{
 					self?.errorState()
@@ -190,8 +190,8 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 //			customView.earningsParentStack.fadeIn()
 //
 //		}
-		lastUpdated = app.appController.lastFetched["EarningsOverview"]
-		earningsData = Arc.shared.appController.read(key: "EarningsOverview")
+		lastUpdated = app.appController.lastFetched[EarningsController.overviewKey]
+		earningsData = Arc.shared.appController.read(key: EarningsController.overviewKey)
 		setGoals()
 	}
 	@objc public func updateEarnings(notification:Notification) {
@@ -206,8 +206,8 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 			
 			
 
-			weakSelf.lastUpdated = weakSelf.app.appController.lastFetched["EarningsOverview"]
-			weakSelf.earningsData = Arc.shared.appController.read(key: "EarningsOverview")
+			weakSelf.lastUpdated = weakSelf.app.appController.lastFetched[EarningsController.overviewKey]
+			weakSelf.earningsData = Arc.shared.appController.read(key: EarningsController.overviewKey)
 			weakSelf.setGoals()
 			weakSelf.customView.hideSpinner()
 			weakSelf.customView.root.refreshControl?.endRefreshing()
