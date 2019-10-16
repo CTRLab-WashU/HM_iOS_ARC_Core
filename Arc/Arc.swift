@@ -250,20 +250,23 @@ open class Arc : ArcApi {
 	}
     
     public func uploadTestData() {
-		sessionController.sendFinishedSessions()
-		sessionController.sendMissedSessions()
-		sessionController.sendSignatures()
-		sessionController.clearUploadedSessions()
-		
-		if !appController.testScheduleUploaded{
-			let studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
-			Arc.shared.sessionController.uploadSchedule(studyPeriods: studies)
-		}
-		if !appController.wakeSleepUploaded {
-			if let study = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID}).first {
-				Arc.shared.scheduleController.upload(confirmedSchedule: Int(study.studyID));
+		MHController.dataContext.perform {
+			Arc.shared.sessionController.sendFinishedSessions()
+			Arc.shared.sessionController.sendMissedSessions()
+			Arc.shared.sessionController.sendSignatures()
+			Arc.shared.sessionController.clearUploadedSessions()
+			
+			if !Arc.shared.appController.testScheduleUploaded{
+				let studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
+				Arc.shared.sessionController.uploadSchedule(studyPeriods: studies)
 			}
-
+			if !Arc.shared.appController.wakeSleepUploaded {
+				if let study = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID}).first {
+					Arc.shared.scheduleController.upload(confirmedSchedule: Int(study.studyID));
+				}
+				
+			}
+			
 		}
 		
 	}
