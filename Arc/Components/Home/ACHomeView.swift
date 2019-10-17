@@ -217,14 +217,14 @@ public class ACHomeView: ACTemplateView {
 			
 		case .startingTomorrow(let date):
 			
-			heading = "Your next testing cycle starts tomorrow and runs through \(date).\n".localized("home_header6")
+			heading = "Your next testing cycle starts tomorrow and runs through \(date).\n".localized("home_header5")
 				.replacingOccurrences(of: "{DATE}", with: date)
 			
 			message = "We'll notify you when it's time to take a test.".localized("home_body_4_6")
 			
 		case .finished:
-			heading = "You've finished the study!".localized("home_header5")
-			message = "There are no more tests to take.".localized("home_body5")
+			heading = "You've finished the study!".localized("home_header6")
+			message = "There are no more tests to take.".localized("home_body_6")
             
         case .postBaseline:
             let schedule = Arc.shared.scheduleController.get(confirmedSchedule: Arc.shared.participantId!)
