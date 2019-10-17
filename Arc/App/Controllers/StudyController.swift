@@ -1276,7 +1276,7 @@ open class StudyController : MHController {
 					delete(session)
 					
 				} else {
-					clearData(sessionId: Int(session.sessionID))
+                    clearData(sessionId: Int(session.sessionID), force:true)
 					
 				}
 			}
