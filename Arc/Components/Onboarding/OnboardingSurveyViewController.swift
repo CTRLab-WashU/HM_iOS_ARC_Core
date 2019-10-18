@@ -57,6 +57,12 @@ public class OnboardingSurveyViewController: BasicSurveyViewController {
 				}
 			}
 			else if questionId == "allow_from_settings" {
+                
+                let vc:CustomViewController<InfoView> = self.getTopViewController()!
+                let message = "".localized("allow_from_settings")
+                    .replacingOccurrences(of: "[app name]", with: "EXR")
+                vc.customView.setHeading(message)
+                
 				if Await(checkNotificationStatus).execute(()) {
 					didFinish(true)
 				} else {
