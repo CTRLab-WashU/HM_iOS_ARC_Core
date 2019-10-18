@@ -64,7 +64,7 @@ public class ACScheduleViewController : BasicSurveyViewController {
     public var minWakeTime = 8
     public var maxWakeTime = 18
 	public var shouldTestImmediately = true
-	public var rescheduleToday = true
+	public var rescheduleToday = false
 	private var todaysSessions:[Session] = []
     public override init(file: String, surveyId:String? = nil, showHelp:Bool? = true) {
         
