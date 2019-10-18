@@ -51,9 +51,11 @@ public class TotalSessionGoalView : GoalView {
 	}
 	
 	public func set(current:Int) {
-		self.current = Double(current)
-		self.countLabel.text = "*\(Int(current))*"
-		self.stepperProgressBar.progress = self.progress
+        if (current <= 21) {
+            self.current = Double(current)
+            self.countLabel.text = "*\(Int(current))*"
+            self.stepperProgressBar.progress = self.progress
+        }
 	}
 	public func set(total:Double) {
 		self.total = total
