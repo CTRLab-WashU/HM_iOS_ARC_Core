@@ -215,13 +215,14 @@ public class ACHomeView: ACTemplateView {
                 .replacingOccurrences(of: "{TIME1}", with: start!)
                 .replacingOccurrences(of: "{TIME2}", with: end!)
 			
-		case .startingTomorrow(let date):
-			
+		case .startingTomorrow(let date, let endDate):
 			heading = "Your next testing cycle starts tomorrow and runs through \(date).\n".localized("home_header5")
 				.replacingOccurrences(of: "{DATE}", with: date)
 			
-			message = "We'll notify you when it's time to take a test.".localized("home_body_4_6")
-			
+			message = "".localized("home_body5")
+                .replacingOccurrences(of: "{DATE 1}", with: date)
+                .replacingOccurrences(of: "{DATE2}", with: endDate)
+            
 		case .finished:
 			heading = "You've finished the study!".localized("home_header6")
 			message = "There are no more tests to take.".localized("home_body_6")
