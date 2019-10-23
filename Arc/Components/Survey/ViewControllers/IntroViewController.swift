@@ -295,6 +295,11 @@ open class IntroViewController: CustomViewController<InfoView> {
 		}
 
 	}
+    
+    open override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.currentHint?.removeFromSuperview()
+    }
 	
 	override open func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
