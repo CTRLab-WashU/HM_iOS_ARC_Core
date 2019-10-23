@@ -87,7 +87,7 @@ open class AuthController:MHController {
 
 				HMAPI.getSessionInfo.execute(data: nil, completion: { (res, resObj, err) in
 					guard  resObj?.errors.count == 0 else {
-						HMLog(obj?.toString() ?? "")
+						
 						let r = response as? HTTPURLResponse
 						let failureMessage = self.getAuthIssue(from: r?.statusCode)
 						completion(nil, failureMessage)
@@ -125,7 +125,7 @@ open class AuthController:MHController {
 				})
 
 			} else {
-				HMLog(obj?.toString() ?? "")
+				
                 let r = response as? HTTPURLResponse
                 let failureMessage = self.getAuthIssue(from: r?.statusCode)
 				completion(nil, failureMessage)
