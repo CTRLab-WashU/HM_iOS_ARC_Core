@@ -787,38 +787,103 @@ open class StudyController : MHController {
 	}
 	open func clear(sessionsAfterTodayInStudy studyId:Int, includeToday:Bool = false)
 	{
-		guard let study = get(study: studyId) else {
+		guard let study = get(study: studyId), let participantID = Arc.shared.participantId else {
 			fatalError("Invalid study ID")
 		}
-		
-		if let tests = study.sessions
+		let now = Date()
+        
+        // If this study has entirely passed, then we can just return now.
+        if let endDate = study.userEndDate, endDate < now
+        {
+            return
+        }
+        
+        
+        
+        if let tests = study.sessions
 		{
+            
 			var sessionsToRemove:Array<Session> = Array();
 			
+            // Because "today" is hard to define, we have to jump through some hoops to ensure that we don't accidentally
+            // delete tests that we don't want to.
+            
+            // First, we need to group the sessions by day, then try to find one in which the current date falls within.
+            // If we do that, then we can set todayStart and todayEnd to the min/max session dates, instead of relying on scheduleController.
+            // It's complicated by the fact that anything from the scheduleController likely won't match the start/end times
+            // that were used to initally create these test sessions.
+
+            var sessionsByDay:Dictionary<Int64, Array<Session>> = Dictionary();
+            var todayStart = Arc.shared.scheduleController.get(startTimeForDate: Date(), participantID: participantID)
+            var todayEnd = Arc.shared.scheduleController.get(endTimeForDate: Date(), participantID: participantID)
+            
+            // So group the tests by day
+            for i in 0..<tests.count
+            {
+                let test = tests[i] as! Session;
+                if sessionsByDay[test.day] == nil
+                {
+                    sessionsByDay[test.day] = [];
+                }
+                sessionsByDay[test.day]?.append(test);
+            }
+            
+            // Then let's loop through them, sorting them by sessionDate, and seeing if
+            // now falls within any of them.
+            
+            for (_, sessionSet) in sessionsByDay
+            {
+                if sessionSet.count == 0
+                {
+                    continue
+                }
+                
+                let reorderedSet = sessionSet.sorted(by: { (a, b) -> Bool in
+                    return a.sessionDate! < b.sessionDate!;
+                });
+                
+                if let sessionStart = reorderedSet.first?.sessionDate,
+                let sessionEnd = reorderedSet.last?.expirationDate,
+                sessionStart < now,
+                now < sessionEnd
+                {
+                    todayStart = sessionStart;
+                    todayEnd = sessionEnd;
+                    break;
+                }
+            }
+            
+            // Then, after all that, we can check the sessions and see what we want to remove.
+            
 			for i in 0..<tests.count
 			{
 				let test = tests[i] as! Session;
 				
-				if test.finishedSession == true || test.missedSession == true
+                if test.finishedSession == true || test.missedSession == true
 				{
 					continue;
 				}
-				if includeToday {
-					if test.day < day {
-						continue
-					}
-				} else {
-					if test.day <= day {
-						continue
-					}
-				}
+                
+                if let sessionDate = test.sessionDate, let expirationDate = test.expirationDate
+                {
+                    // If this test ended before today's session could even begin, skip it
+                    if expirationDate < todayStart
+                    {
+                        continue
+                    }
+                    // If we're not including today, then anything that ends after today's start
+                    // but before today's end gets skipped as well.
+                    if !includeToday && todayStart <= sessionDate && expirationDate <= todayEnd
+                    {
+                        continue
+                    }
+                }
 				
 				sessionsToRemove.append(test);
 			}
 			
 			for test in sessionsToRemove
 			{
-				//                DNLog("removing test \(test.sessionID)");
 				delete(test);
 			}
 		}
