@@ -41,6 +41,7 @@
 		C537A1AE228B74E20098A4CD /* Window+Overlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C537A1AD228B74E20098A4CD /* Window+Overlay.swift */; };
 		C53B123822F348F900BACA9A /* ACTodayProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B123722F348F900BACA9A /* ACTodayProgressViewController.swift */; };
 		C53B123A22F34C1700BACA9A /* ACTodayProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B123922F34C1700BACA9A /* ACTodayProgressView.swift */; };
+		C53BA3E323677CE300FEEF64 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C53BA3E223677CE300FEEF64 /* README.md */; };
 		C540B5B1221E0FD000B539A4 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C540B5B0221E0FD000B539A4 /* LanguageViewController.swift */; };
 		C545AB0523283038002672C2 /* ACPostCycleFinishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C545AB0423283038002672C2 /* ACPostCycleFinishViewController.swift */; };
 		C545AB0723283168002672C2 /* ACPostCycleFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C545AB0623283168002672C2 /* ACPostCycleFinishView.swift */; };
@@ -388,6 +389,7 @@
 		C537A1AD228B74E20098A4CD /* Window+Overlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Window+Overlay.swift"; sourceTree = "<group>"; };
 		C53B123722F348F900BACA9A /* ACTodayProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTodayProgressViewController.swift; sourceTree = "<group>"; };
 		C53B123922F34C1700BACA9A /* ACTodayProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTodayProgressView.swift; sourceTree = "<group>"; };
+		C53BA3E223677CE300FEEF64 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C540B5B0221E0FD000B539A4 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
 		C545AB0423283038002672C2 /* ACPostCycleFinishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPostCycleFinishViewController.swift; sourceTree = "<group>"; };
 		C545AB0623283168002672C2 /* ACPostCycleFinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPostCycleFinishView.swift; sourceTree = "<group>"; };
@@ -852,6 +854,7 @@
 		C54AE8E921C81B2F00DEC360 /* Arc */ = {
 			isa = PBXGroup;
 			children = (
+				C53BA3E223677CE300FEEF64 /* README.md */,
 				C54AE8EA21C81B2F00DEC360 /* Arc.h */,
 				C54AE90421C81B5C00DEC360 /* Arc.swift */,
 				C54AE8EB21C81B2F00DEC360 /* Info.plist */,
@@ -1819,6 +1822,7 @@
 				C54AEA1D21C81B5F00DEC360 /* GridFCell.xib in Resources */,
 				C54AE9FE21C81B5F00DEC360 /* PrimaryButton.xib in Resources */,
 				C54D103922C28A1D00B43E42 /* SegmentedTextView.xib in Resources */,
+				C53BA3E323677CE300FEEF64 /* README.md in Resources */,
 				C54AEA6421C81B5F00DEC360 /* Roboto-Medium.ttf in Resources */,
 				C54AEA1021C81B5F00DEC360 /* PricesQuestionViewController.xib in Resources */,
 				E8BA72E923198B8100823374 /* FAQTopicViewController.xib in Resources */,
