@@ -192,14 +192,11 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 	}
 	
 	@objc func keyboardWillShow(notification: NSNotification) {
-		print("keyboardWillShow")
 		setBottomScrollInset(value: 40)
 	}
 	
 	@objc func keyboardWillHide(notification: NSNotification){
-		print("keyboardWillHide")
 		setBottomScrollInset(value: 0)
-		
 	}
 	public func setBottomScrollInset(value:CGFloat) {
 		var inset = root.contentInset

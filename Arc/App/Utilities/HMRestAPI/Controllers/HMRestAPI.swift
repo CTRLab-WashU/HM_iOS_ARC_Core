@@ -80,7 +80,6 @@ open class HMRestAPI : NSObject, URLSessionDelegate, URLSessionTaskDelegate {
         HMLog("Executing------------------------------")
         HMLog(backendRequest.endPoint)
 
-        HMLog(String(data: backendRequest.data ?? Data(), encoding: .utf8) ?? "")
         if blackHole {
             backendRequest.didSucceed(with: Data(), response: HTTPURLResponse(url: URL(string: backendRequest.endPoint)!, statusCode: 200, httpVersion: nil, headerFields: nil))
             return nil
@@ -161,7 +160,6 @@ open class HMRestAPI : NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 						}
 						
 						HMLog("\(url)\n\n")
-						HMLog(String(data: data, encoding: .utf8) ?? "")
 						HMLog("Decoded Response---------------------------------")
 						do {
 							let obj = try JSONDecoder().decode(HMResponse.self, from: data).toString()

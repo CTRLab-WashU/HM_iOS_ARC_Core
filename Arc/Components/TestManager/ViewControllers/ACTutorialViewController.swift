@@ -46,7 +46,6 @@ class TutorialState {
 		flags.remove(name)
 	}
 	func evaluate(_ time:Double) {
-		print(time)
 		for index in 0 ..< conditions.count {
 			let c = conditions[index]
 			

@@ -160,12 +160,9 @@ public class SymbolsTestViewController: UIViewController, TestProgressViewContro
     
     func configureOption(view:UIView, symbolSet:SymbolsTest.SymbolSet){
         guard let top = view.viewWithTag(1) as? UIImageView else {
-//            print(view.subviews)
             return
         }
-        guard let bottom = view.viewWithTag(2)as? UIImageView else {
-//            print(view.subviews)
-            
+        guard let bottom = view.viewWithTag(2)as? UIImageView else {            
             return
         }
         top.image = getSymbol(index: symbolSet.symbols[0])

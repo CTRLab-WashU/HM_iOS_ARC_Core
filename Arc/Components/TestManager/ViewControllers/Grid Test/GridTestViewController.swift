@@ -87,7 +87,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 			
 			tests = controller.createTest(numberOfTests: 2)
 			_ = controller.createResponse(id: responseId, numSections: 2)
-//			print(responseId)
+
 		} else if !isPracticeTest {
         	tests = controller.createTest(numberOfTests: 2)
         	responseId = controller.createResponse(numSections: 2)
@@ -428,7 +428,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
                                 gridType: .image,
                                 time: c.touchTime!,
                                 id: responseId)
-//            print(value.toString())
+
 			delegate?.didSelectGrid(indexPath: indexPath)
 			if shouldAutoProceed {
 				maybeEndTimer?.invalidate();
