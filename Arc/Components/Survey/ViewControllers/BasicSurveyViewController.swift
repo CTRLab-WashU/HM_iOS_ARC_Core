@@ -293,7 +293,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		vc.customView.inputDelegate = self
 		
 		vc.customView.nextButton?.addTarget(self, action: #selector(nextButtonPressed(sender:)), for: .primaryActionTriggered)
-
+        vc.customView.nextButton?.setTitle(question.nextButtonTitle ?? "Next", for: .normal)
 		didPresentQuestion(input: vc.customView.inputItem, questionId: question.questionId)
 		
 	}
