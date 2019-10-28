@@ -8,9 +8,9 @@
 
 import UIKit
 
-public class OnboardingSurveyViewController: BasicSurveyViewController {
+open class OnboardingSurveyViewController: BasicSurveyViewController {
 
-	override public func viewDidLoad() {
+	override open func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -19,7 +19,7 @@ public class OnboardingSurveyViewController: BasicSurveyViewController {
 		return .lightContent
 	}
 	
-	public override func customViewController(forQuestion question: Survey.Question) -> UIViewController? {
+	open override func customViewController(forQuestion question: Survey.Question) -> UIViewController? {
 		if question.state == "NotificationAccess" {
 			return NotificationPermissionViewController()
 		}
@@ -29,7 +29,7 @@ public class OnboardingSurveyViewController: BasicSurveyViewController {
 		return nil
 	}
 	
-	public override func valueSelected(value: QuestionResponse, index: String) {
+	open override func valueSelected(value: QuestionResponse, index: String) {
 		super.valueSelected(value: value, index: index)
 		if index == "commitment" {
 			if let value:Int = value.getValue() {
@@ -42,7 +42,7 @@ public class OnboardingSurveyViewController: BasicSurveyViewController {
 			}
 		}
 	}
-	public override func isValid(value: QuestionResponse?, questionId: String, didFinish: @escaping ((Bool) -> ())) {
+	open override func isValid(value: QuestionResponse?, questionId: String, didFinish: @escaping ((Bool) -> ())) {
 	
 		super.isValid(value: value, questionId: questionId) {valid in
 			

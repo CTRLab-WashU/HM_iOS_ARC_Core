@@ -39,9 +39,9 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 	public var shouldShowHelpButton = true
 	public var shouldShowBackButton = true
 	public var survey:Survey
-	var questions = Array<Survey.Question>()
+	public var questions = Array<Survey.Question>()
 	var subQuestions:[Survey.Question]?
-	var currentIndex:Int = 0
+	public var currentIndex:Int = 0
 	var answeredQuestions:[Survey.Question] = []
 	public var surveyId:String
 	public var shouldNavigateToNextState:Bool = true
@@ -416,7 +416,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		}
 		
 	}
-	public func didChangeValue() {
+	open func didChangeValue() {
 		
 		let question = questions[currentIndex]
 		
