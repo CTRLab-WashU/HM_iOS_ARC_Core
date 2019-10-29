@@ -147,6 +147,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 		case 2:
 			phase = .recallSecondChoiceMade
 		case 3:
+            removeFinalHint()
 			test.collectionView.isUserInteractionEnabled = false
 			phase = .end
 		default:
@@ -638,6 +639,12 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
             
         }
         
+    }
+    
+    func removeFinalHint() {
+        self.currentHint?.removeFromSuperview()
+        self.currentHint = nil
+        self.removeHint(hint: "hint")
     }
     
 
