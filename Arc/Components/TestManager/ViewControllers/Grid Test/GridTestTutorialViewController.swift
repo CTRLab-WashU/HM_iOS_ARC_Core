@@ -504,7 +504,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
                                                         arrowEnabled: true,
                                                         arrowAbove: false))
                 $0.updateHintContainerMargins()
-                $0.updateTitleStackMargins()
+                $0.titleStack.layoutMargins = UIEdgeInsets(top: 12, left: 8, bottom: 26, right: 8)
 				$0.layout {
 					$0.centerX == weakSelf.view.centerXAnchor
 					$0.width == 252
@@ -544,7 +544,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
                                                         arrowEnabled: true,
                                                         arrowAbove: false))
                 $0.updateHintContainerMargins()
-                $0.updateTitleStackMargins()
+                $0.titleStack.layoutMargins = UIEdgeInsets(top: 12, left: 8, bottom: 26, right: 8)
                 
 				$0.layout {
 					$0.centerX == weakSelf.view.centerXAnchor
@@ -620,7 +620,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
                                                     arrowEnabled: true,
                                                     arrowAbove: false))
             $0.updateHintContainerMargins()
-            $0.updateTitleStackMargins()
+            $0.titleStack.layoutMargins = UIEdgeInsets(top: 12, left: 8, bottom: 26, right: 8)
             $0.layout {
                 $0.centerX == self.view.centerXAnchor
                 $0.width == 252
