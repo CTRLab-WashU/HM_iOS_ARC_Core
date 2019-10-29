@@ -139,6 +139,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 	func didSelectGrid(indexPath: IndexPath) {
 		gridSelected += 1
 		showDot(on: indexPath)
+        hideImages()
 		switch gridSelected  {
 		case 1:
             maybeShowSelectNextTwoHint()
@@ -166,6 +167,13 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
     func showDot(on indexPath: IndexPath) {
         guard let cell = self.test.collectionView.cellForItem(at: indexPath) as? GridImageCell else { return }
         cell.dotView.isHidden = false
+    }
+    
+    func hideImages() {
+        for indexPath in self.test.symbolIndexPaths {
+            guard let cell = self.test.collectionView.cellForItem(at: indexPath) as? GridImageCell else { return }
+            cell.image.isHidden = true
+        }
     }
 
 	func setupScript() {
