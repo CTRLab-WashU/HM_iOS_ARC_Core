@@ -16,7 +16,7 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
     
     public var tryNext: (() -> ())?
     
-	var app = Arc.shared
+	public var app = Arc.shared
     public var survey:Survey! = nil
     public var surveyId:String?
     public var participantId:Int?

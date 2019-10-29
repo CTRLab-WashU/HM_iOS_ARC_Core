@@ -8,6 +8,10 @@
 
 import Foundation
 open class AppController : MHController {
+    public enum Commitment : String, Codable {
+        case committed, rebuked
+    }
+    
 	public var testCount:Int = 0
     public var locale:ACLocale {
         return ACLocale(rawValue: "\(language ?? "en")_\(country ?? "US")") ?? .en_US
@@ -91,6 +95,17 @@ open class AppController : MHController {
         set (newVal)
         {
             defaults.setValue(newVal, forKey:"isOnboarded");
+            defaults.synchronize();
+        }
+    }
+    public var commitment:Commitment? {
+        get {
+            return Commitment(rawValue: defaults.string(forKey: "commitment") ?? "")
+            
+        }
+        set (newVal)
+        {
+            defaults.setValue(newVal?.rawValue, forKey:"commitment");
             defaults.synchronize();
         }
     }
