@@ -9,11 +9,6 @@
 import UIKit
 import HMMarkup
 import ArcUIKit
-struct OnboardingConfig {
-	
-	var willCommit:Bool = false
-	var didAllowNotifications:Bool = false
-}
 
 open class BasicSurveyViewController: UINavigationController, SurveyInputDelegate {
 	public var app:Arc {
