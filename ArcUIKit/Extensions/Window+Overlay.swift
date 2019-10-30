@@ -63,7 +63,7 @@ extension UIView {
 		}
 	}
 }
-extension UIWindow {
+extension UIView {
 	static var overlayId:Int {
 		get {
 			return 95384754
@@ -95,7 +95,7 @@ extension UIWindow {
 		path.append(UIBezierPath.init(rect: self.bounds))
 		
 		for v in shapes {
-			path.append(v.path())
+			path.append(v.path(forView: self))
 		}
 		
 		

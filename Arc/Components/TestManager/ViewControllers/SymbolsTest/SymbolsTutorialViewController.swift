@@ -129,7 +129,8 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 				return
 			}
             weakSelf.test.option2.alpha = 1.0
-			weakSelf.test.option2.overlay()
+//			weakSelf.test.option2.overlay()
+			weakSelf.test.view.overlayView(withShapes: [.roundedRect(weakSelf.test.option2, 8.0)])
 			weakSelf.tutorialAnimation.pause()
 			weakSelf.currentHint = weakSelf.view.window?.hint {
                 $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
