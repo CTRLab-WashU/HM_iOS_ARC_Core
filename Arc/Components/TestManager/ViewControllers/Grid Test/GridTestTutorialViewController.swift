@@ -263,7 +263,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 
 			weakSelf.currentHint = weakSelf.view.window?.hint {
 				$0.content = "Tap this letter F."
-				
+				$0.targetView = cell
                 $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
                                                         secondaryColor: UIColor(named:"HintFill")!,
                                                         textColor: .black,
