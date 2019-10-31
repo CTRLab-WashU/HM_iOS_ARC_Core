@@ -35,7 +35,7 @@ public struct Math{
 		return min(maxValue, max(minValue, value))
 	}
 	public enum Curve {
-		case none, linear, easeIn, easeOut
+		case none, linear, easeIn, easeOut, easeInOut
 		
 		func evaluate (currentTime:Double) -> Double {
 			let t = Math.clamp(currentTime)
@@ -50,7 +50,12 @@ public struct Math{
 
 			case .easeIn:
 				return  1.0 - cos(t * Double.pi * 0.5)
-
+			
+			case .easeInOut:
+				
+				let sqt = pow(t, 2.0)
+			
+				return sqt / (2.0 * (sqt - t) + 1.0)
 			}
 		}
 	}
