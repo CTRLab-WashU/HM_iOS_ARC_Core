@@ -28,7 +28,10 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 	var renderer:HMMarkupRenderer!
 	var shouldShowScrollIndicator: Bool = true
 	var spacerView:UIView!
-	var scrollIndicatorView: UIView!
+	var bottomScrollIndicatorView: UIView!
+	
+	var topScrollIndicatorView : UIView!
+	
 	var scrollIndicatorLabel:UILabel!
 
 	public init() {
@@ -44,6 +47,10 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 	}
 	open override func didMoveToWindow() {
 		super.didMoveToWindow()
+		
+	}
+	open override func layoutSubviews() {
+		super.layoutSubviews()
 		scrollIndicatorState(root)
 	}
 	/// creates the views contents
@@ -118,29 +125,79 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 			$0.height == self.heightAnchor ~ 999
 		}
 
-		self.scrollIndicatorView = scrollIndicator {
+		self.topScrollIndicatorView = scrollIndicator {
+			$0.alpha = 0
+			$0.configure(with: IndicatorView.Config(primaryColor: ACColor.primaryText,
+													secondaryColor: ACColor.primaryText,
+													textColor: .white,
+													cornerRadius: 24.0,
+													arrowEnabled: false,
+													arrowAbove: false))
+			
+			$0.container!.isLayoutMarginsRelativeArrangement = true
+			$0.container!.layoutMargins = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+			
+			
+			$0.container!.axis = .horizontal
+			$0.button {
+				$0.titleLabel!.textAlignment = .center
+				$0.setTitle("SHOW MORE".localized(""), for: .normal)
+				$0.tintColor = ACColor.secondary
+				Roboto.Style.bodyBold($0.titleLabel!, color: ACColor.secondary)
+				$0.titleLabel!.numberOfLines = 1
+				$0.addAction {
+					[weak self] in
+					guard let weakSelf = self else {
+						return
+					}
+					weakSelf.scrollToTop()
+				}
+			}
+			$0.image {
+				$0.image = UIImage(named: "arrow_up_white", in: Bundle(for: self.classForCoder), compatibleWith: nil)
+				$0.contentMode = .scaleAspectFit
+				$0.layout {
+					$0.width == 20 ~ 999
+					$0.height == 20 ~ 999
+				}
+				
+			}
+			
+			
+			$0.layout {
+				
+				$0.top == v.safeAreaLayoutGuide.topAnchor + 20 ~ 999
+				$0.centerX == v.centerXAnchor
+				$0.height >= 40
+			}
+		}
+		
+		self.bottomScrollIndicatorView = scrollIndicator {
 			$0.configure(with: IndicatorView.Config(primaryColor: ACColor.primaryText,
 												 secondaryColor: ACColor.primaryText,
 												 textColor: .white,
 												 cornerRadius: 24.0,
 												 arrowEnabled: false,
                                                  arrowAbove: false))
-//			$0.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-//			$0.stack {
+			
 				$0.container!.isLayoutMarginsRelativeArrangement = true
 				$0.container!.layoutMargins = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
-//				$0.spacing = 8
-//				$0.axis = .horizontal
-//				$0.alignment = .center
-//				$0.distribution = .fill
-			
+
 			
 			$0.container!.axis = .horizontal
-				$0.acLabel {
-					$0.textAlignment = .center
-					$0.text = "SHOW MORE".localized("")
-					Roboto.Style.bodyBold($0, color: ACColor.secondary)
-					$0.numberOfLines = 1
+				$0.button {
+					$0.titleLabel!.textAlignment = .center
+					$0.setTitle("SHOW MORE".localized(""), for: .normal)
+					$0.tintColor = ACColor.secondary
+					Roboto.Style.bodyBold($0.titleLabel!, color: ACColor.secondary)
+					$0.titleLabel!.numberOfLines = 1
+					$0.addAction {
+						[weak self] in
+						guard let weakSelf = self else {
+							return
+						}
+						weakSelf.scrollToBottom()
+					}
 				}
 				$0.image {
 					$0.image = UIImage(named: "cut-ups/icons/arrow_down_white")
@@ -149,18 +206,13 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 						$0.width == 20 ~ 999
 						$0.height == 20 ~ 999
 					}
-//					$0.backgroundColor = .white
 
 				}
 				
 				
-//			}	
 			$0.layout {
 				
-				//					$0.trailing >= v.safeAreaLayoutGuide.trailingAnchor + 20 ~ 999
 				$0.bottom == v.safeAreaLayoutGuide.bottomAnchor - 20 ~ 999
-				//					$0.leading >= v.safeAreaLayoutGuide.leadingAnchor + 20 ~ 999
-//				$0.width >= 80
 				$0.centerX == v.centerXAnchor
 				$0.height >= 40
 			}
@@ -185,6 +237,83 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 	open func footer(_ view:UIView) {
 		
 		
+	}
+	
+	@objc func scrollToTop() {
+		self.root.delegate = nil
+		
+		var config = Animate.Config()
+		config.curve = .easeIn
+		
+		self.topScrollIndicatorView.fadeOut(config)
+		
+		let offset = self.root.contentOffset.y
+		Animate().curve(.easeInOut).duration(0.9).delay(0.3).run { [weak self] (progress) -> Bool in
+			guard let weakSelf = self, weakSelf.superview != nil else {
+				return false
+			}
+			
+			let newValue = Math.lerp(a: Double(offset), b: 0.0, t: progress)
+			self?.root.contentOffset.y = CGFloat(newValue)
+			return true
+		}
+		
+		//Run a second delayed automation to reassign the delegate so that normal functionality will persist
+		Animate().delay(1.3).curve(.none).run { [weak self] (progress) -> Bool in
+			guard let weakSelf = self, weakSelf.superview != nil else {
+				return false
+			}
+			weakSelf.root.delegate = weakSelf
+			return true
+		}
+		//Show the top bar
+		config.delay = 1.2
+		self.bottomScrollIndicatorView.fadeIn(config)
+	}
+	
+	@objc func scrollToBottom() {
+		//Disable the scroll delegate to prevent interactive
+		//scrolling effects
+		
+		var config = Animate.Config()
+		config.curve = .easeIn
+		
+		//Fade the scroll indicator out
+		self.bottomScrollIndicatorView.fadeOut(config)
+		
+		//Capture the current state of the view that we need for animation
+		let offset = self.root.contentOffset.y
+		let bottom = self.root.contentSize.height - self.root.bounds.height
+		
+		self.root.delegate = nil
+
+		
+		//Run the animation
+		Animate().curve(.easeInOut).duration(0.9).delay(0.3).run { [weak self] (progress) -> Bool in
+			
+			//Check for existence and display status
+			guard let weakSelf = self, weakSelf.superview != nil else {
+				return false
+			}
+
+			//Interpolate using progress which is a double from 0.0 to 1.0
+			let newValue = Math.lerp(a: Double(offset), b: Double(bottom), t: progress)
+			weakSelf.root.contentOffset.y = CGFloat(newValue)
+			return true
+		}
+		
+		//Run a second delayed automation to reassign the delegate so that normal functionality will persist
+		Animate().delay(1.3).curve(.none).duration(0).run { [weak self] (progress) -> Bool in
+			guard let weakSelf = self, weakSelf.superview != nil else {
+				return false
+			}
+			weakSelf.root.delegate = weakSelf
+			return true
+		}
+		
+		//Show the top bar
+		config.delay = 1.2
+		self.topScrollIndicatorView.fadeIn(config)
 	}
 	
 	public required init?(coder: NSCoder) {
@@ -218,16 +347,21 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 		self.scrollIndicatorState(scrollView)
 		
 	}
+	public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+		bottomScrollIndicatorView.isHidden = true
+		topScrollIndicatorView.isHidden = true
+	}
+	
 	private func scrollIndicatorState(_ scrollView: UIScrollView) {
-		guard scrollIndicatorView != nil else {
+		guard bottomScrollIndicatorView != nil else {
 			return 
 		}
 		guard shouldShowScrollIndicator else {
-			scrollIndicatorView.alpha = 0
+			bottomScrollIndicatorView.alpha = 0
 			return
 		}
 		guard let nextButton = nextButton else {
-			scrollIndicatorView.alpha = 0
+			bottomScrollIndicatorView.alpha = 0
 
 			return
 		}
@@ -242,12 +376,12 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 		let progress = min(maxProgress, max(offset - effectiveHeight, 0))
 		let convertedRect = nextButton.convert(nextButton.frame, to: scrollView)
 		
-		guard !scrollView.bounds.contains(convertedRect) && !scrollView.bounds.intersects(convertedRect) else {
-			scrollIndicatorView.alpha = 0
+		guard !scrollView.bounds.contains(convertedRect) || !scrollView.bounds.intersects(convertedRect) else {
+			bottomScrollIndicatorView.alpha = 0
 			return
 		}
 		let alpha:CGFloat = 1.0 - (progress/maxProgress)
-		scrollIndicatorView.alpha = alpha
+		bottomScrollIndicatorView.alpha = alpha
 		
 	}
 }
