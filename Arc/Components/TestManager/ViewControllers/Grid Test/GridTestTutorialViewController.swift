@@ -403,7 +403,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 		}
 		currentHint = view.window?.hint {
 			$0.content = message
-			$0.buttonTitle = "Got it"
+			$0.buttonTitle = buttonTitle
 			$0.onTap = { [weak self] in
 				view.removeFromSuperview()
 				self?.didSelect()
