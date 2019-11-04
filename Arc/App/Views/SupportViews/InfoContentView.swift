@@ -71,6 +71,21 @@ public class InfoContentView: UIStackView {
 		}
 	}
 	
+    public func setIntroHeader(_ text:String?)
+    {
+        if let view = headingLabel {
+            view.text = text
+        } else {
+            headingLabel = acLabel {
+                $0.textAlignment = .left
+                
+                Roboto.Style.introHeading($0, color: .white)
+                $0.text = text
+                
+            }
+        }
+    }
+    
 	public func setSubHeader(_ text:String?) {
 		if let view = subheadingLabel {
 			view.text = text
