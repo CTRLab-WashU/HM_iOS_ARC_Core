@@ -99,6 +99,24 @@ public class InfoContentView: UIStackView {
 			}
 		}
 	}
+    
+    public func setPrompt(_ text:String?){
+        if let view = subheadingLabel {
+            view.text = text
+        } else {
+            subheadingLabel = acLabel {
+                $0.textAlignment = .left
+                
+                Roboto.Style.prompt($0,
+                                  color:textColor)
+                
+                $0.text = text
+                
+                
+            }
+        }
+    }
+    
 	public func setContentLabel(_ text:String?, template:[String:String] = [:]) {
 		
 		let text = Text.replaceIn(text, withTemplate: template)

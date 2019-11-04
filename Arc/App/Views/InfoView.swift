@@ -113,6 +113,9 @@ public class InfoView: ACTemplateView {
 		infoContent.setSubHeader(text)
 
 	}
+    public func setPrompt(_ text:String?){
+        infoContent.setPrompt(text)
+    }
 	public func setContentText(_ text:String?, template:[String:String] = [:]) {
 		infoContent.setContent(text, template:template)
 
