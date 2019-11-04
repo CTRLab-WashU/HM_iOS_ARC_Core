@@ -132,9 +132,10 @@ public class ACTodayProgressView : UIView {
         if thisStudy.studyState == .baseline {
             bottomLabel = acLabel {
                 
-                Roboto.Style.subHeading($0, color: ACColor.secondaryText)
+                Roboto.Style.body($0, color: ACColor.secondaryText)
                 $0.text = "progress_practice_body2"
-                $0.font = UIFont(name: "Roboto", size: 17)
+                //$0.font = UIFont(name: "Roboto", size: 17)
+                $0.textAlignment = .center
                 animationParams.delay = 1.4
                 
                 $0.layout {
