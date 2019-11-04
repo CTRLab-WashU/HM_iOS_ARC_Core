@@ -100,6 +100,9 @@ public class InfoView: ACTemplateView {
 	public func setHeading(_ text:String?) {
 		infoContent.setHeader(text)
 	}
+    public func setIntroHeading(_ text:String?){
+        infoContent.setIntroHeader(text)
+    }
 	public func setSeparatorWidth(_ width:CGFloat) {
 		infoContent.setSeparatorWidth(width)
 	}
