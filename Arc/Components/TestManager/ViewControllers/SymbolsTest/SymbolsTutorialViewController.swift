@@ -129,7 +129,6 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 				return
 			}
             weakSelf.test.option2.alpha = 1.0
-//			weakSelf.test.option2.overlay()
 			weakSelf.test.view.overlayView(withShapes: [.roundedRect(weakSelf.test.option2, 8.0)])
 			weakSelf.tutorialAnimation.pause()
 			weakSelf.currentHint = weakSelf.view.window?.hint {
@@ -275,7 +274,7 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 				return
 			}
             if weakSelf.test.questionIndex == 0 || forceFullHint {
-                weakSelf.view.window?.overlayView(withShapes: [.roundedRect(selection.0, 8.0), .roundedRect(selection.1, 8.0)])
+                weakSelf.test.view.overlayView(withShapes: [.roundedRect(selection.0, 8.0), .roundedRect(selection.1, 8.0)])
                 selection.0.highlight()
                 weakSelf.currentHint = weakSelf.view.window?.hint {
                     $0.content = """
