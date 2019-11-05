@@ -1,6 +1,6 @@
 //
 //  ACHomeTabViewController.swift
-//  EXR
+//  ARC
 //
 //  Created by Philip Hayes on 8/6/19.
 //  Copyright © 2019 healthyMedium. All rights reserved.
