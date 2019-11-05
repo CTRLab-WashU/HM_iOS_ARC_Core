@@ -168,10 +168,10 @@ public class ACEarningsDetailView : ACTemplateView {
 				let name = GoalDisplayName(rawValue: detail.name)?.getName() ?? "Goal Name"
 				var count = ""
 				if detail.count_completed == 1 {
-					count = "(\(detail.count_completed) time)"
+					count = " (\(detail.count_completed) time)"
 				}
 				if detail.count_completed > 1 {
-					count = "(\(detail.count_completed) times)"
+					count = " (\(detail.count_completed) times)"
 
 				}
 				$0.add(section:(body: "*\(name)*\n\(detail.value)\(count)", price: detail.amount_earned))
