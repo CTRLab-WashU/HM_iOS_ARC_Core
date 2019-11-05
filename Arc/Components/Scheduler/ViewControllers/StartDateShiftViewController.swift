@@ -89,6 +89,7 @@ open class StartDateShiftViewController: BasicSurveyViewController {
             store.selectedDateRange = (selectedStart ... selectedEnd)
             
             input?.setValue(AnyResponse(type: .calendar, value: store))
+            enableNextButton(title: "Done")
             
             let vc:CustomViewController<InfoView> = getTopViewController()!
             let message = "".localized("availability_change_week_confirm")
