@@ -210,6 +210,8 @@
 		C5F77F37222F095200BECAE1 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F77F36222F095200BECAE1 /* SignatureViewController.swift */; };
 		C5F77F39222F15DD00BECAE1 /* SignatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5F77F38222F15DD00BECAE1 /* SignatureView.xib */; };
 		C5F77F3B22306CFA00BECAE1 /* DateRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F77F3A22306CFA00BECAE1 /* DateRangeView.swift */; };
+		E8288C6623732F9500246B3A /* FinishedPartIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8288C6423732F9400246B3A /* FinishedPartIntroViewController.swift */; };
+		E8288C6723732F9500246B3A /* FinishedPartIntroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8288C6523732F9400246B3A /* FinishedPartIntroViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -444,6 +446,8 @@
 		C5F77F36222F095200BECAE1 /* SignatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureViewController.swift; sourceTree = "<group>"; };
 		C5F77F38222F15DD00BECAE1 /* SignatureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignatureView.xib; sourceTree = "<group>"; };
 		C5F77F3A22306CFA00BECAE1 /* DateRangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRangeView.swift; sourceTree = "<group>"; };
+		E8288C6423732F9400246B3A /* FinishedPartIntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishedPartIntroViewController.swift; sourceTree = "<group>"; };
+		E8288C6523732F9400246B3A /* FinishedPartIntroViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FinishedPartIntroViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -974,6 +978,8 @@
 		C54AE99521C81B5C00DEC360 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E8288C6423732F9400246B3A /* FinishedPartIntroViewController.swift */,
+				E8288C6523732F9400246B3A /* FinishedPartIntroViewController.xib */,
 				C54AE99621C81B5C00DEC360 /* IntroViewController.swift */,
 				C54AE99721C81B5C00DEC360 /* SurveyNavigationViewController.swift */,
 				C54AE99921C81B5C00DEC360 /* SurveyNavigationViewController.xib */,
@@ -1305,6 +1311,7 @@
 				C54AEA4921C81B5F00DEC360 /* ChoiceView.xib in Resources */,
 				C54AEA2A21C81B5F00DEC360 /* WelcomeViewController.xib in Resources */,
 				C54AEA6721C81B5F00DEC360 /* Roboto-MediumItalic.ttf in Resources */,
+				E8288C6723732F9500246B3A /* FinishedPartIntroViewController.xib in Resources */,
 				C54AEA4121C81B5F00DEC360 /* SurveyNavigationViewController.xib in Resources */,
 				C54AEA4321C81B5F00DEC360 /* IntroViewController.xib in Resources */,
 				C54AEA6E21C81B5F00DEC360 /* Roboto-Bold.ttf in Resources */,
@@ -1496,6 +1503,7 @@
 				C54AEA0921C81B5F00DEC360 /* GridTest.swift in Sources */,
 				C57E9C882236CE67009F6228 /* ACPickerView.swift in Sources */,
 				C54AEA3121C81B5F00DEC360 /* Schedule+CoreDataClass.swift in Sources */,
+				E8288C6623732F9500246B3A /* FinishedPartIntroViewController.swift in Sources */,
 				C54AE9D321C81B5F00DEC360 /* State.swift in Sources */,
 				C54AE9DE21C81B5F00DEC360 /* UILabel+Extensions.swift in Sources */,
 				C54AE9F421C81B5F00DEC360 /* StudyController.swift in Sources */,

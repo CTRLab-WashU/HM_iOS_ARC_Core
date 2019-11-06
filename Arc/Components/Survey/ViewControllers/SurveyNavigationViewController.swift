@@ -179,11 +179,15 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
 		if !shouldShowIntro {
 			return false
 		}
+        // TODO
+        // This if and else if are almost exactly the same
 		if let instructions = survey?.postSurvey,
-               index < instructions.count
+            index < instructions.count,
+            survey!.type!.rawValue == "finishedPart"
 		{
 			let instruction = instructions[index]
-			let vc:IntroViewController = .get()
+			let vc:FinishedPartIntroViewController = .get()
+            vc.setPart(part: 1)
 			vc.templateHandler = templateForPostSurvey
             vc.instructionIndex = index
 			if !shouldShowBackButton {
@@ -208,6 +212,35 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
 
 			return true
 		}
+        else if let instructions = survey?.postSurvey,
+            index < instructions.count
+        {
+            let instruction = instructions[index]
+            let vc:IntroViewController = .get()
+            vc.templateHandler = templateForPostSurvey
+            vc.instructionIndex = index
+            if !shouldShowBackButton {
+                vc.shouldHideBackButton = true
+            }
+            self.pushViewController(vc, animated: true)
+            
+            vc.set(heading:     instruction.title,
+                   subheading:  instruction.subtitle,
+                   content:     instruction.preface)
+            vc.nextButtonTitle = instruction.nextButtonTitle
+            vc.nextButtonImage = instruction.nextButtonImage
+            
+            vc.nextPressed = {
+                [weak self] in
+                
+                self?.next(nextQuestion: nil)
+                
+                
+            }
+            self.isShowingHelpButton = false
+            
+            return true
+        }
 		return false
 	}
     
