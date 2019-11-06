@@ -7,76 +7,120 @@
 //
 
 import UIKit
-open class ACAuthViewController: SurveyNavigationViewController {
+open class ACAuthViewController: BasicSurveyViewController {
 
 	var controller:AuthController = Arc.shared.authController
 	var initialValue:String?
+	
+	
+	
 	override open func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view.
 		shouldNavigateToNextState = false
 		shouldShowHelpButton = true
 	}
-	override open func loadSurvey(template:String) {
-		survey = Arc.shared.surveyController.load(survey: template)
-		
-		
-		//Shuffle the questions
-		questions = survey?.questions ?? []
-		
-		
-		
-	}
+	
 	func helpHandler() {
 //		print("Navigate to help")
 	}
-	override open func questionDisplayed(input:SurveyInput, index:String) {
+	
+	
+	open override func didPresentQuestion(input: SurveyInput?, questionId: String)
+	{
         let input = input
-		if index == "auth_1" {
-//            if let view = input as? SegmentedTextView {
-//                view.set(length: 8)
-//                view.insert(spaceAtIndex: 4, ofSize: 30)
-//            }
+		
+		if let view = input as? (SegmentedTextView) {
+			view.set(length: 6)
+			
+		}
+		
+		if questionId == "auth_1" {
+
             if let initialValue = initialValue {
-                input.setValue(AnyResponse(type: .segmentedText,
+                input?.setValue(AnyResponse(type: .segmentedText,
                                            value: initialValue))
             }
-		} else if index == "auth_2" {
-//            if let view = input as? SegmentedTextView {
-//                view.set(length: 8)
-//                view.insert(spaceAtIndex: 4, ofSize: 30)
-//            }
+		}
+		
+		if questionId == "auth_2" {
+
             if let initialValue = controller.getUserName() {
-                input.setValue(AnyResponse(type: .segmentedText,
+                input?.setValue(AnyResponse(type: .segmentedText,
                                            value: initialValue))
             }
-		} else if index == "auth_3" {
+		}
+		
+		if questionId == "auth_3" {
 			//Try next will trigger the next button if not nil
 			//We don't want to fire this for the final step (#9016)
             if let view = input as? SegmentedTextView {
 				view.shouldTryNext = false
-                view.set(length: 5)
+                
             }
             if let pass = controller.getPassword() {
-                input.setValue(AnyResponse(type: .segmentedText,
+                input?.setValue(AnyResponse(type: .segmentedText,
                                            value: pass))
             }
 		}
 		
+		if questionId == "auth_arc_id_no_rater" {
+			if let initialValue = initialValue {
+				input?.setValue(AnyResponse(type: .segmentedText,
+											value: initialValue))
+			}
+		}
+		
+		if questionId == "auth_arc_id_confirm_no_rater" {
+			if let initialValue = initialValue {
+				input?.setValue(AnyResponse(type: .segmentedText,
+											value: initialValue))
+			}
+			if let view = input as? SegmentedTextView {
+				view.shouldTryNext = false
+				
+			}
+			if let pass = controller.getPassword() {
+				input?.setValue(AnyResponse(type: .segmentedText,
+											value: pass))
+			}
+		}
+		super.didPresentQuestion(input: input, questionId: questionId)
 	}
 	
-	override open func isValid(value:QuestionResponse, index: String) -> Bool {
-        guard let value = value.value as? String else {
-            assertionFailure("Should be a string value")
-            return false
-        }
-        if index == "auth_2", let input:SurveyInput = self.topViewController as? SurveyInput {
-            if value != initialValue {
-                input.setError(message:"Subject ID doesn’t match")
-                return false
-            }
-        }
-		return true
+	open override func isValid(value: QuestionResponse?, questionId: String, didFinish:@escaping ((Bool) -> Void))
+	{
+		super.isValid(value: value, questionId: questionId)
+		{ [weak self] valid in
+			var valid = valid
+
+			guard let value = value?.value as? String else {
+				assertionFailure("Should be a string value")
+				didFinish(false)
+				return
+			}
+			if questionId == "auth_2"{
+				if value != self?.initialValue {
+					
+					self?.set(error:"Subject ID doesn’t match")
+					didFinish(false)
+					return
+					
+				}
+			}
+			if questionId == "auth_arc_id_confirm_no_rater"{
+				if value != self?.initialValue {
+					
+					self?.set(error:"Subject ID doesn’t match")
+					didFinish(false)
+					return
+					
+				}
+			}
+			didFinish(true)
+			return
+			
+		}
 	}
 	
 	//Override this to write to other controllers
@@ -89,11 +133,18 @@ open class ACAuthViewController: SurveyNavigationViewController {
 
 		if index == "auth_1" {
 			initialValue = value
-		} else if index == "auth_2" {
+		}
+		if index == "auth_arc_id_no_rater" {
+			initialValue = value
+			_ = controller.set(username: value)
+		}
+		if index == "auth_2" {
 			if value == initialValue {
 				_ = controller.set(username: value)
 			}
-		} else if index == "auth_3" {
+		}
+		
+		if index == "auth_3" || index == "auth_arc_id_confirm_no_rater" {
 			_ = controller.set(password: value)
 
 			if initialValue != controller.getUserName() {
@@ -101,30 +152,26 @@ open class ACAuthViewController: SurveyNavigationViewController {
 					input.setError(message:"Subject ID does not match.")
 				}
 			} else {
-				if let top = self.topViewController as? SurveyViewController {
-					top.surveyView.nextButton?.showSpinner(color: UIColor(white: 1.0, alpha: 0.8), backgroundColor:UIColor(named:"Primary") )
-				}
+				let top:CustomViewController<InfoView>? = getTopViewController()
+				
+				top?.customView.nextButton?.showSpinner(color: UIColor(white: 1.0, alpha: 0.8), backgroundColor:UIColor(named:"Primary"))
+				
 				controller.authenticate { (id, error) in
 					OperationQueue.main.addOperation {
 						if let value = id {
-							if let input:SurveyInput = self.topViewController as? SurveyInput {
-								input.setError(message: nil)
-							}
+							self.set(error:nil)
+							
+							
 							Arc.shared.participantId = Int(value)
-
-							if let top = self.topViewController as? SurveyViewController {
-								top.surveyView.nextButton?.hideSpinner()
-							}
+						
+							top?.customView.nextButton?.hideSpinner()
 
 							Arc.shared.nextAvailableState()
 
 						} else {
-							if let input:SurveyInput = self.topViewController as? SurveyInput {
-								input.setError(message:error)
-								if let top = self.topViewController as? SurveyViewController {
-									top.surveyView.nextButton?.hideSpinner()
-								}
-							}
+							self.set(error:error)
+							
+							top?.customView.nextButton?.hideSpinner()
 						}
 					}
 				}
