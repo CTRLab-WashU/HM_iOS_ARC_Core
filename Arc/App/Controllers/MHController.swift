@@ -152,6 +152,12 @@ open class MHController {
 		MHController.dataContext.delete(obj)
 		save()
 	}
+	public func delete(_ objs:[NSManagedObject]) {
+		for obj in objs {
+			MHController.dataContext.delete(obj)
+		}
+		save()
+	}
     public func save() {
 		CoreDataStack.shared.saveContext()
 			
