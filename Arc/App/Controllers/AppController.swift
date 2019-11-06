@@ -55,6 +55,20 @@ open class AppController : MHController {
 			defaults.synchronize();
 		}
 	}
+    public var finishedPart:Int? {
+        get {
+            if let part = defaults.value(forKey:"finishedPart") as? Int
+            {
+                return part;
+            }
+            return nil;
+        }
+        set (newVal)
+        {
+            defaults.setValue(newVal, forKey:"finishedPart");
+            defaults.synchronize()
+        }
+    }
     public var lastFlaggedMissedTestCount:Int {
         get {
             

@@ -26,6 +26,7 @@
             <connections>
                 <outlet property="contentTextview" destination="D4g-XW-PG0" id="mXd-YA-VNc"/>
                 <outlet property="finishedContainer" destination="poz-fi-uM0" id="OPd-XJ-65S"/>
+                <outlet property="finishedProgressBar" destination="PdF-JG-2KQ" id="cop-UW-pTI"/>
                 <outlet property="finishedTextView" destination="DhW-55-IST" id="wMS-d1-Njy"/>
                 <outlet property="headingLabel" destination="GIC-4o-6XR" id="dbs-vv-aK0"/>
                 <outlet property="nextButton" destination="Z5Z-U1-8N0" id="ksf-cE-RZu"/>

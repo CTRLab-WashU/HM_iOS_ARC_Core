@@ -187,8 +187,16 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
 		{
 			let instruction = instructions[index]
 			let vc:FinishedPartIntroViewController = .get()
-            vc.setPart(part: 1)
-			vc.templateHandler = templateForPostSurvey
+			
+            if Arc.shared.finishedPart == 1 {
+                vc.setPart(part: 1)
+            } else if Arc.shared.finishedPart == 2 {
+                vc.setPart(part: 2)
+            } else {
+                vc.setPart(part: 3)
+            }
+            
+            vc.templateHandler = templateForPostSurvey
             vc.instructionIndex = index
 			if !shouldShowBackButton {
 				vc.shouldHideBackButton = true

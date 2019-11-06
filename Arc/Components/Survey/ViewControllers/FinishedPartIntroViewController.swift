@@ -17,7 +17,7 @@ open class FinishedPartIntroViewController: UIViewController {
 	@IBOutlet weak var nextButton:UIButton!
     @IBOutlet weak var finishedTextView: UITextView!
     @IBOutlet weak var finishedContainer: UIView!
-    
+    @IBOutlet weak var finishedProgressBar: UIImageView!
     
     var nextButtonImage:String?
 
@@ -59,7 +59,7 @@ open class FinishedPartIntroViewController: UIViewController {
 			self.navigationItem.leftBarButtonItem = leftButton
 		}
         
-        setPartLabel()
+        setPartAssets()
         
         if instructionIndex >= 1 {
             finishedContainer.isHidden = true
@@ -142,13 +142,16 @@ open class FinishedPartIntroViewController: UIViewController {
     func setPart(part: Int) {
         self.part = part
     }
-    func setPartLabel() {
+    func setPartAssets() {
         if part == 1 {
             finishedTextView.text = "1 of 3 Parts Complete"
+            finishedProgressBar.image = UIImage(named: "cut-ups/icons/progress1", in: Bundle(for: self.classForCoder), compatibleWith: nil)
         } else if part == 2 {
             finishedTextView.text = "2 of 3 Parts Complete"
+            finishedProgressBar.image = UIImage(named: "cut-ups/icons/progress2", in: Bundle(for: self.classForCoder), compatibleWith: nil)
         } else if part == 3 {
             finishedTextView.text = "3 of 3 Parts Complete"
+            finishedProgressBar.image = UIImage(named: "cut-ups/icons/progress3", in: Bundle(for: self.classForCoder), compatibleWith: nil)
         }
     }
 	override open func viewDidLayoutSubviews() {
