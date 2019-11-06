@@ -53,7 +53,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 	}
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
-		view.window?.clearOverlay()
+		test.view.clearOverlay()
 		view.removeHighlight()
 		currentHint?.removeFromSuperview()
 		
@@ -72,13 +72,13 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 		
 		
 		case .start:
-			view.window?.clearOverlay()
+			test.view.clearOverlay()
 			view.removeHighlight()
 			tutorialAnimation.resume()
 
 			break
 		case .recallFirstStep:
-			view.window?.clearOverlay()
+			test.view.clearOverlay()
 			view.removeHighlight()
 			removeHint(hint: "hint")
 			tutorialAnimation.time = 11.5
@@ -87,7 +87,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 
 		case .recallFirstChoiceMade, .recallSecondChoiceMade:
             if showingSelectNextTwo == false {
-                view.window?.clearOverlay()
+                test.view.clearOverlay()
                 removeHint(hint: "hint")
             }
             showingSelectNextTwo = true
@@ -98,7 +98,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 
 
 		case .recall:
-			view.window?.clearOverlay()
+			test.view.clearOverlay()
 			view.removeHighlight()
 			removeHint(hint: "hint")
 
@@ -107,21 +107,21 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			tutorialAnimation.resume()
 			
 		case .fs:
-			view.window?.clearOverlay()
+			test.view.clearOverlay()
 			view.removeHighlight()
 			tutorialAnimation.resume()
 
 			test.collectionView.isUserInteractionEnabled = false
 		
 		case .fsTimed:
-			view.window?.clearOverlay()
+			test.view.clearOverlay()
 			view.removeHighlight()
 			test.collectionView.isUserInteractionEnabled = true
 
 		
 		
 		case .end:
-			view.window?.clearOverlay()
+			test.view.clearOverlay()
 			view.removeHighlight()
 			removeHint(hint: "hint")
 
@@ -192,7 +192,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			}
 			weakSelf.tutorialAnimation.pause()
 			weakSelf.test.displaySymbols()
-			weakSelf.view.window?.overlayView(withShapes: [])
+			weakSelf.test.view.overlayView(withShapes: [])
 			weakSelf.currentHint = weakSelf.view.window?.hint {
 				$0.content = "The items will be placed in a grid of boxes. *Remember which box each item is in.* You will have 3 seconds."
 				$0.buttonTitle = "I'm Ready"
@@ -219,7 +219,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			weakSelf.progress = 0.25
 			weakSelf.tutorialAnimation.pause()
 			weakSelf.test.displaySymbols()
-			weakSelf.view.window?.overlayView(withShapes: [])
+			weakSelf.test.view.overlayView(withShapes: [])
 			weakSelf.currentHint = weakSelf.view.window?.hint {
 				$0.content = "*Great!*\nLet's proceed to part two."
 				$0.buttonTitle = "Next"
@@ -293,7 +293,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			}
 			weakSelf.progress = 0.5
 			weakSelf.tutorialAnimation.pause()
-			weakSelf.view.window?.overlayView(withShapes: [])
+			weakSelf.test.view.overlayView(withShapes: [])
 			weakSelf.currentHint = weakSelf.view.window?.hint {
 				$0.content = "*Perfect!*\nNow: *Tap all the F’s* you see as quickly as you can.\nYou will have 8 seconds."
 				$0.buttonTitle = "I'm Ready"
@@ -321,7 +321,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			}
 			weakSelf.progress = 0.75
 			weakSelf.tutorialAnimation.pause()
-			weakSelf.view.window?.overlayView(withShapes: [])
+			weakSelf.test.view.overlayView(withShapes: [])
 			weakSelf.test.collectionView.isUserInteractionEnabled = false
 			weakSelf.phase = .fs
 			weakSelf.currentHint = weakSelf.view.window?.hint {
@@ -608,7 +608,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 	}
     func maybeShowSelectNextTwoHint() {
         showingSelectNextTwo = true
-        self.test.collectionView.overlay()
+        self.test.view.overlayView(withShapes: [.roundedRect(test.collectionView, 8)])
         currentHint?.removeFromSuperview()
         self.removeHint(hint: "hint")
         self.currentHint = self.view.window?.hint {

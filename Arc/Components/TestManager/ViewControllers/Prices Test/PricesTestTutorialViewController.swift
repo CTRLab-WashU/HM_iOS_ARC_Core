@@ -104,7 +104,8 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 			}
 			weakSelf.selectionMade = false
 
-			weakSelf.pricesTest.priceDisplay.overlay()
+            let shape = OverlayShape.roundedRect(weakSelf.pricesTest.priceDisplay, 8)
+            weakSelf.pricesTest.view.overlayView(withShapes: [shape])
 			weakSelf.pricesTest.priceDisplay.isUserInteractionEnabled = true
 			weakSelf.currentHint = self?.view.window?.hint {
 				$0.content = "The Prices test has two parts. *First, evaluate the price.*"
@@ -196,7 +197,8 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 				return
 			}
 			weakSelf.pricesTest.priceDisplay.isUserInteractionEnabled = true
-            weakSelf.pricesTest.priceDisplay.overlay()
+            let shape = OverlayShape.roundedRect(weakSelf.pricesTest.priceDisplay, 8)
+            weakSelf.pricesTest.view.overlayView(withShapes: [shape])
 			weakSelf.tutorialAnimation.pause()
 			self?.currentHint = self?.view.window?.hint {
 				$0.content = "*What do you think?*\n Choose the answer that makes sense to you."
@@ -223,7 +225,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 			}
 			weakSelf.currentHint?.removeFromSuperview()
 			weakSelf.pricesTest.priceDisplay.isUserInteractionEnabled = false
-            weakSelf.view.window?.overlayView(withShapes: [])
+            weakSelf.pricesTest.view.overlayView(withShapes: [])
             weakSelf.tutorialAnimation.pause()
             weakSelf.progress = 0.5
 			self?.currentHint = self?.view.window?.hint {
@@ -262,7 +264,8 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 
 			weakSelf.currentHint?.removeFromSuperview()
             weakSelf.pricesQuestions.questionDisplay.isUserInteractionEnabled = true
-            weakSelf.pricesQuestions.questionDisplay.overlay()
+            let shape = OverlayShape.roundedRect(weakSelf.pricesQuestions.questionDisplay, 8)
+            weakSelf.pricesQuestions.view.overlayView(withShapes: [shape])
 			weakSelf.tutorialAnimation.pause()
 
 			self?.currentHint = self?.view.window?.hint {
@@ -324,7 +327,9 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 			weakSelf.currentHint?.removeFromSuperview()
 			weakSelf.tutorialAnimation.pause()
 			weakSelf.pricesQuestions.questionDisplay.isUserInteractionEnabled = true
-			weakSelf.pricesQuestions.questionDisplay.overlay()
+            let shape = OverlayShape.roundedRect(weakSelf.pricesQuestions.questionDisplay, 8)
+            weakSelf.pricesQuestions.view.overlayView(withShapes: [shape])
+
 			
 			self?.currentHint = self?.view.window?.hint {
 				$0.content = "*What do you think?*\nTry your best to recall the price from part one."
