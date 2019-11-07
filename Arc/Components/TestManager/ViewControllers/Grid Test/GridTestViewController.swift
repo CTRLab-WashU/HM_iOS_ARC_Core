@@ -269,6 +269,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         if isPracticeTest {
             tapOnTheFsLabel.isHidden = false
             tapOnTheFsLabel.text = "Tap the boxes where the items were located in part one."
+            tapOnTheFsLabel.numberOfLines = 0 
         }
         
         collectionView.allowsMultipleSelection = true;

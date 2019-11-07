@@ -310,6 +310,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 										secondary: UIColor(named:"Primary Gradient"),
 										textColor: .white)
 		vc.customView.setHeading(question.prompt)
+        vc.customView.setPrompt(question.subTitle)
 		vc.customView.setContentLabel(question.detail)
 		
 		if let input = question.type?.create(inputWithQuestion: question) as? (UIView & SurveyInput) {

@@ -96,7 +96,11 @@ public struct Roboto {
 			.family(Roboto.family)
 			.italicFont()
 			.size(17)
-	
+        public static let prompt = UIFont(name: "Roboto-Regular", size: 26)!
+            .family(Roboto.family)
+            .face(Roboto.Face.regular)
+            .size(26)
+        public static let introHeading = UIFont(name: "Roboto-Medium", size: 32)!
 	}
 	
 	
@@ -221,6 +225,17 @@ public struct Roboto {
 			label.font = Roboto.Font.headingBold
 			label.textColor = color
 		}
+        public static func prompt(_ label:UILabel, color:UIColor? =
+            UIColor(named:"Primary Text")) {
+            label.font = Roboto.Font.prompt
+            label.numberOfLines = 0
+            label.textColor = color
+        }
+        public static func introHeading(_ label:UILabel, color:UIColor? = .white) {
+            label.font = Roboto.Font.introHeading
+            label.numberOfLines = 0
+            label.textColor = color
+        }
 	}
 	///Attributes for various uses
 	public struct Attributes {

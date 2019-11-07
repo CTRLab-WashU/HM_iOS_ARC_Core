@@ -100,6 +100,9 @@ public class InfoView: ACTemplateView {
 	public func setHeading(_ text:String?) {
 		infoContent.setHeader(text)
 	}
+    public func setIntroHeading(_ text:String?){
+        infoContent.setIntroHeader(text)
+    }
 	public func setSeparatorWidth(_ width:CGFloat) {
 		infoContent.setSeparatorWidth(width)
 	}
@@ -110,6 +113,9 @@ public class InfoView: ACTemplateView {
 		infoContent.setSubHeader(text)
 
 	}
+    public func setPrompt(_ text:String?){
+        infoContent.setPrompt(text)
+    }
 	public func setContentText(_ text:String?, template:[String:String] = [:]) {
 		infoContent.setContent(text, template:template)
 

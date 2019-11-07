@@ -46,7 +46,7 @@ public enum IntroViewControllerStyle : String {
 			
 		case .grids:
 			view.setSubHeading(heading)
-			view.setHeading(subheading)
+			view.setIntroHeading(subheading)
 			view.setSeparatorWidth(0.0)
 			view.setContentText(content, template: template)
 			view.backgroundColor = UIColor(named:"Primary Info")
@@ -58,7 +58,7 @@ public enum IntroViewControllerStyle : String {
 
 		case .symbols:
 			view.setSubHeading(heading)
-			view.setHeading(subheading)
+			view.setIntroHeading(subheading)
 			view.setSeparatorWidth(0.0)
 			view.setContentText(content, template: template)
 			view.backgroundColor = UIColor(named:"Primary Info")
@@ -70,7 +70,7 @@ public enum IntroViewControllerStyle : String {
 
 		case .prices:
 			view.setSubHeading(heading)
-			view.setHeading(subheading)
+			view.setIntroHeading(subheading)
 			view.setSeparatorWidth(0.0)
 			view.setContentText(content, template: template)
 			view.backgroundColor = UIColor(named:"Primary Info")
