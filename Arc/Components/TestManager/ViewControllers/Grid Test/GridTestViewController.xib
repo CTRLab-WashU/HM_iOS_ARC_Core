@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_0" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,23 +28,27 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="efi-qX-YDc">
-                    <rect key="frame" x="0.0" y="32" width="320" height="528"/>
+                    <rect key="frame" x="0.0" y="12" width="320" height="548"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap on the Fs" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11X-8i-GZq" customClass="ACLabel" customModule="ArcUIKit">
-                            <rect key="frame" x="22" y="0.0" width="276" height="20"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap On The Fs Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11X-8i-GZq" customClass="ACLabel" customModule="ArcUIKit">
+                            <rect key="frame" x="22" y="0.0" width="276" height="40"/>
+                            <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
                             <constraints>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="20" id="Th8-mY-BkH"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="40" id="Th8-mY-BkH"/>
                                 <constraint firstAttribute="width" constant="276" id="wuh-rl-oXQ"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="grid_tap_instructions"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="spacing">
+                                    <real key="value" value="0.0"/>
+                                </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <collectionView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7mB-Ww-cRj">
-                            <rect key="frame" x="0.0" y="26" width="320" height="502"/>
+                            <rect key="frame" x="0.0" y="46" width="320" height="502"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" priority="995" constant="548" id="Pyq-AP-BS4"/>
@@ -78,7 +80,7 @@
                 <constraint firstItem="efi-qX-YDc" firstAttribute="centerX" secondItem="UyT-2f-psd" secondAttribute="centerX" id="u6i-wT-ofd"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="dS7-jz-zik"/>
-            <point key="canvasLocation" x="2228" y="316"/>
+            <point key="canvasLocation" x="2227.5" y="315.84507042253523"/>
         </view>
     </objects>
 </document>
