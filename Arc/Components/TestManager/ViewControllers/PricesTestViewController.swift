@@ -120,7 +120,7 @@ public class PricesTestViewController: ArcViewController {
             
             topLabel?.text = item.item
             
-            let correctPrice = "".localized("money_prefix") + item.price
+            let correctPrice = "$".localized("money_prefix") + item.price
             bottomLabel?.text = correctPrice
             
             bottomLabel?.resizeFontForSingleWords();
