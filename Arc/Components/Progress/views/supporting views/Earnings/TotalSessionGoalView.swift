@@ -12,7 +12,9 @@ public class TotalSessionGoalView : GoalView {
 	var total:Double = 21
 
 	var progress:CGFloat {
-		return CGFloat(current/total)
+		let value = max(min(total, current), 0.0)
+
+		return CGFloat(value/total)
 	}
 
 	weak public var countLabel:ACLabel!
@@ -51,11 +53,11 @@ public class TotalSessionGoalView : GoalView {
 	}
 	
 	public func set(current:Int) {
-        if (current <= 21) {
-            self.current = Double(current)
-            self.countLabel.text = "*\(Int(current))*"
-            self.stepperProgressBar.progress = self.progress
-        }
+        let value = max(min(total, Double(current)), 0.0)
+		self.current = value
+		self.countLabel.text = "*\(Int(value))*"
+		self.stepperProgressBar.progress = self.progress
+	
 	}
 	public func set(total:Double) {
 		self.total = total

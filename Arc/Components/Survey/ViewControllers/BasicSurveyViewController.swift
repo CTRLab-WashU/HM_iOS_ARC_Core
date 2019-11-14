@@ -385,6 +385,14 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
         input.customView.enableNextButton()
     }
     
+    public func enableNextButton(title:String = "Next") {
+        guard let input:CustomViewController<InfoView> = self.getTopViewController() else {
+            return
+        }
+        
+        input.customView.enableNextButton(title: title)
+    }
+    
     public func disableNextButton(title:String = "Next")
     {
         guard let input:CustomViewController<InfoView>  = self.getTopViewController() else {

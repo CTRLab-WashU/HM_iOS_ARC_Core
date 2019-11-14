@@ -60,6 +60,13 @@ open class AuthController:MHController {
 		}
 		return nil
 	}
+	public func clearAuth() {
+		if let results:[AuthEntry] = fetch(), let entry = results.last {
+			_isAuthorized = false
+			_credential = nil
+			delete(results)
+		}
+	}
 	open func authenticate(completion:@escaping ((Int64?, String?)->())) {
 		if let id = checkAuth() {
 			completion(id, nil)

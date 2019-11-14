@@ -7,7 +7,9 @@
 //
 
 import Foundation
-
+public enum AuthStyle {
+	case raterArcConfirm, arcConfirmRater, tfa, arcConfirm
+}
 public protocol ArcEnvironment {
 	var isDebug:Bool {get}
     var mockData:Bool {get}
@@ -18,7 +20,14 @@ public protocol ArcEnvironment {
     var privacyPolicyUrl:String? {get}
     var arcStartDays:Dictionary<Int, Int>? {get}
     var shouldDisplayDateReminderNotifications:Bool {get}
-    
+	
+	var authenticationStyle:AuthStyle {get}
+	var supportsScheduling:Bool {get}
+	var supportsNotifications:Bool {get}
+	var supportsChronotype:Bool {get}
+	var supportsSignatures:Bool{get}
+	
+	
     var appController:AppController {get}
     
     var authController:AuthController {get}
@@ -69,6 +78,12 @@ public extension ArcEnvironment {
 	}
     var shouldDisplayDateReminderNotifications:Bool {return false}
 
+	var authenticationStyle:AuthStyle {return .raterArcConfirm}
+	var supportsScheduling:Bool {return true}
+	var supportsNotifications:Bool {return true}
+	var supportsChronotype:Bool {return true}
+	var supportsSignatures:Bool{return true}
+	
     var appController:AppController {return AppController()}
     
     var authController:AuthController {return AuthController()}

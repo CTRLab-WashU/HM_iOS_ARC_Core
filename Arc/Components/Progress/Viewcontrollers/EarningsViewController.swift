@@ -55,7 +55,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 	override public func viewDidLoad() {
 		
         super.viewDidLoad()
-		customView.scrollIndicatorView.isHidden = true
+		customView.bottomScrollIndicatorView.isHidden = true
 		
 		//When in post test mode perform modifications
 		lastUpdated = app.appController.lastFetched[EarningsController.overviewKey]

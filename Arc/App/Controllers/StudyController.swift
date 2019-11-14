@@ -136,6 +136,23 @@ open class StudyController : MHController {
 	}
 	
 	
+	@discardableResult
+	open func createSingleUse(sessionAt date:Date) -> Session
+	{	if let study = get(study: 0) {
+			delete(sessionsUpTo: 5, inStudy: 0)
+			delete(study)
+		}
+		let study = createStudyPeriod(forDate: Date(), studyId: 0)
+		let newSession:Session = Arc.shared.sessionController.create(sessionAt: date)
+		newSession.study = study;
+		newSession.sessionDate = date;
+		newSession.expirationDate = date.addingHours(hours: 2);
+		
+		return newSession;
+		
+	}
+	
+	
     open func set(userStartDate date:Date, forStudyId studyId:Int) -> StudyPeriod? {
         guard let study = get(study: studyId) else {
             fatalError("Invalid studyId")
