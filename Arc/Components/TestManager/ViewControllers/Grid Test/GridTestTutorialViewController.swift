@@ -274,7 +274,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
                 $0.updateTitleStackMargins()
 				$0.layout {
 					$0.top >= weakSelf.view.safeAreaLayoutGuide.topAnchor + 24
-					$0.leading >= weakSelf.view.safeAreaLayoutGuide.leadingAnchor + 24
+					$0.leading >= weakSelf.view.safeAreaLayoutGuide.leadingAnchor - 30
 					$0.trailing <= weakSelf.view.safeAreaLayoutGuide.trailingAnchor - 24
 					$0.bottom <= weakSelf.view.safeAreaLayoutGuide.bottomAnchor - 24
 					
