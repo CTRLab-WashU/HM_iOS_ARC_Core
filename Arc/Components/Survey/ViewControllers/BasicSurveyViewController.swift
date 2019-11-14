@@ -210,7 +210,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 	func display(question:Survey.Question) {
 		let style = question.style ?? .none
 		switch style {
-			
+        
 		case .instruction, .test:
 			instructionStyle(question)
 		case .none:
@@ -219,6 +219,8 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 			viewControllerStyle(question)
 		case .impasse:
 			questionStyle(question)
+        case .onboarding:
+            questionStyle(question)
 		case .grids:
 			instructionStyle(question, presentableVc: GridTestTutorialViewController())
 			
@@ -310,6 +312,22 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 										secondary: UIColor(named:"Primary Gradient"),
 										textColor: .white)
 		vc.customView.setHeading(question.prompt)
+        if let style = question.style, style == .onboarding{
+            vc.customView.setSeparatorWidth(0.15)
+
+            vc.customView.nextButton?.isEnabled = true;
+        }
+        if let style = question.style, style == .impasse
+        {
+            vc.customView.setSeparatorWidth(0.15)
+
+            vc.customView.nextButton?.isEnabled = false;
+            vc.customView.nextButton?.isHidden = true;
+        }
+        else
+        {
+            vc.customView.nextButton?.addTarget(self, action: #selector(nextButtonPressed(sender:)), for: .primaryActionTriggered)
+        }
         vc.customView.setPrompt(question.subTitle)
 		vc.customView.setContentLabel(question.detail)
 		
@@ -319,17 +337,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		vc.customView.inputDelegate = self
 		
 
-        if let style = question.style, style == .impasse
-        {
-			vc.customView.setSeparatorWidth(0.15)
-
-            vc.customView.nextButton?.isEnabled = false;
-            vc.customView.nextButton?.isHidden = true;
-        }
-        else
-        {
-            vc.customView.nextButton?.addTarget(self, action: #selector(nextButtonPressed(sender:)), for: .primaryActionTriggered)
-        }
+        
 		
         disableNextButton(title: question.altNextButtonTitle ?? "Next")
         

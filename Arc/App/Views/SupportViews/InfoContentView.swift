@@ -103,7 +103,13 @@ public class InfoContentView: UIStackView {
     public func setPrompt(_ text:String?){
         if let view = subheadingLabel {
             view.text = text
+            if text == nil {
+                subheadingLabel?.removeFromSuperview()
+            }
         } else {
+            guard let text = text else {
+                return
+            }
             subheadingLabel = acLabel {
                 $0.textAlignment = .left
                 
