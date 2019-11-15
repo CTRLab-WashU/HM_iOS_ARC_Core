@@ -141,7 +141,8 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		
 		return questions[currentIndex].questionId
 	}
-	func addSpinner(color:UIColor?, backGroundColor:UIColor?) {
+	
+	public func addSpinner(color:UIColor? = UIColor(white: 1.0, alpha: 0.8), backGroundColor:UIColor? = UIColor(named:"Primary")) {
 		OperationQueue.main.addOperation {[weak self] in
 
 			if let vc:CustomViewController<InfoView> = self?.getTopViewController(){
@@ -152,7 +153,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		}
 	}
 	
-	func hideSpinner() {
+	public func hideSpinner() {
 		OperationQueue.main.addOperation { [weak self] in
 
 			if let vc:CustomViewController<InfoView> = self?.getTopViewController(){
@@ -160,12 +161,14 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 			}
 		}
 	}
-	func set(error:String?) {
+	public func set(error:String?) {
 		OperationQueue.main.addOperation { [weak self] in
 			
 			if let vc:CustomViewController<InfoView> = self?.getTopViewController(){
 				vc.customView.setError(message: error)
 				
+			} else if let input = self?.getInput() {
+				input.setError(message: error)
 			}
 		}
 	}
