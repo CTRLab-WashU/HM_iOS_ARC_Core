@@ -223,8 +223,11 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 			instructionStyle(question, presentableVc: GridTestTutorialViewController())
 			
 		case .prices:
-			instructionStyle(question, presentableVc: PricesTestTutorialViewController())
-			
+            if Arc.environment?.priceTestType == .simplified {
+                instructionStyle(question, presentableVc: SimplifiedPricesTestTutorialViewController())
+            } else {
+                instructionStyle(question, presentableVc: PricesTestTutorialViewController())
+            }
 		case .symbols:
 			instructionStyle(question, presentableVc: SymbolsTutorialViewController())
 			

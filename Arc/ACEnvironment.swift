@@ -10,6 +10,9 @@ import Foundation
 public enum AuthStyle {
 	case raterArcConfirm, arcConfirmRater, tfa, arcConfirm
 }
+public enum PriceTestType {
+    case normal, simplified
+}
 public protocol ArcEnvironment {
 	var isDebug:Bool {get}
     var mockData:Bool {get}
@@ -26,6 +29,7 @@ public protocol ArcEnvironment {
 	var supportsNotifications:Bool {get}
 	var supportsChronotype:Bool {get}
 	var supportsSignatures:Bool{get}
+    var priceTestType:PriceTestType {get}
 	
 	
     var appController:AppController {get}
@@ -83,6 +87,7 @@ public extension ArcEnvironment {
 	var supportsNotifications:Bool {return true}
 	var supportsChronotype:Bool {return true}
 	var supportsSignatures:Bool{return true}
+    var priceTestType:PriceTestType {return .normal}
 	
     var appController:AppController {return AppController()}
     

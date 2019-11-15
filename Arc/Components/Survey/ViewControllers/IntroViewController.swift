@@ -178,9 +178,12 @@ open class IntroViewController: CustomViewController<InfoView> {
 					}
 				}
 				if self?.style == .prices {
-					self?.present(PricesTestTutorialViewController(), animated: true) {
-						
-					}
+                    if Arc.environment?.priceTestType == .simplified {
+                        self?.present(SimplifiedPricesTestTutorialViewController(), animated: true) {}
+                    } else {
+                        self?.present(PricesTestTutorialViewController(), animated: true) {}
+                    }
+
 				}
 				if self?.style == .symbols {
 					self?.present(SymbolsTutorialViewController(), animated: true) {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D35988D237B6604005EF2CF /* SimplifiedPricesTestTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D35988C237B6604005EF2CF /* SimplifiedPricesTestTutorialViewController.swift */; };
 		2D5711F422EB3AB500E7F881 /* Earnings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5711F322EB3AB500E7F881 /* Earnings.swift */; };
 		2D5711F722EB815E00E7F881 /* StudyProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5711F622EB815E00E7F881 /* StudyProgress.swift */; };
 		2DB76D7122F3B3D900EE36A0 /* SymbolsTestTutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DB76D7022F3B3D900EE36A0 /* SymbolsTestTutorialViewController.xib */; };
@@ -354,6 +355,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D35988C237B6604005EF2CF /* SimplifiedPricesTestTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplifiedPricesTestTutorialViewController.swift; sourceTree = "<group>"; };
 		2D5711F322EB3AB500E7F881 /* Earnings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Earnings.swift; sourceTree = "<group>"; };
 		2D5711F622EB815E00E7F881 /* StudyProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyProgress.swift; sourceTree = "<group>"; };
 		2DB76D7022F3B3D900EE36A0 /* SymbolsTestTutorialViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SymbolsTestTutorialViewController.xib; sourceTree = "<group>"; };
@@ -1516,6 +1518,7 @@
 			children = (
 				C56D6C5C22CD3FE800C3F8EA /* PricesTestTutorialViewController.swift */,
 				C54AE95921C81B5C00DEC360 /* PricesTestViewController.swift */,
+				2D35988C237B6604005EF2CF /* SimplifiedPricesTestTutorialViewController.swift */,
 				C54AE95721C81B5C00DEC360 /* PricesTestViewController.xib */,
 				C54AE95321C81B5C00DEC360 /* PricesQuestionViewController.swift */,
 				C54AE95821C81B5C00DEC360 /* PricesQuestionViewController.xib */,
@@ -2086,6 +2089,7 @@
 				C55F8CC9230D89AC006D43BD /* Study+Expressible.swift in Sources */,
 				C54E8E1122E64CE00080BFC1 /* SymbolsTutorialViewController.swift in Sources */,
 				E8BA72FB23198BD800823374 /* ResourcesTableViewCell.swift in Sources */,
+				2D35988D237B6604005EF2CF /* SimplifiedPricesTestTutorialViewController.swift in Sources */,
 				C54AE9D321C81B5F00DEC360 /* State.swift in Sources */,
 				C54AE9F421C81B5F00DEC360 /* StudyController.swift in Sources */,
 				C54AE9D221C81B5F00DEC360 /* Study.swift in Sources */,
