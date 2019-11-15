@@ -163,8 +163,7 @@ open class IntroViewController: CustomViewController<InfoView> {
 			button.setTitle("View a Tutorial", for: .normal)
 			Roboto.Style.bodyBold(button.titleLabel!, color:.white)
 			Roboto.PostProcess.link(button)
-			
-			
+            button.titleEdgeInsets.bottom = 24
 			
 			button.addAction {[weak self] in
 				self?.currentHint?.removeFromSuperview()
