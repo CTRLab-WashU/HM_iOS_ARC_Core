@@ -274,7 +274,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
                 $0.updateTitleStackMargins()
 				$0.layout {
 					$0.top >= weakSelf.view.safeAreaLayoutGuide.topAnchor + 24
-					$0.leading >= weakSelf.view.safeAreaLayoutGuide.leadingAnchor - 30
+					$0.leading >= weakSelf.view.safeAreaLayoutGuide.leadingAnchor + 24
 					$0.trailing <= weakSelf.view.safeAreaLayoutGuide.trailingAnchor - 24
 					$0.bottom <= weakSelf.view.safeAreaLayoutGuide.bottomAnchor - 24
 					
@@ -575,7 +575,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 				*Hint:* One item was located
 				in this box. Tap here.
 				""".localized(ACTranslationKey.popup_tutorial_boxhint)
-				
+                $0.targetView = cell
                 $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
                                                         secondaryColor: UIColor(named:"HintFill")!,
                                                         textColor: .black,
@@ -595,7 +595,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 						
 					} else {
 						
-						$0.top == cell.bottomAnchor + 40
+						$0.top == cell.bottomAnchor + 30
 						
 					}
 					
