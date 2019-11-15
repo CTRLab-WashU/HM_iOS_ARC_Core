@@ -48,7 +48,7 @@ public enum IntroViewControllerStyle : String {
 			view.setSubHeading(heading)
 			view.setIntroHeading(subheading)
 			view.setSeparatorWidth(0.0)
-			view.setContentText(content, template: template)
+			view.setIntroContentText(content, template: template)
 			view.backgroundColor = UIColor(named:"Primary Info")
 			view.infoContent.alignment = .leading
 			view.backgroundView.image = UIImage(named: "grids_bg", in: Bundle(for: view.classForCoder), compatibleWith: nil)
@@ -60,7 +60,7 @@ public enum IntroViewControllerStyle : String {
 			view.setSubHeading(heading)
 			view.setIntroHeading(subheading)
 			view.setSeparatorWidth(0.0)
-			view.setContentText(content, template: template)
+			view.setIntroContentText(content, template: template)
 			view.backgroundColor = UIColor(named:"Primary Info")
 			view.infoContent.alignment = .leading
 			view.backgroundView.image = UIImage(named: "symbols_bg", in: Bundle(for: view.classForCoder), compatibleWith: nil)
@@ -72,7 +72,7 @@ public enum IntroViewControllerStyle : String {
 			view.setSubHeading(heading)
 			view.setIntroHeading(subheading)
 			view.setSeparatorWidth(0.0)
-			view.setContentText(content, template: template)
+			view.setIntroContentText(content, template: template)
 			view.backgroundColor = UIColor(named:"Primary Info")
 			view.infoContent.alignment = .leading
 			view.backgroundView.image = UIImage(named: "prices_bg", in: Bundle(for: view.classForCoder), compatibleWith: nil)

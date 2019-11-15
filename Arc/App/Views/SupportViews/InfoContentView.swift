@@ -177,7 +177,34 @@ public class InfoContentView: UIStackView {
 		}
 		//Roboto.PostProcess.renderMarkup(contentTextView!, template: template)
 	}
-	
+	public func setIntroContent(_ text:String?, template:[String:String] = [:]) {
+        
+        let text = Text.replaceIn(text, withTemplate: template)
+        
+        if let view = contentTextView {
+            view.text = text
+        } else {
+            contentTextView = acTextView {
+                $0.contentInset = .zero
+                $0.isEditable = false
+                $0.backgroundColor = .clear
+                $0.textAlignment = .left
+                $0.contentInset = .init(top: 0, left: -5, bottom: 0, right: 0)
+                $0.isSelectable = true
+                
+                Roboto.Style.body($0,
+                                  color:textColor)
+                
+                $0.text = text
+                
+                $0.layout {
+                    $0.width == self.widthAnchor ~ 400
+                }
+                
+            }
+        }
+        //Roboto.PostProcess.renderMarkup(contentTextView!, template: template)
+    }
 	
 	required init(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")

@@ -120,6 +120,10 @@ public class InfoView: ACTemplateView {
 		infoContent.setContent(text, template:template)
 
 	}
+    public func setIntroContentText(_ text:String?, template:[String:String] = [:]) {
+        infoContent.setIntroContent(text, template:template)
+
+    }
 	public func setContentLabel(_ text:String?, template:[String:String] = [:]) {
 		infoContent.setContentLabel(text, template:template)
 		
