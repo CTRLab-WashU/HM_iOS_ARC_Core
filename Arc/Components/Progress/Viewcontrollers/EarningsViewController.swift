@@ -176,6 +176,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		self.navigationController?.isNavigationBarHidden = true
 		
 		if isPostTest && fabs((lastUpdated ?? Date().timeIntervalSince1970) - Date().timeIntervalSince1970) > 10 * 60 {
+            self.navigationController?.isNavigationBarHidden = false
 			customView.showSpinner(color: ACColor.highlight, backgroundColor: ACColor.primaryInfo, message:"progress_endoftest_syncing")
 			customView.earningsParentStack.alpha = 0
 			
