@@ -106,6 +106,15 @@ open class Arc : ArcApi {
         }
     }
     
+    public var showMindfulness:Bool? {
+        get {
+            return appController.showMindfulness
+        }
+        set {
+            appController.showMindfulness = newValue
+        }
+    }
+    
     
 	public var currentStudy:Int?
 	public var availableTestSession:Int?

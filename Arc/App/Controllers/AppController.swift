@@ -69,6 +69,20 @@ open class AppController : MHController {
             defaults.synchronize()
         }
     }
+    public var showMindfulness:Bool? {
+        get {
+            if let show = defaults.value(forKey:"showMindfulness") as? Bool
+            {
+                return show;
+            }
+            return nil;
+        }
+        set (newVal)
+        {
+            defaults.setValue(newVal, forKey:"showMindfulness");
+            defaults.synchronize()
+        }
+    }
     public var lastFlaggedMissedTestCount:Int {
         get {
             
