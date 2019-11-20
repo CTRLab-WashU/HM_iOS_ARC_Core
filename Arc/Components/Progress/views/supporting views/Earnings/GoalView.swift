@@ -55,18 +55,25 @@ public class GoalView: UIView {
 					self.goalTitleLabel = $0.acLabel {
 						Roboto.Style.goalHeading($0, color: ACColor.badgeText)
 					}
-					self.doneLabel = $0.acLabel {
-						$0.isHidden = true
-						Roboto.Style.badge($0, color: ACColor.badgeText)
-						$0.text = "".localized(ACTranslationKey.status_done)
-						$0.textAlignment = .center
-					}
-					$0.view {
-						$0.backgroundColor = .clear
-					}
-				}
-				
-			}
+					$0.view{
+                        self.doneLabel = $0.acLabel {
+                            $0.isHidden = false
+                            Roboto.Style.goalReward($0, color:ACColor.badgeText)
+                            $0.text = "".localized(ACTranslationKey.status_done)
+                            $0.textAlignment = .center
+                        }
+                        self.doneLabel.attachTo(view: $0, margins: UIEdgeInsets(top: 3,
+                                    left: 10,
+                                    bottom: 3,
+                                    right: 10))
+                            $0.view {
+                                $0.backgroundColor = .clear
+                                }
+                                
+                            }
+                            
+                        }
+                    }
 			//Custom content body, white background
 			$0.stack {
 				$0.axis = .vertical
