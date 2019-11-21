@@ -88,11 +88,11 @@ class ACProgressView: ACTemplateView {
 							self.todaysSessionCompletionLabel = $0.acLabel {
 								Roboto.Style.body($0, color: #colorLiteral(red: 0.04300000146, green: 0.1220000014, blue: 0.3330000043, alpha: 1))
 								
-								$0.text = "*2* Complete"
+								$0.text = "*{#}* Complete |"
 							}
 							self.todaysSessionRemainingLabel = $0.acLabel {
-								Roboto.Style.body($0)
-								$0.text = "| *1* Remaining"
+								Roboto.Style.body($0, color: #colorLiteral(red: 0.04300000146, green: 0.1220000014, blue: 0.3330000043, alpha: 1))
+								$0.text = " *{#}* Remaining"
 							}
 						}
 					}
