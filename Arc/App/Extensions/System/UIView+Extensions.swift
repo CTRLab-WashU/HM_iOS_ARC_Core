@@ -17,6 +17,8 @@ public extension UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }
+	
+	///Attach a view to the margins of the parent view
     func attachTo(view:UIView?, margins:UIEdgeInsets? = .zero) {
 		guard let view = view else {return}
 		if let margins = margins {
@@ -32,6 +34,8 @@ public extension UIView {
 			
 		}
 	}
+	///Attach a view to the safe area margins of the parent view
+	
     func safeAttachTo(view:UIView?, margins:UIEdgeInsets? = .zero) {
 		guard let view = view else {return}
 		if let margins = margins {
