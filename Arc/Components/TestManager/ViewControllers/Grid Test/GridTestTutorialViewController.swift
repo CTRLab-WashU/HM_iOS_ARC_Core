@@ -206,7 +206,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 					$0.centerY == weakSelf.view.centerYAnchor
 					$0.centerX == weakSelf.view.centerXAnchor
 
-					$0.width == weakSelf.test.collectionView.widthAnchor - 20
+					$0.width == weakSelf.test.collectionView.widthAnchor - 75
 					
 				}
 			}

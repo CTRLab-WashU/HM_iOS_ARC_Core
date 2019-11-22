@@ -85,13 +85,13 @@ public class SymbolsTestViewController: UIViewController, TestProgressViewContro
 		}
         
         let gradient = CAGradientLayer()
-        gradient.frame = choice1.bounds
-        gradient.colors = [UIColor.white.cgColor, UIColor(red: 244.0/255.0, green: 244.0/255.0, blue: 244.0/255.0, alpha: 1.0).cgColor]
+        gradient.frame = self.view.bounds
+        gradient.colors = [UIColor.white.cgColor, UIColor(red: 99.0/255.0, green: 102.0/255.0, blue: 107.0/255.0, alpha: 1.0).cgColor]
         choice1.layer.insertSublayer(gradient, at: 0)
         
         let gradient2 = CAGradientLayer()
-        gradient2.frame = choice2.bounds
-        gradient2.colors = [UIColor.white.cgColor, UIColor(red: 244.0/255.0, green: 244.0/255.0, blue: 244.0/255.0, alpha: 1.0).cgColor]
+        gradient2.frame = self.view.bounds
+        gradient2.colors = [UIColor.white.cgColor, UIColor(red: 99.0/255.0, green: 102.0/255.0, blue: 107.0/255.0, alpha: 1.0).cgColor]
         choice2.layer.insertSublayer(gradient2, at: 0)
         
         self.setTileHeight()
