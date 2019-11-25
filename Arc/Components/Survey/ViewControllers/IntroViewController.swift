@@ -163,7 +163,6 @@ open class IntroViewController: CustomViewController<InfoView> {
 			button.setTitle("View a Tutorial", for: .normal)
 			Roboto.Style.bodyBold(button.titleLabel!, color:.white)
 			Roboto.PostProcess.link(button)
-            button.titleEdgeInsets.bottom = 24
 			
 			button.addAction {[weak self] in
 				self?.currentHint?.removeFromSuperview()
@@ -270,7 +269,7 @@ open class IntroViewController: CustomViewController<InfoView> {
 			&& !get(flag: .tutorial_grats) {
 			
 			set(flag: .tutorial_grats)
-			tutorialButton.overlay()
+			view.overlayView(withShapes: [.roundedRect(tutorialButton, 8.0)])
 			currentHint = view.window?.hint {
 				$0.content = "".localized(ACTranslationKey.popup_tutorial_complete)
                 $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
