@@ -36,9 +36,6 @@
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="26"/>
                     <color key="textColor" name="Primary Text"/>
                     <nil key="highlightedColor"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="availability_confirm"/>
-                    </userDefinedRuntimeAttributes>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2PP-q1-Lor" customClass="HMMarkupButton" customModule="HMMarkup">
                     <rect key="frame" x="48" y="539" width="279" height="32"/>

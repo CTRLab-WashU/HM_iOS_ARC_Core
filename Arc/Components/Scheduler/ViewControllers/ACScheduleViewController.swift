@@ -253,6 +253,9 @@ public class ACScheduleViewController : BasicSurveyViewController {
         if question.questionId == "sleep_confirm"
         {
             let vc:ScheduleEndViewController = .get();
+            if isChangingSchedule {
+                vc.setIsRescheduling()
+            }
             return vc;
         }
         
