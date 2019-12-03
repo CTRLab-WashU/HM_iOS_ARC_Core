@@ -78,22 +78,29 @@ open class MHController {
 		save()
 		return item
 	}
-    public func fetch<T:NSManagedObject>(predicate:NSPredicate? = nil, sort:[NSSortDescriptor]? = nil, limit:Int? = nil) -> [T]? {
-        do {
-            if let fetchRequest:NSFetchRequest<T> = T.fetchRequest() as? NSFetchRequest<T> {
-                fetchRequest.predicate = predicate
-                fetchRequest.sortDescriptors = sort
-                if let limit = limit {
-                    fetchRequest.fetchLimit = limit
-                }
-                let results = try MHController.dataContext.fetch(fetchRequest)
-                return results
-            }
-        }  catch {
-            delegate?.didCatch(errors: error)
-        }
-        return nil
-    }
+	public func fetch<T:NSManagedObject>(predicate:NSPredicate? = nil, sort:[NSSortDescriptor]? = nil, limit:Int? = nil) -> [T]? {
+		var results:[T]? = nil
+		
+		if let fetchRequest:NSFetchRequest<T> = T.fetchRequest() as? NSFetchRequest<T> {
+			fetchRequest.predicate = predicate
+			fetchRequest.sortDescriptors = sort
+			if let limit = limit {
+				fetchRequest.fetchLimit = limit
+			}
+			MHController.dataContext.performAndWait {
+				do {
+					results = try MHController.dataContext.fetch(fetchRequest)
+				}  catch {
+					delegate?.didCatch(errors: error)
+				}
+			}
+		}
+		
+		
+		
+		return results
+		
+	}
     
     public func get<T:HMCodable>(id:String) throws -> T {
         guard let result = fetch(id: id), let value:T = result.get() else {
