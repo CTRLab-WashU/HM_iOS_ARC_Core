@@ -376,7 +376,7 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 		let progress = min(maxProgress, max(offset - effectiveHeight, 0))
 		let convertedRect = nextButton.convert(nextButton.frame, to: scrollView)
 		
-		guard !scrollView.bounds.contains(convertedRect) || !scrollView.bounds.intersects(convertedRect) else {
+		guard !scrollView.bounds.contains(convertedRect) && !scrollView.bounds.intersects(convertedRect) else {
 			bottomScrollIndicatorView.alpha = 0
 			return
 		}
