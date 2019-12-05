@@ -79,14 +79,23 @@ open class MHController {
     }
     
     public func fetch(id:String) -> JSONData? {
-        do {
         let fetch:NSFetchRequest<JSONData> = JSONData.fetchRequest()
         fetch.predicate = NSPredicate(format: "id == %@", id)
-        let results = try MHController.dataContext.fetch(fetch)
-        return results.first
-        }  catch  {
-            fatalError("Could not fetch: \(error)")
-        }
+			
+			
+        var results:[JSONData]? = nil
+		
+		MHController.dataContext.performAndWait {
+			do {
+				results = try MHController.dataContext.fetch(fetch)
+			}  catch {
+				delegate?.didCatch(errors: error)
+				fatalError("Could not fetch: \(error)")
+			}
+		}
+		
+        return results?.first
+			
     }
 	public func mark(filled id:String) -> JSONData? {
 		guard let item = fetch(id: id) else {
