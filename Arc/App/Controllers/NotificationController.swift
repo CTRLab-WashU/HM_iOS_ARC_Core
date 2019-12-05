@@ -493,7 +493,7 @@ open class NotificationController : MHController
 			HMLog("\(requests.count) requests.")
 			for r in requests
 			{
-				HMLog("\(r.trigger!) | \(r.content.title)");
+				HMLog("\(r.trigger!) | \(r.identifier)");
 			}
 		});
 	}
