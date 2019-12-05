@@ -425,6 +425,7 @@ open class NotificationController : MHController
     
 	open func schedule(dateRemdinderNotification study:StudyPeriod)
 	{
+		clearDateReminders()
 		let studyID = Int(study.studyID)
 		if let d = study.userStartDate as Date?
 		{
