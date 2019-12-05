@@ -455,8 +455,11 @@ open class Arc : ArcApi {
                 session = sess
             }
         }
-        if upcoming == nil, let nextCycle = studyController.getUpcomingStudyPeriod()?.sessions?.firstObject as? Session {
-            upcoming = nextCycle
+		//Our first check looked into the current studyCycle, this check
+		//Is intended to grab the next upcoming session regardless of studyPeriod.
+		//It will be used to determine if and when
+        if upcoming == nil{
+            upcoming = studyController.getUpcomingSessions(withLimit: 1).first
         }
         // Do any additional setup after loading the view.
         if let _ = session {
