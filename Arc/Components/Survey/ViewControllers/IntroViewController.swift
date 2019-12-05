@@ -48,7 +48,7 @@ public enum IntroViewControllerStyle : String {
 			view.setSubHeading(heading)
 			view.setIntroHeading(subheading)
 			view.setSeparatorWidth(0.0)
-			view.setContentText(content, template: template)
+			view.setIntroContentText(content, template: template)
 			view.backgroundColor = UIColor(named:"Primary Info")
 			view.infoContent.alignment = .leading
 			view.backgroundView.image = UIImage(named: "grids_bg", in: Bundle(for: view.classForCoder), compatibleWith: nil)
@@ -60,7 +60,7 @@ public enum IntroViewControllerStyle : String {
 			view.setSubHeading(heading)
 			view.setIntroHeading(subheading)
 			view.setSeparatorWidth(0.0)
-			view.setContentText(content, template: template)
+			view.setIntroContentText(content, template: template)
 			view.backgroundColor = UIColor(named:"Primary Info")
 			view.infoContent.alignment = .leading
 			view.backgroundView.image = UIImage(named: "symbols_bg", in: Bundle(for: view.classForCoder), compatibleWith: nil)
@@ -72,7 +72,7 @@ public enum IntroViewControllerStyle : String {
 			view.setSubHeading(heading)
 			view.setIntroHeading(subheading)
 			view.setSeparatorWidth(0.0)
-			view.setContentText(content, template: template)
+			view.setIntroContentText(content, template: template)
 			view.backgroundColor = UIColor(named:"Primary Info")
 			view.infoContent.alignment = .leading
 			view.backgroundView.image = UIImage(named: "prices_bg", in: Bundle(for: view.classForCoder), compatibleWith: nil)
@@ -164,8 +164,6 @@ open class IntroViewController: CustomViewController<InfoView> {
 			Roboto.Style.bodyBold(button.titleLabel!, color:.white)
 			Roboto.PostProcess.link(button)
 			
-			
-			
 			button.addAction {[weak self] in
 				self?.currentHint?.removeFromSuperview()
 				self?.view.window?.clearOverlay()
@@ -178,9 +176,12 @@ open class IntroViewController: CustomViewController<InfoView> {
 					}
 				}
 				if self?.style == .prices {
-					self?.present(PricesTestTutorialViewController(), animated: true) {
-						
-					}
+                    if Arc.environment?.priceTestType == .simplified {
+                        self?.present(SimplifiedPricesTestTutorialViewController(), animated: true) {}
+                    } else {
+                        self?.present(PricesTestTutorialViewController(), animated: true) {}
+                    }
+
 				}
 				if self?.style == .symbols {
 					self?.present(SymbolsTutorialViewController(), animated: true) {
@@ -268,7 +269,7 @@ open class IntroViewController: CustomViewController<InfoView> {
 			&& !get(flag: .tutorial_grats) {
 			
 			set(flag: .tutorial_grats)
-			tutorialButton.overlay()
+			view.overlayView(withShapes: [.roundedRect(tutorialButton, 8.0)])
 			currentHint = view.window?.hint {
 				$0.content = "".localized(ACTranslationKey.popup_tutorial_complete)
                 $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,

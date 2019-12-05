@@ -120,6 +120,10 @@ public class InfoView: ACTemplateView {
 		infoContent.setContent(text, template:template)
 
 	}
+    public func setIntroContentText(_ text:String?, template:[String:String] = [:]) {
+        infoContent.setIntroContent(text, template:template)
+
+    }
 	public func setContentLabel(_ text:String?, template:[String:String] = [:]) {
 		infoContent.setContentLabel(text, template:template)
 		
@@ -170,6 +174,8 @@ public class InfoView: ACTemplateView {
 			self?.miscContainer = $0.stack {
 				$0.axis = .vertical
 				$0.accessibilityLabel = "Misc Container"
+				$0.isLayoutMarginsRelativeArrangement = true
+				$0.layoutMargins = UIEdgeInsets(top: 12, left: 8, bottom: 12, right: 8)
 				$0.isHidden = true
 			}
 			self?.nextButton = $0.acButton {

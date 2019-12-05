@@ -62,7 +62,7 @@ public class ACPostCycleFinishView : UIView {
 			self.headerImageView = $0.image {
 				$0.image = UIImage(named: "finished-medal", in: Bundle(for: self.classForCoder), compatibleWith: nil)
 				$0.contentMode = .top
-				$0.setContentHuggingPriority(.defaultHigh, for: .vertical)
+				$0.setContentHuggingPriority(.fittingSizeLevel, for: .vertical)
 				animationParams.delay = 0.6
 				$0.fadeIn(animationParams)
 					.translate(animationParams)

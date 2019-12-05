@@ -92,6 +92,12 @@ public class PricesTestViewController: ArcViewController {
 			let count = controller.get(testCount: responseID)
 			flippedPrices = Set<Int>.uniqueSet(numberOfItems: count / 2, maxValue: count)
 		}
+        
+        if Arc.environment?.priceTestType == .simplified {
+            self.buttonStack.isHidden = true
+            self.goodPriceLabel.isHidden = true
+        }
+
     }
     
     override open func viewDidAppear(_ animated: Bool) {

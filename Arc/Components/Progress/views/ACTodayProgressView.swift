@@ -115,20 +115,26 @@ public class ACTodayProgressView : UIView {
 				$0.fadeIn(animationParams)
 					.translate(animationParams)
 			}
-			self.badgeLabel = $0.acLabel {
+            $0.view{
+                $0.backgroundColor = ACColor.badgeBackground
+                $0.layer.cornerRadius = 4
+                $0.clipsToBounds = true
+                
+                self.badgeLabel = $0.acLabel {
 
-				
-				Roboto.Style.badge($0)
-				$0.text = "progress_schedule_status2"
-				animationParams.delay = 1.4
-
-				$0.fadeIn(animationParams)
-					.translate(animationParams)
-				
-			}
-			
-		}
-        
+                    
+                    Roboto.Style.goalReward($0, color:ACColor.badgeText)
+                    $0.text = "progress_schedule_status2"
+                }
+                self.badgeLabel.attachTo(view: $0, margins: UIEdgeInsets(top: 3,
+                                                                         left: 10,
+                                                                         bottom: 3,
+                                                                         right: 10))
+                animationParams.delay = 1.4
+                $0.fadeIn(animationParams)
+                .translate(animationParams)
+            }
+        }
         if thisStudy.studyState == .baseline {
             bottomLabel = acLabel {
                 

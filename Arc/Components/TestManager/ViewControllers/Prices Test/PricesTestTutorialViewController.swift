@@ -21,7 +21,9 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
     }
     
     override func viewDidLoad() {
-        self.duration = 33.5
+        if Arc.environment?.priceTestType == .normal {
+            self.duration = 33.5
+        }
         super.viewDidLoad()
 		pricesTest.delegate = self
 		pricesTest.autoStart = false

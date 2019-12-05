@@ -52,12 +52,13 @@ public class ACEarningsDetailView : ACTemplateView {
 			$0.spacing = 20
 //			$0.stack {
 //				$0.axis = .vertical
-//
+//                
 //				$0.alignment = .leading
 //				$0.button {
 //					$0.layout {
 //						$0.width == 80 ~ 999
 //						$0.height == 32 ~ 999
+//                        $0.leading == safeAreaLayoutGuide.leadingAnchor + 10
 //					}
 //					$0.tintColor = .white
 //					$0.backgroundColor = UIColor(red:1, green:1, blue:1, alpha:0.15)

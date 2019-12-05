@@ -141,7 +141,8 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		
 		return questions[currentIndex].questionId
 	}
-	func addSpinner(color:UIColor?, backGroundColor:UIColor?) {
+	
+	public func addSpinner(color:UIColor? = UIColor(white: 1.0, alpha: 0.8), backGroundColor:UIColor? = UIColor(named:"Primary")) {
 		OperationQueue.main.addOperation {[weak self] in
 
 			if let vc:CustomViewController<InfoView> = self?.getTopViewController(){
@@ -152,7 +153,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		}
 	}
 	
-	func hideSpinner() {
+	public func hideSpinner() {
 		OperationQueue.main.addOperation { [weak self] in
 
 			if let vc:CustomViewController<InfoView> = self?.getTopViewController(){
@@ -160,12 +161,14 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 			}
 		}
 	}
-	func set(error:String?) {
+	public func set(error:String?) {
 		OperationQueue.main.addOperation { [weak self] in
 			
 			if let vc:CustomViewController<InfoView> = self?.getTopViewController(){
 				vc.customView.setError(message: error)
 				
+			} else if let input = self?.getInput() {
+				input.setError(message: error)
 			}
 		}
 	}
@@ -210,7 +213,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 	func display(question:Survey.Question) {
 		let style = question.style ?? .none
 		switch style {
-			
+        
 		case .instruction, .test:
 			instructionStyle(question)
 		case .none:
@@ -219,12 +222,17 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 			viewControllerStyle(question)
 		case .impasse:
 			questionStyle(question)
+        case .onboarding:
+            questionStyle(question)
 		case .grids:
 			instructionStyle(question, presentableVc: GridTestTutorialViewController())
 			
 		case .prices:
-			instructionStyle(question, presentableVc: PricesTestTutorialViewController())
-			
+            if Arc.environment?.priceTestType == .simplified {
+                instructionStyle(question, presentableVc: SimplifiedPricesTestTutorialViewController())
+            } else {
+                instructionStyle(question, presentableVc: PricesTestTutorialViewController())
+            }
 		case .symbols:
 			instructionStyle(question, presentableVc: SymbolsTutorialViewController())
 			
@@ -310,6 +318,22 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 										secondary: UIColor(named:"Primary Gradient"),
 										textColor: .white)
 		vc.customView.setHeading(question.prompt)
+        if let style = question.style, style == .onboarding{
+            vc.customView.setSeparatorWidth(0.15)
+
+            vc.customView.nextButton?.isEnabled = true;
+        }
+        if let style = question.style, style == .impasse
+        {
+            vc.customView.setSeparatorWidth(0.15)
+
+            vc.customView.nextButton?.isEnabled = false;
+            vc.customView.nextButton?.isHidden = true;
+        }
+        else
+        {
+            vc.customView.nextButton?.addTarget(self, action: #selector(nextButtonPressed(sender:)), for: .primaryActionTriggered)
+        }
         vc.customView.setPrompt(question.subTitle)
 		vc.customView.setContentLabel(question.detail)
 		
@@ -319,17 +343,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		vc.customView.inputDelegate = self
 		
 
-        if let style = question.style, style == .impasse
-        {
-			vc.customView.setSeparatorWidth(0.15)
-
-            vc.customView.nextButton?.isEnabled = false;
-            vc.customView.nextButton?.isHidden = true;
-        }
-        else
-        {
-            vc.customView.nextButton?.addTarget(self, action: #selector(nextButtonPressed(sender:)), for: .primaryActionTriggered)
-        }
+        
 		
         disableNextButton(title: question.altNextButtonTitle ?? "Next")
         

@@ -206,7 +206,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 					$0.centerY == weakSelf.view.centerYAnchor
 					$0.centerX == weakSelf.view.centerXAnchor
 
-					$0.width == weakSelf.test.collectionView.widthAnchor - 20
+					$0.width == weakSelf.test.collectionView.widthAnchor - 75
 					
 				}
 			}
@@ -575,7 +575,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 				*Hint:* One item was located
 				in this box. Tap here.
 				""".localized(ACTranslationKey.popup_tutorial_boxhint)
-				
+                $0.targetView = cell
                 $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
                                                         secondaryColor: UIColor(named:"HintFill")!,
                                                         textColor: .black,
@@ -595,7 +595,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 						
 					} else {
 						
-						$0.top == cell.bottomAnchor + 40
+						$0.top == cell.bottomAnchor + 30
 						
 					}
 					
