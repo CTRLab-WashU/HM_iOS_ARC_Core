@@ -25,7 +25,16 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 			}
 		}
 	}
-    
+    public var backButton: UIBarButtonItem?
+    public var isShowingBackButton = false{
+        didSet {
+            if shouldShowBackButton {
+                displayBackButton(shouldShowBackButton)
+            } else {
+                displayBackButton(false)
+            }
+        }
+    }
     var useDarkStatusBar:Bool = false
     open override var preferredStatusBarStyle: UIStatusBarStyle {
         return useDarkStatusBar ? .default : .lightContent
@@ -109,6 +118,36 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 			helpButton = nil
 		}
 	}
+    open func displayBackButton(_ shouldShow:Bool) {
+        if shouldShow {
+            
+            var leftButton:UIBarButtonItem? = nil
+            if backButton == nil {
+                if self.viewControllers.count > 1 {
+                let backButton = UIButton(type: .custom)
+                backButton.frame = CGRect(x: 0, y: 0, width: 60, height: 10)
+                backButton.setImage(UIImage(named: "cut-ups/icons/arrow_left_blue"), for: .normal)
+                backButton.setTitle("BACK".localized("button_back"), for: .normal)
+                backButton.titleLabel?.font = UIFont(name: "Roboto-Medium", size: 14)
+                backButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -12)
+                backButton.setTitleColor(UIColor(named: "Primary"), for: .normal)
+                backButton.addTarget(self, action: #selector(self.backPressed), for: .touchUpInside)
+                
+                leftButton = UIBarButtonItem(customView: backButton)
+                }
+            }
+            topViewController?.navigationItem.leftBarButtonItem = leftButton
+            
+            
+        } else {
+            self.navigationItem.leftBarButtonItem = nil
+            backButton = nil
+        }
+    }
+    @objc func backPressed()
+    {
+        popViewController(animated: true)
+    }
 	@objc open func onHelp() {
 		//Supply project specific handler to prevent white screen
 		let helpState = Arc.shared.appNavigation.defaultHelpState()
@@ -310,7 +349,9 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
         if shouldShowHelpButton {
             displayHelpButton(shouldShowHelpButton)
         }
-        
+        if shouldShowBackButton{
+            displayBackButton(shouldShowBackButton)
+        }
 		vc.customView.infoContent.alignment = .leading
 		
 		vc.customView.setTextColor(UIColor(named: "Primary Text"))
