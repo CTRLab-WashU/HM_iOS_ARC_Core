@@ -13,6 +13,29 @@ import HMMarkup
 
 
 public class InfoView: ACTemplateView {
+	
+	public enum ButtonStyle {
+		case primary, secondary
+		
+		public func configure(button:ACButton) {
+			switch self {
+			case .primary:
+				button.primaryColor = ACColor.primary
+				button.secondaryColor = ACColor.primaryGradient
+				button.topColor = ACColor.primaryInnerTop
+				button.bottomColor = ACColor.primaryInnerBottom
+				button.setTitleColor(.white, for: .normal)
+			case .secondary:
+				button.primaryColor = ACColor.secondary
+				button.secondaryColor = ACColor.secondaryGradient
+				button.topColor = ACColor.secondaryInnerTop
+				button.bottomColor = ACColor.secondaryInnerBottom
+				button.setTitleColor(ACColor.badgeText, for: .normal)
+			}
+			
+		}
+	}
+	
 	weak var inputDelegate:SurveyInputDelegate? {
 		didSet {
 			self.inputItem?.surveyInputDelegate = inputDelegate
@@ -37,6 +60,13 @@ public class InfoView: ACTemplateView {
 		nextButton?.primaryColor = primary!
 		nextButton?.secondaryColor = secondary!
 		nextButton?.setTitleColor(textColor, for: .normal)
+		
+	}
+	public func setButtonColor(style:ButtonStyle) {
+		guard let button = nextButton else {
+			return
+		}
+		style.configure(button: button)
 		
 	}
     public func enableNextButton(title:String = "Next") {
@@ -179,9 +209,7 @@ public class InfoView: ACTemplateView {
 				$0.isHidden = true
 			}
 			self?.nextButton = $0.acButton {
-				$0.primaryColor = UIColor(named:"Secondary")!
-				$0.secondaryColor = UIColor(named:"Secondary Gradient")!
-				$0.setTitleColor(UIColor(named:"Primary Text")!, for: .normal)
+				ButtonStyle.secondary.configure(button: $0)
 				$0.translatesAutoresizingMaskIntoConstraints = false
 				$0.setTitle("Next", for: .normal)
 				

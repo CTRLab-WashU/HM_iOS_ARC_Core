@@ -260,9 +260,9 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		vc.customView.infoContent.alignment = .center
 		vc.customView.backgroundColor = UIColor(named:"Primary")!
 		vc.customView.setTextColor(UIColor(named: "Secondary Text"))
-		vc.customView.setButtonColor(primary: UIColor(named:"Secondary"),
-									 secondary: UIColor(named:"Secondary Gradient"),
-                                     textColor: UIColor(named:"Badge Text")!)
+		
+		vc.customView.setButtonColor(style:.secondary)
+		
 		vc.customView.setHeading(question.prompt)
 		vc.customView.setSubHeading(question.subTitle)
 		vc.customView.setContentLabel(question.detail)
@@ -314,9 +314,9 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		vc.customView.infoContent.alignment = .leading
 		
 		vc.customView.setTextColor(UIColor(named: "Primary Text"))
-		vc.customView.setButtonColor(primary: UIColor(named:"Primary"),
-										secondary: UIColor(named:"Primary Gradient"),
-										textColor: .white)
+		
+		vc.customView.setButtonColor(style:.primary)
+		
 		vc.customView.setHeading(question.prompt)
         if let style = question.style, style == .onboarding{
             vc.customView.setSeparatorWidth(0.15)

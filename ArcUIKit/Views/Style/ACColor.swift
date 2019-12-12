@@ -47,6 +47,9 @@ public struct ACColor {
 	static public let resourcesSeparator:UIColor = UIColor(named:"Resources Separator")!
 	
 	static public let tutorialHighLight:UIColor = UIColor(named:"TutorialHighlight")!
-
-
+	static public let primaryInnerTop:UIColor = UIColor(named:"PrimaryInnerTop")!
+	static public let primaryInnerBottom:UIColor = UIColor(named:"PrimaryInnerBottom")!
+	static public let secondaryInnerTop:UIColor = UIColor(named:"SecondaryInnerTop")!
+	static public let secondaryInnerBottom:UIColor = UIColor(named:"SecondaryInnerBottom")!
+	
 }

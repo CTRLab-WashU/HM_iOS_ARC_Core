@@ -24,7 +24,8 @@ import HMMarkup
     }
     @IBInspectable public var primaryColor:UIColor = UIColor(named: "Primary") ?? UIColor.white
     @IBInspectable public var secondaryColor:UIColor = UIColor(named: "Primary Gradient") ?? UIColor.gray
-	
+	@IBInspectable public var topColor:UIColor = UIColor(white: 1.0, alpha: 0.25)
+	@IBInspectable public var bottomColor:UIColor = UIColor(white: 0.0, alpha: 0.25)
 	
 	public init() {
 		super.init(frame:.zero)
@@ -45,6 +46,8 @@ import HMMarkup
 		let config = Drawing.GradientButton(cornerRadius: cornerRadius,
 											  primaryColor: primaryColor,
 											  secondaryColor: secondaryColor,
+											  topShadowColor: topColor,
+											  bottomShadowColor: bottomColor,
 											  isSelected: isSelected,
 											  isEnabled: isEnabled)
         config.draw(rect)

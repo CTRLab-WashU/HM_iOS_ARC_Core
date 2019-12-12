@@ -221,6 +221,8 @@ public struct Drawing {
 		var cornerRadius:CGFloat
 		var primaryColor:UIColor
 		var secondaryColor:UIColor
+		public var topShadowColor:UIColor
+		public var bottomShadowColor:UIColor
 		var isSelected:Bool
 		var isEnabled:Bool
 		
@@ -248,10 +250,11 @@ public struct Drawing {
 			let startPoint = CGPoint.zero
 			let endPoint = CGPoint(x:0, y:rect.height)
 			context?.drawLinearGradient(gradient, start: startPoint, end: endPoint, options:[])
-			guard let c = context else {
+			guard let c = context, isEnabled, !isSelected else {
 				return
 			}
-//			Drawing.drawInnerShadow(context: c, path: path.cgPath, shadowColor: UIColor.red.cgColor, offSet: CGSize(width: 2.0, height: 0.0), blurRadius: 5.0)
+			Drawing.drawInnerShadow(context: c, path: path.cgPath, shadowColor: topShadowColor.cgColor, offSet: CGSize(width: 0.0, height: 2.0), blurRadius: 3.0)
+			Drawing.drawInnerShadow(context: c, path: path.cgPath, shadowColor: bottomShadowColor.cgColor, offSet: CGSize(width: 0.0, height: -4.0), blurRadius: 3.0)
 		}
 	}
 
@@ -261,6 +264,7 @@ public struct Drawing {
 		public var cornerRadius:CGFloat = 6.0
 		public var primaryColor:UIColor = ACColor.badgeGradientStart
 		public var secondaryColor:UIColor = ACColor.badgeGradientEnd
+		
 		public var borderColor:UIColor = ACColor.badgeBackground
 		public var isUnlocked:Bool = false
 		public var startPoint:CGPoint? = nil

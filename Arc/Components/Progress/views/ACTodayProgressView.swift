@@ -162,9 +162,8 @@ public class ACTodayProgressView : UIView {
 				$0.trailing == safeAreaLayoutGuide.trailingAnchor - 32
 
 			}
+			InfoView.ButtonStyle.secondary.configure(button: button)
 			
-			$0.primaryColor = ACColor.secondary
-			$0.secondaryColor = ACColor.secondaryText
 			$0.setTitle("".localized(ACTranslationKey.button_next), for: .normal)
 			$0.setTitleColor(ACColor.badgeText, for: .normal)
 			

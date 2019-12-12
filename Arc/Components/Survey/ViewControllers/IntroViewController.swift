@@ -40,9 +40,7 @@ public enum IntroViewControllerStyle : String {
 			view.infoContent.contentLabel?.textAlignment = .center
 			view.backgroundColor = UIColor(named:"Primary Info")
 			view.infoContent.alignment = .center
-            view.setButtonColor(primary: UIColor(named:"Secondary"),
-                                secondary: UIColor(named:"Secondary Gradient"),
-                                textColor: UIColor(named:"Badge Text")!)
+            view.setButtonColor(style:.secondary)
 			
 		case .grids:
 			view.setSubHeading(heading)
@@ -52,9 +50,7 @@ public enum IntroViewControllerStyle : String {
 			view.backgroundColor = UIColor(named:"Primary Info")
 			view.infoContent.alignment = .leading
 			view.backgroundView.image = UIImage(named: "grids_bg", in: Bundle(for: view.classForCoder), compatibleWith: nil)
-            view.setButtonColor(primary: UIColor(named:"Secondary"),
-                                secondary: UIColor(named:"Secondary Gradient"),
-                                textColor: UIColor(named:"Badge Text")!)
+            view.setButtonColor(style:.secondary)
 
 		case .symbols:
 			view.setSubHeading(heading)
@@ -64,9 +60,7 @@ public enum IntroViewControllerStyle : String {
 			view.backgroundColor = UIColor(named:"Primary Info")
 			view.infoContent.alignment = .leading
 			view.backgroundView.image = UIImage(named: "symbols_bg", in: Bundle(for: view.classForCoder), compatibleWith: nil)
-            view.setButtonColor(primary: UIColor(named:"Secondary"),
-                                secondary: UIColor(named:"Secondary Gradient"),
-                                textColor: UIColor(named:"Badge Text")!)
+           	view.setButtonColor(style:.secondary)
 
 		case .prices:
 			view.setSubHeading(heading)
@@ -76,9 +70,7 @@ public enum IntroViewControllerStyle : String {
 			view.backgroundColor = UIColor(named:"Primary Info")
 			view.infoContent.alignment = .leading
 			view.backgroundView.image = UIImage(named: "prices_bg", in: Bundle(for: view.classForCoder), compatibleWith: nil)
-            view.setButtonColor(primary: UIColor(named:"Secondary"),
-                                secondary: UIColor(named:"Secondary Gradient"),
-                                textColor: UIColor(named:"Badge Text")!)
+            view.setButtonColor(style:.secondary)
 		
 		case .dark:
 			view.setSubHeading(heading)
