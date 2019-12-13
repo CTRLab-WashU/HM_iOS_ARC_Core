@@ -261,7 +261,7 @@ open class IntroViewController: CustomViewController<InfoView> {
 			&& !get(flag: .tutorial_grats) {
 			
 			set(flag: .tutorial_grats)
-			view.overlayView(withShapes: [.roundedRect(tutorialButton, 8.0)])
+			view.overlayView(withShapes: [.roundedRect(tutorialButton, 8.0, CGSize(width: -8, height: -8))])
 			currentHint = view.window?.hint {
 				$0.content = "".localized(ACTranslationKey.popup_tutorial_complete)
                 $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,

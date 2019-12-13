@@ -68,7 +68,7 @@ extension UIView {
 		self.window?.addSubview(newView)
 		newView.frame = self.convert(self.bounds, to: nil)
 
-		let animatedLayer = createAnimatedLayer(from: newView, strokeColor: color, fillColor: .clear, overlayShape:  OverlayShape.roundedRect(self, radius))
+        let animatedLayer = createAnimatedLayer(from: newView, strokeColor: color, fillColor: .clear, overlayShape:  OverlayShape.roundedRect(self, radius, CGSize(width: -8, height: -8)))
 		
 		animatedLayer.animatePulsingBorder(to: 1.3, for: 1.0, looping: true)
 		newView.layer.addSublayer(animatedLayer)
