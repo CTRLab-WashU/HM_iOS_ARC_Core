@@ -40,7 +40,7 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
             }
             weakSelf.selectionMade = false
             
-            let shape = OverlayShape.roundedRect(weakSelf.pricesTest.priceDisplay, 8)
+            let shape = OverlayShape.roundedRect(weakSelf.pricesTest.priceDisplay, 8, CGSize(width: -8, height: -8))
             weakSelf.pricesTest.view.overlayView(withShapes: [shape])
             weakSelf.pricesTest.priceDisplay.isUserInteractionEnabled = true
             weakSelf.currentHint = self?.view.window?.hint {
@@ -117,7 +117,7 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
             
             weakSelf.currentHint?.removeFromSuperview()
             weakSelf.pricesQuestions.questionDisplay.isUserInteractionEnabled = true
-            let shape = OverlayShape.roundedRect(weakSelf.pricesQuestions.questionDisplay, 8)
+            let shape = OverlayShape.roundedRect(weakSelf.pricesQuestions.questionDisplay, 8, CGSize(width: -8,height:-8))
             weakSelf.pricesQuestions.view.overlayView(withShapes: [shape])
             weakSelf.tutorialAnimation.pause()
             
@@ -180,7 +180,7 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
             weakSelf.currentHint?.removeFromSuperview()
             weakSelf.tutorialAnimation.pause()
             weakSelf.pricesQuestions.questionDisplay.isUserInteractionEnabled = true
-            let shape = OverlayShape.roundedRect(weakSelf.pricesQuestions.questionDisplay, 8)
+            let shape = OverlayShape.roundedRect(weakSelf.pricesQuestions.questionDisplay, 8, CGSize(width: -8, height: -8))
             weakSelf.pricesQuestions.view.overlayView(withShapes: [shape])
             
             

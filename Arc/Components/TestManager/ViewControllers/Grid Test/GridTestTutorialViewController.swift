@@ -608,7 +608,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 	}
     func maybeShowSelectNextTwoHint() {
         showingSelectNextTwo = true
-        self.test.view.overlayView(withShapes: [.roundedRect(test.collectionView, 8)])
+        self.test.view.overlayView(withShapes: [.roundedRect(test.collectionView, 8, CGSize(width: 0, height: 0))])
         currentHint?.removeFromSuperview()
         self.removeHint(hint: "hint")
         self.currentHint = self.view.window?.hint {
