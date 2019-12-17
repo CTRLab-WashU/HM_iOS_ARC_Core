@@ -12,6 +12,38 @@ public protocol ACDrawable{
 	func draw(_ rect:CGRect)
 }
 public struct Drawing {
+	
+	public static func drawInnerShadow(context:CGContext,
+									   path:CGPath,
+									   shadowColor:CGColor,
+									   offSet:CGSize,
+									   blurRadius:CGFloat) {
+		
+		guard let opaqueShadowColor = shadowColor.copy(alpha: 1.0) else {
+			assertionFailure("Color could not be copied.")
+			return
+		}
+		context.saveGState()
+		
+			context.addPath(path)
+		
+			context.clip()
+		
+		
+			context.setAlpha(shadowColor.alpha)
+		
+			context.beginTransparencyLayer(auxiliaryInfo: nil)
+				context.setShadow(offset: offSet, blur: blurRadius, color: opaqueShadowColor)
+				context.setBlendMode(.sourceOut)
+				context.setFillColor(opaqueShadowColor)
+				context.addPath(path)
+				context.fillPath()
+			context.endTransparencyLayer()
+		context.restoreGState()
+		
+		
+	}
+	
 	public struct CircularBar : ACDrawable {
 		private var startAngle = (3.0 * CGFloat.pi)/2.0
 		private var endAngle = 2.0 * CGFloat.pi
@@ -189,6 +221,8 @@ public struct Drawing {
 		var cornerRadius:CGFloat
 		var primaryColor:UIColor
 		var secondaryColor:UIColor
+		public var topShadowColor:UIColor
+		public var bottomShadowColor:UIColor
 		var isSelected:Bool
 		var isEnabled:Bool
 		
@@ -216,6 +250,11 @@ public struct Drawing {
 			let startPoint = CGPoint.zero
 			let endPoint = CGPoint(x:0, y:rect.height)
 			context?.drawLinearGradient(gradient, start: startPoint, end: endPoint, options:[])
+			guard let c = context, isEnabled, !isSelected else {
+				return
+			}
+			Drawing.drawInnerShadow(context: c, path: path.cgPath, shadowColor: topShadowColor.cgColor, offSet: CGSize(width: 0.0, height: 2.0), blurRadius: 3.0)
+			Drawing.drawInnerShadow(context: c, path: path.cgPath, shadowColor: bottomShadowColor.cgColor, offSet: CGSize(width: 0.0, height: -4.0), blurRadius: 3.0)
 		}
 	}
 
@@ -225,6 +264,7 @@ public struct Drawing {
 		public var cornerRadius:CGFloat = 6.0
 		public var primaryColor:UIColor = ACColor.badgeGradientStart
 		public var secondaryColor:UIColor = ACColor.badgeGradientEnd
+		
 		public var borderColor:UIColor = ACColor.badgeBackground
 		public var isUnlocked:Bool = false
 		public var startPoint:CGPoint? = nil

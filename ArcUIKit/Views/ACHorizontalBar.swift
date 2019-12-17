@@ -10,10 +10,10 @@ import UIKit
 
 public class ACHorizontalBar: UIView {
 	public var config : Drawing.HorizontalBar
-	var animation:Animate = Animate()
+	public var animation:Animate = Animate()
 		.duration(0.4)
-		.delay(0.2)
-		.curve(.easeOut)
+		.delay(0)
+		.curve(.none)
 	
 	public var relativeWidth : CGFloat {
 		

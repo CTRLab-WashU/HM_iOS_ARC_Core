@@ -66,6 +66,8 @@ public class HintView : IndicatorView {
 			$0.isHidden = true
 			$0.primaryColor = .clear
 			$0.secondaryColor = .clear
+			$0.topColor = .clear
+			$0.bottomColor = .clear
 			$0.tintColor = .black
             $0.titleLabel?.textColor = .black
 			Roboto.PostProcess.link($0)

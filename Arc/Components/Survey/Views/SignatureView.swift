@@ -140,6 +140,8 @@ open class SignatureView: BorderedUIView, SurveyInput {
 		view.acButton {
 			$0.primaryColor = .clear
 			$0.secondaryColor = .clear
+			$0.topColor = .clear
+			$0.bottomColor = .clear
 			$0.setTitleColor(UIColor(named:"Primary"), for: .normal)
             
 			$0.setTitle("UNDO", for: .normal)

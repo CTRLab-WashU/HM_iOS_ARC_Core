@@ -62,6 +62,8 @@ class TutorialView: UIStackView {
                         }
                         let v = $0
                         self?.progressBar = $0.acHorizontalBar {
+							$0.animation = $0.animation.curve(.easeOut).delay(0.2)
+
                             $0.relativeWidth = 0.05
                             $0.cornerRadius = 8.0
                             $0.backgroundColor = .clear

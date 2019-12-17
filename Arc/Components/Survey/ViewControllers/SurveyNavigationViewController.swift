@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+@available(*, deprecated, message: "Use BasicSurveyViewController instead. If this is a subclass update its conformance to BasicSurveyViewController.")
 open class SurveyNavigationViewController: UINavigationController, UINavigationControllerDelegate, SurveyInput, SurveyInputDelegate {
 	
 

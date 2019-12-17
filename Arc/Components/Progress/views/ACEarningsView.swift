@@ -247,9 +247,8 @@ public class ACEarningsView : ACTemplateView {
 					$0.leading == safeAreaLayoutGuide.leadingAnchor + 32
 					$0.trailing == safeAreaLayoutGuide.trailingAnchor - 32
 				}
-				$0.primaryColor = ACColor.secondary
-				$0.secondaryColor = ACColor.secondaryGradient
-				$0.setTitleColor(ACColor.badgeText, for: .normal)
+				
+				InfoView.ButtonStyle.secondary.configure(button: $0)
 				$0.setTitle("".localized(ACTranslationKey.button_next), for: .normal)
 			}
 		}

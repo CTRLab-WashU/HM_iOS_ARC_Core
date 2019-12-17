@@ -79,6 +79,7 @@ public class ACEarningsDetailView : ACTemplateView {
 				}
 				
 				$0.acHorizontalBar {
+					
 					$0.relativeWidth = 0.15
 					$0.color = UIColor(named: "HorizontalSeparator")
 					$0.layout {
