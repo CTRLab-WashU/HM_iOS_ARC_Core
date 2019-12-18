@@ -409,8 +409,10 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 	open func templateForQuestion(id: String) -> Dictionary<String, String> {return [:]}
 	
 	open func didPresentQuestion(input: SurveyInput?, questionId:String) {
+		let question = Arc.shared.surveyController.get(question: questionId)
 		if let value = Arc.shared.surveyController.getResponse(forQuestion: questionId, fromSurveyResponse: surveyId){
 			input?.setValue(value)
+			enableNextButton(title: question.nextButtonTitle ?? "".localized(ACTranslationKey.button_next))
 		}
 		
 	}
@@ -483,7 +485,11 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 												 question: question.prompt,
 												 forSurveyResponse: self.surveyId)
         
-        enableNextButton()
+		if getInput()?.getValue() != nil {
+			enableNextButton(title: question.nextButtonTitle ?? "".localized(ACTranslationKey.button_next))
+		} else {
+			disableNextButton(title: question.altNextButtonTitle ?? "".localized(ACTranslationKey.button_next))
+		}
 	}
 	public func nextPressed(input: SurveyInput?, value: QuestionResponse?) {
 		isValid(value: value, questionId: questions[currentIndex].questionId) { [weak self] valid in
