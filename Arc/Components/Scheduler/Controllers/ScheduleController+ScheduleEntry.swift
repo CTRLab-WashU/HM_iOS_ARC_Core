@@ -62,27 +62,50 @@ public extension ScheduleController {
         
         return schedule
     }
-    
+	func formatTime(time:String, with currentDate:Date) -> Date {
+		let formatter = DateFormatter()
+		formatter.defaultDate = currentDate
+		
+		formatter.dateFormat = "h:mm a"
+		var newTime = formatter.date(from:  time);
+		if newTime == nil {
+			formatter.amSymbol = "a.m."
+			formatter.pmSymbol = "p.m."
+			newTime = formatter.date(from:  time)
+		}
+		if newTime == nil {
+			formatter.amSymbol = "am"
+			formatter.pmSymbol = "pm"
+			newTime = formatter.date(from:  time)
+		}
+		guard let result = newTime else {
+			fatalError("Failed to create date.")
+		}
+		return result
+	}
+	
     func get(startTimeForDate currentDate:Date, participantID:Int) -> Date {
-        let formatter = DateFormatter()
-        formatter.defaultDate = currentDate
-        formatter.dateFormat = "h:mm a"
         
         let schedule = get(scheduleForDay: currentDate, participantID: participantID)
-        
-        let startTime = formatter.date(from:  schedule.availabilityStart!)!;
+		guard let start = schedule.availabilityStart else {
+				fatalError("No schedule configured")
+		}
+		
+		let startTime = formatTime(time: start, with: currentDate)
+		
         return startTime
     }
     
     func get(endTimeForDate currentDate:Date, participantID:Int) -> Date {
-        let formatter = DateFormatter()
-        formatter.defaultDate = currentDate
-        formatter.dateFormat = "h:mm a"
-        
+		
         let schedule = get(scheduleForDay: currentDate, participantID: participantID)
-        let startTime = formatter.date(from:  schedule.availabilityStart!)!;
-        let endTime = formatter.date(from:  schedule.availabilityEnd!)!;
-        
+		guard let start = schedule.availabilityStart,
+			let end = schedule.availabilityEnd else {
+			fatalError("No schedule configured")
+		}
+		let startTime = formatTime(time: start, with: currentDate)
+		let endTime = formatTime(time: end, with: currentDate)
+
         if endTime.timeIntervalSince1970 < startTime.timeIntervalSince1970 {
             return endTime.addingDays(days: 1)
         }
