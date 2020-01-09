@@ -173,9 +173,7 @@ public class AC2FAuthenticationViewController: BasicSurveyViewController {
 		controller.authenticate { (id, error) in
 			OperationQueue.main.addOperation {
 				if let value = id {
-					if let input:SurveyInput = self.topViewController as? SurveyInput {
-						input.setError(message: nil)
-					}
+					self.set(error: error)
 					Arc.shared.participantId = Int(value)
 					
 					self.hideSpinner()
@@ -183,10 +181,8 @@ public class AC2FAuthenticationViewController: BasicSurveyViewController {
 					Arc.shared.nextAvailableState()
 
 				} else {
-					if let input:SurveyInput = self.topViewController as? SurveyInput {
-						input.setError(message:error)
-						self.hideSpinner()
-					}
+					self.set(error: error)
+					self.hideSpinner()
 				}
 			}
 		}
