@@ -22,7 +22,7 @@ public class AC2FAuthenticationViewController: BasicSurveyViewController {
 	public var initialValue:String?
 	public var validParticipantId:String?
 	public var code:String?
-	
+	let controller = Arc.shared.authController
 	
 	fileprivate func addResendCodeButton() {
 		if let vc:CustomViewController<InfoView> = getTopViewController() {
@@ -138,7 +138,6 @@ public class AC2FAuthenticationViewController: BasicSurveyViewController {
 		
 	}
 	public override func valueSelected(value: QuestionResponse, index: String) {
-		let controller = Arc.shared.authController
 		//All questions are of type string in this controller
 		if let input:SurveyInput = self.topViewController as? SurveyInput {
 			
@@ -151,6 +150,8 @@ public class AC2FAuthenticationViewController: BasicSurveyViewController {
 		
 		if index == "auth_arc"
 		{
+			//Clear credentials
+			controller.clear()
 			initialValue = value
 			
 		}
@@ -158,34 +159,35 @@ public class AC2FAuthenticationViewController: BasicSurveyViewController {
 		{
 			
 			_ = controller.set(password: value)
+			guard let _ = controller.getUserName(), let _ = controller.getPassword() else { return; }
+			
+			addSpinner(color: .white, backGroundColor: UIColor(named:"Primary"))
+
+			controller.authenticate { (id, error) in
+				OperationQueue.main.addOperation {
+					if let value = id {
+						self.set(error: nil)
+						Arc.shared.participantId = Int(value)
+						
+						self.hideSpinner()
+						
+						Arc.shared.nextAvailableState()
+
+					} else {
+						self.set(error: error)
+						self.hideSpinner()
+					}
+				}
+			}
 
 			
 		} else if index == "auth_confirm" {
 			
-				_ = controller.set(username: value)
+			_ = controller.set(username: value)
 			
 		}
 		
-		guard let _ = controller.getUserName(), let _ = controller.getPassword() else { return; }
 		
-		addSpinner(color: .white, backGroundColor: UIColor(named:"Primary"))
-
-		controller.authenticate { (id, error) in
-			OperationQueue.main.addOperation {
-				if let value = id {
-					self.set(error: error)
-					Arc.shared.participantId = Int(value)
-					
-					self.hideSpinner()
-					
-					Arc.shared.nextAvailableState()
-
-				} else {
-					self.set(error: error)
-					self.hideSpinner()
-				}
-			}
-		}
 	}
 	
 	
