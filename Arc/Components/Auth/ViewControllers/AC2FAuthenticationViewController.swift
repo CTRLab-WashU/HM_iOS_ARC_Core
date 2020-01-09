@@ -45,13 +45,18 @@ public class AC2FAuthenticationViewController: BasicSurveyViewController {
 	
 	public override func didPresentQuestion(input: SurveyInput?, questionId: String) {
 		
-		if let view = input as? (SegmentedTextView) {
-			view.set(length: 6)
+		let view = input as? (SegmentedTextView)
+		
+		//If the view is a segmented text view and not nil
+		//set the length to 6
+		view?.set(length: 6)
 			
-		}
+	
 		
 		if questionId == "2fa" {
 			
+			//This will prevent the input from triggering a next action when valid. 
+			view?.shouldTryNext = false
 			addResendCodeButton()
             
             let vc:CustomViewController<InfoView> = getTopViewController()!
