@@ -349,7 +349,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		
 		let _ = Arc.shared.surveyController.set(response: value,
 												questionId: question.questionId,
-												question: question.prompt,
+												question: question.prompt.localized(question.prompt),
 												forSurveyId: self.surveyId)
 	}
 	
@@ -361,6 +361,11 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		if let value = Arc.shared.surveyController.getResponse(forQuestion: questionId, fromSurveyResponse: surveyId){
 			input?.setValue(value)
 		}
+		
+		let question = questions[currentIndex]
+		let _ = Arc.shared.surveyController.mark(displayTime: questionId,
+												 question: question.prompt.localized(question.prompt),
+												 forSurveyResponse: surveyId)
 		
 	}
 	
@@ -421,7 +426,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		let question = questions[currentIndex]
 		
 		let _ = Arc.shared.surveyController.mark(responseTime: question.questionId,
-												 question: question.prompt,
+												 question: question.prompt.localized(question.prompt),
 												 forSurveyResponse: self.surveyId)
         
         enableNextButton()
