@@ -431,6 +431,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
                                 id: responseId)
 
 			delegate?.didSelectGrid(indexPath: indexPath)
+            showDot(on: indexPath)
 			if shouldAutoProceed {
 				maybeEndTimer?.invalidate();
 				maybeEndTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false, block: { (timer) in
@@ -457,7 +458,10 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         }
 
     }
-    
+    func showDot(on indexPath: IndexPath) {
+           guard let cell = self.collectionView.cellForItem(at: indexPath) as? GridImageCell else { return }
+           cell.dotView.isHidden = false
+       }
     open func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath)
     {
         if (collectionView.cellForItem(at: indexPath) as? GridImageCell) != nil
