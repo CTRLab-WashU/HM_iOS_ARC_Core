@@ -44,7 +44,7 @@ open class IntroViewController: UIViewController {
 			//backButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -8, bottom: 0, right: 0)
 			backButton.setTitleColor(UIColor(named: "Secondary"), for: .normal)
 			backButton.backgroundColor = UIColor(named:"Secondary Back Button Background")
-			backButton.layer.cornerRadius = 16.0
+			backButton.layer.cornerRadius = 20.0
 			backButton.addTarget(self, action: #selector(self.backPressed), for: .touchUpInside)
 			//NSLayoutConstraint(item: backButton, attribute: NSLayoutConstraint.Attribute.left, relatedBy: NSLayoutConstraint.Relation.equal, toItem: super.view, attribute: NSLayoutConstraint.Attribute.left, multiplier: 1, constant: -75).isActive = true
 			let leftButton = UIBarButtonItem(customView: backButton)
