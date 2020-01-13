@@ -69,7 +69,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
             LETTER_BUFFER = 60
         }
 		
-		controller.set(symbols: responseId, gridTests: tests)
+		let _ = controller.set(symbols: responseId, gridTests: tests)
         
     }
     override open func viewDidAppear(_ animated: Bool) {
@@ -349,7 +349,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
     {
         if (collectionView.cellForItem(at: indexPath) as? GridImageCell) != nil
         {
-            let value = controller.unsetValue(responseIndex: indexPath.row,
+            _ = controller.unsetValue(responseIndex: indexPath.row,
                                 questionIndex: testNumber,
                                 gridType: .image,
                                 id: responseId)

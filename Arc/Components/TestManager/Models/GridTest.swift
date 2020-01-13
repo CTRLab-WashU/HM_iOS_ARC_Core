@@ -109,7 +109,7 @@ public struct GridTestResponse : HMTestCodable {
 
 extension GridTestResponse.Section.Choice : Hashable, Comparable {
     public static func == (lhs: GridTestResponse.Section.Choice, rhs: GridTestResponse.Section.Choice) -> Bool {
-        return lhs.x == rhs.x && lhs.y == rhs.y && lhs.selection_time == rhs.selection_time
+                return lhs.x == rhs.x && lhs.y == rhs.y
     }
     
     public func hash(into hasher: inout Hasher) {
