@@ -153,6 +153,25 @@ public extension UIWindow {
 			})
 		}
 	}
+    func getBackgroundColor() -> UIColor{
+        guard let rootVC = rootViewController else {
+            return .white;
+        }
+        var color = UIColor.white;
+        if let vc = rootVC as? UINavigationController,
+           let c = vc.topViewController?.view.backgroundColor{
+            color = c;
+        }
+        else if let vc = rootVC as? UITabBarController{
+            if let innerVC = vc.selectedViewController as? UINavigationController,
+               let c = innerVC.topViewController?.view.backgroundColor{
+                color = c;
+            } else {
+                color = vc.selectedViewController?.view?.backgroundColor ?? .white;
+            }
+        }
+        return color
+    }
 }
 
 internal extension UIViewController {
