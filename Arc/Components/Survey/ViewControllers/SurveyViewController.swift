@@ -63,6 +63,7 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
             let backButton = UIButton(type: .custom)
             backButton.frame = CGRect(x: 0, y: 0, width: 60, height: 10)
             backButton.setImage(UIImage(named: "cut-ups/icons/arrow_left_blue"), for: .normal)
+            backButton.adjustsImageWhenHighlighted = false
             backButton.setTitle("BACK".localized("button_back"), for: .normal)
             backButton.titleLabel?.font = UIFont(name: "Roboto-Medium", size: 14)
             backButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
