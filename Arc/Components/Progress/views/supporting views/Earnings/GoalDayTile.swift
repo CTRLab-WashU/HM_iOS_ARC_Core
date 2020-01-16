@@ -9,7 +9,7 @@
 import UIKit
 import ArcUIKit
 public class GoalDayTile: UIView {
-	weak var progressView:CircularProgressView!
+	public weak var progressView:CircularProgressView!
 	weak var titleLabel:ACLabel!
 	override init(frame: CGRect) {
 		super.init(frame: .zero)
