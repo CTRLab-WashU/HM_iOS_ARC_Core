@@ -198,7 +198,7 @@ public class ACEarningsView : ACTemplateView {
 					
 					
 					self.fourofFourGoal = $0.fourOfFourGoalView {
-						$0.set(titleText: "4 Out of 4")
+						$0.set(titleText: "4 Out of 4".localized(ACTranslationKey.earnings_4of4_header))
 						$0.set(isUnlocked: false)
 						
 					}
