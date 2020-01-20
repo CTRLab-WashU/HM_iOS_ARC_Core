@@ -188,7 +188,7 @@ public class ACHomeView: ACTemplateView {
 		switch surveyStatus {
 		case .available:
 			//heading = "Hello!".localized("home_header")
-			message = "You have a new test available.".localized("home_body")
+			message = "You have a new test available.".localized("home_header1")
 			surveyButton.isHidden = false
 			
 		case .laterToday:

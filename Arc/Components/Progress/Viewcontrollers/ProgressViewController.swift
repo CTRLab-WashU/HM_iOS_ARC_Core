@@ -76,7 +76,7 @@ class ProgressViewController: CustomViewController<ACProgressView> {
 			
 			} else {
 			
-//				customView.todaysSessionRemainingLabel.text = " \(today.totalSessions - today.sessionsStarted) Remaining"
+
 				customView.todaysSessionRemainingLabel.text = "".localized(ACTranslationKey.progress_dailystatus_remaining)
                 .replacingOccurrences(of: "{#}", with: "\(today.totalSessions - today.sessionsStarted)")
 				
