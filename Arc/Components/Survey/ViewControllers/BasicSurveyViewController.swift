@@ -415,7 +415,6 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 			enableNextButton(title: question.nextButtonTitle ?? "".localized(ACTranslationKey.button_next))
 		}
 		
-		let question = questions[currentIndex]
 		let _ = Arc.shared.surveyController.mark(displayTime: questionId,
 												 question: question.prompt.localized(question.prompt),
 												 forSurveyResponse: surveyId)
