@@ -78,6 +78,8 @@ extension StudyController : ThisStudyExpressible {
 		
 		calendar.locale = Locale(identifier: Arc.shared.appController.locale.string)
 		
+		components.calendar = calendar
+
 		components.month = 6
 		
 		return DateComponentsFormatter.localizedString(from: components, unitsStyle: DateComponentsFormatter.UnitsStyle.full) ?? ""
@@ -161,8 +163,5 @@ extension StudyController : ThisWeekExpressible {
 			return ""
 		}
 	}
-	
-	
-	
-	
+
 }
