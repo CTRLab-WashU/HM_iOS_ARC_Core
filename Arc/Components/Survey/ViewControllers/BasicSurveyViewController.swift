@@ -102,7 +102,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 				
 				let helpButton = UIButton(type: .custom)
 				helpButton.frame = CGRect(x: 0, y: 0, width: 60, height: 10)
-				helpButton.setTitle("HELP".localized("help"), for: .normal)
+				helpButton.setTitle("HELP".localized(ACTranslationKey.button_help), for: .normal)
 				helpButton.titleLabel?.font = UIFont(name: "Roboto-Medium", size: 14)
 				helpButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -16)
 				helpButton.setTitleColor(UIColor(named: "Primary"), for: .normal)
@@ -127,7 +127,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
                 let backButton = UIButton(type: .custom)
                 backButton.frame = CGRect(x: 0, y: 0, width: 60, height: 10)
                 backButton.setImage(UIImage(named: "cut-ups/icons/arrow_left_blue"), for: .normal)
-                backButton.setTitle("BACK".localized("button_back"), for: .normal)
+                backButton.setTitle("BACK".localized(ACTranslationKey.button_back), for: .normal)
                 backButton.titleLabel?.font = UIFont(name: "Roboto-Medium", size: 14)
                 backButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -12)
                 backButton.setTitleColor(UIColor(named: "Primary"), for: .normal)
@@ -316,7 +316,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		}
 		if let presentable = presentableVc {
 			let button = HMMarkupButton()
-			button.setTitle("View a Tutorial", for: .normal)
+			button.setTitle("View a Tutorial".localized(ACTranslationKey.testing_tutorial_link), for: .normal)
 			Roboto.Style.bodyBold(button.titleLabel!, color:.white)
 			Roboto.PostProcess.link(button)
 			button.addAction {[weak self] in
@@ -335,7 +335,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		vc.customView.inputDelegate = self
 		
 		vc.customView.nextButton?.addTarget(self, action: #selector(nextButtonPressed(sender:)), for: .primaryActionTriggered)
-        vc.customView.nextButton?.setTitle(question.nextButtonTitle ?? "Next", for: .normal)
+        vc.customView.nextButton?.setTitle(question.nextButtonTitle ?? "Next".localized(ACTranslationKey.button_next), for: .normal)
 		didPresentQuestion(input: vc.customView.inputItem, questionId: question.questionId)
 		
 	}
@@ -386,7 +386,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 
         
 		
-        disableNextButton(title: question.altNextButtonTitle ?? "Next")
+        disableNextButton(title: question.altNextButtonTitle ?? "Next".localized(ACTranslationKey.button_next))
         
 		didPresentQuestion(input: vc.customView.inputItem, questionId: question.questionId)
 
@@ -438,7 +438,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
         input.customView.enableNextButton()
     }
     
-    public func enableNextButton(title:String = "Next") {
+    public func enableNextButton(title:String = "Next".localized(ACTranslationKey.button_next)) {
         guard let input:CustomViewController<InfoView> = self.getTopViewController() else {
             return
         }
@@ -446,7 +446,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
         input.customView.enableNextButton(title: title)
     }
     
-    public func disableNextButton(title:String = "Next")
+    public func disableNextButton(title:String = "Next".localized(ACTranslationKey.button_next))
     {
         guard let input:CustomViewController<InfoView>  = self.getTopViewController() else {
             return
