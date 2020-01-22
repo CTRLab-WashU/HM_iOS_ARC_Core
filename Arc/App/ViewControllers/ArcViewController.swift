@@ -12,7 +12,7 @@ open class ArcViewController: UIViewController {
 	public let app = Arc.shared
     override open func viewDidLoad() {
         super.viewDidLoad()
-
+		modalPresentationStyle = .fullScreen
         // Do any additional setup after loading the view.
     }
     
