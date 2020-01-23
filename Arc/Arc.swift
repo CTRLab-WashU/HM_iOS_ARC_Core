@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import HMMarkup
+import hMCrashReporter
 public protocol ArcApi {
 	
 }
@@ -118,7 +119,9 @@ open class Arc : ArcApi {
 	}
     static public func configureWithEnvironment(environment:ArcEnvironment) {
         self.environment = environment
-        
+		if let crashReporterKey = environment.crashReporterApiKey {
+        	hMCrashReporter.sharedInstance.setup(apiKey: crashReporterKey)
+		}
         HMAPI.baseUrl = environment.baseUrl ?? ""
 		CoreDataStack.useMockContainer = environment.mockData
 
@@ -150,7 +153,7 @@ open class Arc : ArcApi {
         Arc.shared.WELCOME_LOGO =  UIImage(named: environment.welcomeLogo ?? "")
         Arc.shared.WELCOME_TEXT = environment.welcomeText ?? ""
         Arc.shared.APP_PRIVACY_POLICY_URL = environment.privacyPolicyUrl ?? ""
-      
+		
         
         if let arcStartDays = environment.arcStartDays {
             Arc.shared.studyController.ArcStartDays = arcStartDays
