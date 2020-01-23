@@ -21,7 +21,7 @@ public class TestProgressViewController: CustomViewController<TestProgressView> 
     
 	init(title:String, subTitle:String, count:Int, maxCount:Int = 3) {
 		
-		super.init(nibName: nil, bundle: nil)
+		super.init()
 		
 		customView.title = title
 		customView.subTitle = subTitle

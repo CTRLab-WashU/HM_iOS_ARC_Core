@@ -13,7 +13,7 @@ public class TestCountDownViewController: CustomViewController<TestCountDownView
 	
 	init(nextVc:UIViewController) {
 		self.nextVc = nextVc
-		super.init(nibName: nil, bundle: nil)
+		super.init()
 	}
 	
 	required init?(coder aDecoder: NSCoder) {

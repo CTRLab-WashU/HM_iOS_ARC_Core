@@ -16,8 +16,8 @@ public class ACTodayProgressViewController: CustomViewController<ACTodayProgress
         return .lightContent
     }
 	
-	public init() {
-		super.init(nibName: nil, bundle: nil)
+	public override init() {
+		super.init()
         
         // If we've finished the baseline then this must be a paid test
         if get(flag: .baseline_completed) {

@@ -20,7 +20,7 @@ class ResendCodeViewController: CustomViewController<InfoView>, SurveyInput{
 	var participantId:String
 	init(id:String) {
 		participantId = id
-		super.init(nibName: nil, bundle: nil)
+		super.init()
 	}
 	
 	required init?(coder aDecoder: NSCoder) {

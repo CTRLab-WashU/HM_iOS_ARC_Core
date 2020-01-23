@@ -44,7 +44,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
     }
 	
 	public init(isPostTest:Bool) {
-		super.init(nibName: nil, bundle: nil)
+		super.init()
 		self.isPostTest = isPostTest
 	}
 	
