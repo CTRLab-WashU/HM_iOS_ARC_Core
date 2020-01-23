@@ -551,8 +551,7 @@ open class Arc : ArcApi {
         let lastFetch = appController.lastBackgroundFetch?.localizedFormat()
         let list = studyController.getUpcomingSessions(withLimit: 32, startDate: dateFrame as NSDate)
             .map({
-                " \($0.study?.studyID ?? -1)-\($0.sessionID): \($0.sessionDate?.localizedString() ?? "") \(($0.finishedSession) ? "√" : "\(($0.missedSession) ? "x" : "\(($0.startTime == nil) ? "-" : "o")")")"
-                
+                " w:\($0.week) d:\($0.day)\n\($0.study?.studyID ?? -1)-\($0.sessionID): \($0.sessionDate?.localizedString() ?? "") \(($0.finishedSession) ?  "√" : "\(($0.missedSession) ? "x" : "\(($0.startTime == nil) ? "-" : "o")")") \($0.uploaded ? "∆" : "") "
             }).joined(separator: "\n")
         
         
