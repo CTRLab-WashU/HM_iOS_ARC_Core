@@ -238,7 +238,7 @@ public class ACEarningsView : ACTemplateView {
 				$0.bottom == self.bottomAnchor ~ 999
 				$0.trailing == self.trailingAnchor ~ 999
 				$0.leading == self.leadingAnchor ~ 999
-				$0.height == 96 ~ 999
+				$0.top == self.safeAreaLayoutGuide.bottomAnchor - 96 ~ 999
 			}
 			bottomGradient(view: $0)
 			self.nextButton = $0.acButton {
