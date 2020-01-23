@@ -450,7 +450,9 @@ open class StudyController : MHController {
         fatalError("Override is required")
     }
 	
-	
+	open func getPhaseIndex(forSession:Session) -> Int {
+		return -99
+	}
 	/// Creates a schedule using a pre existing reqest data object.
 	/// - The where clause enables this class to use implmentation specific details related to the phase protocol.
 	/// - Parameters:

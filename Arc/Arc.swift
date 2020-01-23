@@ -507,9 +507,9 @@ open class Arc : ArcApi {
         let lastFetch = appController.lastBackgroundFetch?.localizedFormat()
         let list = studyController.getUpcomingSessions(withLimit: 332, startDate: dateFrame as NSDate)
             .map({
-                " \($0.study?.studyID ?? -1)-\($0.sessionID): \($0.sessionDate?.localizedString() ?? "") \(($0.finishedSession) ? "√" : "\(($0.missedSession) ? "x" : "\(($0.startTime == nil) ? "-" : "o")")")"
+				" w:\($0.week) d:\($0.day) p:\(studyController.getPhaseIndex(forSession: $0))\n\($0.study?.studyID ?? -1)-\($0.sessionID): \($0.sessionDate?.localizedString() ?? "") \(($0.finishedSession) ? "\($0.uploaded ? "∆" : "√")" : "\(($0.missedSession) ? "x" : "\(($0.startTime == nil) ? "-" : "o")")")"
                 
-            }).joined(separator: "\n")
+            }).joined(separator: "\n\n")
         
         print(list)
         

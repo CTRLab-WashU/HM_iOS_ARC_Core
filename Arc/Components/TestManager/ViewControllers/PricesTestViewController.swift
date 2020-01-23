@@ -137,7 +137,7 @@ public class PricesTestViewController: ArcViewController {
 					//Present controller
 					weakSelf.questionDisplay = .get()
 					weakSelf.questionDisplay?.responseId = weakSelf.responseID
-					
+					weakSelf.questionDisplay?.modalPresentationStyle = .fullScreen
 					weakSelf.present(weakSelf.questionDisplay!, animated: false, completion: { [weak self] in
 						guard let weakself = self else {
 							return
