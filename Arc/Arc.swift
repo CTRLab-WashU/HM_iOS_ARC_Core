@@ -255,11 +255,13 @@ open class Arc : ArcApi {
 		sessionController.sendFinishedSessions()
 		sessionController.sendMissedSessions()
 		sessionController.sendSignatures()
-		if !appController.testScheduleUploaded{
+		if !appController.testScheduleUploaded && !appController.testScheduleUploading{
+			appController.testScheduleUploading = true
 			let studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
 			Arc.shared.sessionController.uploadSchedule(studyPeriods: studies)
 		}
-		if !appController.wakeSleepUploaded {
+		if !appController.wakeSleepUploaded && !appController.wakeSleepUploading{
+			appController.wakeSleepUploading = true
 			if let study = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID}).first {
 				Arc.shared.scheduleController.upload(confirmedSchedule: Int(study.studyID));
 			}

@@ -65,6 +65,8 @@ open class ScheduleController : MHController {
 			HMAPI.submitWakeSleepSchedule.execute(data: data) { (response, obj, _) in
                 guard !HMRestAPI.shared.blackHole else {
                     Arc.shared.appController.wakeSleepUploaded = true
+					Arc.shared.appController.wakeSleepUploading = false
+
                     return
                 }
 				if let errors = obj?.errors, errors.count > 0 {
@@ -73,11 +75,15 @@ open class ScheduleController : MHController {
 					HMLog("Participant: \(data.participant_id), received response \(obj?.toString() ?? "") on \(Date())")
 					Arc.shared.appController.wakeSleepUploaded = true
 				}
-				
+				Arc.shared.appController.wakeSleepUploading = false
+
 
 			}
 		} else {
+			Arc.shared.appController.wakeSleepUploading = false
+
 			fatalError("Incorrect study id supplied.")
+			
 		}
 	}
     //update a schedule

@@ -169,6 +169,20 @@ open class AppController : MHController {
 			defaults.synchronize();
 		}
 	}
+	public var wakeSleepUploading:Bool {
+		get {
+			if let value = (defaults.value(forKey:"wakeSleepUploading") as? Bool)
+			{
+				return value;
+			}
+			return false;
+		}
+		set (newVal)
+		{
+			defaults.setValue(newVal, forKey:"wakeSleepUploading");
+			defaults.synchronize();
+		}
+	}
 	public var testScheduleUploaded:Bool {
 		get {
 			if let value = (defaults.value(forKey:"testScheduleUploaded") as? Bool)
@@ -183,7 +197,20 @@ open class AppController : MHController {
 			defaults.synchronize();
 		}
 	}
-
+	public var testScheduleUploading:Bool {
+		get {
+			if let value = (defaults.value(forKey:"testScheduleUploading") as? Bool)
+			{
+				return value;
+			}
+			return false;
+		}
+		set (newVal)
+		{
+			defaults.setValue(newVal, forKey:"testScheduleUploading");
+			defaults.synchronize();
+		}
+	}
 	public var lastClosedDate:Date?
 
 	

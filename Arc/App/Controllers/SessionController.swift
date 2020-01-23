@@ -167,12 +167,16 @@ open class SessionController:MHController {
 			HMLog("Participant: \(data.participant_id ?? ""), received response \(obj?.toString() ?? "") on \(Date())", silent: false)
             guard !HMRestAPI.shared.blackHole else {
                 Arc.shared.appController.testScheduleUploaded = true
+                Arc.shared.appController.testScheduleUploading = false
+
                 return
             }
 			MHController.dataContext.performAndWait {
 				
 				if obj?.errors.count == 0 {
 					studyPeriod.scheduleUploaded = true
+					Arc.shared.appController.testScheduleUploading = false
+
 					if md5 == obj?.response?.md5 {
 						self.save()
 
@@ -183,6 +187,8 @@ open class SessionController:MHController {
 					}
 				} else {
 					studyPeriod.scheduleUploaded = false
+					Arc.shared.appController.testScheduleUploading = false
+
 					//dump(obj?.errors)
 //                    print(obj?.errors.toString())
 
@@ -205,6 +211,8 @@ open class SessionController:MHController {
 			MHController.dataContext.performAndWait {
                 guard !HMRestAPI.shared.blackHole else {
                     Arc.shared.appController.testScheduleUploaded = true
+					Arc.shared.appController.testScheduleUploading = false
+
                     return
                 }
 				if obj?.errors.count == 0 {
@@ -213,16 +221,19 @@ open class SessionController:MHController {
 						self.save()
 						HMLog("\(md5 ?? "") does match \(obj?.response?.md5 ?? "")", silent: false)
 						Arc.shared.appController.testScheduleUploaded = true
-
+						
 						
 					} else {
 						HMLog("\(md5 ?? "") does not match \(obj?.response?.md5 ?? "")", silent: false)
 					}
+					
 				} else {
 					studyPeriods.forEach({$0.scheduleUploaded = true})
 					dump(obj?.errors)
 
 				}
+                Arc.shared.appController.testScheduleUploading = false
+
 				
 			}
 		}
