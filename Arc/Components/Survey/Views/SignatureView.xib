@@ -80,7 +80,7 @@
             <color red="0.0" green="0.3411764705882353" blue="0.50588235294117645" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Primary Selection">
-            <color red="0.0" green="0.3411764705882353" blue="0.50588235294117645" alpha="0.24858832156658173" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.3411764705882353" blue="0.50588235294117645" alpha="0.24899999797344208" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
