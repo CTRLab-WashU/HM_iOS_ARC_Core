@@ -112,7 +112,7 @@ open class Arc : ArcApi {
 	public var currentTestSession:Int?
 	static public var currentState:State?
     static public var environment:ArcEnvironment?
-	
+	static public var debuggableStates:[State] = []
 	
 	public init() {
 		controllerRegistry.registerControllers()
@@ -546,7 +546,11 @@ open class Arc : ArcApi {
 
 		
 	}
-    public func debugSchedule() {
+	public func debugScreens() {
+		let urls = Arc.screenShotApp(states:Arc.debuggableStates)
+		
+	}
+	public func debugSchedule(states:[State]? = nil) {
         let dateFrame = studyController.getCurrentStudyPeriod()?.userStartDate ?? Date()
         let lastFetch = appController.lastBackgroundFetch?.localizedFormat()
         let list = studyController.getUpcomingSessions(withLimit: 32, startDate: dateFrame as NSDate)
@@ -568,6 +572,7 @@ open class Arc : ArcApi {
             \(list)
             """, options:  [.default("Notifications", {[weak self] in self?.debugNotifications()}),
 							.default("Data", {[weak self] in self?.debugData()}),
+							.default("Screens", {[weak self] in self?.debugScreens()}),
                             .cancel("Close", {})],
                  isScrolling: true)
     }
@@ -630,5 +635,84 @@ open class Arc : ArcApi {
 			]
 		)
 	}
+	public static func screenShotApp(states:[State]) -> [URL] {
+		var urls:[URL] = []
+			
+		let results = states
+			.lazy
+			.compactMap(Arc.screenShot)
+			.compactMap(Arc.imageFromView)
+			
+			
+		for result in results.enumerated() {
+
+			if let url = save(image: result.element, withName: "\(result.offset).png") {
+
+				urls.append(url)
+				print(url)
+			}
+		}
+		
+		return urls
+	}
+	
+	public static  func screenShot(state:State) -> UIView? {
+		let vc = state.viewForState()
+		Arc.shared.appNavigation.navigate(vc: vc, direction: .fade, duration: 0)
+		guard let window = UIApplication.shared.keyWindow else {
+			assertionFailure("No Keywindow")
+
+			return nil
+		}
+		if let v = vc as? BasicSurveyViewController {
+			return v.topViewController?.view.snapshotView(afterScreenUpdates: true)
+		}
+		if let v = vc as? CustomViewController<ACTemplateView> {
+			return v.customView.root.snapshotView(afterScreenUpdates: true)
+		}
+		guard let view = window.rootViewController?.view.snapshotView(afterScreenUpdates: true) else {
+			return nil
+		}
+		
+		return view
+	}
+	public static  func screenShot(viewController:UIViewController) -> UIView? {
+		Arc.shared.appNavigation.navigate(vc: viewController, direction: .fade, duration: 0)
+		guard let window = UIApplication.shared.keyWindow else {
+			assertionFailure("No Keywindow")
+			
+			return nil
+		}
+		guard let view = window.snapshotView(afterScreenUpdates: true) else {
+			return nil
+		}
+		
+		return view
+	}
+	public static  func imageFromView(view:UIView) -> UIImage? {
+		let renderer = UIGraphicsImageRenderer(size: view.bounds.size)
+		let image = renderer.image { ctx in
+			view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+		}
+		
+		return image
+	}
+	public static  func save(image:UIImage, withName name:String) -> URL? {
+		if let data = image.pngData() {
+			let filename = getCachesDirectory().appendingPathComponent(name)
+			try? data.write(to: filename)
+			return filename
+		}
+		return nil
+	}
+	public static func getDocumentsDirectory() -> URL {
+		let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+		return paths[0]
+	}
+	public static func getCachesDirectory() -> URL {
+		let paths = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
+		return paths[0]
+	}
+	
 }
 

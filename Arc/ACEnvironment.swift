@@ -15,6 +15,7 @@ public enum PriceTestType {
 }
 public protocol ArcEnvironment {
 	var crashReporterApiKey:String? {get}
+	var debuggableStates:[State] {get}
 	var isDebug:Bool {get}
     var mockData:Bool {get}
     var blockApiRequests:Bool {get}
@@ -66,6 +67,8 @@ public extension ArcEnvironment {
     //This will trigger a flag that causes coredata to use a mock
     //persistent store, an in-memory database. 
 	var mockData:Bool {return true}
+	var debuggableStates:[State] {return []}
+
 	var isDebug:Bool {return false}
 	var blockApiRequests:Bool {return true}
 	var arcStartDays:Dictionary<Int, Int>? {

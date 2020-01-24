@@ -22,7 +22,7 @@ import HMMarkup
 	If a view becomes scrollable then a scroll indicator will appear on the screen.
 */
 open class ACTemplateView: UIView, UIScrollViewDelegate {
-	var root:UIScrollView!
+	public var root:UIScrollView!
 	var backgroundView:UIImageView!
 	public var nextButton:ACButton?
 	var renderer:HMMarkupRenderer!
