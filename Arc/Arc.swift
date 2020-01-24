@@ -122,6 +122,7 @@ open class Arc : ArcApi {
 		if let crashReporterKey = environment.crashReporterApiKey {
         	hMCrashReporter.sharedInstance.setup(apiKey: crashReporterKey)
 		}
+		Arc.debuggableStates = environment.debuggableStates
         HMAPI.baseUrl = environment.baseUrl ?? ""
 		CoreDataStack.useMockContainer = environment.mockData
 
@@ -548,7 +549,7 @@ open class Arc : ArcApi {
 	}
 	public func debugScreens() {
 		let urls = Arc.screenShotApp(states:Arc.debuggableStates)
-		
+		dump(urls)
 	}
 	public func debugSchedule(states:[State]? = nil) {
         let dateFrame = studyController.getCurrentStudyPeriod()?.userStartDate ?? Date()
@@ -635,25 +636,17 @@ open class Arc : ArcApi {
 			]
 		)
 	}
-	public static func screenShotApp(states:[State]) -> [URL] {
+	public static func screenShotApp(states:[State]) -> URL? {
 		var urls:[URL] = []
 			
 		let results = states
-			.lazy
 			.compactMap(Arc.screenShot)
 			.compactMap(Arc.imageFromView)
 			
 			
-		for result in results.enumerated() {
-
-			if let url = save(image: result.element, withName: "\(result.offset).png") {
-
-				urls.append(url)
-				print(url)
-			}
-		}
 		
-		return urls
+		
+		return createPDFDataFromImage(images: results)
 	}
 	
 	public static  func screenShot(state:State) -> UIView? {
@@ -704,6 +697,34 @@ open class Arc : ArcApi {
 			return filename
 		}
 		return nil
+	}
+	
+	public static func createPDFDataFromImage(images: [UIImage]) -> URL? {
+		let pdfData = NSMutableData()
+		guard let window = UIApplication.shared.keyWindow else {
+			assertionFailure("No Keywindow")
+			
+			return nil
+		}
+		let imageRect = CGRect(x: 0, y: 0, width: window.frame.width, height: window.frame.height)
+		UIGraphicsBeginPDFContextToData(pdfData, imageRect, nil)
+		for image in images {
+			UIGraphicsBeginPDFPage()
+			image.draw(in: imageRect)
+		}
+		UIGraphicsEndPDFContext()
+
+		//try saving in doc dir to confirm:
+		let dir = getCachesDirectory()
+		let path = dir.appendingPathComponent("ScreenShots.pdf")
+
+		do {
+				try pdfData.write(to: path, options: NSData.WritingOptions.atomic)
+		} catch {
+			print("error catched")
+		}
+
+		return path
 	}
 	public static func getDocumentsDirectory() -> URL {
 		let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
