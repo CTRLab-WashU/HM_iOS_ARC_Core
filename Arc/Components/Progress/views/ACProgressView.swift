@@ -152,7 +152,7 @@ class ACProgressView: ACTemplateView {
 						$0.axis = .vertical
 						$0.spacing = 8.0
 						$0.acLabel {
-							Roboto.Style.body($0, color: ACColor.primary)
+							Roboto.Style.body($0, color: ACColor.primaryDate)
 							$0.text = "".localized(ACTranslationKey.progress_startdate)
 							
 						}
@@ -170,7 +170,7 @@ class ACProgressView: ACTemplateView {
 
 						
 						$0.acLabel {
-							Roboto.Style.body($0, color: ACColor.primary)
+							Roboto.Style.body($0, color: ACColor.primaryDate)
 							$0.text = "".localized(ACTranslationKey.progress_enddate)
 						}
 						self.endDateLabel = $0.acLabel {

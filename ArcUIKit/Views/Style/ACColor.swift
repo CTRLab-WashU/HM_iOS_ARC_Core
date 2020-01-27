@@ -23,6 +23,7 @@ public struct ACColor {
 	
 	//Primary App colors
 	static public let primary:UIColor = UIColor(named:"Primary")!
+    static public let primaryDate:UIColor = UIColor(named:"Primary Date")!
 	static public let primaryGradient:UIColor = UIColor(named:"Primary Gradient")!
 	static public let primaryInfo:UIColor = UIColor(named:"Primary Info")!
 	static public let primaryLinebreak:UIColor = UIColor(named:"Primary Linebreak")!

@@ -64,7 +64,7 @@ public struct Roboto {
 		public static let heading = UIFont(name: "Roboto", size: 26)!
 
 		public static let headingMedium = UIFont(name: "Roboto-Medium", size: 26)!
-		public static let earningsBold = UIFont(name: "Roboto-medium", size: 32)!
+		public static let earningsBold = UIFont(name: "Roboto-Medium", size: 32)!
 		
 		public static let headingBlack = UIFont(name: "Roboto", size: 26)!
 			.family(Roboto.family)
@@ -133,7 +133,7 @@ public struct Roboto {
 			label.numberOfLines = 0
 			label.textColor = color
 		}
-		public static func disclaimer(_ label:UILabel, color:UIColor? = UIColor(named: "primary Text")) {
+		public static func disclaimer(_ label:UILabel, color:UIColor? = UIColor(named: "Primary Text")) {
 			label.font = Roboto.Font.disclaimer
 			label.numberOfLines = 0
 			label.textColor = color
@@ -175,7 +175,7 @@ public struct Roboto {
 			label.textColor = color
 			label.textAlignment = .center
 		}
-		public static func goalReward(_ label:UILabel, color:UIColor? = UIColor(named: "primary Text")) {
+		public static func goalReward(_ label:UILabel, color:UIColor? = UIColor(named: "Primary Text")) {
 			label.font = Roboto.Font.goalReward
 			label.numberOfLines = 1
 			label.textColor = color
