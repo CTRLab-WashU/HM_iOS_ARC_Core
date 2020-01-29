@@ -347,6 +347,8 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
 			}
 			if let input = input {
 				self?.onQuestionDisplayed(input: input, index: index)
+			} else {
+				self?.onPromptDisplayed(index: index)
 			}
 
 		}
@@ -405,6 +407,9 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
 			}
 		}
     }
+	open func onPromptDisplayed(index:String) {
+		
+	}
     open func onQuestionDisplayed(input:SurveyInput, index:String) {
 		
 		let question = Arc.shared.surveyController.get(question: index)

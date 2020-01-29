@@ -22,15 +22,15 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
     var questionPresented:((SurveyInput?)->Void)?
 	var templateHandler:((String)->Dictionary<String,String>)?
 	public var helpPressed:(()->())?
-    @IBOutlet weak var promptLabel: UILabel!
+    @IBOutlet public weak var promptLabel: UILabel!
 	@IBOutlet weak var errorLabel:UILabel!
-    @IBOutlet weak var detailsLabel:UILabel!
+    @IBOutlet public weak var detailsLabel:UILabel!
 	@IBOutlet public weak var nextButton:UIButton!
 
-    @IBOutlet weak var container: UIStackView!
-    @IBOutlet weak var views: UIStackView!
+    @IBOutlet public weak var container: UIStackView!
+    @IBOutlet public weak var views: UIStackView!
     @IBOutlet weak var nextBottomSpacing: NSLayoutConstraint!
-    @IBOutlet weak var bottomAnchor: NSLayoutConstraint!
+    @IBOutlet public weak var bottomAnchor: NSLayoutConstraint!
     @IBOutlet weak var privacyStack: UIStackView!
     @IBOutlet weak var privacyPolicyButton: UIButton!
 	@IBOutlet weak var scrollView: UIScrollView!
@@ -145,6 +145,8 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 		displayQuestion(question: question)
         
     }
+	
+	
 	func displayQuestion(question:Survey.Question) {
 		//promptLabel.text = question.prompt
 		//Get supplied template for question

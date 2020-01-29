@@ -18,3 +18,16 @@ open class CancelButton : UIButton {
 	}
 	
 }
+open class BoldCancelButton : UIButton {
+	override open func setTitle(_ title: String?, for state: UIControl.State) {
+		let attributes:[NSAttributedString.Key:Any] = [
+			.foregroundColor : UIColor(named: "Primary") as Any,
+			.font : UIFont(name: "Roboto-Regular", size: 18.0)?.boldFont() as Any,
+			.underlineStyle: NSUnderlineStyle.single.rawValue
+		]
+		let attributedString = NSAttributedString(string: title ?? "", attributes: attributes)
+		
+		super.setAttributedTitle(attributedString, for: .normal)
+	}
+	
+}
