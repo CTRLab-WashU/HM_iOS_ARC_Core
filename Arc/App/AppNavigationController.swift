@@ -54,6 +54,10 @@ public protocol AppNavigationController {
 
 
 open class BaseAppNavigationController : AppNavigationController {
+	public func screenShotApp() -> [URL] {
+		return []
+	}
+	
 	
 	
     public init() {

@@ -300,6 +300,8 @@
 		C5E7212822F10D25004B9E26 /* TestProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E7212722F10D25004B9E26 /* TestProgressViewController.swift */; };
 		C5E7212A22F10D9C004B9E26 /* TestProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E7212922F10D9C004B9E26 /* TestProgressView.swift */; };
 		C5E7212C22F1C9D3004B9E26 /* ACColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E7212B22F1C9D3004B9E26 /* ACColor.swift */; };
+		C5EB849623DB8CA30070A240 /* ACPDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EB849523DB8CA30070A240 /* ACPDFViewController.swift */; };
+		C5EB849923DB8D050070A240 /* ACPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EB849823DB8D050070A240 /* ACPDFView.swift */; };
 		C5F77F37222F095200BECAE1 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F77F36222F095200BECAE1 /* SignatureViewController.swift */; };
 		C5FA041623C93015009ACBA0 /* hMCrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5490FEC23C8F74C00DC4FA7 /* hMCrashReporter.framework */; };
 		E86732322315808800844F91 /* ACHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86732312315808800844F91 /* ACHomeViewController.swift */; };
@@ -654,6 +656,8 @@
 		C5E7212722F10D25004B9E26 /* TestProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestProgressViewController.swift; sourceTree = "<group>"; };
 		C5E7212922F10D9C004B9E26 /* TestProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestProgressView.swift; sourceTree = "<group>"; };
 		C5E7212B22F1C9D3004B9E26 /* ACColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACColor.swift; sourceTree = "<group>"; };
+		C5EB849523DB8CA30070A240 /* ACPDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPDFViewController.swift; sourceTree = "<group>"; };
+		C5EB849823DB8D050070A240 /* ACPDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPDFView.swift; sourceTree = "<group>"; };
 		C5F77F34222F094000BECAE1 /* SignatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureView.swift; sourceTree = "<group>"; };
 		C5F77F36222F095200BECAE1 /* SignatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureViewController.swift; sourceTree = "<group>"; };
 		C5F77F38222F15DD00BECAE1 /* SignatureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignatureView.xib; sourceTree = "<group>"; };
@@ -977,6 +981,8 @@
 				C54AE91C21C81B5C00DEC360 /* Algorithms.swift */,
 				C54AE91D21C81B5C00DEC360 /* HMRestAPI */,
 				C54AE92A21C81B5C00DEC360 /* ToggleButton.swift */,
+				C5EB849523DB8CA30070A240 /* ACPDFViewController.swift */,
+				C5EB849823DB8D050070A240 /* ACPDFView.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1976,6 +1982,7 @@
 				C54AE9D021C81B5F00DEC360 /* Arc.swift in Sources */,
 				C54D104422C28A1D00B43E42 /* MultipleChoiceView.swift in Sources */,
 				C56D6C5D22CD3FE800C3F8EA /* PricesTestTutorialViewController.swift in Sources */,
+				C5EB849623DB8CA30070A240 /* ACPDFViewController.swift in Sources */,
 				C54AEA2421C81B5F00DEC360 /* ACContactViewController.swift in Sources */,
 				C55F8CCD230F0FF0006D43BD /* GoalsGroup.swift in Sources */,
 				C5143959224EA6FD000BF1CB /* ACSignatureNavigationController.swift in Sources */,
@@ -2099,6 +2106,7 @@
 				C54AE9D921C81B5F00DEC360 /* UIViewController+Extensions.swift in Sources */,
 				C54AE9F021C81B5F00DEC360 /* AppNavigationController.swift in Sources */,
 				C54AE9E721C81B5F00DEC360 /* SessionInfoResponse.swift in Sources */,
+				C5EB849923DB8D050070A240 /* ACPDFView.swift in Sources */,
 				C593227522E8BB0F00528FF5 /* AC2FAuthenticationViewController.swift in Sources */,
 				C54AEA2C21C81B5F00DEC360 /* LoginHelpView.swift in Sources */,
 				C57ABE1F23060BD7000C9315 /* GoalRewardView.swift in Sources */,

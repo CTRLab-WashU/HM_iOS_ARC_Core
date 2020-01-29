@@ -4,7 +4,7 @@ import SpriteKit
 import WebKit
 import MapKit
 import MetalKit
-
+import PDFKit
 public func view(apply closure: (UIView) -> Void) -> UIView {
 	let view = UIView()
 	closure(view)
@@ -47,7 +47,10 @@ extension UIView {
 	public func view(apply closure: (UIView) -> Void) -> UIView {
 		return custom(UIView(), apply: closure)
 	}
-	
+	@discardableResult
+	public func pdfView(apply closure: (PDFView) -> Void) -> PDFView {
+		return custom(PDFView(), apply: closure)
+	}
 	@discardableResult
 	public func button(with type: UIButton.ButtonType = .system,
 					   apply closure: (UIButton) -> Void) -> UIButton {

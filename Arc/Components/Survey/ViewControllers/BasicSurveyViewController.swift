@@ -25,6 +25,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 			}
 		}
 	}
+	public var autoAdvancePageIndex:Bool = true
     public var backButton: UIBarButtonItem?
     public var isShowingBackButton = false{
         didSet {
@@ -571,14 +572,17 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 	///
 	open override func pushViewController(_ viewController: UIViewController, animated: Bool) {
 		super.pushViewController(viewController, animated: animated)
-		
-		currentIndex = viewControllers.count - 1
+		if autoAdvancePageIndex {
+			currentIndex = viewControllers.count - 1
+		}
 		print(currentIndex)
 		guard currentIndex < questions.count else {
 			return
 		}
-		
-		display(question: questions[currentIndex])
+		if autoAdvancePageIndex {
+
+			display(question: questions[currentIndex])
+		}
 	}
 	
 	public func updateNextQuestion(question:Survey.Question, answer:QuestionResponse){
