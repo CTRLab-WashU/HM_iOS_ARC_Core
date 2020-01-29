@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import HMMarkup
 import hMCrashReporter
+import PDFKit
 public protocol ArcApi {
 	
 }
@@ -548,8 +549,19 @@ open class Arc : ArcApi {
 		
 	}
 	public func debugScreens() {
-		let urls = Arc.screenShotApp(states:Arc.debuggableStates)
-		dump(urls)
+		guard let url = Arc.screenShotApp(states:Arc.debuggableStates) else {
+			return
+		}
+		dump(url)
+		
+		guard let window = UIApplication.shared.keyWindow else {
+            return
+        }
+		let pdfViewer = ACPDFViewController()
+		pdfViewer.modalPresentationStyle = .pageSheet
+		pdfViewer.setDocument(url: url)
+		window.rootViewController?.present(pdfViewer, animated: true, completion: nil)
+       
 	}
 	public func debugSchedule(states:[State]? = nil) {
         let dateFrame = studyController.getCurrentStudyPeriod()?.userStartDate ?? Date()
@@ -640,50 +652,53 @@ open class Arc : ArcApi {
 		var urls:[URL] = []
 			
 		let results = states
+		.lazy
 			.compactMap(Arc.screenShot)
-			.compactMap(Arc.imageFromView)
 			
-			
+		var images:[UIImage] = []
+		for result in results {
+			images.append(contentsOf: result)
+		}
 		
 		
-		return createPDFDataFromImage(images: results)
+		return createPDFDataFromImage(images: images)
 	}
 	
-	public static  func screenShot(state:State) -> UIView? {
+	public static  func screenShot(state:State) -> [UIImage]? {
 		let vc = state.viewForState()
-		Arc.shared.appNavigation.navigate(vc: vc, direction: .fade, duration: 0)
-		guard let window = UIApplication.shared.keyWindow else {
-			assertionFailure("No Keywindow")
-
-			return nil
-		}
+		var images = [UIImage]()
+		print("Snapshotting \(state)")
 		if let v = vc as? BasicSurveyViewController {
-			return v.topViewController?.view.snapshotView(afterScreenUpdates: true)
+			v.autoAdvancePageIndex = false
+			for question in (v.questions + (v.subQuestions ?? [])).enumerated() {
+				
+				
+				//This controller uses internal indexing, a side effect is triggered by addController
+				
+				v.addController(v.customViewController(forQuestion: question.element))
+				v.currentIndex = question.offset
+				v.display(question: question.element)
+				guard let image = imageFromView(view: v.view) else {
+					continue
+				}
+				images.append(image)
+			}
+			return images
 		}
-		if let v = vc as? CustomViewController<ACTemplateView> {
-			return v.customView.root.snapshotView(afterScreenUpdates: true)
+		if 	let v = vc as? CustomViewController<ACTemplateView>,
+			let image = imageFromView(view: v.customView.root.subviews[0]) {
+			return [image]
 		}
-		guard let view = window.rootViewController?.view.snapshotView(afterScreenUpdates: true) else {
-			return nil
-		}
-		
-		return view
+		return nil
+
 	}
 	public static  func screenShot(viewController:UIViewController) -> UIView? {
-		Arc.shared.appNavigation.navigate(vc: viewController, direction: .fade, duration: 0)
-		guard let window = UIApplication.shared.keyWindow else {
-			assertionFailure("No Keywindow")
-			
-			return nil
-		}
-		guard let view = window.snapshotView(afterScreenUpdates: true) else {
-			return nil
-		}
 		
-		return view
+		return viewController.view
 	}
 	public static  func imageFromView(view:UIView) -> UIImage? {
 		let renderer = UIGraphicsImageRenderer(size: view.bounds.size)
+		print("Drawing image")
 		let image = renderer.image { ctx in
 			view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
 		}
@@ -706,11 +721,15 @@ open class Arc : ArcApi {
 			
 			return nil
 		}
-		let imageRect = CGRect(x: 0, y: 0, width: window.frame.width, height: window.frame.height)
+		let imageRect = CGRect(x: 0, y: 0, width: window.frame.width + 200, height: window.frame.height + 200)
 		UIGraphicsBeginPDFContextToData(pdfData, imageRect, nil)
 		for image in images {
 			UIGraphicsBeginPDFPage()
-			image.draw(in: imageRect)
+			let context = UIGraphicsGetCurrentContext()
+			context?.setFillColor(UIColor.black.cgColor)
+			context?.fill(imageRect)
+			
+			image.draw(in: CGRect(x: 100, y: 50, width: image.size.width, height: image.size.height))
 		}
 		UIGraphicsEndPDFContext()
 

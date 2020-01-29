@@ -70,7 +70,7 @@ public class AC2FAuthenticationViewController: BasicSurveyViewController {
 	
 	public override func customViewController(forQuestion question: Survey.Question) -> UIViewController? {
 		if question.state == "ResendCode" {
-			return ResendCodeViewController(id: initialValue!)
+			return ResendCodeViewController(id: initialValue ?? "100000")
 		}
 		return nil
 	}
