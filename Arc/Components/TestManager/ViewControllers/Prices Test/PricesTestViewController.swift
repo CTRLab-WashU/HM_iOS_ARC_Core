@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ArcUIKit
 public protocol PricesTestDelegate : class {
 	func didSelectGoodPrice(_ option:Int)
 	func didSelectPrice(_ option:Int)
@@ -19,10 +20,11 @@ public class PricesTestViewController: ArcViewController {
     @IBOutlet weak var itemPriceLabel: UILabel!
     @IBOutlet weak var goodPriceLabel: UILabel!
 	@IBOutlet weak var priceDisplay: UIStackView!
+	@IBOutlet weak var priceContainer: ACView!
 	
     @IBOutlet weak var buttonStack: UIStackView!
     private var questionDisplay:PricesQuestionViewController?
-
+	public var questionAlignment:NSTextAlignment = .left
     var controller = Arc.shared.pricesTestController
     var test:PriceTest?
     var responseID = ""
@@ -92,12 +94,10 @@ public class PricesTestViewController: ArcViewController {
 			let count = controller.get(testCount: responseID)
 			flippedPrices = Set<Int>.uniqueSet(numberOfItems: count / 2, maxValue: count)
 		}
-        
-        if Arc.environment?.priceTestType == .simplified {
-            self.buttonStack.isHidden = true
-            self.goodPriceLabel.isHidden = true
-        }
-
+		
+		//Based on the type certain mods will be applied.
+		Arc.environment?.priceTestType.applyMods(viewController: self)
+		
     }
     
     override open func viewDidAppear(_ animated: Bool) {
@@ -174,6 +174,8 @@ public class PricesTestViewController: ArcViewController {
 		//Present controller
 		questionDisplay = .get()
 		questionDisplay?.modalPresentationStyle = .fullScreen
+		questionDisplay?.questionAlignment = questionAlignment
+
 		questionDisplay?.responseId = responseID
         questionDisplay?.isTutorial = self.isTutorial
 //		questionDisplay?.selectQuestion()
@@ -187,11 +189,13 @@ public class PricesTestViewController: ArcViewController {
 		//Present controller
 		questionDisplay = .get()
 		questionDisplay?.modalPresentationStyle = .fullScreen
+		questionDisplay?.questionAlignment = questionAlignment
 		questionDisplay?.responseId = responseID
 		present(questionDisplay!, animated: false, completion: { [weak self] in
 			guard let weakself = self else {
 				return
 			}
+			
 			weakself.questionDisplay?.selectQuestion()
 		})
 		alertView.removeFromSuperview()

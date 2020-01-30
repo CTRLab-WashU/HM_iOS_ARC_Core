@@ -119,7 +119,7 @@ public struct Roboto {
 			label.numberOfLines = 0
 			label.textColor = color
 		}
-		public static func medium(_ label:UILabel, color:UIColor? = ACColor.primaryText) {
+		public static func medium(_ label:UILabel, color:UIColor? = .primaryText) {
 			label.backgroundColor = .clear
 			
 			label.font = Roboto.Font.medium
@@ -138,8 +138,8 @@ public struct Roboto {
 			label.numberOfLines = 0
 			label.textColor = color
 		}
-		public static func badge(_ label:UILabel, color:UIColor? = ACColor.badgeText) {
-			label.backgroundColor = ACColor.badgeBackground
+		public static func badge(_ label:UILabel, color:UIColor? = .badgeText) {
+			label.backgroundColor = .badgeBackground
 			label.layer.cornerRadius = 4
 			label.clipsToBounds = true
 			label.font = Roboto.Font.goalReward

@@ -15,6 +15,8 @@ open class PricesQuestionViewController: ArcViewController, TestProgressViewCont
     //@IBOutlet var buttons: [UIButton]!
     
     @IBOutlet weak var questionLabel: UILabel!
+    @IBOutlet weak var questionLabel2: UILabel!
+	public var questionAlignment:NSTextAlignment = .left
     //@IBOutlet weak var priceLabel: UILabel!
     
     // Buttons
@@ -41,6 +43,8 @@ open class PricesQuestionViewController: ArcViewController, TestProgressViewCont
     override open func viewWillAppear(_ animated:Bool) {
         super.viewDidAppear(animated)
         buildButtonStackView()
+		questionLabel.textAlignment = questionAlignment
+		questionLabel2.textAlignment = questionAlignment
         if isBeingPresented {
 
 			

@@ -203,6 +203,8 @@
 		C54D104A22C28A1D00B43E42 /* DateRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F77F3A22306CFA00BECAE1 /* DateRangeView.swift */; };
 		C54D104B22C28A1D00B43E42 /* ACCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50FC3BA22330F2C00143EA8 /* ACCalendarView.swift */; };
 		C54D104F22C29DA700B43E42 /* SurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D104E22C29DA700B43E42 /* SurveyView.swift */; };
+		C54D488623E3308000EE9511 /* PriceTestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D488523E3308000EE9511 /* PriceTestType.swift */; };
+		C54D488823E339CB00EE9511 /* BackgroundStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D488723E339CB00EE9511 /* BackgroundStyle.swift */; };
 		C54E8E1122E64CE00080BFC1 /* SymbolsTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54E8E1022E64CE00080BFC1 /* SymbolsTutorialViewController.swift */; };
 		C54E8E1B22E7B6330080BFC1 /* ConstraintDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54E8E1A22E7B6330080BFC1 /* ConstraintDSL.swift */; };
 		C54E8E1E22E800780080BFC1 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54E8E1C22E800780080BFC1 /* CircularProgressView.swift */; };
@@ -264,6 +266,9 @@
 		C593227522E8BB0F00528FF5 /* AC2FAuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C593227422E8BB0F00528FF5 /* AC2FAuthenticationViewController.swift */; };
 		C593227B22EA397C00528FF5 /* ScheduleEndViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C593227922EA397B00528FF5 /* ScheduleEndViewController.xib */; };
 		C593227C22EA397C00528FF5 /* ScheduleEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C593227A22EA397C00528FF5 /* ScheduleEndViewController.swift */; };
+		C594B3D623E244D400B9743C /* PriceTestMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C594B3D523E244D400B9743C /* PriceTestMod.swift */; };
+		C594B3DA23E245BA00B9743C /* Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C594B3D923E245BA00B9743C /* Alignment.swift */; };
+		C594B3DC23E245F100B9743C /* HideGoodPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C594B3DB23E245F100B9743C /* HideGoodPrice.swift */; };
 		C59D6EEF22FA21B20037B671 /* ACHomeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59D6EEE22FA21B20037B671 /* ACHomeTabViewController.swift */; };
 		C5A43CCF22CA648700C10BC0 /* ACHorizontalBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A43CCE22CA648700C10BC0 /* ACHorizontalBar.swift */; };
 		C5AB56122302030F00129E03 /* WeekStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB56112302030F00129E03 /* WeekStepperView.swift */; };
@@ -568,6 +573,8 @@
 		C54D101222C2745A00B43E42 /* QuestionStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionStyle.swift; sourceTree = "<group>"; };
 		C54D101422C2846E00B43E42 /* UIDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDSL.swift; sourceTree = "<group>"; };
 		C54D104E22C29DA700B43E42 /* SurveyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyView.swift; sourceTree = "<group>"; };
+		C54D488523E3308000EE9511 /* PriceTestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTestType.swift; sourceTree = "<group>"; };
+		C54D488723E339CB00EE9511 /* BackgroundStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundStyle.swift; sourceTree = "<group>"; };
 		C54E8E1022E64CE00080BFC1 /* SymbolsTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolsTutorialViewController.swift; sourceTree = "<group>"; };
 		C54E8E1A22E7B6330080BFC1 /* ConstraintDSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintDSL.swift; sourceTree = "<group>"; };
 		C54E8E1C22E800780080BFC1 /* CircularProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
@@ -618,6 +625,9 @@
 		C593227422E8BB0F00528FF5 /* AC2FAuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AC2FAuthenticationViewController.swift; sourceTree = "<group>"; };
 		C593227922EA397B00528FF5 /* ScheduleEndViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScheduleEndViewController.xib; sourceTree = "<group>"; };
 		C593227A22EA397C00528FF5 /* ScheduleEndViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleEndViewController.swift; sourceTree = "<group>"; };
+		C594B3D523E244D400B9743C /* PriceTestMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTestMod.swift; sourceTree = "<group>"; };
+		C594B3D923E245BA00B9743C /* Alignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alignment.swift; sourceTree = "<group>"; };
+		C594B3DB23E245F100B9743C /* HideGoodPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideGoodPrice.swift; sourceTree = "<group>"; };
 		C59D6EEE22FA21B20037B671 /* ACHomeTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACHomeTabViewController.swift; sourceTree = "<group>"; };
 		C5A43CCE22CA648700C10BC0 /* ACHorizontalBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACHorizontalBar.swift; sourceTree = "<group>"; };
 		C5AB56112302030F00129E03 /* WeekStepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekStepperView.swift; sourceTree = "<group>"; };
@@ -1500,6 +1510,18 @@
 			path = ArcTests;
 			sourceTree = "<group>";
 		};
+		C594B3D823E2454A00B9743C /* PriceTestMods */ = {
+			isa = PBXGroup;
+			children = (
+				C54D488523E3308000EE9511 /* PriceTestType.swift */,
+				C594B3D523E244D400B9743C /* PriceTestMod.swift */,
+				C594B3D923E245BA00B9743C /* Alignment.swift */,
+				C54D488723E339CB00EE9511 /* BackgroundStyle.swift */,
+				C594B3DB23E245F100B9743C /* HideGoodPrice.swift */,
+			);
+			path = PriceTestMods;
+			sourceTree = "<group>";
+		};
 		C5B2601422135F7300BFF778 /* ArcUIKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -1541,6 +1563,7 @@
 		C5C2B12322D39386002CB4C5 /* Prices Test */ = {
 			isa = PBXGroup;
 			children = (
+				C594B3D823E2454A00B9743C /* PriceTestMods */,
 				C56D6C5C22CD3FE800C3F8EA /* PricesTestTutorialViewController.swift */,
 				C54AE95921C81B5C00DEC360 /* PricesTestViewController.swift */,
 				2D35988C237B6604005EF2CF /* SimplifiedPricesTestTutorialViewController.swift */,
@@ -1973,6 +1996,7 @@
 				C5E3924B22EA3A8F007CB3B6 /* ContactInfoResponse.swift in Sources */,
 				C54AEA0B21C81B5F00DEC360 /* PricesQuestionViewController.swift in Sources */,
 				C5CCD7AE22DF717D002A788A /* AsyncAwait.swift in Sources */,
+				C594B3DC23E245F100B9743C /* HideGoodPrice.swift in Sources */,
 				C54AEA6321C81B5F00DEC360 /* CoreDataStack.swift in Sources */,
 				C54AEA1B21C81B5F00DEC360 /* TextAlertView.swift in Sources */,
 				C540B5B1221E0FD000B539A4 /* LanguageViewController.swift in Sources */,
@@ -1995,6 +2019,7 @@
 				C523B38622CA76450074337D /* UIViewController + CustomView.swift in Sources */,
 				C54D104222C28A1D00B43E42 /* PasswordView.swift in Sources */,
 				C54AE9E321C81B5F00DEC360 /* Algorithms.swift in Sources */,
+				C594B3D623E244D400B9743C /* PriceTestMod.swift in Sources */,
 				C54AEA0D21C81B5F00DEC360 /* InstructionNavigationController.swift in Sources */,
 				C5E7212A22F10D9C004B9E26 /* TestProgressView.swift in Sources */,
 				C56D6C5B22CD2B9F00C3F8EA /* ACTutorialViewController.swift in Sources */,
@@ -2078,6 +2103,7 @@
 				C54E8E2322E88D590080BFC1 /* StepperProgressview.swift in Sources */,
 				C51A7D8722D7EC5900854B13 /* ParticipationView.swift in Sources */,
 				C545AB0723283168002672C2 /* ACPostCycleFinishView.swift in Sources */,
+				C54D488823E339CB00EE9511 /* BackgroundStyle.swift in Sources */,
 				C54AE9E121C81B5F00DEC360 /* HMLog.swift in Sources */,
 				C54AEA2221C81B5F00DEC360 /* ACContactNavigationController.swift in Sources */,
 				C54AEA4421C81B5F00DEC360 /* SurveyController.swift in Sources */,
@@ -2097,6 +2123,7 @@
 				C54AE9E421C81B5F00DEC360 /* StatusCode.swift in Sources */,
 				C593227322E8916300528FF5 /* BlockProgressview.swift in Sources */,
 				C54AEA2B21C81B5F00DEC360 /* AuthController.swift in Sources */,
+				C54D488623E3308000EE9511 /* PriceTestType.swift in Sources */,
 				C57E9C862236C232009F6228 /* StartDateShiftViewController.swift in Sources */,
 				E8BA72F923198BD800823374 /* ResourcesNavigationViewController.swift in Sources */,
 				C5192A6F22C519D900223B69 /* UIDSL+ArcCore.swift in Sources */,
@@ -2141,6 +2168,7 @@
 				C54AEA3721C81B5F00DEC360 /* ScheduleController+ScheduleEntry.swift in Sources */,
 				C54AE9E921C81B5F00DEC360 /* TestSession.swift in Sources */,
 				C53B123822F348F900BACA9A /* ACTodayProgressViewController.swift in Sources */,
+				C594B3DA23E245BA00B9743C /* Alignment.swift in Sources */,
 				C54AE9F321C81B5F00DEC360 /* ProxyManager.swift in Sources */,
 				C5477C7C231868E10072425D /* RebukedCommitmentViewController.swift in Sources */,
 				C54AEA0021C81B5F00DEC360 /* PrimaryButton.swift in Sources */,

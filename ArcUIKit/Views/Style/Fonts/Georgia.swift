@@ -51,7 +51,7 @@ public struct Georgia {
 			label.textColor = color
 			
 		}
-		static public func veryLargeTitle(_ label:UILabel, color:UIColor = ACColor.primaryInfo) {
+		static public func veryLargeTitle(_ label:UILabel, color:UIColor = .primaryInfo) {
 			label.font = Georgia.Font.veryLargeTitle
 			label.numberOfLines = 0
 			label.textColor = color

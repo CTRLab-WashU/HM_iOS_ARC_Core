@@ -10,9 +10,7 @@ import Foundation
 public enum AuthStyle {
 	case raterArcConfirm, arcConfirmRater, tfa, arcConfirm
 }
-public enum PriceTestType {
-    case normal, simplified
-}
+
 public protocol ArcEnvironment {
 	var crashReporterApiKey:String? {get}
 	var debuggableStates:[State] {get}

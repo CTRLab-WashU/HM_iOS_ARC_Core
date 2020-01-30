@@ -119,7 +119,7 @@ public struct Drawing {
 	
 	public struct Ellipse : ACDrawable {
 
-		public var color:UIColor = ACColor.highlight
+		public var color:UIColor = .highlight
 		public var radius:CGFloat = 100.0
 		public var alpha:CGFloat = 1.0
 		public var size:CGFloat = 200.0 {
@@ -151,7 +151,7 @@ public struct Drawing {
 		public var keyFrames:[CGPoint] = []
 		public var path:UIBezierPath = UIBezierPath()
 		public var offset:CGPoint = .zero
-		public var strokeColor:UIColor = ACColor.primaryInfo
+		public var strokeColor:UIColor = .primaryInfo
 		public var progress:Double = 0
 		public var scale:CGFloat = 1.0
 		
@@ -262,10 +262,10 @@ public struct Drawing {
 	public struct BadgeGradient : ACDrawable {
 		
 		public var cornerRadius:CGFloat = 6.0
-		public var primaryColor:UIColor = ACColor.badgeGradientStart
-		public var secondaryColor:UIColor = ACColor.badgeGradientEnd
+		public var primaryColor:UIColor = .badgeGradientStart
+		public var secondaryColor:UIColor = .badgeGradientEnd
 		
-		public var borderColor:UIColor = ACColor.badgeBackground
+		public var borderColor:UIColor = .badgeBackground
 		public var isUnlocked:Bool = false
 		public var startPoint:CGPoint? = nil
 		public var endPoint:CGPoint? = nil
@@ -306,7 +306,7 @@ public struct Drawing {
 			} else {
 				let dashPattern: [CGFloat] = [4.0, 4.0]
 				path.setLineDash(dashPattern, count: dashPattern.count, phase: 0)
-				context?.setStrokeColor(ACColor.badgeGray.cgColor)
+				context?.setStrokeColor(UIColor.badgeGray.cgColor)
 				path.stroke()
 
 			}
