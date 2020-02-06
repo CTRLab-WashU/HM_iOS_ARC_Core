@@ -48,11 +48,14 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 
 	}
     override func finishTutorial() {
+		removeHint(hint: "Hint")
         self.set(flag: .prices_tutorial_shown)
         super.finishTutorial()
     }
 	func didSelectPrice(_ option: Int) {
 		view.window?.clearOverlay()
+		view.removeHighlight()
+		removeHint(hint: "Hint")
 		currentHint?.removeFromSuperview()
 		tutorialAnimation.resume()
 		selectionMade = true
@@ -62,7 +65,11 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 	}
 	func didSelectGoodPrice(_ option: Int) {
 		view.window?.clearOverlay()
+		view.removeHighlight()
+
 		currentHint?.removeFromSuperview()
+		removeHint(hint: "Hint")
+
         selectionMade = true
 		tutorialAnimation.resume()
         getNextStep()
@@ -203,7 +210,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
             weakSelf.pricesTest.view.overlayView(withShapes: [shape])
 			weakSelf.tutorialAnimation.pause()
 			self?.currentHint = self?.view.window?.hint {
-				$0.content = "*What do you think?*\n Choose the answer that makes sense to you."
+				$0.content = "*What do you think?*\n Choose the answer that makes sense to you.".localized(ACTranslationKey.popup_tutorial_recall)
                 $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
                                                         secondaryColor: UIColor(named:"HintFill")!,
                                                         textColor: .black,
@@ -271,7 +278,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 			weakSelf.tutorialAnimation.pause()
 
 			self?.currentHint = self?.view.window?.hint {
-				$0.content = "*What do you think?*\nTry your best to recall the price from part one."
+				$0.content = "*What do you think?*\nTry your best to recall the price from part one.".localized(ACTranslationKey.popup_tutorial_choose2)
                 $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
                                                         secondaryColor: UIColor(named:"HintFill")!,
                                                         textColor: .black,
@@ -334,7 +341,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 
 			
 			self?.currentHint = self?.view.window?.hint {
-				$0.content = "*What do you think?*\nTry your best to recall the price from part one."
+				$0.content = "*What do you think?*\nTry your best to recall the price from part one.".localized(ACTranslationKey.popup_tutorial_choose2)
                 $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
                                                         secondaryColor: UIColor(named:"HintFill")!,
                                                         textColor: .black,
@@ -358,6 +365,54 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 			
 			weakSelf.finishTutorial()
 		}
+		
+	}
+	
+	func removeHint(hint:String) {
+		_ = state.removeCondition(with: hint)
+	}
+	func addHint(hint:String, view:UIView? = nil) {
+		let time = tutorialAnimation.time + 4.0
+		print("HINT:", time)
+		state.addCondition(atTime: progress(seconds:time), flagName: hint) {
+			[weak self] in
+			guard let weakSelf = self else {
+				return
+			}
+			
+			weakSelf.view.window?.clearOverlay()
+			weakSelf.currentHint?.removeFromSuperview()
+			weakSelf.tutorialAnimation.pause()
+			
+			view?.overlay(radius: 24, inset: CGSize(width: 8	, height: 0))
+			view?.highlight(radius: 24)
+           
+			weakSelf.currentHint = weakSelf.view.window?.hint {
+				$0.content = """
+			Tap this matching price.
+			""".localized("popup_tutorial_pricetap")
+				
+				if let view = view {
+					
+					$0.layout {
+						$0.top == view.bottomAnchor + 30
+						$0.centerX == view.centerXAnchor
+						$0.width == 252
+						
+					}
+				} else {
+					$0.layout {
+						$0.bottom == weakSelf.view.bottomAnchor - 30
+						$0.centerX == weakSelf.view.centerXAnchor
+						$0.width == 252
+						
+					}
+				}
+			}
+           
+			
+		}
+		
 		
 	}
 }

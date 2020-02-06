@@ -99,7 +99,7 @@ class TutorialView: UIStackView {
 	}
 	public func container() {
 		containerView = view {
-			$0.backgroundColor = .white
+			$0.backgroundColor = .black
 		}
 		containerView.layout { [weak self] in
 			$0.width == self!.widthAnchor ~ 999

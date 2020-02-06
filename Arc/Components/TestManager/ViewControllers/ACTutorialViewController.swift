@@ -19,6 +19,7 @@ class TutorialState {
 	var conditions = [TutorialCondition]()
 	var flags = Set<String>()
 	var maxSteps = 0
+	var duration:Double = 0
 	var progress:Double {
 		if conditions.count > 0 {
 			return 1.0 - Double(conditions.count) / Double(maxSteps)
@@ -52,6 +53,7 @@ class TutorialState {
 			if time >= c.time && !flags.contains(c.flag) {
 				flags.insert(c.flag)
 				conditions.remove(at: index)
+				print(c.time * duration, c.flag)
 				c.onFlag()
 				
 				return
@@ -92,7 +94,7 @@ class ACTutorialViewController: CustomViewController<TutorialView>, TutorialComp
 		}
 	}
 	func startTutorialAnimation() {
-		
+		state.duration = duration
 		tutorialAnimation = tutorialAnimation.run {[weak self]
 			progress in
 			if self?.presentingViewController == nil {

@@ -60,7 +60,7 @@ extension UIView {
 	}
 	
 	public func highlight(radius:CGFloat = 8.0) {
-		let color = UIColor(named:"TutorialHighlight")!
+		let color = UIColor.tutorialHighLight
 		let newView = OverlayView()
 		newView.tag = UIView.highlightId
 		newView.backgroundColor = .clear
