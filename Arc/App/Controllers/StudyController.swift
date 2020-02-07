@@ -234,7 +234,7 @@ open class StudyController : MHController {
 	/** get current arc
 	Finds an Arc whose start date and end date fall around the current date ( startDate <= now <= endDate) And has at least one upcoming (or currently available) Session
 	*/
-	open func getCurrentStudyPeriod() -> StudyPeriod?
+	open func getCurrentStudyPeriod(includeCompleted:Bool = false) -> StudyPeriod?
 	{
 		
 		let now = NSDate();
@@ -252,8 +252,11 @@ open class StudyController : MHController {
 			let hasAvailableTestSession = get(availableTestSession: id) != nil
 			let hasCurrentTestSession = get(currentTestSession: id) != nil
 			
-			if hasUpcomingSessions || hasAvailableTestSession || hasCurrentTestSession
+			if (hasUpcomingSessions || hasAvailableTestSession || hasCurrentTestSession) || includeCompleted
 			{
+				
+				//If any of these three are true, then it's not completed yet. However if we want
+				//It regardless of completion then we'll return it. 
 				return firstResult;
 			}
 		}

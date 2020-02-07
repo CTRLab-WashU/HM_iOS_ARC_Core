@@ -129,8 +129,13 @@ open class ACHomeViewController: CustomViewController<ACHomeView> {
                 self.session = session
             }
         }
-        if upcoming == nil, let nextCycle = app.studyController.getUpcomingStudyPeriod()?.sessions?.firstObject as? Session {
-            upcoming = nextCycle
+        if upcoming == nil, let nextCycle = app.studyController.getUpcomingStudyPeriod(){
+			
+			let sessions = nextCycle.sessions ?? []
+			if sessions.count > 0 {
+				upcoming = sessions.firstObject as? Session
+			}
+			
         }
         
         let surveyStatus = Arc.shared.getSurveyStatus()

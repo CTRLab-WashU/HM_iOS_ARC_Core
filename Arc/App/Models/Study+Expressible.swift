@@ -23,7 +23,7 @@ extension StudyController : ThisStudyExpressible {
 	}
 	public var week: Int {
 		let previousStudiesCount = getPastStudyPeriods().count
-		let currentStudy = (getCurrentStudyPeriod() != nil) ? 1 : 0
+		let currentStudy = (getCurrentStudyPeriod(includeCompleted: true) != nil) ? 1 : 0
 		return previousStudiesCount + currentStudy
 	}
 	public var studyState:StudyState {
