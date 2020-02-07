@@ -93,6 +93,14 @@ open class PricesTestController : TestController<PriceTestResponse> {
         return nil
     }
     
+	public func get(correctOptionforQuestion index:Int, id:String) -> Int? {
+        if let question = get(question: index, id: id) {
+            
+			return question.correct_index
+        }
+        return nil
+    }
+	
     public func get(option:Int, forQuestion index:Int, id:String) -> String? {
         if let question = get(question: index, id: id) {
             

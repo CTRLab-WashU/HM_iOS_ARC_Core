@@ -19,7 +19,27 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
         
         
     }
-    
+	func getCorrectButton() -> UIView {
+		if pricesQuestions.getCorrectOption() == 0 {
+			return pricesQuestions.topButton
+		} else {
+			return pricesQuestions.bottomButton
+		}
+	}
+    override func didSelectPrice(_ option: Int) {
+		
+		if option == pricesQuestions.getCorrectOption() {
+			view.window?.clearOverlay()
+			view.removeHighlight()
+			removeHint(hint: "Hint")
+			currentHint?.removeFromSuperview()
+			tutorialAnimation.resume()
+			selectionMade = true
+			pricesQuestions.questionDisplay.isUserInteractionEnabled = false
+			getNextStep()
+		}
+
+	}
 	override func getNextStep() {
         guard state.conditions.count > 1 else { return }
         let condition = state.conditions[1]
@@ -143,7 +163,7 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
                 weakSelf.selectionMade = false
                 return
             }
-			weakSelf.addHint(hint: "Hint", view: weakSelf.pricesQuestions.topButton)
+			weakSelf.addHint(hint: "Hint", view: weakSelf.getCorrectButton())
             weakSelf.currentHint?.removeFromSuperview()
             weakSelf.pricesQuestions.questionDisplay.isUserInteractionEnabled = true
 			
@@ -211,7 +231,7 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
 		////////////////
 		//Second question assist
 		////////////////
-		state.addCondition(atTime: progress(seconds: 17), flagName: "question3-1") { [weak self] in
+		state.addCondition(atTime: progress(seconds: 14.2), flagName: "question3-1") { [weak self] in
 				   guard let weakSelf = self else {
 					   return
 				   }
@@ -219,7 +239,7 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
 					   weakSelf.selectionMade = false
 					   return
 				   }
-				   weakSelf.addHint(hint: "Hint", view: weakSelf.pricesQuestions.topButton)
+			weakSelf.addHint(hint: "Hint", view: weakSelf.getCorrectButton())
 				   weakSelf.currentHint?.removeFromSuperview()
 				   weakSelf.pricesQuestions.questionDisplay.isUserInteractionEnabled = true
 				   let shape = OverlayShape.roundedRect(weakSelf.pricesQuestions.questionDisplay, 8, CGSize(width: -8,height:-8))
@@ -246,7 +266,7 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
 		////////////////
 		//Second question conclusion
 		////////////////
-		state.addCondition(atTime: progress(seconds: 21.1), flagName: "questions3-1-1") { [weak self] in
+		state.addCondition(atTime: progress(seconds: 18.3), flagName: "questions3-1-1") { [weak self] in
             guard let weakSelf = self else {
                 return
             }
@@ -281,7 +301,7 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
         ////////////////
 		//Third question assist
 		////////////////
-		state.addCondition(atTime: progress(seconds: 24.1), flagName: "question3-2") { [weak self] in
+		state.addCondition(atTime: progress(seconds: 18.3), flagName: "question3-2") { [weak self] in
             guard let weakSelf = self else {
                 return
             }
@@ -291,7 +311,7 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
                 return
                 
             }
-			weakSelf.addHint(hint: "Hint", view: weakSelf.pricesQuestions.topButton)
+			weakSelf.addHint(hint: "Hint", view: weakSelf.getCorrectButton())
 
             weakSelf.currentHint?.removeFromSuperview()
            
@@ -318,7 +338,7 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
             }
         }
         
-		state.addCondition(atTime: progress(seconds: 28.3), flagName: "end") { [weak self] in
+		state.addCondition(atTime: progress(seconds: 22.4), flagName: "end") { [weak self] in
             guard let weakSelf = self else {
                 return
             }

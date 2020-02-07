@@ -55,6 +55,10 @@ open class PricesQuestionViewController: ArcViewController, TestProgressViewCont
 		let test:PriceTestResponse = try! controller.get(id: responseId)
 		questions = Set(0 ..< test.sections.count)
 	}
+	public func getCorrectOption() -> Int {
+		
+		return controller.get(correctOptionforQuestion: questionIndex, id: responseId) ?? -1
+	}
     public func didSelect(id:Int) {
 		
         _ = controller.mark(timeTouched: responseId, index: questionIndex)
