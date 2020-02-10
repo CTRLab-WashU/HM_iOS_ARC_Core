@@ -98,6 +98,13 @@ open class PricesQuestionViewController: ArcViewController, TestProgressViewCont
         }
     }
 	
+	///Reset the state of the buttons, his is more prevalent to tutorials as in the
+	///actual test the app proceeds automatically and resets state.
+	public func deselectButtons() {
+		topButton.set(selected: false)
+		bottomButton.set(selected: false)
+
+	}
 	
 	/// Present question will track question indicies passed into this function.
 	/// It will then fetch the data for that question and configure the view.

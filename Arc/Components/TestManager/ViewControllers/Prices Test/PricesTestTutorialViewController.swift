@@ -379,7 +379,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 			guard let weakSelf = self else {
 				return
 			}
-			
+			weakSelf.pricesQuestions.deselectButtons()
 			weakSelf.view.window?.clearOverlay()
 			weakSelf.currentHint?.removeFromSuperview()
 			weakSelf.tutorialAnimation.pause()
