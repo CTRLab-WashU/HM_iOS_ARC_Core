@@ -9,7 +9,7 @@
 import UIKit
 
 
-open class PricesQuestionViewController: UIViewController, TestProgressViewControllerDelegate {
+open class PricesQuestionViewController: ArcViewController, TestProgressViewControllerDelegate {
 	
 	
     //@IBOutlet var buttons: [UIButton]!

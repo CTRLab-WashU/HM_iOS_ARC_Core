@@ -19,6 +19,7 @@ public class ACTodayProgressView : UIView {
 	private weak var sessionCompletionLabel:ACLabel!
 	private weak var sessionRemainingLabel:ACLabel!
 	private weak var badgeLabel:ACLabel!
+	private weak var badgeView:UIView!
     private weak var bottomLabel:ACLabel!
 	private var animations:[String:Animate] = [:]
 	private weak var button:ACButton!
@@ -98,7 +99,7 @@ public class ACTodayProgressView : UIView {
 				stack.setCustomSpacing(22, after: $0)
 				
 				Roboto.Style.subHeading($0, color: ACColor.secondaryText)
-				$0.text = "Test"
+				$0.text = ""
 				animationParams.delay = 1.2
 
 				$0.fadeIn(animationParams)
@@ -109,13 +110,13 @@ public class ACTodayProgressView : UIView {
 				stack.setCustomSpacing(22, after: $0)
 				
 				Roboto.Style.subHeading($0, color: ACColor.secondaryText)
-				$0.text = "Test"
+				$0.text = ""
 				animationParams.delay = 1.4
 
 				$0.fadeIn(animationParams)
 					.translate(animationParams)
 			}
-            $0.view{
+			self.badgeView = $0.view{
                 $0.backgroundColor = ACColor.badgeBackground
                 $0.layer.cornerRadius = 4
                 $0.clipsToBounds = true
@@ -162,7 +163,7 @@ public class ACTodayProgressView : UIView {
 				$0.trailing == safeAreaLayoutGuide.trailingAnchor - 32
 
 			}
-			InfoView.ButtonStyle.secondary.configure(button: button)
+			InfoView.ButtonStyle.secondary.configure(button: $0)
 			
 			$0.setTitle("".localized(ACTranslationKey.button_next), for: .normal)
 			$0.setTitleColor(ACColor.badgeText, for: .normal)
@@ -209,9 +210,9 @@ public class ACTodayProgressView : UIView {
 	}
 	public func set(completed:Bool) {
 		if completed {
-			badgeLabel.isHidden = false
+			badgeView.isHidden = false
 		} else {
-			badgeLabel.isHidden = true
+			badgeView.isHidden = true
 		}
 	}
 	

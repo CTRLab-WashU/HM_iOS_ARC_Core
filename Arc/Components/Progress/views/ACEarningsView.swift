@@ -198,7 +198,7 @@ public class ACEarningsView : ACTemplateView {
 					
 					
 					self.fourofFourGoal = $0.fourOfFourGoalView {
-						$0.set(titleText: "4 Out of 4")
+						$0.set(titleText: "4 Out of 4".localized(ACTranslationKey.earnings_4of4_header))
 						$0.set(isUnlocked: false)
 						
 					}
@@ -238,7 +238,7 @@ public class ACEarningsView : ACTemplateView {
 				$0.bottom == self.bottomAnchor ~ 999
 				$0.trailing == self.trailingAnchor ~ 999
 				$0.leading == self.leadingAnchor ~ 999
-				$0.height == 96 ~ 999
+				$0.top == self.safeAreaLayoutGuide.bottomAnchor - 96 ~ 999
 			}
 			bottomGradient(view: $0)
 			self.nextButton = $0.acButton {

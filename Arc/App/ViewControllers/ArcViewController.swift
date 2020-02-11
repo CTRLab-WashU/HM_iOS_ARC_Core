@@ -20,12 +20,28 @@ open class ArcViewController: UIViewController {
 		}
 	}
 	public var currentHint:HintView?
-	
+	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+	}
+	public init() {
+		super.init(nibName: nil, bundle: nil)
+		modalPresentationStyle = .fullScreen
+
+	}
+	public required init?(coder: NSCoder) {
+		super.init(coder: coder)
+		modalPresentationStyle = .fullScreen
+
+	}
     override open func viewDidLoad() {
         super.viewDidLoad()
+		
 
         // Do any additional setup after loading the view.
     }
+	open override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+	}
 	open override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 		NotificationCenter.default.removeObserver(self)

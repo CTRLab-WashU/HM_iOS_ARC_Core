@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import HMMarkup
+import hMCrashReporter
+import PDFKit
 public protocol ArcApi {
 	
 }
@@ -111,14 +113,17 @@ open class Arc : ArcApi {
 	public var currentTestSession:Int?
 	static public var currentState:State?
     static public var environment:ArcEnvironment?
-	
+	static public var debuggableStates:[State] = []
 	
 	public init() {
 		controllerRegistry.registerControllers()
 	}
     static public func configureWithEnvironment(environment:ArcEnvironment) {
         self.environment = environment
-        
+		if let crashReporterKey = environment.crashReporterApiKey {
+        	hMCrashReporter.sharedInstance.setup(apiKey: crashReporterKey)
+		}
+		Arc.debuggableStates = environment.debuggableStates
         HMAPI.baseUrl = environment.baseUrl ?? ""
 		CoreDataStack.useMockContainer = environment.mockData
 
@@ -150,7 +155,7 @@ open class Arc : ArcApi {
         Arc.shared.WELCOME_LOGO =  UIImage(named: environment.welcomeLogo ?? "")
         Arc.shared.WELCOME_TEXT = environment.welcomeText ?? ""
         Arc.shared.APP_PRIVACY_POLICY_URL = environment.privacyPolicyUrl ?? ""
-      
+		
         
         if let arcStartDays = environment.arcStartDays {
             Arc.shared.studyController.ArcStartDays = arcStartDays
@@ -543,13 +548,27 @@ open class Arc : ArcApi {
 
 		
 	}
-    public func debugSchedule() {
+	public func debugScreens() {
+		guard let url = Arc.screenShotApp(states:Arc.debuggableStates) else {
+			return
+		}
+		dump(url)
+		
+		guard let window = UIApplication.shared.keyWindow else {
+            return
+        }
+		let pdfViewer = ACPDFViewController()
+		pdfViewer.modalPresentationStyle = .pageSheet
+		pdfViewer.setDocument(url: url)
+		window.rootViewController?.present(pdfViewer, animated: true, completion: nil)
+       
+	}
+	public func debugSchedule(states:[State]? = nil) {
         let dateFrame = studyController.getCurrentStudyPeriod()?.userStartDate ?? Date()
         let lastFetch = appController.lastBackgroundFetch?.localizedFormat()
         let list = studyController.getUpcomingSessions(withLimit: 32, startDate: dateFrame as NSDate)
             .map({
-                " \($0.study?.studyID ?? -1)-\($0.sessionID): \($0.sessionDate?.localizedString() ?? "") \(($0.finishedSession) ? "√" : "\(($0.missedSession) ? "x" : "\(($0.startTime == nil) ? "-" : "o")")")"
-                
+                " w:\($0.week) d:\($0.day)\n\($0.study?.studyID ?? -1)-\($0.sessionID): \($0.sessionDate?.localizedString() ?? "") \(($0.finishedSession) ?  "√" : "\(($0.missedSession) ? "x" : "\(($0.startTime == nil) ? "-" : "o")")") \($0.uploaded ? "∆" : "") "
             }).joined(separator: "\n")
         
         
@@ -566,6 +585,7 @@ open class Arc : ArcApi {
             \(list)
             """, options:  [.default("Notifications", {[weak self] in self?.debugNotifications()}),
 							.default("Data", {[weak self] in self?.debugData()}),
+							.default("Screens", {[weak self] in self?.debugScreens()}),
                             .cancel("Close", {})],
                  isScrolling: true)
     }
@@ -628,5 +648,111 @@ open class Arc : ArcApi {
 			]
 		)
 	}
+	public static func screenShotApp(states:[State]) -> URL? {
+		var urls:[URL] = []
+			
+		let results = states
+		.lazy
+			.compactMap(Arc.screenShot)
+			
+		var images:[UIImage] = []
+		for result in results {
+			images.append(contentsOf: result)
+		}
+		
+		
+		return createPDFDataFromImage(images: images)
+	}
+	
+	public static  func screenShot(state:State) -> [UIImage]? {
+		let vc = state.viewForState()
+		var images = [UIImage]()
+		print("Snapshotting \(state)")
+		if let v = vc as? BasicSurveyViewController {
+			v.autoAdvancePageIndex = false
+			for question in (v.questions + (v.subQuestions ?? [])).enumerated() {
+				
+				
+				//This controller uses internal indexing, a side effect is triggered by addController
+				
+				v.addController(v.customViewController(forQuestion: question.element))
+				v.currentIndex = question.offset
+				v.display(question: question.element)
+				guard let image = imageFromView(view: v.view) else {
+					continue
+				}
+				images.append(image)
+			}
+			return images
+		}
+		if 	let v = vc as? CustomViewController<ACTemplateView>,
+			let image = imageFromView(view: v.customView.root.subviews[0]) {
+			return [image]
+		}
+		return nil
+
+	}
+	public static  func screenShot(viewController:UIViewController) -> UIView? {
+		
+		return viewController.view
+	}
+	public static  func imageFromView(view:UIView) -> UIImage? {
+		let renderer = UIGraphicsImageRenderer(size: view.bounds.size)
+		print("Drawing image")
+		let image = renderer.image { ctx in
+			view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+		}
+		
+		return image
+	}
+	public static  func save(image:UIImage, withName name:String) -> URL? {
+		if let data = image.pngData() {
+			let filename = getCachesDirectory().appendingPathComponent(name)
+			try? data.write(to: filename)
+			return filename
+		}
+		return nil
+	}
+	
+	public static func createPDFDataFromImage(images: [UIImage]) -> URL? {
+		let pdfData = NSMutableData()
+		guard let window = UIApplication.shared.keyWindow else {
+			assertionFailure("No Keywindow")
+			
+			return nil
+		}
+		let imageRect = CGRect(x: 0, y: 0, width: window.frame.width + 200, height: window.frame.height + 200)
+		UIGraphicsBeginPDFContextToData(pdfData, imageRect, nil)
+		for image in images {
+			UIGraphicsBeginPDFPage()
+			let context = UIGraphicsGetCurrentContext()
+			context?.setFillColor(UIColor.black.cgColor)
+			context?.fill(imageRect)
+			
+			image.draw(in: CGRect(x: 100, y: 50, width: image.size.width, height: image.size.height))
+		}
+		UIGraphicsEndPDFContext()
+
+		//try saving in doc dir to confirm:
+		let dir = getCachesDirectory()
+		let path = dir.appendingPathComponent("ScreenShots.pdf")
+
+		do {
+				try pdfData.write(to: path, options: NSData.WritingOptions.atomic)
+		} catch {
+			print("error catched")
+		}
+
+		return path
+	}
+	public static func getDocumentsDirectory() -> URL {
+		let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+		return paths[0]
+	}
+	public static func getCachesDirectory() -> URL {
+		let paths = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
+		return paths[0]
+	}
+	
 }
 

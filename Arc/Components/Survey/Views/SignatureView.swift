@@ -144,7 +144,7 @@ open class SignatureView: BorderedUIView, SurveyInput {
 			$0.bottomColor = .clear
 			$0.setTitleColor(UIColor(named:"Primary"), for: .normal)
             
-			$0.setTitle("UNDO", for: .normal)
+			$0.setTitle("UNDO".localized(ACTranslationKey.idverify_undo), for: .normal)
 			Roboto.Style.bodyBold($0.titleLabel!, color: UIColor(named:"Primary"))
 			Roboto.PostProcess.link($0)
 			$0.addAction {

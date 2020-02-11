@@ -25,6 +25,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 			}
 		}
 	}
+	public var autoAdvancePageIndex:Bool = true
     public var backButton: UIBarButtonItem?
     public var isShowingBackButton = false{
         didSet {
@@ -102,7 +103,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 				
 				let helpButton = UIButton(type: .custom)
 				helpButton.frame = CGRect(x: 0, y: 0, width: 60, height: 10)
-				helpButton.setTitle("HELP".localized("help"), for: .normal)
+				helpButton.setTitle("HELP".localized(ACTranslationKey.button_help), for: .normal)
 				helpButton.titleLabel?.font = UIFont(name: "Roboto-Medium", size: 14)
 				helpButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -16)
 				helpButton.setTitleColor(UIColor(named: "Primary"), for: .normal)
@@ -127,7 +128,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
                 let backButton = UIButton(type: .custom)
                 backButton.frame = CGRect(x: 0, y: 0, width: 60, height: 10)
                 backButton.setImage(UIImage(named: "cut-ups/icons/arrow_left_blue"), for: .normal)
-                backButton.setTitle("BACK".localized("button_back"), for: .normal)
+                backButton.setTitle("BACK".localized(ACTranslationKey.button_back), for: .normal)
                 backButton.titleLabel?.font = UIFont(name: "Roboto-Medium", size: 14)
                 backButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -12)
                 backButton.setTitleColor(UIColor(named: "Primary"), for: .normal)
@@ -316,7 +317,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		}
 		if let presentable = presentableVc {
 			let button = HMMarkupButton()
-			button.setTitle("View a Tutorial", for: .normal)
+			button.setTitle("View a Tutorial".localized(ACTranslationKey.testing_tutorial_link), for: .normal)
 			Roboto.Style.bodyBold(button.titleLabel!, color:.white)
 			Roboto.PostProcess.link(button)
 			button.addAction {[weak self] in
@@ -335,7 +336,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		vc.customView.inputDelegate = self
 		
 		vc.customView.nextButton?.addTarget(self, action: #selector(nextButtonPressed(sender:)), for: .primaryActionTriggered)
-        vc.customView.nextButton?.setTitle(question.nextButtonTitle ?? "Next", for: .normal)
+        vc.customView.nextButton?.setTitle(question.nextButtonTitle ?? "Next".localized(ACTranslationKey.button_next), for: .normal)
 		didPresentQuestion(input: vc.customView.inputItem, questionId: question.questionId)
 		
 	}
@@ -386,7 +387,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 
         
 		
-        disableNextButton(title: question.altNextButtonTitle ?? "Next")
+        disableNextButton(title: question.altNextButtonTitle ?? "Next".localized(ACTranslationKey.button_next))
         
 		didPresentQuestion(input: vc.customView.inputItem, questionId: question.questionId)
 
@@ -400,7 +401,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		
 		let _ = Arc.shared.surveyController.set(response: value,
 												questionId: question.questionId,
-												question: question.prompt,
+												question: question.prompt.localized(question.prompt),
 												forSurveyId: self.surveyId)
 	}
 	
@@ -409,9 +410,15 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 	open func templateForQuestion(id: String) -> Dictionary<String, String> {return [:]}
 	
 	open func didPresentQuestion(input: SurveyInput?, questionId:String) {
+		let question = Arc.shared.surveyController.get(question: questionId)
 		if let value = Arc.shared.surveyController.getResponse(forQuestion: questionId, fromSurveyResponse: surveyId){
 			input?.setValue(value)
+			enableNextButton(title: question.nextButtonTitle ?? "".localized(ACTranslationKey.button_next))
 		}
+		
+		let _ = Arc.shared.surveyController.mark(displayTime: questionId,
+												 question: question.prompt.localized(question.prompt),
+												 forSurveyResponse: surveyId)
 		
 	}
 	
@@ -432,7 +439,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
         input.customView.enableNextButton()
     }
     
-    public func enableNextButton(title:String = "Next") {
+    public func enableNextButton(title:String = "Next".localized(ACTranslationKey.button_next)) {
         guard let input:CustomViewController<InfoView> = self.getTopViewController() else {
             return
         }
@@ -440,7 +447,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
         input.customView.enableNextButton(title: title)
     }
     
-    public func disableNextButton(title:String = "Next")
+    public func disableNextButton(title:String = "Next".localized(ACTranslationKey.button_next))
     {
         guard let input:CustomViewController<InfoView>  = self.getTopViewController() else {
             return
@@ -480,10 +487,14 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		let question = questions[currentIndex]
 		
 		let _ = Arc.shared.surveyController.mark(responseTime: question.questionId,
-												 question: question.prompt,
+												 question: question.prompt.localized(question.prompt),
 												 forSurveyResponse: self.surveyId)
         
-        enableNextButton()
+		if getInput()?.getValue() != nil {
+			enableNextButton(title: question.nextButtonTitle ?? "".localized(ACTranslationKey.button_next))
+		} else {
+			disableNextButton(title: question.altNextButtonTitle ?? "".localized(ACTranslationKey.button_next))
+		}
 	}
 	public func nextPressed(input: SurveyInput?, value: QuestionResponse?) {
 		isValid(value: value, questionId: questions[currentIndex].questionId) { [weak self] valid in
@@ -561,14 +572,17 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 	///
 	open override func pushViewController(_ viewController: UIViewController, animated: Bool) {
 		super.pushViewController(viewController, animated: animated)
-		
-		currentIndex = viewControllers.count - 1
+		if autoAdvancePageIndex {
+			currentIndex = viewControllers.count - 1
+		}
 		print(currentIndex)
 		guard currentIndex < questions.count else {
 			return
 		}
-		
-		display(question: questions[currentIndex])
+		if autoAdvancePageIndex {
+
+			display(question: questions[currentIndex])
+		}
 	}
 	
 	public func updateNextQuestion(question:Survey.Question, answer:QuestionResponse){

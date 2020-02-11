@@ -129,7 +129,7 @@ open class NotificationController : MHController
             switch test.day {
             case 0:     //first test. Day 1, test 1
                 title = "It's time for the first test of the week! Start your streak by completing this test by {TIME}.".localized("notification1_firstday")
-            case 3:     //halfway point. Day 4, test 1
+            case 4 where test.study?.studyID == 0, 3:     //halfway point. Day 4, test 1
                 title = "You're halfway through the week. Keep it up! Today's first test will be available until {TIME}.".localized("notification1_halfway")
             case 6 where test.study?.studyID != 0, 7:     //beginning of the final day. Day 7, test 1
                 title = "You're on the last day of testing this week! Your first test of the day will be available until {TIME}.".localized("notification1_lastday")
@@ -494,7 +494,7 @@ open class NotificationController : MHController
 			HMLog("\(requests.count) requests.")
 			for r in requests
 			{
-				HMLog("\(r.trigger!) | \(r.identifier)");
+				HMLog("\(r.trigger!) | \(r.identifier) | \(r.content.title) | \(r.content.body)");
 			}
 		});
 	}

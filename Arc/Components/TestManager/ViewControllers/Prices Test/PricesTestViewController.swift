@@ -173,6 +173,7 @@ public class PricesTestViewController: ArcViewController {
 	public func preparedQuestionController() -> PricesQuestionViewController{
 		//Present controller
 		questionDisplay = .get()
+		questionDisplay?.modalPresentationStyle = .fullScreen
 		questionDisplay?.responseId = responseID
         questionDisplay?.isTutorial = self.isTutorial
 //		questionDisplay?.selectQuestion()
@@ -185,6 +186,7 @@ public class PricesTestViewController: ArcViewController {
 	public func showQuestionController(alertView:MHAlertView) {
 		//Present controller
 		questionDisplay = .get()
+		questionDisplay?.modalPresentationStyle = .fullScreen
 		questionDisplay?.responseId = responseID
 		present(questionDisplay!, animated: false, completion: { [weak self] in
 			guard let weakself = self else {

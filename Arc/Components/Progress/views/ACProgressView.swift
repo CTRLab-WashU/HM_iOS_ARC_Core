@@ -139,7 +139,13 @@ class ACProgressView: ACTemplateView {
 					}
 
 					self.weekProgressView = $0.weekStepperProgress {
-						$0.set(step: 0, of: ["S", "M", "T", "W", "T", "F", "S"])
+						$0.set(step: 0, of: ["S".localized(ACTranslationKey.day_abbrev_sun),
+											 "M".localized(ACTranslationKey.day_abbrev_mon),
+											 "T".localized(ACTranslationKey.day_abbrev_tues),
+											 "W".localized(ACTranslationKey.day_abbrev_weds),
+											 "T".localized(ACTranslationKey.day_abbrev_thurs),
+											 "F".localized(ACTranslationKey.day_abbrev_fri),
+											 "S".localized(ACTranslationKey.day_abbrev_sat)])
 					}
 					
 					$0.stack {

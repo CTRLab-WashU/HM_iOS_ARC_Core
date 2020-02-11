@@ -22,7 +22,7 @@ import HMMarkup
 	If a view becomes scrollable then a scroll indicator will appear on the screen.
 */
 open class ACTemplateView: UIView, UIScrollViewDelegate {
-	var root:UIScrollView!
+	public var root:UIScrollView!
 	var backgroundView:UIImageView!
 	public var nextButton:ACButton?
 	var renderer:HMMarkupRenderer!
@@ -33,7 +33,7 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 	var topScrollIndicatorView : UIView!
 	
 	var scrollIndicatorLabel:UILabel!
-
+	private var contentView:UIView!
 	public init() {
 		super.init(frame: .zero)
 		
@@ -76,7 +76,7 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 		root = scroll {[unowned self] in
 			
 			
-			let v = $0.stack {
+			contentView = $0.stack {
 				$0.spacing = 8
 				$0.axis = .vertical
 				$0.alignment = .fill
@@ -103,14 +103,13 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 				//This is for items that you want to always be below all other content.
 				footer($0)
 			}
-			
-			v.layout {
+			contentView.layout {
 				
 				// select an anchor give a priority of 999 (almost Required)
-				$0.top == v.superview!.topAnchor ~ 999
-				$0.trailing == v.superview!.trailingAnchor ~ 999
-				$0.bottom == v.superview!.bottomAnchor ~ 999
-				$0.leading == v.superview!.leadingAnchor ~ 999
+				$0.top == contentView.superview!.topAnchor ~ 999
+				$0.trailing == contentView.superview!.trailingAnchor ~ 999
+				$0.bottom == contentView.superview!.bottomAnchor ~ 999
+				$0.leading == contentView.superview!.leadingAnchor ~ 999
 				$0.width == self.widthAnchor ~ 999
 				$0.height >= self.safeAreaLayoutGuide.heightAnchor ~ 500
 			}
@@ -374,7 +373,7 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 		let maxProgress = contentHeight - viewHeight - effectiveHeight
 		
 		let progress = min(maxProgress, max(offset - effectiveHeight, 0))
-		let convertedRect = nextButton.convert(nextButton.frame, to: scrollView)
+		let convertedRect = nextButton.superview!.convert(nextButton.frame, to: scrollView)
 		
 		guard !scrollView.bounds.contains(convertedRect) && !scrollView.bounds.intersects(convertedRect) else {
 			bottomScrollIndicatorView.alpha = 0

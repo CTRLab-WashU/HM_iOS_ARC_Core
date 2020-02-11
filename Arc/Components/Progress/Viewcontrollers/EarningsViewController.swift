@@ -44,7 +44,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
     }
 	
 	public init(isPostTest:Bool) {
-		super.init(nibName: nil, bundle: nil)
+		super.init()
 		self.isPostTest = isPostTest
 	}
 	
@@ -249,6 +249,8 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		}
 		
 		customView.fourofFourGoal.set(isUnlocked: fourOfFourGoal.completed)
+		customView.fourofFourGoal.set(titleText: "".localized(ACTranslationKey.earnings_4of4_header))
+
 		customView.fourofFourGoal.set(bodyText: "".localized(ACTranslationKey.earnings_4of4_body)
 			.replacingOccurrences(of: "{AMOUNT}", with: fourOfFourGoal.value))
         let bonus = fourOfFourGoal.value + " Bonus"
