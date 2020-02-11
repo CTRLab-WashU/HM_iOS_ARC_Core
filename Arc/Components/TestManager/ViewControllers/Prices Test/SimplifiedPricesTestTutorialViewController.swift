@@ -34,11 +34,12 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
 			removeHint(hint: "Hint")
 			currentHint?.removeFromSuperview()
 			tutorialAnimation.resume()
-			selectionMade = true
-			pricesQuestions.questionDisplay.isUserInteractionEnabled = false
+			
 			getNextStep()
 		}
+		pricesQuestions.questionDisplay.isUserInteractionEnabled = false
 
+		selectionMade = true
 	}
 	override func getNextStep() {
         guard state.conditions.count > 1 else { return }
@@ -198,7 +199,9 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
             }
             weakSelf.currentHint?.removeFromSuperview()
             weakSelf.tutorialAnimation.pause()
-            weakSelf.pricesQuestions.view.overlayView(withShapes: [])
+			weakSelf.getCorrectButton().overlay(radius: 24, inset: CGSize(width: 8	, height: 0))
+
+//            weakSelf.pricesQuestions.view.overlayView(withShapes: [])
 
             weakSelf.progress = 0.5
             self?.currentHint = self?.view.window?.hint {
@@ -272,9 +275,11 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
             }
             weakSelf.currentHint?.removeFromSuperview()
             weakSelf.tutorialAnimation.pause()
-            weakSelf.pricesQuestions.view.overlayView(withShapes: [])
+			weakSelf.getCorrectButton().overlay(radius: 24, inset: CGSize(width: 8	, height: 0))
+//			weakSelf.pricesQuestions.view.overlayView(withShapes: [])
 			weakSelf.progress = 0.75
             self?.currentHint = self?.view.window?.hint {
+				
 				$0.content = "*Great choice!*\nLet's try another.".localized(ACTranslationKey.popup_tutorial_nice)
 				$0.buttonTitle = "Next".localized(ACTranslationKey.button_next)
 				////////////////

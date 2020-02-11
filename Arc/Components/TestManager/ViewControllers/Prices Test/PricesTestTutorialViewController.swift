@@ -379,6 +379,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 			guard let weakSelf = self else {
 				return
 			}
+			weakSelf.pricesQuestions.questionDisplay.isUserInteractionEnabled = true
 			weakSelf.pricesQuestions.deselectButtons()
 			weakSelf.view.window?.clearOverlay()
 			weakSelf.currentHint?.removeFromSuperview()
