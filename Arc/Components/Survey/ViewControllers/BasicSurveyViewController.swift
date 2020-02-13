@@ -287,7 +287,9 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		if var input = topViewController as? SurveyInput {
 			input.surveyInputDelegate = self
 		}
-
+        if shouldShowBackButton{
+            displayBackButton(shouldShowBackButton)
+        }
 	}
 	func instructionStyle(_ question:Survey.Question, presentableVc:UIViewController? = nil) {
 		// Do any additional setup after loading the view.
@@ -350,9 +352,11 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
         if shouldShowHelpButton {
             displayHelpButton(shouldShowHelpButton)
         }
-        if shouldShowBackButton{
+        
+        if shouldShowBackButton {
             displayBackButton(shouldShowBackButton)
         }
+        
 		vc.customView.infoContent.alignment = .leading
 		
 		vc.customView.setTextColor(UIColor(named: "Primary Text"))
