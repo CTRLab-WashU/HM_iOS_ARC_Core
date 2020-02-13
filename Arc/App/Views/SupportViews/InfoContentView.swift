@@ -117,7 +117,14 @@ public class InfoContentView: UIStackView {
                                   color:textColor)
                 
                 $0.text = text
-                
+                let renderer = HMMarkupRenderer(baseFont: $0.font)
+                let attributedString = NSMutableAttributedString(attributedString: renderer.render(text: $0.text ?? ""))
+                let paragraphStyle = NSMutableParagraphStyle()
+                paragraphStyle.lineSpacing = 0
+                paragraphStyle.alignment = $0.textAlignment
+                attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+                attributedString.addAttributes([.foregroundColor : self.textColor!], range: NSMakeRange(0, attributedString.length))
+                $0.attributedText = attributedString
                 
             }
         }
