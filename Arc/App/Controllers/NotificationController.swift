@@ -227,11 +227,11 @@ open class NotificationController : MHController
 	// clear notifications for upcoming TestSessions
 	open func clear(sessionNotifications studyId:Int)
 	{
-		guard let study = Arc.shared.studyController.get(study: studyId) else {
-			return
-		}
+//		guard let study = Arc.shared.studyController.get(study: studyId) else {
+//			return
+//		}
 		clearNotifications(withIdentifierPrefix: "TestSession");
-		study.hasScheduledNotifications = false;
+//		study.hasScheduledNotifications = false;
 //		save();
 	}
     // clears all pending notifications

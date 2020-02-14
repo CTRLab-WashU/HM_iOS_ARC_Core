@@ -323,16 +323,13 @@ open class Arc : ArcApi {
   
         }
         
-		if let study = studyController.getCurrentStudyPeriod()
-		{
-			let studyId = Int(study.studyID)
-			MHController.dataContext.performAndWait {
-                Arc.shared.notificationController.clear(sessionNotifications: Int(studyId))
-                Arc.shared.notificationController.schedule(upcomingSessionNotificationsWithLimit: 32)
-				Arc.shared.notificationController.save()
-			}
-
+		
+		MHController.dataContext.performAndWait {
+			Arc.shared.notificationController.clear(sessionNotifications: 0)
+			Arc.shared.notificationController.schedule(upcomingSessionNotificationsWithLimit: 32)
+			Arc.shared.notificationController.save()
 		}
+
 		
 		
 		if let study = studyController.getUpcomingStudyPeriod()
@@ -370,7 +367,8 @@ open class Arc : ArcApi {
 				{
 //					study.createTestSessions();
 //					study.scheduleSessionNotifications();
-					notificationController.schedule(sessionNotifications: studyId)
+					//notificationController.schedule(sessionNotifications: studyId)
+					notificationController.schedule(upcomingSessionNotificationsWithLimit: 32)
 				}
 			}
 		}
