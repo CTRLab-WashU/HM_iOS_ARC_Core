@@ -47,20 +47,26 @@ public class GoalView: UIView {
 				$0.backgroundColor = ACColor.goalHeader
 				$0.stack {
 					$0.isLayoutMarginsRelativeArrangement = true
-					$0.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+					$0.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 180)
 					$0.axis = .horizontal
 					
-					$0.spacing = 8
+					$0.spacing = 0
 					$0.attachTo(view: $0.superview)
+                    $0.alignment = .center
+                    $0.distribution = .equalCentering
 					self.goalTitleLabel = $0.acLabel {
 						Roboto.Style.goalHeading($0, color: ACColor.badgeText)
+                        $0.numberOfLines = 1
 					}
 					$0.view{
+                        $0.backgroundColor = ACColor.badgeBackground
+                        $0.layer.cornerRadius = 4
+                        $0.clipsToBounds = true
+                        
                         self.doneLabel = $0.acLabel {
                             $0.isHidden = false
                             Roboto.Style.goalReward($0, color:ACColor.badgeText)
                             $0.text = "".localized(ACTranslationKey.status_done)
-                            $0.textAlignment = .center
                         }
                         self.doneLabel.attachTo(view: $0, margins: UIEdgeInsets(top: 3,
                                     left: 10,

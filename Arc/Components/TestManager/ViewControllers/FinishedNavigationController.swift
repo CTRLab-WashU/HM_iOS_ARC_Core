@@ -14,6 +14,8 @@ open class FinishedNavigationController: BasicSurveyViewController {
 		//self.isNavigationBarHidden = true
         shouldShowHelpButton = false
         displayHelpButton(shouldShowHelpButton)
+        shouldShowBackButton = true
+        displayBackButton(shouldShowBackButton)
         // Do any additional setup after loading the view.
 		guard let session = Arc.shared.currentTestSession else {return}
 		guard let study = Arc.shared.currentStudy else {return}

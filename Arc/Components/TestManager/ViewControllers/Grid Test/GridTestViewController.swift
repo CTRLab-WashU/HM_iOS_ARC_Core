@@ -258,13 +258,14 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 		guard isVisible else {
 			return
 		}
+        tapOnTheFsLabel.isHidden = true
         interstitial.set(message: nil)
         interstitial.removeFromSuperview()
         self.collectionViewHeight.constant = CGFloat((IMAGE_HEIGHT*IMAGE_ROWS) + (LINE_SPACING*(IMAGE_ROWS-1)))
         mode = .image
         
         collectionView.allowsSelection = true;
-        tapOnTheFsLabel.isHidden = true
+        
         
         if isPracticeTest {
             tapOnTheFsLabel.isHidden = false

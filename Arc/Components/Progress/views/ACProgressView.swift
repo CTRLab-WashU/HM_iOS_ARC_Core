@@ -18,6 +18,7 @@ class ACProgressView: ACTemplateView {
 	var progressViewStack:UIStackView!
 	var todaysSessionCompletionLabel:ACLabel!
 	var todaysSessionRemainingLabel:ACLabel!
+    var sessionRemainingView:UIView!
 	//This week section variables
 	var weekSection:UIView!
 	var weekHeaderLabel:ACLabel!
@@ -84,15 +85,26 @@ class ACProgressView: ACTemplateView {
 						$0.alignment = .leading
 						
 						$0.stack {
-							
+							$0.alignment = .leading
+                            $0.spacing = 8
+                            $0.distribution = .fill
 							self.todaysSessionCompletionLabel = $0.acLabel {
 								Roboto.Style.body($0, color: #colorLiteral(red: 0.04300000146, green: 0.1220000014, blue: 0.3330000043, alpha: 1))
 								
 								$0.text = "*{#}* Complete |"
+                                $0.numberOfLines = 1
 							}
-							self.todaysSessionRemainingLabel = $0.acLabel {
-								Roboto.Style.body($0, color: #colorLiteral(red: 0.04300000146, green: 0.1220000014, blue: 0.3330000043, alpha: 1))
-								$0.text = " *{#}* Remaining"
+                            self.sessionRemainingView = $0.view {
+                                self.todaysSessionRemainingLabel = $0.acLabel {
+                                    Roboto.Style.body($0, color: #colorLiteral(red: 0.04300000146, green: 0.1220000014, blue: 0.3330000043, alpha: 1))
+                                    $0.text = " *{#}* Remaining"
+                                    
+                                }
+                                self.todaysSessionRemainingLabel.attachTo(view: $0, margins: UIEdgeInsets(top: 3, left: 10, bottom: 3, right: 10))
+                                $0.backgroundColor = ACColor.badgeBackground
+                                $0.layer.cornerRadius = 4
+                                $0.clipsToBounds = true
+                                
 							}
 						}
 					}

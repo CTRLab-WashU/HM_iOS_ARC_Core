@@ -59,6 +59,7 @@ class ProgressViewController: CustomViewController<ACProgressView> {
     }
     
 	func todaysProgressSetup() {
+        customView.sessionRemainingView.backgroundColor = .clear
 		if let today = todaysProgress {
 			
 			for session in today.sessionData {

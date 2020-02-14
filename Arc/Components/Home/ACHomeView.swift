@@ -109,22 +109,14 @@ public class ACHomeView: ACTemplateView {
 					Roboto.Style.headingMedium($0)
 				}
 				self?.separator = $0.acHorizontalBar {
-                    if headingLabel.text == nil{
-                        $0.removeFromSuperview()
-                    } else{
 					$0.relativeWidth = relWidth
 					$0.color = UIColor(named: "HorizontalSeparator")
 					$0.layout {
 						$0.height == 2 ~ 999
                         }
-					}
 				}
 				self?.messageLabel = $0.acLabel {
-                    if headingLabel.text == nil{
-                        Roboto.Style.heading($0)
-                    } else {
 					Roboto.Style.body($0)
-                    }
 				}
 				self?.surveyButton = $0.acButton {
 					$0.setTitle("BEGIN".localized("button_begin"), for: .normal)
@@ -188,7 +180,9 @@ public class ACHomeView: ACTemplateView {
 		switch surveyStatus {
 		case .available:
 			//heading = "Hello!".localized("home_header")
-			message = "You have a new test available.".localized("home_header1")
+			//message = "You have a new test available.".localized("home_body")
+            heading = "You have a new test available.".localized("home_body")
+            separator.isHidden = true
 			surveyButton.isHidden = false
 			
 		case .laterToday:

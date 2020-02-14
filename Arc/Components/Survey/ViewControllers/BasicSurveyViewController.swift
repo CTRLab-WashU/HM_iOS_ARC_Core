@@ -287,7 +287,9 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		if var input = topViewController as? SurveyInput {
 			input.surveyInputDelegate = self
 		}
-
+        if shouldShowBackButton{
+            displayBackButton(shouldShowBackButton)
+        }
 	}
 	func instructionStyle(_ question:Survey.Question, presentableVc:UIViewController? = nil) {
 		// Do any additional setup after loading the view.
@@ -295,8 +297,8 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		
         useDarkStatusBar = false
         setNeedsStatusBarAppearanceUpdate()
-        
-		vc.customView.backgroundView.image = UIImage(named: "availability_bg", in: Bundle(for: self.classForCoder), compatibleWith: nil)
+        let bg_image = UIImage(named: "availability_bg", in: Bundle(for: BasicSurveyViewController.self), compatibleWith: nil)
+		vc.customView.backgroundView.image = bg_image
 		vc.customView.infoContent.alignment = .center
 		vc.customView.backgroundColor = UIColor(named:"Primary")!
 		vc.customView.setTextColor(UIColor(named: "Secondary Text"))
@@ -350,9 +352,11 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
         if shouldShowHelpButton {
             displayHelpButton(shouldShowHelpButton)
         }
-        if shouldShowBackButton{
+        
+        if shouldShowBackButton {
             displayBackButton(shouldShowBackButton)
         }
+        
 		vc.customView.infoContent.alignment = .leading
 		
 		vc.customView.setTextColor(UIColor(named: "Primary Text"))
