@@ -207,9 +207,9 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
             }
             weakSelf.currentHint?.removeFromSuperview()
             weakSelf.tutorialAnimation.pause()
-			weakSelf.getCorrectButton().overlay(radius: 24, inset: CGSize(width: 8	, height: 0))
+			//weakSelf.getCorrectButton().overlay(radius: 24, inset: CGSize(width: 8	, height: 0))
 
-//            weakSelf.pricesQuestions.view.overlayView(withShapes: [])
+            weakSelf.pricesQuestions.view.overlayView(withShapes: [])
 
             weakSelf.progress = 0.5
             self?.currentHint = self?.view.window?.hint {
@@ -231,11 +231,11 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
                     weakSelf.pricesQuestions.topButton.set(selected: false)
                     weakSelf.pricesQuestions.bottomButton.set(selected: false)
                 }
-                $0.layout {
-                    $0.top == weakSelf.pricesQuestions.questionDisplay.bottomAnchor + 10
-                    $0.centerX == weakSelf.pricesQuestions.questionDisplay.centerXAnchor
-                    $0.width == 232
-                }
+                 $0.layout {
+								   $0.centerY == weakSelf.pricesQuestions.questionDisplay.centerYAnchor
+								   $0.centerX == weakSelf.pricesQuestions.questionDisplay.centerXAnchor
+								   $0.width == 232
+							   }
             }
         }
         
@@ -253,10 +253,11 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
 			weakSelf.addHint(hint: "Hint", view: weakSelf.getCorrectButton())
 				   weakSelf.currentHint?.removeFromSuperview()
 				   weakSelf.pricesQuestions.questionDisplay.isUserInteractionEnabled = true
-				   let shape = OverlayShape.roundedRect(weakSelf.pricesQuestions.questionDisplay, 8, CGSize(width: -8,height:-8))
-				   weakSelf.pricesQuestions.view.overlayView(withShapes: [shape])
+//				   let shape = OverlayShape.roundedRect(weakSelf.pricesQuestions.questionDisplay, 8, CGSize(width: -8,height:-8))
+				   //weakSelf.pricesQuestions.view.overlayView(withShapes: [shape])
 				   //weakSelf.tutorialAnimation.pause()
-				   
+				   weakSelf.pricesQuestions.view.overlayView(withShapes: [])
+
 				   self?.currentHint = self?.view.window?.hint {
 					   $0.content = "*What do you think?*\nTry your best to recall the price from part one.".localized(ACTranslationKey.popup_tutorial_choose2)
 					   $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
@@ -283,8 +284,8 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
             }
             weakSelf.currentHint?.removeFromSuperview()
             weakSelf.tutorialAnimation.pause()
-			weakSelf.getCorrectButton().overlay(radius: 24, inset: CGSize(width: 8	, height: 0))
-//			weakSelf.pricesQuestions.view.overlayView(withShapes: [])
+			//weakSelf.getCorrectButton().overlay(radius: 24, inset: CGSize(width: 8	, height: 0))
+			weakSelf.pricesQuestions.view.overlayView(withShapes: [])
 			weakSelf.progress = 0.75
             self?.currentHint = self?.view.window?.hint {
 				
@@ -305,10 +306,10 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
                     weakSelf.pricesQuestions.bottomButton.set(selected: false)
                 }
                 $0.layout {
-                    $0.top == weakSelf.pricesQuestions.questionDisplay.bottomAnchor + 10
-                    $0.centerX == weakSelf.pricesQuestions.questionDisplay.centerXAnchor
-                    $0.width == 232
-                }
+					$0.centerY == weakSelf.pricesQuestions.questionDisplay.centerYAnchor
+					$0.centerX == weakSelf.pricesQuestions.questionDisplay.centerXAnchor
+					$0.width == 232
+				}
             }
         }
         ////////////////
@@ -330,7 +331,7 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
            
             weakSelf.pricesQuestions.questionDisplay.isUserInteractionEnabled = true
             let shape = OverlayShape.roundedRect(weakSelf.pricesQuestions.questionDisplay, 8, CGSize(width: -8, height: -8))
-            weakSelf.pricesQuestions.view.overlayView(withShapes: [shape])
+            //weakSelf.pricesQuestions.view.overlayView(withShapes: [shape])
             
             
             self?.currentHint = self?.view.window?.hint {

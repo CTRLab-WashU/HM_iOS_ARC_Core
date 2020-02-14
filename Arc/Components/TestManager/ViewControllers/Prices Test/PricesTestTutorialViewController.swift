@@ -181,9 +181,9 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 
 				}
 				$0.layout {
-					$0.top == weakSelf.pricesTest.priceDisplay.bottomAnchor + 10
-					$0.centerX == weakSelf.pricesTest.priceDisplay.centerXAnchor
-                    $0.width == 232
+					$0.centerY == weakSelf.pricesQuestions.questionDisplay.centerYAnchor
+					$0.centerX == weakSelf.pricesQuestions.questionDisplay.centerXAnchor
+					$0.width == 232
 				}
 			}
 		}
