@@ -104,6 +104,23 @@ class ACTutorialViewController: CustomViewController<TutorialView>, TutorialComp
 			return true
 		}
 	}
+	public func removeCondition(named:String) -> Bool {
+		//Find it first
+		if let condition = state.conditions.first (where:{$0.flag == named}) {
+			//If found remove and return true
+			state.removeCondition(with: condition.flag)
+			return true
+		}
+		return false
+	}
+	public func jumpToCondition(named:String) -> Bool {
+		if let condition = state.conditions.first (where:{$0.flag == named}) {
+			let time = condition.time
+			tutorialAnimation.time = time * duration
+			return true
+		}
+		return false
+	}
 	public func progress(seconds:TimeInterval, minutes:TimeInterval = 0) -> Double {
 		return (seconds + (minutes * 60)) / duration
 	}

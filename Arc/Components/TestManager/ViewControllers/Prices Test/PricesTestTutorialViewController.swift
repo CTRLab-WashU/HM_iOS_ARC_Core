@@ -78,7 +78,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 		return false
 	}
     
-    func getNextStep() {
+	func getNextStep(forceNext:Bool = false) {
         guard state.conditions.count > 1 else { return }
         let condition = state.conditions[1]
         if state.conditions[0].flag == "prices_middle" || state.conditions[0].flag == "questions3-1" {
@@ -371,8 +371,8 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 	func removeHint(hint:String) {
 		_ = state.removeCondition(with: hint)
 	}
-	func addHint(hint:String, view:UIView? = nil) {
-		let time = tutorialAnimation.time + 4.0
+	func addHint(hint:String, view:UIView? = nil, timeToAdd:Double = 10.0) {
+		let time = tutorialAnimation.time + timeToAdd
 		print("HINT:", time)
 		state.addCondition(atTime: progress(seconds:time), flagName: hint) {
 			[weak self] in

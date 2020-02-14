@@ -12,7 +12,7 @@ import ArcUIKit
 class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewController {
 
     override func viewDidLoad() {
-        self.duration = 33
+		self.duration = 66.6
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -27,34 +27,42 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
 		}
 	}
     override func didSelectPrice(_ option: Int) {
+		removeHint(hint: "Hint")
+		selectionMade = true
+		let conclusions = ["questions3-0-1", "questions3-1-1", "end"]
+			.lazy
+			.map{self.jumpToCondition(named: $0)}
 		
+	
 		if option == pricesQuestions.getCorrectOption() {
+			
 			view.window?.clearOverlay()
 			view.removeHighlight()
-			removeHint(hint: "Hint")
 			currentHint?.removeFromSuperview()
 			tutorialAnimation.resume()
 			
-			getNextStep()
+
+			//If we can't jump to this conclusion step, then proceed to the next available conclusion.
+			for conclusion in conclusions {
+				if conclusion == false {
+					continue
+				} else {
+					break
+				}
+			}
+			
+		} else {
+			addHint(hint: "Hint", view: getCorrectButton(), timeToAdd: 1.0)
+			self.jumpToCondition(named:"Hint")
+			resumeTutorialanimation()
 		}
+		
+
 		pricesQuestions.questionDisplay.isUserInteractionEnabled = false
 
-		selectionMade = true
+		
 	}
-	override func getNextStep() {
-        guard state.conditions.count > 1 else { return }
-        let condition = state.conditions[1]
-		if ["prices_middle", "questions3-1" , "questions3-0-1", "questions3-1-1"].contains(  state.conditions[0].flag) {
-            return
-        }
-        if state.conditions[0].flag == "question3-2" ||
-            condition.flag == "end" {
-            self.finishTutorial()
-            return
-        }
-        tutorialAnimation.time = condition.time * duration
-        resumeTutorialanimation()
-    }
+	
 	
     override func setupScript() {
         state.addCondition(atTime: 0.0, flagName: "hide") { [weak self] in
@@ -193,7 +201,7 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
 		////////////////
 		//First question conclusion
 		////////////////
-		state.addCondition(atTime: progress(seconds: 14.1), flagName: "questions3-0-1") { [weak self] in
+		state.addCondition(atTime: progress(seconds: 20.1), flagName: "questions3-0-1") { [weak self] in
             guard let weakSelf = self else {
                 return
             }
@@ -234,13 +242,13 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
 		////////////////
 		//Second question assist
 		////////////////
-		state.addCondition(atTime: progress(seconds: 14.2), flagName: "question3-1") { [weak self] in
+		state.addCondition(atTime: progress(seconds: 30), flagName: "question3-1") { [weak self] in
 				   guard let weakSelf = self else {
 					   return
 				   }
 				   guard weakSelf.selectionMade == false else {
 					   weakSelf.selectionMade = false
-					   return
+					return
 				   }
 			weakSelf.addHint(hint: "Hint", view: weakSelf.getCorrectButton())
 				   weakSelf.currentHint?.removeFromSuperview()
@@ -269,7 +277,7 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
 		////////////////
 		//Second question conclusion
 		////////////////
-		state.addCondition(atTime: progress(seconds: 18.3), flagName: "questions3-1-1") { [weak self] in
+		state.addCondition(atTime: progress(seconds: 40.1), flagName: "questions3-1-1") { [weak self] in
             guard let weakSelf = self else {
                 return
             }
@@ -306,13 +314,13 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
         ////////////////
 		//Third question assist
 		////////////////
-		state.addCondition(atTime: progress(seconds: 18.3), flagName: "question3-2") { [weak self] in
+		state.addCondition(atTime: progress(seconds: 50.3), flagName: "question3-2") { [weak self] in
             guard let weakSelf = self else {
                 return
             }
             guard weakSelf.selectionMade == false else {
                 weakSelf.selectionMade = false
-                
+
                 return
                 
             }
@@ -343,7 +351,7 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
             }
         }
         
-		state.addCondition(atTime: progress(seconds: 22.4), flagName: "end") { [weak self] in
+		state.addCondition(atTime: progress(seconds: 60.4), flagName: "end") { [weak self] in
             guard let weakSelf = self else {
                 return
             }
