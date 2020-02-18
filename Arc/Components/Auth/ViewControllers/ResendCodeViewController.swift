@@ -32,7 +32,7 @@ class ResendCodeViewController: CustomViewController<InfoView>, SurveyInput{
 		customView.spacerView.isHidden = false
 		let button = HMMarkupButton()
 		
-		button.setTitle("I need more help", for: .normal)
+		button.setTitle("I need more help".localized(ACTranslationKey.login_2FA_morehelp_linked), for: .normal)
 		button.setTitleColor(UIColor(named:"Primary"), for: .normal)
 		Roboto.Style.bodyBold(button.titleLabel!)
 		Roboto.PostProcess.link(button)
@@ -47,7 +47,7 @@ class ResendCodeViewController: CustomViewController<InfoView>, SurveyInput{
 	
 	fileprivate func addSendNewCodeButton() {
 		let sendCodeButton = ACButton()
-		sendCodeButton.setTitle("SEND NEW CODE", for: .normal)
+		sendCodeButton.setTitle("SEND NEW CODE".localized(ACTranslationKey.button_sendnewcode), for: .normal)
 		sendCodeButton.addTarget(self, action: #selector(sendCode), for: .touchUpInside)
         customView.infoContent.addArrangedSubview(sendCodeButton)
 	}

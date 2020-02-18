@@ -30,4 +30,5 @@ open class CustomViewController<CustomView: UIView>: ArcViewController {
 	override open func loadView() {
 		view = CustomView()
 	}
+	
 }

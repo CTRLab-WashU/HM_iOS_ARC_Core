@@ -21,6 +21,8 @@ public class NotificationPermissionViewController: CustomViewController<Notifica
 	
 	override public func viewDidLoad() {
         super.viewDidLoad()
+		navigationItem.leftBarButtonItem = UIBarButtonItem(customView: UIView())
+		navigationItem.rightBarButtonItem = UIBarButtonItem(customView: UIView())
 
         // Do any additional setup after loading the view.
     }

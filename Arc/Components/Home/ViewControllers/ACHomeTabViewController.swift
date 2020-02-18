@@ -33,15 +33,32 @@ class ACHomeTabViewController: UITabBarController {
 										 .popup_next,
 										 .popup_next,
 										 .popup_done]
-	
+	let tabNames = [
+		"".localized(ACTranslationKey.resources_nav_home),
+		"".localized(ACTranslationKey.resources_nav_progress),
+		"".localized(ACTranslationKey.resources_nav_earnings),
+		"".localized(ACTranslationKey.resources_nav_resources)
+
+	]
     enum Tabs:Int {
         case home = 0
         case progress = 1
         case earnings = 2
         case resources = 3
     }
-    
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+		
+	}
+	
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+		tabNames
+			.enumerated()
+			.forEach {self.tabBar.items?[$0.offset].title = $0.element}
+	}
+	override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+		
 		guard let items = self.tabBar.items else {
 			assertionFailure("No items in tab bar")
 			return

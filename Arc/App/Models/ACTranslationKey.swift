@@ -1,5 +1,6 @@
 import Foundation
 public enum ACTranslationKey : String, TranslationKey {
+
 	case app_name
 
 	case country_key
@@ -58,11 +59,37 @@ public enum ACTranslationKey : String, TranslationKey {
 
 	case login_problems_linked
 
+	case login_enter_2FA
+
+	case login_2FA_body
+
+	case login_problems_2FA
+
+	case login_resend_header
+
+	case login_resend_subheader
+
+	case login_2FA_text
+
+	case login_2FA_morehelp_linked
+
 	case onboarding_header
 
 	case onboarding_body
 
 	case radio_understand
+
+	case radio_commit
+
+	case radio_nocommit
+
+	case onboarding_nocommit_header
+
+	case onboarding_nocommit_body
+
+	case onboarding_nocommit_landing_header
+
+	case onboarding_nocommit_landing_body
 
 	case onboarding_commit_header
 
@@ -739,7 +766,7 @@ public enum ACTranslationKey : String, TranslationKey {
 	case popup_tutorial_tiletap
 
 	case popup_tutorial_pricetap
-	
+
 	case popup_tutorial_greatjob
 
 	case popup_tutorial_nice
@@ -871,9 +898,7 @@ public enum ACTranslationKey : String, TranslationKey {
 	case money_prefix
 
 	case money_suffix
-	
-	case onboarding_nocommit_landing_header
-	
-	case onboarding_nocommit_landing_body
+
+
 
 }

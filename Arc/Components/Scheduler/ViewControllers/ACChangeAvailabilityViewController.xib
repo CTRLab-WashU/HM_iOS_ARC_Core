@@ -33,16 +33,16 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4iX-lu-2oq" customClass="HMMarkupButton" customModule="HMMarkup">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4iX-lu-2oq" customClass="HMMarkupButton" customModule="HMMarkup">
                     <rect key="frame" x="8" y="0.0" width="80" height="32"/>
                     <color key="backgroundColor" white="1" alpha="0.14701947770000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="80" id="Dha-wM-fAY"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="Dha-wM-fAY"/>
                         <constraint firstAttribute="height" constant="32" id="xVL-ti-fK9"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
-                    <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="15" maxY="0.0"/>
-                    <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                    <inset key="imageEdgeInsets" minX="-4" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" title="BACK" image="arrow_left_white">
                         <color key="titleColor" name="Secondary Text"/>
                     </state>
@@ -71,7 +71,7 @@
                                 <userDefinedRuntimeAttribute type="number" keyPath="styleId">
                                     <integer key="value" value="2"/>
                                 </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="ChangeAvail_time"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="availability_changetime"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekY-n5-gXH" customClass="ACButton" customModule="ArcUIKit">
@@ -94,7 +94,7 @@
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                     <real key="value" value="24"/>
                                 </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="change_button"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="button_change"/>
                             </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="changeSchedulePressed:" destination="-1" eventType="touchUpInside" id="Uue-I2-1rw"/>
@@ -131,7 +131,7 @@
                                 <userDefinedRuntimeAttribute type="number" keyPath="styleId">
                                     <integer key="value" value="2"/>
                                 </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="ChangeAvail_date"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="availability_changedates"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wDH-BW-Ib9" customClass="ACButton" customModule="ArcUIKit">
@@ -154,7 +154,7 @@
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                     <integer key="value" value="24"/>
                                 </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="change_button"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="button_change"/>
                             </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="changeStudyDatesPressed:" destination="-1" eventType="touchUpInside" id="dWs-1q-qLL"/>
@@ -204,10 +204,10 @@
             <color red="0.12999999523162842" green="0.20000000298023224" blue="0.40000000596046448" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Secondary">
-            <color red="0.95686274509803926" green="0.95686274509803926" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Secondary Gradient">
-            <color red="0.85490196078431369" green="0.85490196078431369" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.9570000171661377" green="0.9570000171661377" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Secondary Text">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

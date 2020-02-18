@@ -98,7 +98,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 	open func displayHelpButton(_ shouldShow:Bool) {
 		if shouldShow {
 			
-			var rightButton:UIBarButtonItem? = nil
+			var rightButton:UIBarButtonItem? = helpButton
 			if helpButton == nil {
 				
 				let helpButton = UIButton(type: .custom)
@@ -122,7 +122,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
     open func displayBackButton(_ shouldShow:Bool) {
         if shouldShow {
             
-            var leftButton:UIBarButtonItem? = nil
+            var leftButton:UIBarButtonItem? = backButton
             if backButton == nil {
                 if self.viewControllers.count > 1 {
                 let backButton = UIButton(type: .custom)
@@ -287,9 +287,8 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		if var input = topViewController as? SurveyInput {
 			input.surveyInputDelegate = self
 		}
-        if shouldShowBackButton{
-            displayBackButton(shouldShowBackButton)
-        }
+		
+
 	}
 	func instructionStyle(_ question:Survey.Question, presentableVc:UIViewController? = nil) {
 		// Do any additional setup after loading the view.
@@ -297,8 +296,8 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		
         useDarkStatusBar = false
         setNeedsStatusBarAppearanceUpdate()
-        let bg_image = UIImage(named: "availability_bg", in: Bundle(for: BasicSurveyViewController.self), compatibleWith: nil)
-		vc.customView.backgroundView.image = bg_image
+        
+		vc.customView.backgroundView.image = UIImage(named: "availability_bg", in: Bundle(for: self.classForCoder), compatibleWith: nil)
 		vc.customView.infoContent.alignment = .center
 		vc.customView.backgroundColor = UIColor(named:"Primary")!
 		vc.customView.setTextColor(UIColor(named: "Secondary Text"))
@@ -352,11 +351,9 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
         if shouldShowHelpButton {
             displayHelpButton(shouldShowHelpButton)
         }
-        
-        if shouldShowBackButton {
+        if shouldShowBackButton{
             displayBackButton(shouldShowBackButton)
         }
-        
 		vc.customView.infoContent.alignment = .leading
 		
 		vc.customView.setTextColor(UIColor(named: "Primary Text"))
@@ -587,6 +584,11 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 
 			display(question: questions[currentIndex])
 		}
+		
+		if shouldShowHelpButton {
+			displayHelpButton(shouldShowHelpButton)
+		}
+		displayBackButton(shouldShowBackButton)
 	}
 	
 	public func updateNextQuestion(question:Survey.Question, answer:QuestionResponse){
@@ -617,7 +619,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 					
 					
 				case let intArray as [Int]:
-					for value in intArray {
+						for value in intArray {
 						if let validAnswers = (route.value as? [Int]), validAnswers.contains(value) {
 							let question = Arc.shared.surveyController.get(question: route.nextQuestionId)
 							questions.insert(question, at: currentIndex + 1)

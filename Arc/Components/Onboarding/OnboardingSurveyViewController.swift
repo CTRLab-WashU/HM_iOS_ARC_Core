@@ -9,10 +9,11 @@
 import UIKit
 
 open class OnboardingSurveyViewController: BasicSurveyViewController {
-
+	var defaultBackValue = true
+	var defaultHelpValue = true
 	override open func viewDidLoad() {
         super.viewDidLoad()
-
+		defaultBackValue = shouldShowBackButton
         // Do any additional setup after loading the view.
     }
 	open override var preferredStatusBarStyle: UIStatusBarStyle {

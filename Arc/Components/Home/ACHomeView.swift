@@ -158,11 +158,11 @@ public class ACHomeView: ACTemplateView {
             .font : UIFont(name: "Roboto-Bold", size: 16.0) as Any,
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ]
-        let changeAvailabilityTitle = NSAttributedString(string: "Change Availability".localized(""), attributes: attributes)
+        let changeAvailabilityTitle = NSAttributedString(string: "Change Availability".localized(ACTranslationKey.resources_availability), attributes: attributes)
         
         self.changeAvailabilityButton = view.button {
             $0.setAttributedTitle(changeAvailabilityTitle, for: .normal)
-            $0.setTitle("Change Availability".localized(""),
+			$0.setTitle("Change Availability".localized(ACTranslationKey.resources_availability),
                         for: .normal)
             $0.setTitleColor(UIColor(named: "Primary"), for: .normal)
             

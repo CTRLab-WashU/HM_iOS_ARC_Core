@@ -140,7 +140,7 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 			$0.container!.axis = .horizontal
 			$0.button {
 				$0.titleLabel!.textAlignment = .center
-				$0.setTitle("SHOW MORE".localized(""), for: .normal)
+				$0.setTitle("SHOW MORE".localized(ACTranslationKey.popup_showmore), for: .normal)
 				$0.tintColor = ACColor.secondary
 				Roboto.Style.bodyBold($0.titleLabel!, color: ACColor.secondary)
 				$0.titleLabel!.numberOfLines = 1
@@ -186,7 +186,7 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 			$0.container!.axis = .horizontal
 				$0.button {
 					$0.titleLabel!.textAlignment = .center
-					$0.setTitle("SHOW MORE".localized(""), for: .normal)
+					$0.setTitle("SHOW MORE".localized(ACTranslationKey.popup_showmore), for: .normal)
 					$0.tintColor = ACColor.secondary
 					Roboto.Style.bodyBold($0.titleLabel!, color: ACColor.secondary)
 					$0.titleLabel!.numberOfLines = 1
