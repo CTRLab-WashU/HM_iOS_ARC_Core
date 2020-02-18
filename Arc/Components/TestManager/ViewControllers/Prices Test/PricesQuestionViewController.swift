@@ -74,9 +74,16 @@ open class PricesQuestionViewController: ArcViewController, TestProgressViewCont
 	/// if it cannot find a value it will mark the test as complete and defer
 	/// to the application for navigation.
     public func selectQuestion() {
-		
-        if let value = questions.subtracting(presentedQuestions).randomElement() {
-            presentQuestion(index: value, id: responseId)
+		var value:Int? = nil
+		if isTutorial {
+			value = questions.subtracting(presentedQuestions).sorted().first
+
+		} else {
+			value = questions.subtracting(presentedQuestions).randomElement()
+
+		}
+        if let v = value {
+            presentQuestion(index: v, id: responseId)
         } else {
 			if delegate?.shouldEndTest() ?? true {
 

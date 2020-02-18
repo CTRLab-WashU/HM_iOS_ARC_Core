@@ -253,10 +253,10 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
 			weakSelf.addHint(hint: "Hint", view: weakSelf.getCorrectButton())
 				   weakSelf.currentHint?.removeFromSuperview()
 				   weakSelf.pricesQuestions.questionDisplay.isUserInteractionEnabled = true
-//				   let shape = OverlayShape.roundedRect(weakSelf.pricesQuestions.questionDisplay, 8, CGSize(width: -8,height:-8))
-				   //weakSelf.pricesQuestions.view.overlayView(withShapes: [shape])
+				   let shape = OverlayShape.roundedRect(weakSelf.pricesQuestions.questionDisplay, 8, CGSize(width: -8,height:-8))
+				   weakSelf.pricesQuestions.view.overlayView(withShapes: [shape])
 				   //weakSelf.tutorialAnimation.pause()
-				   weakSelf.pricesQuestions.view.overlayView(withShapes: [])
+//				   weakSelf.pricesQuestions.view.overlayView(withShapes: [])
 
 				   self?.currentHint = self?.view.window?.hint {
 					   $0.content = "*What do you think?*\nTry your best to recall the price from part one.".localized(ACTranslationKey.popup_tutorial_choose2)
