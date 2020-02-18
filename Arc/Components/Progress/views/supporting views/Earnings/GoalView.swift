@@ -12,6 +12,7 @@ public class GoalView: UIView {
 	weak public var contentStack:UIStackView!
 	weak var goalRewardView:GoalRewardView!
 	weak var goalTitleLabel:ACLabel!
+	weak var doneView:UIView!
 	weak var doneLabel:ACLabel!
 	weak var goalBodyLabel:ACLabel!
     /*
@@ -58,13 +59,13 @@ public class GoalView: UIView {
 						Roboto.Style.goalHeading($0, color: ACColor.badgeText)
                         $0.numberOfLines = 1
 					}
-					$0.view{
+					self.doneView = $0.view{
                         $0.backgroundColor = ACColor.badgeBackground
                         $0.layer.cornerRadius = 4
                         $0.clipsToBounds = true
-                        
+						$0.isHidden = true
+
                         self.doneLabel = $0.acLabel {
-                            $0.isHidden = false
                             Roboto.Style.goalReward($0, color:ACColor.badgeText)
                             $0.text = "".localized(ACTranslationKey.status_done)
                         }
@@ -122,7 +123,7 @@ public class GoalView: UIView {
 		goalBodyLabel.text = bodyText
 	}
 	public func set(isUnlocked:Bool) {
-		doneLabel.isHidden = !isUnlocked
+		doneView.isHidden = !isUnlocked
 		goalRewardView.isUnlocked = isUnlocked
 	}
 	public func set(goalRewardText:String) {

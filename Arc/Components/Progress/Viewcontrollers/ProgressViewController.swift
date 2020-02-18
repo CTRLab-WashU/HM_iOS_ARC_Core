@@ -70,13 +70,14 @@ class ProgressViewController: CustomViewController<ACProgressView> {
 				.replacingOccurrences(of: "{#}", with: "\(today.sessionsCompleted)")
 			
 			if today.totalSessions - today.sessionsStarted == 0 {
-				
+				customView.sessionRemainingView.backgroundColor = .badgeBackground
 				customView.todaysSessionRemainingLabel.text = "".localized(ACTranslationKey.progress_schedule_status2)
 				
 				Roboto.Style.badge(customView.todaysSessionRemainingLabel)
 			
 			} else {
 			
+				customView.sessionRemainingView.backgroundColor = .clear
 
 				customView.todaysSessionRemainingLabel.text = "".localized(ACTranslationKey.progress_dailystatus_remaining)
                 .replacingOccurrences(of: "{#}", with: "\(today.totalSessions - today.sessionsStarted)")
@@ -92,7 +93,7 @@ class ProgressViewController: CustomViewController<ACProgressView> {
 		switch thisStudy.studyState {
 		case .baseline:
 			customView.dayOfWeekLabel.text = ""
-			customView.noticeLabel.text = "Thanks for completing the practice session today! *Your testing week officially begins tomorrow.*"
+			customView.noticeLabel.text = "Thanks for completing the practice session today! *Your testing week officially begins tomorrow.*".localized(ACTranslationKey.progress_baseline_notice)
 			customView.weekProgressView.isHidden = true
 		case .activeBaseline:
 			

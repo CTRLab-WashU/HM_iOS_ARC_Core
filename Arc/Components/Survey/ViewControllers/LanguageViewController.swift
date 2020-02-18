@@ -44,6 +44,7 @@ public enum ACLocale : String{
         case "Nederland - Nederlands": return .nl_NL
         case "France - Français": return .fr_FR
         case "España - Español": return .es_ES
+		case "Europe - Spanish": return .es_ES
         case "Argentina - Español": return .es_AR
         case "Canada - Français": return .fr_CA
         case "Deutschland - Deutsche": return .de_DE
@@ -52,6 +53,7 @@ public enum ACLocale : String{
         case "Brasil - Português": return .pt_BR
         case  "Columbia - Español": return .es_CO
         case "Mexico - Español": return .es_MX
+		case "Latin America - Spanish": return .es_MX
         case "US - Español": return .es_US
         case "中国 - 简体中文": return .zh_CN
         default: return .en_US

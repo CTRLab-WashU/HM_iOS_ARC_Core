@@ -101,7 +101,7 @@ class ACProgressView: ACTemplateView {
                                     
                                 }
                                 self.todaysSessionRemainingLabel.attachTo(view: $0, margins: UIEdgeInsets(top: 3, left: 10, bottom: 3, right: 10))
-                                $0.backgroundColor = ACColor.badgeBackground
+								$0.backgroundColor = .clear
                                 $0.layer.cornerRadius = 4
                                 $0.clipsToBounds = true
                                 

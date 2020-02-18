@@ -181,7 +181,7 @@ public class ACHomeView: ACTemplateView {
 		case .available:
 			//heading = "Hello!".localized("home_header")
 			//message = "You have a new test available.".localized("home_body")
-            heading = "You have a new test available.".localized("home_body")
+            heading = "You have a new test available.".localized("home_header1")
             separator.isHidden = true
 			surveyButton.isHidden = false
 			
