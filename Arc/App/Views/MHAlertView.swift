@@ -139,11 +139,11 @@ open class MHAlertView: UIView {
 			default:
 				break
 			}
-			self.removeFromSuperview()
+			self.remove()
 		}
 	}
 	
-	override open func removeFromSuperview() {
+	open func remove() {
 		if delayTimer?.isValid ?? false {
 			delayTimer?.invalidate()
 		}
@@ -156,8 +156,8 @@ open class MHAlertView: UIView {
 		
 		UIView.animate(withDuration: 0.15, delay: 0.1, options: .curveEaseOut, animations: {
 			self.alpha = 0
-		}) { (_) in
-			super.removeFromSuperview()
+		}) { [weak self] (_)  in
+			self?.removeFromSuperview()
 
 		}
 	}
