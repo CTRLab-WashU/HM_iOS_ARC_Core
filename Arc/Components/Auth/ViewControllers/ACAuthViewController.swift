@@ -130,6 +130,7 @@ open class ACAuthViewController: BasicSurveyViewController {
 			assertionFailure("Should be a string value")
 			return
 		}
+		self.set(error: nil)
 
 		if index == "auth_1" {
 			initialValue = value
@@ -148,9 +149,9 @@ open class ACAuthViewController: BasicSurveyViewController {
 			_ = controller.set(password: value)
 
 			if initialValue != controller.getUserName() {
-				if let input:SurveyInput = self.topViewController as? SurveyInput {
-					input.setError(message:"Subject ID does not match.")
-				}
+				
+				self.set(error: "Subject ID does not match.")
+
 			} else {
 				let top:CustomViewController<InfoView>? = getTopViewController()
 				

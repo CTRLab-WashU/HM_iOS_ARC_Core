@@ -144,10 +144,9 @@ public class AC2FAuthenticationViewController: BasicSurveyViewController {
 	}
 	public override func valueSelected(value: QuestionResponse, index: String) {
 		//All questions are of type string in this controller
-		if let input:SurveyInput = self.topViewController as? SurveyInput {
-			
-			input.setError(message:nil)
-		}
+		
+		self.set(error: nil)
+
 		guard let value:String = value.getValue() else {
 			assertionFailure("Should be a string value")
 			return
