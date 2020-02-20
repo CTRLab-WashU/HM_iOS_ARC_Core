@@ -24,6 +24,9 @@ open class OnboardingSurveyViewController: BasicSurveyViewController {
 		if question.state == "NotificationAccess" {
 			return NotificationPermissionViewController()
 		}
+		if question.state == "NotificationAccessRejected" {
+			return NotificationsRejectedViewController()
+		}
 		if question.state == "rebuked" {
 			return RebukedCommitmentViewController()
 		}
@@ -59,25 +62,17 @@ open class OnboardingSurveyViewController: BasicSurveyViewController {
 			}
 			else if questionId == "allow_from_settings" {
                 
-                let vc:CustomViewController<InfoView> = self.getTopViewController()!
-                let message = "".localized("allow_from_settings")
-                    .replacingOccurrences(of: "[app name]", with: "EXR")
-                vc.customView.setHeading(message)
-                
+//                let vc:CustomViewController<InfoView> = self.getTopViewController()!
+//                let message = "".localized("allow_from_settings")
+//                    .replacingOccurrences(of: "[app name]", with: "EXR")
+//                vc.customView.setHeading(message)
+//
 				if Await(checkNotificationStatus).execute(()) {
 					didFinish(true)
 				} else {
-					guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-						didFinish(false)
-						return
-					}
-					
-					if UIApplication.shared.canOpenURL(settingsUrl) {
-						UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-							print("Settings opened: \(success)") // Prints true
-						})
-					}
-					didFinish(false)
+					//We let them go in either case. 
+					didFinish(true)
+
 				}
 			}
 			else {

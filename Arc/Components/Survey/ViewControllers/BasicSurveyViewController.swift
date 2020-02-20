@@ -60,8 +60,8 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		questions = survey.questions
 		
 		subQuestions = survey.subQuestions
-		
-
+//		print(file)
+//		dump(survey)
 		var newId:String?
 		//If we have a current study running
 		if let i = Arc.shared.studyController.getCurrentStudyPeriod()?.studyID  {
@@ -550,6 +550,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 
 		currentIndex = viewControllers.count - 1
 		print("Controller index:", currentIndex)
+		set(error: nil)
 		while answeredQuestions.count >= viewControllers.count && answeredQuestions.count > 0 {
 			_ = answeredQuestions.popLast()
 		}
@@ -562,6 +563,8 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
         
         currentIndex = viewControllers.count - 1
         print("Controller index:", currentIndex)
+		set(error: nil)
+
         while answeredQuestions.count >= viewControllers.count && answeredQuestions.count > 0 {
             _ = answeredQuestions.popLast()
         }

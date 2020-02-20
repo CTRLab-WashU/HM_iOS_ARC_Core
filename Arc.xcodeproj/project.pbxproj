@@ -284,6 +284,8 @@
 		C5C7F715228F65C50086315B /* ArcTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C7F714228F65C50086315B /* ArcTranslation.swift */; };
 		C5CCD7AC22DE6A61002A788A /* OnboardingSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CCD7AB22DE6A61002A788A /* OnboardingSurveyViewController.swift */; };
 		C5CCD7AE22DF717D002A788A /* AsyncAwait.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CCD7AD22DF717D002A788A /* AsyncAwait.swift */; };
+		C5CDF92E23FEFA32003DA532 /* NotificationsRejectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CDF92D23FEFA32003DA532 /* NotificationsRejectedViewController.swift */; };
+		C5CDF93123FEFA46003DA532 /* NotificationsRejectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CDF93023FEFA46003DA532 /* NotificationsRejectedView.swift */; };
 		C5D085CC22D7828300043513 /* HintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D085CB22D7828300043513 /* HintView.swift */; };
 		C5D0F6FA220B477B00F04942 /* MHScrollingAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5D0F6F9220B477B00F04942 /* MHScrollingAlertView.xib */; };
 		C5D24ED3230B02B600146E37 /* FourOfFourGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D24ED2230B02B600146E37 /* FourOfFourGoalView.swift */; };
@@ -645,6 +647,8 @@
 		C5C7F714228F65C50086315B /* ArcTranslation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArcTranslation.swift; sourceTree = "<group>"; };
 		C5CCD7AB22DE6A61002A788A /* OnboardingSurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSurveyViewController.swift; sourceTree = "<group>"; };
 		C5CCD7AD22DF717D002A788A /* AsyncAwait.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncAwait.swift; sourceTree = "<group>"; };
+		C5CDF92D23FEFA32003DA532 /* NotificationsRejectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsRejectedViewController.swift; sourceTree = "<group>"; };
+		C5CDF93023FEFA46003DA532 /* NotificationsRejectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsRejectedView.swift; sourceTree = "<group>"; };
 		C5D085CB22D7828300043513 /* HintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintView.swift; sourceTree = "<group>"; };
 		C5D0F6F9220B477B00F04942 /* MHScrollingAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MHScrollingAlertView.xib; sourceTree = "<group>"; };
 		C5D24ED2230B02B600146E37 /* FourOfFourGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourOfFourGoalView.swift; sourceTree = "<group>"; };
@@ -798,6 +802,8 @@
 				C51A7D8D22D8C38300854B13 /* NotificationPermissionView.swift */,
 				C5477C7B231868E10072425D /* RebukedCommitmentViewController.swift */,
 				C5477C79231868C80072425D /* RebukedCommitmentView.swift */,
+				C5CDF92D23FEFA32003DA532 /* NotificationsRejectedViewController.swift */,
+				C5CDF93023FEFA46003DA532 /* NotificationsRejectedView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -2011,6 +2017,7 @@
 				C55F8CCD230F0FF0006D43BD /* GoalsGroup.swift in Sources */,
 				C5143959224EA6FD000BF1CB /* ACSignatureNavigationController.swift in Sources */,
 				C593227C22EA397C00528FF5 /* ScheduleEndViewController.swift in Sources */,
+				C5CDF93123FEFA46003DA532 /* NotificationsRejectedView.swift in Sources */,
 				C5E3925022EB76AD007CB3B6 /* ResendCodeViewController.swift in Sources */,
 				C54AE9D121C81B5F00DEC360 /* ACState.swift in Sources */,
 				C54D104822C28A1D00B43E42 /* ACPickerView.swift in Sources */,
@@ -2123,6 +2130,7 @@
 				C54AE9E421C81B5F00DEC360 /* StatusCode.swift in Sources */,
 				C593227322E8916300528FF5 /* BlockProgressview.swift in Sources */,
 				C54AEA2B21C81B5F00DEC360 /* AuthController.swift in Sources */,
+				C5CDF92E23FEFA32003DA532 /* NotificationsRejectedViewController.swift in Sources */,
 				C54D488623E3308000EE9511 /* PriceTestType.swift in Sources */,
 				C57E9C862236C232009F6228 /* StartDateShiftViewController.swift in Sources */,
 				E8BA72F923198BD800823374 /* ResourcesNavigationViewController.swift in Sources */,
