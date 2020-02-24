@@ -91,15 +91,15 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 					*Great job!*
 					Let’s try a couple more
 					for practice.
-					"""
-					$0.buttonTitle = "Next"
+					""".localized(ACTranslationKey.popup_tutorial_greatjob)
+					$0.buttonTitle = "Next".localized(ACTranslationKey.button_next)
 				} else {
                     self?.progress = 0.66
 					$0.content = """
 					*Nice!*
 					One more...
-					"""
-					$0.buttonTitle = "Next"
+					""".localized(ACTranslationKey.popup_tutorial_nice)
+					$0.buttonTitle = "Next".localized(ACTranslationKey.button_next)
 				}
 				$0.onTap = { [weak self] in
 					self?.test.next()
@@ -144,8 +144,8 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 				*This is a tile.*
 				Each tile includes a pair
 				of symbols.
-				"""
-				$0.buttonTitle = "Next"
+				""".localized(ACTranslationKey.popup_tutorial_tile)
+				$0.buttonTitle = "Next".localized(ACTranslationKey.button_next)
 				$0.onTap = { [weak self] in
 					
 					self?.didSelect()
@@ -181,8 +181,8 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
                 $0.updateTitleStackMargins()
 				$0.content = """
 				You will see *three tiles* on the top of the screen…
-				"""
-				$0.buttonTitle = "Next"
+				""".localized(ACTranslationKey.popup_tutorial_tilestop)
+				$0.buttonTitle = "Next".localized(ACTranslationKey.button_next)
 				$0.onTap = { [weak self] in
 					
 					self?.didSelect()
@@ -217,8 +217,8 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
                 $0.updateTitleStackMargins()
 				$0.content = """
 				…and *two tiles* on the bottom.
-				"""
-				$0.buttonTitle = "Next"
+				""".localized(ACTranslationKey.popup_tutorial_tilesbottom)
+				$0.buttonTitle = "Next".localized(ACTranslationKey.button_next)
                 $0.updateHintContainerMargins()
 				$0.onTap = { [weak self] in
 					
