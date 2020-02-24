@@ -59,6 +59,7 @@ class NotificationsRejectedViewController : CustomViewController<InfoView>, Surv
 			
 		}
 		customView.setHeading("".localized(ACTranslationKey.onboarding_notifications_header2))
+		customView.infoContent.headingLabel?.textAlignment = .center
 		
 		customView.setContentLabel("".localized(ACTranslationKey.onboarding_notifications_body2_ios)
 			.replacingOccurrences(of: "{APP NAME}", with: "EXR"))
