@@ -653,6 +653,8 @@ public enum ACTranslationKey : String, TranslationKey {
 
 	case login_error3
 
+	case login_error4
+	
 	case button_help
 
 	case button_begin
