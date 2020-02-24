@@ -87,7 +87,7 @@ public class ACHomeView: ACTemplateView {
             $0.updateTitleStackMargins()
 			$0.layout {
 				$0.centerX == self.tutorialTarget!.centerXAnchor
-				$0.top == self.tutorialTarget!.bottomAnchor + 12
+				$0.top == self.tutorialTarget!.bottomAnchor + 2
 				
 
 			}
