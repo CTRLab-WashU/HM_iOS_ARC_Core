@@ -83,15 +83,19 @@ class ACProgressView: ACTemplateView {
 					$0.stack {
 						$0.axis = .vertical
 						$0.alignment = .leading
-						
 						$0.stack {
-							$0.alignment = .leading
+							$0.alignment = .center
                             $0.spacing = 8
-                            $0.distribution = .fill
 							self.todaysSessionCompletionLabel = $0.acLabel {
 								Roboto.Style.body($0, color: #colorLiteral(red: 0.04300000146, green: 0.1220000014, blue: 0.3330000043, alpha: 1))
 								
 								$0.text = "*{#}* Complete |"
+                                $0.numberOfLines = 1
+							}
+							$0.acLabel {
+								Roboto.Style.body($0, color: #colorLiteral(red: 0.04300000146, green: 0.1220000014, blue: 0.3330000043, alpha: 1))
+								
+								$0.text = "|"
                                 $0.numberOfLines = 1
 							}
                             self.sessionRemainingView = $0.view {
