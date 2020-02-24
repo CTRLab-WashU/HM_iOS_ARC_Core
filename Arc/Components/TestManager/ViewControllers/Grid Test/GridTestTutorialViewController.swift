@@ -182,8 +182,8 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			guard let weakSelf = self else {
 				return
 			}
-			weakSelf.buildStartScreen(message: "In this three part test, you’ll be asked to *recall the location* of these items.",
-									  buttonTitle: "Got it")
+			weakSelf.buildStartScreen(message: "In this three part test, you’ll be asked to *recall the location* of these items.".localized(ACTranslationKey.popup_tutorial_recall),
+									  buttonTitle: "Got it".localized(ACTranslationKey.popup_gotit))
 			
 		}
 		state.addCondition(atTime: progress(seconds: 0), flagName: "start-1") { [weak self] in
@@ -194,8 +194,8 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			weakSelf.test.displaySymbols()
 			weakSelf.test.view.overlayView(withShapes: [])
 			weakSelf.currentHint = weakSelf.view.window?.hint {
-				$0.content = "The items will be placed in a grid of boxes. *Remember which box each item is in.* You will have 3 seconds."
-				$0.buttonTitle = "I'm Ready"
+				$0.content = "The items will be placed in a grid of boxes. *Remember which box each item is in.* You will have 3 seconds.".localized(ACTranslationKey.popup_tutorial_rememberbox)
+				$0.buttonTitle = "I'm Ready".localized(ACTranslationKey.popup_tutorial_ready)
 				$0.onTap = { [weak self] in
 					
 					weakSelf.phase = .start
@@ -221,8 +221,8 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			weakSelf.test.displaySymbols()
 			weakSelf.test.view.overlayView(withShapes: [])
 			weakSelf.currentHint = weakSelf.view.window?.hint {
-				$0.content = "*Great!*\nLet's proceed to part two."
-				$0.buttonTitle = "Next"
+				$0.content = "*Great!*\nLet's proceed to part two.".localized(ACTranslationKey.popup_tutorial_part2)
+				$0.buttonTitle = "Next".localized(ACTranslationKey.button_next)
 				$0.onTap = { [weak self] in
 					self?.didSelect()
 				}
@@ -262,7 +262,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			weakSelf.test.collectionView.isUserInteractionEnabled = true
 
 			weakSelf.currentHint = weakSelf.view.window?.hint {
-				$0.content = "Tap this letter F."
+				$0.content = "Tap this letter F.".localized(ACTranslationKey.popup_tutorial_tapf1)
 				$0.targetView = cell
                 $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
                                                         secondaryColor: UIColor(named:"HintFill")!,
@@ -295,8 +295,8 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			weakSelf.tutorialAnimation.pause()
 			weakSelf.test.view.overlayView(withShapes: [])
 			weakSelf.currentHint = weakSelf.view.window?.hint {
-				$0.content = "*Perfect!*\nNow: *Tap all the F’s* you see as quickly as you can.\nYou will have 8 seconds."
-				$0.buttonTitle = "I'm Ready"
+				$0.content = "*Perfect!*\nNow: *Tap all the F’s* you see as quickly as you can.\nYou will have 8 seconds.".localized(ACTranslationKey.popup_tutorial_tapf2)
+				$0.buttonTitle = "I'm Ready".localized(ACTranslationKey.popup_tutorial_ready)
 				$0.onTap = { [weak self] in
 					self?.didSelect()
 					weakSelf.phase = .fsTimed
@@ -325,14 +325,14 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			weakSelf.test.collectionView.isUserInteractionEnabled = false
 			weakSelf.phase = .fs
 			weakSelf.currentHint = weakSelf.view.window?.hint {
-				$0.content = "*Nice work!*\nDon't worry if you didn't find them all."
+				$0.content = "*Nice work!*\nDon't worry if you didn't find them all.".localized(ACTranslationKey.popup_tutorial_tapf3)
 				$0.buttonTitle = "Next"
 				$0.onTap = {
 					weakSelf.phase = .recallFirstStep
 					weakSelf.didSelect()
 					weakSelf.test.clearGrids()
-					weakSelf.buildStartScreen(message: "In the final part of the test, you will select the three boxes where these items were located in part one.",
-											  buttonTitle: "I'm Ready")
+					weakSelf.buildStartScreen(message: "In the final part of the test, you will select the three boxes where these items were located in part one.".localized(ACTranslationKey.popup_tutorial_selectbox),
+											  buttonTitle: "I'm Ready".localized(ACTranslationKey.popup_tutorial_ready))
 				}
 				
 				$0.layout {
@@ -442,7 +442,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			
 			//Otherwise let's give them a choice.
 			weakSelf.currentHint = weakSelf.view.window?.hint {
-				$0.content  = "".localized("popup_tutorial_needhelp")
+				$0.content  = "".localized(ACTranslationKey.popup_tutorial_needhelp)
 				$0.buttonTitle = "".localized(ACTranslationKey.popup_tutorial_remindme)
 				$0.onTap = {[weak self] in
 					weakSelf.currentHint?.removeFromSuperview()

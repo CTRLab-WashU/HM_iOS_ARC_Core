@@ -152,7 +152,7 @@ open class IntroViewController: CustomViewController<InfoView> {
 		if style == .grids || style == .prices || style == .symbols {
 			let button = HMMarkupButton()
 			tutorialButton = button
-			button.setTitle("View a Tutorial", for: .normal)
+			button.setTitle("View a Tutorial".localized(ACTranslationKey.testing_tutorial_link), for: .normal)
 			Roboto.Style.bodyBold(button.titleLabel!, color:.white)
 			Roboto.PostProcess.link(button)
 			
