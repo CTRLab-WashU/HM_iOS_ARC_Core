@@ -123,7 +123,7 @@ open class HMRestAPI : NSObject, URLSessionDelegate, URLSessionTaskDelegate {
         //Update request with query
         urlRequest.url = urlComponents?.url
 		var task : URLSessionDataTask?
-
+		
         DispatchQueue.main.async {
 			let token = RequestToken(url: url, data: backendRequest.data)
 			if self.tasks.keys.contains(token) {
@@ -137,32 +137,34 @@ open class HMRestAPI : NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 				//completionHandlers.forEach {$0.1(error, response)}
 
 				self.tasks[token] = [(backendRequest.didSucceed, backendRequest.didFail)]
+	
+				
 				task = self.session!.dataTask(with: urlRequest) { (data, response, error) in
 					DispatchQueue.main.async {
 						
 						
-						
+						defer {
+							self.tasks.removeValue(forKey: token)
+						}
 						
 					guard let completionHandlers = self.tasks[token] else {return}
 						
 						if let error = error {
 							HMLog("Failing \(completionHandlers.count) reponses")
 							completionHandlers.forEach {$0.1(error, response)}
-							self.tasks.removeValue(forKey: token)
 
 							return
 						}
                         guard let data = data, let _ = response else {
 							completionHandlers.forEach{$0.1(HMRestAPIError.noResponse, nil)}
-							self.tasks.removeValue(forKey: token)
-
+							
 							return
 						}
-						
 						HMLog("\(url)\n\n")
 						HMLog("Decoded Response---------------------------------")
 						do {
 							let obj = try JSONDecoder().decode(HMResponse.self, from: data).toString()
+
 							HMLog(obj);
 						} catch {
 							//HMLog(error.localizedDescription)
@@ -170,7 +172,6 @@ open class HMRestAPI : NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 								$0.1(error, response)
 								
 							}
-							self.tasks.removeValue(forKey: token)
 							return
 						}
 						
@@ -179,8 +180,6 @@ open class HMRestAPI : NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 						completionHandlers.forEach {
 							$0.0(data, response)
 						}
-						self.tasks.removeValue(forKey: token)
-						
 						
 					}
 				}

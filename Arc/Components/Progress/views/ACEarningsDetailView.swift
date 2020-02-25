@@ -125,7 +125,7 @@ public class ACEarningsDetailView : ACTemplateView {
 			let dateFormatter:RelativeDateTimeFormatter = RelativeDateTimeFormatter()
 			dateFormatter.locale = Arc.shared.appController.locale.getLocale()
 
-			time = dateFormatter.localizedString(for: Date(), relativeTo:  Date(timeIntervalSince1970: synched))
+			time = dateFormatter.localizedString(for: Date(timeIntervalSince1970: synched), relativeTo:  Date())
 		} else {
 			// Fallback on earlier versions
 			let dateFormatter:DateFormatter = DateFormatter()

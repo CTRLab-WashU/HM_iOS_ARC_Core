@@ -220,8 +220,23 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 	fileprivate func updateBodyText() {
 		if let last = lastUpdated {
 			let date = Date(timeIntervalSince1970: last)
+			
+			var time = ""
+			if #available(iOS 13.0, *) {
+				//TODO: Update for iOS 13, right now, this is commented out because
+				//it does not build in xcode 10.
+				let dateFormatter:RelativeDateTimeFormatter = RelativeDateTimeFormatter()
+				dateFormatter.locale = Arc.shared.appController.locale.getLocale()
+
+				time = dateFormatter.localizedString(for: date, relativeTo:  Date())
+			} else {
+				// Fallback on earlier versions
+				
+				time = dateFormatter.string(from: date)
+			}
+			
 			if date.addingMinutes(minutes: 1).minutes(from: Date()) < 1 {
-				customView.lastSyncedLabel.text = "\("".localized(ACTranslationKey.earnings_sync)) \(dateFormatter.string(from: date))"
+				customView.lastSyncedLabel.text = "\("".localized(ACTranslationKey.earnings_sync)) \(time)"
 			}
 		}
 		customView.bonusGoalsBodyLabel.text = "".localized(ACTranslationKey.earnings_bonus_body)
