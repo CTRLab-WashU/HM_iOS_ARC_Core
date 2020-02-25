@@ -212,6 +212,7 @@
 		C54E8E2622E88DC60080BFC1 /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54E8E2522E88DC60080BFC1 /* ProgressViewController.swift */; };
 		C54F62E32326AD9300857C7D /* ACMigrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54F62E22326AD9300857C7D /* ACMigrationViewController.swift */; };
 		C54F62E52326AE2400857C7D /* ACMigrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54F62E42326AE2400857C7D /* ACMigrationView.swift */; };
+		C554EF142405843900223151 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = C554EF122405843800223151 /* Event.swift */; };
 		C556BA2D22CA4B3D0057B54B /* ACTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C556BA2C22CA4B3D0057B54B /* ACTemplateView.swift */; };
 		C556BA2F22CA5B4C0057B54B /* ACHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C556BA2E22CA5B4C0057B54B /* ACHomeView.swift */; };
 		C55F8CC7230D7B98006D43BD /* TodaysProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F8CC6230D7B98006D43BD /* TodaysProgress.swift */; };
@@ -584,6 +585,7 @@
 		C54E8E2522E88DC60080BFC1 /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		C54F62E22326AD9300857C7D /* ACMigrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACMigrationViewController.swift; sourceTree = "<group>"; };
 		C54F62E42326AE2400857C7D /* ACMigrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACMigrationView.swift; sourceTree = "<group>"; };
+		C554EF122405843800223151 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		C556BA2C22CA4B3D0057B54B /* ACTemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTemplateView.swift; sourceTree = "<group>"; };
 		C556BA2E22CA5B4C0057B54B /* ACHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACHomeView.swift; sourceTree = "<group>"; };
 		C55F8CC6230D7B98006D43BD /* TodaysProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaysProgress.swift; sourceTree = "<group>"; };
@@ -990,6 +992,7 @@
 		C54AE91921C81B5C00DEC360 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				C554EF122405843800223151 /* Event.swift */,
 				C5CCD7AD22DF717D002A788A /* AsyncAwait.swift */,
 				C58C96F0228201CE001BDE11 /* HMOperation.swift */,
 				C54AE91A21C81B5C00DEC360 /* HMLog.swift */,
@@ -2042,6 +2045,7 @@
 				C54AE9DB21C81B5F00DEC360 /* UIStackView+Extensions.swift in Sources */,
 				E8BA72E723198B8100823374 /* FAQTableViewCell.swift in Sources */,
 				C51A7D8E22D8C38300854B13 /* NotificationPermissionView.swift in Sources */,
+				C554EF142405843900223151 /* Event.swift in Sources */,
 				C54AE9E021C81B5F00DEC360 /* Data+Extensions.swift in Sources */,
 				C54AE9EB21C81B5F00DEC360 /* HMAPI.swift in Sources */,
 				C54AEA2921C81B5F00DEC360 /* WelcomeViewController.swift in Sources */,
