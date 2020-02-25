@@ -122,10 +122,10 @@ public class ACEarningsDetailView : ACTemplateView {
 		if #available(iOS 13.0, *) {
 			//TODO: Update for iOS 13, right now, this is commented out because
 			//it does not build in xcode 10. 
-//			let dateFormatter:RelativeDateTimeFormatter = RelativeDateTimeFormatter()
-//			dateFormatter.locale = Arc.shared.appController.locale.getLocale()
-//
-//			time = dateFormatter.localizedString(for: Date(), relativeTo:  Date(timeIntervalSince1970: synched))
+			let dateFormatter:RelativeDateTimeFormatter = RelativeDateTimeFormatter()
+			dateFormatter.locale = Arc.shared.appController.locale.getLocale()
+
+			time = dateFormatter.localizedString(for: Date(), relativeTo:  Date(timeIntervalSince1970: synched))
 		} else {
 			// Fallback on earlier versions
 			let dateFormatter:DateFormatter = DateFormatter()
