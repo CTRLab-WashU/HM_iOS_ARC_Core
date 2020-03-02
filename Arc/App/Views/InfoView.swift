@@ -81,6 +81,7 @@ public class InfoView: ACTemplateView {
     }
 	public func setInput(_ view:(UIView & SurveyInput)?) {
 		inputItem = view
+		
 		inputItem?.parentScrollView = root
 
 		view?.supplementaryViews(for: self.miscContainer)
@@ -210,6 +211,7 @@ public class InfoView: ACTemplateView {
 			}
 			self?.nextButton = $0.acButton {
 				ButtonStyle.secondary.configure(button: $0)
+				$0.accessibilityIdentifier = "next_button"
 				$0.translatesAutoresizingMaskIntoConstraints = false
 				$0.setTitle("Next", for: .normal)
 				

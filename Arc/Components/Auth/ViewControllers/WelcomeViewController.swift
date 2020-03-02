@@ -31,6 +31,7 @@ open class WelcomeViewController: UIViewController {
         let aboutTitle = NSAttributedString(string: "About This App".localized("about_linked"), attributes: attributes)
         let privacyTitle = NSAttributedString(string: "Privacy Policy".localized("privacy_linked"), attributes: attributes)
         aboutButton.setAttributedTitle(aboutTitle, for: .normal)
+		
         privacyButton.setAttributedTitle(privacyTitle, for: .normal)
         titleImage.image = Arc.shared.WELCOME_LOGO
         titleText.text = Arc.shared.WELCOME_TEXT
