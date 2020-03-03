@@ -22,6 +22,8 @@ public protocol SurveyInput {
     func setValue(_ value:QuestionResponse?)
 	func setError(message:String?)
 	func supplementaryViews(for view:UIView)
+	func additionalContentViews(for view:UIView) -> Bool
+
 	var orientation:UIStackView.Alignment {get set}
     var distribution:UIStackView.Distribution {get set}
 	var surveyInputDelegate:SurveyInputDelegate? {get set}
@@ -60,6 +62,9 @@ extension SurveyInput {
 	
 	public func supplementaryViews(for view:UIView) {
 		
+	}
+	public func additionalContentViews(for view:UIView) -> Bool {
+		return false
 	}
 
     func setValues(_ values:[String]?) {

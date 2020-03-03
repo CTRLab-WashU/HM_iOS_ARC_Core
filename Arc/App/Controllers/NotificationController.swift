@@ -132,7 +132,7 @@ open class NotificationController : MHController
             case 4 where test.study?.studyID == 0, 3:     //halfway point. Day 4, test 1
                 title = "You're halfway through the week. Keep it up! Today's first test will be available until {TIME}.".localized("notification1_halfway")
             case 6 where test.study?.studyID != 0, 7:     //beginning of the final day. Day 7, test 1
-                title = "You're on the last day of testing this week! Your first test of the day will be available until {TIME}.".localized("notification1_lastday")
+				title = "You're on the last day of testing this week! Your first test of the day will be available until {TIME}.".localized(ACTranslationKey.notification1_lastday)
             default:
                 title = "It's time for the first test of the day! This test will be avilable until {TIME}.".localized("notification1_default")
             }

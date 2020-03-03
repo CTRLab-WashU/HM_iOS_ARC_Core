@@ -83,7 +83,13 @@ public class InfoView: ACTemplateView {
 		inputItem = view
 		
 		inputItem?.parentScrollView = root
-
+		if view?.additionalContentViews(for: self.additionalContent) ?? false {
+			self.additionalContent.isHidden = false
+		} else {
+			if additionalContent.arrangedSubviews.count == 0 {
+				self.additionalContent.isHidden = true
+			}
+		}
 		view?.supplementaryViews(for: self.miscContainer)
 		if miscContainer.subviews.count > 0 {
 			miscContainer.isHidden = false

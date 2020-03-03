@@ -152,6 +152,10 @@ public struct Roboto {
 			label.numberOfLines = 0
 			label.textColor = color
 		}
+		public static func bodyBold(_ label:UIButton, color:UIColor? = .primaryText) {
+			label.titleLabel!.font = Roboto.Font.bodyBold
+			label.setTitleColor(color, for: .normal)
+		}
 		public static func earningsBold(_ label:UILabel, color:UIColor? = .white) {
 			label.font = Roboto.Font.earningsBold
 			label.numberOfLines = 0

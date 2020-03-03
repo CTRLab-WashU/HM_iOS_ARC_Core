@@ -13,7 +13,7 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTra
 	public weak var surveyInputDelegate: SurveyInputDelegate?
 
     public var orientation: UIStackView.Alignment = .top
-   
+	private var problemsButton:UIButton?
 
 	@IBOutlet weak var inputStack: UIStackView!
 	public var shouldTryNext = true
@@ -162,12 +162,29 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTra
 		becomeFirstResponder()
 	}
 	
-	
+	public func additionalContentViews(for view: UIView) -> Bool {
+		let nav = Arc.shared.appNavigation
+		if let stack = view as? UIStackView {
+			stack.alignment = .leading
+		}
+		problemsButton = view.button {
+			$0.isHidden = true
+			$0.titleLabel?.textAlignment = .left
+			$0.setTitle("".localized(ACTranslationKey.login_problems_linked).replacingOccurrences(of: "*", with: ""), for: .normal)
+			$0.addAction {
+				nav.navigate(state: nav.defaultContact(), direction: .toRight)
+			}
+			Roboto.Style.bodyBold($0.titleLabel!, color: .primary)
+			$0.setTitleColor(.primary, for: .normal)
+
+			Roboto.PostProcess.link($0)
+
+		}
+		return true
+	}
 	public func supplementaryViews(for view: UIView) {
 		let nav = Arc.shared.appNavigation
-		view.button {
-			$0.setTitle("", for: .normal)
-		}
+		
 		view.privacyStack {
 			$0.button.addAction {
 				nav.defaultPrivacy()
@@ -180,7 +197,10 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTra
         var borderColor = UIColor(named: "Primary")!
         if message != nil {
             borderColor = UIColor(named: "Error")!
-        }
+			problemsButton?.isHidden = false
+		} else {
+			problemsButton?.isHidden = true
+		}
         for view in inputStack.arrangedSubviews {
             if let v = view as? BorderedView {
                 v.borderColor = borderColor

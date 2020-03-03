@@ -103,7 +103,7 @@ open class AuthController:MHController {
 					
 					guard let value = self._credential?.userName, let id = Int64(value) else {
 						
-						completion(nil, "Sorry, our app is currently experiencing issues. Please try again later.".localized("error3"))
+						completion(nil, "Sorry, our app is currently experiencing issues. Please try again later.".localized(ACTranslationKey.login_error3))
 						return
 					}
 				
@@ -203,13 +203,13 @@ open class AuthController:MHController {
     open func getAuthIssue(from code:Int?) -> String {
         if let code = code {
             if code == 401 {
-                return "Invalid Rater ID or ARC ID".localized("error1")
+                return "Invalid Rater ID or ARC ID".localized(ACTranslationKey.login_error1)
             }
             if code == 409 {
-                return "Already enrolled on another device".localized("error2")
+                return "Already enrolled on another device".localized(ACTranslationKey.login_error2)
             }
         }
-        return "Sorry, our app is currently experiencing issues. Please try again later.".localized("error3")
+        return "Sorry, our app is currently experiencing issues. Please try again later.".localized(ACTranslationKey.login_error3)
     }
     
 }
