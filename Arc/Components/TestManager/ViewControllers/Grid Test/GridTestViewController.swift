@@ -41,7 +41,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
     var interstitial:InterstitialView = .get()
     @IBOutlet public weak var collectionView: UICollectionView!
     @IBOutlet public weak var collectionViewHeight:NSLayoutConstraint!
-    @IBOutlet public weak var tapOnTheFsLabel: UILabel!
+    @IBOutlet public weak var tapOnTheFsLabel: ACLabel!
     @IBOutlet public weak var collectionViewWidth: NSLayoutConstraint!
 	public weak var delegate:GridTestViewControllerDelegate?
     private var symbols:[UIImage] = [#imageLiteral(resourceName: "key"),
@@ -269,7 +269,8 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         
         if isPracticeTest {
             tapOnTheFsLabel.isHidden = false
-            tapOnTheFsLabel.text = "Tap the boxes where the items were located in part one."
+			tapOnTheFsLabel.translationKey = nil
+			tapOnTheFsLabel.text = "Tap the boxes where the items were located in part one.".localized(ACTranslationKey.grids_subheader_boxes)
             tapOnTheFsLabel.numberOfLines = 0
         }
         
