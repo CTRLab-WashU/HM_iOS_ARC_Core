@@ -182,7 +182,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			guard let weakSelf = self else {
 				return
 			}
-			weakSelf.buildStartScreen(message: "In this three part test, you’ll be asked to *recall the location* of these items.".localized(ACTranslationKey.popup_tutorial_recall),
+			weakSelf.buildStartScreen(message: "In this three part test, you’ll be asked to *recall the location* of these items.".localized(ACTranslationKey.popup_tutorial_grid_recall),
 									  buttonTitle: "Got it".localized(ACTranslationKey.popup_gotit))
 			
 		}
@@ -326,7 +326,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			weakSelf.phase = .fs
 			weakSelf.currentHint = weakSelf.view.window?.hint {
 				$0.content = "*Nice work!*\nDon't worry if you didn't find them all.".localized(ACTranslationKey.popup_tutorial_tapf3)
-				$0.buttonTitle = "Next"
+				$0.buttonTitle = "Next".localized(ACTranslationKey.button_next)
 				$0.onTap = {
 					weakSelf.phase = .recallFirstStep
 					weakSelf.didSelect()
@@ -506,9 +506,13 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
                 $0.updateHintContainerMargins()
                 $0.titleStack.layoutMargins = UIEdgeInsets(top: 12, left: 8, bottom: 26, right: 8)
 				$0.layout {
+					
 					$0.centerX == weakSelf.view.centerXAnchor
-					$0.width == 252
-					$0.bottom == weakSelf.test.collectionView.topAnchor - 20
+					$0.top == weakSelf.view.safeAreaLayoutGuide.topAnchor
+					$0.leading >= weakSelf.view.safeAreaLayoutGuide.leadingAnchor + 20
+					$0.trailing <= weakSelf.view.safeAreaLayoutGuide.trailingAnchor - 20
+
+					$0.bottom == weakSelf.test.collectionView.topAnchor - 8
 				
 					
 				}
@@ -548,8 +552,11 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
                 
 				$0.layout {
 					$0.centerX == weakSelf.view.centerXAnchor
-					$0.width == 252
-                    $0.bottom == weakSelf.test.collectionView.topAnchor - 20
+					$0.top == weakSelf.view.safeAreaLayoutGuide.topAnchor
+					$0.leading >= weakSelf.view.safeAreaLayoutGuide.leadingAnchor + 20
+					$0.trailing <= weakSelf.view.safeAreaLayoutGuide.trailingAnchor - 20
+
+					$0.bottom == weakSelf.test.collectionView.topAnchor - 8
 				}
 			}
 			
@@ -623,8 +630,11 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
             $0.titleStack.layoutMargins = UIEdgeInsets(top: 12, left: 8, bottom: 26, right: 8)
             $0.layout {
                 $0.centerX == self.view.centerXAnchor
-                $0.width == 252
-                $0.bottom == self.test.collectionView.topAnchor - 20
+				$0.top == self.view.safeAreaLayoutGuide.topAnchor
+				$0.leading >= self.view.safeAreaLayoutGuide.leadingAnchor + 20
+				$0.trailing <= self.view.safeAreaLayoutGuide.trailingAnchor - 20
+
+				$0.bottom == self.test.collectionView.topAnchor - 8
             }
         }
     }

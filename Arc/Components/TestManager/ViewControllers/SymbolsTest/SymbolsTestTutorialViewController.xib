@@ -174,7 +174,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="djX-2g-RZ0">
                                             <rect key="frame" x="0.0" y="10" width="256" height="60"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap on the *bottom tile that matches* a tile on the top." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WiI-f9-XeW" customClass="ACLabel" customModule="ArcUIKit">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="247" text="Tap on the *bottom tile that matches* a tile on the top." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WiI-f9-XeW" customClass="ACLabel" customModule="ArcUIKit">
                                                     <rect key="frame" x="0.0" y="0.0" width="256" height="60"/>
                                                     <fontDescription key="fontDescription" name="Tahoma" family="Tahoma" pointSize="17"/>
                                                     <color key="textColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -190,7 +190,6 @@
                                                 <constraint firstItem="WiI-f9-XeW" firstAttribute="leading" secondItem="djX-2g-RZ0" secondAttribute="leading" id="Aqj-tG-J1m"/>
                                                 <constraint firstAttribute="bottom" secondItem="WiI-f9-XeW" secondAttribute="bottom" id="Ey7-TL-7NI"/>
                                                 <constraint firstAttribute="trailing" secondItem="WiI-f9-XeW" secondAttribute="trailing" id="q6s-yV-iDd"/>
-                                                <constraint firstAttribute="height" constant="60" id="uxr-Re-OQd"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SjM-CP-M6U">
@@ -355,7 +354,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="eQL-ej-DGT" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ZYl-zI-cMh" secondAttribute="bottom" constant="82" id="NFL-F0-gnq"/>
+                <constraint firstItem="eQL-ej-DGT" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ZYl-zI-cMh" secondAttribute="bottom" priority="250" constant="83" id="NFL-F0-gnq"/>
                 <constraint firstItem="eQL-ej-DGT" firstAttribute="trailing" secondItem="s1A-Ga-rHR" secondAttribute="trailing" id="SLv-ax-Xm3"/>
                 <constraint firstItem="WiI-f9-XeW" firstAttribute="centerY" secondItem="eQL-ej-DGT" secondAttribute="centerY" id="VoC-Tw-krQ"/>
                 <constraint firstItem="s1A-Ga-rHR" firstAttribute="bottom" secondItem="JB8-el-4j8" secondAttribute="bottom" id="XBC-V8-GiC"/>

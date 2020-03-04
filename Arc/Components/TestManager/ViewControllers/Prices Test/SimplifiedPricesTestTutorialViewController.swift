@@ -214,7 +214,7 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
             weakSelf.progress = 0.5
             self?.currentHint = self?.view.window?.hint {
 				$0.content = "*Great choice!*\nLet's try another.".localized(ACTranslationKey.popup_tutorial_greatjob)
-                $0.buttonTitle = "Next"
+                $0.buttonTitle = "Next".localized(ACTranslationKey.button_next)
                 $0.button.addAction {
 					
 					////////////////

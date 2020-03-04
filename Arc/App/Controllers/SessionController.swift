@@ -162,13 +162,18 @@ open class SessionController:MHController {
 		let md5 = full.encode()?.MD5()
 		sessionUploads.insert(session.sessionID)
 		let submitTest:HMAPIRequest<FullTestSession, HMResponse> = .post("submit-test")
-		submitTest.execute(data: full) { [unowned self] (response, data, err) in
+		submitTest.execute(data: full) { [weak self] (response, data, err) in
 			
-			MHController.dataContext.performAndWait {
+			MHController.dataContext.performAndWait { [weak self] in
+				guard let weakSelf = self else {
+
+
+					return
+				}
 				if let err = err {
 					 print(err.localizedDescription)
-					self.sessionUploads.remove(session.sessionID)
-					NotificationCenter.default.post(name: .ACSessionUploadFailure, object: self.sessionUploads)
+					weakSelf.sessionUploads.remove(session.sessionID)
+					NotificationCenter.default.post(name: .ACSessionUploadFailure, object: weakSelf.sessionUploads)
 					return
 				}
 				HMLog("Session: \(full.session_id ?? ""), received response \(data?.toString() ?? "") on \(Date())", silent: false)
@@ -176,18 +181,18 @@ open class SessionController:MHController {
 					session.uploaded = true
 					Arc.shared.studyController.clearData(sessionId: Int(session.sessionID), force: true)
 					if md5 == data?.response?.md5 {
-						self.save()
-						self.sessionUploads.remove(session.sessionID)
-						if self.sessionUploads.isEmpty {
-							NotificationCenter.default.post(name: .ACSessionUploadComplete, object: self.sessionUploads)
+						weakSelf.save()
+						weakSelf.sessionUploads.remove(session.sessionID)
+						if weakSelf.sessionUploads.isEmpty {
+							NotificationCenter.default.post(name: .ACSessionUploadComplete, object: weakSelf.sessionUploads)
 						}
 					} else {
 						HMLog("\(md5 ?? "") does not match \(data?.response?.md5 ?? "")")
 					}
 				} else {
                     print(data?.errors.toString() as Any)
-					self.sessionUploads.remove(session.sessionID)
-					NotificationCenter.default.post(name: .ACSessionUploadFailure, object: self.sessionUploads)
+					weakSelf.sessionUploads.remove(session.sessionID)
+					NotificationCenter.default.post(name: .ACSessionUploadFailure, object: weakSelf.sessionUploads)
 
 				}
 				

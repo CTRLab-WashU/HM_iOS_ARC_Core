@@ -102,7 +102,7 @@ open class SurveyView : ACTemplateView, SurveyInput, SurveyInputDelegate {
             
 			self?.nextButton = $0.acButton {
 				$0.translatesAutoresizingMaskIntoConstraints = false
-				$0.setTitle("Next", for: .normal)
+				$0.setTitle("Next".localized(ACTranslationKey.button_next), for: .normal)
 				$0.accessibilityIdentifier = "next_button"
 				$0.addAction { [weak self] in
 					let value = self?.input?.getValue()
@@ -194,7 +194,7 @@ open class SurveyView : ACTemplateView, SurveyInput, SurveyInputDelegate {
 		updateButtonState(question)
 
 	}
-	public func enableNextButton(title:String = "Next")
+	public func enableNextButton(title:String = "Next".localized(ACTranslationKey.button_next))
 	{
 		self.nextButton?.isEnabled = true;
 		self.nextButton?.alpha = 1;
@@ -202,7 +202,7 @@ open class SurveyView : ACTemplateView, SurveyInput, SurveyInputDelegate {
 		self.nextButton?.setTitle(title, for: .normal)
 	}
 	
-	public func disableNextButton(title:String = "Next")
+	public func disableNextButton(title:String = "Next".localized(ACTranslationKey.button_next))
 	{
 		self.nextButton?.isEnabled = false;
 		self.nextButton?.alpha = 0.5;
