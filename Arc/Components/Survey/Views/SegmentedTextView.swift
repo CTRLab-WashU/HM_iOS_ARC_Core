@@ -14,7 +14,7 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTra
 
     public var orientation: UIStackView.Alignment = .top
 	private var problemsButton:UIButton?
-
+	public var hideHelpButton:Bool = false
 	@IBOutlet weak var inputStack: UIStackView!
 	public var shouldTryNext = true
 	private var _value:[String] = [] {
@@ -197,7 +197,7 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTra
         var borderColor = UIColor(named: "Primary")!
         if message != nil {
             borderColor = UIColor(named: "Error")!
-			problemsButton?.isHidden = false
+			problemsButton?.isHidden = hideHelpButton
 		} else {
 			problemsButton?.isHidden = true
 		}

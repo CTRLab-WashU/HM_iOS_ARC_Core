@@ -57,6 +57,7 @@ public class AC2FAuthenticationViewController: BasicSurveyViewController {
 			
 			//This will prevent the input from triggering a next action when valid. 
 			view?.shouldTryNext = false
+			view?.hideHelpButton = true
 			addResendCodeButton()
             
             let vc:CustomViewController<InfoView> = getTopViewController()!
