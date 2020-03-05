@@ -75,7 +75,7 @@ extension SurveyInput {
 		let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x:0, y:0, width:320, height:50))
 		
 		let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-		let done: UIBarButtonItem = UIBarButtonItem(title: "Done".localized("button_done"), style: UIBarButtonItem.Style.done, target: self, action: selector)
+		let done: UIBarButtonItem = UIBarButtonItem(title: "Done".localized(ACTranslationKey.button_done), style: UIBarButtonItem.Style.done, target: self, action: selector)
 		done.accessibilityIdentifier = "done_button"
 		done.isAccessibilityElement = true
         done.setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: "Roboto-Bold", size: 18)!,

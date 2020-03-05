@@ -92,7 +92,7 @@ open class StartDateShiftViewController: BasicSurveyViewController {
             enableNextButton(title: "Done")
             
             let vc:CustomViewController<InfoView> = getTopViewController()!
-            let message = "".localized("availability_change_week_confirm")
+            let message = "".localized(ACTranslationKey.availability_change_week_confirm)
                 .replacingOccurrences(of: "{DATE1}", with: selectedStart.localizedFormat(template:longFormat))
                 .replacingOccurrences(of: "{DATE2}", with: selectedEnd.localizedFormat(template:longFormat))
             vc.customView.setHeading(message)

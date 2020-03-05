@@ -225,7 +225,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 			return
 		}
 
-		Arc.shared.displayAlert(message: "Ready".localized("grids_popup1"), options: [.wait(waitTime: 1.0, {
+		Arc.shared.displayAlert(message: "Ready".localized(ACTranslationKey.grids_overlay3_pt2), options: [.wait(waitTime: 1.0, {
 			[weak self] in
 			self?.displayGrid()
 			if let s = self {

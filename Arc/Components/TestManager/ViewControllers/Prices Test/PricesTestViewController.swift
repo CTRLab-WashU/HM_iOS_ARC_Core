@@ -156,7 +156,7 @@ public class PricesTestViewController: ArcViewController {
 		
 		topLabel?.text = item.item
 		
-        var correctPrice = "".localized("money_prefix") + item.price
+        var correctPrice = "".localized(ACTranslationKey.money_prefix) + item.price
         if self.isTutorial {
             correctPrice = item.price
         }
@@ -206,9 +206,9 @@ public class PricesTestViewController: ArcViewController {
 	/// They can either wait 12 seconds or after 3 seconds hit the begin button to begin
 	/// the next phase of the test.
 	public func displayTransition() {
-		Arc.shared.displayAlert(message: "You will now start the test.\nYou will see an item and two prices. Please select the price that matches the item you studied.".localized("price_overlay"), options: [
+		Arc.shared.displayAlert(message: "You will now start the test.\nYou will see an item and two prices. Please select the price that matches the item you studied.".localized(ACTranslationKey.prices_overlay), options: [
 			
-			.delayed(name: "BEGIN".localized("button_begin"), delayTime: 3.0, showQuestionController),
+			.delayed(name: "BEGIN".localized(ACTranslationKey.button_begin), delayTime: 3.0, showQuestionController),
 			
 			.wait(waitTime: 12.0, showQuestionController)
 			
@@ -249,8 +249,8 @@ public class PricesTestViewController: ArcViewController {
     }
     
     func buildButtonStackView() {
-        topButton.set(message: "Yes".localized("YES").capitalized)
-        bottomButton.set(message: "No".localized("NO").capitalized)
+        topButton.set(message: "Yes".localized(ACTranslationKey.radio_yes).capitalized)
+        bottomButton.set(message: "No".localized(ACTranslationKey.radio_no).capitalized)
         
         topButton.needsImmediateResponse = true
         bottomButton.needsImmediateResponse = true

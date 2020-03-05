@@ -44,7 +44,7 @@ public class NotificationPermissionView: ACTemplateView {
 		view.acLabel {
 			Roboto.Style.body($0, color: .white)
 			$0.textAlignment = .center
-			$0.text = "*Please tap \"allow\"* so we can tell you when tests are available.".localized("onboarding_notifications_popup")
+			$0.text = "*Please tap \"allow\"* so we can tell you when tests are available.".localized(ACTranslationKey.onboarding_notifications_popup)
 			
 		}
 		

@@ -66,7 +66,7 @@ public class TutorialCompleteView: ACTemplateView {
 	public override func content(_ view: UIView) {
 		title = view.acLabel {
 			$0.alpha = 0
-			$0.text = "Tutorial Complete".localized("testing_tutorial_complete")
+			$0.text = "Tutorial Complete".localized(ACTranslationKey.testing_tutorial_complete)
 			Roboto.Style.headingBold($0, color: UIColor(named:"Primary Info"))
 			$0.textAlignment = .center
 			$0.layout { [weak self] in
@@ -82,7 +82,7 @@ public class TutorialCompleteView: ACTemplateView {
 		}
 		nextButton = view.acButton {
 			$0.translatesAutoresizingMaskIntoConstraints = false
-			$0.setTitle("Close".localized("button_close"), for: .normal)
+			$0.setTitle("Close".localized(ACTranslationKey.button_close), for: .normal)
 			$0.addAction { [weak self] in
 				self?.tutorialDelegate?.closePressed()
 			}

@@ -154,8 +154,8 @@ open class SurveyView : ACTemplateView, SurveyInput, SurveyInputDelegate {
 		} else {
 			nextButton?.isHidden = false
 		}
-		var altTitle = "NEXT".localized("button_next")
-		var title = "NEXT".localized("button_next")
+		var altTitle = "NEXT".localized(ACTranslationKey.button_next)
+		var title = "NEXT".localized(ACTranslationKey.button_next)
 		if let nextButtonTitle = question?.nextButtonTitle {
 			title = nextButtonTitle.localized(nextButtonTitle)
 		} else {

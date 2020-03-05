@@ -62,7 +62,7 @@ class ACProgressView: ACTemplateView {
 					
 					self.headerLabel = $0.acLabel {
 						Roboto.Style.headingMedium($0, color: .black)
-						$0.text = "Today's Sessions".localized("progress_daily_header")
+						$0.text = "Today's Sessions".localized(ACTranslationKey.progress_daily_header)
 						
 					}
 					
@@ -132,7 +132,7 @@ class ACProgressView: ACTemplateView {
 					
 					self.weekHeaderLabel = $0.acLabel {
 						Roboto.Style.headingMedium($0, color: .black)
-						$0.text = "This Week".localized("progress_weekly_header")
+						$0.text = "This Week".localized(ACTranslationKey.progress_weekly_header)
 						
 					}
 					

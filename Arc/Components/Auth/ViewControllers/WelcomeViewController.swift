@@ -28,8 +28,8 @@ open class WelcomeViewController: UIViewController {
             .font : UIFont(name: "Roboto-Medium", size: 18.0) as Any,
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ]
-        let aboutTitle = NSAttributedString(string: "About This App".localized("about_linked"), attributes: attributes)
-        let privacyTitle = NSAttributedString(string: "Privacy Policy".localized("privacy_linked"), attributes: attributes)
+        let aboutTitle = NSAttributedString(string: "About This App".localized(ACTranslationKey.about_linked), attributes: attributes)
+        let privacyTitle = NSAttributedString(string: "Privacy Policy".localized(ACTranslationKey.privacy_linked), attributes: attributes)
         aboutButton.setAttributedTitle(aboutTitle, for: .normal)
 		
         privacyButton.setAttributedTitle(privacyTitle, for: .normal)

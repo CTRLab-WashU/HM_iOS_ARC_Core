@@ -89,9 +89,9 @@ open class PricesQuestionViewController: ArcViewController, TestProgressViewCont
 
 				_  = controller.mark(filled: responseId)
 
-				let nextMessage = (ACState.testCount == 3) ? "Well done!" : "Loading next test..."
+				let nextMessage = (ACState.testCount == 3) ? "Well done!".localized(ACTranslationKey.testing_done) : "Loading next test...".localized(ACTranslationKey.testing_loading)
 				
-				let vc = TestProgressViewController(title: "Prices Test Complete!", subTitle: nextMessage, count: ACState.testTaken - 1)
+				let vc = TestProgressViewController(title: "Prices Test Complete!".localized(ACTranslationKey.prices_complete), subTitle: nextMessage, count: ACState.testTaken - 1)
 				vc.delegate = self
 				self.addChild(vc)
 				self.view.anchor(view: vc.view)
@@ -142,7 +142,7 @@ open class PricesQuestionViewController: ArcViewController, TestProgressViewCont
             if isTutorial {
                 b.set(message: string)
             } else {
-                b.set(message: "\("".localized("money_prefix"))\(string)")
+                b.set(message: "\("".localized(ACTranslationKey.money_prefix))\(string)")
             }
             b.isHidden = false
             

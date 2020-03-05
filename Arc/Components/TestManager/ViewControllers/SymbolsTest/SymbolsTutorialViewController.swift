@@ -279,7 +279,7 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
                 weakSelf.currentHint = weakSelf.view.window?.hint {
                     $0.content = """
                 Tap this matching tile.
-                """.localized("popup_tutorial_tiletap")
+                """.localized(ACTranslationKey.popup_tutorial_tiletap)
                     
                     
                     $0.layout {

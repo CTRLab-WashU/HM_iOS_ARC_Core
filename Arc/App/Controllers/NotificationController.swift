@@ -128,25 +128,25 @@ open class NotificationController : MHController
         case 0:
             switch test.day {
             case 0:     //first test. Day 1, test 1
-                title = "It's time for the first test of the week! Start your streak by completing this test by {TIME}.".localized("notification1_firstday")
+                title = "It's time for the first test of the week! Start your streak by completing this test by {TIME}.".localized(ACTranslationKey.notification1_firstday)
             case 4 where test.study?.studyID == 0, 3:     //halfway point. Day 4, test 1
-                title = "You're halfway through the week. Keep it up! Today's first test will be available until {TIME}.".localized("notification1_halfway")
+                title = "You're halfway through the week. Keep it up! Today's first test will be available until {TIME}.".localized(ACTranslationKey.notification1_halfway)
             case 6 where test.study?.studyID != 0, 7:     //beginning of the final day. Day 7, test 1
 				title = "You're on the last day of testing this week! Your first test of the day will be available until {TIME}.".localized(ACTranslationKey.notification1_lastday)
             default:
-                title = "It's time for the first test of the day! This test will be avilable until {TIME}.".localized("notification1_default")
+                title = "It's time for the first test of the day! This test will be avilable until {TIME}.".localized(ACTranslationKey.notification1_default)
             }
         case 1:
-            title = "It's time for today's second test! This test will be available until {TIME}.".localized("notifications2_default")
+            title = "It's time for today's second test! This test will be available until {TIME}.".localized(ACTranslationKey.notifications2_default)
         case 2:
-            title = "Your third test of the day is now available. Please complete this test by {TIME}.".localized("notification3_default")
+            title = "Your third test of the day is now available. Please complete this test by {TIME}.".localized(ACTranslationKey.notification3_default)
         default:        //session 3
             switch test.day {
             case 6 where test.study?.studyID != 0, //final test of final day. if the studyId is not 0 Day 7, test 4
 				 7: //Or if the studyID == 0 which is the baseline. Then there are 8 days instead of 7
-                title = "It's time to take your last test of the week! Please finish it by {TIME}. Your coordinator will contact you about your earnings shortly.".localized("notification4_lastday")
+                title = "It's time to take your last test of the week! Please finish it by {TIME}. Your coordinator will contact you about your earnings shortly.".localized(ACTranslationKey.notification4_lastday)
             default:
-                title = "The last test of the day is here! Finish strong by completing this test by {TIME}.".localized("notification4_default")
+                title = "The last test of the day is here! Finish strong by completing this test by {TIME}.".localized(ACTranslationKey.notification4_default)
             }
         }
         
@@ -195,7 +195,7 @@ open class NotificationController : MHController
                 // get session time
                 guard let testTime = session.expirationDate else { continue }
                 // schedule missed test notif for new time
-                let body = "You've missed your tests. If you're unable to finish this week, please contact your site coordinator.".localized("notification_missed") //comment: "Notification for missed test sessions"
+                let body = "You've missed your tests. If you're unable to finish this week, please contact your site coordinator.".localized(ACTranslationKey.notification_missedtests) //comment: "Notification for missed test sessions"
                 scheduleNotification(date: testTime, title: "", body: body, identifierPrefix: "MissedTestNotification")
             }
             count += 1
@@ -387,7 +387,7 @@ open class NotificationController : MHController
         }
         let day = scheduleNotification(date: studyDate.addingDays(days: -1).addingHours(hours: 12),
                                        title: "",
-                                       body: "Reminder: Your next testing cycle begins tomorrow.\nTap to confirm or reschedule.".localized("notification_daybefore"),
+                                       body: "Reminder: Your next testing cycle begins tomorrow.\nTap to confirm or reschedule.".localized(ACTranslationKey.notification_daybefore),
                                        identifierPrefix: "DateReminder-\(studyId)")
         day.studyID = Int64(studyId)
 
@@ -399,7 +399,7 @@ open class NotificationController : MHController
         
         let week = scheduleNotification(date: studyDate.addingWeeks(weeks: -1).addingHours(hours: 12),
                                         title: "",
-                                        body: "Reminder: Your next testing cycle starts in one week.\nTap to confirm or reschedule.".localized("notification_weekbefore"),
+                                        body: "Reminder: Your next testing cycle starts in one week.\nTap to confirm or reschedule.".localized(ACTranslationKey.notification_weekbefore),
                                         identifierPrefix: "DateReminder-\(studyId)")
         week.studyID = Int64(studyId)
 
@@ -410,7 +410,7 @@ open class NotificationController : MHController
         }
         
         let monthBody = "Your next week of testing begins in one month on \(formattedDate).\nYou may adjust this schedule up to 7 days."
-            .localized("notification_monthbefore")
+            .localized(ACTranslationKey.notification_monthbefore)
             .replacingOccurrences(of: "{DATE}", with: formattedDate)
         let month = scheduleNotification(date: studyDate.addingMonths(months: -1).addingHours(hours: 12),
                                          title: "",

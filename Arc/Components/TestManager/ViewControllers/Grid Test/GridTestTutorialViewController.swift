@@ -496,7 +496,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			weakSelf.test.overlayCells(at: index)
 			
 			weakSelf.currentHint = weakSelf.view.window?.hint {
-				$0.content  = "".localized("popup_tutorial_tapbox2")
+				$0.content  = "".localized(ACTranslationKey.popup_tutorial_tapbox2)
                 $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
                                                         secondaryColor: UIColor(named:"HintFill")!,
                                                         textColor: .black,

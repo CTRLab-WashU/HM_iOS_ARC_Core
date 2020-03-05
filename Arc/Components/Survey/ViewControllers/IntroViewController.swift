@@ -121,7 +121,7 @@ open class IntroViewController: CustomViewController<InfoView> {
 			let backButton = UIButton(type: .custom)
 			backButton.frame = CGRect(x: 0, y: 0, width: 80, height: 32)
 			backButton.setImage(UIImage(named: "cut-ups/icons/arrow_left_white"), for: .normal)
-			backButton.setTitle("BACK".localized("button_back"), for: .normal)
+			backButton.setTitle("BACK".localized(ACTranslationKey.button_back), for: .normal)
 			backButton.titleLabel?.font = UIFont(name: "Roboto-Medium", size: 14)
 			backButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -8, bottom: 0, right: 0)
 			//backButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -8, bottom: 0, right: 0)
@@ -221,7 +221,7 @@ open class IntroViewController: CustomViewController<InfoView> {
 			customView.nextButton?.setTitle(nextButtonTitle.localized(nextButtonTitle), for: .normal)
 		} else {
 			if nextButtonImage == nil {
-				customView.nextButton?.setTitle("NEXT".localized("button_next"), for: .normal)
+				customView.nextButton?.setTitle("NEXT".localized(ACTranslationKey.button_next), for: .normal)
 			} else {
 				customView.nextButton?.setTitle(nil, for: .normal)
 			}
