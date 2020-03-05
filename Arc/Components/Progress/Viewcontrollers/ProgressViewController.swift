@@ -143,6 +143,8 @@ class ProgressViewController: CustomViewController<ACProgressView> {
 			customView.nextTestingCycle.text = thisStudy.nextTestCycle
 		case .complete:
 			hideSections(value: true)
+			customView.weekOfStudyLabel.text = "".localized(ACTranslationKey.progress_studystatus)
+			.replacingOccurrences(of: "{#}", with: "\(thisStudy.totalWeeks)")
 
 		case .unknown:
 			hideSections(value: true)
