@@ -102,7 +102,7 @@ class ACProgressView: ACTemplateView {
                                 self.todaysSessionRemainingLabel = $0.acLabel {
                                     Roboto.Style.body($0, color: #colorLiteral(red: 0.04300000146, green: 0.1220000014, blue: 0.3330000043, alpha: 1))
                                     $0.text = " *{#}* Remaining"
-                                    
+									$0.numberOfLines = 0
                                 }
                                 self.todaysSessionRemainingLabel.attachTo(view: $0, margins: UIEdgeInsets(top: 3, left: 10, bottom: 3, right: 10))
 								$0.backgroundColor = .clear

@@ -442,7 +442,24 @@ open class Arc : ArcApi {
 		
 	}
     
-   
+   public static func getTopViewController<T:UIViewController>() -> T?{
+	   guard let window = UIApplication.shared.keyWindow else {
+
+		   return nil
+	   }
+
+	   guard let view = window.rootViewController else {
+		   
+		   return nil
+	   }
+	   if let nav = view as? UINavigationController {
+		   return nav.topViewController as? T
+	   }
+	   if let tabs = view as? UITabBarController {
+		   return tabs.selectedViewController as? T
+	   }
+	   return view as? T
+   }
     open func getSurveyStatus() -> SurveyAvailabilityStatus {
         var upcoming:Session?
         var session:Int?
