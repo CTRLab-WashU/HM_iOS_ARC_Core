@@ -58,8 +58,9 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTra
 	@objc func doneButtonAction() {
 		if shouldTryNext {
         	surveyInputDelegate?.tryNextPressed()
+		} else {
+			resignFirstResponder()
 		}
-		resignFirstResponder()
 	}
 	public var hasText: Bool {
 		return _value.count > 0
