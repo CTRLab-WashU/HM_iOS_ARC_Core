@@ -309,6 +309,22 @@ open class Arc : ArcApi {
         MHController.dataContext.performAndWait {
 
             HMAPI.deviceHeartbeat.execute(data: HeartbeatRequestData())
+			HMAPI.getContactInfo.execute(data: nil, completion: { (res, obj, err) in
+                guard err == nil && obj?.errors.isEmpty ?? true else {
+                    return;
+                }
+                guard let contact_info = obj?.response?.contact_info else {
+                    return;
+                }
+                DispatchQueue.main.async{
+                   
+                    if let json = try? JSONEncoder().encode(contact_info)
+                    {
+                        CoreDataStack.currentDefaults()?.set(json, forKey: "contact_info");
+                    }
+                    
+                }
+            });
             uploadTestData()
 		
         }
