@@ -32,8 +32,8 @@ open class ACChangeAvailabilityViewController: UIViewController {
             studyPeriodAdjustView.isHidden = true
         }
         if let config = HMMarkupRenderer.config, config.shouldTranslate {
-            changeTimeButton.setTitle("CHANGE".localized("button_change"), for: .normal)
-            changeDateButton.setTitle("CHANGE".localized("button_change"), for: .normal)
+            changeTimeButton.setTitle("CHANGE".localized(ACTranslationKey.button_change), for: .normal)
+            changeDateButton.setTitle("CHANGE".localized(ACTranslationKey.button_change), for: .normal)
 
         }
     }

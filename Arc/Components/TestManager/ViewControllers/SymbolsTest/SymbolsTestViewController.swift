@@ -195,9 +195,8 @@ public class SymbolsTestViewController: UIViewController, TestProgressViewContro
 			if !isPracticeTest {
 				_  = controller.mark(filled: responseID)
 
-				let nextMessage = (ACState.testCount == 3) ? "Well done!" : "Loading next test..."
-				
-				let vc = TestProgressViewController(title: "Symbols Test Complete!", subTitle: nextMessage, count: ACState.testTaken - 1)
+let nextMessage = (ACState.testCount == 3) ? "Well done!".localized(ACTranslationKey.testing_done) : "Loading next test...".localized(ACTranslationKey.testing_loading)
+				let vc = TestProgressViewController(title: "Symbols Test Complete!".localized(ACTranslationKey.symbols_complete), subTitle: nextMessage, count: ACState.testTaken - 1)
 				vc.delegate = self
 				self.addChild(vc)
 				self.view.anchor(view: vc.view)

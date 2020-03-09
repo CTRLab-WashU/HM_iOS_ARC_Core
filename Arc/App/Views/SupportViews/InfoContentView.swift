@@ -62,7 +62,7 @@ public class InfoContentView: UIStackView {
 		} else {
 			headingLabel = acLabel {
 				$0.textAlignment = .left
-				
+				$0.accessibilityIdentifier = "heading_label"
 				Roboto.Style.heading($0,
 										 color:textColor)
 				$0.text = text
@@ -78,7 +78,8 @@ public class InfoContentView: UIStackView {
         } else {
             headingLabel = acLabel {
                 $0.textAlignment = .left
-                
+				$0.accessibilityIdentifier = "heading_label"
+
                 Roboto.Style.introHeading($0, color: .white)
                 $0.text = text
                 
@@ -92,6 +93,7 @@ public class InfoContentView: UIStackView {
 		} else {
 			subheadingLabel = acLabel {
 				$0.textAlignment = .center
+				$0.accessibilityIdentifier = "subheading_label"
 
 				Roboto.Style.body($0,
 								  color:UIColor(red:0.4, green:0.78, blue:0.78, alpha:1))
@@ -112,7 +114,8 @@ public class InfoContentView: UIStackView {
             }
             subheadingLabel = acLabel {
                 $0.textAlignment = .left
-                
+				$0.accessibilityIdentifier = "subheading_label"
+
                 Roboto.Style.prompt($0,
                                   color:textColor)
                 
@@ -141,6 +144,7 @@ public class InfoContentView: UIStackView {
 				
 				$0.backgroundColor = .clear
 				$0.textAlignment = .left
+				$0.accessibilityIdentifier = "content_label"
 
 				Roboto.Style.body($0,
 								  color:textColor)
@@ -170,7 +174,8 @@ public class InfoContentView: UIStackView {
 				$0.textAlignment = .left
 				$0.contentInset = .zero
 				$0.isSelectable = true
-				
+				$0.accessibilityIdentifier = "content_label"
+
 				Roboto.Style.body($0,
 								  color:textColor)
 				
@@ -198,7 +203,8 @@ public class InfoContentView: UIStackView {
                 $0.textAlignment = .left
                 $0.contentInset = .init(top: 0, left: -5, bottom: 0, right: 0)
                 $0.isSelectable = true
-                
+				$0.accessibilityIdentifier = "content_label"
+
                 Roboto.Style.body($0,
                                   color:textColor)
                 

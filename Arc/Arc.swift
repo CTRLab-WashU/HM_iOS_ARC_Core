@@ -309,7 +309,7 @@ open class Arc : ArcApi {
         MHController.dataContext.performAndWait {
 
             HMAPI.deviceHeartbeat.execute(data: HeartbeatRequestData())
-			HMAPI.getContactInfo.execute(data: nil, headers: [:], completion: { (res, obj, err) in
+			HMAPI.getContactInfo.execute(data: nil, completion: { (res, obj, err) in
                 guard err == nil && obj?.errors.isEmpty ?? true else {
                     return;
                 }
@@ -458,7 +458,24 @@ open class Arc : ArcApi {
 		
 	}
     
-   
+   public static func getTopViewController<T:UIViewController>() -> T?{
+	   guard let window = UIApplication.shared.keyWindow else {
+
+		   return nil
+	   }
+
+	   guard let view = window.rootViewController else {
+		   
+		   return nil
+	   }
+	   if let nav = view as? UINavigationController {
+		   return nav.topViewController as? T
+	   }
+	   if let tabs = view as? UITabBarController {
+		   return tabs.selectedViewController as? T
+	   }
+	   return view as? T
+   }
     open func getSurveyStatus() -> SurveyAvailabilityStatus {
         var upcoming:Session?
         var session:Int?
@@ -649,12 +666,12 @@ open class Arc : ArcApi {
 		}
 		let startDate = userDate.localizedFormat(template:longFormat)
 		let endDate = userDate.addingDays(days: 6).localizedFormat(template:longFormat)
-		let message = "*Your next testing cycle will be \(startDate) to \(endDate)*.\n\nPlease confirm these testing dates or adjust your schedule.".localized("notification_confirm_adjust_1")
+		let message = "*Your next testing cycle will be \(startDate) to \(endDate)*.\n\nPlease confirm these testing dates or adjust your schedule.".localized(ACTranslationKey.overlay_nextcycle)
 			.replacingOccurrences(of: "{DATE1}", with: startDate)
 			.replacingOccurrences(of: "{DATE2}", with: endDate)
 		Arc.shared.displayAlert(message: message,
-			options: [.default("CONFIRM".localized("button_confirm"), {}),
-					  .default("ADJUST SCHEDULE".localized("button_adjust_sched"), {
+			options: [.default("CONFIRM".localized(ACTranslationKey.button_confirm), {}),
+					  .default("ADJUST SCHEDULE".localized(ACTranslationKey.button_adjustschedule), {
 						Arc.shared.appNavigation.navigate(state: state, direction: .toRight)
 						
 					}

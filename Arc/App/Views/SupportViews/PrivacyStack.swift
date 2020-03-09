@@ -22,7 +22,7 @@ public class PrivacyStack: UIView {
 			$0.acLabel {
 				$0.textAlignment = .center
 				$0.text = "By signing in you agree to our"
-					.localized("bysigning_key")
+					.localized(ACTranslationKey.bysigning_key)
 				$0.numberOfLines = 0
 				
 			}
@@ -32,11 +32,11 @@ public class PrivacyStack: UIView {
                 .font : UIFont(name: "Roboto-Bold", size: 16.0) as Any,
                 .underlineStyle: NSUnderlineStyle.single.rawValue
             ]
-            let privacyTitle = NSAttributedString(string: "Privacy Policy".localized("privacy_linked"), attributes: attributes)
+            let privacyTitle = NSAttributedString(string: "Privacy Policy".localized(ACTranslationKey.privacy_linked), attributes: attributes)
             
 			self?.button = $0.button {
                 $0.setAttributedTitle(privacyTitle, for: .normal)
-                $0.setTitle("Privacy Policy".localized("privacy_linked"),
+                $0.setTitle("Privacy Policy".localized(ACTranslationKey.privacy_linked),
                             for: .normal)
                 $0.setTitleColor(UIColor(named: "Primary"), for: .normal)
                 Roboto.PostProcess.link($0)

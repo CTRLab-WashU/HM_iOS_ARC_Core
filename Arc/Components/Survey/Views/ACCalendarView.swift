@@ -11,13 +11,13 @@ public struct ACCalendarStore {
     public var dateRange:ClosedRange<Date>
     public var selectedDateRange:ClosedRange<Date>?
     public var calendar:Calendar = Calendar(identifier: .gregorian)
-    public var weekNames:Array<String> = ["S".localized("Day_Abbrev_Sun"),
-                                          "M".localized("Day_Abbrev_Mon"),
-                                          "T".localized("Day_Abbrev_Tue"),
-                                          "W".localized("Day_Abbrev_Wed"),
-                                          "T".localized("Day_Abbrev_Thur"),
-                                          "F".localized("Day_Abbrev_Fri"),
-                                          "S".localized("Day_Abbrev_Sat")]
+    public var weekNames:Array<String> = ["S".localized(ACTranslationKey.day_abbrev_sun),
+                                          "M".localized(ACTranslationKey.day_abbrev_mon),
+                                          "T".localized(ACTranslationKey.day_abbrev_tues),
+                                          "W".localized(ACTranslationKey.day_abbrev_weds),
+                                          "T".localized(ACTranslationKey.day_abbrev_thurs),
+                                          "F".localized(ACTranslationKey.day_abbrev_fri),
+                                          "S".localized(ACTranslationKey.day_abbrev_sat)]
     
     init(range:ClosedRange<Date>) {
         self.dateRange = range

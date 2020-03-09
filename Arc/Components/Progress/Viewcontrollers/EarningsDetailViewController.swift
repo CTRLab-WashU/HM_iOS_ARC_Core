@@ -18,7 +18,7 @@ open class EarningsDetailViewController : CustomViewController<ACEarningsDetailV
 			let backButton = UIButton(type: .custom)
 			backButton.frame = CGRect(x: 0, y: 0, width: 80, height: 32)
 			backButton.setImage(UIImage(named: "cut-ups/icons/arrow_left_white"), for: .normal)
-			backButton.setTitle("BACK".localized("button_back"), for: .normal)
+			backButton.setTitle("BACK".localized(ACTranslationKey.button_back), for: .normal)
 			backButton.titleLabel?.font = UIFont(name: "Roboto-Medium", size: 14)
 			backButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -8, bottom: 0, right: 0)
 			//backButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -8, bottom: 0, right: 0)

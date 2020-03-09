@@ -33,6 +33,7 @@ open class MultipleChoiceView : UIView,  SurveyInput {
 			let message = String(describing: option.value as! String)
 			
             let o:ChoiceView = .get()
+			o.mainButton.accessibilityIdentifier = "choice_\(views.count)"
             o.set(message: message)
             o.set(state: state)
 			o.isExclusive = option.exclusive ?? false

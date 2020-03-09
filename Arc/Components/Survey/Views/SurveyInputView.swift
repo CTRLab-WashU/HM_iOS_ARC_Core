@@ -22,6 +22,8 @@ public protocol SurveyInput {
     func setValue(_ value:QuestionResponse?)
 	func setError(message:String?)
 	func supplementaryViews(for view:UIView)
+	func additionalContentViews(for view:UIView) -> Bool
+
 	var orientation:UIStackView.Alignment {get set}
     var distribution:UIStackView.Distribution {get set}
 	var surveyInputDelegate:SurveyInputDelegate? {get set}
@@ -61,6 +63,9 @@ extension SurveyInput {
 	public func supplementaryViews(for view:UIView) {
 		
 	}
+	public func additionalContentViews(for view:UIView) -> Bool {
+		return false
+	}
 
     func setValues(_ values:[String]?) {
         
@@ -70,7 +75,9 @@ extension SurveyInput {
 		let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x:0, y:0, width:320, height:50))
 		
 		let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-		let done: UIBarButtonItem = UIBarButtonItem(title: "Done".localized("button_done"), style: UIBarButtonItem.Style.done, target: self, action: selector)
+		let done: UIBarButtonItem = UIBarButtonItem(title: "Done".localized(ACTranslationKey.button_done), style: UIBarButtonItem.Style.done, target: self, action: selector)
+		done.accessibilityIdentifier = "done_button"
+		done.isAccessibilityElement = true
         done.setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: "Roboto-Bold", size: 18)!,
                                      NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue,
                                      NSAttributedString.Key.foregroundColor : UIColor(named:"Primary")!], for: .normal)

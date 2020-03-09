@@ -57,6 +57,7 @@ public class AC2FAuthenticationViewController: BasicSurveyViewController {
 			
 			//This will prevent the input from triggering a next action when valid. 
 			view?.shouldTryNext = false
+			view?.hideHelpButton = true
 			addResendCodeButton()
             
             let vc:CustomViewController<InfoView> = getTopViewController()!
@@ -92,7 +93,7 @@ public class AC2FAuthenticationViewController: BasicSurveyViewController {
 			{
 				if self?.initialValue != value
 				{
-					self?.set(error:"ARC ID does not match.".localized("error1"))
+					self?.set(error:"ARC ID does not match.".localized(ACTranslationKey.login_error1))
 
 					valid = false
 					didFinish(valid)
@@ -109,7 +110,7 @@ public class AC2FAuthenticationViewController: BasicSurveyViewController {
 
 						guard let error = e as? VerifyError else
 						{
-							self?.set(error:"Sorry, our app is currently experiencing issues. Please try again later.")
+							self?.set(error:"Sorry, our app is currently experiencing issues. Please try again later.".localized(ACTranslationKey.login_error3))
 
 							break
 						}
@@ -206,9 +207,9 @@ public enum VerifyError : Error {
 		get {
 			switch self {
 			case .invalidId:
-				return "Invalid Participant Id."
+				return "Invalid Participant Id.".localized(ACTranslationKey.login_error1)
 			case .nullValueSupplied:
-				return "Empty value supplied."
+				return "Empty value supplied.".localized(ACTranslationKey.login_error1)
 			
 			}
 		}

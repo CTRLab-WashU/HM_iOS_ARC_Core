@@ -117,7 +117,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
             weakSelf.pricesTest.view.overlayView(withShapes: [shape])
 			weakSelf.pricesTest.priceDisplay.isUserInteractionEnabled = true
 			weakSelf.currentHint = self?.view.window?.hint {
-				$0.content = "The Prices test has two parts. *First, evaluate the price.*"
+				$0.content = "The Prices test has two parts. *First, evaluate the price.*".localized(ACTranslationKey.popup_tutorial_price_intro)
                 $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
                                                         secondaryColor: UIColor(named:"HintFill")!,
                                                         textColor: .black,
@@ -146,7 +146,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 			weakSelf.pricesTest.priceDisplay.isUserInteractionEnabled = true
 			weakSelf.tutorialAnimation.pause()
 			self?.currentHint = self?.view.window?.hint {
-				$0.content = "*What do you think?*\n Choose the answer that makes sense to you."
+				$0.content = "*What do you think?*\n Choose the answer that makes sense to you.".localized(ACTranslationKey.popup_tutorial_choose1)
                 $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
                                                         secondaryColor: UIColor(named:"HintFill")!,
                                                         textColor: .black,
@@ -171,8 +171,8 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 			weakSelf.tutorialAnimation.pause()
 			weakSelf.progress = 0.25
 			self?.currentHint = self?.view.window?.hint {
-				$0.content = "*Great choice!*\nLet's try another."
-				$0.buttonTitle = "Next"
+				$0.content = "*Great choice!*\nLet's try another.".localized(ACTranslationKey.popup_tutorial_greatchoice1)
+				$0.buttonTitle = "Next".localized(ACTranslationKey.button_next)
 				$0.button.addAction {
 					weakSelf.tutorialAnimation.resume()
 					weakSelf.view.window?.clearOverlay()
@@ -238,8 +238,8 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
             weakSelf.tutorialAnimation.pause()
             weakSelf.progress = 0.5
 			self?.currentHint = self?.view.window?.hint {
-				$0.content = "*Another great choice!*\nLet's proceed to part two."
-				$0.buttonTitle = "Next"
+				$0.content = "*Another great choice!*\nLet's proceed to part two.".localized(ACTranslationKey.popup_tutorial_greatchoice2)
+				$0.buttonTitle = "Next".localized(ACTranslationKey.button_next)
 				$0.button.addAction {
 					weakSelf.tutorialAnimation.resume()
 					weakSelf.view.window?.clearOverlay()
@@ -303,8 +303,8 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 			weakSelf.tutorialAnimation.pause()
 			weakSelf.progress = 0.75
 			self?.currentHint = self?.view.window?.hint {
-				$0.content = "*Great choice!*\nLet's try another."
-				$0.buttonTitle = "Next"
+				$0.content = "*Great choice!*\nLet's try another.".localized(ACTranslationKey.popup_tutorial_greatchoice1)
+				$0.buttonTitle = "Next".localized(ACTranslationKey.button_next)
 				$0.button.addAction {
 					weakSelf.tutorialAnimation.resume()
 					weakSelf.view.window?.clearOverlay()
@@ -391,7 +391,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 			weakSelf.currentHint = weakSelf.view.window?.hint {
 				$0.content = """
 			Tap this matching price.
-			""".localized("popup_tutorial_pricetap")
+			""".localized(ACTranslationKey.popup_tutorial_pricetap)
 				
 				if let view = view {
 					

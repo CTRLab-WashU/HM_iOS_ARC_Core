@@ -119,7 +119,7 @@ public class ACHomeView: ACTemplateView {
 					Roboto.Style.body($0)
 				}
 				self?.surveyButton = $0.acButton {
-					$0.setTitle("BEGIN".localized("button_begin"), for: .normal)
+					$0.setTitle("BEGIN".localized(ACTranslationKey.button_begin), for: .normal)
 					$0.addAction {
 						[weak self] in
                         MHController.dataContext.performAndWait {
@@ -179,27 +179,27 @@ public class ACHomeView: ACTemplateView {
 		// Do any additional setup after loading the view.
 		switch surveyStatus {
 		case .available:
-			//heading = "Hello!".localized("home_header")
-			//message = "You have a new test available.".localized("home_body")
-            heading = "You have a new test available.".localized("home_header1")
+			//heading = "Hello!".localized(ACTranslationKey.home_header)
+			//message = "You have a new test available.".localized(ACTranslationKey.home_body)
+            heading = "You have a new test available.".localized(ACTranslationKey.home_header1)
             separator.isHidden = true
 			surveyButton.isHidden = false
 			
 		case .laterToday:
-			heading = "There are no tests to take right now.".localized("home_header2")
-			message = "You will receive a notification later today when it's time to take your next test.".localized("home_body2")
+			heading = "There are no tests to take right now.".localized(ACTranslationKey.home_header2)
+			message = "You will receive a notification later today when it's time to take your next test.".localized(ACTranslationKey.home_body2)
 			
 		case .laterThisCycle(let date):
-			heading = "There are no tests available right now.".localized("home_header4")
+			heading = "There are no tests available right now.".localized(ACTranslationKey.home_header4)
 			
-			message = "Your next tests will be available starting *{DATE1}* .".localized("home_body4")
+			message = "Your next tests will be available starting *{DATE1}* .".localized(ACTranslationKey.home_body4)
 				.replacingOccurrences(of: "{DATE1}", with: date)
 			
 	
 		case .later(let date, let endDate):
-			heading = "There are no tests available right now.".localized("home_header4")
+			heading = "There are no tests available right now.".localized(ACTranslationKey.home_header4)
 			
-			message = "Your next testing cycle will be *{DATE1}* through *{DATE2}*.".localized("home_body4")
+			message = "Your next testing cycle will be *{DATE1}* through *{DATE2}*.".localized(ACTranslationKey.home_body4)
 				.replacingOccurrences(of: "{DATE1}", with: date)
 				.replacingOccurrences(of: "{DATE2}", with: endDate)
 			
@@ -211,22 +211,22 @@ public class ACHomeView: ACTemplateView {
             let start = s!.availabilityStart
             let end = s!.availabilityEnd
             
-			heading = "You're done with today's tests.".localized("home_header3")
-			message = "We'll notify you tomorrow with your next test.".localized("home_body3")
+			heading = "You're done with today's tests.".localized(ACTranslationKey.home_header3)
+			message = "We'll notify you tomorrow with your next test.".localized(ACTranslationKey.home_body3)
                 .replacingOccurrences(of: "{TIME1}", with: start!)
                 .replacingOccurrences(of: "{TIME2}", with: end!)
 			
 		case .startingTomorrow(let date, let endDate):
-			heading = "Your next testing cycle starts tomorrow and runs through \(date).\n".localized("home_header5")
+			heading = "Your next testing cycle starts tomorrow and runs through \(date).\n".localized(ACTranslationKey.home_header5)
 				.replacingOccurrences(of: "{DATE}", with: date)
 			
-			message = "".localized("home_body5")
+			message = "".localized(ACTranslationKey.home_body5)
                 .replacingOccurrences(of: "{DATE 1}", with: date)
                 .replacingOccurrences(of: "{DATE2}", with: endDate)
             
 		case .finished:
-			heading = "You've finished the study!".localized("home_header6")
-			message = "There are no more tests to take.".localized("home_body_6")
+			heading = "You've finished the study!".localized(ACTranslationKey.home_header6)
+			message = "There are no more tests to take.".localized(ACTranslationKey.home_body_6)
             
         case .postBaseline:
             let schedule = Arc.shared.scheduleController.get(confirmedSchedule: Arc.shared.participantId!)
@@ -234,8 +234,8 @@ public class ACHomeView: ACTemplateView {
             let start = s!.availabilityStart
             let end = s!.availabilityEnd
             
-            heading = "*Your first testing cycle begins tomorrow.*".localized("home_header7")
-            message = "There will be 4 test sessions per day for 7 days.\n\nWe'll notify you *between {TIME1} and {TIME2}* when it's time to take a test.".localized("home_body7")
+            heading = "*Your first testing cycle begins tomorrow.*".localized(ACTranslationKey.home_header7)
+            message = "There will be 4 test sessions per day for 7 days.\n\nWe'll notify you *between {TIME1} and {TIME2}* when it's time to take a test.".localized(ACTranslationKey.home_body7)
                 .replacingOccurrences(of: "{TIME1}", with: start!)
                 .replacingOccurrences(of: "{TIME2}", with: end!)
 		}

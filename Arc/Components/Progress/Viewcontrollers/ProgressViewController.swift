@@ -57,7 +57,10 @@ class ProgressViewController: CustomViewController<ACProgressView> {
         //        let vc = FAQTopicViewController(faqTopic: topic);
         //        self.navigationController?.pushViewController(vc, animated: true);
     }
-    
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		
+	}
 	func todaysProgressSetup() {
         customView.sessionRemainingView.backgroundColor = .clear
 		if let today = todaysProgress {
@@ -65,30 +68,36 @@ class ProgressViewController: CustomViewController<ACProgressView> {
 			for session in today.sessionData {
 				customView.progressViews.addProgressView(progress: session.getTotalProgress())
 			}
+			let remainingTests = today.totalSessions - today.sessionsStarted
 			
-			customView.todaysSessionCompletionLabel.text = "".localized(ACTranslationKey.progress_dailystatus_complete)
-				.replacingOccurrences(of: "{#}", with: "\(today.sessionsCompleted)")
+			let testCompleted = today.sessionsCompleted
 			
-			if today.totalSessions - today.sessionsStarted == 0 {
-				customView.sessionRemainingView.backgroundColor = .badgeBackground
-				customView.todaysSessionRemainingLabel.text = "".localized(ACTranslationKey.progress_schedule_status2)
-				
-				Roboto.Style.badge(customView.todaysSessionRemainingLabel)
-			
-			} else {
-			
-				customView.sessionRemainingView.backgroundColor = .clear
-
-				customView.todaysSessionRemainingLabel.text = "".localized(ACTranslationKey.progress_dailystatus_remaining)
-                .replacingOccurrences(of: "{#}", with: "\(today.totalSessions - today.sessionsStarted)")
-				
-			}
-			
+			configureTestCompleted(testCompleted)
+			configureTestRemaining(remainingTests)
 			
 			
 		}
 	}
+	func configureTestCompleted(_ testCompleted:Int) {
+		customView.todaysSessionCompletionLabel.text = "".localized(ACTranslationKey.progress_dailystatus_complete)
+		.replacingOccurrences(of: "{#}", with: "\(testCompleted)")
+	}
+	func configureTestRemaining(_ remainingTests:Int) {
+		if remainingTests  == 0 {
+			customView.sessionRemainingView.backgroundColor = .badgeBackground
+			customView.todaysSessionRemainingLabel.text = "".localized(ACTranslationKey.progress_schedule_status2)
+			
+			//Roboto.Style.badge(customView.todaysSessionRemainingLabel)
+		
+		} else {
+		
+			customView.sessionRemainingView.backgroundColor = .clear
 
+			customView.todaysSessionRemainingLabel.text = "".localized(ACTranslationKey.progress_dailystatus_remaining)
+			.replacingOccurrences(of: "{#}", with: "\(remainingTests)")
+			
+		}
+	}
 	func thisWeekProgressSetup() {
 		switch thisStudy.studyState {
 		case .baseline:
@@ -143,6 +152,8 @@ class ProgressViewController: CustomViewController<ACProgressView> {
 			customView.nextTestingCycle.text = thisStudy.nextTestCycle
 		case .complete:
 			hideSections(value: true)
+			customView.weekOfStudyLabel.text = "".localized(ACTranslationKey.progress_studystatus)
+			.replacingOccurrences(of: "{#}", with: "\(thisStudy.totalWeeks)")
 
 		case .unknown:
 			hideSections(value: true)

@@ -70,6 +70,8 @@ import ArcUIKit
     
     @IBOutlet weak var wrappedView: ACView!
     @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var mainButton: UIButton!
+
     @IBOutlet weak var label: UILabel!
 	var isExclusive:Bool = false
     var needsImmediateResponse:Bool = false
@@ -84,6 +86,7 @@ import ArcUIKit
         return _isSelected
     }
     func set(message:String?) {
+		
         label.text = message?.localized(message ?? "")
     }
     

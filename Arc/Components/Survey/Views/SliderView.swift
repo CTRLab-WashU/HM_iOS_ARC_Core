@@ -109,10 +109,10 @@ open class SliderView: UIView, SurveyInput {
         
         guard let value = value else {
             valueLabel.text = ""
-            detailLabel.text = "Drag to select".localized("wake_drag")
+            detailLabel.text = "Drag to select".localized(ACTranslationKey.popup_drag)
             return
         }
-        detailLabel.text = "You've selected:"
+		detailLabel.text = "You've selected:"
         valueLabel.text = "\(Int(value))"
     }
     func set(min:Float, max:Float, minMessage:String?, maxMessage:String?) {

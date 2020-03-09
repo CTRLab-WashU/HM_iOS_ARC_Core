@@ -41,7 +41,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
     var interstitial:InterstitialView = .get()
     @IBOutlet public weak var collectionView: UICollectionView!
     @IBOutlet public weak var collectionViewHeight:NSLayoutConstraint!
-    @IBOutlet public weak var tapOnTheFsLabel: UILabel!
+    @IBOutlet public weak var tapOnTheFsLabel: ACLabel!
     @IBOutlet public weak var collectionViewWidth: NSLayoutConstraint!
 	public weak var delegate:GridTestViewControllerDelegate?
     private var symbols:[UIImage] = [#imageLiteral(resourceName: "key"),
@@ -225,7 +225,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 			return
 		}
 
-		Arc.shared.displayAlert(message: "Ready".localized("grids_popup1"), options: [.wait(waitTime: 1.0, {
+		Arc.shared.displayAlert(message: "Ready".localized(ACTranslationKey.grids_overlay3_pt2), options: [.wait(waitTime: 1.0, {
 			[weak self] in
 			self?.displayGrid()
 			if let s = self {
@@ -244,7 +244,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 		}
 		self.tapOnTheFsLabel.isHidden = true
 
-		Arc.shared.displayAlert(message: "Try to remember the location\nof the items!".localized("grid_transition_overlay"),
+        Arc.shared.displayAlert(message: "".localized(ACTranslationKey.grids_overlay1),
 									options: [.wait(waitTime: 2.0, {
 										self.displaySymbols()
 										$0.removeFromSuperview()
@@ -269,7 +269,8 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         
         if isPracticeTest {
             tapOnTheFsLabel.isHidden = false
-            tapOnTheFsLabel.text = "Tap the boxes where the items were located in part one."
+			tapOnTheFsLabel.translationKey = nil
+			tapOnTheFsLabel.text = "Tap the boxes where the items were located in part one.".localized(ACTranslationKey.grids_subheader_boxes)
             tapOnTheFsLabel.numberOfLines = 0
         }
         
@@ -307,9 +308,8 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         if testNumber >= controller.get(testCount: responseId)
         {
 			_ = controller.mark(filled: responseId)
-			let nextMessage = (ACState.testCount == 3) ? "Well done!" : "Loading next test..."
-			
-			let vc = TestProgressViewController(title: "Grids Test Complete!", subTitle: nextMessage, count: ACState.testTaken - 1)
+			let nextMessage = (ACState.testCount == 3) ? "Well done!".localized(ACTranslationKey.testing_done) : "Loading next test...".localized(ACTranslationKey.testing_loading)
+			let vc = TestProgressViewController(title: "Symbols Test Complete!".localized(ACTranslationKey.grids_complete), subTitle: nextMessage, count: ACState.testTaken - 1)
 			vc.delegate = self
 			self.addChild(vc)
 			self.view.anchor(view: vc.view)

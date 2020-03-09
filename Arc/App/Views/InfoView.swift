@@ -69,20 +69,27 @@ public class InfoView: ACTemplateView {
 		style.configure(button: button)
 		
 	}
-    public func enableNextButton(title:String = "Next") {
+    public func enableNextButton(title:String = "Next".localized(ACTranslationKey.button_next)) {
         nextButton?.isEnabled = true;
         nextButton?.alpha = 1;
         nextButton?.setTitle(title, for: .normal)
     }
-    public func disableNextButton(title:String = "Next") {
+    public func disableNextButton(title:String = "Next".localized(ACTranslationKey.button_next)) {
         nextButton?.isEnabled = false;
         nextButton?.alpha = 0.5;
         nextButton?.setTitle(title, for: .normal)
     }
 	public func setInput(_ view:(UIView & SurveyInput)?) {
 		inputItem = view
+		
 		inputItem?.parentScrollView = root
-
+		if view?.additionalContentViews(for: self.additionalContent) ?? false {
+			self.additionalContent.isHidden = false
+		} else {
+			if additionalContent.arrangedSubviews.count == 0 {
+				self.additionalContent.isHidden = true
+			}
+		}
 		view?.supplementaryViews(for: self.miscContainer)
 		if miscContainer.subviews.count > 0 {
 			miscContainer.isHidden = false
@@ -210,8 +217,9 @@ public class InfoView: ACTemplateView {
 			}
 			self?.nextButton = $0.acButton {
 				ButtonStyle.secondary.configure(button: $0)
+				$0.accessibilityIdentifier = "next_button"
 				$0.translatesAutoresizingMaskIntoConstraints = false
-				$0.setTitle("Next", for: .normal)
+				$0.setTitle("Next".localized(ACTranslationKey.button_next), for: .normal)
 				
 			}
 		}

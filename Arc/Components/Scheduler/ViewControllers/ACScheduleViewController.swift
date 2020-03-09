@@ -202,7 +202,7 @@ public class ACScheduleViewController : BasicSurveyViewController {
             
             if sleep.timeIntervalSince(wake) < Double(minWakeTime * 3600)
             {
-                error = "Please set a minimum of {HOURS} hours of wake time.".localized("availability_minimum_error").replacingOccurrences(of: "{HOURS}", with: "\(minWakeTime)")
+                error = "Please set a minimum of {HOURS} hours of wake time.".localized(ACTranslationKey.availability_minimum_error).replacingOccurrences(of: "{HOURS}", with: "\(minWakeTime)")
 				set(error: error)
 				didFinish(false)
 				return
@@ -210,7 +210,7 @@ public class ACScheduleViewController : BasicSurveyViewController {
             
             if (sleep.timeIntervalSince(wake) > Double(maxWakeTime * 3600)) && shouldLimitWakeTime
             {
-                error = "Please set a maximum of {HOURS} hours of availability.".localized("availability_maximum_error").replacingOccurrences(of: "{HOURS}", with: "\(maxWakeTime)")
+                error = "Please set a maximum of {HOURS} hours of availability.".localized(ACTranslationKey.availability_maximum_error).replacingOccurrences(of: "{HOURS}", with: "\(maxWakeTime)")
 				set(error: error)
 
                 return didFinish(false);

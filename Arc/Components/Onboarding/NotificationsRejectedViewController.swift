@@ -8,28 +8,52 @@
 
 import Foundation
 import ArcUIKit
-class NotificationsRejectedViewController : CustomViewController<InfoView>, SurveyInput {
-	var useDarkStatusBar:Bool = false
+public class NotificationsRejectedViewController : CustomViewController<InfoView>, SurveyInput {
+	public var useDarkStatusBar:Bool = false
     open override var preferredStatusBarStyle: UIStatusBarStyle {
         return useDarkStatusBar ? .default : .lightContent
     }
 	
-	var orientation: UIStackView.Alignment = .top
+	public var orientation: UIStackView.Alignment = .top
 
 	
-	var surveyInputDelegate: SurveyInputDelegate?
+	public var surveyInputDelegate: SurveyInputDelegate?
 	
 	
 	
-	func getValue() -> QuestionResponse? {
+	public func getValue() -> QuestionResponse? {
 		return nil
 	}
 	
-	func setValue(_ value: QuestionResponse?) {
+	public func setValue(_ value: QuestionResponse?) {
 		
 	}
-	
-	override func viewDidLoad() {
+	public override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		
+		
+	}
+	public func updateState() {
+		customView.nextButton?.setTitle("".localized(ACTranslationKey.button_settings), for: .normal)
+		Arc.shared.notificationController.authenticateNotifications { [weak self] (granted, error) in
+			OperationQueue.main.addOperation {
+				Arc.shared.appController.isNotificationAuthorized = granted
+				if !granted {
+					self?.customView.nextButton?.setTitle("".localized(ACTranslationKey.button_settings), for: .normal)
+
+				} else {
+					self?.customView.nextButton?.setTitle("".localized(ACTranslationKey.button_next), for: .normal)
+					self?.surveyInputDelegate?.didChangeValue()
+					self?.surveyInputDelegate?.tryNextPressed()
+				}
+				
+				
+				
+			}
+			
+		}
+	}
+	public override func viewDidLoad() {
 		super.viewDidLoad()
 		
         useDarkStatusBar = false
@@ -47,15 +71,30 @@ class NotificationsRejectedViewController : CustomViewController<InfoView>, Surv
 		
 		customView.nextButton?.setTitle("".localized(ACTranslationKey.button_settings), for: .normal)
 		customView.nextButton?.addAction {  [weak self] in
-			guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-				return
+			Arc.shared.notificationController.authenticateNotifications { [weak self] (granted, error) in
+				OperationQueue.main.addOperation {
+					Arc.shared.appController.isNotificationAuthorized = granted
+					if !granted {
+						guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+							return
+						}
+						
+						if UIApplication.shared.canOpenURL(settingsUrl) {
+							UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+								print("Settings opened: \(success)") // Prints true
+							})
+						}
+					} else {
+						self?.surveyInputDelegate?.didChangeValue()
+						self?.surveyInputDelegate?.tryNextPressed()
+					}
+					
+					
+					
+				}
+				
 			}
 			
-			if UIApplication.shared.canOpenURL(settingsUrl) {
-				UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-					print("Settings opened: \(success)") // Prints true
-				})
-			}
 			
 		}
 		customView.setHeading("".localized(ACTranslationKey.onboarding_notifications_header2))
