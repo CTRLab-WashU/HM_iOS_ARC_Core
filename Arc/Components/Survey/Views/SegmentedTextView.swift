@@ -199,6 +199,7 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTra
         if message != nil {
             borderColor = UIColor(named: "Error")!
 			problemsButton?.isHidden = hideHelpButton
+			resignFirstResponder()
 		} else {
 			problemsButton?.isHidden = true
 		}
