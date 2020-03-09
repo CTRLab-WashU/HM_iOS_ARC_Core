@@ -133,6 +133,8 @@ public class TestProgressView:UIView {
 			$0.spacing = 8
 			self.titleLabel = $0.acLabel {
 				Roboto.Style.headingBold($0, color: .white)
+                $0.numberOfLines = 0
+                $0.textAlignment = .center
 			}
 			self.subtitleLabel = $0.acLabel {
 				Georgia.Style.subtitle($0, color: .white)
@@ -140,6 +142,8 @@ public class TestProgressView:UIView {
 			$0.layout {
 				$0.centerX == self.centerXAnchor
 				$0.bottom == self.progressBar.topAnchor - 40
+                $0.leading == self.layoutMarginsGuide.leadingAnchor + 16
+                $0.trailing == self.layoutMarginsGuide.trailingAnchor + 16
 			}
 			
 		}
