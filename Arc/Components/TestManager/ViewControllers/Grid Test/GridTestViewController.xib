@@ -31,11 +31,11 @@
                     <rect key="frame" x="0.0" y="12" width="320" height="548"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap On The Fs" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11X-8i-GZq" customClass="ACLabel" customModule="ArcUIKit">
-                            <rect key="frame" x="22" y="0.0" width="276" height="40"/>
+                            <rect key="frame" x="15" y="0.0" width="290" height="40"/>
                             <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="40" id="Th8-mY-BkH"/>
-                                <constraint firstAttribute="width" constant="276" id="wuh-rl-oXQ"/>
+                                <constraint firstAttribute="width" constant="290" id="wuh-rl-oXQ"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                             <nil key="textColor"/>
@@ -68,8 +68,8 @@
                         </collectionView>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="11X-8i-GZq" firstAttribute="leading" secondItem="efi-qX-YDc" secondAttribute="leading" constant="22" id="H4p-bR-VZ0"/>
-                        <constraint firstAttribute="trailing" secondItem="11X-8i-GZq" secondAttribute="trailing" constant="22" id="jta-GB-hcU"/>
+                        <constraint firstItem="11X-8i-GZq" firstAttribute="leading" secondItem="efi-qX-YDc" secondAttribute="leading" constant="15" id="H4p-bR-VZ0"/>
+                        <constraint firstAttribute="trailing" secondItem="11X-8i-GZq" secondAttribute="trailing" constant="15" id="jta-GB-hcU"/>
                     </constraints>
                 </stackView>
             </subviews>
