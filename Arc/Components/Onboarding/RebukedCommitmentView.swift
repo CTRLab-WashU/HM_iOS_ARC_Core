@@ -33,7 +33,7 @@ public class RebukedCommitmentView : ACTemplateView {
 			$0.topColor = .clear
 			$0.bottomColor = .clear
 			$0.setTitleColor(.white, for: .normal)
-			
+			$0.titleLabel?.textAlignment = .center
 
 			$0.tintColor = .black
 			$0.titleLabel?.textColor = .black
