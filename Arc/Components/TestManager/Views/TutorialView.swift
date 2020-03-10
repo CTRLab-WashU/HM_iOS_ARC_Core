@@ -8,7 +8,7 @@
 
 import UIKit
 import ArcUIKit
-class TutorialView: UIStackView {
+public class TutorialView: UIStackView {
 	var headerView:UIView!
     var headerStack:UIStackView!
 	var progressBar:ACHorizontalBar!
@@ -22,7 +22,7 @@ class TutorialView: UIStackView {
         // Drawing code
     }
     */
-	init() {
+	public init() {
 		
 		super.init(frame: .zero)
 		axis = .vertical

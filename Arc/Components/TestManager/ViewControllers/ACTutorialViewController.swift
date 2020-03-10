@@ -67,7 +67,7 @@ class TutorialState {
 }
 
 
-class ACTutorialViewController: CustomViewController<TutorialView>, TutorialCompleteViewDelegate {
+public class ACTutorialViewController: CustomViewController<TutorialView>, TutorialCompleteViewDelegate {
 	var tutorialAnimation:Animate = Animate()
 	var progress:CGFloat = 0 {
 		didSet {
@@ -77,7 +77,7 @@ class ACTutorialViewController: CustomViewController<TutorialView>, TutorialComp
 	
 	var state:TutorialState = TutorialState()
 	var duration:Double = 10.0
-	override func viewDidLoad() {
+	override public func viewDidLoad() {
         super.viewDidLoad()
 		tutorialAnimation = tutorialAnimation.duration(duration).curve(.linear)
 		state = TutorialState()
@@ -88,12 +88,12 @@ class ACTutorialViewController: CustomViewController<TutorialView>, TutorialComp
 			
 		}
     }
-	func closePressed() {
+	public func closePressed() {
 		dismiss(animated: true) {
 			
 		}
 	}
-	func startTutorialAnimation() {
+	public func startTutorialAnimation() {
 		state.duration = duration
 		tutorialAnimation = tutorialAnimation.run {[weak self]
 			progress in
@@ -133,11 +133,11 @@ class ACTutorialViewController: CustomViewController<TutorialView>, TutorialComp
 	func resumeTutorialanimation() {
 		tutorialAnimation.resume()
 	}
-	override func viewDidAppear(_ animated: Bool) {
+	override public func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		startTutorialAnimation()
 	}
-	override func viewWillDisappear(_ animated: Bool) {
+	override public func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		stopTutorialanimation()
 		currentHint?.removeFromSuperview()
