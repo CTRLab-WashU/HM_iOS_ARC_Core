@@ -187,13 +187,17 @@ public class ACTodayProgressView : UIView {
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	public func set(sessionsCompleted:Int?, isPlural:Bool = false) {
+	public func set(sessionsCompleted:Int?, isPlural:Bool = false, isPractice:Bool = false) {
 		guard let sessionsCompleted = sessionsCompleted else {
 			sessionCompletionLabel.isHidden = true
 			return
 		}
 		sessionCompletionLabel.isHidden = false
-		let key = (isPlural) ? ACTranslationKey.progress_schedule_body2 : ACTranslationKey.progress_schedule_body1
+		var key = (isPlural) ? ACTranslationKey.progress_schedule_body2 : ACTranslationKey.progress_schedule_body1
+		
+		if isPractice {
+			key = ACTranslationKey.progress_practice_body1
+		}
 		sessionCompletionLabel.text = "".localized(key)
 			.replacingOccurrences(of: "{#}", with: "\(sessionsCompleted)")
 	}

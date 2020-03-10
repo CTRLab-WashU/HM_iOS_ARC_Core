@@ -36,7 +36,12 @@ public class ACTodayProgressViewController: CustomViewController<ACTodayProgress
 		let isComplete = config.sessionsStarted == config.totalSessions
 		if isComplete {
 			customView.set(completed: true)
-			customView.set(sessionsCompleted: config.sessionsCompleted, isPlural: config.sessionsCompleted != 1)
+			if thisStudy.studyState == .baseline {
+				customView.set(sessionsCompleted: config.sessionsCompleted, isPlural: config.sessionsCompleted != 1, isPractice: true)
+
+			} else {
+				customView.set(sessionsCompleted: config.sessionsCompleted, isPlural: config.sessionsCompleted != 1)
+			}
 			customView.set(sessionsRemaining: nil)
 		} else {
 			customView.set(completed: false)
