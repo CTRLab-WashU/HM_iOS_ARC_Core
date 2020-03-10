@@ -41,7 +41,7 @@ public class PromptDetailView: UIStackView {
 		promptLabel = acLabel {
 			$0.text = ""
 			Roboto.Style.heading($0)
-			
+			$0.textColor = .primaryText
 			
 		}
 		separator = acHorizontalBar {
@@ -56,6 +56,8 @@ public class PromptDetailView: UIStackView {
 			
 			Roboto.Style.body($0)
 			$0.text = ""
+			$0.textColor = .primaryText
+
 			
 		}
 		
