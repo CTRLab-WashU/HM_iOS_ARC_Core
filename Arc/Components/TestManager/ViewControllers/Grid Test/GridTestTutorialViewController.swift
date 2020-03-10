@@ -222,7 +222,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			weakSelf.test.view.overlayView(withShapes: [])
 			weakSelf.currentHint = weakSelf.view.window?.hint {
 				$0.content = "*Great!*\nLet's proceed to part two.".localized(ACTranslationKey.popup_tutorial_part2)
-				$0.buttonTitle = "Next".localized(ACTranslationKey.button_next)
+				$0.buttonTitle = "NEXT".localized(ACTranslationKey.button_next)
 				$0.onTap = { [weak self] in
 					self?.didSelect()
 				}
@@ -326,7 +326,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			weakSelf.phase = .fs
 			weakSelf.currentHint = weakSelf.view.window?.hint {
 				$0.content = "*Nice work!*\nDon't worry if you didn't find them all.".localized(ACTranslationKey.popup_tutorial_tapf3)
-				$0.buttonTitle = "Next".localized(ACTranslationKey.button_next)
+				$0.buttonTitle = "NEXT".localized(ACTranslationKey.button_next)
 				$0.onTap = {
 					weakSelf.phase = .recallFirstStep
 					weakSelf.didSelect()

@@ -69,12 +69,12 @@ public class InfoView: ACTemplateView {
 		style.configure(button: button)
 		
 	}
-    public func enableNextButton(title:String = "Next".localized(ACTranslationKey.button_next)) {
+    public func enableNextButton(title:String = "NEXT".localized(ACTranslationKey.button_next)) {
         nextButton?.isEnabled = true;
         nextButton?.alpha = 1;
         nextButton?.setTitle(title, for: .normal)
     }
-    public func disableNextButton(title:String = "Next".localized(ACTranslationKey.button_next)) {
+    public func disableNextButton(title:String = "NEXT".localized(ACTranslationKey.button_next)) {
         nextButton?.isEnabled = false;
         nextButton?.alpha = 0.5;
         nextButton?.setTitle(title, for: .normal)
@@ -219,7 +219,7 @@ public class InfoView: ACTemplateView {
 				ButtonStyle.secondary.configure(button: $0)
 				$0.accessibilityIdentifier = "next_button"
 				$0.translatesAutoresizingMaskIntoConstraints = false
-				$0.setTitle("Next".localized(ACTranslationKey.button_next), for: .normal)
+				$0.setTitle("NEXT".localized(ACTranslationKey.button_next), for: .normal)
 				
 			}
 		}

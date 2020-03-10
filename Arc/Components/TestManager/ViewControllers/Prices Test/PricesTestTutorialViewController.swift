@@ -172,7 +172,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 			weakSelf.progress = 0.25
 			self?.currentHint = self?.view.window?.hint {
 				$0.content = "*Great choice!*\nLet's try another.".localized(ACTranslationKey.popup_tutorial_greatchoice1)
-				$0.buttonTitle = "Next".localized(ACTranslationKey.button_next)
+				$0.buttonTitle = "NEXT".localized(ACTranslationKey.button_next)
 				$0.button.addAction {
 					weakSelf.tutorialAnimation.resume()
 					weakSelf.view.window?.clearOverlay()
@@ -239,7 +239,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
             weakSelf.progress = 0.5
 			self?.currentHint = self?.view.window?.hint {
 				$0.content = "*Another great choice!*\nLet's proceed to part two.".localized(ACTranslationKey.popup_tutorial_greatchoice2)
-				$0.buttonTitle = "Next".localized(ACTranslationKey.button_next)
+				$0.buttonTitle = "NEXT".localized(ACTranslationKey.button_next)
 				$0.button.addAction {
 					weakSelf.tutorialAnimation.resume()
 					weakSelf.view.window?.clearOverlay()
@@ -304,7 +304,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 			weakSelf.progress = 0.75
 			self?.currentHint = self?.view.window?.hint {
 				$0.content = "*Great choice!*\nLet's try another.".localized(ACTranslationKey.popup_tutorial_greatchoice1)
-				$0.buttonTitle = "Next".localized(ACTranslationKey.button_next)
+				$0.buttonTitle = "NEXT".localized(ACTranslationKey.button_next)
 				$0.button.addAction {
 					weakSelf.tutorialAnimation.resume()
 					weakSelf.view.window?.clearOverlay()

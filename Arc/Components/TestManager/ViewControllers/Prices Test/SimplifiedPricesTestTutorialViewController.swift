@@ -80,7 +80,7 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
            
             self?.currentHint = self?.view.window?.hint {
 				$0.content = "".localized(ACTranslationKey.popup_tutorial_price_memorize)
-                $0.buttonTitle = "Next".localized(ACTranslationKey.popup_tutorial_ready)
+                $0.buttonTitle = "NEXT".localized(ACTranslationKey.popup_tutorial_ready)
                 $0.button.addAction {
                     weakSelf.tutorialAnimation.resume()
                     weakSelf.view.window?.clearOverlay()
@@ -137,7 +137,7 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
             weakSelf.progress = 0.25
             self?.currentHint = self?.view.window?.hint {
 				$0.content = "*Great!*\nLet's proceed to part two.".localized(ACTranslationKey.popup_tutorial_part2)
-				$0.buttonTitle = "Next".localized(ACTranslationKey.button_next)
+				$0.buttonTitle = "NEXT".localized(ACTranslationKey.button_next)
                 $0.button.addAction {
                     weakSelf.tutorialAnimation.resume()
                     weakSelf.view.window?.clearOverlay()
@@ -214,7 +214,7 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
             weakSelf.progress = 0.5
             self?.currentHint = self?.view.window?.hint {
 				$0.content = "*Great choice!*\nLet's try another.".localized(ACTranslationKey.popup_tutorial_greatjob)
-                $0.buttonTitle = "Next".localized(ACTranslationKey.button_next)
+                $0.buttonTitle = "NEXT".localized(ACTranslationKey.button_next)
                 $0.button.addAction {
 					
 					////////////////
@@ -290,7 +290,7 @@ class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewControll
             self?.currentHint = self?.view.window?.hint {
 				
 				$0.content = "*Great choice!*\nLet's try another.".localized(ACTranslationKey.popup_tutorial_nice)
-				$0.buttonTitle = "Next".localized(ACTranslationKey.button_next)
+				$0.buttonTitle = "NEXT".localized(ACTranslationKey.button_next)
 				////////////////
 				//Third question
 				////////////////

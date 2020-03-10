@@ -337,7 +337,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		vc.customView.inputDelegate = self
 		
 		vc.customView.nextButton?.addTarget(self, action: #selector(nextButtonPressed(sender:)), for: .primaryActionTriggered)
-        vc.customView.nextButton?.setTitle(question.nextButtonTitle ?? "Next".localized(ACTranslationKey.button_next), for: .normal)
+        vc.customView.nextButton?.setTitle(question.nextButtonTitle ?? "NEXT".localized(ACTranslationKey.button_next), for: .normal)
 		didPresentQuestion(input: vc.customView.inputItem, questionId: question.questionId)
 		
 	}
@@ -388,7 +388,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 
         
 		
-        disableNextButton(title: question.altNextButtonTitle ?? "Next".localized(ACTranslationKey.button_next))
+        disableNextButton(title: question.altNextButtonTitle ?? "NEXT".localized(ACTranslationKey.button_next))
         
 		didPresentQuestion(input: vc.customView.inputItem, questionId: question.questionId)
 
@@ -440,7 +440,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
         input.customView.enableNextButton()
     }
     
-    public func enableNextButton(title:String = "Next".localized(ACTranslationKey.button_next)) {
+    public func enableNextButton(title:String = "NEXT".localized(ACTranslationKey.button_next)) {
         guard let input:CustomViewController<InfoView> = self.getTopViewController() else {
             return
         }
@@ -448,7 +448,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
         input.customView.enableNextButton(title: title)
     }
     
-    public func disableNextButton(title:String = "Next".localized(ACTranslationKey.button_next))
+    public func disableNextButton(title:String = "NEXT".localized(ACTranslationKey.button_next))
     {
         guard let input:CustomViewController<InfoView>  = self.getTopViewController() else {
             return

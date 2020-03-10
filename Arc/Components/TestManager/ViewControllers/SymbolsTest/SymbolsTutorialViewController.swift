@@ -92,14 +92,14 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 					Let’s try a couple more
 					for practice.
 					""".localized(ACTranslationKey.popup_tutorial_greatjob)
-					$0.buttonTitle = "Next".localized(ACTranslationKey.button_next)
+					$0.buttonTitle = "NEXT".localized(ACTranslationKey.button_next)
 				} else {
                     self?.progress = 0.66
 					$0.content = """
 					*Nice!*
 					One more...
 					""".localized(ACTranslationKey.popup_tutorial_nice)
-					$0.buttonTitle = "Next".localized(ACTranslationKey.button_next)
+					$0.buttonTitle = "NEXT".localized(ACTranslationKey.button_next)
 				}
 				$0.onTap = { [weak self] in
 					self?.test.next()
@@ -145,7 +145,7 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 				Each tile includes a pair
 				of symbols.
 				""".localized(ACTranslationKey.popup_tutorial_tile)
-				$0.buttonTitle = "Next".localized(ACTranslationKey.button_next)
+				$0.buttonTitle = "NEXT".localized(ACTranslationKey.button_next)
 				$0.onTap = { [weak self] in
 					
 					self?.didSelect()
@@ -182,7 +182,7 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 				$0.content = """
 				You will see *three tiles* on the top of the screen…
 				""".localized(ACTranslationKey.popup_tutorial_tilestop)
-				$0.buttonTitle = "Next".localized(ACTranslationKey.button_next)
+				$0.buttonTitle = "NEXT".localized(ACTranslationKey.button_next)
 				$0.onTap = { [weak self] in
 					
 					self?.didSelect()
@@ -218,7 +218,7 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
 				$0.content = """
 				…and *two tiles* on the bottom.
 				""".localized(ACTranslationKey.popup_tutorial_tilesbottom)
-				$0.buttonTitle = "Next".localized(ACTranslationKey.button_next)
+				$0.buttonTitle = "NEXT".localized(ACTranslationKey.button_next)
                 $0.updateHintContainerMargins()
 				$0.onTap = { [weak self] in
 					
