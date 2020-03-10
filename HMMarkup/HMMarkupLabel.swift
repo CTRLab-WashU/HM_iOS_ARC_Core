@@ -12,7 +12,7 @@ import UIKit
     @IBInspectable public var translationKey:String?
     
     open var renderer:HMMarkupRenderer!
-    @IBInspectable public var spacing:CGFloat = 5.5
+    @IBInspectable public var spacing:CGFloat = 5
     
     open var template:Dictionary<String, String> = [:]
     
