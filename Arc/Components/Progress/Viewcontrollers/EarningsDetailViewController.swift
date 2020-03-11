@@ -45,6 +45,7 @@ open class EarningsDetailViewController : CustomViewController<ACEarningsDetailV
 	}
 	open override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.barStyle = .black
 		self.navigationController?.isNavigationBarHidden = false
 	}
 	open override var preferredStatusBarStyle: UIStatusBarStyle {

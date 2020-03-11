@@ -55,6 +55,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 	override public func viewDidLoad() {
 		
         super.viewDidLoad()
+        self.view.backgroundColor = .primaryInfo
 		customView.bottomScrollIndicatorView.isHidden = true
 		
 		//When in post test mode perform modifications
@@ -195,6 +196,9 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		earningsData = Arc.shared.appController.read(key: EarningsController.overviewKey)
 		setGoals()
 	}
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 	@objc public func updateEarnings(notification:Notification) {
 		OperationQueue.main.addOperation { [weak self] in
 
