@@ -15,6 +15,8 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 	var lastUpdated:TimeInterval?
 	var earningsData:EarningOverview?
 	var dateFormatter = DateFormatter()
+	var goalDateFormatter = DateFormatter()
+
 	var isPostTest:Bool = false
 	var timeout:Timer?
     // TODO
@@ -84,6 +86,8 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
         
 		dateFormatter.locale = app.appController.locale.getLocale()
 		dateFormatter.dateFormat = "MMM dd 'at' hh:mm a"
+		goalDateFormatter.locale = app.appController.locale.getLocale()
+		goalDateFormatter.dateFormat = "MM-dd-yy"
 		NotificationCenter.default.addObserver(self, selector: #selector(updateEarnings(notification:)), name: .ACEarningsUpdated, object: nil)
 		
 		customView.viewDetailsButton.addAction {
@@ -257,13 +261,27 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 			break
 		}
 	}
-	fileprivate func setGoalRewardText(value:String, goalView:GoalView, isComplete:Bool) {
-		goalView.set(isUnlocked: isComplete)
+	fileprivate func setGoalRewardText(value:String, goalView:GoalView, isComplete:Bool, date:TimeInterval?) {
+		
+		if let dateInterval = date {
+			let timeSince = (Date().timeIntervalSince1970 - dateInterval)
+			if timeSince > 60.0 * 60.0 * 24.0 {
+				let dateString = goalDateFormatter.string(from: Date(timeIntervalSince1970: dateInterval))
+				goalView.set(isUnlocked: isComplete, date: dateString)
+			} else {
+				goalView.set(isUnlocked: isComplete, date: nil)
+
+			}
+		} else {
+			goalView.set(isUnlocked: isComplete, date: nil)
+
+		}
 			goalView.set(
 				goalRewardText: ""
 					.localized((isComplete) ? ACTranslationKey.earnings_bonus_complete : ACTranslationKey.earnings_bonus_incomplete)
 					.replacingOccurrences(of: "{AMOUNT}", with: value))
 	}
+	
 	fileprivate func fourofFourGoal(_ fourOfFourGoal:EarningOverview.Response.Earnings.Goal) {
 		let components = fourOfFourGoal.progress_components
 		
@@ -282,7 +300,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
         
 		
 
-		setGoalRewardText(value: fourOfFourGoal.value, goalView: customView.fourofFourGoal, isComplete: fourOfFourGoal.completed)
+		setGoalRewardText(value: fourOfFourGoal.value, goalView: customView.fourofFourGoal, isComplete: fourOfFourGoal.completed, date: fourOfFourGoal.completed_on)
 	}
 	
 	fileprivate func twoADayGoal(_ twoADay:EarningOverview.Response.Earnings.Goal) {
@@ -296,7 +314,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 			.replacingOccurrences(of: "{AMOUNT}", with: twoADay.value))
        
 
-			setGoalRewardText(value: twoADay.value, goalView: customView.twoADayGoal, isComplete: twoADay.completed)
+			setGoalRewardText(value: twoADay.value, goalView: customView.twoADayGoal, isComplete: twoADay.completed, date: twoADay.completed_on)
 	}
 	
 	fileprivate func totalSessionsGoal(_ totalSessions:EarningOverview.Response.Earnings.Goal) {
@@ -311,7 +329,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 			.replacingOccurrences(of: "{AMOUNT}", with: totalSessions.value))
        
 
-			setGoalRewardText(value: totalSessions.value, goalView: customView.totalSessionsGoal, isComplete: totalSessions.completed)
+			setGoalRewardText(value: totalSessions.value, goalView: customView.totalSessionsGoal, isComplete: totalSessions.completed, date: totalSessions.completed_on)
 	}
 	
 	public func setGoals() {

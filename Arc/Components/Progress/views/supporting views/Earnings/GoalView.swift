@@ -131,8 +131,16 @@ public class GoalView: UIView {
 	public func set(bodyText:String){
 		goalBodyLabel.text = bodyText
 	}
-	public func set(isUnlocked:Bool) {
+	public func set(isUnlocked:Bool, date:String? = nil) {
 		doneView.isHidden = !isUnlocked
+		if let date = date {
+			doneLabel.text = ""
+				.localized(ACTranslationKey.status_done_withdate)
+			.replacingOccurrences(of: "{DATE}", with: date)
+		} else {
+			doneLabel.text = ""
+			.localized(ACTranslationKey.status_done)
+		}
 		goalRewardView.isUnlocked = isUnlocked
 	}
 	public func set(goalRewardText:String) {
