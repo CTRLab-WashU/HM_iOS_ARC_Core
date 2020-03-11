@@ -140,10 +140,10 @@ public class TestProgressView:UIView {
 				Georgia.Style.subtitle($0, color: .white)
 			}
 			$0.layout {
-				$0.centerX == self.centerXAnchor
+				$0.centerX == self.centerXAnchor ~ 1000
 				$0.bottom == self.progressBar.topAnchor - 40
-                $0.leading == self.layoutMarginsGuide.leadingAnchor + 16
-                $0.trailing == self.layoutMarginsGuide.trailingAnchor + 16
+                $0.leading == self.layoutMarginsGuide.leadingAnchor + 16 ~ 999
+                $0.trailing == self.layoutMarginsGuide.trailingAnchor + 16 ~ 999
 			}
 			
 		}
