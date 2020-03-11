@@ -253,11 +253,11 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 			break
 		}
 	}
-	fileprivate func setGoalRewardText(value:String, goalView:GoalView) {
-
+	fileprivate func setGoalRewardText(value:String, goalView:GoalView, isComplete:Bool) {
+		goalView.set(isUnlocked: isComplete)
 			goalView.set(
-				goalRewardText: "Bonus Earned!"
-					.localized(ACTranslationKey.earnings_bonus_incomplete)
+				goalRewardText: ""
+					.localized((isComplete) ? ACTranslationKey.earnings_bonus_complete : ACTranslationKey.earnings_bonus_incomplete)
 					.replacingOccurrences(of: "{AMOUNT}", with: value))
 	}
 	fileprivate func fourofFourGoal(_ fourOfFourGoal:EarningOverview.Response.Earnings.Goal) {
@@ -269,20 +269,16 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 			customView.fourofFourGoal.set(progress:Double(value)/100.0, for: index)
 		}
 		
-		customView.fourofFourGoal.set(isUnlocked: fourOfFourGoal.completed)
-		
 		customView.fourofFourGoal.set(
 			titleText: ""
 				.localized(ACTranslationKey.earnings_4of4_header))
 
 		customView.fourofFourGoal.set(bodyText: "".localized(ACTranslationKey.earnings_4of4_body)
 			.replacingOccurrences(of: "{AMOUNT}", with: fourOfFourGoal.value))
-        let bonus = fourOfFourGoal.value + " Bonus"
-		customView.fourofFourGoal.goalRewardView.set(text: bonus)
-		if fourOfFourGoal.completed {
+        
+		
 
-			setGoalRewardText(value: fourOfFourGoal.value, goalView: customView.fourofFourGoal)
-		}
+		setGoalRewardText(value: fourOfFourGoal.value, goalView: customView.fourofFourGoal, isComplete: fourOfFourGoal.completed)
 	}
 	
 	fileprivate func twoADayGoal(_ twoADay:EarningOverview.Response.Earnings.Goal) {
@@ -292,15 +288,11 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 			let value = component.element
 			customView.twoADayGoal.set(progress:Double(min(2, value))/2.0, forIndex: index)
 		}
-		customView.twoADayGoal.set(isUnlocked: twoADay.completed)
 		customView.twoADayGoal.set(bodyText: "".localized(ACTranslationKey.earnings_2aday_body)
 			.replacingOccurrences(of: "{AMOUNT}", with: twoADay.value))
-        let bonus = twoADay.value + " Bonus"
-		customView.twoADayGoal.goalRewardView.set(text: bonus)
-		if twoADay.completed {
+       
 
-			setGoalRewardText(value: twoADay.value, goalView: customView.twoADayGoal)
-		}
+			setGoalRewardText(value: twoADay.value, goalView: customView.twoADayGoal, isComplete: twoADay.completed)
 	}
 	
 	fileprivate func totalSessionsGoal(_ totalSessions:EarningOverview.Response.Earnings.Goal) {
@@ -311,15 +303,11 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 			
 		}
 		
-		customView.totalSessionsGoal.set(isUnlocked: totalSessions.completed)
 		customView.totalSessionsGoal.set(bodyText: "".localized(ACTranslationKey.earnings_21tests_body)
 			.replacingOccurrences(of: "{AMOUNT}", with: totalSessions.value))
-        let bonus = totalSessions.value + " Bonus"
-		customView.totalSessionsGoal.goalRewardView.set(text: bonus)
-		if totalSessions.completed {
+       
 
-			setGoalRewardText(value: totalSessions.value, goalView: customView.totalSessionsGoal)
-		}
+			setGoalRewardText(value: totalSessions.value, goalView: customView.totalSessionsGoal, isComplete: totalSessions.completed)
 	}
 	
 	public func setGoals() {
