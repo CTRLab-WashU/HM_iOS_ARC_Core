@@ -222,6 +222,7 @@ public class ACHomeView: ACTemplateView {
 			
 			message = "".localized(ACTranslationKey.home_body5)
                 .replacingOccurrences(of: "{DATE 1}", with: date)
+                .replacingOccurrences(of: "{DATE1}", with: date)
                 .replacingOccurrences(of: "{DATE2}", with: endDate)
             
 		case .finished:
