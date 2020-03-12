@@ -142,7 +142,7 @@ open class PricesQuestionViewController: ArcViewController, TestProgressViewCont
             if isTutorial {
                 b.set(message: string)
             } else {
-                b.set(message: "\("".localized(ACTranslationKey.money_prefix))\(string)")
+                b.set(message: "\("".localized(ACTranslationKey.money_prefix))\(string)\("".localized(ACTranslationKey.money_suffix))")
             }
             b.isHidden = false
             

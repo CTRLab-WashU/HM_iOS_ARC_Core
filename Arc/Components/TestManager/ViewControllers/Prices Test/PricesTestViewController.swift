@@ -156,7 +156,7 @@ public class PricesTestViewController: ArcViewController {
 		
 		topLabel?.text = item.item
 		
-        var correctPrice = "".localized(ACTranslationKey.money_prefix) + item.price
+        var correctPrice = "".localized(ACTranslationKey.money_prefix) + item.price + "".localized(ACTranslationKey.money_suffix)
         if self.isTutorial {
             correctPrice = item.price
         }
