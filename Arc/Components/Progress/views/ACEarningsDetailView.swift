@@ -20,13 +20,13 @@ public class ACEarningsDetailView : ACTemplateView {
 			
 			
 			case .testSession:
-				return "Complete Test Session"
+				return "progress_earnings_status1"
 			case .fourOfFour:
-				return "4 Out of 4 Goal"
+				return "progress_earnings_status3"
 			case .twoADay:
-				return "2-A-Day Goal"
+				return "progress_earnings_status4"
 			case .totalSessions:
-				return "21 Sessions Goal"
+				return "progress_earnings_status2"
 			
 			}
 		}
