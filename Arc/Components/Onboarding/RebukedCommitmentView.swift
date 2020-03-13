@@ -14,17 +14,35 @@ public class RebukedCommitmentView : ACTemplateView {
 	public override func content(_ view: UIView) {
 		backgroundColor = ACColor.primary
 		backgroundView.image = UIImage(named: "availability_bg", in: Bundle(for: self.classForCoder), compatibleWith: nil)
-		view.acLabel {
-			Roboto.Style.headingMedium($0, color: .white)
-			$0.text = "".localized(ACTranslationKey.onboarding_nocommit_landing_header)
-			$0.textAlignment = .center
+		view.view {
+			$0.backgroundColor = .clear
 		}
-		view.acLabel {
-			Roboto.Style.body($0, color: .white)
-			$0.text = "".localized(ACTranslationKey.onboarding_nocommit_landing_body)
-			$0.textAlignment = .center
+
+			view.acLabel {
+				
+				Roboto.Style.headingMedium($0, color: .white)
+				$0.text = "".localized(ACTranslationKey.onboarding_nocommit_landing_header)
+				$0.textAlignment = .center
+				$0.layout {
+					$0.height == 100
+				}
+				
+			}
 			
+			view.acLabel {
+				Roboto.Style.body($0, color: .white)
+				$0.text = "".localized(ACTranslationKey.onboarding_nocommit_landing_body)
+				$0.textAlignment = .center
+				$0.layout {
+					$0.centerY == view.centerYAnchor ~ 500
+	
+				}
+			}
+			
+		view.view {
+			$0.backgroundColor = .clear
 		}
+		
 	}
 	public override func footer(_ view: UIView) {
 		contactStudyCoordinatorButton = view.acButton {
