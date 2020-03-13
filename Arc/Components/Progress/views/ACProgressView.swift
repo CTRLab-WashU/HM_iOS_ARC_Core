@@ -179,7 +179,7 @@ class ACProgressView: ACTemplateView {
 							
 						}
 						self.startDateLabel = $0.acLabel {
-							Roboto.Style.body($0)
+                            Roboto.Style.body($0, color: ACColor.secondaryDate)
 							$0.text = Date().localizedFormat(template: ACDateStyle.longWeekdayMonthDay.rawValue,
 															 options: 0,
 															 locale: nil)
@@ -196,7 +196,7 @@ class ACProgressView: ACTemplateView {
 							$0.text = "".localized(ACTranslationKey.progress_enddate)
 						}
 						self.endDateLabel = $0.acLabel {
-							Roboto.Style.body($0)
+							Roboto.Style.body($0, color: ACColor.secondaryDate)
 							$0.text = Date().addingDays(days: 6).localizedFormat(template: ACDateStyle.longWeekdayMonthDay.rawValue,
 																				 options: 0,
 																				 locale: nil)

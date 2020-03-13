@@ -34,6 +34,7 @@ public extension UIColor {
 	static let secondary:UIColor = UIColor(named:"Secondary")!
 	static let secondaryBackButtonBackground:UIColor = UIColor(named:"Secondary Back Button Background")!
 	static let secondaryBackground:UIColor = UIColor(named:"Secondary Background")!
+    static let secondaryDate:UIColor = UIColor(named:"Secondary Date")!
 	static let secondaryGradient:UIColor = UIColor(named:"Secondary Gradient")!
 	static let secondaryText:UIColor = UIColor(named:"Secondary Text")!
 	
@@ -82,6 +83,7 @@ public struct ACColor {
 	static public let secondary:UIColor = UIColor(named:"Secondary")!
 	static public let secondaryBackButtonBackground:UIColor = UIColor(named:"Secondary Back Button Background")!
 	static public let secondaryBackground:UIColor = UIColor(named:"Secondary Background")!
+    static public let secondaryDate:UIColor = UIColor(named:"Secondary Date")!
 	static public let secondaryGradient:UIColor = UIColor(named:"Secondary Gradient")!
 	static public let secondaryText:UIColor = UIColor(named:"Secondary Text")!
 	
