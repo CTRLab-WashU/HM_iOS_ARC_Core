@@ -265,7 +265,7 @@ class ACProgressView: ACTemplateView {
 							$0.distribution = .equalSpacing
 							$0.acLabel {
 								Roboto.Style.body($0, color: ACColor.highlight)
-								$0.text = "".localized(ACTranslationKey.progess_finishdate)
+								$0.text = "".localized(ACTranslationKey.progress_finishdate)
 								$0.numberOfLines = 1
 
 							}

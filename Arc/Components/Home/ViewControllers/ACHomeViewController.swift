@@ -35,6 +35,16 @@ open class ACHomeViewController: CustomViewController<ACHomeView> {
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureState()
+		app.notificationController.isAuthorized { [weak self] in
+			if $0 {
+				self?.customView.enableNotificationsButton.isHidden = true
+			} else {
+				self?.customView.enableNotificationsButton.isHidden = false
+			}
+			self?.customView.notificationsOff = !$0
+			self?.configureState()
+
+		}
         if app.participantId != nil {
             Arc.shared.uploadTestData()
         }
@@ -43,6 +53,8 @@ open class ACHomeViewController: CustomViewController<ACHomeView> {
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+		
+		
         if !get(flag: .first_test_begin) {
             currentHint = customView.highlightTutorialTargets()
             set(flag: .first_test_begin)

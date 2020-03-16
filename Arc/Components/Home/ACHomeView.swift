@@ -14,6 +14,7 @@ public protocol ACHomeViewDelegate : class{
 }
 public class ACHomeView: ACTemplateView {
 	public weak var delegate:ACHomeViewDelegate?
+	public var notificationsOff:Bool = false
 	public var heading:String? {
 		get {
 			return headingLabel.text
@@ -50,6 +51,8 @@ public class ACHomeView: ACTemplateView {
 	public var debugButton: UIButton!
 	public var surveyButton: UIButton!
     public var changeAvailabilityButton: UIButton!
+    public var enableNotificationsButton: UIButton!
+	
 	var relSeparatorWidth:CGFloat = 0.15
 	var versionLabel: UILabel!
 	public var separator:ACHorizontalBar!
@@ -159,7 +162,34 @@ public class ACHomeView: ACTemplateView {
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ]
         let changeAvailabilityTitle = NSAttributedString(string: "Change Availability".localized(ACTranslationKey.resources_availability), attributes: attributes)
-        
+        let enableNotificationsTitle = NSAttributedString(string: "Turn On Notifications", attributes: attributes)
+		self.enableNotificationsButton = view.button {
+            $0.setAttributedTitle(enableNotificationsTitle, for: .normal)
+			$0.setTitle("Turn On Notifications",
+                        for: .normal)
+            $0.setTitleColor(UIColor(named: "Primary"), for: .normal)
+            
+            $0.addAction {
+				let message = "We’ll now open your Settings App. Once there, tap Notifications, and turn on the Allow Notifications Switch."
+				Arc.shared.displayAlert(message: message,
+					options: [.default("OK".localized(ACTranslationKey.button_okay), {
+						guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+							return
+						}
+						
+						if UIApplication.shared.canOpenURL(settingsUrl) {
+							UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+								print("Settings opened: \(success)") // Prints true
+							})
+						}
+					}),
+							  
+							  .cancel("Not Now", {})
+					]
+				)
+            }
+        }
+		
         self.changeAvailabilityButton = view.button {
             $0.setAttributedTitle(changeAvailabilityTitle, for: .normal)
 			$0.setTitle("Change Availability".localized(ACTranslationKey.resources_availability),
@@ -175,7 +205,6 @@ public class ACHomeView: ACTemplateView {
 	public func setState(surveyStatus:SurveyAvailabilityStatus) {
 		surveyButton.isHidden = true
 		changeAvailabilityButton.isHidden = true
-        
 		// Do any additional setup after loading the view.
 		switch surveyStatus {
 		case .available:
@@ -187,7 +216,12 @@ public class ACHomeView: ACTemplateView {
 			
 		case .laterToday:
 			heading = "There are no tests to take right now.".localized(ACTranslationKey.home_header2)
-			message = "You will receive a notification later today when it's time to take your next test.".localized(ACTranslationKey.home_body2)
+			if notificationsOff {
+				message = "*Please turn on notifications to receive a message later today* when it’s time to take your next test."
+			} else {
+				message = "You will receive a notification later today when it's time to take your next test.".localized(ACTranslationKey.home_body2)
+			}
+			
 			
 		case .laterThisCycle(let date):
 			heading = "There are no tests available right now.".localized(ACTranslationKey.home_header4)
@@ -226,7 +260,7 @@ public class ACHomeView: ACTemplateView {
             
 		case .finished:
 			heading = "You've finished the study!".localized(ACTranslationKey.home_header6)
-			message = "There are no more tests to take.".localized(ACTranslationKey.home_body_6)
+			message = "There are no more tests to take.".localized(ACTranslationKey.home_body6)
             
         case .postBaseline:
             let schedule = Arc.shared.scheduleController.get(confirmedSchedule: Arc.shared.participantId!)
