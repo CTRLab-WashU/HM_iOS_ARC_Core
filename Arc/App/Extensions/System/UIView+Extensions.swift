@@ -19,7 +19,7 @@ public extension UIView {
     }
 	
 	///Attach a view to the margins of the parent view
-    func attachTo(view:UIView?, margins:UIEdgeInsets? = .zero) {
+    func attachTo(view:UIView?, margins:UIEdgeInsets? = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)) {
 		guard let view = view else {return}
 		if let margins = margins {
 			view.layoutMargins = margins

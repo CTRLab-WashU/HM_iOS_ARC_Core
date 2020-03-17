@@ -10,7 +10,7 @@ import Foundation
 import ArcUIKit
 public class EarningsDetailGoalView : UIView {
 	weak var bodyLabel:ACLabel!
-	weak var priceLabel:ACLabel!
+	weak var valueLabel:ACLabel!
 	init() {
 		super.init(frame: .zero)
 		build()
@@ -29,7 +29,7 @@ public class EarningsDetailGoalView : UIView {
 				Roboto.Style.body($0, color:.white)
 				$0.textAlignment = .left
 			}
-			self.priceLabel =  $0.acLabel {
+			self.valueLabel =  $0.acLabel {
 				Roboto.Style.body($0, color:.white)
 				$0.textAlignment = .right
 			}
@@ -38,8 +38,8 @@ public class EarningsDetailGoalView : UIView {
 	public func set(body:String) {
 		bodyLabel.text = body
 	}
-	public func set(price:String) {
-		priceLabel.text = price
+	public func set(value:String) {
+		valueLabel.text = value
 	}
 }
 

@@ -35,6 +35,8 @@ open class HMAPI {
     static public let getEarningDetail:HMAPIRequest<Data, EarningDetail> = .get("/earning-details")
     
     static public let getStudyProgress:HMAPIRequest<Data, StudyProgress> = .get("/study-progress")
+    static public let getStudySummary:HMAPIRequest<Data, StudySummary> = .get("/study-summary")
+
     static public let getCycleProgress:HMAPIRequest<CycleProgressRequestData, StudyProgress> = .get("/cycle-progress")
     static public let getDayProgress:HMAPIRequest<DayProgressRequestData, StudyProgress> = .get("/day-progress")
 

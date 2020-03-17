@@ -113,8 +113,7 @@ public class ACPostCycleFinishView : UIView {
 					$0.setTitleColor(ACColor.badgeText, for: .normal)
 					
 					$0.addAction {
-						Arc.shared.nextAvailableState()
-						NotificationCenter.default.post(name: .ACDateChangeNotification, object: nil)
+						Arc.shared.appNavigation.navigate(vc: ACStudyTotalsViewController(), direction:.toRight)
 					}
 					
 					animationParams.delay = 1.4

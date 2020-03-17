@@ -303,6 +303,9 @@
 		C5E1E3952257ECC200255812 /* ACChangeAvailabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1E3932257ECC100255812 /* ACChangeAvailabilityViewController.swift */; };
 		C5E1E3962257ECC200255812 /* ACChangeAvailabilityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5E1E3942257ECC200255812 /* ACChangeAvailabilityViewController.xib */; };
 		C5E1E3982257ECDE00255812 /* ACScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1E3972257ECDE00255812 /* ACScheduleViewController.swift */; };
+		C5E253B524213825007FE0BA /* ACStudyTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E253B424213825007FE0BA /* ACStudyTotalsView.swift */; };
+		C5E253B824214EFE007FE0BA /* StudySummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E253B724214EFE007FE0BA /* StudySummary.swift */; };
+		C5E253BA2421589D007FE0BA /* ACStudyTotalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E253B92421589D007FE0BA /* ACStudyTotalsViewController.swift */; };
 		C5E3924B22EA3A8F007CB3B6 /* ContactInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E3924A22EA3A8F007CB3B6 /* ContactInfoResponse.swift */; };
 		C5E3925022EB76AD007CB3B6 /* ResendCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E3924F22EB76AD007CB3B6 /* ResendCodeViewController.swift */; };
 		C5E7212822F10D25004B9E26 /* TestProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E7212722F10D25004B9E26 /* TestProgressViewController.swift */; };
@@ -667,6 +670,9 @@
 		C5E1E3932257ECC100255812 /* ACChangeAvailabilityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACChangeAvailabilityViewController.swift; sourceTree = "<group>"; };
 		C5E1E3942257ECC200255812 /* ACChangeAvailabilityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACChangeAvailabilityViewController.xib; sourceTree = "<group>"; };
 		C5E1E3972257ECDE00255812 /* ACScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACScheduleViewController.swift; sourceTree = "<group>"; };
+		C5E253B424213825007FE0BA /* ACStudyTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACStudyTotalsView.swift; sourceTree = "<group>"; };
+		C5E253B724214EFE007FE0BA /* StudySummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudySummary.swift; sourceTree = "<group>"; };
+		C5E253B92421589D007FE0BA /* ACStudyTotalsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACStudyTotalsViewController.swift; sourceTree = "<group>"; };
 		C5E3924A22EA3A8F007CB3B6 /* ContactInfoResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoResponse.swift; sourceTree = "<group>"; };
 		C5E3924F22EB76AD007CB3B6 /* ResendCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResendCodeViewController.swift; sourceTree = "<group>"; };
 		C5E7212722F10D25004B9E26 /* TestProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestProgressViewController.swift; sourceTree = "<group>"; };
@@ -1023,6 +1029,7 @@
 				C54AE92021C81B5C00DEC360 /* HMFault.swift */,
 				2D5711F322EB3AB500E7F881 /* Earnings.swift */,
 				2D5711F622EB815E00E7F881 /* StudyProgress.swift */,
+				C5E253B724214EFE007FE0BA /* StudySummary.swift */,
 				C54AE92121C81B5C00DEC360 /* HMRequest.swift */,
 				C54AE92221C81B5C00DEC360 /* SessionInfoResponse.swift */,
 				C54AE92321C81B5C00DEC360 /* ScheduleResponse.swift */,
@@ -1448,6 +1455,7 @@
 				C55F8CCE230F187E006D43BD /* ACEarningsDetailView.swift */,
 				C53B123922F34C1700BACA9A /* ACTodayProgressView.swift */,
 				C545AB0623283168002672C2 /* ACPostCycleFinishView.swift */,
+				C5E253B424213825007FE0BA /* ACStudyTotalsView.swift */,
 				C5D24ED8230B337300146E37 /* PostTestEarningsView.swift */,
 				C5E7212922F10D9C004B9E26 /* TestProgressView.swift */,
 				C578771222F8BED10068E46B /* TestCountDownView.swift */,
@@ -1463,6 +1471,7 @@
 				C55F8CD4230F2DAA006D43BD /* EarningsDetailViewController.swift */,
 				C53B123722F348F900BACA9A /* ACTodayProgressViewController.swift */,
 				C545AB0423283038002672C2 /* ACPostCycleFinishViewController.swift */,
+				C5E253B92421589D007FE0BA /* ACStudyTotalsViewController.swift */,
 				C5E7212722F10D25004B9E26 /* TestProgressViewController.swift */,
 				C578771422F8BF260068E46B /* TestCountDownViewController.swift */,
 			);
@@ -2078,6 +2087,7 @@
 				C593227122E890DA00528FF5 /* ACProgressView.swift in Sources */,
 				2D5711F422EB3AB500E7F881 /* Earnings.swift in Sources */,
 				C55F8CC7230D7B98006D43BD /* TodaysProgress.swift in Sources */,
+				C5E253B824214EFE007FE0BA /* StudySummary.swift in Sources */,
 				C54AE9F621C81B5F00DEC360 /* NotificationController.swift in Sources */,
 				C54AE9F721C81B5F00DEC360 /* MHController.swift in Sources */,
 				C57480AC23035B2E00EFC901 /* CircularProgressGroupStackView.swift in Sources */,
@@ -2128,6 +2138,7 @@
 				C54AEA0421C81B5F00DEC360 /* BorderedUIView.swift in Sources */,
 				C55F8CD5230F2DAA006D43BD /* EarningsDetailViewController.swift in Sources */,
 				C54AEA3C21C81B5F00DEC360 /* QuestionResponse.swift in Sources */,
+				C5E253B524213825007FE0BA /* ACStudyTotalsView.swift in Sources */,
 				C5DA181823047063003C84C2 /* ACEarningsView.swift in Sources */,
 				C54D104022C28A1D00B43E42 /* TimeView.swift in Sources */,
 				C54AE9DF21C81B5F00DEC360 /* Date+Extensions.swift in Sources */,
@@ -2208,6 +2219,7 @@
 				C54AEA0121C81B5F00DEC360 /* CancelButton.swift in Sources */,
 				C5D24ED7230B048900146E37 /* TotalSessionGoalView.swift in Sources */,
 				E8BA72EA23198B8200823374 /* FAQViewController.swift in Sources */,
+				C5E253BA2421589D007FE0BA /* ACStudyTotalsViewController.swift in Sources */,
 				C54AEA3621C81B5F00DEC360 /* ScheduleController.swift in Sources */,
 				C5C2B12722D3D66C002CB4C5 /* InfoView.swift in Sources */,
 			);

@@ -100,7 +100,7 @@ public class EarningsDetailGroup : UIView {
 
 		self.content.earningsDetailGoalView {
 			$0.set(body: section.body)
-			$0.set(price: section.price)
+			$0.set(value: section.price)
 			$0.backgroundColor = color
 		}
 		
