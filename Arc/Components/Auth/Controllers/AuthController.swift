@@ -122,7 +122,8 @@ open class AuthController:MHController {
 						let value = Int(id)
 						Arc.shared.participantId = value
 						self.save()
-						
+						NotificationCenter.default.post(name: .ACStartEarningsRefresh, object: nil)
+
 						completion(id, nil)
 
 						

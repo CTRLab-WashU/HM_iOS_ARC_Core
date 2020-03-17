@@ -155,7 +155,7 @@ public enum ACTranslationKey : String, TranslationKey {
 
 	case home_header6
 
-	case home_body_6
+	case home_body6
 
 	case home_header7
 
@@ -327,7 +327,7 @@ public enum ACTranslationKey : String, TranslationKey {
 
 	case progress_joindate_date
 
-	case progess_finishdate
+	case progress_finishdate
 
 	case progress_finishdate_date
 

@@ -22,7 +22,10 @@ open class NotificationController : MHController
 		let options: UNAuthorizationOptions = [.alert, .sound, .badge];
 		
 		center.getNotificationSettings { (settings) in
-			completion(settings.authorizationStatus == .authorized)
+			OperationQueue.main.addOperation {
+				completion(settings.authorizationStatus == .authorized)
+
+			}
 		}
 		
 	}
