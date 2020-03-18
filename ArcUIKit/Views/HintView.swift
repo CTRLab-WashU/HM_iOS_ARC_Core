@@ -47,8 +47,13 @@ public class HintView : IndicatorView {
 			titleLabel = $0.acLabel {
 				$0.isHidden = true
 				$0.textAlignment = .center
-				Roboto.Style.body($0, color:.black)
-				
+                Roboto.Style.subBody($0, color:.black)
+                /*
+                 https://stackoverflow.com/questions/44585026/convert-sketch-line-height-into-ios-line-height-multiple-property
+                 lineSpacing = sketchLineHeight - sketchFontSize - (font.lineHeight - font.pointSize)
+                */
+                $0.spacing = 22 - 16 - (Roboto.Font.subBody.lineHeight - Roboto.Font.subBody.pointSize)
+
 			}
 		}
 		
