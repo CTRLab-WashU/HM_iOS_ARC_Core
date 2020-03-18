@@ -24,15 +24,33 @@ public class ACStudyTotalsView : UIView {
 	private weak var daysTested:EarningsDetailGoalView!
 	private weak var goalsMet:EarningsDetailGoalView!
 	
-	public func set(studySummary:StudySummary) {
-		guard let summary = studySummary.response.summary else {
+	public func set(studySummary:StudySummary?) {
+		guard let summary = studySummary?.response.summary else {
 			return
 		}
+		var animationParams:Animate.Config = Animate.Config()
+		animationParams.duration = 1.0
+		animationParams.delay = 0.5
 		self.totalsEarned.set(value: summary.total_earnings)
+		fade(self.totalsEarned, animationParams: animationParams, delay: 1.4)
+		
 		self.testsTaken.set(value: "\(summary.tests_taken)")
-		self.daysTested.set(value: "\(summary.days_tested)")
-		self.goalsMet.set(value: "\(summary.goals_met)")
+		fade(self.testsTaken, animationParams: animationParams, delay: 1.6)
 
+		self.daysTested.set(value: "\(summary.days_tested)")
+		fade(self.daysTested, animationParams: animationParams, delay: 1.8)
+
+		self.goalsMet.set(value: "\(summary.goals_met)")
+		fade(self.goalsMet, animationParams: animationParams, delay: 2.0)
+
+		
+
+	}
+	fileprivate func fade(_ view:UIView?, animationParams:Animate.Config, delay:Double) {
+		var params = animationParams
+		params.delay = delay
+		view?.fadeIn(params)
+			.translate(params)
 	}
 	public override init(frame: CGRect) {
 		super.init(frame: .zero)
@@ -69,9 +87,7 @@ public class ACStudyTotalsView : UIView {
 				self.titleLabel = $0.acLabel {
 					Roboto.Style.headingBold($0, color: ACColor.secondaryText)
 					$0.text = "".localized(ACTranslationKey.progress_studytotals_header)
-					animationParams.delay = 0.8
-					$0.fadeIn(animationParams)
-						.translate(animationParams)
+					
 					
 				}
 				
@@ -101,7 +117,7 @@ public class ACStudyTotalsView : UIView {
 			
 			self.totalsEarned = $0.earningsDetailGoalView {
 				$0.set(body: "".localized(ACTranslationKey.progress_studytotals_earned))
-				$0.set(value: "4.00")
+				$0.set(value: "0.00")
 				$0.backgroundColor = UIColor(white: 1.0, alpha: 0.04)
 				animationParams.delay = 1.4
 				

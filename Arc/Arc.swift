@@ -174,7 +174,19 @@ open class Arc : ArcApi {
 		appNavigation.navigate(state: state, direction: .toRight)
 	}
 	
-	
+	//A friend of a friend is a stranger.
+	public static func store<T:Codable>(value:T?, forKey key:String) {
+		Arc.shared.appController.store(value: value, forKey: key)
+
+	}
+	public static func delete(forKey key:String) {
+		Arc.shared.appController.delete(forKey: key)
+
+	}
+	public static func read<T:Codable>(key:String) -> T? {
+		return Arc.shared.appController.read(key: key)
+
+	}
 	
     @discardableResult
     public func displayAlert(message:String, options:[MHAlertView.ButtonType], isScrolling:Bool = false) -> MHAlertView {

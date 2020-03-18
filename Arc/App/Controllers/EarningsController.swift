@@ -14,6 +14,7 @@ public protocol EarningsControllerDelegate {
 open class EarningsController {
 	static public var overviewKey = "EarningsOverview"
 	static public var detailKey = "EarningsDetail"
+	static public var studySummaryKey = "StudySummary"
 
 	static let shared = EarningsController()
 	lazy var thisWeek:ThisWeekExpressible = {Arc.shared.studyController}()
@@ -60,6 +61,17 @@ open class EarningsController {
 				
 			}
 		}
+		OperationQueue().addOperation {
+			
+			if let summary = Await(fetchStudySummary).execute(()) {
+				Arc.shared.appController.lastFetched[EarningsController.studySummaryKey] = Date().timeIntervalSince1970
+				Arc.shared.appController.store(value: summary, forKey: EarningsController.studySummaryKey)
+				
+				NotificationCenter.default.post(name: .ACStudySumamryUpdated, object: summary)
+				
+				
+			}
+		}
 	}
 }
 
@@ -76,7 +88,18 @@ fileprivate func fetchEarnings(request:Void,  didFinish:@escaping (EarningOvervi
 	}
 }
 
+fileprivate func fetchStudySummary(request:Void,  didFinish:@escaping (StudySummary?)->()) {
 
+	
+	HMAPI.getStudySummary.execute(data: nil) { (urlResponse, data, err) in
+		if let err = err {
+			HMLog(err.localizedDescription)
+			didFinish(nil)
+			return
+		}
+		didFinish(data)
+	}
+}
 fileprivate func fetchEarningDetails(request:Void,  didFinish:@escaping (EarningDetail?)->()) {
 	
 	

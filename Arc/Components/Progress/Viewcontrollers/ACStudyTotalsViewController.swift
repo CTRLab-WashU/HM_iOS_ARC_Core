@@ -7,15 +7,38 @@
 //
 
 import UIKit
+import Arc
 public class ACStudyTotalsViewController: CustomViewController<ACStudyTotalsView> {
 	public override var prefersStatusBarHidden: Bool {return true}
 
     override public func viewDidLoad() {
         super.viewDidLoad()
 		viewRespectsSystemMinimumLayoutMargins = false
-        // Do any additional setup after loading the view.
-		customView.set(studySummary: StudySummary.test)
+       
+		update()
+		
     }
+	
+	/** This information is fetched and stored within arc using this key.
+		Find other uses of the key to find where it is accessed. Like in the earnnings
+		ViewController.
+		   
+		After a session is submitted this information is updated.
+	*/
+	func update() {
+		let summary:StudySummary? = Arc.read(key: EarningsController.studySummaryKey)
+		self.customView.set(studySummary: summary)
+	}
+	public override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		NotificationCenter.default.addObserver(forName: .ACStudySumamryUpdated, object: self, queue: .main) { (notif) in
+			self.update()
+		}
+	}
+	public override func viewDidDisappear(_ animated: Bool) {
+		super.viewDidDisappear(animated)
+		NotificationCenter.default.removeObserver(self)
+	}
 
     /*
     // MARK: - Navigation
