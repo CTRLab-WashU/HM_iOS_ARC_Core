@@ -508,7 +508,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 				$0.layout {
 					
 					$0.centerX == weakSelf.view.centerXAnchor
-					$0.top == weakSelf.view.safeAreaLayoutGuide.topAnchor
+					$0.top >= weakSelf.view.safeAreaLayoutGuide.topAnchor
 					$0.leading >= weakSelf.view.safeAreaLayoutGuide.leadingAnchor + 20
 					$0.trailing <= weakSelf.view.safeAreaLayoutGuide.trailingAnchor - 20
 
@@ -552,7 +552,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
                 
 				$0.layout {
 					$0.centerX == weakSelf.view.centerXAnchor
-					$0.top == weakSelf.view.safeAreaLayoutGuide.topAnchor
+					$0.top >= weakSelf.view.safeAreaLayoutGuide.topAnchor
 					$0.leading >= weakSelf.view.safeAreaLayoutGuide.leadingAnchor + 20
 					$0.trailing <= weakSelf.view.safeAreaLayoutGuide.trailingAnchor - 20
 
@@ -630,7 +630,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
             $0.titleStack.layoutMargins = UIEdgeInsets(top: 12, left: 8, bottom: 26, right: 8)
             $0.layout {
                 $0.centerX == self.view.centerXAnchor
-				$0.top == self.view.safeAreaLayoutGuide.topAnchor
+				$0.top >= self.view.safeAreaLayoutGuide.topAnchor
 				$0.leading >= self.view.safeAreaLayoutGuide.leadingAnchor + 20
 				$0.trailing <= self.view.safeAreaLayoutGuide.trailingAnchor - 20
 
