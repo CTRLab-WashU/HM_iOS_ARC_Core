@@ -293,11 +293,10 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 	func instructionStyle(_ question:Survey.Question, presentableVc:UIViewController? = nil) {
 		// Do any additional setup after loading the view.
 		let vc:CustomViewController<InfoView> = getTopViewController()!
-		
         useDarkStatusBar = false
         setNeedsStatusBarAppearanceUpdate()
-        
-		vc.customView.backgroundView.image = UIImage(named: "availability_bg", in: Bundle(for: self.classForCoder), compatibleWith: nil)
+        let bg_image = UIImage(named: "availability_bg", in: Bundle(for: BasicSurveyViewController.self), compatibleWith: nil)
+        vc.customView.backgroundView.image = bg_image
 		vc.customView.infoContent.alignment = .center
 		vc.customView.backgroundColor = UIColor(named:"Primary")!
 		vc.customView.setTextColor(UIColor(named: "Secondary Text"))
