@@ -48,25 +48,27 @@ open class SliderView: UIView, SurveyInput {
 		super.awakeFromNib()
 		updateText(nil)
 		surveyInputDelegate?.didFinishSetup()
-		self.hint = hint {
-			$0.content = "".localized(ACTranslationKey.popup_drag)
-            $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
-                                                    secondaryColor: UIColor(named:"HintFill")!,
-                                                    textColor: .black,
-                                                    cornerRadius: 8.0,
-                                                    arrowEnabled: true,
-                                                    arrowAbove: false))
-            $0.updateHintContainerMargins()
-            $0.updateTitleStackMargins()
-			$0.layout {
-				$0.bottom == valueSlider.topAnchor - 32
-				$0.centerX == valueSlider.centerXAnchor
-				$0.width >= 232
-				$0.height >= 68
-				$0.width <= self.widthAnchor
-				
-			}
-		}
+        if Arc.get(flag: .slider_hint_shown) == false {
+            self.hint = hint {
+                $0.content = "".localized(ACTranslationKey.popup_drag)
+                $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                        secondaryColor: UIColor(named:"HintFill")!,
+                                                        textColor: .black,
+                                                        cornerRadius: 8.0,
+                                                        arrowEnabled: true,
+                                                        arrowAbove: false))
+                $0.updateHintContainerMargins()
+                $0.updateTitleStackMargins()
+                $0.layout {
+                    $0.bottom == valueSlider.topAnchor - 32
+                    $0.centerX == valueSlider.centerXAnchor
+                    $0.width >= 232
+                    $0.height >= 68
+                    $0.width <= self.widthAnchor
+                    
+                }
+            }
+        }
 	}
 	public func setHidesSelectedAfterFirst(value:Bool) {
 		hideSelectedAfterFirst = value
@@ -136,6 +138,8 @@ open class SliderView: UIView, SurveyInput {
     
     @IBAction func valueChanged(_ sender: UISlider) {
 		
+        Arc.set(flag: .slider_hint_shown)
+        
         if !first {
             _value = sender.value
 			

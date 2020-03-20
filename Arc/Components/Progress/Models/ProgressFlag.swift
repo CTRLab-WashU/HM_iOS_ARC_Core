@@ -23,6 +23,7 @@ public enum ProgressFlag : String {
 	case tutorial_optional
 
     case time_picker_hint_shown
+    case slider_hint_shown
     
 	//For every version add a new case that runs for that version specifically.
 	static public func prefilledFlagsFor(major:Int, minor:Int, patch:Int) -> Set<ProgressFlag> {
