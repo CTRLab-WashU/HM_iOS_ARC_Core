@@ -123,7 +123,7 @@ public class InfoContentView: UIStackView {
                 let renderer = HMMarkupRenderer(baseFont: $0.font)
                 let attributedString = NSMutableAttributedString(attributedString: renderer.render(text: $0.text ?? ""))
                 let paragraphStyle = NSMutableParagraphStyle()
-                paragraphStyle.lineSpacing = 0
+                paragraphStyle.lineSpacing = 32 - 26 - (Roboto.Font.prompt.lineHeight - Roboto.Font.prompt.pointSize)
                 paragraphStyle.alignment = $0.textAlignment
                 attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
                 attributedString.addAttributes([.foregroundColor : self.textColor!], range: NSMakeRange(0, attributedString.length))
