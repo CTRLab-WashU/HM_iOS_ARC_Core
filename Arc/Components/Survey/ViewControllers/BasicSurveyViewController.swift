@@ -143,6 +143,8 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
         } else {
             self.navigationItem.leftBarButtonItem = nil
             backButton = nil
+            topViewController?.navigationItem.backBarButtonItem = nil
+            topViewController?.navigationItem.hidesBackButton = true
         }
     }
     @objc func backPressed()
@@ -338,7 +340,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		vc.customView.nextButton?.addTarget(self, action: #selector(nextButtonPressed(sender:)), for: .primaryActionTriggered)
         vc.customView.nextButton?.setTitle(question.nextButtonTitle ?? "NEXT".localized(ACTranslationKey.button_next), for: .normal)
 		didPresentQuestion(input: vc.customView.inputItem, questionId: question.questionId)
-		
+		displayBackButton(false)
 	}
 	func questionStyle(_ question:Survey.Question) {
 		// Do any additional setup after loading the view.
@@ -364,6 +366,8 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
             vc.customView.setSeparatorWidth(0.15)
 
             vc.customView.nextButton?.isEnabled = true;
+            shouldShowBackButton = false
+            displayBackButton(false)
         }
         if let style = question.style, style == .impasse
         {
@@ -590,7 +594,9 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		if shouldShowHelpButton {
 			displayHelpButton(shouldShowHelpButton)
 		}
-		displayBackButton(shouldShowBackButton)
+        if shouldShowBackButton{
+            displayBackButton(shouldShowBackButton)
+        }		
 	}
 	
 	public func updateNextQuestion(question:Survey.Question, answer:QuestionResponse){
