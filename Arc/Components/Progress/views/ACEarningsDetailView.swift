@@ -148,19 +148,19 @@ public class ACEarningsDetailView : ACTemplateView {
 			if thisStudy.week == cycle.cycle {
 				switch thisStudy.studyState {
 				case .active, .activeBaseline, .baseline:
-					$0.set(header: "This Week")
-					$0.set(badge: "Ongoing")
+					$0.set(header: "This Week".localized(ACTranslationKey.earnings_details_subheader1))
+                    $0.set(badge: "Ongoing".localized(ACTranslationKey.status_ongoing))
 				case .inactive, .complete:
 					$0.set(header: "Completed Testing Cycle")
 					$0.set(badge: nil)
 
 					
 				case .unknown:
-					$0.set(header: "Completed Testing Cycle")
+					$0.set(header: "Completed Testing Cycle".localized(ACTranslationKey.earnings_details_subheader2))
 					$0.set(badge: nil)
 				}
 			} else {
-				$0.set(header: "Completed Testing Cycle")
+				$0.set(header: "Completed Testing Cycle".localized(ACTranslationKey.earnings_details_subheader2))
 				$0.set(badge: nil)
 
 			}

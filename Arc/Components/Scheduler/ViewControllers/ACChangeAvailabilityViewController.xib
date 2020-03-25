@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -35,10 +33,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-
                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4iX-lu-2oq" customClass="HMMarkupButton" customModule="HMMarkup">
                     <rect key="frame" x="8" y="0.0" width="72" height="32"/>
-
                     <color key="backgroundColor" white="1" alpha="0.14701947770000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="Dha-wM-fAY"/>
@@ -64,7 +60,7 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ooz-Go-G1w">
-                    <rect key="frame" x="0.0" y="68" width="375" height="164.5"/>
+                    <rect key="frame" x="0.0" y="48" width="375" height="164.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I would like to change the *time of day* I am available for testing." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRr-mg-Z8G" customClass="ACLabel" customModule="ArcUIKit">
                             <rect key="frame" x="24" y="0.0" width="327" height="91.5"/>
@@ -75,7 +71,7 @@
                                 <userDefinedRuntimeAttribute type="number" keyPath="styleId">
                                     <integer key="value" value="2"/>
                                 </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="ChangeAvail_time"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="availability_changetime"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekY-n5-gXH" customClass="ACButton" customModule="ArcUIKit">
@@ -117,7 +113,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7lH-Uc-OCk">
-                    <rect key="frame" x="0.0" y="268.5" width="375" height="194.5"/>
+                    <rect key="frame" x="0.0" y="248.5" width="375" height="194.5"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YHQ-t5-SKF" userLabel="separator">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
@@ -135,7 +131,7 @@
                                 <userDefinedRuntimeAttribute type="number" keyPath="styleId">
                                     <integer key="value" value="2"/>
                                 </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="ChangeAvail_date"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="availability_changedates"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wDH-BW-Ib9" customClass="ACButton" customModule="ArcUIKit">
