@@ -33,13 +33,13 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
                 
                 
             case .testSession:
-                return "Completed Test Session"
+                return "Completed Test Session".localized(ACTranslationKey.progress_earnings_status1)
             case .fourOfFour:
-                return "4 Out of 4 Goal"
+                return "Completed 4 Out of 4 Goal".localized(ACTranslationKey.progress_earnings_status3)
             case .twoADay:
-                return "2-A-Day Goal"
+                return "Completed 2-A-Day Goal".localized(ACTranslationKey.progress_earnings_status4)
             case .totalSessions:
-                return "21 Sessions Goal"
+                return "Completed 21 Sessions Goal".localized(ACTranslationKey.progress_earnings_status2)
                 
             }
         }
