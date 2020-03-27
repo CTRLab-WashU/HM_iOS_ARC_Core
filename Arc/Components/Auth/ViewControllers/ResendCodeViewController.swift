@@ -72,8 +72,11 @@ class ResendCodeViewController: CustomViewController<InfoView>, SurveyInput{
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-	@objc func sendCode() {
+    @objc func sendCode(_ sender: ACButton) {
 		
+        sender.showSpinner()
+        sender.setTitle("", for: .normal)
+        
 		let nav = navigationController
 		let id = participantId
 		MHController.dataContext.perform {
@@ -86,10 +89,11 @@ class ResendCodeViewController: CustomViewController<InfoView>, SurveyInput{
 			case .success(_):
 				OperationQueue.main.addOperation {
 					nav?.popViewController(animated: true)
-
 				}
-				
 			}
+            OperationQueue.main.addOperation {
+                sender.hideSpinner()
+            }
 		}
 	}
 	func getValue() -> QuestionResponse? {

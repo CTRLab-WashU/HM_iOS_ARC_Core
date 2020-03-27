@@ -37,7 +37,8 @@ public class AC2FAuthenticationViewController: BasicSurveyViewController {
 			button.contentHorizontalAlignment = .leading
 			
 			button.addAction {[weak self] in
-				self?.nextPressed(input: self?.getInput(), value: AnyResponse(type: .text, value: "0"))
+                let vc:ResendCodeViewController = ResendCodeViewController(id: self?.initialValue ?? "100000")
+                self?.addController(vc)
 			}
 			vc.customView.setAdditionalContent(button)
 		}
@@ -69,13 +70,6 @@ public class AC2FAuthenticationViewController: BasicSurveyViewController {
 
 	}
 	
-	public override func customViewController(forQuestion question: Survey.Question) -> UIViewController? {
-		if question.state == "ResendCode" {
-			return ResendCodeViewController(id: initialValue ?? "100000")
-		}
-		return nil
-	}
-	
 	public override func isValid(value: QuestionResponse?, questionId: String, didFinish:@escaping ((Bool) -> Void))
 	{
 		super.isValid(value: value, questionId: questionId)
@@ -99,33 +93,27 @@ public class AC2FAuthenticationViewController: BasicSurveyViewController {
 					didFinish(valid)
 					return
 				}
-				self?.addSpinner(color: .white, backGroundColor: UIColor(named:"Primary"))
+				
 				OperationQueue().addOperation
 					{
 					switch Await(TwoFactorAuth.verifyParticipant).execute(value)
 					{
 					case .error(let e):
 						valid = false
-						
+                        
+                        let error = (e as? VerifyError)?.localizedDescription ?? "Sorry, our app is currently experiencing issues. Please try again later.".localized(ACTranslationKey.login_error3)
 
-						guard let error = e as? VerifyError else
-						{
-							self?.set(error:"Sorry, our app is currently experiencing issues. Please try again later.".localized(ACTranslationKey.login_error3))
-
-							break
-						}
-						
-						self?.set(error: error.localizedDescription)
+                        DispatchQueue.main.async {
+                            _ = self?.popViewController(animated: true)
+                            self?.set(error: error)
+                        }
+                        
 						break
 					case .success(let id):
 						self?.validParticipantId = id
 					}
-					self?.hideSpinner()
-					didFinish(valid)
 				}
-				
-				
-
+                didFinish(valid)
 			}
 			else
 			{
