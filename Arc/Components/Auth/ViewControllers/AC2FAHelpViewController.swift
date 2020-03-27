@@ -32,7 +32,7 @@ class AC2FAHelpViewController: UIViewController {
 //        self.headerLabel.text = question.question;
         self.headerLabel.text = "faq_tech_q5"
 //        self.answerLabel.text = question.answer;
-        self.answerLabel.text = "Steps for how to resolve those issues go here when we have copy"
+        self.answerLabel.text = "faq_tech_a5"
     }
     
 }
