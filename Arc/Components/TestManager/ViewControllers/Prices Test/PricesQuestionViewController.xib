@@ -28,7 +28,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="iqG-Hv-gND">
-                    <rect key="frame" x="16" y="169" width="288" height="230"/>
+                    <rect key="frame" x="16" y="169" width="288" height="230.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.30000001192092896" translatesAutoresizingMaskIntoConstraints="NO" id="gBe-dw-ggl" customClass="ACLabel" customModule="ArcUIKit">
                             <rect key="frame" x="0.0" y="0.0" width="288" height="60"/>
@@ -41,9 +41,9 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What was the price?" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="wVz-Fc-dlq" customClass="ACLabel" customModule="ArcUIKit">
-                            <rect key="frame" x="0.0" y="80" width="288" height="30"/>
+                            <rect key="frame" x="0.0" y="80" width="288" height="30.5"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="30" id="6NC-u0-wbF"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="6NC-u0-wbF"/>
                                 <constraint firstAttribute="width" constant="288" id="lpb-nm-SIm"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="26"/>
@@ -54,7 +54,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="288" placeholderIntrinsicHeight="100" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1qs-Df-j36">
-                            <rect key="frame" x="0.0" y="130" width="288" height="100"/>
+                            <rect key="frame" x="0.0" y="130.5" width="288" height="100"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="100" id="bTp-UR-u2v"/>
                                 <constraint firstAttribute="width" constant="288" id="rk5-0Y-qvo"/>
