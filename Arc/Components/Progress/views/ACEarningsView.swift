@@ -43,21 +43,30 @@ public class ACEarningsView : ACTemplateView {
 		if let v = view as? UIStackView {
 			v.layoutMargins = .zero
 		}
-		self.earningsParentStack = view.stack { [unowned self] in
+		self.earningsParentStack = view.stack { [weak self] in
 			$0.axis = .vertical
 			$0.isLayoutMarginsRelativeArrangement = true
 			$0.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 			
-			self.errorLabel = $0.acLabel {
-				$0.isHidden = true
-				$0.textAlignment = .center
-				
-				Roboto.Style.body($0, color: .white)
-				$0.text = "progress_endoftest_nosync"
+			
+			$0.stack {
+				$0.axis = .vertical
+				$0.isLayoutMarginsRelativeArrangement = true
+				$0.layoutMargins = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
+			
+				self?.errorLabel = $0.acLabel {
+					$0.isHidden = true
+					$0.textAlignment = .center
+					
+					Roboto.Style.body($0, color: .white)
+					$0.text = "progress_endoftest_nosync"
+					
+					
+				}
 			}
 			
 			//MARK: Earnings Header
-			self.earningsSection = $0.view {
+			self?.earningsSection = $0.view {
 				
 				//Earnings
 				$0.backgroundColor = ACColor.primaryInfo
@@ -69,13 +78,13 @@ public class ACEarningsView : ACTemplateView {
 					$0.spacing = 20
 					$0.isLayoutMarginsRelativeArrangement = true
 					$0.layoutMargins = UIEdgeInsets(top: 24, left: 24, bottom: 48, right: 24)
-					self.headerLabel = $0.acLabel {
+					self?.headerLabel = $0.acLabel {
 						Roboto.Style.headingMedium($0, color: .white)
 						$0.text = "Earnings".localized(ACTranslationKey.faq_earnings_header)
 						
 					}
 					
-					self.separator = $0.acHorizontalBar {
+					self?.separator = $0.acHorizontalBar {
 						$0.relativeWidth = 0.15
 						$0.color = UIColor(named: "HorizontalSeparator")
 						$0.layout {
@@ -84,7 +93,7 @@ public class ACEarningsView : ACTemplateView {
 						}
 					}
 					$0.stack {
-						self.earningsBodyLabel = $0.acLabel {
+						self?.earningsBodyLabel = $0.acLabel {
 							Roboto.Style.body($0, color: .white)
 						}
 					}
@@ -99,7 +108,7 @@ public class ACEarningsView : ACTemplateView {
 								Roboto.Style.body($0, color:ACColor.highlight)
 								$0.text = "".localized(ACTranslationKey.earnings_weektotal)
 							}
-							self.thisWeeksEarningsLabel = $0.acLabel {
+							self?.thisWeeksEarningsLabel = $0.acLabel {
 								$0.textAlignment = .center
 
 								Roboto.Style.earningsBold($0, color:.white)
@@ -115,7 +124,7 @@ public class ACEarningsView : ACTemplateView {
 								Roboto.Style.body($0, color:ACColor.highlight)
 								$0.text = "".localized(ACTranslationKey.earnings_studytotal)
 							}
-							self.thisStudysEarningsLabel = $0.acLabel {
+							self?.thisStudysEarningsLabel = $0.acLabel {
 								$0.textAlignment = .center
 								
 								Roboto.Style.earningsBold($0, color:.white)
@@ -124,20 +133,20 @@ public class ACEarningsView : ACTemplateView {
 						}
 					}
 					
-					self.newGoalsStack = $0.stack {
+					self?.newGoalsStack = $0.stack {
 						$0.axis = .vertical
 						$0.spacing = 8
 						$0.distribution = .fillEqually
 					}
 					
-					self.lastSyncedLabel = $0.acLabel {
+					self?.lastSyncedLabel = $0.acLabel {
 						$0.textAlignment = .center
 
 						Roboto.Style.subBody($0, color:UIColor(red:0.71, green:0.73, blue:0.8, alpha:1))
 						$0.text = "".localized(ACTranslationKey.earnings_sync)
 					}
 					
-					self.viewDetailsButton = $0.acButton {
+					self?.viewDetailsButton = $0.acButton {
 						$0.primaryColor = ACColor.secondary
 						$0.secondaryColor = ACColor.secondaryGradient
 						$0.setTitleColor(ACColor.badgeText, for: .normal)
@@ -147,7 +156,7 @@ public class ACEarningsView : ACTemplateView {
 			}
 			
 			//MARK: Bonus Goal Header
-			self.bonusGoalsSection = $0.view {
+			self?.bonusGoalsSection = $0.view {
 				
 				//Bonus Goals
 				$0.backgroundColor = .white
@@ -159,13 +168,13 @@ public class ACEarningsView : ACTemplateView {
 					$0.spacing = 20
 					$0.isLayoutMarginsRelativeArrangement = true
 					$0.layoutMargins = UIEdgeInsets(top: 24, left: 24, bottom: 48, right: 24)
-					self.bonusGoalsHeader = $0.acLabel {
+					self?.bonusGoalsHeader = $0.acLabel {
 						Roboto.Style.headingMedium($0, color: ACColor.badgeText)
 						$0.text = "Bonus Goals".localized(ACTranslationKey.earnings_bonus_header)
 						
 					}
 					
-					self.bonusGoalsSeparator = $0.acHorizontalBar {
+					self?.bonusGoalsSeparator = $0.acHorizontalBar {
 						$0.relativeWidth = 0.15
 						$0.color = UIColor(named: "HorizontalSeparator")
 						$0.layout {
@@ -174,7 +183,7 @@ public class ACEarningsView : ACTemplateView {
 						}
 					}
 					$0.stack {
-						self.bonusGoalsBodyLabel = $0.acLabel {
+						self?.bonusGoalsBodyLabel = $0.acLabel {
 							Roboto.Style.body($0, color: ACColor.badgeText)
 						}
 					}
@@ -183,7 +192,7 @@ public class ACEarningsView : ACTemplateView {
 			}
 
 			//MARK: Bonus Goals Content
-			self.bonusGoalContent = $0.view { [unowned self] in
+			self?.bonusGoalContent = $0.view { [weak self] in
 				
 				//Bonus Goals
 				$0.backgroundColor = ACColor.primaryInfo
@@ -197,14 +206,14 @@ public class ACEarningsView : ACTemplateView {
 					$0.layoutMargins = UIEdgeInsets(top: 12, left: 8, bottom: 48, right: 8)
 					
 					
-					self.fourofFourGoal = $0.fourOfFourGoalView {
+					self?.fourofFourGoal = $0.fourOfFourGoalView {
 						$0.set(titleText: "4 Out of 4".localized(ACTranslationKey.earnings_4of4_header))
 						$0.set(isUnlocked: false)
 						
 					}
 					
 					//2 a day goal
-					self.twoADayGoal = $0.twoADayGoalView {
+					self?.twoADayGoal = $0.twoADayGoalView {
 						$0.set(titleText: "2-A-Day".localized(ACTranslationKey.earnings_2aday_header))
 						$0.set(isUnlocked: false)
 						
@@ -212,12 +221,12 @@ public class ACEarningsView : ACTemplateView {
 					}
 					
 					
-					self.totalSessionsGoal = $0.totalSessionGoalView {
+					self?.totalSessionsGoal = $0.totalSessionGoalView {
 						$0.set(titleText: "21 Sessions".localized(ACTranslationKey.earnings_21tests_header))
 						$0.set(isUnlocked: false)
 						
 					}
-					self.button = $0.acButton {
+					self?.button = $0.acButton {
 						$0.primaryColor = ACColor.secondary
 						$0.secondaryColor = ACColor.secondaryGradient
 						$0.setTitleColor(ACColor.badgeText, for: .normal)
@@ -231,17 +240,20 @@ public class ACEarningsView : ACTemplateView {
 			
 		}
 		
-		self.gradientView = self.view {
+		self.gradientView = self.view { [weak self] in
+			guard let weakSelf = self else {
+				return
+			}
 			$0.isHidden = true
 
 			$0.layout {
-				$0.bottom == self.bottomAnchor ~ 999
-				$0.trailing == self.trailingAnchor ~ 999
-				$0.leading == self.leadingAnchor ~ 999
-				$0.top == self.safeAreaLayoutGuide.bottomAnchor - 96 ~ 999
+				$0.bottom == weakSelf.bottomAnchor ~ 999
+				$0.trailing == weakSelf.trailingAnchor ~ 999
+				$0.leading == weakSelf.leadingAnchor ~ 999
+				$0.top == weakSelf.safeAreaLayoutGuide.bottomAnchor - 96 ~ 999
 			}
 			bottomGradient(view: $0)
-			self.nextButton = $0.acButton {
+			weakSelf.nextButton = $0.acButton {
 				$0.layout {
 					$0.bottom == safeAreaLayoutGuide.bottomAnchor - 24
 					$0.leading == safeAreaLayoutGuide.leadingAnchor + 32

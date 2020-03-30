@@ -116,7 +116,8 @@ public extension UIView {
 				$0.layout {
 					$0.centerX == spinner.centerXAnchor
 					$0.centerY == spinner.centerYAnchor + 40
-					$0.width == spinner.widthAnchor ~ 999
+					$0.leading == spinner.leadingAnchor + 16
+					$0.trailing == spinner.trailingAnchor - 16
 				}
 				Roboto.Style.body($0, color: messageColor ?? .black)
 				$0.textAlignment = .center
