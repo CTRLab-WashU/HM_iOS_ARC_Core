@@ -105,7 +105,9 @@ public class AC2FAuthenticationViewController: BasicSurveyViewController {
 
                         DispatchQueue.main.async {
                             _ = self?.popViewController(animated: true)
-                            self?.set(error: error)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                self?.set(error: error)
+                            }
                         }
                         
 						break
@@ -189,6 +191,7 @@ public class AC2FAuthenticationViewController: BasicSurveyViewController {
 
 public enum VerifyError : Error {
 	case invalidId
+    case enrolledId
 	case nullValueSupplied
 	
 	var localizedDescription:String {
@@ -196,6 +199,8 @@ public enum VerifyError : Error {
 			switch self {
 			case .invalidId:
 				return "Invalid Participant Id.".localized(ACTranslationKey.login_error1)
+            case .enrolledId:
+                return "This ARC ID is already enrolled on another device.".localized(ACTranslationKey.login_error2)
 			case .nullValueSupplied:
 				return "Empty value supplied.".localized(ACTranslationKey.login_error1)
 			
@@ -220,8 +225,11 @@ public struct TwoFactorAuth {
 			if hmResponse?.response?.success ?? false == true {
 				didFinish(ACResult.success(id))
 			} else {
-			
-				didFinish(ACResult.error(VerifyError.invalidId))
+                var e:VerifyError = VerifyError.invalidId
+                if let r = urlResponse as? HTTPURLResponse, r.statusCode == 409 {
+                    e = VerifyError.enrolledId
+                }
+				didFinish(ACResult.error(e))
 			}
 		}
 	}
