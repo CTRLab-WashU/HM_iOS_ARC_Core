@@ -112,9 +112,14 @@ public class ACPostCycleFinishView : UIView {
 					$0.setTitle("".localized(ACTranslationKey.button_next), for: .normal)
 					$0.setTitleColor(ACColor.badgeText, for: .normal)
 					
-					$0.addAction {
-						Arc.shared.appNavigation.navigate(vc: ACStudyTotalsViewController(), direction:.toRight)
-					}
+                    $0.addAction {
+                        if Arc.shared.getSurveyStatus() == SurveyAvailabilityStatus.finished {
+                            Arc.shared.appNavigation.navigate(vc: ACStudyTotalsViewController(), direction:.toRight)
+                        } else {
+                            Arc.shared.appNavigation.navigate(state: Arc.shared.appNavigation.defaultState(), direction: .toRight)
+                        }
+
+                    }
 					
 					animationParams.delay = 1.4
 					
