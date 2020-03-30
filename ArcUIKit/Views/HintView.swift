@@ -43,7 +43,7 @@ public class HintView : IndicatorView {
 		titleStack = stack {
 			
 			$0.isLayoutMarginsRelativeArrangement = true
-			$0.layoutMargins = UIEdgeInsets(top: 16, left: 8, bottom: 16, right: 8)
+			$0.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
 			titleLabel = $0.acLabel {
 				$0.isHidden = true
 				$0.textAlignment = .center
@@ -108,19 +108,19 @@ public class HintView : IndicatorView {
     
     public func updateHintContainerMargins() {
         if isArrowEnabled && !isArrowAbove && !button.isHidden {
-            container?.layoutMargins = UIEdgeInsets(top: 8, left: 0, bottom: 22, right: 0)
+            container?.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 22, right: 0)
         }
     }
     
     public func updateTitleStackMargins() {
         if isArrowEnabled && isArrowAbove {
-            titleStack.layoutMargins = UIEdgeInsets(top: 26, left: 8, bottom: 16, right: 8)
+            titleStack.layoutMargins = UIEdgeInsets(top: 26, left: 16, bottom: 16, right: 16)
         }
         else if isArrowEnabled && !isArrowAbove {
-            titleStack.layoutMargins = UIEdgeInsets(top: 16, left: 8, bottom: 26, right: 8)
+            titleStack.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 26, right: 16)
         }
         else {
-            titleStack.layoutMargins = UIEdgeInsets(top: 16, left: 8, bottom: 16, right: 8)
+            titleStack.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         }
     }
 }
