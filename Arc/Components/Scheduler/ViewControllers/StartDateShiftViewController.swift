@@ -70,6 +70,9 @@ open class StartDateShiftViewController: BasicSurveyViewController {
                 fatalError("Wrong input type, needs ACPickerView")
             }
             
+            let question = Arc.shared.surveyController.get(question: questionId)
+            enableNextButton(title: question.nextButtonTitle ?? "".localized(ACTranslationKey.button_next))
+            
             loadDates()
             
             picker.set(dates.map({ (dateItem) -> String in

@@ -20,7 +20,7 @@ public extension Notification.Name {
 }
 
 
-public enum SurveyAvailabilityStatus {
+public enum SurveyAvailabilityStatus: Equatable {
     case available, laterToday, tomorrow, startingTomorrow(String, String), laterThisCycle(String), later(String, String), finished, postBaseline
 }
 open class Arc : ArcApi {
