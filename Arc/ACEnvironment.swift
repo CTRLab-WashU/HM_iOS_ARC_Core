@@ -20,6 +20,7 @@ public protocol ArcEnvironment {
     var baseUrl:String? {get}
     var welcomeLogo:String? {get}
     var welcomeText:String? {get}
+    var languageFile:String? {get}
     var privacyPolicyUrl:String? {get}
     var arcStartDays:Dictionary<Int, Int>? {get}
     var shouldDisplayDateReminderNotifications:Bool {get}
@@ -124,6 +125,8 @@ public struct ACEnvironment : ArcEnvironment {
 	public var welcomeLogo: String?
 	
 	public var welcomeText: String?
+    
+    public var languageFile: String?
 	
 	public var privacyPolicyUrl: String?
 	
