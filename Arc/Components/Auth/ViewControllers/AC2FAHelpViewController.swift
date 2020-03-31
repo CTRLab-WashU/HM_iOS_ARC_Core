@@ -29,10 +29,12 @@ class AC2FAHelpViewController: UIViewController {
             self.navigationController?.popViewController(animated: true);
         }
         
-//        self.headerLabel.text = question.question;
         self.headerLabel.text = "faq_tech_q5"
-//        self.answerLabel.text = question.answer;
         self.answerLabel.text = "faq_tech_a5"
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 }
