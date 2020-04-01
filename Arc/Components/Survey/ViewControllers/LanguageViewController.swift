@@ -61,6 +61,8 @@ public enum ACLocale : String{
 
         case "Brasil - Português": return .pt_BR
         case  "Columbia - Español": return .es_CO
+		case  "Colombia - Español": return .es_CO
+
         case "Mexico - Español": return .es_MX
 		case "Latin America - Spanish": return .es_419
 		case "America Latina - Español": return .es_419
