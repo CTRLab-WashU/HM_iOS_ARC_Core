@@ -61,17 +61,42 @@ class ResendCodeViewController: CustomViewController<InfoView>, SurveyInput{
 		customView.setContentLabel("login_resend_subheader")
 		customView.nextButton?.isHidden = true
 		
+	
+	  
 		
 		addSendNewCodeButton()
 		
 		addNeedMoreHelpButton()
     }
-    
+	@objc func backPressed()
+	  {
+		navigationController?.popViewController(animated: true)
+	  }
     func pressedNeedMoreHelp() {
         let vc:AC2FAHelpViewController = .get()
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		
+	}
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		
+		let backButton = UIButton(type: .custom)
+			backButton.frame = CGRect(x: 0, y: 0, width: 60, height: 10)
+			backButton.setImage(UIImage(named: "cut-ups/icons/arrow_left_blue"), for: .normal)
+			backButton.setTitle("BACK".localized(ACTranslationKey.button_back), for: .normal)
+			backButton.titleLabel?.font = UIFont(name: "Roboto-Medium", size: 14)
+			backButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -12)
+			backButton.setTitleColor(UIColor(named: "Primary"), for: .normal)
+			backButton.addTarget(self, action: #selector(self.backPressed), for: .touchUpInside)
+			
+			let leftButton = UIBarButtonItem(customView: backButton)
+			
+		
+		navigationItem.leftBarButtonItem = leftButton
+	}
     @objc func sendCode(_ sender: ACButton) {
 		
         sender.showSpinner()
