@@ -24,6 +24,7 @@ public class TotalSessionGoalView : GoalView {
 		self.goalBodyLabel = view.acLabel {
 			Roboto.Style.body($0)
 			$0.text = "".localized(ACTranslationKey.earnings_21tests_body)
+			.replacingOccurrences(of: "{AMOUNT}", with: "$5.00")
 		}
 		view.stepperProgress { [unowned self] in
 			$0.layout {
@@ -50,6 +51,8 @@ public class TotalSessionGoalView : GoalView {
 			}
 			
 		}
+		set(goalRewardText: "$0.00 Bonus".localized(ACTranslationKey.earnings_bonus_incomplete)
+		.replacingOccurrences(of: "{AMOUNT}", with: "$5.00"))
 	}
 	
 	public func set(current:Int) {

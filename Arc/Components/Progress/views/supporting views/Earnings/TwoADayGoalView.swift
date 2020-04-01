@@ -16,10 +16,13 @@ public class TwoADayGoalView : GoalView {
 		self.goalBodyLabel = view.acLabel {
 			Roboto.Style.body($0)
 			$0.text = "".localized(ACTranslationKey.earnings_2aday_body)
+			.replacingOccurrences(of: "{AMOUNT}", with: "$6.00")
 		}
 		
 		//If you don't have anything to set use _ in
 		self.progressGroup = view.goalDayTileGroup { _ in}
+		set(goalRewardText: "$0.00 Bonus".localized(ACTranslationKey.earnings_bonus_incomplete)
+		.replacingOccurrences(of: "{AMOUNT}", with: "$6.00"))
 	}
 	public override func clear() {
 		progressGroup.clear()

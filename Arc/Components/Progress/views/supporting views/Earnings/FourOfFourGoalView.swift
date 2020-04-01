@@ -14,6 +14,7 @@ public class FourOfFourGoalView : GoalView {
 		self.goalBodyLabel = view.acLabel {
 			Roboto.Style.body($0)
 			$0.text = "".localized(ACTranslationKey.earnings_4of4_body)
+			.replacingOccurrences(of: "{AMOUNT}", with: "$1.00")
 		}
 		
 		self.progressGroup = view.circularProgressGroup {
@@ -26,7 +27,10 @@ public class FourOfFourGoalView : GoalView {
 			$0.ellipseConfig.size = 56
 			$0.checkConfig.size = 25
 			$0.addProgressViews(count: 4)
+			
 		}
+		set(goalRewardText: "$0.00 Bonus".localized(ACTranslationKey.earnings_bonus_incomplete)
+		.replacingOccurrences(of: "{AMOUNT}", with: "$1.00"))
 	}
 	public func set(progress:Double, for index:Int) {
 		progressGroup.set(progress: progress, for: index)

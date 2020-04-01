@@ -115,6 +115,7 @@ public class GoalView: UIView {
 					
 					$0.isUnlocked = false
 					$0.set(text: "$0.00 Bonus".localized(ACTranslationKey.earnings_bonus_incomplete))
+					
 				}
 			}
 			
