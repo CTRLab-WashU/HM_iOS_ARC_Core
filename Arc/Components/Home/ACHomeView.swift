@@ -164,6 +164,7 @@ public class ACHomeView: ACTemplateView {
         let changeAvailabilityTitle = NSAttributedString(string: "Change Availability".localized(ACTranslationKey.resources_availability), attributes: attributes)
         let enableNotificationsTitle = NSAttributedString(string: "Turn On Notifications", attributes: attributes)
 		self.enableNotificationsButton = view.button {
+			$0.isHidden = true
             $0.setAttributedTitle(enableNotificationsTitle, for: .normal)
 			$0.setTitle("Turn On Notifications",
                         for: .normal)
