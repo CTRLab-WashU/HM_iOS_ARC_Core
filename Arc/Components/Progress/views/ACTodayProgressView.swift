@@ -53,6 +53,8 @@ public class ACTodayProgressView : UIView {
 			$0.layout {
 				$0.centerX == centerXAnchor
 				$0.centerY == centerYAnchor - 40
+				$0.leading == safeAreaLayoutGuide.leadingAnchor + 16
+				$0.trailing == safeAreaLayoutGuide.trailingAnchor - 16
 			}
 			
 			$0.axis = .vertical
@@ -108,7 +110,8 @@ public class ACTodayProgressView : UIView {
 			}
 			self.sessionRemainingLabel = $0.acLabel {
 				stack.setCustomSpacing(22, after: $0)
-				
+                $0.textAlignment = .center
+
 				Roboto.Style.subHeading($0, color: ACColor.secondaryText)
 				$0.text = ""
 				animationParams.delay = 1.4
