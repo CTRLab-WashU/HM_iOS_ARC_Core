@@ -674,7 +674,9 @@ public enum ACTranslationKey : String, TranslationKey {
 	case button_done
 
 	case button_change
-
+		
+	case button_proceed_without_notifications
+	
 	case button_submit
 
 	case button_submitdates

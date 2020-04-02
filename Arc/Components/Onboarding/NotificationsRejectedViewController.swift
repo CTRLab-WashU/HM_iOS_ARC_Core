@@ -115,7 +115,7 @@ public class NotificationsRejectedViewController : CustomViewController<InfoView
 		button1.secondaryColor = .clear
 		button1.topColor = .clear
 		button1.bottomColor = .clear
-		button1.setTitle("Proceed Without Notifications", for: .normal)
+		button1.setTitle("Proceed Without Notifications".localized(ACTranslationKey.button_proceed_without_notifications), for: .normal)
 		Roboto.PostProcess.link(button1)
 		
 		button1.addAction {  [weak self] in
