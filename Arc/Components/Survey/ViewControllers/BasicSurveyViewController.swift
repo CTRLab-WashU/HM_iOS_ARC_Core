@@ -50,7 +50,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 	var answeredQuestions:[Survey.Question] = []
 	public var surveyId:String
 	public var shouldNavigateToNextState:Bool = true
-    
+    public var currentViewControllerAlwaysHidesBarButtons = false
     public init(file:String, surveyId:String? = nil, showHelp:Bool? = true) {
 		
         shouldShowHelpButton = showHelp ?? true
@@ -253,6 +253,8 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		}
 	}
 	func display(question:Survey.Question) {
+		//Reset this every time we view a new vc
+		currentViewControllerAlwaysHidesBarButtons = false
 		let style = question.style ?? .none
 		switch style {
         
@@ -277,9 +279,6 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
             }
 		case .symbols:
 			instructionStyle(question, presentableVc: SymbolsTutorialViewController())
-			
-			
-		
 			
 		}
 		
@@ -340,7 +339,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		vc.customView.nextButton?.addTarget(self, action: #selector(nextButtonPressed(sender:)), for: .primaryActionTriggered)
         vc.customView.nextButton?.setTitle(question.nextButtonTitle ?? "NEXT".localized(ACTranslationKey.button_next), for: .normal)
 		didPresentQuestion(input: vc.customView.inputItem, questionId: question.questionId)
-		displayBackButton(false)
+		currentViewControllerAlwaysHidesBarButtons = true
 	}
 	func questionStyle(_ question:Survey.Question) {
 		// Do any additional setup after loading the view.
@@ -590,13 +589,18 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 
 			display(question: questions[currentIndex])
 		}
-		
-		if shouldShowHelpButton {
-			displayHelpButton(shouldShowHelpButton)
+		if currentViewControllerAlwaysHidesBarButtons {
+				displayHelpButton(false)
+				displayBackButton(false)
+		} else {
+			if shouldShowHelpButton {
+				displayHelpButton(shouldShowHelpButton)
+			}
+			if shouldShowBackButton{
+				displayBackButton(shouldShowBackButton)
+			}
 		}
-        if shouldShowBackButton{
-            displayBackButton(shouldShowBackButton)
-        }		
+		
 	}
 	
 	public func updateNextQuestion(question:Survey.Question, answer:QuestionResponse){
