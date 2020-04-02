@@ -161,13 +161,14 @@ public class ACHomeView: ACTemplateView {
             .font : UIFont(name: "Roboto-Bold", size: 16.0) as Any,
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ]
+		let notificationTitle = "Turn On Notifications".localized(ACTranslationKey.onboarding_notifications_header2)
+		.replacingOccurrences(of: ".", with: "")
         let changeAvailabilityTitle = NSAttributedString(string: "Change Availability".localized(ACTranslationKey.resources_availability), attributes: attributes)
-        let enableNotificationsTitle = NSAttributedString(string: "Turn On Notifications", attributes: attributes)
+        let enableNotificationsTitle = NSAttributedString(string: notificationTitle, attributes: attributes)
 		self.enableNotificationsButton = view.button {
 			$0.isHidden = true
             $0.setAttributedTitle(enableNotificationsTitle, for: .normal)
-			$0.setTitle("Turn On Notifications",
-                        for: .normal)
+			
             $0.setTitleColor(UIColor(named: "Primary"), for: .normal)
             
             $0.addAction {
