@@ -371,7 +371,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
         if let style = question.style, style == .impasse
         {
             vc.customView.setSeparatorWidth(0.15)
-
+			shouldShowBackButton = true
             vc.customView.nextButton?.isEnabled = false;
             vc.customView.nextButton?.isHidden = true;
         }
