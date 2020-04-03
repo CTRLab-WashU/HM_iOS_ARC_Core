@@ -147,7 +147,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
             topViewController?.navigationItem.hidesBackButton = true
         }
     }
-    @objc func backPressed()
+    @objc open func backPressed()
     {
         popViewController(animated: true)
     }
@@ -348,12 +348,12 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
         useDarkStatusBar = true
         setNeedsStatusBarAppearanceUpdate()
         
-        if shouldShowHelpButton {
+        //if shouldShowHelpButton {
             displayHelpButton(shouldShowHelpButton)
-        }
-        if shouldShowBackButton{
+        //}
+        //if shouldShowBackButton{
             displayBackButton(shouldShowBackButton)
-        }
+        //}
 		vc.customView.infoContent.alignment = .leading
 		
 		vc.customView.setTextColor(UIColor(named: "Primary Text"))
