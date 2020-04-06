@@ -24,7 +24,7 @@ public enum IntroViewControllerStyle : String {
 			view.addSpacer()
 			view.setContentLabel(content, template: template)
 			
-			Roboto.Style.headingBlack(			view.infoContent.headingLabel!
+			Roboto.Style.headingMedium(			view.infoContent.headingLabel!
 				, color: ACColor.secondary)
 			
 			view.infoContent.headingLabel!.layout {

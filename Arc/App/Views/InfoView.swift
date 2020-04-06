@@ -137,6 +137,9 @@ public class InfoView: ACTemplateView {
 	public func setHeading(_ text:String?) {
 		infoContent.setHeader(text)
 	}
+	public func setMediumHeading(_ text:String?) {
+		infoContent.setMediumHeader(text)
+	}
     public func setIntroHeading(_ text:String?){
         infoContent.setIntroHeader(text)
     }

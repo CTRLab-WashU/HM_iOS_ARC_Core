@@ -70,7 +70,21 @@ public class InfoContentView: UIStackView {
 			}
 		}
 	}
-	
+	public func setMediumHeader(_ text:String?)
+	{
+		if let view = headingLabel {
+			view.text = text
+		} else {
+			headingLabel = acLabel {
+				$0.textAlignment = .left
+				$0.accessibilityIdentifier = "heading_label"
+				Roboto.Style.headingMedium($0,
+										 color:textColor)
+				$0.text = text
+				
+			}
+		}
+	}
     public func setIntroHeader(_ text:String?)
     {
         if let view = headingLabel {

@@ -304,7 +304,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		
 		vc.customView.setButtonColor(style:.secondary)
 		
-		vc.customView.setHeading(question.prompt)
+		vc.customView.setMediumHeading(question.prompt)
 		vc.customView.setSubHeading(question.subTitle)
 		vc.customView.setContentLabel(question.detail)
 		vc.customView.infoContent.headingLabel?.textAlignment = .center
