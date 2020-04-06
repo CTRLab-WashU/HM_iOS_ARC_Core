@@ -102,7 +102,11 @@ class ProgressViewController: CustomViewController<ACProgressView> {
 		switch thisStudy.studyState {
 		case .baseline:
 			customView.dayOfWeekLabel.text = ""
+			
 			customView.noticeLabel.text = "Thanks for completing the practice session today! *Your testing week officially begins tomorrow.*".localized(ACTranslationKey.progress_baseline_notice)
+			if let today = todaysProgress, today.sessionsCompleted == 0 {
+				customView.noticeLabel.text = "".localized(ACTranslationKey.progress_practice_body2)
+			}
 			customView.weekProgressView.isHidden = true
 		case .activeBaseline:
 			
