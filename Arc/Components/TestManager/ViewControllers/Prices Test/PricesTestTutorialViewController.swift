@@ -206,8 +206,7 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 				return
 			}
 			weakSelf.pricesTest.priceDisplay.isUserInteractionEnabled = true
-            let shape = OverlayShape.roundedRect(weakSelf.pricesTest.priceDisplay, 8, CGSize(width: -8, height: -8))
-            weakSelf.pricesTest.view.overlayView(withShapes: [shape])
+            
 			weakSelf.tutorialAnimation.pause()
 			self?.currentHint = self?.view.window?.hint {
 				$0.content = "*What do you think?*\n Choose the answer that makes sense to you.".localized(ACTranslationKey.popup_tutorial_recall)
@@ -223,8 +222,13 @@ class PricesTestTutorialViewController: ACTutorialViewController, PricesTestDele
 					$0.top == weakSelf.pricesTest.priceDisplay.bottomAnchor + 10
 					$0.centerX == weakSelf.pricesTest.priceDisplay.centerXAnchor
 					$0.width == weakSelf.pricesTest.priceDisplay.widthAnchor
+					$0.bottom <= weakSelf.view.safeAreaLayoutGuide.bottomAnchor - 8
 				}
+				let offset = (weakSelf.view.frame.width <= 320) ? -16 : -8
+				let shape = OverlayShape.roundedRect(weakSelf.pricesTest.priceDisplay, 8, CGSize(width: -8, height: offset))
+				weakSelf.pricesTest.view.overlayView(withShapes: [shape])
 			}
+			
 			
 		}
 		

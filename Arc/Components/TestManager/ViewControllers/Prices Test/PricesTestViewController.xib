@@ -30,17 +30,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" placeholderIntrinsicWidth="288" placeholderIntrinsicHeight="300" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="1DZ-Kx-WAa">
-                    <rect key="frame" x="27.5" y="60" width="320" height="507"/>
+                    <rect key="frame" x="27.5" y="50" width="320" height="517"/>
                     <subviews>
                         <view contentMode="scaleToFill" placeholderIntrinsicWidth="288" placeholderIntrinsicHeight="104.5" translatesAutoresizingMaskIntoConstraints="NO" id="8SC-Oo-a7f">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="104.5"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                         <view contentMode="scaleToFill" placeholderIntrinsicWidth="328" placeholderIntrinsicHeight="214" translatesAutoresizingMaskIntoConstraints="NO" id="dBC-AU-XjY" customClass="ACView" customModule="ArcUIKit">
-                            <rect key="frame" x="0.0" y="124.5" width="320" height="230"/>
+                            <rect key="frame" x="0.0" y="124.5" width="320" height="240"/>
                             <subviews>
                                 <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="qcO-EW-dFm">
-                                    <rect key="frame" x="20" y="20" width="280" height="190"/>
+                                    <rect key="frame" x="20" y="20" width="280" height="200"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="288" placeholderIntrinsicHeight="44" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.30000001192092896" translatesAutoresizingMaskIntoConstraints="NO" id="0Es-5H-REM" customClass="ACLabel" customModule="ArcUIKit">
                                             <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
@@ -64,7 +64,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="gFZ-wv-brY">
-                                            <rect key="frame" x="0.0" y="150" width="280" height="40"/>
+                                            <rect key="frame" x="0.0" y="150" width="280" height="50"/>
                                         </stackView>
                                     </subviews>
                                 </stackView>
@@ -89,7 +89,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" placeholderIntrinsicWidth="328" placeholderIntrinsicHeight="132.5" translatesAutoresizingMaskIntoConstraints="NO" id="VbF-85-xCy">
-                            <rect key="frame" x="0.0" y="374.5" width="320" height="132.5"/>
+                            <rect key="frame" x="0.0" y="384.5" width="320" height="132.5"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                     </subviews>
@@ -104,7 +104,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="1DZ-Kx-WAa" secondAttribute="bottom" constant="100" id="Grw-9X-Bnt"/>
                 <constraint firstItem="1DZ-Kx-WAa" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="HuR-Sx-ymO"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1DZ-Kx-WAa" secondAttribute="trailing" constant="20" id="P7x-Va-hXq"/>
-                <constraint firstItem="1DZ-Kx-WAa" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" priority="999" id="dfH-BO-neB"/>
+                <constraint firstItem="1DZ-Kx-WAa" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" priority="500" id="dfH-BO-neB"/>
                 <constraint firstItem="1DZ-Kx-WAa" firstAttribute="top" relation="lessThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="top" priority="999" constant="60" id="eBD-Id-eqf"/>
                 <constraint firstItem="1DZ-Kx-WAa" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="hTW-du-bFD"/>
             </constraints>
