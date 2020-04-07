@@ -53,8 +53,11 @@ open class ACHomeViewController: CustomViewController<ACHomeView> {
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-		
-		
+		//If this button is hidden then we've already seen or missed the first test at least.
+		if surveyButton.isHidden {
+            set(flag: .first_test_begin)
+
+		}
         if !get(flag: .first_test_begin) {
             currentHint = customView.highlightTutorialTargets()
             set(flag: .first_test_begin)
