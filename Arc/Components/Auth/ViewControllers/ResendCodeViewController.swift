@@ -78,11 +78,6 @@ class ResendCodeViewController: CustomViewController<InfoView>, SurveyInput{
     }
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		
-	}
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-		
 		let backButton = UIButton(type: .custom)
 			backButton.frame = CGRect(x: 0, y: 0, width: 60, height: 10)
 			backButton.setImage(UIImage(named: "cut-ups/icons/arrow_left_blue"), for: .normal)
@@ -96,6 +91,11 @@ class ResendCodeViewController: CustomViewController<InfoView>, SurveyInput{
 			
 		
 		navigationItem.leftBarButtonItem = leftButton
+	}
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		
+		
 	}
     @objc func sendCode(_ sender: ACButton) {
 		
