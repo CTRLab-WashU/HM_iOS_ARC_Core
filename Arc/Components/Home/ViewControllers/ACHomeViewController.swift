@@ -13,7 +13,6 @@ open class ACHomeViewController: CustomViewController<ACHomeView> {
     @IBOutlet weak var message: UILabel!
     
     @IBOutlet weak var debugButton: UIButton!
-    @IBOutlet weak var surveyButton: UIButton!
     
     @IBOutlet weak var versionLabel: UILabel!
     
@@ -30,7 +29,7 @@ open class ACHomeViewController: CustomViewController<ACHomeView> {
 		app.notificationController.authenticateNotifications { (value, error) in
 			HMLog("Backup handler called.")
 		}
-        let _ = Arc.shared.appNavigation.viewForState(state: Arc.shared.appNavigation.defaultState())
+//        let _ = Arc.shared.appNavigation.viewForState(state: Arc.shared.appNavigation.defaultState())
     }
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -54,7 +53,7 @@ open class ACHomeViewController: CustomViewController<ACHomeView> {
         super.viewDidAppear(animated)
         
 		//If this button is hidden then we've already seen or missed the first test at least.
-		if surveyButton.isHidden {
+		if customView.surveyButton.isHidden {
             set(flag: .first_test_begin)
 
 		}
