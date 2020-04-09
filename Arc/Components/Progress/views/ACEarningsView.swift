@@ -276,16 +276,22 @@ public class ACEarningsView : ACTemplateView {
 			}
 			$0.stack {
 				$0.attachTo(view: $0.superview, margins: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
-				
+				$0.alignment = .center
 				$0.acLabel {
 					Roboto.Style.goalReward($0, color: ACColor.badgeText)
-					$0.textAlignment = .left
-
-					$0.text = reward.name
-				}
 				
+					$0.text = reward.name
+					$0.adjustsFontSizeToFitWidth = true
+					$0.minimumScaleFactor = 0.5
+					
+				}
+				$0.view {
+					$0.backgroundColor = .clear
+					
+				}
 				$0.acLabel {
 					$0.textAlignment = .right
+					$0.setContentCompressionResistancePriority(.required, for: .horizontal)
 					Roboto.Style.goalRewardBold($0, color: ACColor.badgeText)
 					$0.text = reward.value
 					
