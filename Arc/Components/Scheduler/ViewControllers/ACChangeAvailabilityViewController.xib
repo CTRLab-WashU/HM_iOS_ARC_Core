@@ -37,7 +37,7 @@
                     <rect key="frame" x="8" y="0.0" width="72" height="32"/>
                     <color key="backgroundColor" white="1" alpha="0.14701947770000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="80" id="Dha-wM-fAY"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="Dha-wM-fAY"/>
                         <constraint firstAttribute="height" constant="32" id="xVL-ti-fK9"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>

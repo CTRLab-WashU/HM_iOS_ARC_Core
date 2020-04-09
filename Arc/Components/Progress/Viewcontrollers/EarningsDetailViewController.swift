@@ -16,7 +16,7 @@ open class EarningsDetailViewController : CustomViewController<ACEarningsDetailV
 		super.viewDidLoad()
 		
 			let backButton = UIButton(type: .custom)
-			backButton.frame = CGRect(x: 0, y: 0, width: 80, height: 32)
+			backButton.frame = CGRect(x: 0, y: 0, width: 100, height: 32)
 			backButton.setImage(UIImage(named: "cut-ups/icons/arrow_left_white"), for: .normal)
 			backButton.setTitle("BACK".localized(ACTranslationKey.button_back), for: .normal)
 			backButton.titleLabel?.font = UIFont(name: "Roboto-Medium", size: 14)
