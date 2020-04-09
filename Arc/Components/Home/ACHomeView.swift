@@ -218,11 +218,11 @@ public class ACHomeView: ACTemplateView {
 			
 		case .laterToday:
 			heading = "There are no tests to take right now.".localized(ACTranslationKey.home_header2)
-			if notificationsOff {
-				message = "*Please turn on notifications to receive a message later today* when it’s time to take your next test."
-			} else {
+//			if notificationsOff {
+//				message = "*Please turn on notifications to receive a message later today* when it’s time to take your next test."
+//			} else {
 				message = "You will receive a notification later today when it's time to take your next test.".localized(ACTranslationKey.home_body2)
-			}
+//			}
 			
 			
 		case .laterThisCycle(let date):
