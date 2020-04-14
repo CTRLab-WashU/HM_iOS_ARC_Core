@@ -167,6 +167,9 @@ public class ACHomeView: ACTemplateView {
         let enableNotificationsTitle = NSAttributedString(string: notificationTitle, attributes: attributes)
 		self.enableNotificationsButton = view.button {
 			$0.isHidden = true
+			$0.titleLabel?.numberOfLines = 0
+			$0.titleLabel?.textAlignment = .center
+
             $0.setAttributedTitle(enableNotificationsTitle, for: .normal)
 			
             $0.setTitleColor(UIColor(named: "Primary"), for: .normal)
