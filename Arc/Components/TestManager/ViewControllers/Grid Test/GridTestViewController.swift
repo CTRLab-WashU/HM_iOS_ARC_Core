@@ -493,7 +493,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 	func overlayCell(at indexPath:IndexPath) -> UIView? {
 		if mode == .image || mode == .answers {
 			if let c = collectionView.cellForItem(at: indexPath) as? GridImageCell {
-                view.overlayView(withShapes: [.roundedRect(c, 8, CGSize(width: 0, height: 0))])
+                view.overlayView(withShapes: [.roundedRect(c, 0, CGSize(width: 0, height: 0))])
 				c.highlight()
                 c.image.isHidden = false
 				return c
