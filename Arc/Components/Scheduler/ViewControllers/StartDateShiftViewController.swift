@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import ArcUIKit
 
 
 open class StartDateShiftViewController: BasicSurveyViewController {
@@ -45,8 +45,28 @@ open class StartDateShiftViewController: BasicSurveyViewController {
 //
 //            }
 //        }
+		
+		
+		
     }
-    
+	open override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		setBackButton()
+
+	}
+	func setBackButton() {
+		let title = "BACK".localized(ACTranslationKey.button_back)
+		let selector = #selector(StartDateShiftViewController.cancelPressed)
+		let b = UIBarButtonItem.primaryBackButton(title: title, target:self, selector: selector)
+		
+		if let vc = topViewController {
+			vc.navigationItem.leftBarButtonItem = b
+		}
+	}
+	@objc func cancelPressed()
+	{
+		Arc.shared.nextAvailableState(runPeriodicBackgroundTask: false, direction: .toLeft)
+	}
 	open override func templateForQuestion(id questionId: String) -> Dictionary<String, String> {
 		let _ = super.templateForQuestion(id: questionId)
         guard let index = QuestionId(rawValue: questionId) else {return [:]}
@@ -66,6 +86,7 @@ open class StartDateShiftViewController: BasicSurveyViewController {
         enableNextButton()
         switch index {
         case .user_schedule_1:
+			
             guard let picker = input as? ACPickerView else {
                 fatalError("Wrong input type, needs ACPickerView")
             }

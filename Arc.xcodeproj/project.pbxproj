@@ -272,6 +272,7 @@
 		C594B3DC23E245F100B9743C /* HideGoodPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C594B3DB23E245F100B9743C /* HideGoodPrice.swift */; };
 		C59D6EEF22FA21B20037B671 /* ACHomeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59D6EEE22FA21B20037B671 /* ACHomeTabViewController.swift */; };
 		C5A43CCF22CA648700C10BC0 /* ACHorizontalBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A43CCE22CA648700C10BC0 /* ACHorizontalBar.swift */; };
+		C5AA4F2A24476679001DA323 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AA4F2924476679001DA323 /* Buttons.swift */; };
 		C5AB56122302030F00129E03 /* WeekStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB56112302030F00129E03 /* WeekStepperView.swift */; };
 		C5B2601C22135F7300BFF778 /* ArcUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B2601322135F7200BFF778 /* ArcUIKit.framework */; };
 		C5B2602122135F7300BFF778 /* ArcUIKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2602022135F7300BFF778 /* ArcUIKitTests.swift */; };
@@ -637,6 +638,7 @@
 		C594B3DB23E245F100B9743C /* HideGoodPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideGoodPrice.swift; sourceTree = "<group>"; };
 		C59D6EEE22FA21B20037B671 /* ACHomeTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACHomeTabViewController.swift; sourceTree = "<group>"; };
 		C5A43CCE22CA648700C10BC0 /* ACHorizontalBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACHorizontalBar.swift; sourceTree = "<group>"; };
+		C5AA4F2924476679001DA323 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Buttons.swift; path = ArcUIKit/Views/Style/Buttons.swift; sourceTree = SOURCE_ROOT; };
 		C5AB56112302030F00129E03 /* WeekStepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekStepperView.swift; sourceTree = "<group>"; };
 		C5B2601322135F7200BFF778 /* ArcUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ArcUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5B2601522135F7300BFF778 /* ArcUIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArcUIKit.h; sourceTree = "<group>"; };
@@ -779,6 +781,7 @@
 			children = (
 				C5192A5F22C3D34100223B69 /* Georgia.swift */,
 				C5192A6222C3DF9000223B69 /* Roboto.swift */,
+				C5AA4F2924476679001DA323 /* Buttons.swift */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -2240,6 +2243,7 @@
 				C56BBCA52214AF5B0025A318 /* Common.swift in Sources */,
 				C583C0F222136E3B0043DFA7 /* ACLabel.swift in Sources */,
 				C5192A7722C5231900223B69 /* Georgia.swift in Sources */,
+				C5AA4F2A24476679001DA323 /* Buttons.swift in Sources */,
 				C56D6C5722CBF25900C3F8EA /* Automation.swift in Sources */,
 				C5192A7522C51F5000223B69 /* Drawing.swift in Sources */,
 				C54E8E1B22E7B6330080BFC1 /* ConstraintDSL.swift in Sources */,

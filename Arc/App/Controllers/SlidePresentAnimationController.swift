@@ -46,8 +46,8 @@ public extension UIWindow {
 		/// - fade: fade to new controller
 		/// - toTop: slide from bottom to top
 		/// - toBottom: slide from top to bottom
-		/// - toLeft: pop to left
-		/// - toRight: push to right
+		/// - toLeft: screen appears from the left
+		/// - toRight: screen appears from right
 		public enum Direction {
 			case fade
 			case toTop
