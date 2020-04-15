@@ -85,15 +85,14 @@ class ACProgressView: ACTemplateView {
 						$0.alignment = .leading
 						$0.stack {
 							$0.alignment = .center
-                            $0.spacing = 8
 							$0.view {
 								self.todaysSessionCompletionLabel = $0.acLabel {
 									Roboto.Style.body($0, color: #colorLiteral(red: 0.04300000146, green: 0.1220000014, blue: 0.3330000043, alpha: 1))
 									
-									$0.text = "*{#}* Complete |"
+									$0.text = "*{#}* Complete|"
 									$0.numberOfLines = 1
 								}
-                                self.todaysSessionCompletionLabel.attachTo(view: $0, margins: UIEdgeInsets(top: 3, left: 10, bottom: 3, right: 10))
+                                self.todaysSessionCompletionLabel.attachTo(view: $0, margins: UIEdgeInsets(top: 3, left: 8, bottom: 3, right: 8))
 								$0.backgroundColor = .clear
                                 $0.layer.cornerRadius = 4
                                 $0.clipsToBounds = true
@@ -110,7 +109,7 @@ class ACProgressView: ACTemplateView {
                                     $0.text = " *{#}* Remaining"
 									$0.numberOfLines = 0
                                 }
-                                self.todaysSessionRemainingLabel.attachTo(view: $0, margins: UIEdgeInsets(top: 3, left: 10, bottom: 3, right: 10))
+                                self.todaysSessionRemainingLabel.attachTo(view: $0, margins: UIEdgeInsets(top: 3, left: 8, bottom: 3, right: 8))
 								$0.backgroundColor = .clear
                                 $0.layer.cornerRadius = 4
                                 $0.clipsToBounds = true
