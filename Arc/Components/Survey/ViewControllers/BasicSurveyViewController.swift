@@ -288,6 +288,9 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		if var input = topViewController as? SurveyInput {
 			input.surveyInputDelegate = self
 		}
+		if ["NotificationAccessRejected"].contains(question.state) {
+			currentViewControllerAlwaysHidesBarButtons = true
+		}
 		
 
 	}

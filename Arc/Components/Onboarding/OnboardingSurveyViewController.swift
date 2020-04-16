@@ -22,9 +22,13 @@ open class OnboardingSurveyViewController: BasicSurveyViewController {
 	
 	open override func customViewController(forQuestion question: Survey.Question) -> UIViewController? {
 		if question.state == "NotificationAccess" {
+			currentViewControllerAlwaysHidesBarButtons = true
+
 			return NotificationPermissionViewController()
 		}
 		if question.state == "NotificationAccessRejected" {
+			currentViewControllerAlwaysHidesBarButtons = true
+
 			return NotificationsRejectedViewController()
 		}
 		if question.state == "rebuked" {
