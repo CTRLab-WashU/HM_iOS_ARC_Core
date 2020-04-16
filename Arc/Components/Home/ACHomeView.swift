@@ -175,7 +175,7 @@ public class ACHomeView: ACTemplateView {
             $0.setTitleColor(UIColor(named: "Primary"), for: .normal)
             
             $0.addAction {
-				let message = "We’ll now open your Settings App. Once there, tap Notifications, and turn on the Allow Notifications Switch."
+				let message = "We’ll now open your Settings App. Once there, tap Notifications, and turn on the Allow Notifications Switch.".localized("popup_opensettings")
 				Arc.shared.displayAlert(message: message,
 					options: [.default("OK".localized(ACTranslationKey.button_okay), {
 						guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
@@ -189,7 +189,7 @@ public class ACHomeView: ACTemplateView {
 						}
 					}),
 							  
-							  .cancel("Not Now", {})
+							  .cancel("Not Now".localized("button_notnow"), {})
 					]
 				)
             }
