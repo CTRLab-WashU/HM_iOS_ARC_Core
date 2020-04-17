@@ -249,7 +249,9 @@ public struct Drawing {
 			
 			let startPoint = CGPoint.zero
 			let endPoint = CGPoint(x:0, y:rect.height)
+			context?.setAlpha(isEnabled ? 1.0 : 0.5)
 			context?.drawLinearGradient(gradient, start: startPoint, end: endPoint, options:[])
+			
 			guard let c = context, isEnabled, !isSelected else {
 				return
 			}

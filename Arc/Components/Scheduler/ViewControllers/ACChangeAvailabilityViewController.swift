@@ -22,6 +22,7 @@ open class ACChangeAvailabilityViewController: UIViewController {
     
     @IBOutlet weak var changeDateButton: ACButton!
     
+	@IBOutlet weak var deniedLabel:ACLabel!
     open override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -36,6 +37,12 @@ open class ACChangeAvailabilityViewController: UIViewController {
             changeDateButton.setTitle("CHANGE".localized(ACTranslationKey.button_change), for: .normal)
 
         }
+		
+		if Arc.environment?.hidesChangeAvailabilityDuringTest == true {
+			changeTimeButton.isEnabled = (Arc.shared.availableTestSession == nil)
+			deniedLabel.isHidden = (Arc.shared.availableTestSession == nil)
+		}
+
     }
     @IBAction public func goBackPressed(_ sender: Any) {
         if let vc = returnVC {

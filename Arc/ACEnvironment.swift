@@ -30,6 +30,7 @@ public protocol ArcEnvironment {
 	var supportsNotifications:Bool {get}
 	var supportsChronotype:Bool {get}
 	var supportsSignatures:Bool{get}
+	var hidesChangeAvailabilityDuringTest:Bool {get}
     var priceTestType:PriceTestType {get}
 	
 	
@@ -67,6 +68,7 @@ public extension ArcEnvironment {
     //persistent store, an in-memory database. 
 	var mockData:Bool {return true}
 	var debuggableStates:[State] {return []}
+	var hidesChangeAvailabilityDuringTest:Bool {return false}
 
 	var isDebug:Bool {return false}
 	var blockApiRequests:Bool {return true}

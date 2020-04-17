@@ -22,6 +22,7 @@ import HMMarkup
 
         }
     }
+	
     @IBInspectable public var primaryColor:UIColor = UIColor(named: "Primary") ?? UIColor.white
     @IBInspectable public var secondaryColor:UIColor = UIColor(named: "Primary Gradient") ?? UIColor.gray
 	@IBInspectable public var topColor:UIColor = UIColor(white: 1.0, alpha: 0.25)
