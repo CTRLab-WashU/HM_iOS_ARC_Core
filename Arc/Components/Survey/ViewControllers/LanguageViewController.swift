@@ -16,7 +16,7 @@ public enum ACLocale : String{
 */
     case en_US
     case en_AU
-    case en_UK
+    case en_GB
     case en_CA
 	case en_IE
     case nl_NL
@@ -39,7 +39,7 @@ public enum ACLocale : String{
             
         case "US - English": return .en_US
         case "Australia - English": return .en_AU
-        case "UK - English": return .en_UK
+        case "UK - English": return .en_GB
         case "Canada - English": return .en_CA
 		case "Ireland - English": return .en_IE
         case "Nederland - Nederlands": return .nl_NL
