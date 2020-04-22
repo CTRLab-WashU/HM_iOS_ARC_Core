@@ -480,7 +480,7 @@ open class StudyController : MHController {
 		
 		return nil;
 	}
-    open func createTestSessions(studyId: Int, isRescheduling:Bool = false) {
+    open func createTestSessions(studyId: Int, isRescheduling:Bool = false, now:Date = Date()) {
         fatalError("Override is required")
     }
 	
