@@ -72,7 +72,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
     private let IMAGE_GRID_TUTORIAL_WIDTH:CGFloat = 260
     private let LETTER_GRID_TUTORIAL_WIDTH:CGFloat = 284
 
-
+	private weak var currentAlert:MHAlertView?
     override open func viewDidLoad() {
         super.viewDidLoad()
 		if shouldAutoProceed && !isPracticeTest {
@@ -124,6 +124,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 		isVisible = false
         maybeEndTimer?.invalidate()
         maybeEndTimer = nil
+		currentAlert?.remove()
 	}
     open func displaySymbols()
     {
@@ -225,7 +226,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 			return
 		}
 
-		Arc.shared.displayAlert(message: "Ready".localized(ACTranslationKey.grids_overlay3_pt2), options: [.wait(waitTime: 1.0, {
+		currentAlert = Arc.shared.displayAlert(message: "Ready".localized(ACTranslationKey.grids_overlay3_pt2), options: [.wait(waitTime: 1.0, {
 			[weak self] in
 			self?.displayGrid()
 			if let s = self {
@@ -244,7 +245,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 		}
 		self.tapOnTheFsLabel.isHidden = true
 
-        Arc.shared.displayAlert(message: "".localized(ACTranslationKey.grids_overlay1),
+        currentAlert = Arc.shared.displayAlert(message: "".localized(ACTranslationKey.grids_overlay1),
 									options: [.wait(waitTime: 2.0, {
 										self.displaySymbols()
 										$0.removeFromSuperview()
