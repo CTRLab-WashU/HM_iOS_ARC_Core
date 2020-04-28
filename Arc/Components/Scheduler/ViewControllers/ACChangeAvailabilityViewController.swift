@@ -30,7 +30,7 @@ open class ACChangeAvailabilityViewController: UIViewController {
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if Arc.shared.studyController.getCurrentStudyPeriod() != nil {
-           // studyPeriodAdjustView.isHidden = true
+			studyPeriodAdjustView.isHidden = true
         }
         if let config = HMMarkupRenderer.config, config.shouldTranslate {
             changeTimeButton.setTitle("CHANGE".localized(ACTranslationKey.button_change), for: .normal)
