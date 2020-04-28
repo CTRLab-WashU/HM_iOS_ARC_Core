@@ -99,7 +99,7 @@ public class ACTodayProgressView : UIView {
 			}
 			self.sessionCompletionLabel = $0.acLabel {
 				stack.setCustomSpacing(22, after: $0)
-				
+				$0.textAlignment = .center
 				Roboto.Style.subHeading($0, color: ACColor.secondaryText)
 				$0.text = ""
 				animationParams.delay = 1.2
