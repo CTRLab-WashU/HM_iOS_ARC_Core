@@ -143,19 +143,19 @@ open class AuthController:MHController {
 		
         
     }
-	open func pullData<T:Phase>(phaseType:T.Type, completion:@escaping (()->())) where T.PhasePeriod == T {
+	open func pullData<T:Phase>(phaseType:T.Type, completion:@escaping ((Error?)->())) where T.PhasePeriod == T {
 		guard let participantID = Arc.shared.participantId else {
-			return completion()
+			return completion(nil)
 		}
 		HMAPI.getWakeSleep.execute(data: nil, completion: { (res, obj, err) in
 			guard err == nil && obj?.errors.isEmpty ?? true else {
-				completion()
+				completion(err)
 				return
 				
 				
 			}
 			guard let data = obj?.response?.wake_sleep_schedule else {
-				completion()
+				completion(nil)
 				return
 			}
 			
@@ -179,10 +179,10 @@ open class AuthController:MHController {
 			HMAPI.getTestSchedule.execute(data: nil, completion: { (res, obj, err) in
 				guard err == nil && obj?.errors.isEmpty ?? true else {
 					
-					return completion()
+					return completion(err)
 				}
 				guard let data = obj?.response?.test_schedule else {
-					return completion()
+					return completion(nil)
 				}
 				
 				
@@ -195,7 +195,7 @@ open class AuthController:MHController {
 					}
 					
 				}
-				completion()
+				completion(nil)
 			})
 		})
 		
