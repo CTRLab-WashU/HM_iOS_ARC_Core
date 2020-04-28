@@ -165,7 +165,7 @@ open class HMRestAPI : NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 						do {
 							let obj = try JSONDecoder().decode(HMResponse.self, from: data).toString()
 
-							HMLog(obj);
+							HMLog(String(bytes: data, encoding: .utf8) ?? "", quiet: false, silent: false);
 						} catch {
 							//HMLog(error.localizedDescription)
 							completionHandlers.forEach {
