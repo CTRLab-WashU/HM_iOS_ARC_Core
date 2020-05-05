@@ -12,7 +12,7 @@ import ArcUIKit
     public enum State {
         case radio, checkBox, button
         
-        var unselectedImage:UIImage? {
+        fileprivate var unselectedImage:UIImage? {
             get {
                 switch self {
                 case .checkBox:
@@ -25,7 +25,7 @@ import ArcUIKit
             }
         }
         
-        var selectedImage:UIImage? {
+        fileprivate var selectedImage:UIImage? {
             get {
                 switch self {
                 case .checkBox:
@@ -38,15 +38,13 @@ import ArcUIKit
                 }
             }
         }
-        var cornerRadius:CGFloat {
-            get {
-                switch self {
-                case .checkBox:
-                    return 6.0
-                default:
-                    return 22.0
-                }
-            }
+		fileprivate func cornerRadius(referenceHeight:CGFloat = 22.0)->CGFloat {
+			switch self {
+			case .checkBox:
+				return 6.0
+			default:
+				return referenceHeight
+			}
         }
 //        var altSelectedImage:UIImage? {
 //            get {
@@ -76,7 +74,7 @@ import ArcUIKit
 	var isExclusive:Bool = false
     var needsImmediateResponse:Bool = false
     private var _isSelected = false
-    
+	private var _state:State?
     var tapped:((ChoiceView)->Void)?
     
     func getMessage() -> String? {
@@ -97,9 +95,10 @@ import ArcUIKit
         }
     }
     func set(state:State) {
+		_state = state
         button.setImage(state.unselectedImage, for: .normal)
         button.setImage(state.selectedImage, for: .selected)
-        self.wrappedView.cornerRadius = state.cornerRadius
+		self.wrappedView.cornerRadius = state.cornerRadius(referenceHeight: self.frame.height/2)
         if state == .button {
             label.textAlignment = .center
             button.isHidden = true
@@ -121,9 +120,14 @@ import ArcUIKit
             label.font = UIFont(name: "Roboto-Medium", size: 18)
         }
         self.layoutSubviews()
+
     }
-    
-    
+//
+	open override func layoutSubviews() {
+		super.layoutSubviews()
+		self.wrappedView.cornerRadius = _state?.cornerRadius(referenceHeight: self.wrappedView.frame.height/2) ?? 22.0
+
+	}
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         if (needsImmediateResponse == true) {
