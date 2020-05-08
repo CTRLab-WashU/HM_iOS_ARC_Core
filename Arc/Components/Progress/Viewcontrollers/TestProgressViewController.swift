@@ -25,7 +25,7 @@ public class TestProgressViewController: CustomViewController<TestProgressView> 
 		
 		customView.title = title
 		customView.subTitle = subTitle
-		customView.count = 0
+		customView.count = count
 		customView.maxCount = maxCount
 		customView.dividerWidth = 1.0
 	}
