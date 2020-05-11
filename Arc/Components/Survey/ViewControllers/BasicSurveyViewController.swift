@@ -417,7 +417,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 	
 	open func didPresentQuestion(input: SurveyInput?, questionId:String) {
 		let question = Arc.shared.surveyController.get(question: questionId)
-		if let value = Arc.shared.surveyController.getResponse(forQuestion: questionId, fromSurveyResponse: surveyId){
+        if let value = Arc.shared.surveyController.getResponse(forQuestion: questionId, fromSurveyResponse: surveyId), value.value != nil{
 			input?.setValue(value)
 			enableNextButton(title: question.nextButtonTitle ?? "".localized(ACTranslationKey.button_next))
 		}
