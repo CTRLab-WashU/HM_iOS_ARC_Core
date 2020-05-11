@@ -24,7 +24,11 @@ open class ACWakeSurveyViewController: BasicSurveyViewController {
         case other
     }
     
-    
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        shouldShowHelpButton = false
+    }
 	
     open override func didPresentQuestion(input: SurveyInput?, questionId: String)
     {
