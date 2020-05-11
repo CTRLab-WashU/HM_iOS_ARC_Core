@@ -43,7 +43,7 @@ public class TestCountDownView: UIView {
 			self?.countLabel = $0.acLabel {
 				
 				stack.setCustomSpacing(12, after: $0)
-				$0.text = "3"
+				$0.text = " 3 "
 				Georgia.Style.veryLargeTitle($0)
 			}
 			

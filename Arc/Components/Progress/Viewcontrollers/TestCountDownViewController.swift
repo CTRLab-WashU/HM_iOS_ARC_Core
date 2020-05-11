@@ -29,12 +29,12 @@ public class TestCountDownViewController: CustomViewController<TestCountDownView
         self.customView.countLabel.font = UIFont(name: "Georgia-Italic", size: 96)
 		Animate().duration(0).delay(1.0).run { [weak self]
 			t in
-			self?.customView.countLabel.text = "2"
+			self?.customView.countLabel.text = " 2 "
 			return true
 		}
 		Animate().duration(0).delay(2.0).run { [weak self]
 			t in
-			self?.customView.countLabel.text = "1"
+			self?.customView.countLabel.text = " 1 "
 			return true
 		}
 		Animate().duration(0).delay(3.0).run { [weak self]
