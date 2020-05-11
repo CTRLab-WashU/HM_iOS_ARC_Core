@@ -114,7 +114,7 @@ public class ACScheduleViewController : BasicSurveyViewController {
     }
     
     public override func didPresentQuestion(input: SurveyInput?, questionId: String) {
-        
+        super.didPresentQuestion(input: input, questionId: questionId)
         guard let input = input else
         {
             return;
