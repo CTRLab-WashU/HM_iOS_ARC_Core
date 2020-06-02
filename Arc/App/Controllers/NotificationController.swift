@@ -266,6 +266,27 @@ open class NotificationController : MHController
 		UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers);
 		
     }
+    open func manageDeletePresentedSessionNotifications()
+    {
+        
+        guard let studyId = Arc.shared.currentStudy else {
+            return
+        }
+        let notifications = Arc.shared.notificationController.get(notificationsWithIdentifierPrefix: "TestSession")
+        for notification in notifications
+        {
+            guard let test = Arc.shared.studyController.get(session: Int(notification.sessionID)) else {
+                continue
+            }
+            
+            guard test.startTime == nil && test.missedSession == false else {
+                continue
+            }
+            UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [notification.notificationIdentifier ?? "-"]);
+
+        }
+
+    }
     //Delete notifications that could have been created by previous
 	//Installations of the application, or remove them for clean up sake
 	open func clearAllPendingNotifications()
@@ -284,7 +305,11 @@ open class NotificationController : MHController
     }
     
     // deletes notifications that have already passed
-    
+    open func removePresentedNotifications() {
+       
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+    }
+
 	open func clearPastNotifications()
     {
         let predicate = NSPredicate(format: "scheduledAt < %@", NSDate());
