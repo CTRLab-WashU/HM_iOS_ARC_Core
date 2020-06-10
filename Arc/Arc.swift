@@ -320,25 +320,29 @@ open class Arc : ArcApi {
             app.participantId = Int(id)
         }
         MHController.dataContext.performAndWait {
+            if app.appController.timePeriodPassed(key: "heartBeat",
+                                                  date: Date().addingHours(hours: -6)) {
+                Arc.shared.appController.lastFetched["heartBeat"] = Date().timeIntervalSince1970
+                HMAPI.deviceHeartbeat.execute(data: HeartbeatRequestData())
 
-            HMAPI.deviceHeartbeat.execute(data: HeartbeatRequestData())
-			HMAPI.getContactInfo.execute(data: nil, completion: { (res, obj, err) in
-                guard err == nil && obj?.errors.isEmpty ?? true else {
-                    return;
-                }
-                guard let contact_info = obj?.response?.contact_info else {
-                    return;
-                }
-                DispatchQueue.main.async{
-                   
-                    if let json = try? JSONEncoder().encode(contact_info)
-                    {
-                        CoreDataStack.currentDefaults()?.set(json, forKey: "contact_info");
+                HMAPI.getContactInfo.execute(data: nil, completion: { (res, obj, err) in
+                    guard err == nil && obj?.errors.isEmpty ?? true else {
+                        return;
                     }
-                    
-                }
-            });
-            uploadTestData()
+                    guard let contact_info = obj?.response?.contact_info else {
+                        return;
+                    }
+                    DispatchQueue.main.async{
+
+                        if let json = try? JSONEncoder().encode(contact_info)
+                        {
+                            CoreDataStack.currentDefaults()?.set(json, forKey: "contact_info");
+                        }
+
+                    }
+                });
+                uploadTestData()
+            }
 		
         }
 		
@@ -356,6 +360,9 @@ open class Arc : ArcApi {
 		MHController.dataContext.performAndWait {
 			Arc.shared.notificationController.clear(sessionNotifications: 0)
 			Arc.shared.notificationController.schedule(upcomingSessionNotificationsWithLimit: 32)
+            Arc.shared.notificationController.manageDeletePresentedSessionNotifications("TestSession") {}
+            Arc.shared.notificationController.manageDeletePresentedSessionNotifications("MissedTest", expiredAge: 4) {}
+
 			Arc.shared.notificationController.save()
 		}
 

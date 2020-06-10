@@ -180,7 +180,7 @@ open class NotificationController : MHController
                 newNotification.studyID = study.studyID;
                 study.hasScheduledNotifications = true;
             } else {
-                fatalError("Invalid test session, No study ID")
+                assertionFailure("Invalid test session, No study ID")
             }
             newNotification.sessionID = test.sessionID;
         }
@@ -188,7 +188,7 @@ open class NotificationController : MHController
         
         //        save();
     }
-    
+
     open func scheduleMissedTestNotification() {
         self.clearMissedTestNotifications()
         let sessions = Arc.shared.studyController.getUpcomingSessions(withLimit: 32)
@@ -266,24 +266,33 @@ open class NotificationController : MHController
 		UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers);
 		
     }
-    open func manageDeletePresentedSessionNotifications()
+    open func manageDeletePresentedSessionNotifications(_ prefix:String? = nil, expiredAge:Int = 2, completion:(()->())?)
     {
-        
-        guard let studyId = Arc.shared.currentStudy else {
-            return
-        }
-        let notifications = Arc.shared.notificationController.get(notificationsWithIdentifierPrefix: "TestSession")
-        for notification in notifications
-        {
-            guard let test = Arc.shared.studyController.get(session: Int(notification.sessionID)) else {
-                continue
-            }
-            
-            guard test.startTime == nil && test.missedSession == false else {
-                continue
-            }
-            UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [notification.notificationIdentifier ?? "-"]);
+        UNUserNotificationCenter.current().getDeliveredNotifications { (notifs) in
+            let notifsToRemove: [String] = notifs.compactMap{
+                guard let dateComponents = ($0.request.trigger as? UNCalendarNotificationTrigger)?.dateComponents else {
+                    return nil
+                }
+                guard let date = Calendar.current.date(from: dateComponents) else {
+                    return nil
+                }
+                guard date.compare(Date().addingHours(hours: -expiredAge)) == .orderedAscending else {
+                    HMLog("\(date.localizedFormat()) is greater than \(Date().addingHours(hours: -expiredAge).localizedFormat())")
+                    return nil
+                }
 
+                if let p =  prefix {
+                    guard $0.request.identifier.hasPrefix(p) else {
+                        HMLog("does not have prefix \(p)")
+
+                        return nil
+                    }
+                }
+                HMLog("Removing \($0.request.identifier)")
+                return $0.request.identifier
+            }
+                UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: notifsToRemove);
+            completion?()
         }
 
     }

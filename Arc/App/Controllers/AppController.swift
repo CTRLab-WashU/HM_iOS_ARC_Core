@@ -287,4 +287,11 @@ open class AppController : MHController {
         signature.tag = tag
         return true
     }
+
+    public func timePeriodPassed(key:String, date:Date) -> Bool {
+        guard let t = Arc.shared.appController.lastFetched[key] else {
+            return true
+        }
+        return t < date.timeIntervalSince1970
+    }
 }
