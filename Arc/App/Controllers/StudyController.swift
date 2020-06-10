@@ -1209,7 +1209,7 @@ open class StudyController : MHController {
 		}
 		
 		
-		let dateRange = Arc.shared.scheduleController.get(rangeForCurrentDay: date, participantId: participantId)
+		let dateRange = Arc.shared.scheduleController.get(rangeUpToNextDayFrom: date, participantId: participantId)
 		
 		let sessions = get(sessionsInDateRange: dateRange)
 		
@@ -1230,7 +1230,7 @@ open class StudyController : MHController {
 		var sessions:Array<Session> = Array();
 		
 		var left = Arc.shared.scheduleController.get(startTimeForDate: date, participantID: participantId)
-		var right = Arc.shared.scheduleController.get(endTimeForDate: date, participantID: participantId)
+        var right = Arc.shared.scheduleController.get(startTimeForDate: date.addingDays(days: 1), participantID: participantId)
 		
 		//If the date is before the left handle
 		if left > date {

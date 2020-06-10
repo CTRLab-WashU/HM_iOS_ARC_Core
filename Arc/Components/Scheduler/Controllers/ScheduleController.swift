@@ -50,6 +50,22 @@ open class ScheduleController : MHController {
 		}
 		return (left ... right)
 	}
+    open func get(rangeUpToNextDayFrom date:Date, participantId:Int) -> ClosedRange<Date> {
+        var left = get(startTimeForDate: date, participantID: participantId)
+        var right = get(startTimeForDate: date.addingDays(days: 1), participantID: participantId)
+
+        //If the date is before the left handle
+        if left > date{
+
+            //To get date to fall into the range we will move left to be the right handle
+            right = left
+
+            //This way the left handle is always before the date and the right handle is after the date this will prevent comparison errors.
+            left = left.addingDays(days: -1)
+
+        }
+        return (left ... right)
+    }
 	open func get(rangeForUpcomingDay date:Date, participantId:Int) -> ClosedRange<Date> {
 		let left = get(startTimeForDate: date, participantID: participantId)
 		let right = get(endTimeForDate: date, participantID: participantId)
