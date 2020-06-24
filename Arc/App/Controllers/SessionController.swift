@@ -251,7 +251,6 @@ open class SessionController:MHController {
 		let md5 = data.encode()?.MD5()
 		
 		let submitTestSchedule:HMAPIRequest<TestScheduleRequestData, HMResponse> = .post("submit-test-schedule")
-		print(data.toString())
 		submitTestSchedule.execute(data: data) { (response, obj, _) in
 			HMLog("Participant: \(data.participant_id ?? ""), received response \(obj?.toString() ?? "") on \(Date())")
 			MHController.dataContext.performAndWait {
