@@ -153,7 +153,7 @@ open class NotificationController : MHController
             }
         }
         
-        if let time = test.expirationDate?.localizedFormat(template: "h:mm a") {
+        if let time = test.expirationDate?.localizedFormat(template: "jj:mm a") {
             title = title.replacingOccurrences(of: "{TIME}", with: time)
         }
         
