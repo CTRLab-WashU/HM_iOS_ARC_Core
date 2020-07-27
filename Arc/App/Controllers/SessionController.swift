@@ -106,7 +106,7 @@ open class SessionController:MHController {
 		}
 	}
     open func sendSignatures() {
-        MHController.dataContext.perform {
+        MHController.dataContext.performAndWait {
             let signatures = self.getSignaturesForUploading()
             for i in 0 ..< signatures.count {
                 self.uploadSignature(signature: signatures[i])
