@@ -232,3 +232,12 @@ import UIKit
 		
     }
 }
+
+extension UIView {
+    
+    @discardableResult
+    public func indicator(apply closure: (IndicatorView) -> Void) -> IndicatorView {
+        return custom(IndicatorView(), apply: closure)
+    }
+    
+}
