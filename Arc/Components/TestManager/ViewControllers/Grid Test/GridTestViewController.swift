@@ -41,14 +41,15 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 	public var isVisible = true
 	public var shouldAutoProceed = true
     public var isPracticeTest = false
-    public var arrowPosition = true
 	public var fIndexPaths:[IndexPath] = []
 	public var symbolIndexPaths:[IndexPath] = []
     var interstitial:InterstitialView = .get()
+    @IBOutlet public weak var collectionStack: UIStackView!
     @IBOutlet public weak var collectionView: UICollectionView!
     @IBOutlet public weak var collectionViewHeight:NSLayoutConstraint!
     @IBOutlet public weak var tapOnTheFsLabel: ACLabel!
     @IBOutlet public weak var collectionViewWidth: NSLayoutConstraint!
+    @IBOutlet public weak var continueButton: ACButton!
 	public weak var delegate:GridTestViewControllerDelegate?
     private var symbols:[UIImage] = [#imageLiteral(resourceName: "key"),
                                      #imageLiteral(resourceName: "phone"),
@@ -109,7 +110,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         if let h = UIApplication.shared.keyWindow?.rootViewController?.view.frame.height, h > 568 {
             LETTER_BUFFER = 60
         }
-		
+		continueButton.isHidden = true
 		let _ = controller.set(symbols: responseId, gridTests: tests)
         
     }
@@ -138,6 +139,8 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 			return
 		}
         
+        continueButton.isHidden = true
+        
         self.collectionViewHeight.constant = CGFloat((IMAGE_HEIGHT*IMAGE_ROWS) + (LINE_SPACING*(IMAGE_ROWS-1)))
         if SMALLER_GRIDS {
             collectionViewWidth.constant = IMAGE_GRID_TUTORIAL_WIDTH
@@ -158,7 +161,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         _ = controller.markTime(gridDisplayedSymbols: responseId, questionIndex: testNumber)
        
 		if shouldAutoProceed {
-			Timer.scheduledTimer(withTimeInterval: 3, repeats: false) {
+			Timer.scheduledTimer(withTimeInterval: 1, repeats: false) {
 				[weak self] (timer) in
 				self?.displayFs()
 			}
@@ -189,10 +192,13 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         _ = controller.markTime(gridDisplayedFs: responseId, questionIndex: testNumber)
         
         tapOnTheFsLabel.isHidden = false
-		
+		tapOnTheFsLabel.translationKey = "grids_subheader_fs"
+        tapOnTheFsLabel.text = "Tap on the F's"
+        tapOnTheFsLabel.numberOfLines = 0
+        
 		if shouldAutoProceed {
 
-			Timer.scheduledTimer(withTimeInterval: 8, repeats: false) {[weak self] (timer) in
+			Timer.scheduledTimer(withTimeInterval: 1, repeats: false) {[weak self] (timer) in
 				self?.displayReady()
 			}
 		}
@@ -252,7 +258,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 			return
 		}
 		self.tapOnTheFsLabel.isHidden = true
-
+        continueButton.isHidden = true
         currentAlert = Arc.shared.displayAlert(message: "".localized(ACTranslationKey.grids_overlay1),
 									options: [.wait(waitTime: 2.0, {
 										self.displaySymbols()
@@ -298,6 +304,12 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         	endTimer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(endTest), userInfo: nil, repeats: false)
 		}
     }
+    
+    @IBAction func continuePressed(_ sender: Any)
+    {
+        maybeEndTest()
+    }
+    
     @objc open  func endTest()
     {
         if phase == 3
@@ -372,6 +384,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
             
             let iCell = cell as! GridImageCell
             iCell.clear()
+            iCell.layer.cornerRadius = 4
             iCell.layer.borderWidth = 1
             iCell.layer.borderColor = UIColor(named: "Modal Fade")!.cgColor
             iCell.isPracticeCell = self.isPracticeTest
@@ -399,6 +412,22 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
                 if let selection = controller.get(selectedData: index, id: responseId,       questionIndex: testNumber, gridType: .image)?.selection {
                         iCell.setImage(image:self.symbols[selection])
                         iCell.image.isHidden = false
+                }
+                var selected = 0
+                for i in 0...24
+                {
+                    let value = (controller.get(selectedData: i, id: responseId, questionIndex: testNumber, gridType: .image)?.selection) ?? -1
+                    if value > -1
+                    {
+                        selected += 1
+                    }
+                }
+                if selected == 3
+                {
+                    continueButton.isHidden = false
+                    collectionStack.setCustomSpacing(16, after: tapOnTheFsLabel)
+                } else {
+                    continueButton.isHidden = true
                 }
             }
                             
@@ -431,7 +460,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         {
             if collectionView.indexPathsForSelectedItems?.count == 3
             {
-                return false;
+                
             }
         }
         
@@ -457,12 +486,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 //                    })
 //                }
 //            }
-            if self.choiceIndicator?.isHidden == false{
-                self.choiceIndicator?.removeFromSuperview()
-                self.choiceIndicator?.targetView?.backgroundColor = UIColor(red: 191.0/255.0, green: 215.0/255.0, blue: 224.0/255.0, alpha: 1.0)
-                self.choiceIndicator?.targetView?.layer.borderWidth = 1
-                self.choiceIndicator?.targetView?.layer.borderColor = UIColor(named: "Modal Fade")!.cgColor
-            }
+
             
             
             let touchedAt = c.touchTime!
@@ -472,7 +496,12 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
             let coll = collectionView
             let selection = controller.get(selectedData: indexPath.row, id: responseId, questionIndex: testNumber, gridType: .image)?.selection
             
-            imagePopup(in: self.view, indexPath: indexPath, view: c, choice: selection) { popupSelection in
+            choiceIndicator?.removeFromSuperview()
+            choiceIndicator?.targetView?.backgroundColor = UIColor(red: 191.0/255.0, green: 215.0/255.0, blue: 224.0/255.0, alpha: 1.0)
+            choiceIndicator?.targetView?.layer.borderWidth = 1
+            choiceIndicator?.targetView?.layer.borderColor = UIColor(named: "Modal Fade")!.cgColor
+            
+            choiceIndicator = imagePopup(in: self.view, indexPath: indexPath, view: c, choice: selection) { popupSelection in
                 
                 switch popupSelection {
                 case .set(let imageIndex, let index):
@@ -520,13 +549,8 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         {
             guard !isPracticeTest else { return }
             
-            
-            if self.choiceIndicator?.isHidden == false
-            {
-                self.choiceIndicator?.removeFromSuperview()
-               
-            }
-            
+            choiceIndicator?.removeFromSuperview()
+
 //            _ = controller.unsetValue(responseIndex: indexPath.row,
 //            questionIndex: testNumber,
 //            gridType: .image,
@@ -616,7 +640,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
     
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         if mode == .image || mode == .answers {
-            return 1
+            return 3
         } else if mode == .fCell {
             return 1
         } else {
@@ -636,81 +660,93 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         }
     }
     
-    public func imagePopup(in parent:UIView, indexPath:IndexPath, view: UIView, choice: Int?, action:@escaping(PopupAction) -> ())
+    public func imagePopup(in parent:UIView, indexPath:IndexPath, view: UIView, choice: Int?, action:@escaping(PopupAction) -> ()) -> IndicatorView
     {
-        if indexPath.row > 9 {
-            arrowPosition = false
+//        var arrowPosition:Bool = false
+//        if indexPath.row > 14 {
+//            arrowPosition = false
+//        } else {
+//            arrowPosition = true
+//        }
+        
+        let gridSelection:GridTestSelectionView = .get()
+        gridSelection.keyImage.image = symbols[0]
+        if choice == 0 {
+            gridSelection.keyButton.isEnabled = false
+            gridSelection.keyImage.alpha = 0.5
+        }
+        styleImageButton(imageButton: gridSelection.keyImage)
+        gridSelection.keyButton.addAction {
+            action(.set(responseData: 0, index: indexPath))
+            gridSelection.removeFromSuperview()
+        }
+        gridSelection.phoneImage.image = symbols[1]
+        if choice == 1 {
+            gridSelection.phoneButton.isEnabled = false
+            gridSelection.phoneImage.alpha = 0.5
+        }
+        styleImageButton(imageButton: gridSelection.phoneImage)
+        gridSelection.phoneButton.addAction {
+            action(.set(responseData: 1, index: indexPath))
+            gridSelection.removeFromSuperview()
+        }
+        gridSelection.penImage.image = symbols[2]
+        if choice == 2 {
+            gridSelection.penButton.isEnabled = false
+            gridSelection.penImage.alpha = 0.5
+        }
+        styleImageButton(imageButton: gridSelection.penImage)
+        gridSelection.penButton.addAction {
+            action(.set(responseData: 2, index: indexPath))
+            gridSelection.removeFromSuperview()
+        }
+        if choice != nil {
+            gridSelection.removeItem.addAction {
+                action(.unset(index: indexPath))
+                gridSelection.removeFromSuperview()
+                
+            }
         } else {
-            arrowPosition = true
+            gridSelection.hideRemoveItemButton()
         }
         
-        choiceIndicator = parent.indicator {
+        return parent.indicator {
             $0.targetView = view
+            $0.configure(with: IndicatorView.Config(primaryColor: .white, secondaryColor: .white, textColor: .black, cornerRadius: 16, arrowEnabled: true, arrowAbove: true))
             $0.container?.axis = .horizontal
-            
-            $0.configure(with: IndicatorView.Config(primaryColor: .white,
-                                                    secondaryColor: .white,
-                                                    textColor: .black,
-                                                    cornerRadius: 8.0,
-                                                    arrowEnabled: true,
-                                                    arrowAbove: arrowPosition))
+            $0.layer.masksToBounds = false
+            $0.layer.shadowOpacity = 0.5
+            $0.layer.shadowRadius = 4
+            $0.layer.shadowOffset = CGSize(width: 0, height: 2)
+            $0.layer.shadowColor = UIColor.black.cgColor
+            $0.container?.addArrangedSubview(gridSelection)
             $0.layout {
-                $0.height == 100
-                $0.width == 200
                 $0.centerX == view.centerXAnchor ~ 500
-                $0.top >= view.safeAreaLayoutGuide.topAnchor
-                $0.leading >= self.view.safeAreaLayoutGuide.leadingAnchor + 20
-                $0.trailing <= self.view.safeAreaLayoutGuide.trailingAnchor - 20
-                    if indexPath.row > 9{
-                        $0.bottom == view.topAnchor - 8
-                    } else{
-                        $0.top == view.bottomAnchor - 8
-                    }
-                }
-            
-            let button1 = UIButton(type: .custom)
-            let button2 = UIButton(type: .custom)
-            let button3 = UIButton(type: .custom)
-            let button4 = UIButton(type: .custom)
-            
-            button1.setImage(self.symbols[0], for: .normal)
-            
-            button2.setImage(self.symbols[1], for: .normal)
-            
-            button3.setImage(self.symbols[2], for: .normal)
-            button4.titleLabel?.text = "Remove Item"
-           
-            $0.container?.addArrangedSubview(button1)
-            $0.container?.addArrangedSubview(button2)
-            $0.container?.addArrangedSubview(button3)
-            if choice != nil{
-                $0.container?.addArrangedSubview(button4)
+                $0.top >= parent.safeAreaLayoutGuide.topAnchor ~ 999
+                $0.bottom <= parent.safeAreaLayoutGuide.bottomAnchor ~ 999
+                $0.trailing <= parent.safeAreaLayoutGuide.trailingAnchor ~ 999
+                $0.leading >= parent.safeAreaLayoutGuide.leadingAnchor ~ 999
+//                if indexPath.row > 14{
+//                    $0.bottom == view.topAnchor - 8 ~ 500
+//                } else{
+                    $0.top == view.bottomAnchor + 8 ~ 500
+                //}
             }
-            
-            
-            button1.addAction {
-                action(.set(responseData: 0, index: indexPath))
-                self.choiceIndicator?.removeFromSuperview()
-                self.collectionView.reloadData()
-            }
-            button2.addAction {
-                action(.set(responseData: 1, index: indexPath))
-                self.choiceIndicator?.removeFromSuperview()
-                self.collectionView.reloadData()
-            }
-            button3.addAction {
-                action(.set(responseData: 2, index: indexPath))
-                self.choiceIndicator?.removeFromSuperview()
-                self.collectionView.reloadData()
-            }
-            button4.addAction {
-                action(.unset(index: indexPath))
-                self.choiceIndicator?.removeFromSuperview()
-                self.collectionView.reloadData()
-            }
+        }
 
-            }
-        
     }
 
+    public func styleImageButton(imageButton:UIImageView)
+    {
+        imageButton.layer.cornerRadius = 6
+        imageButton.layer.borderColor = UIColor.lightGray.cgColor
+        imageButton.layer.borderWidth = 1
+        imageButton.layer.shadowOffset = CGSize(width: 0, height: 1)
+        imageButton.layer.shadowColor = UIColor.black.cgColor
+        imageButton.layer.shadowRadius = 1
+        imageButton.layer.shadowOpacity = 0.5
+        imageButton.layer.masksToBounds = false
+    }
+    
+    
 }

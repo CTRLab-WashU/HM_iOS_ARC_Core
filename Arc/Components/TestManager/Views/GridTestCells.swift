@@ -28,7 +28,7 @@ open class GridImageCell:UICollectionViewCell
                 self.backgroundColor = UIColor(named: "Secondary")
                 self.layer.borderWidth = 5
                 self.layer.borderColor = UIColor(named: "Primary")!.cgColor
-                self.image.isHidden = true
+                //self.image.isHidden = true
                 
                 if isPracticeCell {
                     //self.dotView.isHidden = false
