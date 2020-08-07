@@ -89,9 +89,6 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
         let attrString = NSAttributedString(string: "Privacy Policy".localized("privacy_linked"), attributes: attributes)
         privacyPolicyButton.setAttributedTitle(attrString, for: .normal)
         
-        if #available(iOS 13.0, *) {
-            overrideUserInterfaceStyle = .light
-        }
     }
 
     @objc func keyboardWillShow(notification: NSNotification) {
