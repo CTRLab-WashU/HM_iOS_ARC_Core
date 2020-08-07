@@ -45,6 +45,10 @@ open class StartDateShiftViewController: SurveyNavigationViewController {
 
             }
         }
+        
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        }
     }
     
     open override func templateForQuestion(questionId: String) -> Dictionary<String, String> {

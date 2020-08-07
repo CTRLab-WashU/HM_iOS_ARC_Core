@@ -88,6 +88,10 @@ open class SurveyViewController: UIViewController, SurveyInput, UIScrollViewDele
 		let attributes = [ NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.foregroundColor: UIColor(named: "Primary") ?? .blue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.medium) ] as [NSAttributedString.Key : Any]
         let attrString = NSAttributedString(string: "Privacy Policy".localized("privacy_linked"), attributes: attributes)
         privacyPolicyButton.setAttributedTitle(attrString, for: .normal)
+        
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        }
     }
 
     @objc func keyboardWillShow(notification: NSNotification) {

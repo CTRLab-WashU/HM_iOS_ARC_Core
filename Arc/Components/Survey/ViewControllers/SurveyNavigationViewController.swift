@@ -50,7 +50,10 @@ open class SurveyNavigationViewController: UINavigationController, UINavigationC
     
     override open func viewDidLoad() {
         super.viewDidLoad()
-
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        }
+        
         // Do any additional setup after loading the view.
         delegate = self
     }
