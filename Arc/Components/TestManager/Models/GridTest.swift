@@ -64,10 +64,12 @@ public struct GridTestResponse : HMTestCodable {
             var selection_time:TimeInterval?
             var x:Int
             var y:Int
-            init(x:Int, y:Int, selection_time:TimeInterval?) {
+            var selection:Int?
+            init(x:Int, y:Int, selection_time:TimeInterval?, selection:Int?) {
                 self.x = x
                 self.y = y
                 self.selection_time = selection_time
+                self.selection = selection
             }
         }
         public struct Image : Codable {

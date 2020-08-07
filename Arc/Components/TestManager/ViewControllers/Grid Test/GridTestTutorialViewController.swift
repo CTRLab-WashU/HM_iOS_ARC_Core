@@ -161,7 +161,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			didSelect()
 	}
 	
-	func didDeselectLeter(indexPath: IndexPath) {
+	func didDeselectLetter(indexPath: IndexPath) {
 		didSelect()
 	}
     

@@ -24,16 +24,22 @@ open class GridImageCell:UICollectionViewCell
         willSet {
             if newValue == true
             {
-                self.backgroundColor = UIColor(red:0, green:0.37, blue:0.52, alpha:1) //UIColor(red: 13.0 / 255.0, green: 143.0 / 255.0, blue: 192.0 / 255.0, alpha: 1.0);
-                self.image.isHidden = true
+                //self.backgroundColor = UIColor(red:0, green:0.37, blue:0.52, alpha:1) //UIColor(red: 13.0 / 255.0, green: 143.0 / 255.0, blue: 192.0 / 255.0, alpha: 1.0);
+                self.backgroundColor = UIColor(named: "Secondary")
+                self.layer.borderWidth = 5
+                self.layer.borderColor = UIColor(named: "Primary")!.cgColor
+                //self.image.isHidden = true
+                
                 if isPracticeCell {
-                    self.dotView.isHidden = false
+                    //self.dotView.isHidden = false
                 }
             }
             else
             {
                 self.backgroundColor = UIColor(red: 191.0/255.0, green: 215.0/255.0, blue: 224.0/255.0, alpha: 1.0) //UIColor(red: 182.0/255.0, green: 221.0/255.0, blue: 236.0/255.0, alpha: 1.0);
-                self.dotView.isHidden = true
+                self.layer.borderWidth = 1
+                self.layer.borderColor = UIColor(named: "Modal Fade")!.cgColor
+                //self.dotView.isHidden = true
             }
         }
     }

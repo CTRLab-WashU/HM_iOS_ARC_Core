@@ -245,7 +245,7 @@ open class GridTestController : TestController<GridTestResponse> {
 		}
 	}
     
-    public func get(selectedResponse index:Int, id:String, questionIndex:Int, gridType:GridTestController.GridType) -> Bool {
+    public func get(selectedResponse index:Int, responseData:Int, id:String, questionIndex:Int, gridType:GridTestController.GridType) -> Bool {
         let coord = coordinate(for: index, section: questionIndex, gridType: gridType)
         let x = coord.0
         let y = coord.1
@@ -259,7 +259,8 @@ open class GridTestController : TestController<GridTestResponse> {
             let timeSinceStart = try get(timeSinceStart: id)
             let choice = GridTestResponse.Section.Choice(x: x,
                                                          y: y,
-                                                         selection_time: timeSinceStart)
+                                            selection_time: timeSinceStart,
+                                            selection: responseData)
             
             let set = Set<GridTestResponse.Section.Choice> (test.sections[questionIndex].choices)
             if set.contains(choice) {
@@ -272,6 +273,34 @@ open class GridTestController : TestController<GridTestResponse> {
         }
         
     }
+    
+    public func get(selectedData index:Int, id:String, questionIndex:Int, gridType:GridTestController.GridType) -> GridTestResponse.Section.Choice? {
+        let coord = coordinate(for: index, section: questionIndex, gridType: gridType)
+        let x = coord.0
+        let y = coord.1
+        do {
+            let test = try get(response: id)
+            guard questionIndex < test.sections.count else {
+                fatalError("Invalid question index: \(questionIndex)")
+                
+            }
+            
+            //let timeSinceStart = try get(timeSinceStart: id)
+//            let choice = GridTestResponse.Section.Choice(x: x,
+//                                                         y: y,
+//                                            selection_time: timeSinceStart
+//                                            )
+            
+            let set = Set<GridTestResponse.Section.Choice> (test.sections[questionIndex].choices)
+            
+                return set.first{ $0.x == x && $0.y == y}
+             
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+        
+    }
+    
     //update a response
 	public func set(symbols id:String, gridTests:[GridTest]) -> GridTestResponse {
 		do {
@@ -388,7 +417,7 @@ open class GridTestController : TestController<GridTestResponse> {
             let timeSinceStart = try get(timeSinceStart: id)
             let choice = GridTestResponse.Section.Choice(x: x,
                                                          y: y,
-                                                         selection_time: timeSinceStart)
+                                                         selection_time: timeSinceStart, selection: nil)
             
             var set = Set<GridTestResponse.Section.Choice> (test.sections[questionIndex].choices)
             if set.contains(choice) {
@@ -403,7 +432,7 @@ open class GridTestController : TestController<GridTestResponse> {
         }
         
     }
-    public func setValue(responseIndex index:Int, questionIndex:Int, gridType:GridTestController.GridType, time:Date, id:String) -> GridTestResponse {
+    public func setValue(responseIndex index:Int, responseData: Int, questionIndex:Int, gridType:GridTestController.GridType, time:Date, id:String) -> GridTestResponse {
         let coord = coordinate(for: index, section: questionIndex, gridType: gridType)
         let x = coord.0
         let y = coord.1
@@ -418,13 +447,18 @@ open class GridTestController : TestController<GridTestResponse> {
             let timeSinceStart = time.timeIntervalSince(startTime)
             let choice = GridTestResponse.Section.Choice(x: x,
                                                          y: y,
-                                                         selection_time: timeSinceStart)
+                                                         selection_time: timeSinceStart, selection: responseData)
             
             var set = Set<GridTestResponse.Section.Choice> (test.sections[questionIndex].choices)
+            let repeated = set.filter{$0.selection == responseData}.first ?? nil
+            if repeated?.selection == choice.selection
+            {
+                set.remove(repeated!)
+            }
             if set.contains(choice) {
                 set.remove(choice)
                 set.insert(choice)
-            } else {
+            }else {
                 set.insert(choice)
             }
             test.sections[questionIndex].choices = set.sorted()
