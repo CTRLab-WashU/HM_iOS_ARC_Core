@@ -72,10 +72,12 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         }
     }
     private let IMAGE_ROWS = 5
+    private let IMAGE_LINE_SPACING = 3
+    private var IMAGE_BUFFER = 8
     private let LETTER_SIZE = 42
     private let LETTER_ROWS = 10
     private var LETTER_BUFFER = 20
-    private let LINE_SPACING = 1
+    private let LETTER_LINE_SPACING = 1
     private let IMAGE_GRID_TUTORIAL_WIDTH:CGFloat = 260
     private let LETTER_GRID_TUTORIAL_WIDTH:CGFloat = 284
 
@@ -138,10 +140,11 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 		guard isVisible else {
 			return
 		}
+        choiceIndicator?.removeFromSuperview()
         
         continueButton.isHidden = true
         
-        self.collectionViewHeight.constant = CGFloat((IMAGE_HEIGHT*IMAGE_ROWS) + (LINE_SPACING*(IMAGE_ROWS-1)))
+        self.collectionViewHeight.constant = CGFloat((IMAGE_HEIGHT*IMAGE_ROWS) + (IMAGE_LINE_SPACING*(IMAGE_ROWS-1)) + IMAGE_BUFFER)
         if SMALLER_GRIDS {
             collectionViewWidth.constant = IMAGE_GRID_TUTORIAL_WIDTH
         }
@@ -161,7 +164,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         _ = controller.markTime(gridDisplayedSymbols: responseId, questionIndex: testNumber)
        
 		if shouldAutoProceed {
-			Timer.scheduledTimer(withTimeInterval: 1, repeats: false) {
+			Timer.scheduledTimer(withTimeInterval: 3, repeats: false) {
 				[weak self] (timer) in
 				self?.displayFs()
 			}
@@ -174,7 +177,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 			return
 		}
         
-        self.collectionViewHeight.constant = CGFloat((LETTER_SIZE*LETTER_ROWS) + (LINE_SPACING*(LETTER_ROWS-1)) + LETTER_BUFFER)
+        self.collectionViewHeight.constant = CGFloat((LETTER_SIZE*LETTER_ROWS) + (LETTER_LINE_SPACING*(LETTER_ROWS-1)) + LETTER_BUFFER)
         if SMALLER_GRIDS {
             collectionViewWidth.constant = LETTER_GRID_TUTORIAL_WIDTH
         }
@@ -198,7 +201,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         
 		if shouldAutoProceed {
 
-			Timer.scheduledTimer(withTimeInterval: 1, repeats: false) {[weak self] (timer) in
+			Timer.scheduledTimer(withTimeInterval: 8, repeats: false) {[weak self] (timer) in
 				self?.displayReady()
 			}
 		}
@@ -210,7 +213,9 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 			return
 		}
 		
-		self.collectionViewHeight.constant = CGFloat((LETTER_SIZE*LETTER_ROWS) + (LINE_SPACING*(LETTER_ROWS-1)) + LETTER_BUFFER)
+        choiceIndicator?.removeFromSuperview()
+        
+		self.collectionViewHeight.constant = CGFloat((LETTER_SIZE*LETTER_ROWS) + (LETTER_LINE_SPACING*(LETTER_ROWS-1)) + LETTER_BUFFER)
         if SMALLER_GRIDS {
             collectionViewWidth.constant = IMAGE_GRID_TUTORIAL_WIDTH
         }
@@ -279,7 +284,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         tapOnTheFsLabel.numberOfLines = 0
         interstitial.set(message: nil)
         interstitial.removeFromSuperview()
-        self.collectionViewHeight.constant = CGFloat((IMAGE_HEIGHT*IMAGE_ROWS) + (LINE_SPACING*(IMAGE_ROWS-1)))
+        self.collectionViewHeight.constant = CGFloat((IMAGE_HEIGHT*IMAGE_ROWS) + (IMAGE_LINE_SPACING*(IMAGE_ROWS-1)) + IMAGE_BUFFER)
         mode = .image
         
         collectionView.allowsSelection = true;
@@ -389,7 +394,8 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
             iCell.layer.borderColor = UIColor(named: "Modal Fade")!.cgColor
             iCell.isPracticeCell = self.isPracticeTest
             
-			if mode != .answers {
+            //temporary so we can get past practice test
+            if mode != .answers && !self.isPracticeTest {
             	iCell.image.isHidden = false;
 			} else {
 				if collectionView.indexPathsForSelectedItems?.contains(indexPath) ?? false{
@@ -473,20 +479,27 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         if let c = collectionView.cellForItem(at: indexPath) as? GridImageCell
         {
 //            if self.choiceIndicator?.isHidden == true{
-//
-//
-//
-//
-//                delegate?.didSelectGrid(indexPath: indexPath)
-//                //showDot(on: indexPath)
-//                if shouldAutoProceed {
-//                    maybeEndTimer?.invalidate();
-//                    maybeEndTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false, block: { (timer) in
-//                        self.maybeEndTest()
-//                    })
-//                }
-//            }
+            
+            //temporary so we can get past practice test
+            if self.isPracticeTest {
+                
+                let _ = controller.setValue(responseIndex: indexPath.row, responseData: 0,
 
+                                    questionIndex: testNumber,
+                                    gridType: .image,
+                                    time: c.touchTime!,
+                                    id: responseId)
+
+                delegate?.didSelectGrid(indexPath: indexPath)
+                    //showDot(on: indexPath)
+                if shouldAutoProceed {
+                    maybeEndTimer?.invalidate();
+                    maybeEndTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false, block: { (timer) in
+                        self.maybeEndTest()
+                    })
+                }
+            }
+        
             
             
             let touchedAt = c.touchTime!
@@ -496,28 +509,31 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
             let coll = collectionView
             let selection = controller.get(selectedData: indexPath.row, id: responseId, questionIndex: testNumber, gridType: .image)?.selection
             
-            choiceIndicator?.removeFromSuperview()
-            choiceIndicator?.targetView?.backgroundColor = UIColor(red: 191.0/255.0, green: 215.0/255.0, blue: 224.0/255.0, alpha: 1.0)
-            choiceIndicator?.targetView?.layer.borderWidth = 1
-            choiceIndicator?.targetView?.layer.borderColor = UIColor(named: "Modal Fade")!.cgColor
-            
-            choiceIndicator = imagePopup(in: self.view, indexPath: indexPath, view: c, choice: selection) { popupSelection in
+            //temporary so we can get past practice test
+            if !self.isPracticeTest {
+                choiceIndicator?.removeFromSuperview()
+                choiceIndicator?.targetView?.backgroundColor = UIColor(red: 191.0/255.0, green: 215.0/255.0, blue: 224.0/255.0, alpha: 1.0)
+                choiceIndicator?.targetView?.layer.borderWidth = 1
+                choiceIndicator?.targetView?.layer.borderColor = UIColor(named: "Modal Fade")!.cgColor
                 
-                switch popupSelection {
-                case .set(let imageIndex, let index):
-                    let _ = controller.setValue(responseIndex: index.row,
-                    responseData: imageIndex,
-                    questionIndex: test,
-                    gridType: .image,
-                    time: touchedAt,
-                    id: response)
-                case .unset(let imageIndex):
-                    let _ = controller.unsetValue(responseIndex: imageIndex.row,
-                               questionIndex: test,
-                               gridType: .image,
-                               id: response)
+                choiceIndicator = imagePopup(in: self.view, indexPath: indexPath, view: c, choice: selection) { popupSelection in
+                    
+                    switch popupSelection {
+                    case .set(let imageIndex, let index):
+                        let _ = controller.setValue(responseIndex: index.row,
+                        responseData: imageIndex,
+                        questionIndex: test,
+                        gridType: .image,
+                        time: touchedAt,
+                        id: response)
+                    case .unset(let imageIndex):
+                        let _ = controller.unsetValue(responseIndex: imageIndex.row,
+                                   questionIndex: test,
+                                   gridType: .image,
+                                   id: response)
+                    }
+                    coll.reloadData()
                 }
-                coll.reloadData()
             }
         }
         else if let c = collectionView.cellForItem(at: indexPath) as? GridFCell
