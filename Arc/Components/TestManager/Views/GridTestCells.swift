@@ -38,7 +38,7 @@ open class GridImageCell:UICollectionViewCell
             {
                 self.backgroundColor = UIColor(red: 191.0/255.0, green: 215.0/255.0, blue: 224.0/255.0, alpha: 1.0) //UIColor(red: 182.0/255.0, green: 221.0/255.0, blue: 236.0/255.0, alpha: 1.0);
                 self.layer.borderWidth = 1
-                self.layer.borderColor = UIColor(named: "Modal Fade")!.cgColor
+                self.layer.borderColor = UIColor(red: 133.0/255.0, green: 141/255.0, blue: 145.0/255.0, alpha: 1.0).cgColor
                 //self.dotView.isHidden = true
             }
         }
