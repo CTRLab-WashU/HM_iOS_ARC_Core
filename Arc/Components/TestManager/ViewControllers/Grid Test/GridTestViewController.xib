@@ -39,7 +39,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="409"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="420" id="Pyq-AP-BS4"/>
+                                <constraint firstAttribute="height" priority="750" constant="420" id="Pyq-AP-BS4"/>
                                 <constraint firstAttribute="width" priority="999" constant="320" id="fr7-WS-jvf"/>
                             </constraints>
                             <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
@@ -107,6 +107,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="dS7-jz-zik" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7mB-Ww-cRj" secondAttribute="bottom" constant="54" id="V8a-91-uUW"/>
                 <constraint firstItem="efi-qX-YDc" firstAttribute="top" secondItem="dS7-jz-zik" secondAttribute="top" constant="27" id="YDp-7F-p1d"/>
                 <constraint firstItem="dS7-jz-zik" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="efi-qX-YDc" secondAttribute="bottom" priority="999" constant="28" id="bBv-0O-GAg"/>
                 <constraint firstItem="dS7-jz-zik" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="11X-8i-GZq" secondAttribute="bottom" constant="64" id="pkg-kr-a2R"/>
