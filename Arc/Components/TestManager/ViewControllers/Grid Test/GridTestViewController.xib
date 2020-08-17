@@ -22,7 +22,6 @@
                 <outlet property="collectionStack" destination="efi-qX-YDc" id="aE9-DL-MlU"/>
                 <outlet property="collectionView" destination="7mB-Ww-cRj" id="Hec-Ae-qhB"/>
                 <outlet property="collectionViewHeight" destination="Pyq-AP-BS4" id="BS8-bb-zct"/>
-                <outlet property="collectionViewWidth" destination="ZaE-P6-Kyy" id="9y0-HJ-Uva"/>
                 <outlet property="continueButton" destination="m8K-FL-SjN" id="dcJ-Vl-87e"/>
                 <outlet property="tapOnTheFsLabel" destination="11X-8i-GZq" id="su6-UX-kKa"/>
                 <outlet property="view" destination="UyT-2f-psd" id="Mh3-eb-a5q"/>
@@ -34,21 +33,21 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="efi-qX-YDc">
-                    <rect key="frame" x="0.0" y="12" width="320" height="524"/>
+                    <rect key="frame" x="0.0" y="27" width="320" height="513"/>
                     <subviews>
                         <collectionView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7mB-Ww-cRj">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="502"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="409"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" priority="750" constant="412" id="Pyq-AP-BS4"/>
-                                <constraint firstAttribute="width" constant="320" id="ZaE-P6-Kyy"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="420" id="Pyq-AP-BS4"/>
+                                <constraint firstAttribute="width" priority="999" constant="320" id="fr7-WS-jvf"/>
                             </constraints>
-                            <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
-                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="2" id="6UV-zq-TEM">
+                            <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="6UV-zq-TEM">
                                 <size key="itemSize" width="60" height="80"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                <inset key="sectionInset" minX="4" minY="4" maxX="4" maxY="5"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </collectionViewFlowLayout>
                             <cells/>
                             <connections>
@@ -57,7 +56,7 @@
                             </connections>
                         </collectionView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap On The Fs" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11X-8i-GZq" customClass="ACLabel" customModule="ArcUIKit">
-                            <rect key="frame" x="15" y="392" width="290" height="24"/>
+                            <rect key="frame" x="15" y="425" width="290" height="24"/>
                             <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
                             <constraints>
                                 <constraint firstAttribute="height" priority="995" constant="24" id="Th8-mY-BkH"/>
@@ -75,7 +74,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m8K-FL-SjN" customClass="ACButton" customModule="ArcUIKit">
-                            <rect key="frame" x="32" y="448" width="256" height="48"/>
+                            <rect key="frame" x="32" y="465" width="256" height="48"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="4p9-St-5Yc"/>
                                 <constraint firstAttribute="width" priority="999" constant="256" id="6Jk-b2-iAn"/>
@@ -108,11 +107,10 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="efi-qX-YDc" firstAttribute="top" secondItem="dS7-jz-zik" secondAttribute="top" constant="56" id="YDp-7F-p1d"/>
+                <constraint firstItem="efi-qX-YDc" firstAttribute="top" secondItem="dS7-jz-zik" secondAttribute="top" constant="27" id="YDp-7F-p1d"/>
                 <constraint firstItem="dS7-jz-zik" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="efi-qX-YDc" secondAttribute="bottom" priority="999" constant="28" id="bBv-0O-GAg"/>
                 <constraint firstItem="dS7-jz-zik" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="11X-8i-GZq" secondAttribute="bottom" constant="64" id="pkg-kr-a2R"/>
                 <constraint firstItem="efi-qX-YDc" firstAttribute="centerX" secondItem="UyT-2f-psd" secondAttribute="centerX" id="u6i-wT-ofd"/>
-                <constraint firstItem="dS7-jz-zik" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7mB-Ww-cRj" secondAttribute="bottom" priority="998" constant="54" id="wOe-nM-fqJ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="dS7-jz-zik"/>
             <point key="canvasLocation" x="2227.5" y="315.84507042253523"/>

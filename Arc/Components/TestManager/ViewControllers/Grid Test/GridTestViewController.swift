@@ -114,6 +114,8 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         }
 		continueButton.isHidden = true
 		let _ = controller.set(symbols: responseId, gridTests: tests)
+        tapOnTheFsLabel.isHidden = true
+        
         
     }
     override open func viewDidAppear(_ animated: Bool) {
@@ -144,11 +146,17 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         
         continueButton.isHidden = true
         
-        self.collectionViewHeight.constant = CGFloat((IMAGE_HEIGHT*IMAGE_ROWS) + (IMAGE_LINE_SPACING*(IMAGE_ROWS-1)) + IMAGE_BUFFER)
-        if SMALLER_GRIDS {
-            collectionViewWidth.constant = IMAGE_GRID_TUTORIAL_WIDTH
-        }
+        adjustLayout()
+//        self.collectionViewHeight.constant = CGFloat((IMAGE_HEIGHT*IMAGE_ROWS) + (IMAGE_LINE_SPACING*(IMAGE_ROWS-1)) + IMAGE_BUFFER)
+//        if SMALLER_GRIDS {
+//            collectionViewWidth.constant = IMAGE_GRID_TUTORIAL_WIDTH
+//        }
         
+        if !isPracticeTest{
+            collectionView.leadingAnchor.constraint(equalTo:self.view.leadingAnchor, constant: 4).isActive = true
+            self.view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: 4).isActive = true
+            collectionStack.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 27).isActive = true
+        }
         interstitial.set(message: nil)
         interstitial.removeFromSuperview()
         self.mode = .image
@@ -177,11 +185,15 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 			return
 		}
         
-        self.collectionViewHeight.constant = CGFloat((LETTER_SIZE*LETTER_ROWS) + (LETTER_LINE_SPACING*(LETTER_ROWS-1)) + LETTER_BUFFER)
-        if SMALLER_GRIDS {
-            collectionViewWidth.constant = LETTER_GRID_TUTORIAL_WIDTH
-        }
+//        self.collectionViewHeight.constant = CGFloat((LETTER_SIZE*LETTER_ROWS) + (LETTER_LINE_SPACING*(LETTER_ROWS-1)) + LETTER_BUFFER)
+//        if SMALLER_GRIDS {
+//            collectionViewWidth.constant = LETTER_GRID_TUTORIAL_WIDTH
+//        }
 
+        if !isPracticeTest{
+            collectionView.leadingAnchor.constraint(equalTo:self.view.leadingAnchor, constant: 4).isActive = true
+            self.view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: 4).isActive = true
+        }
         self.mode = .fCell
 
         phase = 1
@@ -215,10 +227,10 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 		
         choiceIndicator?.removeFromSuperview()
         
-		self.collectionViewHeight.constant = CGFloat((LETTER_SIZE*LETTER_ROWS) + (LETTER_LINE_SPACING*(LETTER_ROWS-1)) + LETTER_BUFFER)
-        if SMALLER_GRIDS {
-            collectionViewWidth.constant = IMAGE_GRID_TUTORIAL_WIDTH
-        }
+//		self.collectionViewHeight.constant = CGFloat((LETTER_SIZE*LETTER_ROWS) + (LETTER_LINE_SPACING*(LETTER_ROWS-1)) + LETTER_BUFFER)
+//        if SMALLER_GRIDS {
+//            collectionViewWidth.constant = IMAGE_GRID_TUTORIAL_WIDTH
+//        }
 
 		self.mode = .none
 		
@@ -284,7 +296,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         tapOnTheFsLabel.numberOfLines = 0
         interstitial.set(message: nil)
         interstitial.removeFromSuperview()
-        self.collectionViewHeight.constant = CGFloat((IMAGE_HEIGHT*IMAGE_ROWS) + (IMAGE_LINE_SPACING*(IMAGE_ROWS-1)) + IMAGE_BUFFER)
+//        self.collectionViewHeight.constant = CGFloat((IMAGE_HEIGHT*IMAGE_ROWS) + (IMAGE_LINE_SPACING*(IMAGE_ROWS-1)) + IMAGE_BUFFER)
         mode = .image
         
         collectionView.allowsSelection = true;
@@ -295,6 +307,12 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 			tapOnTheFsLabel.translationKey = nil
 			tapOnTheFsLabel.text = "Tap the boxes where the items were located in part one.".localized(ACTranslationKey.grids_subheader_boxes)
             tapOnTheFsLabel.numberOfLines = 0
+            collectionStack.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 56).isActive = true
+            
+        } else {
+            collectionStack.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 27).isActive = true
+            collectionView.leadingAnchor.constraint(equalTo:self.view.leadingAnchor, constant: 4).isActive = true
+            self.view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: 4).isActive = true
         }
         
         collectionView.allowsMultipleSelection = true;
@@ -391,7 +409,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
             iCell.clear()
             iCell.layer.cornerRadius = 4
             iCell.layer.borderWidth = 1
-            iCell.layer.borderColor = UIColor(named: "Modal Fade")!.cgColor
+            iCell.layer.borderColor = UIColor(red: 133.0/255.0, green: 141/255.0, blue: 145.0/255.0, alpha: 1.0).cgColor
             iCell.isPracticeCell = self.isPracticeTest
             
             //temporary so we can get past practice test
@@ -514,7 +532,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
                 choiceIndicator?.removeFromSuperview()
                 choiceIndicator?.targetView?.backgroundColor = UIColor(red: 191.0/255.0, green: 215.0/255.0, blue: 224.0/255.0, alpha: 1.0)
                 choiceIndicator?.targetView?.layer.borderWidth = 1
-                choiceIndicator?.targetView?.layer.borderColor = UIColor(named: "Modal Fade")!.cgColor
+                choiceIndicator?.targetView?.layer.borderColor = UIColor(red: 133.0/255.0, green: 141/255.0, blue: 145.0/255.0, alpha: 1.0).cgColor
                 
                 choiceIndicator = imagePopup(in: self.view, indexPath: indexPath, view: c, choice: selection) { popupSelection in
                     
@@ -635,25 +653,38 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 	}
     //MARK: Flow layout
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let aspectRatio:CGFloat = 3/4
         if mode == .image || mode == .answers {
-            return CGSize(width: IMAGE_WIDTH, height: IMAGE_HEIGHT)
+            let usableHT = UIScreen.main.bounds.size.height
+            let maxHT = usableHT - 200
+            //self.collectionViewHeight.constant = maxHT
+            print(maxHT)
+            
+//            let cellHeight = (maxHT - 15)/5
+            let cellWidth = (UIScreen.main.bounds.size.width - 30)/5
+            let cellHeight = cellWidth / aspectRatio
+            print(cellHeight * 5)
+            print(collectionView.contentSize.height,"content size")
+             self.collectionViewHeight.constant = (cellHeight * 5)
+            return CGSize(width: cellWidth, height: cellHeight)
         } else if mode == .fCell {
+            
             return CGSize(width: LETTER_SIZE, height: LETTER_SIZE)
         } else {
             return CGSize(width: 1, height: 1)
         }
     }
-    
+    // Spacing between cell columns
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         if mode == .image || mode == .answers {
-            return (SMALLER_GRIDS ? 2 : 3)
+            return (SMALLER_GRIDS ? 2 : 0)
         } else if mode == .fCell {
             return 2
         } else {
             return 0
         }
     }
-    
+    // Spacing between cell rows
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         if mode == .image || mode == .answers {
             return 3
@@ -678,12 +709,12 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
     
     public func imagePopup(in parent:UIView, indexPath:IndexPath, view: UIView, choice: Int?, action:@escaping(PopupAction) -> ()) -> IndicatorView
     {
-//        var arrowPosition:Bool = false
-//        if indexPath.row > 14 {
-//            arrowPosition = false
-//        } else {
-//            arrowPosition = true
-//        }
+        var arrowPosition:Bool = false
+        if indexPath.row > 19 {
+            arrowPosition = false
+        } else {
+            arrowPosition = true
+        }
         
         let gridSelection:GridTestSelectionView = .get()
         gridSelection.keyImage.image = symbols[0]
@@ -728,7 +759,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         
         return parent.indicator {
             $0.targetView = view
-            $0.configure(with: IndicatorView.Config(primaryColor: .white, secondaryColor: .white, textColor: .black, cornerRadius: 16, arrowEnabled: true, arrowAbove: true))
+            $0.configure(with: IndicatorView.Config(primaryColor: .white, secondaryColor: .white, textColor: .black, cornerRadius: 16, arrowEnabled: true, arrowAbove: arrowPosition))
             $0.container?.axis = .horizontal
             $0.layer.masksToBounds = false
             $0.layer.shadowOpacity = 0.5
@@ -742,11 +773,11 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
                 $0.bottom <= parent.safeAreaLayoutGuide.bottomAnchor ~ 999
                 $0.trailing <= parent.safeAreaLayoutGuide.trailingAnchor ~ 999
                 $0.leading >= parent.safeAreaLayoutGuide.leadingAnchor ~ 999
-//                if indexPath.row > 14{
-//                    $0.bottom == view.topAnchor - 8 ~ 500
-//                } else{
+                if indexPath.row > 19{
+                    $0.bottom == view.topAnchor - 8 ~ 500
+                } else{
                     $0.top == view.bottomAnchor + 8 ~ 500
-                //}
+                }
             }
         }
 
