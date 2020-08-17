@@ -146,7 +146,6 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         
         continueButton.isHidden = true
         
-        adjustLayout()
 //        self.collectionViewHeight.constant = CGFloat((IMAGE_HEIGHT*IMAGE_ROWS) + (IMAGE_LINE_SPACING*(IMAGE_ROWS-1)) + IMAGE_BUFFER)
 //        if SMALLER_GRIDS {
 //            collectionViewWidth.constant = IMAGE_GRID_TUTORIAL_WIDTH
@@ -177,6 +176,8 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 				self?.displayFs()
 			}
 		}
+        
+        self.collectionViewHeight.constant = self.collectionView.collectionViewLayout.collectionViewContentSize.height
     }
     
     open func displayFs()
@@ -218,6 +219,9 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 			}
 		}
         
+       // self.collectionViewHeight.constant = ((6/10) * self.collectionView.collectionViewLayout.collectionViewContentSize.height)
+        view.layoutSubviews()
+        self.collectionViewHeight.constant = self.collectionView.collectionViewLayout.collectionViewContentSize.height
     }
 	open func clearGrids()
 	{
@@ -326,6 +330,9 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 
         	endTimer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(endTest), userInfo: nil, repeats: false)
 		}
+        
+        view.layoutSubviews()
+        self.collectionViewHeight.constant = self.collectionView.collectionViewLayout.collectionViewContentSize.height
     }
     
     @IBAction func continuePressed(_ sender: Any)
@@ -390,7 +397,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
             return 25
 
         case .fCell:
-            return 60
+            return 54
         default:
             return 0
         }
@@ -458,8 +465,8 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
             
         } else if (mode == .fCell) {
             let fCell = cell as! GridFCell
-            
-            fCell.contentView.layer.cornerRadius = 22.0
+            let radius = ((UIScreen.main.bounds.size.width - 44)/6) / 2
+            fCell.contentView.layer.cornerRadius = radius
             fCell.contentView.layer.backgroundColor = UIColor.clear.cgColor;
             fCell.contentView.layer.masksToBounds = true
             
@@ -655,21 +662,13 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let aspectRatio:CGFloat = 3/4
         if mode == .image || mode == .answers {
-            let usableHT = UIScreen.main.bounds.size.height
-            let maxHT = usableHT - 200
-            //self.collectionViewHeight.constant = maxHT
-            print(maxHT)
-            
-//            let cellHeight = (maxHT - 15)/5
             let cellWidth = (UIScreen.main.bounds.size.width - 30)/5
             let cellHeight = cellWidth / aspectRatio
-            print(cellHeight * 5)
-            print(collectionView.contentSize.height,"content size")
-             self.collectionViewHeight.constant = (cellHeight * 5)
             return CGSize(width: cellWidth, height: cellHeight)
         } else if mode == .fCell {
-            
-            return CGSize(width: LETTER_SIZE, height: LETTER_SIZE)
+            let cellWidth = (UIScreen.main.bounds.size.width - 44)/6
+            let cellHeight = cellWidth
+            return CGSize(width: cellWidth, height: cellHeight)
         } else {
             return CGSize(width: 1, height: 1)
         }
