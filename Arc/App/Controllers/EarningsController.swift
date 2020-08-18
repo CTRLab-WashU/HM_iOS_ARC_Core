@@ -67,7 +67,7 @@ open class EarningsController {
 				Arc.shared.appController.lastFetched[EarningsController.studySummaryKey] = Date().timeIntervalSince1970
 				Arc.shared.appController.store(value: summary, forKey: EarningsController.studySummaryKey)
 				
-				NotificationCenter.default.post(name: .ACStudySumamryUpdated, object: summary)
+				NotificationCenter.default.post(name: .ACStudySummaryUpdated, object: summary)
 				
 				
 			}
