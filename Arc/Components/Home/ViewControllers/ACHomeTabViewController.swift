@@ -19,7 +19,7 @@ public extension Notification.Name {
 	static let ACStartEarningsRefresh = Notification.Name("ACStartEarningsRefresh")
 	static let ACEarningsUpdated = Notification.Name(rawValue: "ACEarningsUpdated")
 	static let ACEarningDetailsUpdated = Notification.Name(rawValue: "ACEarningDetailsUpdated")
-	static let ACStudySumamryUpdated = Notification.Name(rawValue: "ACStudySumamryUpdated")
+	static let ACStudySummaryUpdated = Notification.Name(rawValue: "ACStudySummaryUpdated")
 
 
 }

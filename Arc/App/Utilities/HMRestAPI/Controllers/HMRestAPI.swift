@@ -150,7 +150,7 @@ open class HMRestAPI : NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 					guard let completionHandlers = self.tasks[token] else {return}
 						
 						if let error = error {
-							HMLog("Failing \(completionHandlers.count) reponses")
+							HMLog("Failing \(completionHandlers.count) responses")
 							completionHandlers.forEach {$0.1(error, response)}
 
 							return
