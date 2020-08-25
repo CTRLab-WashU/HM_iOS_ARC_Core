@@ -151,11 +151,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 //            collectionViewWidth.constant = IMAGE_GRID_TUTORIAL_WIDTH
 //        }
         
-        if !isPracticeTest{
-            collectionView.leadingAnchor.constraint(equalTo:self.view.leadingAnchor, constant: 4).isActive = true
-            self.view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: 4).isActive = true
-            collectionStack.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 27).isActive = true
-        }
+        
         interstitial.set(message: nil)
         interstitial.removeFromSuperview()
         self.mode = .image
@@ -177,6 +173,11 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 			}
 		}
         
+        if !isPracticeTest{
+            collectionView.leadingAnchor.constraint(equalTo:self.view.leadingAnchor, constant: 4).isActive = true
+            self.view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: 4).isActive = true
+            collectionStack.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 27).isActive = true
+        } 
         self.collectionViewHeight.constant = self.collectionView.collectionViewLayout.collectionViewContentSize.height
     }
     
@@ -294,10 +295,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 		guard isVisible else {
 			return
 		}
-        tapOnTheFsLabel.isHidden = false
-        tapOnTheFsLabel.translationKey = nil
-        tapOnTheFsLabel.text = "Tap on the location of each item"
-        tapOnTheFsLabel.numberOfLines = 0
+        
         interstitial.set(message: nil)
         interstitial.removeFromSuperview()
 //        self.collectionViewHeight.constant = CGFloat((IMAGE_HEIGHT*IMAGE_ROWS) + (IMAGE_LINE_SPACING*(IMAGE_ROWS-1)) + IMAGE_BUFFER)
@@ -305,15 +303,15 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         
         collectionView.allowsSelection = true;
         
-        
+        tapOnTheFsLabel.isHidden = false
+        tapOnTheFsLabel.translationKey = nil
+        tapOnTheFsLabel.numberOfLines = 0
         if isPracticeTest {
-            tapOnTheFsLabel.isHidden = false
-			tapOnTheFsLabel.translationKey = nil
 			tapOnTheFsLabel.text = "Tap the boxes where the items were located in part one.".localized(ACTranslationKey.grids_subheader_boxes)
-            tapOnTheFsLabel.numberOfLines = 0
             collectionStack.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 56).isActive = true
             
         } else {
+            tapOnTheFsLabel.text = "Tap on the location of each item".localized(ACTranslationKey.grids_subheader_boxes)
             collectionStack.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 27).isActive = true
             collectionView.leadingAnchor.constraint(equalTo:self.view.leadingAnchor, constant: 4).isActive = true
             self.view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: 4).isActive = true
