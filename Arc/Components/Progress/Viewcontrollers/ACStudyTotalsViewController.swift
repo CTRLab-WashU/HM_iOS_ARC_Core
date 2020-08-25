@@ -31,7 +31,7 @@ public class ACStudyTotalsViewController: CustomViewController<ACStudyTotalsView
 	}
 	public override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		NotificationCenter.default.addObserver(forName: .ACStudySumamryUpdated, object: self, queue: .main) { (notif) in
+		NotificationCenter.default.addObserver(forName: .ACStudySummaryUpdated, object: self, queue: .main) { (notif) in
 			self.update()
 		}
 	}

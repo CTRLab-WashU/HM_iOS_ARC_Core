@@ -1029,6 +1029,11 @@ open class StudyController : MHController {
 		session.missedSession = true;
 		save()
 	}
+    open func get(missed sessionId:Int, studyId:Int) -> Bool
+    {
+        let session = get(session: sessionId, inStudy: studyId)
+        return session.missedSession
+    }
 	open func mark(uploaded sessionId:Int, studyId:Int)
 	{
 		let session = get(session: sessionId, inStudy: studyId)
@@ -1048,6 +1053,12 @@ open class StudyController : MHController {
 		session.finishedSession = true;
 		save();
 	}
+    open func get(finished sessionId:Int, studyId:Int) -> Bool
+    {
+        let session = get(session: sessionId, inStudy: studyId)
+        return session.finishedSession
+        
+    }
 	open func totalMissedSessionCount(studyId:Int) -> Int
 	{
 		
