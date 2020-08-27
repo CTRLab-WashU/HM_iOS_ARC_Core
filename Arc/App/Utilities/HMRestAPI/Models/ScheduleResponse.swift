@@ -37,9 +37,9 @@ public struct TestScheduleRequestData : Codable {
 	public struct Response : Codable {
 		public struct Body : Codable {
 			public let success:Bool
-			public let test_schedule:TestScheduleRequestData?
+			public var test_schedule:TestScheduleRequestData?
 		}
-		public let response:Body?
+		public var response:Body?
 		public let errors: [String:[String]]
 	}
 	
@@ -52,7 +52,7 @@ public struct TestScheduleRequestData : Codable {
 		public let types: [String]
 	}
 	public var participant_id:String? //"111111",
-
+    public var cycle_progress:CycleProgress.Response?
 	public var sessions:[Entry]
 
 	public var device_id:String? // "[device id]",

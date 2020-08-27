@@ -1598,6 +1598,10 @@ open class StudyController : MHController {
 				}
 			}
 			
+            if sessionData.finishedSession == true {
+                progress = 3
+            }
+            
 			let started = (sessionData.uploaded || sessionData.missedSession || sessionData.startTime != nil || sessionData.expirationDate!.addingHours(hours: 2).timeIntervalSince1970 < Date().timeIntervalSince1970)
 			
 			config.sessionData.append(TodaysProgess.SessionData(started:started,
