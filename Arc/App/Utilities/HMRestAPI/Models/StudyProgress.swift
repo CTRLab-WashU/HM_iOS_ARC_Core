@@ -24,6 +24,7 @@ public struct StudyProgress : Codable {
 }
 
 public struct CycleProgress : Codable {
+    public var response: Response?
     
     public struct Response : Codable {
         public var success:Bool
@@ -31,15 +32,15 @@ public struct CycleProgress : Codable {
         
         public struct Progress : Codable {
             public var cycle:Int
-            public var start_date:TimeInterval
+            public var start_date:TimeInterval?
             public var end_date:TimeInterval
             public var day_count:Int
-            public var current_day:Int
+            public var current_day:Int?
             public var days:[Day]
             
             public struct Day : Codable {
-                public var start_date:TimeInterval
-                public var end_date:TimeInterval
+                public var start_date:TimeInterval?
+                public var end_date:TimeInterval?
                 public var day:Int
                 public var cycle:Int
                 public var sessions:[Session]
@@ -52,6 +53,22 @@ public struct CycleProgress : Codable {
                 }
             }
         }
+    }
+}
+
+// creating dictionary for the session and session status
+public extension CycleProgress.Response{
+    var asDictionary: [Int:String] {
+        guard let progress = cycle_progress else { return [:]}
+        var result: [Int:String] = [:]
+        
+        for day in progress.days {
+            for session in day.sessions
+            {
+                result[session.session_index] = session.status
+            }
+        }
+        return result
     }
 }
 
