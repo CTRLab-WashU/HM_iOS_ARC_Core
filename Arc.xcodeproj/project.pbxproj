@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		175E961624D8832C001166A1 /* GridTestSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E961524D8832C001166A1 /* GridTestSelectionView.swift */; };
+		17732E3924FEF87700FE4990 /* GridTestSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E961524D8832C001166A1 /* GridTestSelectionView.swift */; };
+		17732E3B24FEFB5200FE4990 /* GridChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17732E3224FEF65100FE4990 /* GridChoiceView.swift */; };
 		17CE9D0824D89E7B002EF878 /* GridTestSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17CE9D0724D89E7B002EF878 /* GridTestSelectionView.xib */; };
 		2D35988D237B6604005EF2CF /* SimplifiedPricesTestTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D35988C237B6604005EF2CF /* SimplifiedPricesTestTutorialViewController.swift */; };
 		2D5711F422EB3AB500E7F881 /* Earnings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5711F322EB3AB500E7F881 /* Earnings.swift */; };
@@ -380,6 +381,7 @@
 
 /* Begin PBXFileReference section */
 		175E961524D8832C001166A1 /* GridTestSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTestSelectionView.swift; sourceTree = "<group>"; };
+		17732E3224FEF65100FE4990 /* GridChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridChoiceView.swift; sourceTree = "<group>"; };
 		17CE9D0724D89E7B002EF878 /* GridTestSelectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GridTestSelectionView.xib; sourceTree = "<group>"; };
 		2D35988C237B6604005EF2CF /* SimplifiedPricesTestTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplifiedPricesTestTutorialViewController.swift; sourceTree = "<group>"; };
 		2D5711F322EB3AB500E7F881 /* Earnings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Earnings.swift; sourceTree = "<group>"; };
@@ -1583,6 +1585,7 @@
 				C5E0DDB822A5B7D20034DEDF /* IndicatorView.swift */,
 				C5D085CB22D7828300043513 /* HintView.swift */,
 				C5A43CCE22CA648700C10BC0 /* ACHorizontalBar.swift */,
+				17732E3224FEF65100FE4990 /* GridChoiceView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2171,7 +2174,9 @@
 				C54AEA2C21C81B5F00DEC360 /* LoginHelpView.swift in Sources */,
 				C57ABE1F23060BD7000C9315 /* GoalRewardView.swift in Sources */,
 				C54AE9D621C81B5F00DEC360 /* Arc+Auth.swift in Sources */,
+				17732E3924FEF87700FE4990 /* GridTestSelectionView.swift in Sources */,
 				C53B123A22F34C1700BACA9A /* ACTodayProgressView.swift in Sources */,
+				17732E3B24FEFB5200FE4990 /* GridChoiceView.swift in Sources */,
 				E86732322315808800844F91 /* ACHomeViewController.swift in Sources */,
 				C55F8CD3230F1BCA006D43BD /* EarningDetailGoalView.swift in Sources */,
 				C52B75D421C8369400498571 /* arc.xcdatamodeld in Sources */,
@@ -2199,7 +2204,6 @@
 				C51A7D8C22D8C33F00854B13 /* NotificationPermissionViewController.swift in Sources */,
 				C5F77F37222F095200BECAE1 /* SignatureViewController.swift in Sources */,
 				C54AEA3721C81B5F00DEC360 /* ScheduleController+ScheduleEntry.swift in Sources */,
-				175E961624D8832C001166A1 /* GridTestSelectionView.swift in Sources */,
 				C54AE9E921C81B5F00DEC360 /* TestSession.swift in Sources */,
 				C53B123822F348F900BACA9A /* ACTodayProgressViewController.swift in Sources */,
 				C594B3DA23E245BA00B9743C /* Alignment.swift in Sources */,
