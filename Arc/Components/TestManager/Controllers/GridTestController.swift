@@ -432,7 +432,7 @@ open class GridTestController : TestController<GridTestResponse> {
         }
         
     }
-    public func setValue(responseIndex index:Int, responseData: Int, questionIndex:Int, gridType:GridTestController.GridType, time:Date, id:String) -> GridTestResponse {
+    public func setValue(responseIndex index:Int, responseData: Int?, questionIndex:Int, gridType:GridTestController.GridType, time:Date, id:String) -> GridTestResponse {
         let coord = coordinate(for: index, section: questionIndex, gridType: gridType)
         let x = coord.0
         let y = coord.1
@@ -450,10 +450,11 @@ open class GridTestController : TestController<GridTestResponse> {
                                                          selection_time: timeSinceStart, selection: responseData)
             
             var set = Set<GridTestResponse.Section.Choice> (test.sections[questionIndex].choices)
-            let repeated = set.filter{$0.selection == responseData}.first ?? nil
-            if repeated?.selection == choice.selection
-            {
-                set.remove(repeated!)
+            if let repeated = set.filter({$0.selection == responseData}).first {
+                if repeated.selection == choice.selection
+                {
+                    set.remove(repeated)
+                }
             }
             if set.contains(choice) {
                 set.remove(choice)

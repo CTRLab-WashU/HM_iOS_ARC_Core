@@ -749,12 +749,18 @@ public enum ACTranslationKey : String, TranslationKey {
 
 	case popup_tutorial_choose1
 
+    case popup_tutorial_great
+    
 	case popup_tutorial_greatchoice1
 
 	case popup_tutorial_greatchoice2
 
+    case popup_tutorial_great_remove
+    
 	case popup_tutorial_recall
 
+    case popup_tutorial_remove
+    
 	case popup_tutorial_choose2
 
 	case popup_tutorial_complete
@@ -793,12 +799,22 @@ public enum ACTranslationKey : String, TranslationKey {
 
 	case popup_tutorial_boxhint
 
+    case popup_tutorial_cellbox
+    
 	case popup_tutorial_tapbox
 
 	case popup_tutorial_tapbox2
 
 	case popup_tutorial_tapbox3
 
+    case popup_tutorial_tapbox4
+    
+    case popup_tutorial_tapsymbol
+    
+    case popup_tutorial_tapsymbol2
+    
+    case popup_tutorial_tapsymbol3
+    
 	case popup_tutorial_needhelp
 
 	case popup_tutorial_remindme

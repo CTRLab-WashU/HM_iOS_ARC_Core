@@ -9,7 +9,7 @@
 import UIKit
 
 
-@IBDesignable public class IndicatorView:UIView {
+@IBDesignable open class IndicatorView:UIView {
     public struct Config {
         public let primaryColor:UIColor
         public let secondaryColor:UIColor

@@ -31,6 +31,7 @@ open class GridImageCell:UICollectionViewCell
                 //self.image.isHidden = true
                 
                 if isPracticeCell {
+                    touchTime = Date()
                     //self.dotView.isHidden = false
                 }
             }
