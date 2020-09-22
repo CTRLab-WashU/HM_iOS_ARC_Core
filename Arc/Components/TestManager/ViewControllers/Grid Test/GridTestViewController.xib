@@ -22,6 +22,7 @@
                 <outlet property="collectionStack" destination="efi-qX-YDc" id="aE9-DL-MlU"/>
                 <outlet property="collectionView" destination="7mB-Ww-cRj" id="Hec-Ae-qhB"/>
                 <outlet property="collectionViewHeight" destination="Pyq-AP-BS4" id="BS8-bb-zct"/>
+                <outlet property="collectionViewWidth" destination="fr7-WS-jvf" id="jiI-yA-QLd"/>
                 <outlet property="continueButton" destination="m8K-FL-SjN" id="dcJ-Vl-87e"/>
                 <outlet property="tapOnTheFsLabel" destination="11X-8i-GZq" id="su6-UX-kKa"/>
                 <outlet property="view" destination="UyT-2f-psd" id="Mh3-eb-a5q"/>
@@ -43,7 +44,7 @@
                                 <constraint firstAttribute="width" priority="999" constant="320" id="fr7-WS-jvf"/>
                             </constraints>
                             <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
-                            <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="6UV-zq-TEM">
+                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="6UV-zq-TEM">
                                 <size key="itemSize" width="60" height="80"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -59,7 +60,7 @@
                             <rect key="frame" x="15" y="436" width="290" height="24"/>
                             <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
                             <constraints>
-                                <constraint firstAttribute="height" priority="995" constant="24" id="Th8-mY-BkH"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="995" constant="24" id="Th8-mY-BkH"/>
                                 <constraint firstAttribute="width" priority="999" constant="272" id="wuh-rl-oXQ"/>
                             </constraints>
                             <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
@@ -109,6 +110,7 @@
             <constraints>
                 <constraint firstItem="dS7-jz-zik" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7mB-Ww-cRj" secondAttribute="bottom" constant="54" id="V8a-91-uUW"/>
                 <constraint firstItem="dS7-jz-zik" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="efi-qX-YDc" secondAttribute="bottom" priority="999" constant="28" id="bBv-0O-GAg"/>
+                <constraint firstItem="7mB-Ww-cRj" firstAttribute="top" secondItem="dS7-jz-zik" secondAttribute="top" id="nHw-0x-BT6"/>
                 <constraint firstItem="dS7-jz-zik" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="11X-8i-GZq" secondAttribute="bottom" constant="64" id="pkg-kr-a2R"/>
                 <constraint firstItem="efi-qX-YDc" firstAttribute="centerX" secondItem="UyT-2f-psd" secondAttribute="centerX" id="u6i-wT-ofd"/>
             </constraints>

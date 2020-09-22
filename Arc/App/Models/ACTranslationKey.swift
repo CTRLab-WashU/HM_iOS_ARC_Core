@@ -818,6 +818,8 @@ public enum ACTranslationKey : String, TranslationKey {
 	case popup_tutorial_needhelp
 
 	case popup_tutorial_remindme
+    
+    case popup_tutorial_subheader
 
 	case popup_tour
 

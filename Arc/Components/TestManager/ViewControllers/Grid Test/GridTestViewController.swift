@@ -65,7 +65,8 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
     }
     private var SMALLER_GRIDS:Bool {
         get {
-            return (self.isPracticeTest && (PhoneClass.getClass() == .iphoneSE))
+            //return (self.isPracticeTest && (PhoneClass.getClass() == .iphoneSE))
+            return (PhoneClass.getClass() == .iphoneSE)
         }
     }
     private let IMAGE_ROWS = 5
@@ -106,9 +107,9 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 
         // Do any additional setup after loading the view.
         
-        if let h = UIApplication.shared.keyWindow?.rootViewController?.view.frame.height, h > 568 {
-            LETTER_BUFFER = 60
-        }
+//        if let h = UIApplication.shared.keyWindow?.rootViewController?.view.frame.height, h > 568 {
+//            LETTER_BUFFER = 60
+//        }
 		continueButton.isHidden = true
 		let _ = controller.set(symbols: responseId, gridTests: tests)
         tapOnTheFsLabel.isHidden = true
@@ -145,7 +146,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         
 //        self.collectionViewHeight.constant = CGFloat((IMAGE_HEIGHT*IMAGE_ROWS) + (IMAGE_LINE_SPACING*(IMAGE_ROWS-1)) + IMAGE_BUFFER)
         if SMALLER_GRIDS {
-            collectionViewWidth.constant = IMAGE_GRID_TUTORIAL_WIDTH
+            self.collectionViewWidth.constant = IMAGE_GRID_TUTORIAL_WIDTH
         }
         
         
@@ -178,7 +179,6 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
             collectionView.leadingAnchor.constraint(equalTo:self.view.leadingAnchor, constant: 4).isActive = true
             self.view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: 4).isActive = true
             self.view.safeAreaLayoutGuide.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
-            collectionStack.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 12).isActive = true
         }
         self.collectionViewHeight.constant = self.collectionView.collectionViewLayout.collectionViewContentSize.height
     }
@@ -188,17 +188,10 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 		guard isVisible else {
 			return
 		}
-        
-//        self.collectionViewHeight.constant = CGFloat((LETTER_SIZE*LETTER_ROWS) + (LETTER_LINE_SPACING*(LETTER_ROWS-1)) + LETTER_BUFFER)
-        if SMALLER_GRIDS {
-            collectionViewWidth.constant = LETTER_GRID_TUTORIAL_WIDTH
-        }
 
         if !isPracticeTest{
             collectionView.leadingAnchor.constraint(equalTo:self.view.leadingAnchor, constant: 4).isActive = true
             self.view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: 4).isActive = true
-        } else {
-            collectionStack.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         }
         self.mode = .fCell
 
@@ -235,11 +228,6 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 		}
 		
         choiceIndicator?.removeFromSuperview()
-        
-//		self.collectionViewHeight.constant = CGFloat((LETTER_SIZE*LETTER_ROWS) + (LETTER_LINE_SPACING*(LETTER_ROWS-1)) + LETTER_BUFFER)
-        if SMALLER_GRIDS {
-            collectionViewWidth.constant = IMAGE_GRID_TUTORIAL_WIDTH
-        }
 
 		self.mode = .none
 		
@@ -302,7 +290,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         
         interstitial.set(message: nil)
         interstitial.removeFromSuperview()
-//        self.collectionViewHeight.constant = CGFloat((IMAGE_HEIGHT*IMAGE_ROWS) + (IMAGE_LINE_SPACING*(IMAGE_ROWS-1)) + IMAGE_BUFFER)
+
         mode = .image
         
         collectionView.allowsSelection = true;
@@ -311,11 +299,9 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         tapOnTheFsLabel.translationKey = nil
         tapOnTheFsLabel.numberOfLines = 0
         if isPracticeTest {
-			tapOnTheFsLabel.text = "Tap the boxes where the items were located in part one.".localized(ACTranslationKey.grids_subheader_boxes)
-            collectionStack.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 12).isActive = true
-            
+			tapOnTheFsLabel.text = "Tap the boxes where the items were located in part one.".localized(ACTranslationKey.popup_tutorial_subheader)
         } else {
-            tapOnTheFsLabel.text = "Tap on the location of each item".localized(ACTranslationKey.grids_subheader_boxes)
+            tapOnTheFsLabel.text = "Tap on the location of each item.".localized(ACTranslationKey.grids_subheader_boxes)
             collectionStack.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 27).isActive = true
             collectionView.leadingAnchor.constraint(equalTo:self.view.leadingAnchor, constant: 4).isActive = true
             self.view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: 4).isActive = true
@@ -334,7 +320,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
 		}
         
         view.layoutSubviews()
-        self.collectionViewHeight.constant = self.collectionView.collectionViewLayout.collectionViewContentSize.height
+        collectionViewHeight.constant = collectionView.collectionViewLayout.collectionViewContentSize.height
     }
     
     @IBAction func continuePressed(_ sender: Any)
@@ -457,7 +443,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
                 if selected == 3
                 {
                     continueButton.isHidden = false
-                    collectionStack.setCustomSpacing(16, after: tapOnTheFsLabel)
+                    collectionStack.setCustomSpacing(8, after: tapOnTheFsLabel)
                 } else {
                     continueButton.isHidden = true
                 }
@@ -466,7 +452,10 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
             
         } else if (mode == .fCell) {
             let fCell = cell as! GridFCell
-            let radius = ((UIScreen.main.bounds.size.width - 44)/6) / 2
+            var radius = ((UIScreen.main.bounds.size.width - 44)/6) / 2
+            if SMALLER_GRIDS {
+                radius = ((collectionViewWidth.constant)/6) / 2
+            }
             fCell.contentView.layer.cornerRadius = radius
             fCell.contentView.layer.backgroundColor = UIColor.clear.cgColor;
             fCell.contentView.layer.masksToBounds = true
@@ -637,11 +626,19 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let aspectRatio:CGFloat = 3/4
         if mode == .image || mode == .answers {
-            let cellWidth = (UIScreen.main.bounds.size.width - 30)/5
+            var cellWidth = (UIScreen.main.bounds.size.width - 30)/5
+            if SMALLER_GRIDS {
+                cellWidth = (collectionViewWidth.constant)/5
+            }
+            //let cellWidth = (collectionViewWidth.constant)/5
             let cellHeight = cellWidth / aspectRatio
             return CGSize(width: cellWidth, height: cellHeight)
         } else if mode == .fCell {
-            let cellWidth = (UIScreen.main.bounds.size.width - 44)/6
+            var cellWidth = (UIScreen.main.bounds.size.width - 44)/6
+            if SMALLER_GRIDS {
+                cellWidth = (collectionViewWidth.constant)/6
+            }
+            //let cellWidth = (collectionViewWidth.constant)/6
             let cellHeight = cellWidth
             return CGSize(width: cellWidth, height: cellHeight)
         } else {
@@ -670,7 +667,10 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
     }
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         if mode == .image || mode == .answers {
-            return UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+            if SMALLER_GRIDS{
+                return UIEdgeInsets(top: 4, left:16, bottom: 4, right: 16)
+            }
+            return UIEdgeInsets(top: 4, left:4, bottom: 4, right: 4)
             
         } else if mode == .fCell {
             return UIEdgeInsets(top: 8, left: 10, bottom: 4, right: 10)
