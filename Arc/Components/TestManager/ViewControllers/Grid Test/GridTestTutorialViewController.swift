@@ -672,6 +672,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
             weakSelf.gridChoice?.penButton.isEnabled = false
 
             weakSelf.gridChoice?.phoneButton.addAction { [weak self] in
+                //weakSelf.gridSelected += 1
                 self?.tutorialAnimation.resume()
                 weakSelf.view.clearOverlay()
             }
@@ -732,7 +733,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
             }
         }
         
-        state.addCondition(atTime: progress(seconds:17.5), flagName: "symbols-9") { [weak self] in
+        state.addCondition(atTime: progress(seconds:19.5), flagName: "symbols-9") { [weak self] in
             guard let weakSelf = self else {
                 return
             }
@@ -769,41 +770,42 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
             }
         }
         
-        state.addCondition(atTime: progress(seconds:17.5), flagName: "symbols-10") { [weak self] in
+        state.addCondition(atTime: progress(seconds:19.5), flagName: "symbols-10") { [weak self] in
             guard let weakSelf = self else {
                 return
             }
             weakSelf.tutorialAnimation.pause()
             weakSelf.view.clearOverlay()
             weakSelf.test.collectionView.isUserInteractionEnabled = true
-            let selected = weakSelf.test.collectionView.indexPathsForSelectedItems ?? []
-            var index = weakSelf.test.symbolIndexPaths.filter {
-                return !selected.contains($0)
-            }
-            if index.count > 2 {
-                index.removeFirst()
-            }
+            var index = weakSelf.test.symbolIndexPaths
+            index.removeFirst()
+            
             weakSelf.test.overlayCells(at: index)
         }
         
-        state.addCondition(atTime: progress(seconds:17.5), flagName: "symbols-11") { [weak self] in
+        state.addCondition(atTime: progress(seconds:19.5), flagName: "symbols-11") { [weak self] in
             guard let weakSelf = self else {
                 return
             }
             weakSelf.tutorialAnimation.pause()
             weakSelf.test.collectionView.isUserInteractionEnabled = false
             weakSelf.gridChoice?.phoneButton.addAction { [weak self] in
+                weakSelf.test.collectionView.isUserInteractionEnabled = true
                 self?.tutorialAnimation.resume()
             }
             weakSelf.gridChoice?.penButton.addAction { [weak self] in
+                weakSelf.test.collectionView.isUserInteractionEnabled = true
+                //weakSelf.gridSelected += 1
                 self?.tutorialAnimation.resume()
             }
             weakSelf.gridChoice?.keyButton.addAction { [weak self] in
+                weakSelf.test.collectionView.isUserInteractionEnabled = true
+                //weakSelf.gridSelected += 1
                 self?.tutorialAnimation.resume()
             }
         }
         
-        state.addCondition(atTime: progress(seconds:22.5), flagName: "symbols-12") { [weak self] in
+        state.addCondition(atTime: progress(seconds:24.5), flagName: "symbols-12") { [weak self] in
             guard let weakSelf = self else {
                 return
             }
@@ -839,20 +841,31 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
             }
         }
         
-        state.addCondition(atTime: progress(seconds:22.5), flagName: "symbols-13") { [weak self] in
+        state.addCondition(atTime: progress(seconds:24.5), flagName: "symbols-13") { [weak self] in
             guard let weakSelf = self else {
                 return
             }
             weakSelf.tutorialAnimation.pause()
             weakSelf.view.clearOverlay()
             weakSelf.test.collectionView.isUserInteractionEnabled = true
-            guard let index = weakSelf.test.symbolIndexPaths.last(where: {weakSelf.test.collectionView.cellForItem(at: $0)?.isSelected == false}) else { return }
-            guard let _ = weakSelf.test.overlayCell(at: index) else {
+            let keyCell = weakSelf.test.symbolIndexPaths[1]
+            let penCell = weakSelf.test.symbolIndexPaths[2]
+            if let value = weakSelf.test.controller.get(selectedData: keyCell.row, id: weakSelf.test.responseId, questionIndex: weakSelf.test.testNumber, gridType: .image)?.selection, value > -1 {
+                guard let _ = weakSelf.test.overlayCell(at: penCell) else {
                 return
+                }
+            } else if let value = weakSelf.test.controller.get(selectedData: penCell.row, id: weakSelf.test.responseId, questionIndex: weakSelf.test.testNumber, gridType: .image)?.selection, value > -1 {
+                guard let _ = weakSelf.test.overlayCell(at: keyCell) else {
+                return
+                }
             }
-        }
+//            guard let index = weakSelf.test.symbolIndexPaths.last(where: {weakSelf.test.collectionView.cellForItem(at: $0)?.isSelected == false}) else { return }
+//            guard let _ = weakSelf.test.overlayCell(at: index) else {
+//                return
+            }
         
-        state.addCondition(atTime: progress(seconds:22.5), flagName: "symbols-14") { [weak self] in
+        
+        state.addCondition(atTime: progress(seconds:24.5), flagName: "symbols-14") { [weak self] in
             guard let weakSelf = self else {
                 return
             }
@@ -870,7 +883,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
         }
         //Other Two Grids Items Hint
         //Need Help
-		state.addCondition(atTime: progress(seconds: 23), flagName: "end") { [weak self] in
+		state.addCondition(atTime: progress(seconds: 25), flagName: "end") { [weak self] in
 			guard let weakSelf = self else {
 				return
 			}
