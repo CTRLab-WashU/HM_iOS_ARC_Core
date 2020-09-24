@@ -850,12 +850,12 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
             weakSelf.test.collectionView.isUserInteractionEnabled = true
             let keyCell = weakSelf.test.symbolIndexPaths[1]
             let penCell = weakSelf.test.symbolIndexPaths[2]
-            if let value = weakSelf.test.controller.get(selectedData: keyCell.row, id: weakSelf.test.responseId, questionIndex: weakSelf.test.testNumber, gridType: .image)?.selection, value > -1 {
-                guard let _ = weakSelf.test.overlayCell(at: penCell) else {
+            if let value = weakSelf.test.controller.get(selectedData: penCell.row, id: weakSelf.test.responseId, questionIndex: weakSelf.test.testNumber, gridType: .image)?.selection, value > -1 {
+                guard let _ = weakSelf.test.overlayCell(at: keyCell) else {
                 return
                 }
-            } else if let value = weakSelf.test.controller.get(selectedData: penCell.row, id: weakSelf.test.responseId, questionIndex: weakSelf.test.testNumber, gridType: .image)?.selection, value > -1 {
-                guard let _ = weakSelf.test.overlayCell(at: keyCell) else {
+            } else {
+                guard let _ = weakSelf.test.overlayCell(at: penCell) else {
                 return
                 }
             }
