@@ -28,6 +28,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
     public var mode:Mode = .none
     
     public var choiceIndicator:IndicatorView?
+    public var gridChoice:GridChoiceView?
     public var controller = Arc.shared.gridTestController
     public var tests:[GridTest] = []
     public var responseId:String = ""
@@ -502,31 +503,31 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
             let selection = controller.get(selectedData: indexPath.row, id: responseId, questionIndex: testNumber, gridType: .image)?.selection
             
            
-                choiceIndicator?.removeFromSuperview()
-                choiceIndicator?.targetView?.backgroundColor = UIColor(red: 191.0/255.0, green: 215.0/255.0, blue: 224.0/255.0, alpha: 1.0)
-                choiceIndicator?.targetView?.layer.borderWidth = 1
-                choiceIndicator?.targetView?.layer.borderColor = UIColor(red: 133.0/255.0, green: 141/255.0, blue: 145.0/255.0, alpha: 1.0).cgColor
+            choiceIndicator?.removeFromSuperview()
+            choiceIndicator?.targetView?.backgroundColor = UIColor(red: 191.0/255.0, green: 215.0/255.0, blue: 224.0/255.0, alpha: 1.0)
+            choiceIndicator?.targetView?.layer.borderWidth = 1
+            choiceIndicator?.targetView?.layer.borderColor = UIColor(red: 133.0/255.0, green: 141/255.0, blue: 145.0/255.0, alpha: 1.0).cgColor
+            
+            choiceIndicator = GridChoiceView(in: self.view, indexPath: indexPath, targetView: c, choice: selection) { popupSelection in
                 
-                choiceIndicator = GridChoiceView(in: self.view, indexPath: indexPath, view: c, choice: selection) { popupSelection in
-                    
-                    switch popupSelection {
-                    case .set(let imageIndex, let index):
-                        let _ = controller.setValue(responseIndex: index.row,
-                        responseData: imageIndex,
-                        questionIndex: test,
-                        gridType: .image,
-                        time: touchedAt,
-                        id: response)
-                    case .unset(let imageIndex):
-                        let _ = controller.unsetValue(responseIndex: imageIndex.row,
-                                   questionIndex: test,
-                                   gridType: .image,
-                                   id: response)
-                    }
-                    coll.reloadData()
-                    del?.didUpdateIndicator(indexPath: indexPath, indicator: nil)
-                    del?.didSelectGrid(indexPath: indexPath)
+                switch popupSelection {
+                case .set(let imageIndex, let index):
+                    let _ = controller.setValue(responseIndex: index.row,
+                    responseData: imageIndex,
+                    questionIndex: test,
+                    gridType: .image,
+                    time: touchedAt,
+                    id: response)
+                case .unset(let imageIndex):
+                    let _ = controller.unsetValue(responseIndex: imageIndex.row,
+                               questionIndex: test,
+                               gridType: .image,
+                               id: response)
                 }
+                coll.reloadData()
+                del?.didUpdateIndicator(indexPath: indexPath, indicator: nil)
+                del?.didSelectGrid(indexPath: indexPath)
+            }
             delegate?.didUpdateIndicator(indexPath: indexPath, indicator: choiceIndicator)
         }
         else if let c = collectionView.cellForItem(at: indexPath) as? GridFCell
@@ -547,7 +548,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         }
 
     }
-    //Unsets value to cells
+    ///- warning: Only unsets for e/f grid, image grid is now managed by GridChoiceIndicator
     open func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath)
     {
         if let c = collectionView.cellForItem(at: indexPath) as? GridImageCell

@@ -9,7 +9,10 @@
 import UIKit
 import ArcUIKit
 public class GridChoiceView : IndicatorView {
-    
+    /**
+            
+     
+     */
     public enum PopupAction {
            case set(responseData:Int, index:IndexPath)
            case unset(index:IndexPath)
@@ -44,8 +47,19 @@ public class GridChoiceView : IndicatorView {
         
         super.init(frame: frame)
     }
-    
-    public init(in parent:UIView, indexPath:IndexPath, view: UIView, choice: Int?, action:@escaping(PopupAction) -> ()) {
+    /**
+    - parameters:
+       - parent: needed to add GridChoice as subview
+       - indexPath: index path of cell selected
+       - targetView: view of cell to be targeted
+       - choice: Index of image symbol selected
+       - action:
+            * called after user makes a selection;
+            * send set if symbol is tapped;
+            * send back unset if remove is tapped;
+            * removes itself from parent view after action is called;
+     */
+    public init(in parent:UIView, indexPath:IndexPath, targetView: UIView, choice: Int?, action:@escaping(PopupAction) -> ()) {
         
         gridTestSelection = .get()
         super.init(frame: .zero)
@@ -55,7 +69,7 @@ public class GridChoiceView : IndicatorView {
         } else {
             arrowPosition = true
         }
-        targetView = view
+        self.targetView = targetView
         
         self.configure(with: IndicatorView.Config(primaryColor: .white, secondaryColor: .white, textColor: .black, cornerRadius: 16, arrowEnabled: true, arrowAbove: arrowPosition))
         self.container?.axis = .horizontal
@@ -67,15 +81,15 @@ public class GridChoiceView : IndicatorView {
         self.container?.addArrangedSubview(gridTestSelection)
         parent.addSubview(self)
         self.layout {
-            $0.centerX == view.centerXAnchor ~ 500
+            $0.centerX == targetView.centerXAnchor ~ 500
             $0.top >= parent.safeAreaLayoutGuide.topAnchor ~ 999
             $0.bottom <= parent.safeAreaLayoutGuide.bottomAnchor ~ 999
             $0.trailing <= parent.safeAreaLayoutGuide.trailingAnchor - 28 ~ 999
             $0.leading >= parent.safeAreaLayoutGuide.leadingAnchor + 28 ~ 999
             if indexPath.row > 19{
-                $0.bottom == view.topAnchor - 8 ~ 500
+                $0.bottom == targetView.topAnchor - 8 ~ 500
             } else{
-                $0.top == view.bottomAnchor + 8 ~ 500
+                $0.top == targetView.bottomAnchor + 8 ~ 500
             }
         }
        
