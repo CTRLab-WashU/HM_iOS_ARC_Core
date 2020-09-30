@@ -279,11 +279,11 @@
 		C5B2602322135F7300BFF778 /* ArcUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = C5B2601522135F7300BFF778 /* ArcUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C5B2602C2213606600BFF778 /* ACButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2602B2213606600BFF778 /* ACButton.swift */; };
 		C5B2602D2213657500BFF778 /* ArcUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B2601322135F7200BFF778 /* ArcUIKit.framework */; };
-		C5B4BD15251949D90094A338 /* StatusCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B4BD14251949D90094A338 /* StatusCodeTests.swift */; };
 		C5C2B12522D3A2B3002CB4C5 /* PromptDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C2B12422D3A2B3002CB4C5 /* PromptDetailView.swift */; };
 		C5C2B12722D3D66C002CB4C5 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C2B12622D3D66B002CB4C5 /* InfoView.swift */; };
 		C5C2B12922D3ECBB002CB4C5 /* InfoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C2B12822D3ECBB002CB4C5 /* InfoContentView.swift */; };
 		C5C2B12B22D3F205002CB4C5 /* TestInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C2B12A22D3F205002CB4C5 /* TestInfoView.swift */; };
+		C5C488B025251C58006500F2 /* StatusCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B4BD14251949D90094A338 /* StatusCodeTests.swift */; };
 		C5C7F715228F65C50086315B /* ArcTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C7F714228F65C50086315B /* ArcTranslation.swift */; };
 		C5CCD7AC22DE6A61002A788A /* OnboardingSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CCD7AB22DE6A61002A788A /* OnboardingSurveyViewController.swift */; };
 		C5CCD7AE22DF717D002A788A /* AsyncAwait.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CCD7AD22DF717D002A788A /* AsyncAwait.swift */; };
@@ -367,6 +367,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = C54AE8E621C81B2F00DEC360;
 			remoteInfo = Arc;
+		};
+		C584FAA52524EAEE00ED5E1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C5490FE723C8F74C00DC4FA7 /* hMCrashReporter.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C5567D50251A8C0B00E11274;
+			remoteInfo = hMCrashReporterTests;
 		};
 		C5B2601D22135F7300BFF778 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -871,6 +878,7 @@
 			isa = PBXGroup;
 			children = (
 				C5490FEC23C8F74C00DC4FA7 /* hMCrashReporter.framework */,
+				C584FAA62524EAEE00ED5E1A /* hMCrashReporterTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1867,6 +1875,13 @@
 			remoteRef = C5490FEB23C8F74C00DC4FA7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		C584FAA62524EAEE00ED5E1A /* hMCrashReporterTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = hMCrashReporterTests.xctest;
+			remoteRef = C584FAA52524EAEE00ED5E1A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -2235,7 +2250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5B4BD15251949D90094A338 /* StatusCodeTests.swift in Sources */,
+				C5C488B025251C58006500F2 /* StatusCodeTests.swift in Sources */,
 				C584F33522C16682009741A7 /* ArcTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2325,6 +2340,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.healthyMedium.HMMarkup;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2353,6 +2369,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.healthyMedium.HMMarkup;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2544,6 +2561,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.healthyMedium.Arc;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2578,6 +2596,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.healthyMedium.Arc;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2645,6 +2664,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.healthyMedium.ArcUIKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2673,6 +2693,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.healthyMedium.ArcUIKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
