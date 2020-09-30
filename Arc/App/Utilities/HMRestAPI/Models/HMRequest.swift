@@ -107,7 +107,7 @@ public extension HMRequest {
             var p = _params
 			
 			//If one is set don't overwrite it. Migration uses this.
-			if p["device_id"] == nil {
+            if p["device_id"] == nil && HMAPI.includeDeviceId {
             	p["device_id"] = "\(HMAPI.shared.clientId ?? "")"
 			}
             return p

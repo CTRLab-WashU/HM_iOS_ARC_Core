@@ -9,6 +9,7 @@
 import Foundation
 open class HMAPI {
     static public var baseUrl = ""
+    static public var includeDeviceId = true
     static public let shared = HMAPI()
 
     public var clientId:String?

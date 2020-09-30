@@ -88,16 +88,17 @@ open class AuthController:MHController {
                 completion(00000000, nil)
                 return
             }
-			if obj?.errors.count == 0 {
+            let statusCode = StatusCode.with(response: response)
+            if statusCode.succeeded {
                 self._isAuthorized = true
 //				DispatchQueue.main.async {
 
 				HMAPI.getSessionInfo.execute(data: nil, completion: { (res, resObj, err) in
-					guard  resObj?.errors.count == 0 else {
+                    let statusCode = StatusCode.with(response: response)
+
+					guard statusCode.succeeded else {
 						
-						let r = response as? HTTPURLResponse
-						let failureMessage = self.getAuthIssue(from: r?.statusCode)
-						completion(nil, failureMessage)
+                        completion(nil, statusCode.failureMessage)
 						return
 					}
 					
@@ -134,9 +135,8 @@ open class AuthController:MHController {
 
 			} else {
 				
-                let r = response as? HTTPURLResponse
-                let failureMessage = self.getAuthIssue(from: r?.statusCode)
-				completion(nil, failureMessage)
+
+                completion(nil, statusCode.failureMessage)
 			}
         }
 		
@@ -200,7 +200,7 @@ open class AuthController:MHController {
 		})
 		
 	}
-	
+
     open func getAuthIssue(from code:Int?) -> String {
         if let code = code {
             if code == 401 {

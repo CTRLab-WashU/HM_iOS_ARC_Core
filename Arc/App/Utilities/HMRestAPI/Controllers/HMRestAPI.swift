@@ -91,11 +91,14 @@ open class HMRestAPI : NSObject, URLSessionDelegate, URLSessionTaskDelegate {
                 print("Error trying to url escape endpoint: \(backendRequest)");
                 return nil;
         }
-        let url:URL = endPoint.contains(baseUrl.path) ? URL(string: endPoint)! : URL(string: endPoint, relativeTo: baseUrl)!
+        guard let url:URL = (baseUrl == nil || endPoint.contains(baseUrl.path)) ? URL(string: endPoint) : URL(string: endPoint, relativeTo: baseUrl) else {
+            print("Error trying to prepare url: \(backendRequest)");
+            return nil
+        }
         
         var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
         
-        var urlRequest = URLRequest(url: url, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 60.0)
+        var urlRequest = URLRequest(url: url, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 10.0)
         
         urlRequest.httpMethod = backendRequest.method.rawValue
         
@@ -168,6 +171,7 @@ open class HMRestAPI : NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 								HMLog(String(bytes: data, encoding: .utf8) ?? "");
 								
 						} catch {
+                            print(completionHandlers.count)
 							//HMLog(error.localizedDescription)
 							completionHandlers.forEach {
 								$0.1(error, response)
