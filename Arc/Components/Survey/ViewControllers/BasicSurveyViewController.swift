@@ -352,7 +352,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
         setNeedsStatusBarAppearanceUpdate()
         
         //if shouldShowHelpButton {
-            displayHelpButton(shouldShowHelpButton)
+            //displayHelpButton(shouldShowHelpButton)
         //}
         //if shouldShowBackButton{
             displayBackButton(shouldShowBackButton)
@@ -369,7 +369,9 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 
             vc.customView.nextButton?.isEnabled = true;
             shouldShowBackButton = false
-            displayBackButton(false)
+            displayBackButton(shouldShowBackButton)
+            shouldShowHelpButton = true
+            displayHelpButton(shouldShowHelpButton)
         }
         if let style = question.style, style == .impasse
         {
@@ -377,10 +379,14 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 			shouldShowBackButton = true
             vc.customView.nextButton?.isEnabled = false;
             vc.customView.nextButton?.isHidden = true;
+            shouldShowHelpButton = true
+            displayHelpButton(shouldShowHelpButton)
         }
         else
         {
             vc.customView.nextButton?.addTarget(self, action: #selector(nextButtonPressed(sender:)), for: .primaryActionTriggered)
+            shouldShowHelpButton = false
+            displayHelpButton(shouldShowHelpButton)
         }
         vc.customView.setPrompt(question.subTitle)
 		vc.customView.setContentLabel(question.detail)
