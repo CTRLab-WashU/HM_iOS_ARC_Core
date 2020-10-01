@@ -176,27 +176,27 @@ open class AuthController:MHController {
 				
 			}
 			
-			HMAPI.getTestSchedule.execute(data: nil, completion: { (res, obj, err) in
-				guard err == nil && obj?.errors.isEmpty ?? true else {
-					
-					return completion(err)
-				}
-				guard let data = obj?.response?.test_schedule else {
-					return completion(nil)
-				}
-				
-				
-				MHController.dataContext.performAndWait {
-					let controller = Arc.shared.studyController
-					if controller.create(testSessionsWithSchedule: data, with: phaseType) {
-						controller.save()
-					} else {
-						print("Error creating sessions from schedule")
-					}
-					
-				}
-				completion(nil)
-			})
+            HMAPI.getCycleProgress.execute() { (cycleResponse, cycleObject, cycleProgressError) in
+                HMAPI.getTestSchedule.execute(data: nil, completion: { (res, obj, err) in
+                    guard err == nil && obj?.errors.isEmpty ?? true else {
+                        return completion(err)
+                    }
+                    guard var data = obj?.response?.test_schedule else {
+                        return completion(nil)
+                    }
+                    
+                    data.cycle_progress = cycleObject?.response
+                    MHController.dataContext.performAndWait {
+                        let controller = Arc.shared.studyController
+                        if controller.create(testSessionsWithSchedule: data, with: phaseType) {
+                            controller.save()
+                        } else {
+                            print("Error creating sessions from schedule")
+                        }
+                    }
+                    completion(nil)
+                })
+            }
 		})
 		
 	}
