@@ -560,6 +560,14 @@ open class Arc : ArcApi {
         }
     }
 	fileprivate var dataPage:Int = 0
+    public func uploadLog(name: String, reason:String) {
+        let exception = NSException(name: NSExceptionName(rawValue: name),reason: reason)
+        if let log = LogManager.sharedInstance.getLog() {
+            hMCrashReporter.sharedInstance.upload(exception: exception, andLog: log)
+        }
+    }
+
+    
 	public func debugData() {
 		guard let study = studyController.getCurrentStudyPeriod() else {
 			return
@@ -634,7 +642,8 @@ open class Arc : ArcApi {
             Last flagged missed test count: \(appController.lastFlaggedMissedTestCount)
             
             \(list)
-            """, options:  [.default("Notifications", {[weak self] in self?.debugNotifications()}),
+            """, options:  [.default("Upload Log", {[weak self] in self?.uploadLog(name: "Log", reason: "A Log Upload")}),
+                            .default("Notifications", {[weak self] in self?.debugNotifications()}),
 							.default("Data", {[weak self] in self?.debugData()}),
 							.default("Screens", {[weak self] in self?.debugScreens()}),
                             .cancel("Close", {})],

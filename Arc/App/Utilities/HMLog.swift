@@ -28,7 +28,12 @@ open class LogManager: NSObject {
     {
         LogManager.sharedInstance.logString(s);
     }
-    
+    public func getLog()->Data?
+    {
+        let documentsDirecotry = fm.urls(for: .documentDirectory, in: .userDomainMask)[0];
+        let filepath = documentsDirecotry.appendingPathComponent("Log.txt").toString().data(using: .utf8);
+        return filepath
+    }
     private func logString(_ s:String)
     {
         if logToFile == false
