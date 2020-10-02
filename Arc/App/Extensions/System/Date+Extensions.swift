@@ -28,6 +28,15 @@ public extension Date {
        let v = df.string(from: self);
         return v
     }
+    func localFormat(locale:Locale? = nil) -> String {
+        let df = DateFormatter();
+        df.locale = locale ?? Locale(identifier: Arc.shared.appController.locale.string)
+        df.dateStyle = .none
+        df.timeStyle = .short
+        //        df.doesRelativeDateFormatting = true
+        let v = df.string(from: self);
+        return v
+    }
     func filenameSafeString() -> String
 	{
 		let df = DateFormatter();
@@ -323,4 +332,21 @@ public extension DateComponentsFormatter
         return "";
     }
     
+}
+
+public extension DateFormatter {
+
+    static var h24mm:DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.defaultDate = Date()
+        formatter.setLocalizedDateFormatFromTemplate("HH:mm")
+        return formatter
+    }()
+
+    static var h12mm:DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.defaultDate = Date()
+        formatter.setLocalizedDateFormatFromTemplate("hh:mm a")
+        return formatter
+    }()
 }
