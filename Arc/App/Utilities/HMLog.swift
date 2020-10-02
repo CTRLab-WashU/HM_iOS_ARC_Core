@@ -28,11 +28,17 @@ open class LogManager: NSObject {
     {
         LogManager.sharedInstance.logString(s);
     }
-    public func getLog()->Data?
+    public func getLog() -> Data?
     {
         let documentsDirecotry = fm.urls(for: .documentDirectory, in: .userDomainMask)[0];
-        let filepath = documentsDirecotry.appendingPathComponent("Log.txt").toString().data(using: .utf8);
-        return filepath
+        let filepath = documentsDirecotry.appendingPathComponent(logName)
+        do {
+            return try Data(contentsOf: filepath)
+        } catch {
+            print(error)
+            return nil
+        }
+
     }
     private func logString(_ s:String)
     {
