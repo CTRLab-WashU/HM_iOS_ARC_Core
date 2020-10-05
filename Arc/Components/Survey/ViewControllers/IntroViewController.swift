@@ -163,8 +163,10 @@ open class IntroViewController: CustomViewController<InfoView> {
 				self?.set(flag: .tutorial_complete)
 				//TODO: This will soon be depricated
 				if self?.style == .grids {
-					self?.present(GridTestTutorialViewController(), animated: true) {
-						
+                    if Arc.environment?.gridTestType == .extended {
+                        self?.present(ExtendedGridTestTutorialViewController(), animated: true) {}
+                    } else {
+                        self?.present(GridTestTutorialViewController(), animated: true) {}
 					}
 				}
 				if self?.style == .prices {

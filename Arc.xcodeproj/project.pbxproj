@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		17732E3924FEF87700FE4990 /* GridTestSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E961524D8832C001166A1 /* GridTestSelectionView.swift */; };
 		17732E3B24FEFB5200FE4990 /* GridChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17732E3224FEF65100FE4990 /* GridChoiceView.swift */; };
+		177BA72A2527BA150018A25F /* GridTestTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BA7292527BA150018A25F /* GridTestTutorialViewController.swift */; };
+		177BA72D2527BA510018A25F /* GridTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BA72C2527BA510018A25F /* GridTestViewController.swift */; };
+		177BA72F2527BADF0018A25F /* GridTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 177BA72E2527BADF0018A25F /* GridTestViewController.xib */; };
+		177BA7342527CD980018A25F /* GridTestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BA7332527CD980018A25F /* GridTestType.swift */; };
 		17CE9D0824D89E7B002EF878 /* GridTestSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17CE9D0724D89E7B002EF878 /* GridTestSelectionView.xib */; };
 		2D35988D237B6604005EF2CF /* SimplifiedPricesTestTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D35988C237B6604005EF2CF /* SimplifiedPricesTestTutorialViewController.swift */; };
 		2D5711F422EB3AB500E7F881 /* Earnings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5711F322EB3AB500E7F881 /* Earnings.swift */; };
@@ -106,7 +110,7 @@
 		C54AEA0721C81B5F00DEC360 /* SymbolsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE94E21C81B5C00DEC360 /* SymbolsTest.swift */; };
 		C54AEA0821C81B5F00DEC360 /* PriceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE94F21C81B5C00DEC360 /* PriceTest.swift */; };
 		C54AEA0921C81B5F00DEC360 /* GridTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE95021C81B5C00DEC360 /* GridTest.swift */; };
-		C54AEA0A21C81B5F00DEC360 /* GridTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE95221C81B5C00DEC360 /* GridTestViewController.swift */; };
+		C54AEA0A21C81B5F00DEC360 /* ExtendedGridTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE95221C81B5C00DEC360 /* ExtendedGridTestViewController.swift */; };
 		C54AEA0B21C81B5F00DEC360 /* PricesQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE95321C81B5C00DEC360 /* PricesQuestionViewController.swift */; };
 		C54AEA0C21C81B5F00DEC360 /* SymbolsTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE95421C81B5C00DEC360 /* SymbolsTestViewController.swift */; };
 		C54AEA0D21C81B5F00DEC360 /* InstructionNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE95521C81B5C00DEC360 /* InstructionNavigationController.swift */; };
@@ -115,7 +119,7 @@
 		C54AEA1021C81B5F00DEC360 /* PricesQuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE95821C81B5C00DEC360 /* PricesQuestionViewController.xib */; };
 		C54AEA1121C81B5F00DEC360 /* PricesTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE95921C81B5C00DEC360 /* PricesTestViewController.swift */; };
 		C54AEA1221C81B5F00DEC360 /* FinishedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE95A21C81B5C00DEC360 /* FinishedNavigationController.swift */; };
-		C54AEA1321C81B5F00DEC360 /* GridTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE95B21C81B5C00DEC360 /* GridTestViewController.xib */; };
+		C54AEA1321C81B5F00DEC360 /* ExtendedGridTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE95B21C81B5C00DEC360 /* ExtendedGridTestViewController.xib */; };
 		C54AEA1421C81B5F00DEC360 /* TestManagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE95D21C81B5C00DEC360 /* TestManagerController.swift */; };
 		C54AEA1521C81B5F00DEC360 /* GridTestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE95E21C81B5C00DEC360 /* GridTestController.swift */; };
 		C54AEA1621C81B5F00DEC360 /* SymbolsTestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE95F21C81B5C00DEC360 /* SymbolsTestController.swift */; };
@@ -244,7 +248,7 @@
 		C57E866423074FE0009B4BFC /* GoalDayTileGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E866323074FE0009B4BFC /* GoalDayTileGroup.swift */; };
 		C57E9C862236C232009F6228 /* StartDateShiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E9C852236C232009F6228 /* StartDateShiftViewController.swift */; };
 		C58129F822E20BE000CD1883 /* TutorialCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58129F722E20BE000CD1883 /* TutorialCompleteView.swift */; };
-		C58129FB22E249EE00CD1883 /* GridTestTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58129FA22E249EE00CD1883 /* GridTestTutorialViewController.swift */; };
+		C58129FB22E249EE00CD1883 /* ExtendedGridTestTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58129FA22E249EE00CD1883 /* ExtendedGridTestTutorialViewController.swift */; };
 		C583C0E422136E0C0043DFA7 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9C121C81B5F00DEC360 /* Roboto-Medium.ttf */; };
 		C583C0E522136E0C0043DFA7 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9C221C81B5F00DEC360 /* Roboto-Light.ttf */; };
 		C583C0E622136E0C0043DFA7 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9C321C81B5F00DEC360 /* Roboto-Regular.ttf */; };
@@ -382,6 +386,10 @@
 /* Begin PBXFileReference section */
 		175E961524D8832C001166A1 /* GridTestSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTestSelectionView.swift; sourceTree = "<group>"; };
 		17732E3224FEF65100FE4990 /* GridChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridChoiceView.swift; sourceTree = "<group>"; };
+		177BA7292527BA150018A25F /* GridTestTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTestTutorialViewController.swift; sourceTree = "<group>"; };
+		177BA72C2527BA510018A25F /* GridTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTestViewController.swift; sourceTree = "<group>"; };
+		177BA72E2527BADF0018A25F /* GridTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GridTestViewController.xib; sourceTree = "<group>"; };
+		177BA7332527CD980018A25F /* GridTestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTestType.swift; sourceTree = "<group>"; };
 		17CE9D0724D89E7B002EF878 /* GridTestSelectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GridTestSelectionView.xib; sourceTree = "<group>"; };
 		2D35988C237B6604005EF2CF /* SimplifiedPricesTestTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplifiedPricesTestTutorialViewController.swift; sourceTree = "<group>"; };
 		2D5711F322EB3AB500E7F881 /* Earnings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Earnings.swift; sourceTree = "<group>"; };
@@ -491,7 +499,7 @@
 		C54AE94E21C81B5C00DEC360 /* SymbolsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymbolsTest.swift; sourceTree = "<group>"; };
 		C54AE94F21C81B5C00DEC360 /* PriceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceTest.swift; sourceTree = "<group>"; };
 		C54AE95021C81B5C00DEC360 /* GridTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridTest.swift; sourceTree = "<group>"; };
-		C54AE95221C81B5C00DEC360 /* GridTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridTestViewController.swift; sourceTree = "<group>"; };
+		C54AE95221C81B5C00DEC360 /* ExtendedGridTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedGridTestViewController.swift; sourceTree = "<group>"; };
 		C54AE95321C81B5C00DEC360 /* PricesQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PricesQuestionViewController.swift; sourceTree = "<group>"; };
 		C54AE95421C81B5C00DEC360 /* SymbolsTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymbolsTestViewController.swift; sourceTree = "<group>"; };
 		C54AE95521C81B5C00DEC360 /* InstructionNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionNavigationController.swift; sourceTree = "<group>"; };
@@ -500,7 +508,7 @@
 		C54AE95821C81B5C00DEC360 /* PricesQuestionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PricesQuestionViewController.xib; sourceTree = "<group>"; };
 		C54AE95921C81B5C00DEC360 /* PricesTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PricesTestViewController.swift; sourceTree = "<group>"; };
 		C54AE95A21C81B5C00DEC360 /* FinishedNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishedNavigationController.swift; sourceTree = "<group>"; };
-		C54AE95B21C81B5C00DEC360 /* GridTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GridTestViewController.xib; sourceTree = "<group>"; };
+		C54AE95B21C81B5C00DEC360 /* ExtendedGridTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExtendedGridTestViewController.xib; sourceTree = "<group>"; };
 		C54AE95D21C81B5C00DEC360 /* TestManagerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestManagerController.swift; sourceTree = "<group>"; };
 		C54AE95E21C81B5C00DEC360 /* GridTestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridTestController.swift; sourceTree = "<group>"; };
 		C54AE95F21C81B5C00DEC360 /* SymbolsTestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymbolsTestController.swift; sourceTree = "<group>"; };
@@ -626,7 +634,7 @@
 		C57E9C872236CE67009F6228 /* ACPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPickerView.swift; sourceTree = "<group>"; };
 		C57E9C892236E825009F6228 /* ACPickerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ACPickerView.xib; sourceTree = "<group>"; };
 		C58129F722E20BE000CD1883 /* TutorialCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCompleteView.swift; sourceTree = "<group>"; };
-		C58129FA22E249EE00CD1883 /* GridTestTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTestTutorialViewController.swift; sourceTree = "<group>"; };
+		C58129FA22E249EE00CD1883 /* ExtendedGridTestTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedGridTestTutorialViewController.swift; sourceTree = "<group>"; };
 		C583C0F122136E3B0043DFA7 /* ACLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACLabel.swift; sourceTree = "<group>"; };
 		C584F33222C16682009741A7 /* ArcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C584F33422C16682009741A7 /* ArcTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcTests.swift; sourceTree = "<group>"; };
@@ -1523,9 +1531,13 @@
 		C58129F922E244BF00CD1883 /* Grid Test */ = {
 			isa = PBXGroup;
 			children = (
-				C58129FA22E249EE00CD1883 /* GridTestTutorialViewController.swift */,
-				C54AE95221C81B5C00DEC360 /* GridTestViewController.swift */,
-				C54AE95B21C81B5C00DEC360 /* GridTestViewController.xib */,
+				C58129FA22E249EE00CD1883 /* ExtendedGridTestTutorialViewController.swift */,
+				C54AE95221C81B5C00DEC360 /* ExtendedGridTestViewController.swift */,
+				C54AE95B21C81B5C00DEC360 /* ExtendedGridTestViewController.xib */,
+				177BA7292527BA150018A25F /* GridTestTutorialViewController.swift */,
+				177BA72C2527BA510018A25F /* GridTestViewController.swift */,
+				177BA72E2527BADF0018A25F /* GridTestViewController.xib */,
+				177BA7332527CD980018A25F /* GridTestType.swift */,
 			);
 			path = "Grid Test";
 			sourceTree = "<group>";
@@ -1895,7 +1907,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C54AEA1321C81B5F00DEC360 /* GridTestViewController.xib in Resources */,
+				C54AEA1321C81B5F00DEC360 /* ExtendedGridTestViewController.xib in Resources */,
 				E8BA72FA23198BD800823374 /* ResourcesHeaderView.xib in Resources */,
 				C5E1E3962257ECC200255812 /* ACChangeAvailabilityViewController.xib in Resources */,
 				C54AEA0F21C81B5F00DEC360 /* PricesTestViewController.xib in Resources */,
@@ -1904,6 +1916,7 @@
 				C54AEA2121C81B5F00DEC360 /* GridImageCell.xib in Resources */,
 				C54AEA2A21C81B5F00DEC360 /* WelcomeViewController.xib in Resources */,
 				C54AEA6721C81B5F00DEC360 /* Roboto-MediumItalic.ttf in Resources */,
+				177BA72F2527BADF0018A25F /* GridTestViewController.xib in Resources */,
 				17CE9D0824D89E7B002EF878 /* GridTestSelectionView.xib in Resources */,
 				C54AEA4121C81B5F00DEC360 /* SurveyNavigationViewController.xib in Resources */,
 				C54AEA4321C81B5F00DEC360 /* IntroViewController.xib in Resources */,
@@ -2047,6 +2060,7 @@
 				C54AE9D121C81B5F00DEC360 /* ACState.swift in Sources */,
 				C54D104822C28A1D00B43E42 /* ACPickerView.swift in Sources */,
 				C57E866023073770009B4BFC /* ACTranslationKey.swift in Sources */,
+				177BA72D2527BA510018A25F /* GridTestViewController.swift in Sources */,
 				C578771522F8BF260068E46B /* TestCountDownViewController.swift in Sources */,
 				C523B38622CA76450074337D /* UIViewController + CustomView.swift in Sources */,
 				C54D104222C28A1D00B43E42 /* PasswordView.swift in Sources */,
@@ -2180,7 +2194,7 @@
 				E86732322315808800844F91 /* ACHomeViewController.swift in Sources */,
 				C55F8CD3230F1BCA006D43BD /* EarningDetailGoalView.swift in Sources */,
 				C52B75D421C8369400498571 /* arc.xcdatamodeld in Sources */,
-				C58129FB22E249EE00CD1883 /* GridTestTutorialViewController.swift in Sources */,
+				C58129FB22E249EE00CD1883 /* ExtendedGridTestTutorialViewController.swift in Sources */,
 				C54AEA1121C81B5F00DEC360 /* PricesTestViewController.swift in Sources */,
 				C5D24ED3230B02B600146E37 /* FourOfFourGoalView.swift in Sources */,
 				C5DA181A230492A6003C84C2 /* EarningsViewController.swift in Sources */,
@@ -2208,6 +2222,7 @@
 				C53B123822F348F900BACA9A /* ACTodayProgressViewController.swift in Sources */,
 				C594B3DA23E245BA00B9743C /* Alignment.swift in Sources */,
 				C54AE9F321C81B5F00DEC360 /* ProxyManager.swift in Sources */,
+				177BA7342527CD980018A25F /* GridTestType.swift in Sources */,
 				C5477C7C231868E10072425D /* RebukedCommitmentViewController.swift in Sources */,
 				C54AEA0021C81B5F00DEC360 /* PrimaryButton.swift in Sources */,
 				C5C2B12B22D3F205002CB4C5 /* TestInfoView.swift in Sources */,
@@ -2215,13 +2230,14 @@
 				C54AEA0721C81B5F00DEC360 /* SymbolsTest.swift in Sources */,
 				C5D24ED5230B040300146E37 /* TwoADayGoalView.swift in Sources */,
 				C51A7D9022D8CDAE00854B13 /* BasicSurveyViewController.swift in Sources */,
+				177BA72A2527BA150018A25F /* GridTestTutorialViewController.swift in Sources */,
 				C54F62E32326AD9300857C7D /* ACMigrationViewController.swift in Sources */,
 				C54AEA0C21C81B5F00DEC360 /* SymbolsTestViewController.swift in Sources */,
 				C54AEA0221C81B5F00DEC360 /* HMCodable.swift in Sources */,
 				C54AEA1421C81B5F00DEC360 /* TestManagerController.swift in Sources */,
 				C54E8E1E22E800780080BFC1 /* CircularProgressView.swift in Sources */,
 				C54AE9ED21C81B5F00DEC360 /* HMRestAPI.swift in Sources */,
-				C54AEA0A21C81B5F00DEC360 /* GridTestViewController.swift in Sources */,
+				C54AEA0A21C81B5F00DEC360 /* ExtendedGridTestViewController.swift in Sources */,
 				C54AE9DC21C81B5F00DEC360 /* Set+Extensions.swift in Sources */,
 				C54AE9D421C81B5F00DEC360 /* JSONData.swift in Sources */,
 				C54D104622C28A1D00B43E42 /* ChoiceView.swift in Sources */,
