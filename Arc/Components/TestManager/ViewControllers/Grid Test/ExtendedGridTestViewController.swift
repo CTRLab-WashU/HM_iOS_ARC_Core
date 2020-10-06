@@ -1,5 +1,5 @@
 //
-//  GridTestViewController.swift
+//  ExtendedGridTestViewController.swift
 // Arc
 //
 //  Created by Philip Hayes on 10/5/18.

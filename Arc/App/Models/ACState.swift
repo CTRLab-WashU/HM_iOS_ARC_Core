@@ -128,10 +128,14 @@ public enum ACState : String, State, CaseIterable {
 			controller.load(instructions: "TestingIntro")
 			newController = controller
 		case .gridTest:
-			let vc:GridTestViewController = .get()
-			
-			let controller:InstructionNavigationController = .get()
-			controller.nextVc = vc
+            let controller:InstructionNavigationController = .get()
+            if Arc.environment?.gridTestType == .extended {
+                let vc:ExtendedGridTestViewController = .get()
+                controller.nextVc = vc
+            } else {
+                let vc:GridTestViewController = .get()
+                controller.nextVc = vc
+            }
 			controller.titleOverride = "Test \(ACState.testTaken + 1) of 3"
 			
 			controller.load(instructions: "TestingIntro-Grids")
