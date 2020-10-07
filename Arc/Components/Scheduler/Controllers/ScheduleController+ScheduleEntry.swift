@@ -63,34 +63,40 @@ public extension ScheduleController {
         return schedule
     }
 	func formatTime(time:String, with currentDate:Date) -> Date {
-        #warning("Creates formatter for each use, cache anywhere this is seen.")
+        
         var formatter = DateFormatter.h24mm
+        formatter.defaultDate = currentDate
 
 		var newTime = formatter.date(from:  time);
         if newTime == nil {
             formatter = DateFormatter.h12mm
+            formatter.defaultDate = currentDate
 
             newTime = formatter.date(from:  time)
         }
+
 		if newTime == nil {
 			formatter.amSymbol = "a.m."
 			formatter.pmSymbol = "p.m."
 			newTime = formatter.date(from:  time)
 		}
+
 		if newTime == nil {
 			formatter.amSymbol = "am"
 			formatter.pmSymbol = "pm"
 			newTime = formatter.date(from:  time)
 		}
+
         if newTime == nil {
             formatter.amSymbol = "AM"
             formatter.pmSymbol = "PM"
             newTime = formatter.date(from:  time)
         }
+
 		guard let result = newTime else {
 			fatalError("Failed to create date.")
 		}
-//        print(result.localizedFormat())
+
 		return result
 	}
 	
