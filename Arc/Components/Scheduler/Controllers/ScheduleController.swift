@@ -115,9 +115,9 @@ open class ScheduleController : MHController {
                     return
                 }
 				if let errors = obj?.errors, errors.count > 0 {
-					HMLog("Participant: \(data.participant_id), received response \(obj?.toString() ?? "") on \(Date())")
+					HMLog("received response \(obj?.toString() ?? "") on \(Date())")
 				} else {
-					HMLog("Participant: \(data.participant_id), received response \(obj?.toString() ?? "") on \(Date())")
+					HMLog("received response \(obj?.toString() ?? "") on \(Date())")
 					Arc.shared.appController.wakeSleepUploaded = true
 				}
 				

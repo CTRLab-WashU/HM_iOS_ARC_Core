@@ -5,7 +5,9 @@ import CoreData
 
 open class NotificationController : MHController
 {
-	
+    public enum ControllerError : Error {
+        case fireDateDeviation(TimeInterval)
+    }
 
 	
 	open func authenticateNotifications(completion: @escaping (Bool, Error?)->()) {
@@ -29,6 +31,21 @@ open class NotificationController : MHController
 		}
 		
 	}
+
+    open func checkNotificationForDeviation(notification:UNNotification, response:UNNotificationResponse? = nil) throws {
+        let deliveryDate = notification.date.timeIntervalSince1970
+        if let trigger = notification.request.trigger as? UNCalendarNotificationTrigger,
+            let triggerDate = trigger.dateComponents.date?.timeIntervalSince1970 {
+            let deviation = deliveryDate - triggerDate
+            HMLog("received notification \(notification.request.identifier): \(response?.actionIdentifier), Delivery deviation: \(deviation)");
+            if fabs(deviation) > 60 * 10 {
+                let error = ControllerError.fireDateDeviation(deviation)
+                Arc.handleError(error, named: "Notification Deviation")
+                throw error
+            }
+        }
+    }
+
     @discardableResult
 	open func scheduleNotification(date:Date, title:String, body:String, identifierPrefix:String = "") -> NotificationEntry
     {
@@ -270,12 +287,14 @@ open class NotificationController : MHController
     {
         UNUserNotificationCenter.current().getDeliveredNotifications { (notifs) in
             let notifsToRemove: [String] = notifs.compactMap{
-                guard let dateComponents = ($0.request.trigger as? UNCalendarNotificationTrigger)?.dateComponents else {
+                guard let trigger:UNCalendarNotificationTrigger = $0.request.trigger as? UNCalendarNotificationTrigger else {
                     return nil
                 }
+                let dateComponents = trigger.dateComponents
                 guard let date = Calendar.current.date(from: dateComponents) else {
                     return nil
                 }
+
                 guard date.compare(Date().addingHours(hours: -expiredAge)) == .orderedAscending else {
                     HMLog("\(date.localizedFormat()) is greater than \(Date().addingHours(hours: -expiredAge).localizedFormat())")
                     return nil

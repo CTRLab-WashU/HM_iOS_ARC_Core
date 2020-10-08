@@ -188,7 +188,36 @@ open class Arc : ArcApi {
 		return Arc.shared.appController.read(key: key)
 
 	}
-	
+
+    ///Errors passed into this function will be uploaded using the crash reporter library. Choosing to raise
+    ///the error will cause execution of the application to abort.
+    ///Calling this function in try/catch handlers is recommended if you wish to log aberrant behavior
+    ///or track when later maintenance changes the internal state of the application unexpectedly.
+    /// - parameters:
+    ///     - error: The error thrown.
+    ///     - name: The name to give to the exception that will be uploaded.
+    ///     - shouldRaise: a flag telling the application to end execution immediately.
+    /// - attention: Choosing to raise an error will prevent the error from uploading immediately.
+    /// it will, however, trigger the default crash reporter behavior and save the report. Then it will upload on
+    /// next run of the application.
+    /// - note: the should raise flag is especially useful for DEV and QA builds.
+    /// - warning: Never raise during Production, fail safely and return the ui to a functional state.
+    /// - version: 0.1
+    public static func handleError(_ error:Error, named name:String, shouldRaise:Bool = false, userInfo:[AnyHashable:Any]? = nil) {
+        let description = error.localizedDescription
+        let exception = NSException(name: NSExceptionName(name),
+                                    reason: description,
+                                    userInfo: nil)
+        handleException(exception)
+    }
+
+    private static func handleException(_ exception:NSException, raise:Bool = false) {
+        if let log = LogManager.sharedInstance.getLog() {
+            hMCrashReporter.sharedInstance.upload(exception: exception, andLog: log)
+            //TODO: Raise exception when done
+        }
+
+    }
     @discardableResult
     public func displayAlert(message:String, options:[MHAlertView.ButtonType], isScrolling:Bool = false) -> MHAlertView {
         let view:MHAlertView = (isScrolling) ? .get(nib: "MHScrollingAlertView") : .get()
@@ -294,7 +323,7 @@ open class Arc : ArcApi {
 			return
 		}
 		HMAPI.deviceHeartbeat.execute(data: HeartbeatRequestData()) { (response, data, _) in
-			HMLog("Participant: \(self.participantId ?? -1), received response \(data?.toString() ?? "") on \(Date())")
+			HMLog("received response \(data?.toString() ?? "") on \(Date())")
 
 		}
 	}
