@@ -35,7 +35,7 @@ open class NotificationController : MHController
     open func checkNotificationForDeviation(notification:UNNotification, response:UNNotificationResponse? = nil) throws {
         let deliveryDate = notification.date.timeIntervalSince1970
         if let trigger = notification.request.trigger as? UNCalendarNotificationTrigger,
-            let triggerDate = trigger.dateComponents.date?.timeIntervalSince1970 {
+            let triggerDate = Calendar.current.date(from: trigger.dateComponents)?.timeIntervalSince1970 {
             let deviation = deliveryDate - triggerDate
             HMLog("received notification \(notification.request.identifier): \(response?.actionIdentifier), Delivery deviation: \(deviation)");
             if fabs(deviation) > 60 * 10 {
@@ -49,7 +49,7 @@ open class NotificationController : MHController
     @discardableResult
 	open func scheduleNotification(date:Date, title:String, body:String, identifierPrefix:String = "") -> NotificationEntry
     {
-        HMLog("Scheduling \(identifierPrefix) notification for \(date.localizedString(dateStyle: .short, timeStyle: .medium) )");
+        print("Scheduling \(identifierPrefix) notification for \(date.localizedString(dateStyle: .short, timeStyle: .medium) )");
         
         let newNotification:NotificationEntry = new()
         
@@ -84,6 +84,7 @@ open class NotificationController : MHController
 			if let error = error {
 				HMLog("Scheduling notification produced an error \(error.localizedDescription)")
 				dump(error)
+                Arc.handleError(error, named: "Scheduling notification produced an error")
 			}
 		}
             
@@ -285,7 +286,7 @@ open class NotificationController : MHController
     }
     open func manageDeletePresentedSessionNotifications(_ prefix:String? = nil, expiredAge:Int = 2, completion:(()->())?)
     {
-        UNUserNotificationCenter.current().getDeliveredNotifications { (notifs) in
+        UNUserNotificationCenter.current().getDeliveredNotifications {[weak self] (notifs) in
             let notifsToRemove: [String] = notifs.compactMap{
                 guard let trigger:UNCalendarNotificationTrigger = $0.request.trigger as? UNCalendarNotificationTrigger else {
                     return nil
@@ -294,20 +295,21 @@ open class NotificationController : MHController
                 guard let date = Calendar.current.date(from: dateComponents) else {
                     return nil
                 }
-
+                try? self?.checkNotificationForDeviation(notification: $0)
                 guard date.compare(Date().addingHours(hours: -expiredAge)) == .orderedAscending else {
-                    HMLog("\(date.localizedFormat()) is greater than \(Date().addingHours(hours: -expiredAge).localizedFormat())")
+                    print("\(date.localizedFormat()) is greater than \(Date().addingHours(hours: -expiredAge).localizedFormat())")
                     return nil
                 }
 
                 if let p =  prefix {
                     guard $0.request.identifier.hasPrefix(p) else {
-                        HMLog("does not have prefix \(p)")
+                        print("does not have prefix \(p)")
 
                         return nil
                     }
                 }
                 HMLog("Removing \($0.request.identifier)")
+
                 return $0.request.identifier
             }
                 UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: notifsToRemove);

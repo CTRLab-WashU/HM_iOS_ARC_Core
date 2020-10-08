@@ -120,9 +120,7 @@ open class Arc : ArcApi {
 	}
     static public func configureWithEnvironment(environment:ArcEnvironment) {
         self.environment = environment
-		if let crashReporterKey = environment.crashReporterApiKey {
-        	hMCrashReporter.sharedInstance.setup(apiKey: crashReporterKey)
-		}
+
 		Arc.debuggableStates = environment.debuggableStates
         HMAPI.baseUrl = environment.baseUrl ?? ""
 		CoreDataStack.useMockContainer = environment.mockData
@@ -161,6 +159,15 @@ open class Arc : ArcApi {
             Arc.shared.studyController.ArcStartDays = arcStartDays
         }
         environment.configure()
+
+        if let crashReporterKey = environment.crashReporterApiKey {
+            var identity:AppIdentity = AppIdentity()
+            if environment.protectIdentity == false {
+                identity.id = "\(Arc.shared.participantId ?? -99)"
+                identity.deviceId = Arc.shared.deviceId
+            }
+            hMCrashReporter.sharedInstance.setup(apiKey: crashReporterKey, identity: identity)
+        }
     }
     public func nextAvailableState(runPeriodicBackgroundTask:Bool = false, direction:UIWindow.TransitionOptions.Direction = .toRight) {
 		let state = appNavigation.nextAvailableState(runPeriodicBackgroundTask: runPeriodicBackgroundTask)
@@ -210,10 +217,22 @@ open class Arc : ArcApi {
                                     userInfo: nil)
         handleException(exception)
     }
-
+    public static func handleError(_ error:ErrorReport, named name:String, shouldRaise:Bool = false, userInfo:[AnyHashable:Any]? = nil) {
+        let description = error.localizedDescription
+        let exception = NSException(name: NSExceptionName(name),
+                                    reason: description,
+                                    userInfo: nil)
+        handleException(exception)
+    }
     private static func handleException(_ exception:NSException, raise:Bool = false) {
         if let log = LogManager.sharedInstance.getLog() {
-            hMCrashReporter.sharedInstance.upload(exception: exception, andLog: log)
+
+            var identity:AppIdentity = AppIdentity()
+            if Arc.environment?.protectIdentity != true {
+                identity.id = "\(Arc.shared.participantId ?? -99)"
+                identity.deviceId = Arc.shared.deviceId
+            }
+            hMCrashReporter.sharedInstance.upload(exception: exception, andLog: log, identity: identity )
             //TODO: Raise exception when done
         }
 
@@ -592,7 +611,12 @@ open class Arc : ArcApi {
     public func uploadLog(name: String, reason:String) {
         let exception = NSException(name: NSExceptionName(rawValue: name),reason: reason)
         if let log = LogManager.sharedInstance.getLog() {
-            hMCrashReporter.sharedInstance.upload(exception: exception, andLog: log)
+            var identity:AppIdentity = AppIdentity()
+            if Arc.environment?.protectIdentity != true {
+                identity.id = "\(Arc.shared.participantId ?? -99)"
+                identity.deviceId = Arc.shared.deviceId
+            }
+            hMCrashReporter.sharedInstance.upload(exception: exception, andLog: log, identity: identity)
         }
     }
 
