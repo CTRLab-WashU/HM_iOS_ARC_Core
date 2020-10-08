@@ -14,6 +14,7 @@ public enum AuthStyle {
 public protocol ArcEnvironment {
 	var crashReporterApiKey:String? {get}
 	var debuggableStates:[State] {get}
+    var protectIdentity:Bool {get}
 	var isDebug:Bool {get}
     var mockData:Bool {get}
     var blockApiRequests:Bool {get}
@@ -122,8 +123,10 @@ public extension ArcEnvironment {
 }
 
 public struct ACEnvironment : ArcEnvironment {
+    public var protectIdentity: Bool = true
+
 	public var baseUrl: String?
-	
+
 	public var welcomeLogo: String?
 	
 	public var welcomeText: String?
