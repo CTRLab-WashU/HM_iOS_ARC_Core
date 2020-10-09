@@ -59,7 +59,8 @@ public struct TestScheduleRequestData : Codable {
 	public var device_info:String? // "iOS|iPhone8,4|10.1.1",
 	public var app_version:String? // "1.2.4",
 	public var model_version:String? // "1",
-
+    public var timezone_name:String? //name of timezone ie "Central Standard Time"
+    public var timezone_offset:String? //offset from utc ie "UTC-05:00"
 
 	public init(withStudyPeriod studyPeriod: StudyPeriod) {
 
@@ -80,7 +81,8 @@ public struct TestScheduleRequestData : Codable {
 		device_info = Arc.shared.deviceInfo()
 		app_version = Arc.shared.versionString
 		model_version = "\(Arc.shared.arcVersion)"
-
+        timezone_name = TimeZone.current.description
+        timezone_offset = (TimeZone.current.secondsFromGMT() / 3600).toString()
 		//All sessions have been prefilled with json data at the begining of the study
 
 
@@ -111,7 +113,8 @@ public struct TestScheduleRequestData : Codable {
 		device_info = Arc.shared.deviceInfo()
 		app_version = Arc.shared.versionString
 		model_version = "\(Arc.shared.arcVersion)"
-		
+		timezone_name = TimeZone.current.description
+        timezone_offset = (TimeZone.current.secondsFromGMT() / 3600).toString()
 		//All sessions have been prefilled with json data at the begining of the study
 		
 	}
@@ -151,7 +154,8 @@ public struct WakeSleepScheduleRequestData : Codable {
 	public var device_info:String // "iOS|iPhone8,4|10.1.1",
 	public var app_version:String // "1.2.4",
 	public var model_version:String // "1",
-	
+    public var timezone_name:String //name of timezone ie "Central Standard Time"
+    public var timezone_offset:String //offset from utc ie "UTC-05:00"
 	
 	public init(withStudyPeriod studyPeriod: StudyPeriod) {
 		
@@ -171,7 +175,8 @@ public struct WakeSleepScheduleRequestData : Codable {
 		device_info = Arc.shared.deviceInfo()
 		app_version = Arc.shared.versionString
 		model_version = "\(Arc.shared.arcVersion)"
-		
+        timezone_name = TimeZone.current.description
+        timezone_offset = (TimeZone.current.secondsFromGMT() / 3600).toString()
 		//All sessions have been prefilled with json data at the begining of the study
 		
 		
