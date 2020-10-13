@@ -64,7 +64,7 @@ public enum ACTranslationKey : String, TranslationKey {
 
     case login_2fa_body
 
-    case login_problems_2fa
+    case login_problems_2FA
 
     case login_resend_header
 
