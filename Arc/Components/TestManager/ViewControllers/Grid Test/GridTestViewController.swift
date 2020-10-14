@@ -355,12 +355,15 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         let type = (mode == .image) ? "imageCell" : "fCell"
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: type, for: indexPath)
         let index = indexPath.row
-        
+        let numCols = collectionView.numberOfItems(inSection: 0)
+        let col = index % numCols
+        let row = index / numCols
         if (mode == .image || mode == .answers) {
             
             let iCell = cell as! GridImageCell
+            iCell.layer.cornerRadius = 0
             iCell.isPracticeCell = self.isPracticeTest
-            iCell.accessibilityIdentifier = "\(type)_\(indexPath.row)"
+            iCell.accessibilityIdentifier = "\(type)V1_\(row)_\(col)"
             
             if mode != .answers {
                 iCell.image.isHidden = true;
@@ -388,7 +391,7 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
             
         } else if (mode == .fCell) {
             let fCell = cell as! GridFCell
-            fCell.accessibilityIdentifier = "\(type)_\(indexPath.row)"
+            fCell.accessibilityIdentifier = "\(type)_\(row)_\(col)"
             fCell.contentView.layer.cornerRadius = 22.0
             fCell.contentView.layer.backgroundColor = UIColor.clear.cgColor;
             fCell.contentView.layer.masksToBounds = true
