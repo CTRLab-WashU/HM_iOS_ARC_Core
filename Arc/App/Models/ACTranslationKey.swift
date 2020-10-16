@@ -60,9 +60,9 @@ public enum ACTranslationKey : String, TranslationKey {
 
     case login_problems_linked
 
-    case login_enter_2fa
+    case login_enter_2FA
 
-    case login_2fa_body
+    case login_2FA_body
 
     case login_problems_2FA
 
@@ -70,9 +70,9 @@ public enum ACTranslationKey : String, TranslationKey {
 
     case login_resend_subheader
 
-    case login_2fa_text
+    case login_2FA_text
 
-    case login_2fa_morehelp_linked
+    case login_2FA_morehelp_linked
 
     case onboarding_header
 
