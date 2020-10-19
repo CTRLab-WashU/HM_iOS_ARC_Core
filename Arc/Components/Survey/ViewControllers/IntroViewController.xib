@@ -113,6 +113,9 @@
                                         <userDefinedRuntimeAttribute type="color" keyPath="secondaryColor">
                                             <color key="value" name="Secondary Gradient"/>
                                         </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="24"/>
+                                        </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="nextButtonPressed:" destination="-1" eventType="touchUpInside" id="LXj-Zd-SO0"/>
