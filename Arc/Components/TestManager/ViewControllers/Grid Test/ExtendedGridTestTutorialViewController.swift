@@ -403,7 +403,10 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             }
             weakSelf.tutorialAnimation.pause()
             let width = weakSelf.test.collectionStack.bounds.height - weakSelf.test.collectionViewHeight.constant
-            let height = weakSelf.test.collectionStack.bounds.width - weakSelf.test.collectionViewWidth.constant + 50
+            var height = weakSelf.test.collectionStack.bounds.width - weakSelf.test.collectionViewWidth.constant
+            if weakSelf.test.collectionViewHeight.constant >= 400 {
+                height += 50
+            }
             //Darken Area around Indicator and top of cell
             weakSelf.view.overlayView(withShapes: [.roundedRect(weakSelf.test.collectionView, 8, CGSize(width: width, height: height))])
             
@@ -439,7 +442,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
 
                     if index.row/5 > 2 {
                         //If above
-                        $0.bottom == weakSelf.gridChoice!.topAnchor + 40
+                        $0.bottom == weakSelf.gridChoice!.topAnchor + 20
                     } else {
                         $0.top == weakSelf.gridChoice!.bottomAnchor + 50
                     }
@@ -531,7 +534,11 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             weakSelf.test.collectionView.isUserInteractionEnabled = false
             let index = IndexPath(row: 8, section: 0)
             let width = weakSelf.test.collectionStack.bounds.height - weakSelf.test.collectionViewHeight.constant
-            let height = weakSelf.test.collectionStack.bounds.width - weakSelf.test.collectionViewWidth.constant + 50
+            var height = weakSelf.test.collectionStack.bounds.width - weakSelf.test.collectionViewWidth.constant
+            if weakSelf.test.collectionViewHeight.constant >= 400 {
+                height += 50
+            }
+            
             //Overlay New Cell
             weakSelf.view.overlayView(withShapes: [.roundedRect(weakSelf.test.collectionView, 8, CGSize(width: width, height: height))])
             weakSelf.gridChoice?.phoneButton.addAction { [weak self] in
@@ -561,7 +568,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                     $0.height == 100
                     if index.row/5 > 2 {
                     //If above
-                    $0.bottom == weakSelf.gridChoice!.topAnchor + 40
+                    $0.bottom == weakSelf.gridChoice!.topAnchor + 20
                     } else {
                         $0.top == weakSelf.gridChoice!.bottomAnchor + 50
                     }
@@ -674,7 +681,10 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             }
             //weakSelf.tutorialAnimation.pause()
             let width = weakSelf.test.collectionStack.bounds.height - weakSelf.test.collectionViewHeight.constant
-            let height = weakSelf.test.collectionStack.bounds.width - weakSelf.test.collectionViewWidth.constant + 50
+            var height = weakSelf.test.collectionStack.bounds.width - weakSelf.test.collectionViewWidth.constant
+            if weakSelf.test.collectionViewHeight.constant >= 400 {
+                height += 50
+            }
             weakSelf.view.overlayView(withShapes: [.roundedRect(weakSelf.test.collectionView, 8, CGSize(width: width, height: height))])
             
              weakSelf.currentHint = weakSelf.view.window?.hint {
