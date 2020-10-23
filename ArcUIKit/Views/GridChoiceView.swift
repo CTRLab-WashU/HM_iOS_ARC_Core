@@ -99,6 +99,7 @@ public class GridChoiceView : IndicatorView {
             gridTestSelection.keyImage.alpha = 0.5
         }
         styleImageButton(imageButton: gridTestSelection.keyImage)
+        gridTestSelection.keyButton.accessibilityIdentifier = "key_button"
         gridTestSelection.keyButton.addAction { [weak self] in
             action(.set(responseData: 0, index: indexPath))
             self?.removeFromSuperview()
@@ -109,6 +110,7 @@ public class GridChoiceView : IndicatorView {
             gridTestSelection.phoneImage.alpha = 0.5
         }
         styleImageButton(imageButton: gridTestSelection.phoneImage)
+        gridTestSelection.phoneButton.accessibilityIdentifier = "phone_button"
         gridTestSelection.phoneButton.addAction { [weak self] in
             action(.set(responseData: 1, index: indexPath))
             self?.removeFromSuperview()
@@ -119,11 +121,13 @@ public class GridChoiceView : IndicatorView {
             gridTestSelection.penImage.alpha = 0.5
         }
         styleImageButton(imageButton: gridTestSelection.penImage)
+        gridTestSelection.penButton.accessibilityIdentifier = "pen_button"
         gridTestSelection.penButton.addAction { [weak self] in
             action(.set(responseData: 2, index: indexPath))
             self?.removeFromSuperview()
         }
         if choice != nil {
+            gridTestSelection.removeItem.accessibilityIdentifier = "remove_button"
             gridTestSelection.removeItem.addAction { [weak self] in
                 action(.unset(index: indexPath))
                 self?.removeFromSuperview()

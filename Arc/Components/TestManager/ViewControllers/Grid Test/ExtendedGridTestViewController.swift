@@ -326,7 +326,9 @@ open class ExtendedGridTestViewController: ArcViewController, UICollectionViewDe
     
     @IBAction func continuePressed(_ sender: Any)
     {
-        maybeEndTest()
+        if !isPracticeTest{
+            maybeEndTest()
+        }
     }
     
     @objc open  func endTest()
@@ -553,16 +555,19 @@ open class ExtendedGridTestViewController: ArcViewController, UICollectionViewDe
     {
         if let c = collectionView.cellForItem(at: indexPath) as? GridImageCell
         {
-            guard !isPracticeTest else { return }
+            //guard !isPracticeTest else { return }
             
             choiceIndicator?.removeFromSuperview()
-
+            choiceIndicator?.targetView?.backgroundColor = UIColor(red: 191.0/255.0, green: 215.0/255.0, blue: 224.0/255.0, alpha: 1.0)
+            choiceIndicator?.targetView?.layer.borderWidth = 1
+            choiceIndicator?.targetView?.layer.borderColor = UIColor(red: 133.0/255.0, green: 141/255.0, blue: 145.0/255.0, alpha: 1.0).cgColor
 //            _ = controller.unsetValue(responseIndex: indexPath.row,
 //            questionIndex: testNumber,
 //            gridType: .image,
 //            id: responseId)
 //            self.currentHint?.removeFromSuperview()
 //            self.currentHint = nil
+//            delegate?.didUpdateIndicator(indexPath: indexPath, indicator: nil)
         }
         else if let c = collectionView.cellForItem(at: indexPath) as? GridFCell
         {
@@ -603,7 +608,7 @@ open class ExtendedGridTestViewController: ArcViewController, UICollectionViewDe
 	func overlayCells(at indexPaths:[IndexPath]) {
 		
 		let shapes = indexPaths.map {
-            return OverlayShape.roundedRect(collectionView.cellForItem(at: $0)!, 8, CGSize(width: 0, height: 0))
+            return OverlayShape.roundedRect(collectionView.cellForItem(at: $0)!, 4, CGSize(width: 0, height: 0))
 		}
 		view.overlayView(withShapes: shapes)
 		for indexPath in indexPaths {

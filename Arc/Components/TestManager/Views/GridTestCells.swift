@@ -62,9 +62,9 @@ open class GridImageCell:UICollectionViewCell
             touchTime = Date();
         }
         
-        if self.isPracticeCell && self.isSelected {
-            return
-        }
+//        if self.isPracticeCell && self.isSelected {
+//            return
+//        }
         
         super.touchesBegan(touches, with: event)
         super.touchesEnded(touches, with: event);
