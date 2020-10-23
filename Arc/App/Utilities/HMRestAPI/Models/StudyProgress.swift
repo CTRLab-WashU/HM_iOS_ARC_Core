@@ -9,7 +9,8 @@
 import Foundation
 
 public struct StudyProgress : Codable {
-    
+    public var response: Response?
+
     public struct Response : Codable {
         public var success:Bool
         public var study_progress:Progress?
