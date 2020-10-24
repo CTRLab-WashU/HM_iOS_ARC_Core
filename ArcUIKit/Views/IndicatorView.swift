@@ -9,7 +9,7 @@
 import UIKit
 
 
-@IBDesignable public class IndicatorView:UIView {
+@IBDesignable open class IndicatorView:UIView {
     public struct Config {
         public let primaryColor:UIColor
         public let secondaryColor:UIColor
@@ -231,4 +231,13 @@ import UIKit
 		
 		
     }
+}
+
+extension UIView {
+    
+    @discardableResult
+    public func indicator(apply closure: (IndicatorView) -> Void) -> IndicatorView {
+        return custom(IndicatorView(), apply: closure)
+    }
+    
 }

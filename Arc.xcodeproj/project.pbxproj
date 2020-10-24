@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17732E3924FEF87700FE4990 /* GridTestSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E961524D8832C001166A1 /* GridTestSelectionView.swift */; };
+		17732E3B24FEFB5200FE4990 /* GridChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17732E3224FEF65100FE4990 /* GridChoiceView.swift */; };
+		17CE9D0824D89E7B002EF878 /* GridTestSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17CE9D0724D89E7B002EF878 /* GridTestSelectionView.xib */; };
 		2D35988D237B6604005EF2CF /* SimplifiedPricesTestTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D35988C237B6604005EF2CF /* SimplifiedPricesTestTutorialViewController.swift */; };
 		2D5711F422EB3AB500E7F881 /* Earnings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5711F322EB3AB500E7F881 /* Earnings.swift */; };
 		2D5711F722EB815E00E7F881 /* StudyProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5711F622EB815E00E7F881 /* StudyProgress.swift */; };
@@ -385,6 +388,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		175E961524D8832C001166A1 /* GridTestSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTestSelectionView.swift; sourceTree = "<group>"; };
+		17732E3224FEF65100FE4990 /* GridChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridChoiceView.swift; sourceTree = "<group>"; };
+		17CE9D0724D89E7B002EF878 /* GridTestSelectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GridTestSelectionView.xib; sourceTree = "<group>"; };
 		2D35988C237B6604005EF2CF /* SimplifiedPricesTestTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplifiedPricesTestTutorialViewController.swift; sourceTree = "<group>"; };
 		2D5711F322EB3AB500E7F881 /* Earnings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Earnings.swift; sourceTree = "<group>"; };
 		2D5711F622EB815E00E7F881 /* StudyProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyProgress.swift; sourceTree = "<group>"; };
@@ -1213,6 +1219,8 @@
 				C56D6C5822CD0DFE00C3F8EA /* TutorialView.swift */,
 				C5C2B12A22D3F205002CB4C5 /* TestInfoView.swift */,
 				C58129F722E20BE000CD1883 /* TutorialCompleteView.swift */,
+				175E961524D8832C001166A1 /* GridTestSelectionView.swift */,
+				17CE9D0724D89E7B002EF878 /* GridTestSelectionView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1588,6 +1596,7 @@
 				C5E0DDB822A5B7D20034DEDF /* IndicatorView.swift */,
 				C5D085CB22D7828300043513 /* HintView.swift */,
 				C5A43CCE22CA648700C10BC0 /* ACHorizontalBar.swift */,
+				17732E3224FEF65100FE4990 /* GridChoiceView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1913,6 +1922,7 @@
 				C54AEA2121C81B5F00DEC360 /* GridImageCell.xib in Resources */,
 				C54AEA2A21C81B5F00DEC360 /* WelcomeViewController.xib in Resources */,
 				C54AEA6721C81B5F00DEC360 /* Roboto-MediumItalic.ttf in Resources */,
+				17CE9D0824D89E7B002EF878 /* GridTestSelectionView.xib in Resources */,
 				C54AEA4121C81B5F00DEC360 /* SurveyNavigationViewController.xib in Resources */,
 				C54AEA4321C81B5F00DEC360 /* IntroViewController.xib in Resources */,
 				C593227B22EA397C00528FF5 /* ScheduleEndViewController.xib in Resources */,
@@ -2182,7 +2192,9 @@
 				C54AEA2C21C81B5F00DEC360 /* LoginHelpView.swift in Sources */,
 				C57ABE1F23060BD7000C9315 /* GoalRewardView.swift in Sources */,
 				C54AE9D621C81B5F00DEC360 /* Arc+Auth.swift in Sources */,
+				17732E3924FEF87700FE4990 /* GridTestSelectionView.swift in Sources */,
 				C53B123A22F34C1700BACA9A /* ACTodayProgressView.swift in Sources */,
+				17732E3B24FEFB5200FE4990 /* GridChoiceView.swift in Sources */,
 				E86732322315808800844F91 /* ACHomeViewController.swift in Sources */,
 				C55F8CD3230F1BCA006D43BD /* EarningDetailGoalView.swift in Sources */,
 				C52B75D421C8369400498571 /* arc.xcdatamodeld in Sources */,

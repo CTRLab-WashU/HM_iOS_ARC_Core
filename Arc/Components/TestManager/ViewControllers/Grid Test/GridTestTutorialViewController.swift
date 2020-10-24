@@ -21,12 +21,14 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 	let test:GridTestViewController = .get()
 	
 	var selectionMade = false
-	var isMakingSelections = false
     var showingSelectNextTwo = false
 	var lockIncorrect = false
 	var maxGridSelected = 3
 	var gridSelected = 0
 	var phase:TestPhase = .start
+    var indicator:IndicatorView?
+    var gridChoice:GridChoiceView?
+    
     override func viewDidLoad() {
 		duration = 25
         super.viewDidLoad()
@@ -77,12 +79,26 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			tutorialAnimation.resume()
 
 			break
+            
+        case .fs:
+            test.view.clearOverlay()
+            view.removeHighlight()
+            tutorialAnimation.resume()
+
+            test.collectionView.isUserInteractionEnabled = false
+        
+        case .fsTimed:
+            test.view.clearOverlay()
+            view.removeHighlight()
+            test.collectionView.isUserInteractionEnabled = true
+        
 		case .recallFirstStep:
 			test.view.clearOverlay()
+            
 			view.removeHighlight()
 			removeHint(hint: "hint")
-			tutorialAnimation.time = 11.5
-			addFirstHint(hint: "hint")
+			//tutorialAnimation.time = 11.5
+			//addFirstHint(hint: "hint")
 			tutorialAnimation.resume()
 
 		case .recallFirstChoiceMade, .recallSecondChoiceMade:
@@ -90,10 +106,10 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
                 test.view.clearOverlay()
                 removeHint(hint: "hint")
             }
-            showingSelectNextTwo = true
+            //showingSelectNextTwo = true
             view.removeHighlight()
-			tutorialAnimation.time = 10
-			needHelp()
+			//tutorialAnimation.time = 10
+			//needHelp()
 			tutorialAnimation.resume()
 
 
@@ -106,26 +122,12 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 
 			tutorialAnimation.resume()
 			
-		case .fs:
-			test.view.clearOverlay()
-			view.removeHighlight()
-			tutorialAnimation.resume()
-
-			test.collectionView.isUserInteractionEnabled = false
-		
-		case .fsTimed:
-			test.view.clearOverlay()
-			view.removeHighlight()
-			test.collectionView.isUserInteractionEnabled = true
-
-		
-		
 		case .end:
 			test.view.clearOverlay()
 			view.removeHighlight()
 			removeHint(hint: "hint")
 
-			tutorialAnimation.time = 24.5
+			//tutorialAnimation.time = 24.5
 			tutorialAnimation.resume()
 			break
 		case .showingReminder:
@@ -135,19 +137,19 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 		
 		selectionMade = true
 	}
-	
+	//MARK:-Delegate
 	func didSelectGrid(indexPath: IndexPath) {
-		gridSelected += 1
-		showDot(on: indexPath)
-        hideImages()
+		//gridSelected += 1
+		
+        //hideImages()
 		switch gridSelected  {
 		case 1:
-            maybeShowSelectNextTwoHint()
+            //maybeShowSelectNextTwoHint()
 			phase = .recallFirstChoiceMade
 		case 2:
 			phase = .recallSecondChoiceMade
 		case 3:
-            removeFinalHint()
+            //removeFinalHint()
 			test.collectionView.isUserInteractionEnabled = false
 			phase = .end
 		default:
@@ -161,21 +163,26 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			didSelect()
 	}
 	
-	func didDeselectLeter(indexPath: IndexPath) {
+	func didDeselectLetter(indexPath: IndexPath) {
 		didSelect()
 	}
     
-    func showDot(on indexPath: IndexPath) {
-        guard let cell = self.test.collectionView.cellForItem(at: indexPath) as? GridImageCell else { return }
-        cell.dotView.isHidden = false
-    }
-    
-    func hideImages() {
-        for indexPath in self.test.symbolIndexPaths {
-            guard let cell = self.test.collectionView.cellForItem(at: indexPath) as? GridImageCell else { return }
-            cell.image.isHidden = true
+    func didUpdateIndicator(indexPath: IndexPath, indicator: IndicatorView?) {
+        self.gridChoice = indicator as? GridChoiceView
+        if self.gridChoice != nil {
+            self.test.collectionView.removeHighlight()
         }
+        self.tutorialAnimation.resume()
+        currentHint?.removeFromSuperview()
+        
     }
+
+//    func hideImages() {
+//        for indexPath in self.test.symbolIndexPaths {
+//            guard let cell = self.test.collectionView.cellForItem(at: indexPath) as? GridImageCell else { return }
+//            cell.image.isHidden = true
+//        }
+//    }
 
 	func setupScript() {
 		state.addCondition(atTime: progress(seconds: 0), flagName: "start-0") { [weak self] in
@@ -203,10 +210,10 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 				}
 				
 				$0.layout {
-					$0.centerY == weakSelf.view.centerYAnchor
+					$0.centerY == weakSelf.view.centerYAnchor - 20
 					$0.centerX == weakSelf.view.centerXAnchor
 
-					$0.width == weakSelf.test.collectionView.widthAnchor - 75
+					$0.width == weakSelf.test.collectionView.widthAnchor - 90
 					
 				}
 			}
@@ -231,7 +238,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 					$0.centerY == weakSelf.view.centerYAnchor
 					$0.centerX == weakSelf.view.centerXAnchor
 					
-					$0.width == weakSelf.test.collectionView.widthAnchor - 20
+					$0.width == weakSelf.test.collectionView.widthAnchor - 75
 					
 				}
 			}
@@ -300,7 +307,6 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 				$0.onTap = { [weak self] in
 					self?.didSelect()
 					weakSelf.phase = .fsTimed
-					weakSelf.isMakingSelections = false
 					weakSelf.test.collectionView.isUserInteractionEnabled = true
 				}
 				
@@ -308,7 +314,7 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 					$0.centerY == weakSelf.view.centerYAnchor
 					$0.centerX == weakSelf.view.centerXAnchor
 					
-					$0.width == weakSelf.test.collectionView.widthAnchor
+					$0.width == weakSelf.test.collectionView.widthAnchor - 75
 					
 				}
 			}
@@ -333,30 +339,582 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 					weakSelf.test.clearGrids()
 					weakSelf.buildStartScreen(message: "In the final part of the test, you will select the three boxes where these items were located in part one.".localized(ACTranslationKey.popup_tutorial_selectbox),
 											  buttonTitle: "I'm Ready".localized(ACTranslationKey.popup_tutorial_ready))
+                    weakSelf.test.displayGrid()
 				}
 				
 				$0.layout {
 					$0.centerY == weakSelf.view.centerYAnchor
 					$0.centerX == weakSelf.view.centerXAnchor
 					
-					$0.width == weakSelf.test.collectionView.widthAnchor
+					$0.width == weakSelf.test.collectionView.widthAnchor - 75
 					
 				}
 			}
 			
 		}
 		
-		state.addCondition(atTime: progress(seconds: 11.5), flagName: "symbols-0") { [weak self] in
+		state.addCondition(atTime: progress(seconds: 14.5), flagName: "symbols-0") { [weak self] in
 			guard let weakSelf = self else {
 				return
 			}
-			weakSelf.test.displayGrid()
-			weakSelf.test.collectionView.isUserInteractionEnabled = true
-			weakSelf.needHelp()
-			weakSelf.isMakingSelections = true
+            
 
+            weakSelf.tutorialAnimation.pause()
+			weakSelf.test.collectionView.isUserInteractionEnabled = true
+            //weakSelf.addFirstHint(hint: "hint")
 			
+            let index = weakSelf.test.symbolIndexPaths[0]
+            guard let cell = weakSelf.test.overlayCell(at: index) else {
+                return
+            }
+            cell.backgroundColor = UIColor(named: "Secondary")
+            weakSelf.currentHint = weakSelf.view.window?.hint {
+                $0.content = """
+                *Hint:* The cell phone was located here. Tap this box.
+                """.localized(ACTranslationKey.popup_tutorial_cellbox)
+                $0.targetView = cell
+                $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                        secondaryColor: UIColor(named:"HintFill")!,
+                                                        textColor: .black,
+                                                        cornerRadius: 8.0,
+                                                        arrowEnabled: true,
+                                                        arrowAbove: true))
+                $0.updateHintContainerMargins()
+                $0.updateTitleStackMargins()
+                
+                $0.layout {
+                    $0.centerX == weakSelf.view.centerXAnchor
+                    $0.width == 252
+                    
+                    if index.row/5 > 2 {
+                        //If above
+                        $0.bottom == cell.topAnchor + 40
+                    } else {
+                        $0.top == cell.bottomAnchor + 20
+                    }
+                }
+            }
 		}
+        //Grid Cell Selected - Select Phone Button
+        
+        state.addCondition(atTime: progress(seconds:14.5), flagName: "symbols-1") { [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            weakSelf.tutorialAnimation.pause()
+            let width = weakSelf.test.collectionStack.bounds.height - weakSelf.test.collectionViewHeight.constant
+            let height = weakSelf.test.collectionStack.bounds.width - weakSelf.test.collectionViewWidth.constant + 50
+            //Darken Area around Indicator and top of cell
+            weakSelf.view.overlayView(withShapes: [.roundedRect(weakSelf.test.collectionView, 8, CGSize(width: width, height: height))])
+            
+            weakSelf.gridChoice?.phoneButton.addAction { [weak self] in
+                self?.tutorialAnimation.resume()
+                weakSelf.view.clearOverlay()
+            }
+            weakSelf.gridChoice?.keyButton.isEnabled = false
+            weakSelf.gridChoice?.penButton.isEnabled = false
+            weakSelf.test.collectionView.isUserInteractionEnabled = false
+            //Overlay Phone Button
+            weakSelf.gridChoice?.phoneButton.highlight()
+            let index = weakSelf.test.symbolIndexPaths[0]
+            //Show Hint for Tap Phone Button
+            weakSelf.currentHint = weakSelf.view.window?.hint {
+                $0.content = """
+                Now, tap the cell phone to place it in the selected box.
+                """.localized(ACTranslationKey.popup_tutorial_tapsymbol)
+                $0.targetView = weakSelf.gridChoice
+                $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                        secondaryColor: UIColor(named:"HintFill")!,
+                                                        textColor: .black,
+                                                        cornerRadius: 8.0,
+                                                        arrowEnabled: false,
+                                                        arrowAbove: false))
+                
+                $0.updateHintContainerMargins()
+                $0.updateTitleStackMargins()
+
+                $0.layout {
+                    $0.centerX == weakSelf.view.centerXAnchor
+                    $0.width == 252
+
+                    if index.row/5 > 2 {
+                        //If above
+                        $0.bottom == weakSelf.gridChoice!.topAnchor + 40
+                    } else {
+                        $0.top == weakSelf.gridChoice!.bottomAnchor + 50
+                    }
+                }
+            }
+        }
+        
+         //Show Hint for Moving Phone
+        state.addCondition(atTime: progress(seconds:14.5), flagName: "symbols-2") { [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            weakSelf.tutorialAnimation.pause()
+             weakSelf.test.collectionView.isUserInteractionEnabled = false
+             weakSelf.currentHint = weakSelf.view.window?.hint {
+                $0.content = """
+                    Great! If you change your mind, you can move the item. Let's try it.
+                    """.localized(ACTranslationKey.popup_tutorial_great)
+                $0.buttonTitle = "Okay".localized(ACTranslationKey.button_okay)
+                $0.onTap = {
+                    weakSelf.removeFinalHint()
+                    weakSelf.view.clearOverlay()
+                    weakSelf.didSelect()
+                }
+                $0.targetView = weakSelf.gridChoice
+                $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                        secondaryColor: UIColor(named:"HintFill")!,
+                                                        textColor: .black,
+                                                        cornerRadius: 8.0,
+                                                        arrowEnabled: false,
+                                                        arrowAbove: false))
+                
+                $0.updateHintContainerMargins()
+                $0.updateTitleStackMargins()
+
+                $0.layout {
+                    $0.centerX == weakSelf.view.centerXAnchor
+                    $0.width == 252
+                    $0.bottom == weakSelf.view.bottomAnchor - 40
+                }
+            }
+        }
+    
+        state.addCondition(atTime: progress(seconds:14.5), flagName: "symbols-3") { [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            weakSelf.tutorialAnimation.pause()
+            weakSelf.test.collectionView.isUserInteractionEnabled = true
+            let index = IndexPath(row: 8, section: 0)
+            //Overlay New Cell
+            guard let cell = weakSelf.test.overlayCell(at: index) else {
+                return
+            }
+            //Tap New Cell
+             weakSelf.currentHint = weakSelf.view.window?.hint {
+                $0.content = """
+                    First, tap a different box.
+                    """.localized(ACTranslationKey.popup_tutorial_tapbox4)
+                $0.targetView = cell
+                $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                        secondaryColor: UIColor(named:"HintFill")!,
+                                                        textColor: .black,
+                                                        cornerRadius: 8.0,
+                                                        arrowEnabled: true,
+                                                        arrowAbove: true))
+                $0.updateHintContainerMargins()
+                $0.updateTitleStackMargins()
+
+                $0.layout {
+                    $0.centerX == weakSelf.view.centerXAnchor
+                    $0.width == 252
+
+                    if index.row/5 > 2 {
+                        //If above
+                        $0.bottom == cell.topAnchor + 40
+                    } else {
+                        $0.top == cell.bottomAnchor + 30
+                    }
+                }
+            }
+        }
+        
+        state.addCondition(atTime: progress(seconds:14.5), flagName: "symbols-4") { [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            weakSelf.tutorialAnimation.pause()
+            weakSelf.test.collectionView.isUserInteractionEnabled = false
+            let index = IndexPath(row: 8, section: 0)
+            let width = weakSelf.test.collectionStack.bounds.height - weakSelf.test.collectionViewHeight.constant
+            let height = weakSelf.test.collectionStack.bounds.width - weakSelf.test.collectionViewWidth.constant + 50
+            //Overlay New Cell
+            weakSelf.view.overlayView(withShapes: [.roundedRect(weakSelf.test.collectionView, 8, CGSize(width: width, height: height))])
+            weakSelf.gridChoice?.phoneButton.addAction { [weak self] in
+                self?.tutorialAnimation.resume()
+            }
+            weakSelf.gridChoice?.keyButton.isEnabled = false
+            weakSelf.gridChoice?.penButton.isEnabled = false
+            weakSelf.gridChoice?.phoneButton.highlight()
+            //Tap New Cell
+             weakSelf.currentHint = weakSelf.view.window?.hint {
+                $0.content = """
+                    Then, tap the cell phone button to place it in the new box.
+                    """.localized(ACTranslationKey.popup_tutorial_tapsymbol2)
+                $0.targetView = weakSelf.gridChoice
+                $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                        secondaryColor: UIColor(named:"HintFill")!,
+                                                        textColor: .black,
+                                                        cornerRadius: 8.0,
+                                                        arrowEnabled: false,
+                                                        arrowAbove: false))
+                $0.updateHintContainerMargins()
+                $0.updateTitleStackMargins()
+
+                $0.layout {
+                    $0.centerX == weakSelf.view.centerXAnchor
+                    $0.width == 252
+                    $0.height == 100
+                    if index.row/5 > 2 {
+                    //If above
+                    $0.bottom == weakSelf.gridChoice!.topAnchor + 40
+                    } else {
+                        $0.top == weakSelf.gridChoice!.bottomAnchor + 50
+                    }
+                }
+            }
+        }
+        
+        //Overlay Recent Cell and Show Remove Item Hint
+        state.addCondition(atTime: progress(seconds:14.5), flagName: "symbols-5") { [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            weakSelf.tutorialAnimation.pause()
+            weakSelf.view.clearOverlay()
+            weakSelf.test.collectionView.isUserInteractionEnabled = true
+            let index = IndexPath(row: 8, section: 0)
+            //Overlay Recent Cell
+            guard let cell = weakSelf.test.overlayCell(at: index) else {
+                return
+            }
+            
+            //Tap Recent Cell
+             weakSelf.currentHint = weakSelf.view.window?.hint {
+                $0.content = """
+                    Great! If you would like to clear a box with an item, tap the box and select the *Remove Item* button.
+                    """.localized(ACTranslationKey.popup_tutorial_great_remove)
+                $0.targetView = cell
+                $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                        secondaryColor: UIColor(named:"HintFill")!,
+                                                        textColor: .black,
+                                                        cornerRadius: 8.0,
+                                                        arrowEnabled: true,
+                                                        arrowAbove: true))
+                $0.updateHintContainerMargins()
+                $0.updateTitleStackMargins()
+
+                $0.layout {
+                    $0.centerX == weakSelf.view.centerXAnchor
+                    $0.width == 252
+                    $0.height == 134
+                    if index.row/5 > 2 {
+                        //If above
+                        $0.bottom == cell.topAnchor + 40
+                    } else {
+                        $0.top == cell.bottomAnchor + 30
+                    }
+                }
+            }
+        }
+            
+        state.addCondition(atTime: progress(seconds:14.5), flagName: "symbols-6") { [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            weakSelf.tutorialAnimation.pause()
+            weakSelf.view.removeHighlight()
+            weakSelf.test.collectionView.isUserInteractionEnabled = false
+            weakSelf.gridChoice?.keyButton.isEnabled = false
+            weakSelf.gridChoice?.penButton.isEnabled = false
+
+            let removeButton = weakSelf.gridChoice?.removeButton
+            removeButton?.addAction {
+                self?.tutorialAnimation.resume()
+                weakSelf.view.clearOverlay()
+            }
+            //Highlight Remove Item button
+            weakSelf.view.overlayView(withShapes: [.roundedRect((weakSelf.gridChoice?.removeButton)!, 8, CGSize(width: 8-(weakSelf.gridChoice?.removeButton.bounds.width)!, height: 12-(weakSelf.gridChoice?.removeButton.bounds.height)!))])
+            
+            //Tap Remove Button
+            //Show Remove Item hint
+             weakSelf.currentHint = weakSelf.view.window?.hint {
+                $0.content = """
+                    Tap Remove Item button
+                    """.localized(ACTranslationKey.popup_tutorial_remove)
+                $0.targetView = weakSelf.gridChoice?.removeButton
+                $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                        secondaryColor: UIColor(named:"HintFill")!,
+                                                        textColor: .black,
+                                                        cornerRadius: 8.0,
+                                                        arrowEnabled: true,
+                                                        arrowAbove: true))
+                $0.updateHintContainerMargins()
+                $0.updateTitleStackMargins()
+
+                $0.layout {
+                    $0.centerX == weakSelf.gridChoice!.centerXAnchor
+                    $0.width == 252
+                    $0.top == weakSelf.gridChoice!.bottomAnchor + 15
+
+                }
+            }
+        }
+            
+        state.addCondition(atTime: progress(seconds:14.5), flagName: "symbols-7") { [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            //weakSelf.tutorialAnimation.pause()
+            //weakSelf.view.clearOverlay()
+            
+            let index = weakSelf.test.symbolIndexPaths[0]
+            
+            weakSelf.test.collectionView.isUserInteractionEnabled = false
+            
+            if let c = weakSelf.test.collectionView.cellForItem(at: index) as? GridImageCell {
+                c.isSelected = true
+                weakSelf.test.collectionView(weakSelf.test.collectionView, didSelectItemAt: index)
+            } else {
+                return
+            }
+            //weakSelf.tutorialAnimation.pause()
+            let width = weakSelf.test.collectionStack.bounds.height - weakSelf.test.collectionViewHeight.constant
+            let height = weakSelf.test.collectionStack.bounds.width - weakSelf.test.collectionViewWidth.constant + 50
+            weakSelf.view.overlayView(withShapes: [.roundedRect(weakSelf.test.collectionView, 8, CGSize(width: width, height: height))])
+            
+             weakSelf.currentHint = weakSelf.view.window?.hint {
+                $0.content = """
+                    Great! Let's place the cell phone back in the first box.
+                    """.localized(ACTranslationKey.popup_tutorial_tapsymbol3)
+                $0.targetView = weakSelf.gridChoice?.removeButton
+                $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                        secondaryColor: UIColor(named:"HintFill")!,
+                                                        textColor: .black,
+                                                        cornerRadius: 8.0,
+                                                        arrowEnabled: false,
+                                                        arrowAbove: false))
+                $0.updateHintContainerMargins()
+                $0.updateTitleStackMargins()
+
+                $0.layout {
+                    $0.centerX == weakSelf.view.centerXAnchor
+                    $0.width == 252
+                    $0.top == weakSelf.gridChoice!.bottomAnchor + 50
+
+                }
+            }
+        }
+        
+        state.addCondition(atTime: progress(seconds:14.5), flagName: "symbols-8") { [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            weakSelf.tutorialAnimation.pause()
+            weakSelf.gridChoice?.keyButton.isEnabled = false
+            weakSelf.gridChoice?.penButton.isEnabled = false
+            weakSelf.gridChoice?.phoneButton.highlight()
+            weakSelf.gridChoice?.phoneButton.addAction { [weak self] in
+                self?.tutorialAnimation.resume()
+                weakSelf.view.clearOverlay()
+            }
+        }
+        
+        state.addCondition(atTime: progress(seconds:14.5), flagName: "symbols-9") { [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            //weakSelf.tutorialAnimation.pause()
+            weakSelf.view.clearOverlay()
+            
+            weakSelf.test.collectionView.isUserInteractionEnabled = true
+            weakSelf.removeFinalHint()
+             weakSelf.currentHint = weakSelf.view.window?.hint {
+                $0.content = """
+                    Now, place the other two items on the grid.
+                    """.localized(ACTranslationKey.popup_tutorial_tapbox)
+                //$0.targetView = weakSelf.gridChoice?.removeButton
+                $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                        secondaryColor: UIColor(named:"HintFill")!,
+                                                        textColor: .black,
+                                                        cornerRadius: 8.0,
+                                                        arrowEnabled: false,
+                                                        arrowAbove: false))
+                $0.updateHintContainerMargins()
+                $0.updateTitleStackMargins()
+
+                $0.layout {
+                    $0.centerX == weakSelf.view.centerXAnchor
+                    
+                    $0.width == 252
+                    $0.bottom == weakSelf.view.bottomAnchor - 30
+
+                }
+            }
+        }
+        
+        state.addCondition(atTime: progress(seconds:19.5), flagName: "symbols-10") { [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            weakSelf.removeFinalHint()
+            weakSelf.checkGridSelected()
+            if weakSelf.gridSelected < 2 {
+                weakSelf.tutorialAnimation.pause()
+                weakSelf.test.collectionView.isUserInteractionEnabled = true
+            
+                 weakSelf.currentHint = weakSelf.view.window?.hint {
+                    $0.content = """
+                        Need help?
+                        """.localized(ACTranslationKey.popup_tutorial_needhelp)
+                    $0.buttonTitle = "Remind Me".localized(ACTranslationKey.popup_tutorial_remindme)
+                    //$0.targetView = weakSelf.gridChoice?.removeButton
+                    $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                            secondaryColor: UIColor(named:"HintFill")!,
+                                                            textColor: .black,
+                                                            cornerRadius: 8.0,
+                                                            arrowEnabled: false,
+                                                            arrowAbove: false))
+                    $0.onTap = {
+                        weakSelf.removeFinalHint()
+                        weakSelf.tutorialAnimation.resume()
+                    }
+                    $0.updateHintContainerMargins()
+                    $0.updateTitleStackMargins()
+
+                    $0.layout {
+                        $0.centerX == weakSelf.view.centerXAnchor
+                        
+                        $0.width == 252
+                        $0.bottom == weakSelf.view.bottomAnchor - 30
+
+                    }
+                }
+            } else {
+                weakSelf.tutorialAnimation.time = 24.5
+                weakSelf.tutorialAnimation.resume()
+            }
+        }
+        
+        state.addCondition(atTime: progress(seconds:19.5), flagName: "symbols-11") { [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            weakSelf.checkGridSelected()
+            if weakSelf.gridSelected < 2 {
+                weakSelf.tutorialAnimation.pause()
+                weakSelf.view.clearOverlay()
+                weakSelf.test.collectionView.isUserInteractionEnabled = true
+                var index = weakSelf.test.symbolIndexPaths
+                index.removeFirst()
+                
+                weakSelf.test.overlayCells(at: index)
+            }
+        }
+        
+        state.addCondition(atTime: progress(seconds:19.5), flagName: "symbols-12") { [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+                weakSelf.checkGridSelected()
+                if weakSelf.gridSelected < 2 {
+                    weakSelf.tutorialAnimation.pause()
+                    weakSelf.test.collectionView.isUserInteractionEnabled = false
+                    weakSelf.gridChoice?.phoneButton.addAction { [weak self] in
+                        weakSelf.test.collectionView.isUserInteractionEnabled = true
+                        self?.tutorialAnimation.resume()
+                    }
+                    weakSelf.gridChoice?.penButton.addAction { [weak self] in
+                        weakSelf.test.collectionView.isUserInteractionEnabled = true
+                        self?.tutorialAnimation.resume()
+                    }
+                    weakSelf.gridChoice?.keyButton.addAction { [weak self] in
+                        weakSelf.test.collectionView.isUserInteractionEnabled = true
+                        self?.tutorialAnimation.resume()
+                    }
+                }
+            }
+        
+        state.addCondition(atTime: progress(seconds:24.5), flagName: "symbols-13") { [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            weakSelf.checkGridSelected()
+            if weakSelf.gridSelected < 3 {
+                weakSelf.tutorialAnimation.pause()
+                weakSelf.test.collectionView.isUserInteractionEnabled = true
+            
+                 weakSelf.currentHint = weakSelf.view.window?.hint {
+                    $0.content = """
+                        Need help?
+                        """.localized(ACTranslationKey.popup_tutorial_needhelp)
+                    $0.buttonTitle = "Remind Me".localized(ACTranslationKey.popup_tutorial_remindme)
+                    //$0.targetView = weakSelf.gridChoice?.removeButton
+                    $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
+                                                            secondaryColor: UIColor(named:"HintFill")!,
+                                                            textColor: .black,
+                                                            cornerRadius: 8.0,
+                                                            arrowEnabled: false,
+                                                            arrowAbove: false))
+                    $0.onTap = {
+                        weakSelf.removeFinalHint()
+                        weakSelf.tutorialAnimation.resume()
+                    }
+                    $0.updateHintContainerMargins()
+                    $0.updateTitleStackMargins()
+
+                    $0.layout {
+                        $0.centerX == weakSelf.view.centerXAnchor
+                        
+                        $0.width == 252
+                        $0.bottom == weakSelf.view.bottomAnchor - 30
+
+                    }
+                }
+            } else {
+                weakSelf.tutorialAnimation.time = 25
+                weakSelf.tutorialAnimation.resume()
+            }
+        }
+        
+        state.addCondition(atTime: progress(seconds:24.5), flagName: "symbols-14") { [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+           weakSelf.checkGridSelected()
+           if weakSelf.gridSelected < 3 {
+                weakSelf.tutorialAnimation.pause()
+                weakSelf.view.clearOverlay()
+                weakSelf.test.collectionView.isUserInteractionEnabled = true
+                let keyCell = weakSelf.test.symbolIndexPaths[1]
+                let penCell = weakSelf.test.symbolIndexPaths[2]
+                if let value = weakSelf.test.controller.get(selectedData: penCell.row, id: weakSelf.test.responseId, questionIndex: weakSelf.test.testNumber, gridType: .image)?.selection, value > -1 {
+                    guard let _ = weakSelf.test.overlayCell(at: keyCell) else {
+                        return
+                    }
+                } else {
+                    guard let _ = weakSelf.test.overlayCell(at: penCell) else {
+                        return
+                    }
+                }
+            }
+        }
+        
+        state.addCondition(atTime: progress(seconds:24.5), flagName: "symbols-15") { [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+                weakSelf.checkGridSelected()
+                if weakSelf.gridSelected < 3 {
+                    weakSelf.tutorialAnimation.pause()
+                    weakSelf.test.collectionView.isUserInteractionEnabled = false
+                    weakSelf.gridChoice?.phoneButton.addAction { [weak self] in
+                        self?.tutorialAnimation.resume()
+                    }
+                    weakSelf.gridChoice?.penButton.addAction { [weak self] in
+                        self?.tutorialAnimation.resume()
+                    }
+                    weakSelf.gridChoice?.keyButton.addAction { [weak self] in
+                        self?.tutorialAnimation.resume()
+                    }
+                }
+            }
+        //Other Two Grids Items Hint
+        //Need Help
 		state.addCondition(atTime: progress(seconds: 25), flagName: "end") { [weak self] in
 			guard let weakSelf = self else {
 				return
@@ -579,9 +1137,8 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
 			}
 			weakSelf.currentHint = weakSelf.view.window?.hint {
 				$0.content = """
-				*Hint:* One item was located
-				in this box. Tap here.
-				""".localized(ACTranslationKey.popup_tutorial_boxhint)
+				*Hint:* The cell phone was located here. Tap this box.
+				""".localized(ACTranslationKey.popup_tutorial_cellbox)
                 $0.targetView = cell
                 $0.configure(with: IndicatorView.Config(primaryColor: UIColor(named:"HintFill")!,
                                                         secondaryColor: UIColor(named:"HintFill")!,
@@ -657,5 +1214,17 @@ class GridTestTutorialViewController: ACTutorialViewController, GridTestViewCont
         self.removeHint(hint: "hint")
     }
     
+    func checkGridSelected() {
+        self.gridSelected = 0
+        for i in 0...24
+        {
+            let value = (self.test.controller.get(selectedData: i, id: self.test.responseId, questionIndex: self.test.testNumber, gridType: .image)?.selection) ?? -1
+            if value > -1
+            {
+                self.gridSelected += 1
+            }
+        }
+        print("Grids Selected: \(self.gridSelected)")
+    }
 
 }
