@@ -29,9 +29,11 @@ open class GridTestController : TestController<GridTestResponse> {
         for _ in 0 ..< numberOfTests {
             let imageGridSize = GridTest.Size(width: 5,
                                               height: 5)
-            
-            let fGridSize = GridTest.Size(width: 6,
-                                          height: 10)
+            var fGridSize = GridTest.Size(width: 6,
+            height: 10)
+            if Arc.environment?.gridTestType == .extended {
+                fGridSize = GridTest.Size(width: 6, height: 9)
+            }
 
             
             var gridTest = GridTest(imageGridSize: imageGridSize,

@@ -33,7 +33,7 @@ public protocol ArcEnvironment {
 	var supportsSignatures:Bool{get}
 	var hidesChangeAvailabilityDuringTest:Bool {get}
     var priceTestType:PriceTestType {get}
-	
+    var gridTestType:GridTestType {get}
 	
     var appController:AppController {get}
     
@@ -94,7 +94,7 @@ public extension ArcEnvironment {
 	var supportsChronotype:Bool {return true}
 	var supportsSignatures:Bool{return true}
     var priceTestType:PriceTestType {return .normal}
-	
+	var gridTestType:GridTestType {return .normal}
     var appController:AppController {return AppController()}
     
     var authController:AuthController {return AuthController()}

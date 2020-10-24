@@ -269,8 +269,11 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
         case .onboarding:
             questionStyle(question)
 		case .grids:
-			instructionStyle(question, presentableVc: GridTestTutorialViewController())
-			
+            if Arc.environment?.gridTestType == .extended {
+                instructionStyle(question, presentableVc: ExtendedGridTestTutorialViewController())
+            } else {
+                instructionStyle(question, presentableVc: GridTestTutorialViewController())
+            }
 		case .prices:
             if Arc.environment?.priceTestType == .simplified {
                 instructionStyle(question, presentableVc: SimplifiedPricesTestTutorialViewController())
