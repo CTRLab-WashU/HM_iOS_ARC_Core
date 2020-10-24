@@ -189,11 +189,15 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
         } else if checkGridValue(index: indexPath.row) == true && self.gridChoice != nil {
             tutorialAnimation.time = 19.5
             didSelect()
+            tutorialAnimation.pause()
         //mechanics section
         } else if showingMechanics == true {
             didSelect()
         } else {
             test.collectionView.removeHighlight()
+            test.view.clearOverlay()
+            tutorialAnimation.time = 19.5
+            didSelect()
             tutorialAnimation.pause()
         }
         currentHint?.removeFromSuperview()
