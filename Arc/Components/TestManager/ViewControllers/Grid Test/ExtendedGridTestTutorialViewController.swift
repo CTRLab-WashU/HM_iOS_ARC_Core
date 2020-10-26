@@ -189,7 +189,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
         } else if checkGridValue(index: indexPath.row) == true && self.gridChoice != nil {
             tutorialAnimation.time = 19.5
             didSelect()
-            tutorialAnimation.pause()
+            //tutorialAnimation.pause()
         //mechanics section
         } else if showingMechanics == true {
             didSelect()
@@ -1038,7 +1038,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
     //Returns true if the Cell contains a symbol
     func checkGridValue(index:Int) -> Bool {
         let value = (self.test.controller.get(selectedData: index, id: self.test.responseId, questionIndex: self.test.testNumber, gridType: .image)?.selection) ?? -1
-        if value > -1 && self.showingMechanics == false
+        if value > -1 && self.showingMechanics == false && self.gridChoice != nil
         {
             phase = .change
             return true
