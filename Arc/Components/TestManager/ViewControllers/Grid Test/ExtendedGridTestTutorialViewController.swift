@@ -202,20 +202,8 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
 
     func hideImages() {
         for indexPath in self.test.collectionView.indexPathsForVisibleItems {
-            
-            let value = (self.test.controller.get(selectedData: indexPath.row, id: self.test.responseId, questionIndex: self.test.testNumber, gridType: .image)?.selection) ?? -1
             guard let cell = self.test.collectionView.cellForItem(at: indexPath) as? GridImageCell else { return }
-            
-            if phase == .mechanics {
-                if value == 1 {
-                    cell.image.isHidden = false
-                } else {
-                    cell.image.isHidden = true
-                }
-                self.gridSelected = 0
-            } else {
                 cell.image.isHidden = true
-            }
         }
     }
 
@@ -449,7 +437,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                 $0.buttonTitle = "Show Me".localized(ACTranslationKey.button_showme)
                 $0.onTap = {
                     weakSelf.phase = .mechanics
-                    weakSelf.hideImages()
+                    weakSelf.setMechanics()
                     weakSelf.test.continueButton.isHidden = true
                     weakSelf.removeFinalHint()
                     weakSelf.view.clearOverlay()
@@ -592,7 +580,6 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                guard let weakSelf = self else {
                    return
                }
-                weakSelf.hideImages()
                weakSelf.tutorialAnimation.pause()
                
                weakSelf.test.tapOnTheFsLabel.isHidden = false
@@ -639,7 +626,6 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                guard let weakSelf = self else {
                    return
                }
-            weakSelf.hideImages()
                weakSelf.tutorialAnimation.pause()
                
                weakSelf.test.tapOnTheFsLabel.isHidden = false
@@ -688,7 +674,6 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                guard let weakSelf = self else {
                    return
                }
-            weakSelf.hideImages()
                weakSelf.tutorialAnimation.pause()
                weakSelf.test.tapOnTheFsLabel.isHidden = false
                weakSelf.test.continueButton.isHidden = true
@@ -1041,6 +1026,14 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             return true
         }
         return false
+    }
+    func setMechanics() {
+        for indexPath in self.test.collectionView.indexPathsForVisibleItems {
+            _ = self.test.controller.unsetValue(responseIndex: indexPath.row, questionIndex: self.test.testNumber, gridType: .image, id: self.test.responseId)
+        }
+        let index = self.test.symbolIndexPaths[0]
+        _ = self.test.controller.setValue(responseIndex: index.row, responseData: 1, questionIndex: self.test.testNumber, gridType: .image, time: Date(), id: self.test.responseId)
+        self.test.collectionView.reloadData()
     }
     //Only Show Continue Button when all 3 symbols are shown
     //Extra condition check to see if a symbol has been moved or removed, then move to end of test if true
