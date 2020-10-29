@@ -136,6 +136,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             }
         case .mechanics:
             removeFinalHint()
+            view.removeHighlight()
             tutorialAnimation.resume()
 		case .showingReminder:
 			removeHint(hint: "hint")
