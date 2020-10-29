@@ -786,8 +786,9 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                 $0.layout {
                     $0.centerX == weakSelf.view.centerXAnchor
                     $0.width == 252
-                    if weakSelf.currentIndex.row <= 9 || weakSelf.currentIndex.row > 19 {
-                        $0.bottom == weakSelf.view.bottomAnchor - 5
+                    $0.height >= 134 ~ 750
+                    if weakSelf.currentIndex.row <= 9 || weakSelf.currentIndex.row > 19 || weakSelf.test.collectionViewHeight.constant >= 400 {
+                        $0.bottom <= weakSelf.view.bottomAnchor - 40 ~ 999
                     } else {
                         $0.top == weakSelf.view.topAnchor + 10
                     }
@@ -1059,12 +1060,12 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
     }
     //Changes Overlay window size so we don't lose access to the Grid Choice buttons
     func changeOverlaySize() {
-        let width = self.test.collectionStack.bounds.height - self.test.collectionViewHeight.constant
-        var height = self.test.collectionStack.bounds.width - self.test.collectionViewWidth.constant
+        var height = self.test.collectionStack.bounds.height - self.test.collectionViewHeight.constant + 20
         if self.test.collectionViewHeight.constant >= 400 {
             height += 50
         }
         //Darken Area around Indicator and top of cell
-        self.view.overlayView(withShapes: [.roundedRect(self.test.collectionView, 8, CGSize(width: width, height: height))])
+        self.view.overlayView(withShapes: [.roundedRect(self.test.collectionView, 8, CGSize(width: 5, height: height))])
+        
     }
 }
