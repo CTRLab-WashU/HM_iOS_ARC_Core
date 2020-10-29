@@ -561,6 +561,7 @@ open class ExtendedGridTestViewController: ArcViewController, UICollectionViewDe
             choiceIndicator?.targetView?.backgroundColor = UIColor(red: 191.0/255.0, green: 215.0/255.0, blue: 224.0/255.0, alpha: 1.0)
             choiceIndicator?.targetView?.layer.borderWidth = 1
             choiceIndicator?.targetView?.layer.borderColor = UIColor(red: 133.0/255.0, green: 141/255.0, blue: 145.0/255.0, alpha: 1.0).cgColor
+            delegate?.didUpdateIndicator(indexPath: indexPath, indicator: nil)
 //            _ = controller.unsetValue(responseIndex: indexPath.row,
 //            questionIndex: testNumber,
 //            gridType: .image,
