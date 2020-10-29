@@ -99,7 +99,9 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
 			view.removeHighlight()
 			removeHint(hint: "hint")
 			tutorialAnimation.resume()
-            needHelp()
+            if self.gridChoice == nil {
+                needHelp()
+            }
 		case .recallFirstChoiceMade, .recallSecondChoiceMade:
             if showingSelectNextTwo == false {
                 test.view.clearOverlay()
@@ -107,14 +109,18 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             }
             showingSelectNextTwo = true
             tutorialAnimation.time = 19.5
-            needHelp()
+            if self.gridChoice == nil {
+                needHelp()
+            }
             view.removeHighlight()
 			tutorialAnimation.resume()
         case .recall:
             test.view.clearOverlay()
             view.removeHighlight()
             removeFinalHint()
-            needHelp()
+            if self.gridChoice == nil {
+                needHelp()
+            }
             tutorialAnimation.resume()
 		case .showContinue:
 			test.view.clearOverlay()
