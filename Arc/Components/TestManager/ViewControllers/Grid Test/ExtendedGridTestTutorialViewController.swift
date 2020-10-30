@@ -423,13 +423,13 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             weakSelf.addFirstHint(hint: "hint", seconds: 0.0)
             
         }
-        state.addCondition(atTime: progress(seconds:25.5), flagName: "symbols-2") { [weak self] in
-            guard let weakSelf = self else {
-                return
-            }
-                weakSelf.tutorialAnimation.time = 19.5
-                weakSelf.didSelect()
-        }
+//        state.addCondition(atTime: progress(seconds:25.5), flagName: "symbols-2") { [weak self] in
+//            guard let weakSelf = self else {
+//                return
+//            }
+//                weakSelf.tutorialAnimation.time = 19.5
+//                weakSelf.didSelect()
+//        }
 	}
 	func removeHint(hint:String) {
 		_ = state.removeCondition(with: hint)
@@ -1073,9 +1073,10 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             self.test.continueButton.addAction { [weak self] in
                 if self?.symbolSelected == true {
                     self?.endTutorial()
+                    self?.tutorialAnimation.time = 26
                 } else {
-                    self?.tutorialAnimation.time = 25
                     self?.needMechanics()
+                    self?.tutorialAnimation.time = 25
                     self?.tutorialAnimation.resume()
                 }
             }
