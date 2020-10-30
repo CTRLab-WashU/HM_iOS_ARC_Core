@@ -810,11 +810,14 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                 $0.layout {
                     $0.centerX == weakSelf.view.centerXAnchor
                     $0.width == 252
-                    $0.height >= 134 ~ 750
-                    if weakSelf.currentIndex.row <= 9 || weakSelf.currentIndex.row > 19 || weakSelf.test.collectionViewHeight.constant >= 400 {
+                    $0.height <= 142 ~ 500
+                    if weakSelf.currentIndex.row <= 9 || weakSelf.currentIndex.row > 19 {
+                        $0.bottom <= weakSelf.view.bottomAnchor - 10 ~ 999
+                     if weakSelf.test.collectionViewHeight.constant >= 400 {
                         $0.bottom <= weakSelf.view.bottomAnchor - 40 ~ 999
+                        }
                     } else {
-                        $0.top == weakSelf.view.topAnchor + 10
+                        $0.top == weakSelf.view.topAnchor + 40
                     }
                 }
             }
