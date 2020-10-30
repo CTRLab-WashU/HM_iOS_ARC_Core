@@ -99,7 +99,9 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
 			view.removeHighlight()
 			removeHint(hint: "hint")
 			tutorialAnimation.resume()
-            needHelp()
+            if self.gridChoice == nil {
+                needHelp()
+            }
 		case .recallFirstChoiceMade, .recallSecondChoiceMade:
             if showingSelectNextTwo == false {
                 test.view.clearOverlay()
@@ -107,14 +109,18 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             }
             showingSelectNextTwo = true
             tutorialAnimation.time = 19.5
-            needHelp()
+            if self.gridChoice == nil {
+                needHelp()
+            }
             view.removeHighlight()
 			tutorialAnimation.resume()
         case .recall:
             test.view.clearOverlay()
             view.removeHighlight()
             removeFinalHint()
-            needHelp()
+            if self.gridChoice == nil {
+                needHelp()
+            }
             tutorialAnimation.resume()
 		case .showContinue:
 			test.view.clearOverlay()
@@ -130,6 +136,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             }
         case .mechanics:
             removeFinalHint()
+            view.removeHighlight()
             tutorialAnimation.resume()
 		case .showingReminder:
 			removeHint(hint: "hint")
@@ -197,8 +204,8 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             test.collectionView.removeHighlight()
             test.view.clearOverlay()
             tutorialAnimation.time = 19.5
-            didSelect()
-            tutorialAnimation.pause()
+            didSelectGrid(indexPath: self.currentIndex)
+            //tutorialAnimation.pause()
         }
         currentHint?.removeFromSuperview()
     }
@@ -273,7 +280,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
 			
 			
 		}
-		state.addCondition(atTime: progress(seconds: 3.5), flagName: "fs-2") { [weak self] in
+		state.addCondition(atTime: progress(seconds: 3.5), flagName: "fs-1") { [weak self] in
 			guard let weakSelf = self else {
 				return
 			}
@@ -313,7 +320,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
 			}
 			
 		}
-		state.addCondition(atTime: progress(seconds: 3.5), flagName: "fs-3") { [weak self] in
+		state.addCondition(atTime: progress(seconds: 3.5), flagName: "fs-2") { [weak self] in
 			guard let weakSelf = self else {
 				return
 			}
@@ -339,7 +346,12 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
 			}
 			
 		}
-		
+        state.addCondition(atTime: progress(seconds: 11.4), flagName: "fs-3") { [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            weakSelf.test.collectionView.isUserInteractionEnabled = false
+        }
 		state.addCondition(atTime: progress(seconds: 11.5), flagName: "fs-4") { [weak self] in
 			guard let weakSelf = self else {
 				return
@@ -410,17 +422,25 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             weakSelf.addFirstHint(hint: "hint", seconds: 0.0)
             
         }
-
-		state.addCondition(atTime: progress(seconds: 26), flagName: "end") { [weak self] in
-			guard let weakSelf = self else {
-				return
-			}
-			weakSelf.finishTutorial()
-		}
+        state.addCondition(atTime: progress(seconds:25.5), flagName: "symbols-2") { [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+                weakSelf.tutorialAnimation.time = 19.5
+                weakSelf.didSelect()
+        }
 	}
 	func removeHint(hint:String) {
 		_ = state.removeCondition(with: hint)
 	}
+    func endTutorial() {
+        state.addCondition(atTime: progress(seconds: 26), flagName: "end") { [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            weakSelf.finishTutorial()
+        }
+    }
     func needMechanics() {
     //Show Hint for Moving Phone
         state.addCondition(atTime: progress(seconds:25), flagName: "mechanics-0")
@@ -852,7 +872,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
     func addFirstHint(hint:String, seconds:TimeInterval = 0.0) {
         let time = tutorialAnimation.time + seconds
         print("HINT:", time, ":",  progress(seconds:time))
-        state.addCondition(atTime: progress(seconds: 14.5), flagName: "symbols-2") { [weak self] in
+        state.addCondition(atTime: progress(seconds: 14.5), flagName: "symbols-3") { [weak self] in
             guard let weakSelf = self else {
                 return
             }
@@ -896,7 +916,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
         }
         //Grid Cell Selected - Select Phone Button
         
-        state.addCondition(atTime: progress(seconds:14.5), flagName: "symbols-3") { [weak self] in
+        state.addCondition(atTime: progress(seconds:14.5), flagName: "symbols-4") { [weak self] in
             guard let weakSelf = self else {
                 return
             }
@@ -1048,8 +1068,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             self.test.continueButton.isHidden = false
             self.test.continueButton.addAction { [weak self] in
                 if self?.symbolSelected == true {
-                    self?.tutorialAnimation.time = 25.5
-                    self?.tutorialAnimation.resume()
+                    self?.endTutorial()
                 } else {
                     self?.tutorialAnimation.time = 25
                     self?.needMechanics()
