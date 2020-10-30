@@ -280,7 +280,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
 			
 			
 		}
-		state.addCondition(atTime: progress(seconds: 3.5), flagName: "fs-2") { [weak self] in
+		state.addCondition(atTime: progress(seconds: 3.5), flagName: "fs-1") { [weak self] in
 			guard let weakSelf = self else {
 				return
 			}
@@ -320,7 +320,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
 			}
 			
 		}
-		state.addCondition(atTime: progress(seconds: 3.5), flagName: "fs-3") { [weak self] in
+		state.addCondition(atTime: progress(seconds: 3.5), flagName: "fs-2") { [weak self] in
 			guard let weakSelf = self else {
 				return
 			}
@@ -346,7 +346,12 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
 			}
 			
 		}
-		
+        state.addCondition(atTime: progress(seconds: 11.4), flagName: "fs-3") { [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            weakSelf.test.collectionView.isUserInteractionEnabled = false
+        }
 		state.addCondition(atTime: progress(seconds: 11.5), flagName: "fs-4") { [weak self] in
 			guard let weakSelf = self else {
 				return
