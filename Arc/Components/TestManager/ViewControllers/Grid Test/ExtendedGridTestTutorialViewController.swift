@@ -346,6 +346,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
 			}
 			
 		}
+        //Added this state to prevent skipping if buttons are pressed at same time of state change
         state.addCondition(atTime: progress(seconds: 11.4), flagName: "fs-3") { [weak self] in
             guard let weakSelf = self else {
                 return
@@ -422,13 +423,13 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             weakSelf.addFirstHint(hint: "hint", seconds: 0.0)
             
         }
-        state.addCondition(atTime: progress(seconds:25.5), flagName: "symbols-2") { [weak self] in
-            guard let weakSelf = self else {
-                return
-            }
-                weakSelf.tutorialAnimation.time = 19.5
-                weakSelf.didSelect()
-        }
+//        state.addCondition(atTime: progress(seconds:25.5), flagName: "symbols-2") { [weak self] in
+//            guard let weakSelf = self else {
+//                return
+//            }
+//                weakSelf.tutorialAnimation.time = 19.5
+//                weakSelf.didSelect()
+//        }
 	}
 	func removeHint(hint:String) {
 		_ = state.removeCondition(with: hint)
@@ -809,11 +810,14 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                 $0.layout {
                     $0.centerX == weakSelf.view.centerXAnchor
                     $0.width == 252
-                    $0.height >= 134 ~ 750
-                    if weakSelf.currentIndex.row <= 9 || weakSelf.currentIndex.row > 19 || weakSelf.test.collectionViewHeight.constant >= 400 {
+                    $0.height <= 142 ~ 500
+                    if weakSelf.currentIndex.row <= 9 || weakSelf.currentIndex.row > 19 {
+                        $0.bottom <= weakSelf.view.bottomAnchor - 10 ~ 999
+                     if weakSelf.test.collectionViewHeight.constant >= 400 {
                         $0.bottom <= weakSelf.view.bottomAnchor - 40 ~ 999
+                        }
                     } else {
-                        $0.top == weakSelf.view.topAnchor + 10
+                        $0.top == weakSelf.view.topAnchor + 40
                     }
                 }
             }
@@ -1069,9 +1073,10 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             self.test.continueButton.addAction { [weak self] in
                 if self?.symbolSelected == true {
                     self?.endTutorial()
+                    self?.tutorialAnimation.time = 26
                 } else {
-                    self?.tutorialAnimation.time = 25
                     self?.needMechanics()
+                    self?.tutorialAnimation.time = 25
                     self?.tutorialAnimation.resume()
                 }
             }
