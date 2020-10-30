@@ -346,6 +346,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
 			}
 			
 		}
+        //Added this state to prevent skipping if buttons are pressed at same time of state change
         state.addCondition(atTime: progress(seconds: 11.4), flagName: "fs-3") { [weak self] in
             guard let weakSelf = self else {
                 return
