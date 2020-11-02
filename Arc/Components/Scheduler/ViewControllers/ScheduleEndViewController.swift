@@ -12,6 +12,7 @@ import ArcUIKit
 open class ScheduleEndViewController: UIViewController, SurveyInput {
     
 
+    @IBOutlet weak var changeTimesButton: HMMarkupButton!
     @IBOutlet weak var okayButton: ACButton!
     @IBOutlet weak var message: HMMarkupLabel!
     
@@ -19,7 +20,9 @@ open class ScheduleEndViewController: UIViewController, SurveyInput {
     
     override open func viewDidLoad() {
         super.viewDidLoad()
-        
+        let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue]
+        let underlineAttributedString = NSAttributedString(string: changeTimesButton.titleLabel?.text ?? "", attributes: underlineAttribute)
+        changeTimesButton.titleLabel?.attributedText = underlineAttributedString
         if let participantId = Arc.shared.participantId, let schedule = Arc.shared.scheduleController.get(confirmedSchedule: participantId), let s = schedule.entries.first
         {
             self.message.template = ["TIME1": s.availabilityStart!, "TIME2": s.availabilityEnd!];
