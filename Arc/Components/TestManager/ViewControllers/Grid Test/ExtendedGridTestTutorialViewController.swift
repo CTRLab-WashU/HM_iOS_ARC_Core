@@ -108,7 +108,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                 removeHint(hint: "hint")
             }
             showingSelectNextTwo = true
-            tutorialAnimation.time = 19.5
+            tutorialAnimation.time = 20
             if self.gridChoice == nil {
                 needHelp()
             }
@@ -195,7 +195,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             tutorialAnimation.resume()
         //checks to see if cell selected has item
         } else if checkGridValue(index: indexPath.row) == true && self.gridChoice != nil {
-            tutorialAnimation.time = 19.5
+            tutorialAnimation.time = 20
             didSelect()
             //tutorialAnimation.pause()
         //mechanics section
@@ -204,7 +204,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
         } else {
             test.collectionView.removeHighlight()
             test.view.clearOverlay()
-            tutorialAnimation.time = 19.5
+            tutorialAnimation.time = 20
             didSelectGrid(indexPath: self.currentIndex)
             //tutorialAnimation.pause()
         }
@@ -348,13 +348,13 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
 			
 		}
         //Added this state to prevent skipping if buttons are pressed at same time of state change
-        state.addCondition(atTime: progress(seconds: 11.4), flagName: "fs-3") { [weak self] in
+        state.addCondition(atTime: progress(seconds: 11.5), flagName: "fs-3") { [weak self] in
             guard let weakSelf = self else {
                 return
             }
             weakSelf.test.collectionView.isUserInteractionEnabled = false
         }
-		state.addCondition(atTime: progress(seconds: 11.5), flagName: "fs-4") { [weak self] in
+		state.addCondition(atTime: progress(seconds: 12), flagName: "fs-4") { [weak self] in
 			guard let weakSelf = self else {
 				return
 			}
@@ -383,7 +383,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
 			}
 			
 		}
-		state.addCondition(atTime: progress(seconds: 11.5), flagName: "symbols-0") { [weak self] in
+		state.addCondition(atTime: progress(seconds: 12), flagName: "symbols-0") { [weak self] in
             guard let weakSelf = self else {
                 return
             }
@@ -416,7 +416,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
 		
         
         
-        state.addCondition(atTime: progress(seconds:14.5), flagName: "symbols-1") { [weak self] in
+        state.addCondition(atTime: progress(seconds:15), flagName: "symbols-1") { [weak self] in
             guard let weakSelf = self else {
                 return
             }
@@ -428,7 +428,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
 //            guard let weakSelf = self else {
 //                return
 //            }
-//                weakSelf.tutorialAnimation.time = 19.5
+//                weakSelf.tutorialAnimation.time = 20
 //                weakSelf.didSelect()
 //        }
 	}
@@ -797,7 +797,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                     self?.removeFinalHint()
                     weakSelf.symbolSelected = false
                     weakSelf.test.collectionView(weakSelf.test.collectionView, didDeselectItemAt: weakSelf.currentIndex)
-                    weakSelf.tutorialAnimation.time = 19.5
+                    weakSelf.tutorialAnimation.time = 20
                     //reset hints if Got It was touched and not all 3 items are selected
                     if weakSelf.gridSelected != 3 {
                         weakSelf.removeFinalHint()
@@ -826,7 +826,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             weakSelf.gridChoice?.removeButton.addAction {
                 weakSelf.symbolSelected = true
                 weakSelf.removeFinalHint()
-                weakSelf.tutorialAnimation.time = 19.5
+                weakSelf.tutorialAnimation.time = 20
                 weakSelf.needHelp()
                 weakSelf.tutorialAnimation.resume()
             }
@@ -877,7 +877,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
     func addFirstHint(hint:String, seconds:TimeInterval = 0.0) {
         let time = tutorialAnimation.time + seconds
         print("HINT:", time, ":",  progress(seconds:time))
-        state.addCondition(atTime: progress(seconds: 14.5), flagName: "symbols-3") { [weak self] in
+        state.addCondition(atTime: progress(seconds: 15), flagName: "symbols-3") { [weak self] in
             guard let weakSelf = self else {
                 return
             }
@@ -921,7 +921,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
         }
         //Grid Cell Selected - Select Phone Button
         
-        state.addCondition(atTime: progress(seconds:14.5), flagName: "symbols-4") { [weak self] in
+        state.addCondition(atTime: progress(seconds:15), flagName: "symbols-4") { [weak self] in
             guard let weakSelf = self else {
                 return
             }
@@ -981,7 +981,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                 return
             }
             weakSelf.tutorialAnimation.pause()
-            weakSelf.tutorialAnimation.time = 19.5
+            weakSelf.tutorialAnimation.time = 20
             let index = weakSelf.test.symbolIndexPaths
             weakSelf.test.overlayCells(at: index)
         }
