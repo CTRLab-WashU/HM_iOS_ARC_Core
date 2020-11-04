@@ -135,6 +135,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                 needChange()
             }
         case .mechanics:
+            test.collectionView.isUserInteractionEnabled = false
             removeFinalHint()
             view.removeHighlight()
             tutorialAnimation.resume()
