@@ -63,6 +63,9 @@ public class GridChoiceView : IndicatorView {
         
         gridTestSelection = .get()
         super.init(frame: .zero)
+        let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue]
+        let underlineAttributedString = NSAttributedString(string: removeButton.titleLabel?.text ?? "", attributes: underlineAttribute)
+        removeButton.titleLabel?.attributedText = underlineAttributedString
         var arrowPosition:Bool = false
         if indexPath.row > 19 {
             arrowPosition = false
