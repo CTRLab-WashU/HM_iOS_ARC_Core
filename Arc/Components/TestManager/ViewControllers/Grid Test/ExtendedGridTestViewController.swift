@@ -77,7 +77,7 @@ open class ExtendedGridTestViewController: ArcViewController, UICollectionViewDe
     private let LETTER_ROWS = 10
     private var LETTER_BUFFER = 20
     private let LETTER_LINE_SPACING = 1
-    private let IMAGE_GRID_TUTORIAL_WIDTH:CGFloat = 260
+    private let IMAGE_GRID_TUTORIAL_WIDTH:CGFloat = 280
     private let LETTER_GRID_TUTORIAL_WIDTH:CGFloat = 284
 
 	private weak var currentAlert:MHAlertView?
@@ -677,9 +677,6 @@ open class ExtendedGridTestViewController: ArcViewController, UICollectionViewDe
     }
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         if mode == .image || mode == .answers {
-            if SMALLER_GRIDS{
-                return UIEdgeInsets(top: 4, left:16, bottom: 4, right: 16)
-            }
             return UIEdgeInsets(top: 4, left:4, bottom: 4, right: 4)
             
         } else if mode == .fCell {
