@@ -77,7 +77,7 @@ open class ExtendedGridTestViewController: ArcViewController, UICollectionViewDe
     private let LETTER_ROWS = 10
     private var LETTER_BUFFER = 20
     private let LETTER_LINE_SPACING = 1
-    private let IMAGE_GRID_TUTORIAL_WIDTH:CGFloat = 260
+    private let IMAGE_GRID_TUTORIAL_WIDTH:CGFloat = 280
     private let LETTER_GRID_TUTORIAL_WIDTH:CGFloat = 284
 
 	private weak var currentAlert:MHAlertView?
@@ -560,6 +560,7 @@ open class ExtendedGridTestViewController: ArcViewController, UICollectionViewDe
             //guard !isPracticeTest else { return }
             
             choiceIndicator?.removeFromSuperview()
+            delegate?.didUpdateIndicator(indexPath: indexPath, indicator: nil)
 //            choiceIndicator?.targetView?.backgroundColor = UIColor(red: 191.0/255.0, green: 215.0/255.0, blue: 224.0/255.0, alpha: 1.0)
 //            choiceIndicator?.targetView?.layer.borderWidth = 1
 //            choiceIndicator?.targetView?.layer.borderColor = UIColor(red: 133.0/255.0, green: 141/255.0, blue: 145.0/255.0, alpha: 1.0).cgColor
@@ -676,9 +677,6 @@ open class ExtendedGridTestViewController: ArcViewController, UICollectionViewDe
     }
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         if mode == .image || mode == .answers {
-            if SMALLER_GRIDS{
-                return UIEdgeInsets(top: 4, left:16, bottom: 4, right: 16)
-            }
             return UIEdgeInsets(top: 4, left:4, bottom: 4, right: 4)
             
         } else if mode == .fCell {
