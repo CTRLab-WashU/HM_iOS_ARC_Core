@@ -117,14 +117,14 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ri-NR-mt0">
-                            <rect key="frame" x="81.5" y="147.5" width="101" height="34.5"/>
+                            <rect key="frame" x="81.5" y="147.5" width="101" height="38.5"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                             <state key="normal" title="Remove Item">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                         </button>
                     </subviews>
-                    <edgeInsets key="layoutMargins" top="16" left="0.0" bottom="22" right="0.0"/>
+                    <edgeInsets key="layoutMargins" top="16" left="0.0" bottom="18" right="0.0"/>
                 </stackView>
             </subviews>
             <constraints>
