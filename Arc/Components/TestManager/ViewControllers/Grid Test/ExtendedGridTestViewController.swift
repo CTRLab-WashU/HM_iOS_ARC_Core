@@ -52,6 +52,8 @@ open class ExtendedGridTestViewController: ArcViewController, UICollectionViewDe
     private var symbols:[UIImage] = [#imageLiteral(resourceName: "key"),
                                      #imageLiteral(resourceName: "phone"),
                                      #imageLiteral(resourceName: "pen")]
+    public var selected = 0
+    public var maxSelected = 3
 	public var revealedIndexPaths:[IndexPath] = []
 	
     private var IMAGE_HEIGHT:Int {
@@ -295,7 +297,7 @@ open class ExtendedGridTestViewController: ArcViewController, UICollectionViewDe
         mode = .image
         
         collectionView.allowsSelection = true;
-        
+        selected = 0
         tapOnTheFsLabel.isHidden = false
         tapOnTheFsLabel.translationKey = nil
         tapOnTheFsLabel.numberOfLines = 0
@@ -434,16 +436,7 @@ open class ExtendedGridTestViewController: ArcViewController, UICollectionViewDe
                         iCell.setImage(image:self.symbols[selection])
                         iCell.image.isHidden = false
                 }
-                var selected = 0
-                for i in 0...24
-                {
-                    let value = (controller.get(selectedData: i, id: responseId, questionIndex: testNumber, gridType: .image)?.selection) ?? -1
-                    if value > -1
-                    {
-                        selected += 1
-                    }
-                }
-                if selected == 3
+                if selected == maxSelected
                 {
                     continueButton.isHidden = false
                     collectionStack.setCustomSpacing(8, after: tapOnTheFsLabel)
@@ -520,11 +513,16 @@ open class ExtendedGridTestViewController: ArcViewController, UICollectionViewDe
                     gridType: .image,
                     time: touchedAt,
                     id: response)
+                    self.selected += 1
+                    if self.selected > self.maxSelected {
+                        self.selected -= 1
+                    }
                 case .unset(let imageIndex):
                     let _ = controller.unsetValue(responseIndex: imageIndex.row,
                                questionIndex: test,
                                gridType: .image,
                                id: response)
+                    self.selected -= 1
                 }
                 coll.reloadData()
                 del?.didUpdateIndicator(indexPath: indexPath, indicator: nil)
