@@ -317,7 +317,7 @@ open class ExtendedGridTestViewController: ArcViewController, UICollectionViewDe
         _ = controller.markTime(gridDisplayedTestGrid: responseId, questionIndex: testNumber)
 		if shouldAutoProceed {
 
-        	endTimer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(endTest), userInfo: nil, repeats: false)
+        	endTimer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(endTest), userInfo: nil, repeats: false)
 		}
         
         view.layoutSubviews()
