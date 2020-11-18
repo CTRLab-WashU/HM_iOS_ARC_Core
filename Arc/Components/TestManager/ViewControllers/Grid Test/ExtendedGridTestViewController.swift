@@ -434,7 +434,7 @@ open class ExtendedGridTestViewController: ArcViewController, UICollectionViewDe
                         iCell.setImage(image:self.symbols[selection])
                         iCell.image.isHidden = false
                 }
-                if selected == maxSelected
+                if controller.get(numChoicesFor: responseId, testIndex: testNumber) == 3
                 {
                     continueButton.isHidden = false
                     collectionStack.setCustomSpacing(8, after: tapOnTheFsLabel)
@@ -511,16 +511,11 @@ open class ExtendedGridTestViewController: ArcViewController, UICollectionViewDe
                     gridType: .image,
                     time: touchedAt,
                     id: response)
-                    self.selected += 1
-                    if self.selected > self.maxSelected {
-                        self.selected -= 1
-                    }
-                case .unset(let imageIndex):
-                    let _ = controller.unsetValue(responseIndex: imageIndex.row,
+                case .unset(let index):
+                    let _ = controller.unsetValue(responseIndex: index.row,
                                questionIndex: test,
                                gridType: .image,
                                id: response)
-                    self.selected -= 1
                 }
                 coll.reloadData()
                 del?.didUpdateIndicator(indexPath: indexPath, indicator: nil)
