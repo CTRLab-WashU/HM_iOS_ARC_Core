@@ -31,6 +31,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
     var indicator:IndicatorView?
     var gridChoice:GridChoiceView?
     var currentIndex:IndexPath = []
+    var actionAdded = false
     
     override func viewDidLoad() {
 		duration = 26
@@ -1086,15 +1087,21 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             self.phase = .showContinue
             self.test.tapOnTheFsLabel.isHidden = true
             self.test.continueButton.isHidden = false
-            self.test.continueButton.addAction { [weak self] in
-                if self?.symbolSelected == true {
-                    self?.endTutorial()
-                    self?.tutorialAnimation.time = 26
-                } else {
-                    self?.needMechanics()
-                    self?.tutorialAnimation.time = 25
-                    self?.tutorialAnimation.resume()
+            if actionAdded == false {
+                self.test.continueButton.addAction { [weak self] in
+                    if self?.symbolSelected == true {
+                        self?.endTutorial()
+                        self?.tutorialAnimation.time = 26
+                        self?.tutorialAnimation.resume()
+                        print("continue end resume")
+                    } else {
+                        self?.needMechanics()
+                        self?.tutorialAnimation.time = 25
+                        self?.tutorialAnimation.resume()
+                        print("continue mechanics resume")
+                    }
                 }
+                actionAdded = true
             }
         } else {
             self.test.tapOnTheFsLabel.isHidden = false
