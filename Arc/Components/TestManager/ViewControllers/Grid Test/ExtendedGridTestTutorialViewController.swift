@@ -1048,14 +1048,9 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
     
     func checkGridSelected() {
         self.gridSelected = 0
-        for i in 0...24
-        {
-            let value = (self.test.controller.get(selectedData: i, id: self.test.responseId, questionIndex: self.test.testNumber, gridType: .image)?.selection) ?? -1
-            if value > -1
-            {
-                self.gridSelected += 1
-            }
-        }
+        
+        self.gridSelected =  self.test.controller.get(numChoicesFor: self.test.responseId, testIndex: self.test.testNumber)
+        
        
         showContinueButton()
         
