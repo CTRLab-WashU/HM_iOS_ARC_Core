@@ -31,6 +31,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
     var indicator:IndicatorView?
     var gridChoice:GridChoiceView?
     var currentIndex:IndexPath = []
+    var actionAdded = false
     
     override func viewDidLoad() {
 		duration = 26
@@ -165,7 +166,8 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
 		case 3:
             removeFinalHint()
             test.collectionView.isUserInteractionEnabled = true
-    
+            // - Attention: added this phase or else we would get stuck in the recall phases
+            phase = .showContinue
 		default:
             //if 0 items selected
             if showingMechanics == false {
@@ -174,8 +176,8 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                 phase = .mechanics
             }
 		}
-		
-		didSelect()
+		// - Attention: should only used didSelect with didUpdateIndicator since it's used more than didSelectGrid
+		//didSelect()
 	}
 	
 	func didSelectLetter(indexPath: IndexPath) {
@@ -205,7 +207,8 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             test.collectionView.removeHighlight()
             test.view.clearOverlay()
             tutorialAnimation.time = 20
-            didSelectGrid(indexPath: self.currentIndex)
+            //- Attention: didSelectGrid was used previously but caused too much looping
+            //didSelectGrid(indexPath: self.currentIndex)
             //tutorialAnimation.pause()
         }
         currentHint?.removeFromSuperview()
@@ -809,10 +812,10 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                     self?.removeFinalHint()
                     weakSelf.symbolSelected = false
                     weakSelf.test.collectionView(weakSelf.test.collectionView, didDeselectItemAt: weakSelf.currentIndex)
-                    weakSelf.tutorialAnimation.time = 20
                     //reset hints if Got It was touched and not all 3 items are selected
                     if weakSelf.gridSelected != 3 {
                         weakSelf.removeFinalHint()
+                        weakSelf.tutorialAnimation.time = 20
                         weakSelf.needHelp()
                         weakSelf.tutorialAnimation.resume()
                     //keeps continue button on screen when all 3 items are visibile
@@ -1047,14 +1050,9 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
     
     func checkGridSelected() {
         self.gridSelected = 0
-        for i in 0...24
-        {
-            let value = (self.test.controller.get(selectedData: i, id: self.test.responseId, questionIndex: self.test.testNumber, gridType: .image)?.selection) ?? -1
-            if value > -1
-            {
-                self.gridSelected += 1
-            }
-        }
+        
+        self.gridSelected =  self.test.controller.get(numChoicesFor: self.test.responseId, testIndex: self.test.testNumber)
+        
        
         showContinueButton()
         
@@ -1086,15 +1084,21 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             self.phase = .showContinue
             self.test.tapOnTheFsLabel.isHidden = true
             self.test.continueButton.isHidden = false
-            self.test.continueButton.addAction { [weak self] in
-                if self?.symbolSelected == true {
-                    self?.endTutorial()
-                    self?.tutorialAnimation.time = 26
-                } else {
-                    self?.needMechanics()
-                    self?.tutorialAnimation.time = 25
-                    self?.tutorialAnimation.resume()
+            if actionAdded == false {
+                self.test.continueButton.addAction { [weak self] in
+                    if self?.symbolSelected == true {
+                        self?.endTutorial()
+                        self?.tutorialAnimation.time = 26
+                        self?.tutorialAnimation.resume()
+                        print("continue end resume")
+                    } else {
+                        self?.needMechanics()
+                        self?.tutorialAnimation.time = 25
+                        self?.tutorialAnimation.resume()
+                        print("continue mechanics resume")
+                    }
                 }
+                actionAdded = true
             }
         } else {
             self.test.tapOnTheFsLabel.isHidden = false
