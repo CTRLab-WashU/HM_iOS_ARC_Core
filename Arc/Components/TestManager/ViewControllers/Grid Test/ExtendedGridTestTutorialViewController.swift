@@ -504,13 +504,10 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                        weakSelf.tutorialAnimation.resume()
                    }
                    $0.layout {
-                       $0.centerX == weakSelf.view.centerXAnchor
-                       $0.width == 252
-                    if weakSelf.test.collectionViewWidth.constant.exponent < 300 {
-                           $0.bottom == weakSelf.view.bottomAnchor - 5
-                       } else {
-                           $0.bottom == weakSelf.view.bottomAnchor - 30
-                       }
+                        $0.centerX == weakSelf.view.centerXAnchor
+                        $0.width == 252
+                        $0.top >= weakSelf.test.collectionView.bottomAnchor + 5 ~ 500
+                        $0.bottom == weakSelf.view.bottomAnchor - 20 ~ 800
                    }
                }
            }
@@ -732,11 +729,8 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                    $0.layout {
                        $0.centerX == weakSelf.view.centerXAnchor
                        $0.width == 252
-                       if weakSelf.test.collectionViewWidth.constant.exponent < 300 {
-                           $0.bottom == weakSelf.view.bottomAnchor - 5
-                       } else {
-                           $0.bottom == weakSelf.view.bottomAnchor - 30
-                       }
+                        $0.top >= weakSelf.test.collectionView.bottomAnchor + 5 ~ 500
+                        $0.bottom == weakSelf.view.bottomAnchor - 20 ~ 800
                    }
                }
            }
@@ -784,11 +778,9 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                 $0.layout {
                     $0.centerX == weakSelf.view.centerXAnchor
                     $0.width == 252
-                    if weakSelf.test.collectionViewWidth.constant.exponent < 300 {
-                        $0.bottom == weakSelf.view.bottomAnchor - 5
-                    } else {
-                        $0.bottom == weakSelf.view.bottomAnchor - 30
-                    }
+                    $0.top >= weakSelf.test.collectionView.bottomAnchor + 5 ~ 500
+                    $0.bottom == weakSelf.view.bottomAnchor - 20 ~ 800
+
                 }
             }
 		}
@@ -1019,11 +1011,8 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             $0.layout {
                 $0.centerX == self.view.centerXAnchor
                 $0.width == 252
-                if self.test.collectionViewWidth.constant.exponent < 300 {
-                    $0.bottom == self.view.bottomAnchor - 5
-                } else {
-                    $0.bottom == self.view.bottomAnchor - 30
-                }
+                $0.top >= self.test.collectionView.bottomAnchor + 5 ~ 500
+                $0.bottom == self.view.bottomAnchor - 20 ~ 800
 
             }
         }
