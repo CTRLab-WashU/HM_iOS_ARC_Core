@@ -14,8 +14,8 @@ public class GridChoiceView : IndicatorView {
      
      */
     public enum PopupAction {
-           case set(responseData:Int, index:IndexPath)
-           case unset(index:IndexPath)
+            case set(responseData:Int, index:IndexPath, confirmTime:Date)
+            case unset(index:IndexPath)
        }
     public var phoneButton:UIButton{
         get {
@@ -104,7 +104,7 @@ public class GridChoiceView : IndicatorView {
         styleImageButton(imageButton: gridTestSelection.keyImage)
         gridTestSelection.keyButton.accessibilityIdentifier = "key_button"
         gridTestSelection.keyButton.addAction { [weak self] in
-            action(.set(responseData: 0, index: indexPath))
+            action(.set(responseData: 0, index: indexPath, confirmTime:Date()))
             self?.removeFromSuperview()
         }
         
@@ -115,7 +115,7 @@ public class GridChoiceView : IndicatorView {
         styleImageButton(imageButton: gridTestSelection.phoneImage)
         gridTestSelection.phoneButton.accessibilityIdentifier = "phone_button"
         gridTestSelection.phoneButton.addAction { [weak self] in
-            action(.set(responseData: 1, index: indexPath))
+            action(.set(responseData: 1, index: indexPath, confirmTime:Date()))
             self?.removeFromSuperview()
         }
         
@@ -126,7 +126,7 @@ public class GridChoiceView : IndicatorView {
         styleImageButton(imageButton: gridTestSelection.penImage)
         gridTestSelection.penButton.accessibilityIdentifier = "pen_button"
         gridTestSelection.penButton.addAction { [weak self] in
-            action(.set(responseData: 2, index: indexPath))
+            action(.set(responseData: 2, index: indexPath, confirmTime:Date()))
             self?.removeFromSuperview()
         }
         if choice != nil {

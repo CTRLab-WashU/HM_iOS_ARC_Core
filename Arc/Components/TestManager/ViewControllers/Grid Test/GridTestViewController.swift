@@ -429,7 +429,8 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
         if let c = collectionView.cellForItem(at: indexPath) as? GridImageCell
         {
             
-            let _ = controller.setValue(responseIndex: indexPath.row,                    responseData: nil,
+            let _ = controller.setValue(responseIndex: indexPath.row,
+                                        responseData: nil,
                                 questionIndex: testNumber,
                                 gridType: .image,
                                 time: c.touchTime!,

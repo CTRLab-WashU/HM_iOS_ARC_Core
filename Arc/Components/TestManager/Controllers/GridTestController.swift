@@ -436,7 +436,7 @@ open class GridTestController : TestController<GridTestResponse> {
         }
         
     }
-    public func setValue(responseIndex index:Int, responseData: Int?, questionIndex:Int, gridType:GridTestController.GridType, time:Date, id:String) -> GridTestResponse {
+    public func setValue(responseIndex index:Int, responseData: Int?, questionIndex:Int, gridType:GridTestController.GridType, time:Date, confirm_time:Date? = nil, id:String) -> GridTestResponse {
         let coord = coordinate(for: index, section: questionIndex, gridType: gridType)
         let x = coord.0
         let y = coord.1
@@ -449,9 +449,19 @@ open class GridTestController : TestController<GridTestResponse> {
             
             let startTime = try get(testStartTime: id)
             let timeSinceStart = time.timeIntervalSince(startTime)
-            let choice = GridTestResponse.Section.Choice(x: x,
+
+            var choice = GridTestResponse.Section.Choice(x: x,
                                                          y: y,
-                                                         selection_time: timeSinceStart, selection: responseData)
+                                                         selection_time: timeSinceStart,
+                                                         selection: responseData)
+
+            if let confirmTimeSinceStart = confirm_time?.timeIntervalSince(startTime) {
+                choice = GridTestResponse.Section.Choice(x: x,
+                                                             y: y,
+                                                             grid_selection_time: timeSinceStart,
+                                                             image_selection_time: confirmTimeSinceStart,
+                                                             selection: responseData)
+            }
             
             var set = Set<GridTestResponse.Section.Choice> (test.sections[questionIndex].choices)
             if let repeated = set.filter({$0.selection == responseData}).first {

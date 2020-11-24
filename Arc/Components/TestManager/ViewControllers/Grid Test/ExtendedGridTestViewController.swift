@@ -504,12 +504,13 @@ open class ExtendedGridTestViewController: ArcViewController, UICollectionViewDe
             choiceIndicator = GridChoiceView(in: self.view, indexPath: indexPath, targetView: c, choice: selection) { popupSelection in
                 
                 switch popupSelection {
-                case .set(let imageIndex, let index):
+                case .set(let imageIndex, let index, let confirm_time):
                     let _ = controller.setValue(responseIndex: index.row,
                     responseData: imageIndex,
                     questionIndex: test,
                     gridType: .image,
                     time: touchedAt,
+                    confirm_time: confirm_time,
                     id: response)
                 case .unset(let index):
                     let _ = controller.unsetValue(responseIndex: index.row,
