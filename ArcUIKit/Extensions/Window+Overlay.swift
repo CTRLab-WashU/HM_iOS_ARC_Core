@@ -49,7 +49,7 @@ public class OverlayView: UIView {
 			print("contains: \(point)")
 			return true
 		} else {
-			print("does not contain: \(point)")
+//			print("does not contain: \(point)")
 
 			return false
 		}

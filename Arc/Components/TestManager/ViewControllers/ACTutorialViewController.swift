@@ -12,12 +12,15 @@ import ArcUIKit
 class TutorialState {
 	struct TutorialCondition {
 		var time:Double
+        var delay:Double?
 		var flag:String
+        var waitForFlags:Set<String>?
 		var onFlag:(()->Void)
 		
 	}
 	var conditions = [TutorialCondition]()
 	var flags = Set<String>()
+    var delayedCondition:TutorialCondition?
 	var maxSteps = 0
 	var duration:Double = 0
 	var progress:Double {
@@ -32,9 +35,9 @@ class TutorialState {
 	/// - Parameter time: a time in the range of 0.0 to 1.0
 	/// - Parameter flag: the name of the flag to identify it by
 	/// - Parameter onFlag: an action to perform when flagged
-	func addCondition(atTime time:Double, flagName flag:String, onFlag:@escaping (()->Void)) {
+    func addCondition(atTime time:Double, flagName flag:String, delay:Double? = nil, waitForFlags:Set<String>? = nil, onFlag:@escaping (()->Void)) {
 		maxSteps += 1
-		conditions.append(TutorialCondition(time: time, flag: flag, onFlag: onFlag))
+		conditions.append(TutorialCondition(time: time, delay: delay, flag: flag, waitForFlags: waitForFlags, onFlag: onFlag))
 		conditions.sort {$0.time < $1.time}
 	}
 	func setFlag(value:String) {
@@ -47,15 +50,38 @@ class TutorialState {
 		flags.remove(name)
 	}
 	func evaluate(_ time:Double) {
+        if let delayedCondition = delayedCondition {
+            if time >= delayedCondition.time + (delayedCondition.delay ?? 0) {
+                self.delayedCondition = nil
+
+                flags.insert(delayedCondition.flag)
+                print(delayedCondition.time * duration, delayedCondition.flag, "DELAYED =-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+                delayedCondition.onFlag()
+            }
+            return
+        }
 		for index in 0 ..< conditions.count {
-			let c = conditions[index]
-			
+			var c = conditions[index]
+
 			if time >= c.time && !flags.contains(c.flag) {
-				flags.insert(c.flag)
-				conditions.remove(at: index)
-				print(c.time * duration, c.flag)
-				c.onFlag()
-				
+
+                if let waitForFlags = c.waitForFlags, !flags.isSuperset(of: waitForFlags) {
+                    continue
+                }
+                flags.insert(c.flag)
+                conditions.remove(at: index)
+                if let delay = c.delay {
+                    //Update time so that delay kicks in after all conditions are met(Time/waitForFlags)
+                    print(time * duration ,"Updated from", c.time * duration, delay * duration, c.flag, "Set DELAY=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+
+                    c.time = time
+
+                    delayedCondition = c
+
+                    return
+                }
+                print(c.time * duration, c.flag, "=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+                c.onFlag()
 				return
 			} else {
 				break
@@ -121,6 +147,12 @@ public class ACTutorialViewController: CustomViewController<TutorialView>, Tutor
 		}
 		return false
 	}
+    public func setConditionFlag(named:String) {
+        state.flags.insert(named)
+    }
+    public func removeConditionFlag(named:String) {
+        state.flags.remove(named)
+    }
 	public func progress(seconds:TimeInterval, minutes:TimeInterval = 0) -> Double {
 		return (seconds + (minutes * 60)) / duration
 	}
