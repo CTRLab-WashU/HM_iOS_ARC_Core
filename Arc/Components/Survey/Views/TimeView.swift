@@ -31,6 +31,10 @@ open class TimeView: UIView, SurveyInput {
 		
         self.dateFormatter.dateFormat = "h:mm a"
 
+        if #available(iOS 13.4, *) {
+            picker.preferredDatePickerStyle = .wheels
+        }
+
         if let date = self.dateFormatter.date(from: "12:00 PM") {
             picker.setDate(date, animated: false)
         }
