@@ -62,7 +62,7 @@ public struct GridTestResponse : HMTestCodable {
     public struct Section : Codable {
         public struct Choice : Codable {
             var selection_time:TimeInterval?
-            var grids_selection_time:TimeInterval?
+            var grid_selection_time:TimeInterval?
             var image_selection_time:TimeInterval?
             var x:Int
             var y:Int
@@ -77,7 +77,7 @@ public struct GridTestResponse : HMTestCodable {
             init(x:Int, y:Int, grid_selection_time:TimeInterval?, image_selection_time:TimeInterval?, selection:Int?) {
                 self.x = x
                 self.y = y
-                self.grids_selection_time = grid_selection_time
+                self.grid_selection_time = grid_selection_time
                 self.image_selection_time = image_selection_time
                 switch selection {
                 case 0:
@@ -140,7 +140,7 @@ extension GridTestResponse.Section.Choice : Hashable, Comparable {
     }
     
     public static func < (lhs: GridTestResponse.Section.Choice, rhs: GridTestResponse.Section.Choice) -> Bool {
-        if let l = lhs.grids_selection_time, let r = lhs.grids_selection_time {
+        if let l = lhs.grid_selection_time, let r = lhs.grid_selection_time {
              return l < r
         }
         return (lhs.selection_time ?? 0) < (rhs.selection_time ?? 0)

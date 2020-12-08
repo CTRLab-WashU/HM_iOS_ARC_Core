@@ -654,8 +654,8 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                weakSelf.test.collectionView.isUserInteractionEnabled = false
                let index = IndexPath(row: 8, section: 0)
                weakSelf.changeOverlaySize()
-               weakSelf.gridChoice?.phoneButton.addAction { [weak self] in
-                   self?.tutorialAnimation.resume()
+               weakSelf.gridChoice?.phoneButton.addAction {
+                    weakSelf.tutorialAnimation.resume()
                }
                weakSelf.gridChoice?.keyButton.isEnabled = false
                weakSelf.gridChoice?.penButton.isEnabled = false
@@ -692,7 +692,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                    
         //Overlay Recent Cell and Show Remove Item Hint
         //MARK:- mechanics-4
-        state.addCondition(atTime: progress(seconds:25.5), flagName: "mechanics-4") { [weak self] in
+        state.addCondition(atTime: progress(seconds:25), flagName: "mechanics-4") { [weak self] in
                guard let weakSelf = self else {
                    return
                }
@@ -707,6 +707,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                guard let cell = weakSelf.test.overlayCell(at: index) else {
                    return
                }
+                weakSelf.phase = .mechanics
 
                //Tap Recent Cell
                weakSelf.currentHint = weakSelf.view.window?.hint {
@@ -738,7 +739,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                }
            }
         //MARK:- mechanics-5
-        state.addCondition(atTime: progress(seconds:25.6), flagName: "mechanics-5") { [weak self] in
+        state.addCondition(atTime: progress(seconds:25), flagName: "mechanics-5") { [weak self] in
                guard let weakSelf = self else {
                    return
                }
@@ -750,7 +751,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                weakSelf.test.collectionView.isUserInteractionEnabled = false
                weakSelf.gridChoice?.keyButton.isEnabled = false
                weakSelf.gridChoice?.penButton.isEnabled = false
-           
+                weakSelf.phase = .mechanics
                let removeButton = weakSelf.gridChoice?.removeButton
               
                //Highlight Remove Item button
