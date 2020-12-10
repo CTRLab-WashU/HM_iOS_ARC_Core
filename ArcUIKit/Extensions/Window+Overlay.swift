@@ -1,6 +1,6 @@
 import UIKit
 public enum OverlayShape {
-	case rect(UIView), roundedRect(UIView, CGFloat, CGSize), circle(UIView)
+	case rect(UIView), roundedRect(UIView, CGFloat, CGSize), circle(UIView), roundedFreeRect(CGRect, CGFloat, CGSize)
 	
 	public func path() -> UIBezierPath {
 		
@@ -20,7 +20,13 @@ public enum OverlayShape {
             rect = rect.insetBy(dx: inset.width, dy: inset.height)
 
 			return UIBezierPath(roundedRect: rect, cornerRadius: cornerRadius)
-		}
+        case .roundedFreeRect(let r, let cornerRadius, let inset):
+            var rect = r
+
+            rect = rect.insetBy(dx: inset.width, dy: inset.height)
+
+            return UIBezierPath(roundedRect: rect, cornerRadius: cornerRadius)
+        }
 	}
     
     public func path(forView parent: UIView) -> UIBezierPath {
@@ -36,6 +42,10 @@ public enum OverlayShape {
             return UIBezierPath(arcCenter: CGPoint(x: rect.midX, y: rect.midY), radius: max(rect.width/2, rect.height/2) , startAngle: CGFloat.pi , endAngle: CGFloat.pi + CGFloat.pi * 2, clockwise: true)
         case .roundedRect(let view, let cornerRadius, let inset):
             var rect = parent.convert(view.frame, from: view.superview)
+            rect = rect.insetBy(dx: inset.width, dy: inset.height)
+            return UIBezierPath(roundedRect: rect, cornerRadius: cornerRadius)
+        case .roundedFreeRect(let r, let cornerRadius, let inset):
+            var rect = r
             rect = rect.insetBy(dx: inset.width, dy: inset.height)
             return UIBezierPath(roundedRect: rect, cornerRadius: cornerRadius)
         }

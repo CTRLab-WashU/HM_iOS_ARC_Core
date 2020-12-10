@@ -474,7 +474,11 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             return
         }
         tutorialAnimation.pause()
-        changeOverlaySize()
+        //Actually target the views we want to overlay to prevent locking
+        //the user out if they select something other than expected.
+        if let g = gridChoice, let t = g.targetView {
+            overlayViews([g, t])
+        }
 
         gridChoice?.phoneButton.addAction { [weak self] in
             self?.tutorialAnimation.resume()
@@ -1155,5 +1159,23 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
         //Darken Area around Indicator and top of cell
         self.view.overlayView(withShapes: [.roundedRect(self.test.collectionView, 8, CGSize(width: 5, height: height))])
         
+    }
+    func overlayViews(_ views:[UIView]) {
+
+        var rect:CGRect?
+
+        for view in views {
+            guard let w = view.window else {
+                continue
+            }
+            let newRect = test.view.convert(view.frame, to: nil)
+            rect = rect?.union(newRect) ?? newRect
+        }
+        guard var finalRect = rect else {return}
+        finalRect.origin.x = 10
+        finalRect.size.width = test.view.frame.width - 20
+        //Darken Area around Indicator and top of cell
+        self.view.overlayView(withShapes: [.roundedFreeRect(finalRect, 8, CGSize(width: -5, height: -5))])
+
     }
 }
