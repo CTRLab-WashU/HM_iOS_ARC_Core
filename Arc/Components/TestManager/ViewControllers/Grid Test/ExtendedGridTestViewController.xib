@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -78,7 +79,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="11X-8i-GZq" secondAttribute="trailing" constant="20" id="0NO-aP-nvg"/>
                                 <constraint firstItem="11X-8i-GZq" firstAttribute="leading" secondItem="oEK-Wp-Jtz" secondAttribute="leading" constant="20" id="eGk-JX-cUa"/>
@@ -112,6 +113,7 @@
                     </subviews>
                 </stackView>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="dS7-jz-zik"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="dS7-jz-zik" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7mB-Ww-cRj" secondAttribute="bottom" constant="54" id="V8a-91-uUW"/>
@@ -119,10 +121,17 @@
                 <constraint firstItem="7mB-Ww-cRj" firstAttribute="top" secondItem="dS7-jz-zik" secondAttribute="top" id="nHw-0x-BT6"/>
                 <constraint firstItem="efi-qX-YDc" firstAttribute="centerX" secondItem="UyT-2f-psd" secondAttribute="centerX" id="u6i-wT-ofd"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="dS7-jz-zik"/>
             <point key="canvasLocation" x="2227.5" y="315.84507042253523"/>
         </view>
     </objects>
+    <designables>
+        <designable name="11X-8i-GZq">
+            <size key="intrinsicContentSize" width="110.5" height="20"/>
+        </designable>
+        <designable name="m8K-FL-SjN">
+            <size key="intrinsicContentSize" width="92" height="33"/>
+        </designable>
+    </designables>
     <resources>
         <namedColor name="Primary">
             <color red="0.0" green="0.3411764705882353" blue="0.50588235294117645" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -133,5 +142,8 @@
         <namedColor name="Secondary Text">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

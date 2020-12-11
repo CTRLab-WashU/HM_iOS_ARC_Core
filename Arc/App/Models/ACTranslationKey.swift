@@ -577,7 +577,11 @@ public enum ACTranslationKey : String, TranslationKey {
 
 	case grids_body
 
+    case grids_vb_body
+
 	case grids_overlay1
+
+    case grids_tutorial_vb_step1
 
 	case grids_overlay2
 

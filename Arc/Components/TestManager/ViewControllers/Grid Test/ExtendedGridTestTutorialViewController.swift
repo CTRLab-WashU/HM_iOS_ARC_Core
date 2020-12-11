@@ -252,7 +252,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
 			weakSelf.test.displaySymbols()
 			weakSelf.test.view.overlayView(withShapes: [])
 			weakSelf.currentHint = weakSelf.view.window?.hint {
-				$0.content = "This test has three parts. In the first part, you'll be asked to *remember the location* of three items. The items will be placed in a grid of boxes. *Remember which box each item is in.* You will have 3 seconds to study the locations.".localized(ACTranslationKey.popup_tutorial_rememberbox)
+				$0.content = "This test has three parts. In the first part, you'll be asked to *remember the location* of three items. The items will be placed in a grid of boxes. *Remember which box each item is in.* You will have 3 seconds to study the locations.".localized(ACTranslationKey.grids_tutorial_vb_step1)
 				$0.buttonTitle = "I'm Ready".localized(ACTranslationKey.popup_tutorial_ready)
 				$0.onTap = { [weak self] in
 					
@@ -885,7 +885,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
         let time = tutorialAnimation.time
         print("HINT:", time, ":",  progress(seconds:time))
         //MARK:- hint
-        state.addCondition(atTime: progress(seconds:time), flagName: "hint") {
+        state.addCondition(atTime: progress(seconds:time), flagName: "hint-change") {
             [weak self] in
             guard let weakSelf = self else {
                 return
@@ -896,7 +896,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                 $0.buttonTitle = "Got It".localized(ACTranslationKey.popup_gotit)
                 $0.onTap = {[weak self] in
                     self?.removeFinalHint()
-                    weakSelf.symbolSelected = false
+                    weakSelf.symbolSelected = true
                     weakSelf.test.collectionView(weakSelf.test.collectionView, didDeselectItemAt: weakSelf.currentIndex)
                     //reset hints if Got It was touched and not all 3 items are selected
                     if weakSelf.gridSelected != 3 {
@@ -911,7 +911,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                 }
                 $0.layout {
                     $0.centerX == weakSelf.view.centerXAnchor
-                    $0.width == 252
+                    $0.width == 272
                     $0.height <= 142 ~ 500
                     if weakSelf.currentIndex.row <= 9 || weakSelf.currentIndex.row > 19 {
                         $0.bottom <= weakSelf.view.bottomAnchor - 10 ~ 999
