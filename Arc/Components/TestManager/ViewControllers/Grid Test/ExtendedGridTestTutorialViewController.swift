@@ -465,7 +465,13 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
 //                weakSelf.tutorialAnimation.time = 20
 //                weakSelf.didSelect()
 //        }
-        
+
+        state.addCondition(atTime: progress(seconds: 26), flagName: "end") { [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            weakSelf.finishTutorial()
+        }
 	}
     //MARK:- symbols-4
     func symbols4() {
@@ -528,12 +534,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
 	}
     func endTutorial() {
         //MARK:- end
-        state.addCondition(atTime: progress(seconds: 26), flagName: "end") { [weak self] in
-            guard let weakSelf = self else {
-                return
-            }
-            weakSelf.finishTutorial()
-        }
+
     }
     func needMechanics() {
     //Show Hint for Moving Phone
@@ -1118,6 +1119,9 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             self.phase = .showContinue
             self.test.tapOnTheFsLabel.isHidden = true
             self.test.continueButton.isHidden = false
+            if !self.showingMechanics {
+                self.pauseTutorialAnimation()
+            }
             if actionAdded == false {
                 //MARK:- Continue Action
                 self.test.continueButton.addAction { [weak self] in
