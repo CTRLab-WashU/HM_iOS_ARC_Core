@@ -599,7 +599,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                    $0.layout {
                         $0.centerX == weakSelf.view.centerXAnchor
                         $0.width == 272
-                        $0.top == weakSelf.test.collectionView.bottomAnchor + 10 ~ 750
+                        $0.top == weakSelf.test.collectionView.bottomAnchor + 10 ~ 500
                         $0.bottom <= weakSelf.view.bottomAnchor - 20 ~ 800
                    }
                }
@@ -824,7 +824,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                    $0.layout {
                        $0.centerX == weakSelf.view.centerXAnchor
                        $0.width == 272
-                        $0.top == weakSelf.test.collectionView.bottomAnchor + 10 ~ 750
+                        $0.top == weakSelf.test.collectionView.bottomAnchor + 10 ~ 500
                         $0.bottom <= weakSelf.view.bottomAnchor - 20 ~ 800
                    }
                }
