@@ -885,13 +885,15 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             guard let weakSelf = self else {
                 return
             }
+            weakSelf.symbolSelected = true
+
             weakSelf.tutorialAnimation.pause()
             weakSelf.currentHint = weakSelf.view.window?.hint {
                 $0.content = "Change your mind? Select a different item to replace, or tap *Remove Item* to clear."
                 $0.buttonTitle = "Got It".localized(ACTranslationKey.popup_gotit)
+
                 $0.onTap = {[weak self] in
                     self?.removeFinalHint()
-                    weakSelf.symbolSelected = false
                     weakSelf.test.collectionView(weakSelf.test.collectionView, didDeselectItemAt: weakSelf.currentIndex)
                     //reset hints if Got It was touched and not all 3 items are selected
                     if weakSelf.gridSelected != 3 {
@@ -920,21 +922,10 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             }
             //reset hints and set that mechanics aren't needed
             weakSelf.gridChoice?.removeButton.addAction {
-                weakSelf.symbolSelected = true
                 weakSelf.removeFinalHint()
                 weakSelf.tutorialAnimation.time = 20
                 weakSelf.needHelp()
                 weakSelf.tutorialAnimation.resume()
-            }
-            //all buttons are set to skip mechanics if touched
-            weakSelf.gridChoice?.keyButton.addAction {
-                weakSelf.symbolSelected = true
-            }
-            weakSelf.gridChoice?.penButton.addAction {
-                weakSelf.symbolSelected = true
-            }
-            weakSelf.gridChoice?.phoneButton.addAction {
-                weakSelf.symbolSelected = true
             }
         }
     }
