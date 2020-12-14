@@ -454,7 +454,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                 return
             }
             weakSelf.test.collectionView.isUserInteractionEnabled = true
-            weakSelf.addFirstHint(hint: "hint", seconds: 5.0)
+            weakSelf.addFirstHint(hint: "hint", seconds: 2.0)
         }
         //MARK:- symbols-4
         state.addCondition(atTime: progress(seconds:10), flagName: "symbols-4", delay:progress(seconds: 0.1), waitForFlags: ["symbols-1", "selecting"], onFlag: symbols4)
@@ -831,7 +831,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
            }
     }
 	func needHelp() {
-		let time = tutorialAnimation.time + 3
+		let time = tutorialAnimation.time + 5
 		print("HINT:", time, ":",  progress(seconds:time))
         //MARK:- hint
 		state.addCondition(atTime: progress(seconds:time), flagName: "hint") {
@@ -890,13 +890,14 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             guard let weakSelf = self else {
                 return
             }
+            weakSelf.symbolSelected = true
+
             weakSelf.tutorialAnimation.pause()
             weakSelf.currentHint = weakSelf.view.window?.hint {
                 $0.content = "Change your mind? Select a different item to replace, or tap *Remove Item* to clear."
                 $0.buttonTitle = "Got It".localized(ACTranslationKey.popup_gotit)
                 $0.onTap = {[weak self] in
                     self?.removeFinalHint()
-                    weakSelf.symbolSelected = true
                     weakSelf.test.collectionView(weakSelf.test.collectionView, didDeselectItemAt: weakSelf.currentIndex)
                     //reset hints if Got It was touched and not all 3 items are selected
                     if weakSelf.gridSelected != 3 {
@@ -925,21 +926,10 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             }
             //reset hints and set that mechanics aren't needed
             weakSelf.gridChoice?.removeButton.addAction {
-                weakSelf.symbolSelected = true
                 weakSelf.removeFinalHint()
                 weakSelf.tutorialAnimation.time = 20
                 weakSelf.needHelp()
                 weakSelf.tutorialAnimation.resume()
-            }
-            //all buttons are set to skip mechanics if touched
-            weakSelf.gridChoice?.keyButton.addAction {
-                weakSelf.symbolSelected = true
-            }
-            weakSelf.gridChoice?.penButton.addAction {
-                weakSelf.symbolSelected = true
-            }
-            weakSelf.gridChoice?.phoneButton.addAction {
-                weakSelf.symbolSelected = true
             }
         }
     }
