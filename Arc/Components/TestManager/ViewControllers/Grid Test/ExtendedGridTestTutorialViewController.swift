@@ -454,7 +454,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                 return
             }
             weakSelf.test.collectionView.isUserInteractionEnabled = true
-            weakSelf.addFirstHint(hint: "hint", seconds: 5.0)
+            weakSelf.addFirstHint(hint: "hint", seconds: 2.0)
         }
         //MARK:- symbols-4
         state.addCondition(atTime: progress(seconds:10), flagName: "symbols-4", delay:progress(seconds: 0.1), waitForFlags: ["symbols-1", "selecting"], onFlag: symbols4)
