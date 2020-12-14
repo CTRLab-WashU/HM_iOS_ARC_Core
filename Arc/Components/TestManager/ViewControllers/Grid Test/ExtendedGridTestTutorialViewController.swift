@@ -826,7 +826,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
            }
     }
 	func needHelp() {
-		let time = tutorialAnimation.time + 3
+		let time = tutorialAnimation.time + 5
 		print("HINT:", time, ":",  progress(seconds:time))
         //MARK:- hint
 		state.addCondition(atTime: progress(seconds:time), flagName: "hint") {
