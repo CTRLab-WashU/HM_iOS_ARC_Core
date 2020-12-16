@@ -10,7 +10,8 @@ import Foundation
 import CoreData
 
 open class SessionController:MHController {
-	public var sessionUploads:Set<Int64> = []
+	public var sessionUploads:Set<String> = []
+    public var signatureUploads:Set<String> = []
 	@discardableResult
 	open func create(sessionAt date:Date) -> Session
 	{
@@ -108,7 +109,7 @@ open class SessionController:MHController {
     open func sendSignatures() {
         MHController.dataContext.performAndWait {
             let signatures = self.getSignaturesForUploading()
-            for i in 0 ..< signatures.count {
+             for i in 0 ..< signatures.count {
                 self.uploadSignature(signature: signatures[i])
             }
         }
@@ -117,6 +118,8 @@ open class SessionController:MHController {
         guard signature.isUploaded == false else {
             return
         }
+        guard let md5 = signature.data?.encode()?.MD5() else {return}
+        guard signatureUploads.insert(md5).inserted == true else {return}
         guard let data = signature.data else {
             return
         }
@@ -154,13 +157,13 @@ open class SessionController:MHController {
 		guard !HMRestAPI.shared.blackHole else {
 			return
 		}
-		guard session.uploaded == false else {
+        guard session.uploaded == false else {
 			return
 		}
 		let full:FullTestSession = .init(withSession: session)
 		//HMLog(full.toString())
 		let md5 = full.encode()?.MD5()
-		sessionUploads.insert(session.sessionID)
+        guard sessionUploads.insert("\(session.sessionID)").inserted == true else { return}
 		let submitTest:HMAPIRequest<FullTestSession, HMResponse> = .post("submit-test")
 		submitTest.execute(data: full) { [weak self] (response, data, err) in
 			
@@ -172,7 +175,7 @@ open class SessionController:MHController {
 				}
 				if let err = err {
 					 print(err.localizedDescription)
-					weakSelf.sessionUploads.remove(session.sessionID)
+					weakSelf.sessionUploads.remove("\(session.sessionID)")
 					NotificationCenter.default.post(name: .ACSessionUploadFailure, object: weakSelf.sessionUploads)
 					return
 				}
@@ -182,7 +185,7 @@ open class SessionController:MHController {
 					Arc.shared.studyController.clearData(sessionId: Int(session.sessionID), force: true)
 					if md5 == data?.response?.md5 {
 						weakSelf.save()
-						weakSelf.sessionUploads.remove(session.sessionID)
+						weakSelf.sessionUploads.remove("\(session.sessionID)")
 						if weakSelf.sessionUploads.isEmpty {
 							NotificationCenter.default.post(name: .ACSessionUploadComplete, object: weakSelf.sessionUploads)
 						}
@@ -191,7 +194,7 @@ open class SessionController:MHController {
 					}
 				} else {
                     print(data?.errors.toString() as Any)
-					weakSelf.sessionUploads.remove(session.sessionID)
+					weakSelf.sessionUploads.remove("\(session.sessionID)")
 					NotificationCenter.default.post(name: .ACSessionUploadFailure, object: weakSelf.sessionUploads)
 
 				}

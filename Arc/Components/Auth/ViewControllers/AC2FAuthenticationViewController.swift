@@ -54,7 +54,7 @@ public class AC2FAuthenticationViewController: BasicSurveyViewController {
 			
 	
 		
-		if questionId == "2fa" {
+		if questionId == "2FA" {
 			
 			//This will prevent the input from triggering a next action when valid. 
 			view?.shouldTryNext = false
@@ -150,7 +150,7 @@ public class AC2FAuthenticationViewController: BasicSurveyViewController {
 			initialValue = value
 			
 		}
-		else if index == "2fa"
+		else if index == "2FA"
 		{
 			
 			_ = controller.set(password: value)
