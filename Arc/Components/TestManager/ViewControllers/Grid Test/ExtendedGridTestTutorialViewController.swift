@@ -109,8 +109,9 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
 		case .recallFirstChoiceMade, .recallSecondChoiceMade:
             if showingSelectNextTwo == false {
                 test.view.clearOverlay()
-                removeHint(hint: "hint")
             }
+            removeHint(hint: "hint")
+
             showingSelectNextTwo = true
             tutorialAnimation.time = 20
             if self.gridChoice == nil {
@@ -430,6 +431,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                     weakSelf.test.collectionView.isUserInteractionEnabled = true
                     weakSelf.removeFinalHint()
                     weakSelf.view.clearOverlay()
+                    weakSelf.tutorialAnimation.time = 15
                     weakSelf.tutorialAnimation.resume()
 
                 }
@@ -454,17 +456,11 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                 return
             }
             weakSelf.test.collectionView.isUserInteractionEnabled = true
-            weakSelf.addFirstHint(hint: "hint", seconds: 2.0)
+            weakSelf.addFirstHint(hint: "hint", seconds: 5.0)
         }
         //MARK:- symbols-4
         state.addCondition(atTime: progress(seconds:10), flagName: "symbols-4", delay:progress(seconds: 0.1), waitForFlags: ["symbols-1", "selecting"], onFlag: symbols4)
-//        state.addCondition(atTime: progress(seconds:25.5), flagName: "symbols-2") { [weak self] in
-//            guard let weakSelf = self else {
-//                return
-//            }
-//                weakSelf.tutorialAnimation.time = 20
-//                weakSelf.didSelect()
-//        }
+
 
         state.addCondition(atTime: progress(seconds: 26), flagName: "end") { [weak self] in
             guard let weakSelf = self else {
@@ -477,6 +473,11 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
     func symbols4() {
         removeHint(hint: "hint")
         if state.flags.contains("grid-selected-1"){
+            return
+        }
+        if !state.flags.contains("selecting"){
+            removeConditionFlag(named: "symbols-4")
+            state.addCondition(atTime: progress(seconds:10), flagName: "symbols-4", delay:progress(seconds: 0.1), waitForFlags: ["symbols-1", "selecting"], onFlag: symbols4)
             return
         }
         tutorialAnimation.pause()
@@ -985,7 +986,9 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             guard let cell = weakSelf.test.overlayCell(at: index) else {
                 return
             }
+
             cell.backgroundColor = UIColor(named: "Secondary")
+
             weakSelf.currentHint = weakSelf.view.window?.hint {
                 $0.content = """
                 *Hint:* The cell phone was located here. Tap this box.
