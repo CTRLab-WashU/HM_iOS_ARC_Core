@@ -16,7 +16,7 @@ public enum AuthDetailType : String, Codable {
  {
  "response": {
  "success": true,
- "study_name": "EXR",
+ "study_name": "EEE",
  "auth_type": "rater",
  "auth_code_length": 6
  },
