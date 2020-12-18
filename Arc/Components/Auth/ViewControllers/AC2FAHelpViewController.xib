@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -40,7 +40,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="142"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nh2-Yg-A0k" customClass="HMMarkupButton" customModule="HMMarkup">
-                                            <rect key="frame" x="8" y="12" width="36" height="37"/>
+                                            <rect key="frame" x="8" y="12" width="75" height="37"/>
                                             <color key="backgroundColor" white="1" alpha="0.14701947770000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="37" id="Th7-tz-KBS"/>
@@ -79,6 +79,7 @@
                                             </constraints>
                                         </view>
                                     </subviews>
+                                    <viewLayoutGuide key="safeArea" id="dNa-WD-Sru"/>
                                     <color key="backgroundColor" name="Primary Info"/>
                                     <constraints>
                                         <constraint firstItem="Nh2-Yg-A0k" firstAttribute="leading" secondItem="dNa-WD-Sru" secondAttribute="leading" constant="8" id="4Xk-cn-2JQ"/>
@@ -91,7 +92,6 @@
                                         <constraint firstItem="dNa-WD-Sru" firstAttribute="bottom" secondItem="Ou8-nO-qAq" secondAttribute="bottom" constant="26" id="v2e-hk-Khl"/>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="131" id="wng-3s-VWk"/>
                                     </constraints>
-                                    <viewLayoutGuide key="safeArea" id="dNa-WD-Sru"/>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W97-sL-92S" customClass="HMMarkupLabel" customModule="HMMarkup">
                                     <rect key="frame" x="24" y="142" width="327" height="400"/>
@@ -103,6 +103,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <viewLayoutGuide key="safeArea" id="51S-1H-ENo"/>
                             <color key="backgroundColor" name="Primary Info"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="W97-sL-92S" secondAttribute="bottom" constant="24" id="PaU-j1-iTX"/>
@@ -113,7 +114,6 @@
                                 <constraint firstItem="omo-a9-9xk" firstAttribute="top" secondItem="qOm-oW-X2e" secondAttribute="top" id="roL-l8-aeO"/>
                                 <constraint firstAttribute="trailing" secondItem="omo-a9-9xk" secondAttribute="trailing" id="zSB-iE-cWt"/>
                             </constraints>
-                            <viewLayoutGuide key="safeArea" id="51S-1H-ENo"/>
                         </view>
                     </subviews>
                     <constraints>
@@ -124,6 +124,7 @@
                     </constraints>
                 </scrollView>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="qC2-9C-WHC"/>
             <color key="backgroundColor" name="Primary Info"/>
             <constraints>
                 <constraint firstItem="k3b-Bw-9bt" firstAttribute="top" secondItem="qC2-9C-WHC" secondAttribute="top" id="2AD-nU-Iat"/>
@@ -133,7 +134,6 @@
                 <constraint firstItem="k3b-Bw-9bt" firstAttribute="leading" secondItem="qC2-9C-WHC" secondAttribute="leading" id="oOo-0x-4fq"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="qC2-9C-WHC"/>
             <point key="canvasLocation" x="77.599999999999994" y="84.107946026986511"/>
         </view>
     </objects>

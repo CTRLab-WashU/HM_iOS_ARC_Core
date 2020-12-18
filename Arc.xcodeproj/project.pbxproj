@@ -242,6 +242,9 @@
 		C578771322F8BED10068E46B /* TestCountDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C578771222F8BED10068E46B /* TestCountDownView.swift */; };
 		C578771522F8BF260068E46B /* TestCountDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C578771422F8BF260068E46B /* TestCountDownViewController.swift */; };
 		C578B8D622A859A60038DDF0 /* ACView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C578B8D522A859A60038DDF0 /* ACView.swift */; };
+		C57A4B6B258AB3AF00238700 /* AuthDetailsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57A4B6A258AB3AF00238700 /* AuthDetailsRequest.swift */; };
+		C57A4B75258ABB3B00238700 /* AuthDetailsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57A4B74258ABB3B00238700 /* AuthDetailsResponse.swift */; };
+		C57A4B7D258ABD6100238700 /* ACResponsiveAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57A4B7C258ABD6100238700 /* ACResponsiveAuthViewController.swift */; };
 		C57ABE1F23060BD7000C9315 /* GoalRewardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57ABE1E23060BD7000C9315 /* GoalRewardView.swift */; };
 		C57E866023073770009B4BFC /* ACTranslationKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E865F23073770009B4BFC /* ACTranslationKey.swift */; };
 		C57E866223074DCF009B4BFC /* GoalDayTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E866123074DCF009B4BFC /* GoalDayTile.swift */; };
@@ -324,6 +327,7 @@
 		C5EB849923DB8D050070A240 /* ACPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EB849823DB8D050070A240 /* ACPDFView.swift */; };
 		C5F77F37222F095200BECAE1 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F77F36222F095200BECAE1 /* SignatureViewController.swift */; };
 		C5FA041623C93015009ACBA0 /* hMCrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5490FEC23C8F74C00DC4FA7 /* hMCrashReporter.framework */; };
+		C5FDC5B4258BE4A100E80E69 /* AuthHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FDC5B3258BE4A100E80E69 /* AuthHandler.swift */; };
 		E86732322315808800844F91 /* ACHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86732312315808800844F91 /* ACHomeViewController.swift */; };
 		E898B20823282EA400FBF22D /* AC2FAHelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E898B20723282EA400FBF22D /* AC2FAHelpViewController.xib */; };
 		E898B20A2328339C00FBF22D /* AC2FAHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E898B2092328339C00FBF22D /* AC2FAHelpViewController.swift */; };
@@ -634,6 +638,9 @@
 		C578771222F8BED10068E46B /* TestCountDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCountDownView.swift; sourceTree = "<group>"; };
 		C578771422F8BF260068E46B /* TestCountDownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCountDownViewController.swift; sourceTree = "<group>"; };
 		C578B8D522A859A60038DDF0 /* ACView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACView.swift; sourceTree = "<group>"; };
+		C57A4B6A258AB3AF00238700 /* AuthDetailsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDetailsRequest.swift; sourceTree = "<group>"; };
+		C57A4B74258ABB3B00238700 /* AuthDetailsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDetailsResponse.swift; sourceTree = "<group>"; };
+		C57A4B7C258ABD6100238700 /* ACResponsiveAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACResponsiveAuthViewController.swift; sourceTree = "<group>"; };
 		C57ABE1E23060BD7000C9315 /* GoalRewardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalRewardView.swift; sourceTree = "<group>"; };
 		C57E865F23073770009B4BFC /* ACTranslationKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACTranslationKey.swift; sourceTree = "<group>"; };
 		C57E866123074DCF009B4BFC /* GoalDayTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDayTile.swift; sourceTree = "<group>"; };
@@ -709,6 +716,7 @@
 		C5F77F36222F095200BECAE1 /* SignatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureViewController.swift; sourceTree = "<group>"; };
 		C5F77F38222F15DD00BECAE1 /* SignatureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignatureView.xib; sourceTree = "<group>"; };
 		C5F77F3A22306CFA00BECAE1 /* DateRangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRangeView.swift; sourceTree = "<group>"; };
+		C5FDC5B3258BE4A100E80E69 /* AuthHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHandler.swift; sourceTree = "<group>"; };
 		E86732312315808800844F91 /* ACHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACHomeViewController.swift; sourceTree = "<group>"; };
 		E898B20723282EA400FBF22D /* AC2FAHelpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AC2FAHelpViewController.xib; sourceTree = "<group>"; };
 		E898B2092328339C00FBF22D /* AC2FAHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AC2FAHelpViewController.swift; sourceTree = "<group>"; };
@@ -1064,6 +1072,8 @@
 				C54AE92421C81B5C00DEC360 /* TestSession.swift */,
 				C54AE92521C81B5C00DEC360 /* HMRequestHelper.swift */,
 				4CB0BAC422E8FA7B00ABB348 /* ContactInfoResponse.swift */,
+				C57A4B6A258AB3AF00238700 /* AuthDetailsRequest.swift */,
+				C57A4B74258ABB3B00238700 /* AuthDetailsResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1286,6 +1296,7 @@
 				C5E3924F22EB76AD007CB3B6 /* ResendCodeViewController.swift */,
 				E898B20723282EA400FBF22D /* AC2FAHelpViewController.xib */,
 				E898B2092328339C00FBF22D /* AC2FAHelpViewController.swift */,
+				C57A4B7C258ABD6100238700 /* ACResponsiveAuthViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1294,6 +1305,7 @@
 			isa = PBXGroup;
 			children = (
 				C54AE97B21C81B5C00DEC360 /* AuthController.swift */,
+				C5FDC5B3258BE4A100E80E69 /* AuthHandler.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2120,6 +2132,7 @@
 				C54D103822C28A1D00B43E42 /* SegmentedTextView.swift in Sources */,
 				C556BA2D22CA4B3D0057B54B /* ACTemplateView.swift in Sources */,
 				C54AE9E521C81B5F00DEC360 /* HMFault.swift in Sources */,
+				C57A4B75258ABB3B00238700 /* AuthDetailsResponse.swift in Sources */,
 				E8BA72E823198B8100823374 /* FaqTopic.swift in Sources */,
 				C5DA18622305C2EC003C84C2 /* GoalView.swift in Sources */,
 				C54AE9D521C81B5F00DEC360 /* Phase.swift in Sources */,
@@ -2231,6 +2244,7 @@
 				E8BA72FB23198BD800823374 /* ResourcesTableViewCell.swift in Sources */,
 				2D35988D237B6604005EF2CF /* SimplifiedPricesTestTutorialViewController.swift in Sources */,
 				C54AE9D321C81B5F00DEC360 /* State.swift in Sources */,
+				C57A4B7D258ABD6100238700 /* ACResponsiveAuthViewController.swift in Sources */,
 				C54AE9F421C81B5F00DEC360 /* StudyController.swift in Sources */,
 				C54AE9D221C81B5F00DEC360 /* Study.swift in Sources */,
 				C51A7D8C22D8C33F00854B13 /* NotificationPermissionViewController.swift in Sources */,
@@ -2244,6 +2258,7 @@
 				C5477C7C231868E10072425D /* RebukedCommitmentViewController.swift in Sources */,
 				C54AEA0021C81B5F00DEC360 /* PrimaryButton.swift in Sources */,
 				C5C2B12B22D3F205002CB4C5 /* TestInfoView.swift in Sources */,
+				C57A4B6B258AB3AF00238700 /* AuthDetailsRequest.swift in Sources */,
 				C5E1E3952257ECC200255812 /* ACChangeAvailabilityViewController.swift in Sources */,
 				C54AEA0721C81B5F00DEC360 /* SymbolsTest.swift in Sources */,
 				C5D24ED5230B040300146E37 /* TwoADayGoalView.swift in Sources */,
@@ -2258,6 +2273,7 @@
 				C54AEA0A21C81B5F00DEC360 /* ExtendedGridTestViewController.swift in Sources */,
 				C54AE9DC21C81B5F00DEC360 /* Set+Extensions.swift in Sources */,
 				C54AE9D421C81B5F00DEC360 /* JSONData.swift in Sources */,
+				C5FDC5B4258BE4A100E80E69 /* AuthHandler.swift in Sources */,
 				C54D104622C28A1D00B43E42 /* ChoiceView.swift in Sources */,
 				C54AE9E221C81B5F00DEC360 /* FatalErrorUtil.swift in Sources */,
 				C54AEA1521C81B5F00DEC360 /* GridTestController.swift in Sources */,

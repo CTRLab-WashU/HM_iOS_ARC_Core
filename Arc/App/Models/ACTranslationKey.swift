@@ -596,10 +596,6 @@ public enum ACTranslationKey : String, TranslationKey {
 
     case grids_body
 
-    case grids_overlay1
-
-    case grids_overlay2
-
     case grids_subheader_fs
 
     case grids_overlay3
@@ -720,10 +716,6 @@ public enum ACTranslationKey : String, TranslationKey {
 
     case button_chooseanswer
 
-    case button_settings
-
-    case button_close
-
     case button_confirm
 
     case button_adjustschedule
@@ -749,10 +741,6 @@ public enum ACTranslationKey : String, TranslationKey {
     case popup_gotit
 
     case popup_next
-
-    case popup_done
-
-    case popup_tutorial_view
 
     case popup_tutorial_welcome
 
@@ -794,13 +782,7 @@ public enum ACTranslationKey : String, TranslationKey {
 
     case popup_tutorial_choose1
 
-    case popup_tutorial_greatchoice1
-
     case popup_tutorial_greatchoice2
-
-    case popup_tutorial_recall
-
-    case popup_tutorial_choose2
 
     case popup_tutorial_complete
 
@@ -855,15 +837,9 @@ public enum ACTranslationKey : String, TranslationKey {
 
     case popup_tutorial_boxhint
 
-    case popup_tutorial_tapbox
-
     case popup_tutorial_tapbox2
 
     case popup_tutorial_tapbox3
-
-    case popup_tutorial_needhelp
-
-    case popup_tutorial_remindme
 
     case popup_tour
 

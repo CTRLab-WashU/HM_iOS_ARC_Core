@@ -212,7 +212,7 @@ public enum VerifyError : Error {
 
 //A small library containing two factor auth utilities
 public struct TwoFactorAuth {
-	static func verifyParticipant(id:String, didFinish:@escaping (ACResult<String>)->()){
+	static public func verifyParticipant(id:String, didFinish:@escaping (ACResult<String>)->()){
 		
 		if (Arc.environment?.blockApiRequests ?? false) == true
 		{

@@ -67,6 +67,17 @@ open class AuthController:MHController {
 			delete(results)
 		}
 	}
+    open func getAuthDetails(id:String, completion:@escaping ((StatusCode, AuthDetailsResponse?)->())) {
+        HMAPI.authDetails.execute(data: AuthDetailsRequest(participant_id: id)) { (response, authDetails, errors) in
+            let statusCode = StatusCode.with(response: response)
+
+            if let authDetails = authDetails {
+                completion(statusCode, authDetails)
+            } else {
+                completion(statusCode, nil)
+            }
+        }
+    }
 	open func authenticate(completion:@escaping ((Int64?, String?)->())) {
 		if let id = checkAuth() {
 			completion(id, nil)

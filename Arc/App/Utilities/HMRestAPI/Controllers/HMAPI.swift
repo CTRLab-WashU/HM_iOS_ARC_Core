@@ -41,5 +41,8 @@ open class HMAPI {
     static public let getCycleProgress:HMAPIRequest<CycleProgressRequestData, CycleProgress> = .get("/cycle-progress")
     static public let getDayProgress:HMAPIRequest<DayProgressRequestData, StudyProgress> = .get("/day-progress")
 
+    static public let authDetails:HMAPIRequest<AuthDetailsRequest, AuthDetailsResponse> = .post("/request-auth-details")
+
+    static public let confirmationCode:HMAPIRequest<ConfirmationCode.Request, HMResponse> = .post("/request-confirmation-code")
 
 }
