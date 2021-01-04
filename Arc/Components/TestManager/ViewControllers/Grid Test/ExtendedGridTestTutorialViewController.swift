@@ -517,14 +517,11 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
 
             $0.layout {
                 $0.centerX == view.centerXAnchor
-                $0.width == 252
+                $0.width == 272
 
-                if index.row/5 > 2 {
-                    //If above
-                    $0.bottom == gridChoice!.topAnchor + 20
-                } else {
-                    $0.top == gridChoice!.bottomAnchor + 50
-                }
+
+                $0.top == gridChoice!.bottomAnchor + 5 ~ 800
+                $0.bottom <= view.bottomAnchor + 5
             }
         }
 
