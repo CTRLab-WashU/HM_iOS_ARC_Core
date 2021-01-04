@@ -116,9 +116,12 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             tutorialAnimation.time = 20
             if self.gridChoice == nil {
                 needHelp()
+                tutorialAnimation.resume()
+
+            } else {
+                tutorialAnimation.pause()
             }
             view.removeHighlight()
-			tutorialAnimation.resume()
         case .recall:
             test.view.clearOverlay()
             view.removeHighlight()
@@ -462,11 +465,13 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
         state.addCondition(atTime: progress(seconds:10), flagName: "symbols-4", delay:progress(seconds: 0.1), waitForFlags: ["symbols-1", "selecting"], onFlag: symbols4)
 
 
-        state.addCondition(atTime: progress(seconds: 26), flagName: "end") { [weak self] in
+        state.addCondition(atTime: progress(seconds: 25.8), flagName: "end") { [weak self] in
             guard let weakSelf = self else {
                 return
             }
-            weakSelf.finishTutorial()
+            weakSelf.tutorialAnimation.time = 20
+            weakSelf.tutorialAnimation.pause()
+            weakSelf.resetCondition(named: "end")
         }
 	}
     //MARK:- symbols-4
@@ -532,6 +537,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
 	}
     func endTutorial() {
         //MARK:- end
+        finishTutorial()
 
     }
     func needMechanics() {
@@ -897,17 +903,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                 $0.buttonTitle = "Got It".localized(ACTranslationKey.popup_gotit)
                 $0.onTap = {[weak self] in
                     self?.removeFinalHint()
-                    weakSelf.test.collectionView(weakSelf.test.collectionView, didDeselectItemAt: weakSelf.currentIndex)
-                    //reset hints if Got It was touched and not all 3 items are selected
-                    if weakSelf.gridSelected != 3 {
-                        weakSelf.removeFinalHint()
-                        weakSelf.tutorialAnimation.time = 20
-                        weakSelf.needHelp()
-                        weakSelf.tutorialAnimation.resume()
-                    //keeps continue button on screen when all 3 items are visibile
-                    } else {
-                        weakSelf.phase = .showContinue
-                    }
+
                 }
                 $0.layout {
                     $0.centerX == weakSelf.view.centerXAnchor

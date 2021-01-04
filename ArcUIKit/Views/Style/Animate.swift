@@ -198,7 +198,8 @@ public class Animate {
 			start()
 		}
 		@objc private func loop() {
-			//print("updating: \(id):\(time)")
+
+//			print("updating: \(id):\(time)")
 			guard let dl = displayLink else {
 				
 				stop()
