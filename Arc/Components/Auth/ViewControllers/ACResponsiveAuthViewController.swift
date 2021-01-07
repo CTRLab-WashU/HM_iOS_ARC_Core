@@ -96,7 +96,6 @@ open class ACResponsiveAuthViewController: BasicSurveyViewController {
                         weakSelf.handleAuth(authDetails: details)
                         didFinish(true)
                     } else {
-                        Arc.shared.displayAlert(message: "Handling errors is not yet set up.", options: [.default("Ok", {})])
                         didFinish(false)
                     }
                 }
