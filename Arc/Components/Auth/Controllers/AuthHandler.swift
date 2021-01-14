@@ -91,10 +91,19 @@ public struct AuthHandler {
         }
     }
     public static func GetDetails(surveyVc:BasicSurveyViewController, userId:String, completion:@escaping ((AuthDetailsResponse?) -> Void)) {
+        
+        if (Arc.environment?.blockApiRequests ?? false) == true
+        {
+            surveyVc.set(error:nil)
+            var d = AuthDetailsResponse.debug
+            completion(d)
+            return;
+        }
+        
         let top:CustomViewController<InfoView>? = surveyVc.getTopViewController()
 
         top?.customView.nextButton?.showSpinner(color: UIColor(white: 1.0, alpha: 0.8), backgroundColor:UIColor(named:"Primary"))
-
+        
         Arc.shared.authController.getAuthDetails(id: userId) { (status, authDetails) in
             OperationQueue.main.addOperation {
                 top?.customView.nextButton?.hideSpinner()

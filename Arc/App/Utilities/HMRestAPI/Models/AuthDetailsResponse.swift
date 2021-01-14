@@ -24,15 +24,16 @@ public enum AuthDetailType : String, Codable {
  }
  */
 public struct AuthDetailsResponse : Codable {
-    struct ResponseBody : Codable {
-        var success:Bool
-        var study_name:String
-        var auth_type:AuthDetailType
-        var auth_code_length:Int
+    public struct ResponseBody : Codable {
+        public var success:Bool
+        public var study_name:String
+        public var auth_type:AuthDetailType
+        public var auth_code_length:Int
     }
 
 
-    var response:ResponseBody
-    var errors:[String:[String]]
-
+    public var response:ResponseBody
+    public var errors:[String:[String]]
+    
+    static let debug:AuthDetailsResponse = AuthDetailsResponse(response: ResponseBody(success: true, study_name: "debug", auth_type: .manual, auth_code_length: 6), errors: [:])
 }
