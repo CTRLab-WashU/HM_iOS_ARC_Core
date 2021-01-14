@@ -82,9 +82,6 @@ open class ACResponsiveAuthViewController: BasicSurveyViewController {
                     return
 
                 }
-                
-            }
-            if questionId == "auth_confirm" {
                 if weakSelf.loadedNewQuestions {
                     didFinish(true)
                     return
@@ -99,8 +96,11 @@ open class ACResponsiveAuthViewController: BasicSurveyViewController {
                         didFinish(false)
                     }
                 }
+                
+            } else {
+                didFinish(true)
             }
-            didFinish(true)
+            
             return
 
         }
