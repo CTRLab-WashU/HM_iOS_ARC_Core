@@ -464,7 +464,7 @@ open class GridTestController : TestController<GridTestResponse> {
             }
             
             var set = Set<GridTestResponse.Section.Choice> (test.sections[questionIndex].choices)
-            if let repeated = set.filter({$0.selection == responseData}).first {
+            if responseData != nil, let repeated = set.filter({$0.selection == responseData}).first {
                 if repeated.selection == choice.selection
                 {
                     set.remove(repeated)
