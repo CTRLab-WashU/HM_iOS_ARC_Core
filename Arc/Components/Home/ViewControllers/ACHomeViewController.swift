@@ -28,6 +28,9 @@ open class ACHomeViewController: CustomViewController<ACHomeView> {
         //        configureState()
 		app.notificationController.authenticateNotifications { (value, error) in
 			HMLog("Backup handler called.")
+            if value == true {
+                app.notificationController.schedule(upcomingSessionNotificationsWithLimit: 32)
+            }
 		}
 //        let _ = Arc.shared.appNavigation.viewForState(state: Arc.shared.appNavigation.defaultState())
     }
