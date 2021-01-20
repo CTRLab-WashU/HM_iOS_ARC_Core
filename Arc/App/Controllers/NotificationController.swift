@@ -37,7 +37,7 @@ open class NotificationController : MHController
     /// - warning: iOS limits notifications per app to 64. The first notification added will be the first removed when new notifications after that limit are adeed. If manipulating time take into account the seconds that the notification was created. It can take up to a minute before a notification fires even after changing the system time. Also, If you pass a certain window of time the notification will simply not fire at all.
     open func schedule(upcomingSessionNotificationsWithLimit limit:Int)
     {
-        
+        clearNotifications(withIdentifierPrefix: "TestSession");
         //Just get the upcoming 32 sessions reverse them and schedule them
         //Reversing the incoming list will cause the latest tests to be remove instead of the recent
         let tests = Arc.shared.studyController.getUpcomingSessions(withLimit: limit).reversed()

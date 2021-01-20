@@ -29,6 +29,7 @@ open class ACHomeViewController: CustomViewController<ACHomeView> {
 		app.notificationController.authenticateNotifications { (value, error) in
 			HMLog("Backup handler called.")
             if value == true {
+                
                 app.notificationController.schedule(upcomingSessionNotificationsWithLimit: 32)
             }
 		}
