@@ -18,6 +18,7 @@ Handling Differences between pool outs of the app:
 Environments: 
 	
 	- ACEnvironment is a protocol that allows you to set various configurations such as where data is sent, language, how data is stored and so on. This file is intended to set subclasses for the Arc.shared interface. 
+      - If you add a configuration, make sure to add the configuration to the parent protocol ARCEnvironment. You can set a default to prevent errors, or not, this will require updating other apps and adopting the new configuration before you can safely run again. 
 	
 	
 
@@ -27,7 +28,7 @@ Surveys:
 	
 		-The style of a survey question in this case will be determined by display(question:), the intent of this function is to style the surveyViewControllers view and update text displayed on the screen. 
 		
-	-The views backing the controller is called InfoView.swift
+	-The views backing the controller subclass or use InfoView.swift
 	
 	
 
