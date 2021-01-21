@@ -158,6 +158,7 @@ open class AuthController:MHController {
 		guard let participantID = Arc.shared.participantId else {
 			return completion(nil)
 		}
+        
 		HMAPI.getWakeSleep.execute(data: nil, completion: { (res, obj, err) in
 			guard err == nil && obj?.errors.isEmpty ?? true else {
 				completion(err)
@@ -178,13 +179,8 @@ open class AuthController:MHController {
 									  endTime: entry.bed,
 									  weekDay: WeekDay.fromString(day: entry.weekday),
 									  participantId: participantID)
-					
-					
 				}
 				controller.save()
-				
-				
-				
 			}
 			
             HMAPI.getCycleProgress.execute() { (cycleResponse, cycleObject, cycleProgressError) in
@@ -197,15 +193,20 @@ open class AuthController:MHController {
                     }
                     
                     data.cycle_progress = cycleObject?.response
-                    MHController.dataContext.performAndWait {
-                        let controller = Arc.shared.studyController
-                        if controller.create(testSessionsWithSchedule: data, with: phaseType) {
-                            controller.save()
-                        } else {
-                            print("Error creating sessions from schedule")
+                    Arc.shared.notificationController.authenticateNotifications { (didAuthenticate, error) in
+                        DispatchQueue.main.async {
+                            
+                            let controller = Arc.shared.studyController
+                            if controller.create(testSessionsWithSchedule: data, with: phaseType) {
+                                controller.save()
+                            } else {
+                                print("Error creating sessions from schedule")
+                            }
+                        
+                            completion(nil)
                         }
                     }
-                    completion(nil)
+                    
                 })
             }
 		})

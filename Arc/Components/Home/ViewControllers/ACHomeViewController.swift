@@ -24,17 +24,8 @@ open class ACHomeViewController: CustomViewController<ACHomeView> {
 
     override open func viewDidLoad() {
         super.viewDidLoad()
-        //        versionLabel.text = "v\(Arc.shared.versionString)"
-        //        configureState()
-		app.notificationController.authenticateNotifications { (value, error) in
-			HMLog("Backup handler called.")
-            if value == true {
-                
-                app.notificationController.schedule(upcomingSessionNotificationsWithLimit: 32)
-            }
-		}
-//        let _ = Arc.shared.appNavigation.viewForState(state: Arc.shared.appNavigation.defaultState())
     }
+    
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureState()
