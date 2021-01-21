@@ -690,21 +690,45 @@ open class Arc : ArcApi {
     }
     public func debugNotifications() {
         
-        let list = notificationController.getNotifications(withIdentifierPrefix: "TestSession").map({"\($0.studyID)-\($0.sessionID): \($0.scheduledAt!.localizedString())\n"}).joined()
-        let preTestNotifications = notificationController.getNotifications(withIdentifierPrefix: "DateReminder").map({"\($0.studyID)-\($0.sessionID): \($0.scheduledAt!.localizedString())\n"}).joined()
-        
-        displayAlert(message:  """
-            Study: \(currentStudy ?? -1)
+        UNUserNotificationCenter.current().getPendingNotificationRequests { [weak self] (requests) in
             
-            Test: \(availableTestSession ?? -1)
+            DispatchQueue.main.async {
+                
+                let requestIds:Array<String> = requests.map { (r) -> String in
+                    return r.identifier
+                }
+                
+                let list:String = self?.notificationController.getNotifications(withIdentifierPrefix: "TestSession")
+                .map({ (entry) -> String in
+                    var str = "\(entry.studyID)-\(entry.sessionID): \(entry.scheduledAt!.localizedString())"
+                    if let n = entry.notificationIdentifier, requestIds.contains(n)
+                    {
+                        str += " (scheduled)\n"
+                    }
+                    else
+                    {
+                        str += " (not scheduled)\n"
+                    }
+                    return str
+                })
+                .joined() ?? ""
+                
+                let preTestNotifications = self?.notificationController.getNotifications(withIdentifierPrefix: "DateReminder").map({"\($0.studyID)-\($0.sessionID): \($0.scheduledAt!.localizedString())\n"}).joined() ?? ""
             
-            \(list)
-            Date Reminders:
-            \(preTestNotifications)
-            """, options:  [.default("Schedule", {[weak self] in self?.debugSchedule()}),
-							.default("Data", {[weak self] in self?.debugData()}),
-                            .cancel("Close", {})],
-                 isScrolling: true)
+                self?.displayAlert(message:  """
+                Study: \(self?.currentStudy ?? -1)
+                
+                Test: \(self?.availableTestSession ?? -1)
+                
+                \(list)
+                Date Reminders:
+                \(preTestNotifications)
+                """, options:  [.default("Schedule", {[weak self] in self?.debugSchedule()}),
+                                .default("Data", {[weak self] in self?.debugData()}),
+                                .cancel("Close", {})],
+                     isScrolling: true)
+            }
+        }
     }
 	
 	public static func get(flag:ProgressFlag) -> Bool {
