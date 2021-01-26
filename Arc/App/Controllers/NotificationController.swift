@@ -31,7 +31,56 @@ open class NotificationController : MHController
 		}
 		
 	}
-
+    
+    /// creates notifications for upcoming TestSessions
+    /// - note: This is a main useage method for scheduling notifications
+    /// - warning: iOS limits notifications per app to 64. The first notification added will be the first removed when new notifications after that limit are adeed. If manipulating time take into account the seconds that the notification was created. It can take up to a minute before a notification fires even after changing the system time. Also, If you pass a certain window of time the notification will simply not fire at all.
+    open func schedule(upcomingSessionNotificationsWithLimit limit:Int)
+    {
+        clearNotifications(withIdentifierPrefix: "TestSession");
+        //Just get the upcoming 32 sessions reverse them and schedule them
+        //Reversing the incoming list will cause the latest tests to be remove instead of the recent
+        let tests = Arc.shared.studyController.getUpcomingSessions(withLimit: limit).reversed()
+        for test in tests
+        {
+            guard test.startTime == nil && test.missedSession == false else {
+                continue
+            }
+            let body = notificationTitle(for: test);
+            let date = test.sessionDate! as Date
+            
+            let newNotification = scheduleNotification(date: date, title: "", body: body, identifierPrefix: "TestSession");
+            if let study = test.study {
+                newNotification.studyID = study.studyID;
+                study.hasScheduledNotifications = true;
+            } else {
+                assertionFailure("Invalid test session, No study ID")
+            }
+            newNotification.sessionID = test.sessionID;
+        }
+        
+        
+        //        save();
+    }
+    /// creates notifications after every 4th test. Call this again before taking a test to refresh the positioning of notifications
+    /// - note: This is a main useage method for scheduling notifications
+    /// - warning: iOS limits notifications per app to 64. The first notification added will be the first removed when new notifications after that limit are adeed. If manipulating time take into account the seconds that the notification was created. It can take up to a minute before a notification fires even after changing the system time. Also, If you pass a certain window of time the notification will simply not fire at all.
+    open func scheduleMissedTestNotification() {
+        self.clearMissedTestNotifications()
+        let sessions = Arc.shared.studyController.getUpcomingSessions(withLimit: 32)
+        var count = 1
+        for session in sessions {
+            if count%4 == 0 {
+                // get session time
+                guard let testTime = session.expirationDate else { continue }
+                // schedule missed test notif for new time
+                let body = "You've missed your tests. If you're unable to finish this week, please contact your site coordinator.".localized(ACTranslationKey.notification_missedtests) //comment: "Notification for missed test sessions"
+                scheduleNotification(date: testTime, title: "", body: body, identifierPrefix: "MissedTestNotification")
+            }
+            count += 1
+        }
+    }
+    //Notification deviation checks.
     open func checkNotificationForDeviation(notification:UNNotification, response:UNNotificationResponse? = nil) throws {
         let deliveryDate = notification.date.timeIntervalSince1970
         if let trigger = notification.request.trigger as? UNCalendarNotificationTrigger,
@@ -45,7 +94,13 @@ open class NotificationController : MHController
             }
         }
     }
-
+    ///Scheduling notifications using a identifier prefix.
+    /// - parameters:
+    ///     - date: the fire date of the notification
+    ///     - title: the title of the notification
+    ///     - body: the notification body
+    ///     - identifierPrefix: this prefix is used to group notifications with a similar purpose or intent.
+    /// - note: the prefix is used to find and delete or recreate notifications of a certain type.
     @discardableResult
 	open func scheduleNotification(date:Date, title:String, body:String, identifierPrefix:String = "") -> NotificationEntry
     {
@@ -178,50 +233,7 @@ open class NotificationController : MHController
         return title
     }
     
-    // creates notifications for upcoming TestSessions
-    open func schedule(upcomingSessionNotificationsWithLimit limit:Int)
-    {
-        
-        //Just get the upcoming 32 sessions reverse them and schedule them
-        //Reversing the incoming list will cause the latest tests to be remove instead of the recent
-        let tests = Arc.shared.studyController.getUpcomingSessions(withLimit: limit).reversed()
-        for test in tests
-        {
-            guard test.startTime == nil && test.missedSession == false else {
-                continue
-            }
-            let body = notificationTitle(for: test);
-            let date = test.sessionDate! as Date
-            
-            let newNotification = scheduleNotification(date: date, title: "", body: body, identifierPrefix: "TestSession");
-            if let study = test.study {
-                newNotification.studyID = study.studyID;
-                study.hasScheduledNotifications = true;
-            } else {
-                assertionFailure("Invalid test session, No study ID")
-            }
-            newNotification.sessionID = test.sessionID;
-        }
-        
-        
-        //        save();
-    }
-
-    open func scheduleMissedTestNotification() {
-        self.clearMissedTestNotifications()
-        let sessions = Arc.shared.studyController.getUpcomingSessions(withLimit: 32)
-        var count = 1
-        for session in sessions {
-            if count%4 == 0 {
-                // get session time
-                guard let testTime = session.expirationDate else { continue }
-                // schedule missed test notif for new time
-                let body = "You've missed your tests. If you're unable to finish this week, please contact your site coordinator.".localized(ACTranslationKey.notification_missedtests) //comment: "Notification for missed test sessions"
-                scheduleNotification(date: testTime, title: "", body: body, identifierPrefix: "MissedTestNotification")
-            }
-            count += 1
-        }
-    }
+    
     
     fileprivate func clearMissedTestNotifications() {
         clearNotifications(withIdentifierPrefix: "MissedTestNotification")
@@ -284,6 +296,8 @@ open class NotificationController : MHController
 		UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers);
 		
     }
+    
+    ///This method will remove presented session notifications after a session has expired.
     open func manageDeletePresentedSessionNotifications(_ prefix:String? = nil, expiredAge:Int = 2, completion:(()->())?)
     {
         UNUserNotificationCenter.current().getDeliveredNotifications {[weak self] (notifs) in
@@ -317,8 +331,8 @@ open class NotificationController : MHController
         }
 
     }
-    //Delete notifications that could have been created by previous
-	//Installations of the application, or remove them for clean up sake
+    ///Delete notifications that could have been created by previous
+	///Installations of the application, or remove them for clean up sake
 	open func clearAllPendingNotifications()
     {
 		let notifications = getNotifications(withIdentifierPrefix: nil, onlyPending: true)

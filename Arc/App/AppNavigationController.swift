@@ -7,13 +7,13 @@
 //
 
 import UIKit
-//Decides what state to put the application in based on available
-//information
+///Decides what state to put the application in based on available
+///information
 
 public protocol AppNavigationController {
 	func defaultHelpState() -> UIViewController
 	
-    //Navigate from welcome to auth
+    ///Navigate from welcome to auth
     func defaultAuth() -> State
     
     func defaultAbout() -> State
@@ -24,30 +24,30 @@ public protocol AppNavigationController {
     
     func defaultPrivacy()
 
-	//This function should ideally send you back home.
+	///This function should ideally send you back home.
 	func defaultState() -> State
 	
-	//The previous state
+	///The previous state
 	func previousState() -> State?
 	
-	//This returns a view controller for an object that conforms to state
+	///This returns a view controller for an object that conforms to state
 	func viewForState(state:State) -> UIViewController
 	
-	//Consume a state object and move to the desired location in the app
+	///Consume a state object and move to the desired location in the app
 	func navigate(state:State, direction: UIWindow.TransitionOptions.Direction)
 	
-	//If a test session has begun what shall we do next?
+	///If a test session has begun what shall we do next?
 	func nextAvailableSurveyState() -> State?
 	
-	//This will check to see what location the app should take you next
-	//Generally this takes you home if the app is fully configured.
-	//(Signed in, You've signed up for notifications, other config)
+	////This will check to see what location the app should take you next
+	///Generally this takes you home if the app is fully configured.
+	///(Signed in, You've signed up for notifications, other config)
 	func nextAvailableState(runPeriodicBackgroundTask:Bool) -> State
 	
-	//Just replace the current root view controller
+	///Just replace the current root view controller
 	func navigate(vc:UIViewController, direction: UIWindow.TransitionOptions.Direction)
 	
-	//Just replace the current root view controller
+	///Just replace the current root view controller
 	func navigate(vc:UIViewController, direction: UIWindow.TransitionOptions.Direction, duration:Double)
 	
 }

@@ -82,9 +82,6 @@ open class ACResponsiveAuthViewController: BasicSurveyViewController {
                     return
 
                 }
-                
-            }
-            if questionId == "auth_confirm" {
                 if weakSelf.loadedNewQuestions {
                     didFinish(true)
                     return
@@ -96,12 +93,14 @@ open class ACResponsiveAuthViewController: BasicSurveyViewController {
                         weakSelf.handleAuth(authDetails: details)
                         didFinish(true)
                     } else {
-                        Arc.shared.displayAlert(message: "Handling errors is not yet set up.", options: [.default("Ok", {})])
                         didFinish(false)
                     }
                 }
+                
+            } else {
+                didFinish(true)
             }
-            didFinish(true)
+            
             return
 
         }
