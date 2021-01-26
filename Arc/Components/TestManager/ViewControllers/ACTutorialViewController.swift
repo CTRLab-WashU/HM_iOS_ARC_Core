@@ -40,6 +40,11 @@ class TutorialState {
 		conditions.append(TutorialCondition(time: time, delay: delay, flag: flag, waitForFlags: waitForFlags, onFlag: onFlag))
 		conditions.sort {$0.time < $1.time}
 	}
+    func addCondition(_ condition:TutorialCondition) {
+        maxSteps += 1
+        conditions.append(condition)
+        conditions.sort {$0.time < $1.time}
+    }
 	func setFlag(value:String) {
 		 flags.insert(value)
 	}
@@ -130,6 +135,12 @@ public class ACTutorialViewController: CustomViewController<TutorialView>, Tutor
 			return true
 		}
 	}
+    func findCondition(named:String) -> TutorialState.TutorialCondition? {
+        if let condition = state.conditions.first (where:{$0.flag == named}) {
+            return condition
+        }
+        return nil
+    }
 	public func removeCondition(named:String) -> Bool {
 		//Find it first
 		if let condition = state.conditions.first (where:{$0.flag == named}) {
@@ -139,6 +150,15 @@ public class ACTutorialViewController: CustomViewController<TutorialView>, Tutor
 		}
 		return false
 	}
+    //Remove and enable an existing condition
+    @discardableResult public func resetCondition(named:String) -> Bool {
+        guard let condition = findCondition(named: named) else {
+            return false
+        }
+        state.removeCondition(with: condition.flag)
+        state.addCondition(condition)
+        return true
+    }
 	public func jumpToCondition(named:String) -> Bool {
 		if let condition = state.conditions.first (where:{$0.flag == named}) {
 			let time = condition.time
