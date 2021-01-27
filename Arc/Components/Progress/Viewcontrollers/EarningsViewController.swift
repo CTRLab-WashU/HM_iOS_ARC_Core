@@ -349,8 +349,8 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 			}
 		}
 		
-		customView.thisWeeksEarningsLabel.text = earnings.total_earnings
-		customView.thisStudysEarningsLabel.text = earnings.cycle_earnings
+		customView.thisWeeksEarningsLabel.text = earnings.cycle_earnings
+		customView.thisStudysEarningsLabel.text = earnings.total_earnings
 		
 		for goal in earnings.goals {
 			switch goal.name {
