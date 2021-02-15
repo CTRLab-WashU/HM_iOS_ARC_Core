@@ -159,13 +159,6 @@ open class Arc : ArcApi {
         }
         environment.configure()
 
-        if let crashReporterKey = environment.crashReporterApiKey {
-            var identity:AppIdentity = AppIdentity()
-            if environment.protectIdentity == false {
-                identity.id = "\(Arc.shared.participantId ?? -99)"
-                identity.deviceId = Arc.shared.deviceId
-            }
-        }
     }
     public func nextAvailableState(runPeriodicBackgroundTask:Bool = false, direction:UIWindow.TransitionOptions.Direction = .toRight) {
 		let state = appNavigation.nextAvailableState(runPeriodicBackgroundTask: runPeriodicBackgroundTask)
@@ -225,12 +218,6 @@ open class Arc : ArcApi {
     private static func handleException(_ exception:NSException, raise:Bool = false) {
         if let log = LogManager.sharedInstance.getLog() {
 
-            var identity:AppIdentity = AppIdentity()
-            if Arc.environment?.protectIdentity != true {
-                identity.id = "\(Arc.shared.participantId ?? -99)"
-                identity.deviceId = Arc.shared.deviceId
-            }
-            //TODO: Raise exception when done
         }
 
     }
@@ -594,11 +581,6 @@ open class Arc : ArcApi {
     public func uploadLog(name: String, reason:String) {
         let exception = NSException(name: NSExceptionName(rawValue: name),reason: reason)
         if let log = LogManager.sharedInstance.getLog() {
-            var identity:AppIdentity = AppIdentity()
-            if Arc.environment?.protectIdentity != true {
-                identity.id = "\(Arc.shared.participantId ?? -99)"
-                identity.deviceId = Arc.shared.deviceId
-            }
         }
     }
 
