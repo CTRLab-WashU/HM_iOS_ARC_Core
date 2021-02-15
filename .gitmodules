@@ -1,3 +1,0 @@
-[submodule "Arc/CrashReporter"]
-	path = Arc/CrashReporter
-	url = git@bitbucket.org:happymedium/hmcrashreporter_ios.git

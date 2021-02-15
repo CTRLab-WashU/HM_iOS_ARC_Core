@@ -326,7 +326,6 @@
 		C5EB849623DB8CA30070A240 /* ACPDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EB849523DB8CA30070A240 /* ACPDFViewController.swift */; };
 		C5EB849923DB8D050070A240 /* ACPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EB849823DB8D050070A240 /* ACPDFView.swift */; };
 		C5F77F37222F095200BECAE1 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F77F36222F095200BECAE1 /* SignatureViewController.swift */; };
-		C5FA041623C93015009ACBA0 /* hMCrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5490FEC23C8F74C00DC4FA7 /* hMCrashReporter.framework */; };
 		C5FDC5B4258BE4A100E80E69 /* AuthHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FDC5B3258BE4A100E80E69 /* AuthHandler.swift */; };
 		E86732322315808800844F91 /* ACHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86732312315808800844F91 /* ACHomeViewController.swift */; };
 		E898B20823282EA400FBF22D /* AC2FAHelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E898B20723282EA400FBF22D /* AC2FAHelpViewController.xib */; };
@@ -365,26 +364,12 @@
 			remoteGlobalIDString = C52B75DB21C83B2A00498571;
 			remoteInfo = HMMarkup;
 		};
-		C5490FEB23C8F74C00DC4FA7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C5490FE723C8F74C00DC4FA7 /* hMCrashReporter.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4C8E2A422379F5AD00A870BC;
-			remoteInfo = hMCrashReporter;
-		};
 		C584F33822C16682009741A7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C54AE8DE21C81B2F00DEC360 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C54AE8E621C81B2F00DEC360;
 			remoteInfo = Arc;
-		};
-		C584FAA52524EAEE00ED5E1A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C5490FE723C8F74C00DC4FA7 /* hMCrashReporter.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C5567D50251A8C0B00E11274;
-			remoteInfo = hMCrashReporterTests;
 		};
 		C5B2601D22135F7300BFF778 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -446,7 +431,6 @@
 		C5477C79231868C80072425D /* RebukedCommitmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebukedCommitmentView.swift; sourceTree = "<group>"; };
 		C5477C7B231868E10072425D /* RebukedCommitmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebukedCommitmentViewController.swift; sourceTree = "<group>"; };
 		C548B79022C54D630039DBCB /* UIControl+Closure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Closure.swift"; sourceTree = "<group>"; };
-		C5490FE723C8F74C00DC4FA7 /* hMCrashReporter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = hMCrashReporter.xcodeproj; path = Arc/CrashReporter/hMCrashReporter.xcodeproj; sourceTree = "<group>"; };
 		C54AE8E721C81B2F00DEC360 /* Arc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Arc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C54AE8EA21C81B2F00DEC360 /* Arc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Arc.h; sourceTree = "<group>"; };
 		C54AE8EB21C81B2F00DEC360 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -759,7 +743,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5FA041623C93015009ACBA0 /* hMCrashReporter.framework in Frameworks */,
 				C5B2602D2213657500BFF778 /* ArcUIKit.framework in Frameworks */,
 				C52B760021C83B6400498571 /* HMMarkup.framework in Frameworks */,
 			);
@@ -896,19 +879,9 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		C5490FE823C8F74C00DC4FA7 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				C5490FEC23C8F74C00DC4FA7 /* hMCrashReporter.framework */,
-				C584FAA62524EAEE00ED5E1A /* hMCrashReporterTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		C54AE8DD21C81B2F00DEC360 = {
 			isa = PBXGroup;
 			children = (
-				C5490FE723C8F74C00DC4FA7 /* hMCrashReporter.xcodeproj */,
 				C54AE8E921C81B2F00DEC360 /* Arc */,
 				C54AE8F421C81B2F00DEC360 /* ArcTests */,
 				C52B75DD21C83B2A00498571 /* HMMarkup */,
@@ -1882,12 +1855,6 @@
 			mainGroup = C54AE8DD21C81B2F00DEC360;
 			productRefGroup = C54AE8E821C81B2F00DEC360 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = C5490FE823C8F74C00DC4FA7 /* Products */;
-					ProjectRef = C5490FE723C8F74C00DC4FA7 /* hMCrashReporter.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				C54AE8E621C81B2F00DEC360 /* Arc */,
@@ -1899,23 +1866,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		C5490FEC23C8F74C00DC4FA7 /* hMCrashReporter.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = hMCrashReporter.framework;
-			remoteRef = C5490FEB23C8F74C00DC4FA7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C584FAA62524EAEE00ED5E1A /* hMCrashReporterTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = hMCrashReporterTests.xctest;
-			remoteRef = C584FAA52524EAEE00ED5E1A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C52B75DA21C83B2A00498571 /* Resources */ = {

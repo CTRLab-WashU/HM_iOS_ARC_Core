@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import HMMarkup
-import hMCrashReporter
 import PDFKit
 public protocol ArcApi {
 	
@@ -166,7 +165,6 @@ open class Arc : ArcApi {
                 identity.id = "\(Arc.shared.participantId ?? -99)"
                 identity.deviceId = Arc.shared.deviceId
             }
-            hMCrashReporter.sharedInstance.setup(apiKey: crashReporterKey, identity: identity)
         }
     }
     public func nextAvailableState(runPeriodicBackgroundTask:Bool = false, direction:UIWindow.TransitionOptions.Direction = .toRight) {
@@ -232,7 +230,6 @@ open class Arc : ArcApi {
                 identity.id = "\(Arc.shared.participantId ?? -99)"
                 identity.deviceId = Arc.shared.deviceId
             }
-            hMCrashReporter.sharedInstance.upload(exception: exception, andLog: log, identity: identity )
             //TODO: Raise exception when done
         }
 
@@ -602,7 +599,6 @@ open class Arc : ArcApi {
                 identity.id = "\(Arc.shared.participantId ?? -99)"
                 identity.deviceId = Arc.shared.deviceId
             }
-            hMCrashReporter.sharedInstance.upload(exception: exception, andLog: log, identity: identity)
         }
     }
 
