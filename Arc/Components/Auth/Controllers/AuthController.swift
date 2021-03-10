@@ -12,23 +12,23 @@ open class AuthController:MHController {
     private var _credential:AuthCredentials?
     private var _isAuthorized:Bool = false
 	
-    public func isAuthorized() -> Bool {
+    open func isAuthorized() -> Bool {
 	
         return _isAuthorized
     }
     
-    public func clear() {
+    open func clear() {
         _isAuthorized = false
         _credential = nil
     }
     
-    public func set(username:String, password:String) -> AuthCredentials? {
+    open func set(username:String, password:String) -> AuthCredentials? {
         let credential = AuthCredentials(userName: username, password: password)
         self._credential = credential
         return credential
     }
     
-    public func set(username:String) -> AuthCredentials? {
+    open func set(username:String) -> AuthCredentials? {
         var credential = self._credential ?? AuthCredentials()
         
         credential.userName = username
@@ -38,7 +38,7 @@ open class AuthController:MHController {
         
     }
     
-    public func set(password:String) -> AuthCredentials? {
+    open func set(password:String) -> AuthCredentials? {
         var credential = self._credential ?? AuthCredentials()
         
         credential.password = password
@@ -47,20 +47,20 @@ open class AuthController:MHController {
         return credential
     }
 	
-	public func getPassword() -> String? {
+    open func getPassword() -> String? {
 		return self._credential?.password
 	}
-	public func getUserName() -> String? {
+    open func getUserName() -> String? {
 		return self._credential?.userName
 	}
-	public func checkAuth() -> Int64? {
+    open func checkAuth() -> Int64? {
 		if let results:[AuthEntry] = fetch(), let entry = results.last {
 			_isAuthorized = true
 			return entry.participantID
 		}
 		return nil
 	}
-	public func clearAuth() {
+    open func clearAuth() {
 		if let results:[AuthEntry] = fetch(), let entry = results.last {
 			_isAuthorized = false
 			_credential = nil

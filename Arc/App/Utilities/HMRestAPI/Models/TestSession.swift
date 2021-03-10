@@ -68,7 +68,7 @@ public struct FullTestSession : Codable {
 
 	
 	
-	init(withSession session: Session) {
+	public init(withSession session: Session) {
 		
 		
 		week = session.week
