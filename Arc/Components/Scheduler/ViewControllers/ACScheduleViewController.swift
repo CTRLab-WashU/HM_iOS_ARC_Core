@@ -234,18 +234,19 @@ public class ACScheduleViewController : BasicSurveyViewController {
 		if index == .start {
 			return
 		}
-        let dayTime = DayTime(time: value.value as! String, day: 0);
-        
-        if index == .wake_time
-        {
-            self.wakeTime = dayTime;
+        if let valueString = (value.value as? String) {
+            let dayTime = DayTime(time: valueString, day: 0);
+            
+            if index == .wake_time
+            {
+                self.wakeTime = dayTime;
+            }
+            else if index == .sleep_time
+            {
+                self.sleepTime = dayTime;
+                self.saveAvailabilitySchedule();
+            }
         }
-        else if index == .sleep_time
-        {
-            self.sleepTime = dayTime;
-            self.saveAvailabilitySchedule();
-        }
-		
 	}
     
     public override func customViewController(forQuestion question: Survey.Question) -> UIViewController?
