@@ -29,8 +29,19 @@ public struct AuthDetailsResponse : Codable {
         public var study_name:String
         public var auth_type:AuthDetailType
         public var auth_code_length:Int
+        
+        public init (success:Bool, study_name:String, auth_type:AuthDetailType, auth_code_length:Int) {
+            self.success = success
+            self.study_name = study_name
+            self.auth_type = auth_type
+            self.auth_code_length = auth_code_length
+        }
     }
 
+    public init(response:ResponseBody, errors:[String:[String]]) {
+        self.response = response
+        self.errors = errors
+    }
 
     public var response:ResponseBody
     public var errors:[String:[String]]
