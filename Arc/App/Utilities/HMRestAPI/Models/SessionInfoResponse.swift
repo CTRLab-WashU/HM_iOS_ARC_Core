@@ -55,6 +55,16 @@ public struct SessionInfoResponse : Codable {
             session_id = "0"
         }
         
+        public init(session_date : TimeInterval,
+                    week : Int, day : Int,
+                    session : Int, session_id : String) {
+            
+            self.session_date = session_date
+            self.week = week
+            self.day = day
+            self.session = session
+            self.session_id = session_id
+        }
 	}
 	public struct Body : Codable {
 		public var success : Bool?
