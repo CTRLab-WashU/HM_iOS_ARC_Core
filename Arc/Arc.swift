@@ -137,6 +137,7 @@ open class Arc : ArcApi {
         Arc.shared.notificationController = environment.notificationController
         Arc.shared.scheduleController = environment.scheduleController
         Arc.shared.sessionController = environment.sessionController
+        Arc.shared.earningsController = environment.earningsController
         Arc.shared.gridTestController = environment.gridTestController
         Arc.shared.pricesTestController = environment.pricesTestController
         Arc.shared.symbolsTestController = environment.symbolsTestController

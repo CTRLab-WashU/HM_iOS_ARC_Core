@@ -22,7 +22,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
     // TODO
     // This enum was copypasta'd from ACEarningsDetailView
     // Don't do that
-    enum GoalDisplayName : String {
+    public enum GoalDisplayName : String {
         case testSession = "test-session"
         case fourOfFour = "4-out-of-4"
         case twoADay = "2-a-day"
@@ -196,6 +196,10 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 //			customView.earningsParentStack.fadeIn()
 //
 //		}
+        
+        // Earnings are calculated locally, so update them every time this view appears
+        app.earningsController.updateEarnings()
+        
 		lastUpdated = app.appController.lastFetched[EarningsController.overviewKey]
 		earningsData = Arc.shared.appController.read(key: EarningsController.overviewKey)
 		setGoals()
@@ -349,8 +353,8 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 			}
 		}
 		
-		customView.thisWeeksEarningsLabel.text = earnings.total_earnings
-		customView.thisStudysEarningsLabel.text = earnings.cycle_earnings
+		customView.thisWeeksEarningsLabel.text = earnings.cycle_earnings
+		customView.thisStudysEarningsLabel.text = earnings.total_earnings
 		
 		for goal in earnings.goals {
 			switch goal.name {

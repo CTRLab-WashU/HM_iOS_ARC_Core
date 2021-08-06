@@ -9,7 +9,7 @@
 import ArcUIKit
 
 public class ACEarningsDetailView : ACTemplateView {
-	enum GoalDisplayName : String {
+	public enum GoalDisplayName : String {
 		case testSession = "test-session"
 		case fourOfFour = "4-out-of-4"
 		case twoADay = "2-a-day"
