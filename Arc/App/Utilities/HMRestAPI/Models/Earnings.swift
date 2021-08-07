@@ -90,10 +90,20 @@ public struct EarningDetail : Codable {
     public struct Response : Codable {
         public var success:Bool
         public var earnings:Earnings?
+        
+        public init(success: Bool, earnings: Earnings?) {
+            self.success = success
+            self.earnings = earnings
+        }
 
         public struct Earnings : Codable {
             public var total_earnings:String
             public var cycles:[Cycle]?
+            
+            public init(total_earnings: String, cycles: [Cycle]?) {
+                self.total_earnings = total_earnings
+                self.cycles = cycles
+            }
             
             public struct Cycle : Codable {
                 public var cycle:Int
@@ -102,17 +112,41 @@ public struct EarningDetail : Codable {
                 public var end_date:TimeInterval
                 public var details:[Detail]
                 
+                public init(cycle: Int, total: String,
+                            start_date: TimeInterval, end_date: TimeInterval,
+                            details: [Detail]) {
+                    self.cycle = cycle
+                    self.total = total
+                    self.start_date = start_date
+                    self.end_date = end_date
+                    self.details = details
+                }
+                
                 public struct Detail : Codable {
                     public var name:String
                     public var value:String
                     public var count_completed:Int
                     public var amount_earned:String
+                    
+                    public init(name: String, value: String,
+                                count_completed: Int, amount_earned: String) {
+                        
+                        self.name = name
+                        self.value = value
+                        self.count_completed = count_completed
+                        self.amount_earned = amount_earned
+                    }
                 }
             }
         }
     }
-	var response:Response?
-	var errors:[String:[String]]
+	public var response:Response?
+	public var errors:[String:[String]]
+    
+    public init(response: Response?, errors: [String:[String]]) {
+        self.response = response
+        self.errors = errors
+    }
 }
 
 public struct EarningRequestData:Codable {

@@ -38,16 +38,33 @@ public struct StudySummary : Codable {
 	""".data(using: .utf8)!)
 	
 	public struct Response : Codable {
-		   public var success:Bool
-		   public var summary:Summary?
-		   
-		   public struct Summary : Codable {
-			public var total_earnings:String
-			public var tests_taken:Int
-			public var days_tested:Int
-			public var goals_met:Int
-		   }
-	   }
+        public var success:Bool
+        public var summary:Summary?
+        
+        public init(success: Bool, summary: Summary?) {
+            self.success = success
+            self.summary = summary
+        }
+
+        public struct Summary : Codable {
+            public var total_earnings:String
+            public var tests_taken:Int
+            public var days_tested:Int
+            public var goals_met:Int
+            
+            public init(total_earnings: String, tests_taken: Int,
+                        days_tested: Int, goals_met: Int) {
+                self.total_earnings = total_earnings
+                self.tests_taken = tests_taken
+                self.days_tested = days_tested
+                self.goals_met = goals_met
+            }
+        }
+    }
 	
-	var response:Response
+	public var response:Response
+    
+    public init(response: Response) {
+        self.response = response
+    }
 }
