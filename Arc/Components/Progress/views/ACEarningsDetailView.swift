@@ -22,12 +22,11 @@ public class ACEarningsDetailView : ACTemplateView {
 			case .testSession:
 				return "progress_earnings_status1".localized(ACTranslationKey.progress_earnings_status1)
 			case .fourOfFour:
-				return "progress_earnings_status3".localized(ACTranslationKey.progress_earnings_status2)
+				return "progress_earnings_status3".localized(ACTranslationKey.progress_earnings_status3)
 			case .twoADay:
-				return "progress_earnings_status4".localized(ACTranslationKey.progress_earnings_status3)
+				return "progress_earnings_status4".localized(ACTranslationKey.progress_earnings_status4)
 			case .totalSessions:
-				return "progress_earnings_status2".localized(ACTranslationKey.progress_earnings_status4)
-			
+				return "progress_earnings_status2".localized(ACTranslationKey.progress_earnings_status2)
 			}
 		}
 	}
