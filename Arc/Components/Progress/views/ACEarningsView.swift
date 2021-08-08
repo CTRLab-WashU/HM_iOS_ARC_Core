@@ -140,10 +140,8 @@ public class ACEarningsView : ACTemplateView {
 					}
 					
 					self?.lastSyncedLabel = $0.acLabel {
-						$0.textAlignment = .center
-
-						Roboto.Style.subBody($0, color:UIColor(red:0.71, green:0.73, blue:0.8, alpha:1))
-						$0.text = "".localized(ACTranslationKey.earnings_sync)
+                        // There are no syncing of earnings with new local earnings calculations
+                        $0.isHidden = true
 					}
 					
 					self?.viewDetailsButton = $0.acButton {

@@ -100,9 +100,8 @@ public class ACEarningsDetailView : ACTemplateView {
 				
 
 				self.syncLabel = $0.acLabel {
-					
-					Roboto.Style.subBody($0, color:UIColor(red:0.71, green:0.73, blue:0.8, alpha:1))
-					$0.text = "".localized(ACTranslationKey.earnings_sync)
+                    // There are no syncing of earnings with new local earnings calculations
+                    $0.isHidden = true
 				}
 				
 			}
@@ -134,7 +133,8 @@ public class ACEarningsDetailView : ACTemplateView {
 			time = dateFormatter.string(from: Date(timeIntervalSince1970: synched))
 		}
 		
-		syncLabel.text = "\("".localized(ACTranslationKey.earnings_sync)) \(time)"
+        // There are no syncing of earnings with new local earnings calculations
+        self.syncLabel.isHidden = true
 	}
 	public func clear() {
 		content.removeSubviews()

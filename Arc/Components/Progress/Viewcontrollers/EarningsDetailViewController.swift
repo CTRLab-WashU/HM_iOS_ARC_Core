@@ -47,6 +47,8 @@ open class EarningsDetailViewController : CustomViewController<ACEarningsDetailV
 		super.viewWillAppear(animated)
         self.navigationController?.navigationBar.barStyle = .black
 		self.navigationController?.isNavigationBarHidden = false
+        // Earnings is calculated locally, and will always be up to date when a session is completed
+        self.customView.root.refreshControl?.isEnabled = false
 	}
 	open override var preferredStatusBarStyle: UIStatusBarStyle {
 		return .lightContent
@@ -54,11 +56,8 @@ open class EarningsDetailViewController : CustomViewController<ACEarningsDetailV
 	
 	@objc func refresh(sender:AnyObject)
 	{
-		
-		//my refresh code here..
-		print("refreshing")
-		NotificationCenter.default.post(name: .ACSessionUploadComplete, object: Arc.shared.sessionController.sessionUploads)
-		
+        // Earnings is calculated locally, and will always be up to date when a session is completed
+        self.customView.root.refreshControl?.endRefreshing()
 	}
 	@objc func backPressed()
 	{

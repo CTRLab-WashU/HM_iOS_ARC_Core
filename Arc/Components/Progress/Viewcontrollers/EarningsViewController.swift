@@ -31,7 +31,6 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
         func getName() ->String {
             switch self {
                 
-                
             case .testSession:
                 return "Completed Test Session".localized(ACTranslationKey.progress_earnings_status1)
             case .fourOfFour:
@@ -197,11 +196,9 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 //
 //		}
         
-        // Earnings are calculated locally, so update them every time this view appears
-        app.earningsController.updateEarnings()
-        
 		lastUpdated = app.appController.lastFetched[EarningsController.overviewKey]
-		earningsData = Arc.shared.appController.read(key: EarningsController.overviewKey)
+		earningsData = Arc.shared.appController.read(key: EarningsController.overviewKey)                
+
 		setGoals()
 	}
     public override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -230,27 +227,9 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 	}
 	
 	fileprivate func updateBodyText() {
-		if let last = lastUpdated {
-			let date = Date(timeIntervalSince1970: last)
-			
-			var time = ""
-			if #available(iOS 13.0, *) {
-				//TODO: Update for iOS 13, right now, this is commented out because
-				//it does not build in xcode 10.
-				let dateFormatter:RelativeDateTimeFormatter = RelativeDateTimeFormatter()
-				dateFormatter.locale = Arc.shared.appController.locale.getLocale()
-
-				time = dateFormatter.localizedString(for: date, relativeTo:  Date())
-			} else {
-				// Fallback on earlier versions
-				
-				time = dateFormatter.string(from: date)
-			}
-			
-			if date.addingMinutes(minutes: 1).minutes(from: Date()) < 1 {
-				customView.lastSyncedLabel.text = "\("".localized(ACTranslationKey.earnings_sync)) \(time)"
-			}
-		}
+        // There are no syncing of earnings with new local earnings calculations
+        customView.lastSyncedLabel.isHidden = true
+        
 		customView.bonusGoalsBodyLabel.text = "".localized(ACTranslationKey.earnings_bonus_body)
 		
 		switch thisStudy.studyState {
