@@ -9,7 +9,7 @@
 import ArcUIKit
 
 public class ACEarningsDetailView : ACTemplateView {
-	enum GoalDisplayName : String {
+	public enum GoalDisplayName : String {
 		case testSession = "test-session"
 		case fourOfFour = "4-out-of-4"
 		case twoADay = "2-a-day"
@@ -22,12 +22,11 @@ public class ACEarningsDetailView : ACTemplateView {
 			case .testSession:
 				return "progress_earnings_status1".localized(ACTranslationKey.progress_earnings_status1)
 			case .fourOfFour:
-				return "progress_earnings_status3".localized(ACTranslationKey.progress_earnings_status2)
+				return "progress_earnings_status3".localized(ACTranslationKey.progress_earnings_status3)
 			case .twoADay:
-				return "progress_earnings_status4".localized(ACTranslationKey.progress_earnings_status3)
+				return "progress_earnings_status4".localized(ACTranslationKey.progress_earnings_status4)
 			case .totalSessions:
-				return "progress_earnings_status2".localized(ACTranslationKey.progress_earnings_status4)
-			
+				return "progress_earnings_status2".localized(ACTranslationKey.progress_earnings_status2)
 			}
 		}
 	}
@@ -100,9 +99,8 @@ public class ACEarningsDetailView : ACTemplateView {
 				
 
 				self.syncLabel = $0.acLabel {
-					
-					Roboto.Style.subBody($0, color:UIColor(red:0.71, green:0.73, blue:0.8, alpha:1))
-					$0.text = "".localized(ACTranslationKey.earnings_sync)
+                    // There are no syncing of earnings with new local earnings calculations
+                    $0.isHidden = true
 				}
 				
 			}
@@ -134,7 +132,8 @@ public class ACEarningsDetailView : ACTemplateView {
 			time = dateFormatter.string(from: Date(timeIntervalSince1970: synched))
 		}
 		
-		syncLabel.text = "\("".localized(ACTranslationKey.earnings_sync)) \(time)"
+        // There are no syncing of earnings with new local earnings calculations
+        self.syncLabel.isHidden = true
 	}
 	public func clear() {
 		content.removeSubviews()

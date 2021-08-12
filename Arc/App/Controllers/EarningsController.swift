@@ -20,22 +20,24 @@ open class EarningsController {
 	lazy var thisWeek:ThisWeekExpressible = {Arc.shared.studyController}()
 	lazy var thisStudy:ThisStudyExpressible = {Arc.shared.studyController}()
 	
-	init() {
+	public init() {
 		NotificationCenter.default.addObserver(self, selector: #selector(sessionsUpdated(notification:)), name: .ACSessionUploadComplete, object: nil)
 		
-		NotificationCenter.default.addObserver(self, selector: #selector(updateEarnings), name: .ACStartEarningsRefresh, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updateEarningsObjc), name: .ACStartEarningsRefresh, object: nil)
 	}
 	@objc public func sessionsUpdated(notification:Notification) {
 		let uploads = notification.object as? Set<Int64>
 		assert(uploads != nil, "Wrong type supplied")
 		if uploads?.isEmpty == true {
-			
 			updateEarnings()
-			
 		}
 	}
+    
+    @objc public func updateEarningsObjc() {
+        updateEarnings()
+    }
 
-	@objc private func updateEarnings() {
+	open func updateEarnings() {
 		
 		OperationQueue().addOperation {
 			

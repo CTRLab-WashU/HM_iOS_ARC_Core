@@ -47,24 +47,24 @@ public struct CognitiveTest : HMCodable {
 	}
 }
 public struct FullTestSession : Codable {
-	var id:String?
-	var week:Int64?
-	var	day:Int64?
-	var session:Int64?
-	var	session_id:String? //"[some unique identifier that will always identify this session]",
-	var	session_date:TimeInterval? //1503937447.437798,
-	var start_time:TimeInterval? // 1503937447.732328,
-	var participant_id:String? //"111111",
-	var interrupted:Int64?// 0,
-	var missed_session:Int64? // 0,
-	var finished_session:Int64? // 1,
-	var device_id:String? // "[device id]",
-	var device_info:String? // "iOS|iPhone8,4|10.1.1",
-	var app_version:String? // "1.2.4",
-	var model_version:String? // "1",
+	public var id:String?
+	public var week:Int64?
+	public var	day:Int64?
+	public var session:Int64?
+	public var	session_id:String? //"[some unique identifier that will always identify this session]",
+	public var	session_date:TimeInterval? //1503937447.437798,
+	public var start_time:TimeInterval? // 1503937447.732328,
+	public var participant_id:String? //"111111",
+	public var interrupted:Int64?// 0,
+	public var missed_session:Int64? // 0,
+	public var finished_session:Int64? // 1,
+	public var device_id:String? // "[device id]",
+	public var device_info:String? // "iOS|iPhone8,4|10.1.1",
+	public var app_version:String? // "1.2.4",
+	public var model_version:String? // "1",
 	
 	
-	var tests: [AnyTest]
+	public var tests: [AnyTest]
 
 	
 	

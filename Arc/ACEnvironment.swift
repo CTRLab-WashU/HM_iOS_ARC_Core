@@ -45,6 +45,8 @@ public protocol ArcEnvironment {
     
     var scheduleController:ScheduleController {get}
     
+    var earningsController:EarningsController {get}
+    
     var gridTestController:GridTestController {get}
     
     var pricesTestController:PricesTestController {get}
@@ -102,6 +104,8 @@ public extension ArcEnvironment {
     var sessionController:SessionController {return SessionController()}
     
     var surveyController:SurveyController {return SurveyController()}
+    
+    var earningsController:EarningsController {return EarningsController()}
     
     var scheduleController:ScheduleController {return ScheduleController()}
     
