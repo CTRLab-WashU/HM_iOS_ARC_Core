@@ -7,8 +7,38 @@
 //
 
 import UIKit
+import CoreTelephony
 
 open class ACResponsiveAuthViewController: BasicSurveyViewController {
+    
+    public static let US_REGION_CODE = "US"
+    public static let US_COUNTRY_CODE = "+1"
+    
+    public static let UK_REGION_CODE = "GB" // (UK excluding Isle of Man)
+    public static let UK_COUNTRY_CODE = "+44"
+    
+    public static func countryCode(from regionCode: String) -> String {
+        switch regionCode {
+        case ACResponsiveAuthViewController.UK_REGION_CODE:
+            return ACResponsiveAuthViewController.UK_COUNTRY_CODE
+        default:
+            return ACResponsiveAuthViewController.US_COUNTRY_CODE
+        }
+    }
+    
+    public static func findRegionCode() -> String {
+        if #available(iOS 12.0, *) {
+            if let providers = CTTelephonyNetworkInfo().serviceSubscriberCellularProviders,
+               let carrier = providers.values.first, let countryCode = carrier.isoCountryCode {
+                return countryCode.uppercased()
+            }
+        } else {
+            if let carrier = CTTelephonyNetworkInfo().subscriberCellularProvider, let countryCode = carrier.isoCountryCode {
+                return countryCode.uppercased()
+            }
+        }
+        return US_REGION_CODE
+    }
 
     var controller:AuthController = Arc.shared.authController
     var initialValue:String?
@@ -58,6 +88,11 @@ open class ACResponsiveAuthViewController: BasicSurveyViewController {
         if questionId == "2FA" {
             AuthHandler.TwoFactorPrep(surveyVc: self, input: input, userId: controller.getUserName() ?? "")
         }
+        if questionId == "2FAPhone" {
+            let countryCode = ACResponsiveAuthViewController.countryCode(from: ACResponsiveAuthViewController.findRegionCode())
+            input?.setValue(AnyResponse(type: .text,
+                                        value: countryCode))
+        }
         
         super.didPresentQuestion(input: input, questionId: questionId)
     }
@@ -74,7 +109,7 @@ open class ACResponsiveAuthViewController: BasicSurveyViewController {
                 didFinish(false)
                 return
             }
-            if questionId == "auth_confirm"{
+            if questionId == "auth_confirm" {
                 if value != self?.initialValue {
 
                     self?.set(error:"Subject ID doesn’t match")
@@ -97,7 +132,20 @@ open class ACResponsiveAuthViewController: BasicSurveyViewController {
                     }
                 }
                 
-            } else {
+            } else if questionId == "2FAPhone" {
+                let phoneNumber = "phone:\(value)"
+                AuthHandler.GetDetails(surveyVc: weakSelf, userId: phoneNumber) {[weak self] (authDetails) in
+                    guard let weakSelf = self else{return}
+
+                    if let details = authDetails, details.response.success == true {
+                        weakSelf.handleAuth(authDetails: details)
+                        didFinish(true)
+                    } else {
+                        didFinish(false)
+                    }
+                }
+            }
+            else {
                 didFinish(true)
             }
             
@@ -119,7 +167,7 @@ open class ACResponsiveAuthViewController: BasicSurveyViewController {
             initialValue = value
         }
         
-        if index == "auth_confirm" {
+        if index == "auth_confirm" || index == "2FAPhone" {
             if value == initialValue {
                 _ = controller.set(username: value)
             }
@@ -160,6 +208,11 @@ open class ACResponsiveAuthViewController: BasicSurveyViewController {
             break
         case .confirm_code:
             file = "2FAuth-Addtional"
+
+            break
+        case .phone_number_entry:
+            loadedNewQuestions = false
+            file = "2FAuth-PhoneEntry"
 
             break
         case .manual:
