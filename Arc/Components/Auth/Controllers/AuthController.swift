@@ -67,6 +67,28 @@ open class AuthController:MHController {
 			delete(results)
 		}
 	}
+    
+    open func resend2FACode(id:String, didFinish:@escaping (ACResult<String>)->()) {
+        if (Arc.environment?.blockApiRequests ?? false) == true
+        {
+            didFinish(ACResult.success(id));
+            return;
+        }
+        let req = ConfirmationCode.Request(participant_id: id)
+        print(req.toString())
+        HMAPI.confirmationCode.execute(data: req, params: nil) { (urlResponse, hmResponse, fault) in
+            if hmResponse?.response?.success ?? false == true {
+                didFinish(ACResult.success(id))
+            } else {
+                var e:VerifyError = VerifyError.invalidId
+                if let r = urlResponse as? HTTPURLResponse, r.statusCode == 409 {
+                    e = VerifyError.enrolledId
+                }
+                didFinish(ACResult.error(e))
+            }
+        }
+    }
+    
     open func getAuthDetails(id:String, completion:@escaping ((StatusCode, AuthDetailsResponse?)->())) {
         HMAPI.authDetails.execute(data: AuthDetailsRequest(participant_id: id)) { (response, authDetails, errors) in
             let statusCode = StatusCode.with(response: response)
