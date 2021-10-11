@@ -112,7 +112,7 @@ open class ACResponsiveAuthViewController: BasicSurveyViewController {
             if questionId == "auth_confirm" {
                 if value != self?.initialValue {
 
-                    self?.set(error:"Subject ID doesn’t match")
+                    self?.set(error:"Non-matching ARC ID".localized(ACTranslationKey.login_error4))
                     didFinish(false)
                     return
 
@@ -173,7 +173,7 @@ open class ACResponsiveAuthViewController: BasicSurveyViewController {
             }
             if initialValue != controller.getUserName() {
 
-                self.set(error: "Subject ID does not match.")
+                self.set(error: "Non-matching ARC ID".localized(ACTranslationKey.login_error4))
 
             } else {
                 

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,12 +17,15 @@
                 <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cXF-kP-nB7">
                     <rect key="frame" x="0.0" y="4" width="264" height="204"/>
                     <subviews>
-                        <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="253" verticalCompressionResistancePriority="752" insetsLayoutMarginsFromSafeArea="NO" text="Select the item that was here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iJ4-HL-WOF">
-                            <rect key="frame" x="20.5" y="16" width="223" height="20.5"/>
+                        <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="253" verticalCompressionResistancePriority="752" insetsLayoutMarginsFromSafeArea="NO" text="Select the item that was here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iJ4-HL-WOF" customClass="ACLabel" customModule="ArcUIKit">
+                            <rect key="frame" x="21.5" y="16" width="221.5" height="20.5"/>
                             <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                             <size key="shadowOffset" width="0.0" height="0.0"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="grids_tutorial_vb_select"/>
+                            </userDefinedRuntimeAttributes>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="lIh-r4-H0g">
                             <rect key="frame" x="26" y="46.5" width="212" height="80"/>
@@ -38,7 +43,7 @@
                                             <inset key="imageEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstItem="VGu-gJ-f3Y" firstAttribute="top" secondItem="igU-lv-Mxe" secondAttribute="top" id="5Fw-Cx-2Ne"/>
                                         <constraint firstAttribute="height" constant="80" id="7q4-Vc-EzL"/>
@@ -65,7 +70,7 @@
                                             <inset key="imageEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstItem="SNB-Cx-t2Y" firstAttribute="leading" secondItem="IW8-eP-vfG" secondAttribute="leading" id="8xc-Tg-bEI"/>
                                         <constraint firstAttribute="bottom" secondItem="SNB-Cx-t2Y" secondAttribute="bottom" id="QDT-vi-bzZ"/>
@@ -92,7 +97,7 @@
                                             <inset key="imageEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstItem="JpM-gx-z4a" firstAttribute="top" secondItem="mp1-0k-Ett" secondAttribute="top" id="FX7-Bs-4ey"/>
                                         <constraint firstItem="amU-VG-ZbM" firstAttribute="top" secondItem="mp1-0k-Ett" secondAttribute="top" id="HDc-S2-BkE"/>
@@ -116,12 +121,31 @@
                                 <constraint firstAttribute="width" priority="999" constant="264" id="xEv-Gh-vzY"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ri-NR-mt0">
+                        <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ri-NR-mt0" customClass="ACButton" customModule="ArcUIKit">
                             <rect key="frame" x="81.5" y="147.5" width="101" height="38.5"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                            <color key="tintColor" name="Badge Gray"/>
                             <state key="normal" title="Remove Item">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="0.0"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="grids_tutorial_vb_remove"/>
+                                <userDefinedRuntimeAttribute type="color" keyPath="primaryColor">
+                                    <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="secondaryColor">
+                                    <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                                    <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                                    <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                         </button>
                     </subviews>
                     <edgeInsets key="layoutMargins" top="16" left="0.0" bottom="18" right="0.0"/>
@@ -157,5 +181,11 @@
         <image name="key" width="60.5" height="105.5"/>
         <image name="pen" width="60.5" height="105.5"/>
         <image name="phone" width="60.5" height="105.5"/>
+        <namedColor name="Badge Gray">
+            <color red="0.70196078431372544" green="0.70196078431372544" blue="0.70196078431372544" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

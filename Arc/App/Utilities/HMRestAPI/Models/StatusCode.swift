@@ -53,7 +53,7 @@ public enum StatusCode  {
     /// - returns: A string from the translation document for the current language
     var failureMessage:String? {
         if let code = code {
-            if code == 401 {
+            if code == 401 || code == 406 {
                 return "Invalid Rater ID or ARC ID".localized(ACTranslationKey.login_error1)
             }
             if code == 409 {

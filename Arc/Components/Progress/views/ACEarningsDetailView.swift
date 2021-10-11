@@ -49,6 +49,8 @@ public class ACEarningsDetailView : ACTemplateView {
 		 view.stack { [unowned self] in
 			$0.axis = .vertical
 			$0.spacing = 20
+            $0.trailingAnchor.constraint(equalTo: view.superview!.trailingAnchor).isActive = true
+            $0.widthAnchor.constraint(equalTo: view.superview!.widthAnchor, multiplier: 1).isActive = true
 //			$0.stack {
 //				$0.axis = .vertical
 //                

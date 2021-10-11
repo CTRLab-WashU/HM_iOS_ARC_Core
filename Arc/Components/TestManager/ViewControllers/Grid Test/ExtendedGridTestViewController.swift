@@ -303,7 +303,7 @@ open class ExtendedGridTestViewController: ArcViewController, UICollectionViewDe
         if isPracticeTest {
 			tapOnTheFsLabel.text = "Tap the boxes where the items were located in part one.".localized(ACTranslationKey.popup_tutorial_subheader)
         } else {
-            tapOnTheFsLabel.text = "Tap on the location of each item.".localized(ACTranslationKey.grids_subheader_boxes)
+            tapOnTheFsLabel.text = "Tap on the locations of the items.".localized(ACTranslationKey.grids_tutorial_vb_tap_locations)
             collectionView.leadingAnchor.constraint(equalTo:self.view.leadingAnchor, constant: 4).isActive = true
             self.view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: 4).isActive = true
         }

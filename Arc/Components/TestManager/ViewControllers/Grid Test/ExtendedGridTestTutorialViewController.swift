@@ -428,7 +428,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             weakSelf.currentHint = weakSelf.view.window?.hint {
                 $0.content = """
                 In part three, place each item in its location from part one.
-                """.localized(ACTranslationKey.popup_tutorial_selectbox)
+                """.localized(ACTranslationKey.popup_tutorial_selectboxV2)
                 $0.buttonTitle = "I'm Ready".localized(ACTranslationKey.popup_tutorial_ready)
                 $0.onTap = {
                     weakSelf.test.collectionView.isUserInteractionEnabled = true
@@ -556,7 +556,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             weakSelf.currentHint = weakSelf.view.window?.hint {
                 $0.content = """
                     *Nice work!*\nIt looks like you didn't need any help with placement, but we want to make sure we still teach you how to swap and remove items before you move onto the actual test.
-                    """.localized(ACTranslationKey.popup_tutorial_mechanics)
+                    """.localized(ACTranslationKey.grids_tutorial_vb_mech1)
                 $0.buttonTitle = "Show Me".localized(ACTranslationKey.button_showme)
                 $0.onTap = {
                     weakSelf.phase = .mechanics
@@ -591,7 +591,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                weakSelf.currentHint = weakSelf.view.window?.hint {
                    $0.content = """
                        If you change your mind after placing an item, you can move it. Let's try it.
-                       """.localized(ACTranslationKey.popup_tutorial_change)
+                       """.localized(ACTranslationKey.grids_tutorial_vb_mech2)
                        
                    $0.updateHintContainerMargins()
                    $0.updateTitleStackMargins()
@@ -688,7 +688,6 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                    $0.layout {
                        $0.centerX == weakSelf.view.centerXAnchor
                        $0.width == 252
-                       $0.height == 100
                        if index.row/5 > 2 {
                            //If above
                            $0.bottom == weakSelf.gridChoice!.topAnchor + 20
@@ -722,7 +721,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                weakSelf.currentHint = weakSelf.view.window?.hint {
                    $0.content = """
                        Great! If you would like to clear a box with an item, first tap that box...
-                       """.localized(ACTranslationKey.popup_tutorial_great_remove)
+                       """.localized(ACTranslationKey.grids_tutorial_vb_mech3)
                    $0.targetView = cell
                    $0.configure(with: IndicatorView.Config(
                        primaryColor: UIColor(named:"HintFill")!,
@@ -737,7 +736,6 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                    $0.layout {
                        $0.centerX == weakSelf.view.centerXAnchor
                        $0.width == 252
-                       $0.height == 134
                        if index.row/5 > 2 {
                            //If above
                            $0.bottom == cell.topAnchor + 40
@@ -771,7 +769,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                weakSelf.currentHint = weakSelf.view.window?.hint {
                    $0.content = """
                        ...then tap *Remove Item*.
-                       """.localized(ACTranslationKey.popup_tutorial_remove)
+                       """.localized(ACTranslationKey.grids_tutorial_vb_mech4)
                     $0.targetView = removeButton
                     removeButton?.addAction {
                        //weakSelf.tutorialAnimation.time = 26
@@ -821,7 +819,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
                        arrowAbove: false))
                    $0.updateHintContainerMargins()
                    $0.updateTitleStackMargins()
-                   $0.buttonTitle = "Finish Tutorial".localized(ACTranslationKey.button_finish_tutorial)
+                   $0.buttonTitle = "Finish Tutorial".localized(ACTranslationKey.button_finishtutorial)
                    $0.onTap = {
                        weakSelf.removeFinalHint()
                        weakSelf.finishTutorial()
@@ -845,7 +843,8 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
 				return
 			}
             weakSelf.tutorialAnimation.pause()
-            weakSelf.maybeRemoveSelectNextTwoHint()
+            weakSelf.currentHint?.removeFromSuperview()
+            weakSelf.currentHint = nil
             //Otherwise let's give them a choice.
             weakSelf.currentHint = weakSelf.view.window?.hint {
                 $0.content  = "Need Help?".localized(ACTranslationKey.popup_tutorial_needhelp)
@@ -898,8 +897,10 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             weakSelf.symbolSelected = true
 
             weakSelf.tutorialAnimation.pause()
+            weakSelf.currentHint?.removeFromSuperview()
+            weakSelf.currentHint = nil
             weakSelf.currentHint = weakSelf.view.window?.hint {
-                $0.content = "Change your mind? Select a different item to replace, or tap *Remove Item* to clear."
+                $0.content = "Change your mind? Select a different item to replace, or tap *Remove Item* to clear.".localized(ACTranslationKey.grids_tutorial_vb_change_mind)
                 $0.buttonTitle = "Got It".localized(ACTranslationKey.popup_gotit)
                 $0.onTap = {[weak self] in
                     self?.removeFinalHint()
@@ -981,7 +982,8 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
             }
 
             cell.backgroundColor = UIColor(named: "Secondary")
-
+            weakSelf.currentHint?.removeFromSuperview()
+            weakSelf.currentHint = nil
             weakSelf.currentHint = weakSelf.view.window?.hint {
                 $0.content = """
                 *Hint:* The cell phone was located here. Tap this box.
@@ -1043,7 +1045,7 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
         self.currentHint = self.view.window?.hint {
             $0.content = """
             Great! Now, place the other two items on the grid.
-            """.localized(ACTranslationKey.popup_tutorial_tapbox)
+            """.localized(ACTranslationKey.grids_tutorial_vb_place_other)
             $0.configure(with: IndicatorView.Config(
             primaryColor: UIColor(named:"HintFill")!,
             secondaryColor: UIColor(named:"HintFill")!,
@@ -1063,15 +1065,6 @@ class ExtendedGridTestTutorialViewController: ACTutorialViewController, Extended
         }
     }
 
-    func maybeRemoveSelectNextTwoHint() {
-        guard let hint = self.currentHint else { return }
-        if hint.content == "".localized(ACTranslationKey.popup_tutorial_tapbox) {
-            self.currentHint?.removeFromSuperview()
-            self.currentHint = nil
-            showingSelectNextTwo = false
-            self.removeHint(hint: "hint")
-        }
-    }
 
     func removeFinalHint() {
         self.currentHint?.removeFromSuperview()
