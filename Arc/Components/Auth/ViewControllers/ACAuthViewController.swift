@@ -102,7 +102,7 @@ open class ACAuthViewController: BasicSurveyViewController {
 			if questionId == "auth_2"{
 				if value != self?.initialValue {
 					
-					self?.set(error:"Subject ID doesn’t match")
+					self?.set(error:"Non-matching ARC ID".localized(ACTranslationKey.login_error4))
 					didFinish(false)
 					return
 					
@@ -111,7 +111,7 @@ open class ACAuthViewController: BasicSurveyViewController {
 			if questionId == "auth_arc_id_confirm_no_rater"{
 				if value != self?.initialValue {
 					
-					self?.set(error:"Subject ID doesn’t match")
+                    self?.set(error:"Non-matching ARC ID".localized(ACTranslationKey.login_error4))
 					didFinish(false)
 					return
 					
@@ -150,7 +150,7 @@ open class ACAuthViewController: BasicSurveyViewController {
 
 			if initialValue != controller.getUserName() {
 				
-				self.set(error: "Subject ID does not match.")
+				self.set(error: "Non-matching ARC ID".localized(ACTranslationKey.login_error4))
 
 			} else {
 				let top:CustomViewController<InfoView>? = getTopViewController()

@@ -155,7 +155,8 @@ open class StartDateShiftViewController: BasicSurveyViewController {
                 Arc.shared.notificationController.clear(sessionNotifications: id)
                 Arc.shared.notificationController.schedule(upcomingSessionNotificationsWithLimit: 32)
                 _ = Arc.shared.notificationController.scheduleDateConfirmationsForUpcomingStudy(force: true)
-
+                let studies = Arc.shared.studyController.getAllStudyPeriods().sorted(by: {$0.studyID < $1.studyID})
+                Arc.shared.sessionController.uploadSchedule(studyPeriods: studies)
                 Arc.shared.scheduleController.upload(confirmedSchedule: id);
 
                 Arc.shared.studyController.save()
