@@ -1,6 +1,6 @@
 //
 //  SageEarningsController.swift
-//  HASD
+//  Arc
 //
 //  Copyright © 2021 Sage Bionetworks. All rights reserved.
 //

@@ -1,6 +1,6 @@
 //
 //  TaskListScheduleManager.swift
-//  HASD
+//  Arc
 //
 //  Copyright © 2021 Sage Bionetworks. All rights reserved.
 //
@@ -297,6 +297,7 @@ public class TaskListScheduleManager {
             return
         }
         
+        print("Uploading archive \(identifier)")
         let archive = SBBDataArchive(reference: identifier, jsonValidationMapping: nil)        
         
         do {
@@ -359,6 +360,8 @@ public class TaskListScheduleManager {
         if (reportIdentifier == RSDIdentifier.completedTests) {
             self.completedTests.isSyncedWithBridge = false
         }
+        
+        print("Saving report \(reportIdentifier) with clientData:\n\(report.clientData as? String)")
         
         self.participantManager.save(bridgeReport, forReport: reportIdentifier) { [weak self] (_, error) in
             DispatchQueue.main.async {
