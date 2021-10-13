@@ -34,23 +34,6 @@ class StatusCodeTests: XCTestCase {
         wait(for: [e], timeout: 10)
         print(r)
     }
-    func testBadRequest() throws {
-        let e = expectation(description: "api_request")
-        HMRestAPI.shared.setBaseURL(url:"https://google.com")
-        HMAPI.baseUrl = "https://google.com"
-        var r = HMRequest<String>.performRequest(method: BackendRequestMethod.get, endPoint:"/nothing") { (res, obj, err) in
-            let code = StatusCode.with(response: res)
-            XCTAssertNotNil(code.code)
-            XCTAssertFalse(code.succeeded)
-            XCTAssertNotNil(code.failureMessage)
-            print(code.code as Any, code.succeeded, code.failureMessage as Any)
-            dump(res)
-            e.fulfill()
-        }
-        wait(for: [e], timeout: 10)
-        print(r)
-
-    }
     func testUnknown() throws {
         let code = StatusCode.with(response: nil)
         XCTAssertNil(code.code)

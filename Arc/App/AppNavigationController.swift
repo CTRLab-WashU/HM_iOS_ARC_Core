@@ -49,7 +49,6 @@ public protocol AppNavigationController {
 	
 	///Just replace the current root view controller
 	func navigate(vc:UIViewController, direction: UIWindow.TransitionOptions.Direction, duration:Double)
-	
 }
 
 
