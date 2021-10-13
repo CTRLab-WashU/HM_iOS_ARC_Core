@@ -4,10 +4,12 @@ on:
   pull_request:
     branches:
       - master
+      - Arc2.0_development
       - release/*
   push:
     branches:
       - master
+      - Arc2.0_development
       - release/*
 
 jobs:
