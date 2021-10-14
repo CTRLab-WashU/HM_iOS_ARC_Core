@@ -325,6 +325,7 @@
 		C5EB849923DB8D050070A240 /* ACPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EB849823DB8D050070A240 /* ACPDFView.swift */; };
 		C5F77F37222F095200BECAE1 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F77F36222F095200BECAE1 /* SignatureViewController.swift */; };
 		C5FDC5B4258BE4A100E80E69 /* AuthHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FDC5B3258BE4A100E80E69 /* AuthHandler.swift */; };
+		CB32BCEF2717C82D00B05501 /* JsonModel in Frameworks */ = {isa = PBXBuildFile; productRef = CB32BCEE2717C82D00B05501 /* JsonModel */; };
 		CB855AC627178C60004599EC /* BridgeApp in Frameworks */ = {isa = PBXBuildFile; productRef = CB855AC527178C60004599EC /* BridgeApp */; };
 		CB855AC827178C60004599EC /* BridgeAppUI in Frameworks */ = {isa = PBXBuildFile; productRef = CB855AC727178C60004599EC /* BridgeAppUI */; };
 		CB855AD027178D32004599EC /* SageEarningsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB855ACA27178D31004599EC /* SageEarningsController.swift */; };
@@ -726,6 +727,7 @@
 				CB855ADB2717A1C0004599EC /* Research in Frameworks */,
 				CB855AC627178C60004599EC /* BridgeApp in Frameworks */,
 				C5B2602D2213657500BFF778 /* ArcUIKit.framework in Frameworks */,
+				CB32BCEF2717C82D00B05501 /* JsonModel in Frameworks */,
 				CB855ADD2717A1C0004599EC /* ResearchUI in Frameworks */,
 				C52B760021C83B6400498571 /* HMMarkup.framework in Frameworks */,
 				CB855AC827178C60004599EC /* BridgeAppUI in Frameworks */,
@@ -1712,6 +1714,7 @@
 				CB855AD72717A1AD004599EC /* BridgeSDK */,
 				CB855ADA2717A1C0004599EC /* Research */,
 				CB855ADC2717A1C0004599EC /* ResearchUI */,
+				CB32BCEE2717C82D00B05501 /* JsonModel */,
 			);
 			productName = Arc;
 			productReference = C54AE8E721C81B2F00DEC360 /* Arc.framework */;
@@ -1816,6 +1819,7 @@
 				CB855AC427178C60004599EC /* XCRemoteSwiftPackageReference "BridgeApp-Apple-SDK" */,
 				CB855AD62717A1AD004599EC /* XCRemoteSwiftPackageReference "Bridge-iOS-SDK" */,
 				CB855AD92717A1C0004599EC /* XCRemoteSwiftPackageReference "SageResearch" */,
+				CB32BCED2717C82D00B05501 /* XCRemoteSwiftPackageReference "JsonModel-Swift" */,
 			);
 			productRefGroup = C54AE8E821C81B2F00DEC360 /* Products */;
 			projectDirPath = "";
@@ -2751,6 +2755,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CB32BCED2717C82D00B05501 /* XCRemoteSwiftPackageReference "JsonModel-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Sage-Bionetworks/JsonModel-Swift";
+			requirement = {
+				kind = exactVersion;
+				version = 1.2.3;
+			};
+		};
 		CB855AC427178C60004599EC /* XCRemoteSwiftPackageReference "BridgeApp-Apple-SDK" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Sage-Bionetworks/BridgeApp-Apple-SDK";
@@ -2778,6 +2790,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CB32BCEE2717C82D00B05501 /* JsonModel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CB32BCED2717C82D00B05501 /* XCRemoteSwiftPackageReference "JsonModel-Swift" */;
+			productName = JsonModel;
+		};
 		CB855AC527178C60004599EC /* BridgeApp */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CB855AC427178C60004599EC /* XCRemoteSwiftPackageReference "BridgeApp-Apple-SDK" */;
