@@ -769,13 +769,6 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
-		C5192A6122C3DF6700223B69 /* AppStyle */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AppStyle;
-			sourceTree = "<group>";
-		};
 		C5192A6422C3DFA800223B69 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -927,7 +920,6 @@
 		C54AE90321C81B5C00DEC360 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				C5192A6122C3DF6700223B69 /* AppStyle */,
 				C54AE90521C81B5C00DEC360 /* Models */,
 				C54AE90B21C81B5C00DEC360 /* Extensions */,
 				C54AE91921C81B5C00DEC360 /* Utilities */,
