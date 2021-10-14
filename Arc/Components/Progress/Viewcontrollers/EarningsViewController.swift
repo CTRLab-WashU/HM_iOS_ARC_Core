@@ -164,7 +164,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
     }
     
     @objc func viewFaqPressed() {
-        let vc:FAQViewController = .get()
+        let vc = Arc.shared.studyController.createFaqViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

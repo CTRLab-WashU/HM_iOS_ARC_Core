@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -217,8 +217,6 @@
 		C54E8E1E22E800780080BFC1 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54E8E1C22E800780080BFC1 /* CircularProgressView.swift */; };
 		C54E8E2322E88D590080BFC1 /* StepperProgressview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54E8E2222E88D590080BFC1 /* StepperProgressview.swift */; };
 		C54E8E2622E88DC60080BFC1 /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54E8E2522E88DC60080BFC1 /* ProgressViewController.swift */; };
-		C54F62E32326AD9300857C7D /* ACMigrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54F62E22326AD9300857C7D /* ACMigrationViewController.swift */; };
-		C54F62E52326AE2400857C7D /* ACMigrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54F62E42326AE2400857C7D /* ACMigrationView.swift */; };
 		C554EF142405843900223151 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = C554EF122405843800223151 /* Event.swift */; };
 		C556BA2D22CA4B3D0057B54B /* ACTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C556BA2C22CA4B3D0057B54B /* ACTemplateView.swift */; };
 		C556BA2F22CA5B4C0057B54B /* ACHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C556BA2E22CA5B4C0057B54B /* ACHomeView.swift */; };
@@ -327,26 +325,20 @@
 		C5EB849923DB8D050070A240 /* ACPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EB849823DB8D050070A240 /* ACPDFView.swift */; };
 		C5F77F37222F095200BECAE1 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F77F36222F095200BECAE1 /* SignatureViewController.swift */; };
 		C5FDC5B4258BE4A100E80E69 /* AuthHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FDC5B3258BE4A100E80E69 /* AuthHandler.swift */; };
+		CB855AC627178C60004599EC /* BridgeApp in Frameworks */ = {isa = PBXBuildFile; productRef = CB855AC527178C60004599EC /* BridgeApp */; };
+		CB855AC827178C60004599EC /* BridgeAppUI in Frameworks */ = {isa = PBXBuildFile; productRef = CB855AC727178C60004599EC /* BridgeAppUI */; };
+		CB855AD027178D32004599EC /* SageEarningsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB855ACA27178D31004599EC /* SageEarningsController.swift */; };
+		CB855AD127178D32004599EC /* SageScheduleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB855ACB27178D31004599EC /* SageScheduleController.swift */; };
+		CB855AD227178D32004599EC /* CompletedTestsDefaultsReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB855ACC27178D31004599EC /* CompletedTestsDefaultsReport.swift */; };
+		CB855AD327178D32004599EC /* SageSessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB855ACD27178D31004599EC /* SageSessionController.swift */; };
+		CB855AD427178D32004599EC /* TaskListScheduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB855ACE27178D32004599EC /* TaskListScheduleManager.swift */; };
+		CB855AD82717A1AD004599EC /* BridgeSDK in Frameworks */ = {isa = PBXBuildFile; productRef = CB855AD72717A1AD004599EC /* BridgeSDK */; };
+		CB855ADB2717A1C0004599EC /* Research in Frameworks */ = {isa = PBXBuildFile; productRef = CB855ADA2717A1C0004599EC /* Research */; };
+		CB855ADD2717A1C0004599EC /* ResearchUI in Frameworks */ = {isa = PBXBuildFile; productRef = CB855ADC2717A1C0004599EC /* ResearchUI */; };
+		CB855ADF2717A93C004599EC /* SageEarningsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB855ADE2717A93C004599EC /* SageEarningsControllerTests.swift */; };
 		E86732322315808800844F91 /* ACHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86732312315808800844F91 /* ACHomeViewController.swift */; };
 		E898B20823282EA400FBF22D /* AC2FAHelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E898B20723282EA400FBF22D /* AC2FAHelpViewController.xib */; };
 		E898B20A2328339C00FBF22D /* AC2FAHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E898B2092328339C00FBF22D /* AC2FAHelpViewController.swift */; };
-		E8BA72E123198B8100823374 /* FAQTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8BA72D723198B8100823374 /* FAQTableViewCell.xib */; };
-		E8BA72E223198B8100823374 /* FAQAnswerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8BA72D823198B8100823374 /* FAQAnswerViewController.xib */; };
-		E8BA72E323198B8100823374 /* FAQTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BA72D923198B8100823374 /* FAQTopicViewController.swift */; };
-		E8BA72E423198B8100823374 /* FAQAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BA72DA23198B8100823374 /* FAQAnswerViewController.swift */; };
-		E8BA72E523198B8100823374 /* FaqItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BA72DB23198B8100823374 /* FaqItem.swift */; };
-		E8BA72E623198B8100823374 /* FAQViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8BA72DC23198B8100823374 /* FAQViewController.xib */; };
-		E8BA72E723198B8100823374 /* FAQTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BA72DD23198B8100823374 /* FAQTableViewCell.swift */; };
-		E8BA72E823198B8100823374 /* FaqTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BA72DE23198B8100823374 /* FaqTopic.swift */; };
-		E8BA72E923198B8100823374 /* FAQTopicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8BA72DF23198B8100823374 /* FAQTopicViewController.xib */; };
-		E8BA72EA23198B8200823374 /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BA72E023198B8100823374 /* FAQViewController.swift */; };
-		E8BA72F923198BD800823374 /* ResourcesNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BA72F223198BD700823374 /* ResourcesNavigationViewController.swift */; };
-		E8BA72FA23198BD800823374 /* ResourcesHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8BA72F323198BD700823374 /* ResourcesHeaderView.xib */; };
-		E8BA72FB23198BD800823374 /* ResourcesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BA72F423198BD700823374 /* ResourcesTableViewCell.swift */; };
-		E8BA72FC23198BD800823374 /* ResourcesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8BA72F523198BD700823374 /* ResourcesViewController.xib */; };
-		E8BA72FD23198BD800823374 /* ResourcesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8BA72F623198BD700823374 /* ResourcesTableViewCell.xib */; };
-		E8BA72FE23198BD800823374 /* ResourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BA72F723198BD700823374 /* ResourcesViewController.swift */; };
-		E8BA72FF23198BD800823374 /* ResourcesHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BA72F823198BD700823374 /* ResourcesHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -597,8 +589,6 @@
 		C54E8E1C22E800780080BFC1 /* CircularProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		C54E8E2222E88D590080BFC1 /* StepperProgressview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperProgressview.swift; sourceTree = "<group>"; };
 		C54E8E2522E88DC60080BFC1 /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
-		C54F62E22326AD9300857C7D /* ACMigrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACMigrationViewController.swift; sourceTree = "<group>"; };
-		C54F62E42326AE2400857C7D /* ACMigrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACMigrationView.swift; sourceTree = "<group>"; };
 		C554EF122405843800223151 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		C556BA2C22CA4B3D0057B54B /* ACTemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTemplateView.swift; sourceTree = "<group>"; };
 		C556BA2E22CA5B4C0057B54B /* ACHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACHomeView.swift; sourceTree = "<group>"; };
@@ -701,26 +691,15 @@
 		C5F77F38222F15DD00BECAE1 /* SignatureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignatureView.xib; sourceTree = "<group>"; };
 		C5F77F3A22306CFA00BECAE1 /* DateRangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRangeView.swift; sourceTree = "<group>"; };
 		C5FDC5B3258BE4A100E80E69 /* AuthHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHandler.swift; sourceTree = "<group>"; };
+		CB855ACA27178D31004599EC /* SageEarningsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SageEarningsController.swift; sourceTree = "<group>"; };
+		CB855ACB27178D31004599EC /* SageScheduleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SageScheduleController.swift; sourceTree = "<group>"; };
+		CB855ACC27178D31004599EC /* CompletedTestsDefaultsReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedTestsDefaultsReport.swift; sourceTree = "<group>"; };
+		CB855ACD27178D31004599EC /* SageSessionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SageSessionController.swift; sourceTree = "<group>"; };
+		CB855ACE27178D32004599EC /* TaskListScheduleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListScheduleManager.swift; sourceTree = "<group>"; };
+		CB855ADE2717A93C004599EC /* SageEarningsControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SageEarningsControllerTests.swift; sourceTree = "<group>"; };
 		E86732312315808800844F91 /* ACHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACHomeViewController.swift; sourceTree = "<group>"; };
 		E898B20723282EA400FBF22D /* AC2FAHelpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AC2FAHelpViewController.xib; sourceTree = "<group>"; };
 		E898B2092328339C00FBF22D /* AC2FAHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AC2FAHelpViewController.swift; sourceTree = "<group>"; };
-		E8BA72D723198B8100823374 /* FAQTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FAQTableViewCell.xib; sourceTree = "<group>"; };
-		E8BA72D823198B8100823374 /* FAQAnswerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FAQAnswerViewController.xib; sourceTree = "<group>"; };
-		E8BA72D923198B8100823374 /* FAQTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQTopicViewController.swift; sourceTree = "<group>"; };
-		E8BA72DA23198B8100823374 /* FAQAnswerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQAnswerViewController.swift; sourceTree = "<group>"; };
-		E8BA72DB23198B8100823374 /* FaqItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaqItem.swift; sourceTree = "<group>"; };
-		E8BA72DC23198B8100823374 /* FAQViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FAQViewController.xib; sourceTree = "<group>"; };
-		E8BA72DD23198B8100823374 /* FAQTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQTableViewCell.swift; sourceTree = "<group>"; };
-		E8BA72DE23198B8100823374 /* FaqTopic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaqTopic.swift; sourceTree = "<group>"; };
-		E8BA72DF23198B8100823374 /* FAQTopicViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FAQTopicViewController.xib; sourceTree = "<group>"; };
-		E8BA72E023198B8100823374 /* FAQViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
-		E8BA72F223198BD700823374 /* ResourcesNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourcesNavigationViewController.swift; sourceTree = "<group>"; };
-		E8BA72F323198BD700823374 /* ResourcesHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResourcesHeaderView.xib; sourceTree = "<group>"; };
-		E8BA72F423198BD700823374 /* ResourcesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourcesTableViewCell.swift; sourceTree = "<group>"; };
-		E8BA72F523198BD700823374 /* ResourcesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResourcesViewController.xib; sourceTree = "<group>"; };
-		E8BA72F623198BD700823374 /* ResourcesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResourcesTableViewCell.xib; sourceTree = "<group>"; };
-		E8BA72F723198BD700823374 /* ResourcesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourcesViewController.swift; sourceTree = "<group>"; };
-		E8BA72F823198BD700823374 /* ResourcesHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourcesHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -743,8 +722,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB855AD82717A1AD004599EC /* BridgeSDK in Frameworks */,
+				CB855ADB2717A1C0004599EC /* Research in Frameworks */,
+				CB855AC627178C60004599EC /* BridgeApp in Frameworks */,
 				C5B2602D2213657500BFF778 /* ArcUIKit.framework in Frameworks */,
+				CB855ADD2717A1C0004599EC /* ResearchUI in Frameworks */,
 				C52B760021C83B6400498571 /* HMMarkup.framework in Frameworks */,
+				CB855AC827178C60004599EC /* BridgeAppUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -920,6 +904,7 @@
 				C54AE94821C81B5C00DEC360 /* arc.xcdatamodeld */,
 				C54AE90321C81B5C00DEC360 /* App */,
 				C54AE94B21C81B5C00DEC360 /* Components */,
+				CB855AC927178D17004599EC /* Sage */,
 				C54AE9C021C81B5F00DEC360 /* Roboto */,
 				C54AE90121C81B5B00DEC360 /* SharedAssets.xcassets */,
 			);
@@ -929,6 +914,7 @@
 		C54AE8F421C81B2F00DEC360 /* ArcTests */ = {
 			isa = PBXGroup;
 			children = (
+				CB855ADE2717A93C004599EC /* SageEarningsControllerTests.swift */,
 				C54AE8F521C81B2F00DEC360 /* ArcTests.swift */,
 				C5B4BD14251949D90094A338 /* StatusCodeTests.swift */,
 				C54AE8F721C81B2F00DEC360 /* Info.plist */,
@@ -1132,9 +1118,6 @@
 		C54AE94B21C81B5C00DEC360 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				C54F62E12326AD8100857C7D /* Migration */,
-				E8BA72F123198BD700823374 /* Resources */,
-				E8BA72D623198B8100823374 /* FAQ */,
 				C54E8E1322E790230080BFC1 /* Progress */,
 				C51A7D8A22D8C30800854B13 /* Onboarding */,
 				C54AE97F21C81B5C00DEC360 /* LoadingScreenViewController.swift */,
@@ -1506,16 +1489,6 @@
 			path = "supporting views";
 			sourceTree = "<group>";
 		};
-		C54F62E12326AD8100857C7D /* Migration */ = {
-			isa = PBXGroup;
-			children = (
-				C54F62E22326AD9300857C7D /* ACMigrationViewController.swift */,
-				C54F62E42326AE2400857C7D /* ACMigrationView.swift */,
-			);
-			name = Migration;
-			path = ../../../Components/Migration;
-			sourceTree = "<group>";
-		};
 		C56057F722F9F6B100EDA919 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -1640,37 +1613,16 @@
 			path = Earnings;
 			sourceTree = "<group>";
 		};
-		E8BA72D623198B8100823374 /* FAQ */ = {
+		CB855AC927178D17004599EC /* Sage */ = {
 			isa = PBXGroup;
 			children = (
-				E8BA72D723198B8100823374 /* FAQTableViewCell.xib */,
-				E8BA72D823198B8100823374 /* FAQAnswerViewController.xib */,
-				E8BA72D923198B8100823374 /* FAQTopicViewController.swift */,
-				E8BA72DA23198B8100823374 /* FAQAnswerViewController.swift */,
-				E8BA72DB23198B8100823374 /* FaqItem.swift */,
-				E8BA72DC23198B8100823374 /* FAQViewController.xib */,
-				E8BA72DD23198B8100823374 /* FAQTableViewCell.swift */,
-				E8BA72DE23198B8100823374 /* FaqTopic.swift */,
-				E8BA72DF23198B8100823374 /* FAQTopicViewController.xib */,
-				E8BA72E023198B8100823374 /* FAQViewController.swift */,
+				CB855ACC27178D31004599EC /* CompletedTestsDefaultsReport.swift */,
+				CB855ACA27178D31004599EC /* SageEarningsController.swift */,
+				CB855ACB27178D31004599EC /* SageScheduleController.swift */,
+				CB855ACD27178D31004599EC /* SageSessionController.swift */,
+				CB855ACE27178D32004599EC /* TaskListScheduleManager.swift */,
 			);
-			name = FAQ;
-			path = ../../../Components/FAQ;
-			sourceTree = "<group>";
-		};
-		E8BA72F123198BD700823374 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				E8BA72F223198BD700823374 /* ResourcesNavigationViewController.swift */,
-				E8BA72F323198BD700823374 /* ResourcesHeaderView.xib */,
-				E8BA72F423198BD700823374 /* ResourcesTableViewCell.swift */,
-				E8BA72F523198BD700823374 /* ResourcesViewController.xib */,
-				E8BA72F623198BD700823374 /* ResourcesTableViewCell.xib */,
-				E8BA72F723198BD700823374 /* ResourcesViewController.swift */,
-				E8BA72F823198BD700823374 /* ResourcesHeaderView.swift */,
-			);
-			name = Resources;
-			path = ../../../Components/Resources;
+			path = Sage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1754,6 +1706,13 @@
 				C52B760D21C846F700498571 /* PBXTargetDependency */,
 			);
 			name = Arc;
+			packageProductDependencies = (
+				CB855AC527178C60004599EC /* BridgeApp */,
+				CB855AC727178C60004599EC /* BridgeAppUI */,
+				CB855AD72717A1AD004599EC /* BridgeSDK */,
+				CB855ADA2717A1C0004599EC /* Research */,
+				CB855ADC2717A1C0004599EC /* ResearchUI */,
+			);
 			productName = Arc;
 			productReference = C54AE8E721C81B2F00DEC360 /* Arc.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1853,6 +1812,11 @@
 				en,
 			);
 			mainGroup = C54AE8DD21C81B2F00DEC360;
+			packageReferences = (
+				CB855AC427178C60004599EC /* XCRemoteSwiftPackageReference "BridgeApp-Apple-SDK" */,
+				CB855AD62717A1AD004599EC /* XCRemoteSwiftPackageReference "Bridge-iOS-SDK" */,
+				CB855AD92717A1C0004599EC /* XCRemoteSwiftPackageReference "SageResearch" */,
+			);
 			productRefGroup = C54AE8E821C81B2F00DEC360 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1888,7 +1852,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C54AEA1321C81B5F00DEC360 /* ExtendedGridTestViewController.xib in Resources */,
-				E8BA72FA23198BD800823374 /* ResourcesHeaderView.xib in Resources */,
 				C5E1E3962257ECC200255812 /* ACChangeAvailabilityViewController.xib in Resources */,
 				C54AEA0F21C81B5F00DEC360 /* PricesTestViewController.xib in Resources */,
 				C54AEA2521C81B5F00DEC360 /* HomeViewController.xib in Resources */,
@@ -1916,21 +1879,16 @@
 				C53BA3E323677CE300FEEF64 /* README.md in Resources */,
 				C54AEA6421C81B5F00DEC360 /* Roboto-Medium.ttf in Resources */,
 				C54AEA1021C81B5F00DEC360 /* PricesQuestionViewController.xib in Resources */,
-				E8BA72E923198B8100823374 /* FAQTopicViewController.xib in Resources */,
 				C54D104322C28A1D00B43E42 /* PasswordView.xib in Resources */,
 				2DB76D7122F3B3D900EE36A0 /* SymbolsTestTutorialViewController.xib in Resources */,
 				C54AEA6D21C81B5F00DEC360 /* Roboto-BlackItalic.ttf in Resources */,
-				E8BA72FC23198BD800823374 /* ResourcesViewController.xib in Resources */,
-				E8BA72E123198B8100823374 /* FAQTableViewCell.xib in Resources */,
 				C54AE9FA21C81B5F00DEC360 /* CancelButton.xib in Resources */,
 				C54AEA0E21C81B5F00DEC360 /* SymbolsTestViewController.xib in Resources */,
-				E8BA72E223198B8100823374 /* FAQAnswerViewController.xib in Resources */,
 				C54AEA6921C81B5F00DEC360 /* Roboto-BoldItalic.ttf in Resources */,
 				C54D103D22C28A1D00B43E42 /* TextSegment.xib in Resources */,
 				E898B20823282EA400FBF22D /* AC2FAHelpViewController.xib in Resources */,
 				C54AEA1E21C81B5F00DEC360 /* FCollectionContainerView.xib in Resources */,
 				C54AEA7021C81B5F00DEC360 /* Roboto-Black.ttf in Resources */,
-				E8BA72FD23198BD800823374 /* ResourcesTableViewCell.xib in Resources */,
 				C54AEA6821C81B5F00DEC360 /* Roboto-ThinItalic.ttf in Resources */,
 				C54AEA2021C81B5F00DEC360 /* TextAlertView.xib in Resources */,
 				C54AEA3521C81B5F00DEC360 /* SchedulerViewController.xib in Resources */,
@@ -1946,7 +1904,6 @@
 				C54AEA6F21C81B5F00DEC360 /* Roboto-Thin.ttf in Resources */,
 				C54D103F22C28A1D00B43E42 /* SliderView.xib in Resources */,
 				C54D104922C28A1D00B43E42 /* ACPickerView.xib in Resources */,
-				E8BA72E623198B8100823374 /* FAQViewController.xib in Resources */,
 				C54AEA2D21C81B5F00DEC360 /* LoginHelpView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2052,6 +2009,7 @@
 				C56057F622F9F6AC00EDA919 /* ProgressFlag.swift in Sources */,
 				C54AEA3E21C81B5F00DEC360 /* IntroViewController.swift in Sources */,
 				C5477C7A231868C80072425D /* RebukedCommitmentView.swift in Sources */,
+				CB855AD127178D32004599EC /* SageScheduleController.swift in Sources */,
 				4CB0BAC522E8FA7B00ABB348 /* ContactInfoResponse.swift in Sources */,
 				C54AEA3221C81B5F00DEC360 /* ScheduleEntry+Extensions.swift in Sources */,
 				C5E7212822F10D25004B9E26 /* TestProgressViewController.swift in Sources */,
@@ -2059,7 +2017,6 @@
 				C5C7F715228F65C50086315B /* ArcTranslation.swift in Sources */,
 				C54D104A22C28A1D00B43E42 /* DateRangeView.swift in Sources */,
 				C54AE9DB21C81B5F00DEC360 /* UIStackView+Extensions.swift in Sources */,
-				E8BA72E723198B8100823374 /* FAQTableViewCell.swift in Sources */,
 				C51A7D8E22D8C38300854B13 /* NotificationPermissionView.swift in Sources */,
 				C554EF142405843900223151 /* Event.swift in Sources */,
 				C54AE9E021C81B5F00DEC360 /* Data+Extensions.swift in Sources */,
@@ -2073,7 +2030,6 @@
 				C59D6EEF22FA21B20037B671 /* ACHomeTabViewController.swift in Sources */,
 				C54D103322C28A1D00B43E42 /* ContainerButton.swift in Sources */,
 				C54AE9EA21C81B5F00DEC360 /* HMRequestHelper.swift in Sources */,
-				E8BA72E423198B8100823374 /* FAQAnswerViewController.swift in Sources */,
 				C5E1E34F2253E84900255812 /* ACWakeSurveyViewController.swift in Sources */,
 				E898B20A2328339C00FBF22D /* AC2FAHelpViewController.swift in Sources */,
 				C54AEA0821C81B5F00DEC360 /* PriceTest.swift in Sources */,
@@ -2083,12 +2039,9 @@
 				C556BA2D22CA4B3D0057B54B /* ACTemplateView.swift in Sources */,
 				C54AE9E521C81B5F00DEC360 /* HMFault.swift in Sources */,
 				C57A4B75258ABB3B00238700 /* AuthDetailsResponse.swift in Sources */,
-				E8BA72E823198B8100823374 /* FaqTopic.swift in Sources */,
 				C5DA18622305C2EC003C84C2 /* GoalView.swift in Sources */,
 				C54AE9D521C81B5F00DEC360 /* Phase.swift in Sources */,
 				C54AEA2821C81B5F00DEC360 /* AuthCredentials.swift in Sources */,
-				E8BA72E323198B8100823374 /* FAQTopicViewController.swift in Sources */,
-				E8BA72FF23198BD800823374 /* ResourcesHeaderView.swift in Sources */,
 				C54D103622C28A1D00B43E42 /* DurationView.swift in Sources */,
 				C54AEA1821C81B5F00DEC360 /* SymbolSelectButton.swift in Sources */,
 				C54AEA1721C81B5F00DEC360 /* PricesTestController.swift in Sources */,
@@ -2100,7 +2053,6 @@
 				C54AE9F721C81B5F00DEC360 /* MHController.swift in Sources */,
 				C57480AC23035B2E00EFC901 /* CircularProgressGroupStackView.swift in Sources */,
 				C54D103E22C28A1D00B43E42 /* SliderView.swift in Sources */,
-				E8BA72E523198B8100823374 /* FaqItem.swift in Sources */,
 				C54AEA1921C81B5F00DEC360 /* FCollectionContainerView.swift in Sources */,
 				C54D103C22C28A1D00B43E42 /* TextSegment.swift in Sources */,
 				C57E866423074FE0009B4BFC /* GoalDayTileGroup.swift in Sources */,
@@ -2130,6 +2082,7 @@
 				C58129F822E20BE000CD1883 /* TutorialCompleteView.swift in Sources */,
 				C54D101322C2745A00B43E42 /* QuestionStyle.swift in Sources */,
 				C54E8E2322E88D590080BFC1 /* StepperProgressview.swift in Sources */,
+				CB855AD427178D32004599EC /* TaskListScheduleManager.swift in Sources */,
 				C51A7D8722D7EC5900854B13 /* ParticipationView.swift in Sources */,
 				C545AB0723283168002672C2 /* ACPostCycleFinishView.swift in Sources */,
 				C54D488823E339CB00EE9511 /* BackgroundStyle.swift in Sources */,
@@ -2138,11 +2091,11 @@
 				C54AEA4421C81B5F00DEC360 /* SurveyController.swift in Sources */,
 				C54D104F22C29DA700B43E42 /* SurveyView.swift in Sources */,
 				C54AE9EF21C81B5F00DEC360 /* ArcViewController.swift in Sources */,
+				CB855AD027178D32004599EC /* SageEarningsController.swift in Sources */,
 				C5CCD7AC22DE6A61002A788A /* OnboardingSurveyViewController.swift in Sources */,
 				C52B75D521C837A200498571 /* Session+Extensions.swift in Sources */,
 				C55F8CD1230F1AA4006D43BD /* EarningDetailGroup.swift in Sources */,
 				C556BA2F22CA5B4C0057B54B /* ACHomeView.swift in Sources */,
-				E8BA72FE23198BD800823374 /* ResourcesViewController.swift in Sources */,
 				C54AEA0421C81B5F00DEC360 /* BorderedUIView.swift in Sources */,
 				C55F8CD5230F2DAA006D43BD /* EarningsDetailViewController.swift in Sources */,
 				C54AEA3C21C81B5F00DEC360 /* QuestionResponse.swift in Sources */,
@@ -2156,7 +2109,6 @@
 				C5CDF92E23FEFA32003DA532 /* NotificationsRejectedViewController.swift in Sources */,
 				C54D488623E3308000EE9511 /* PriceTestType.swift in Sources */,
 				C57E9C862236C232009F6228 /* StartDateShiftViewController.swift in Sources */,
-				E8BA72F923198BD800823374 /* ResourcesNavigationViewController.swift in Sources */,
 				C5192A6F22C519D900223B69 /* UIDSL+ArcCore.swift in Sources */,
 				C54D101122C2743F00B43E42 /* QuestionType.swift in Sources */,
 				C54AE9F121C81B5F00DEC360 /* ArcControllerRegistry.swift in Sources */,
@@ -2180,7 +2132,6 @@
 				C5D24ED3230B02B600146E37 /* FourOfFourGoalView.swift in Sources */,
 				C5DA181A230492A6003C84C2 /* EarningsViewController.swift in Sources */,
 				C5C2B12522D3A2B3002CB4C5 /* PromptDetailView.swift in Sources */,
-				C54F62E52326AE2400857C7D /* ACMigrationView.swift in Sources */,
 				C54AEA1621C81B5F00DEC360 /* SymbolsTestController.swift in Sources */,
 				C57E866223074DCF009B4BFC /* GoalDayTile.swift in Sources */,
 				C5AB56122302030F00129E03 /* WeekStepperView.swift in Sources */,
@@ -2190,8 +2141,8 @@
 				C54AEA0921C81B5F00DEC360 /* GridTest.swift in Sources */,
 				C54AEA3121C81B5F00DEC360 /* Schedule+CoreDataClass.swift in Sources */,
 				C55F8CC9230D89AC006D43BD /* Study+Expressible.swift in Sources */,
+				CB855AD227178D32004599EC /* CompletedTestsDefaultsReport.swift in Sources */,
 				C54E8E1122E64CE00080BFC1 /* SymbolsTutorialViewController.swift in Sources */,
-				E8BA72FB23198BD800823374 /* ResourcesTableViewCell.swift in Sources */,
 				2D35988D237B6604005EF2CF /* SimplifiedPricesTestTutorialViewController.swift in Sources */,
 				C54AE9D321C81B5F00DEC360 /* State.swift in Sources */,
 				C57A4B7D258ABD6100238700 /* ACResponsiveAuthViewController.swift in Sources */,
@@ -2214,7 +2165,6 @@
 				C5D24ED5230B040300146E37 /* TwoADayGoalView.swift in Sources */,
 				C51A7D9022D8CDAE00854B13 /* BasicSurveyViewController.swift in Sources */,
 				177BA72A2527BA150018A25F /* GridTestTutorialViewController.swift in Sources */,
-				C54F62E32326AD9300857C7D /* ACMigrationViewController.swift in Sources */,
 				C54AEA0C21C81B5F00DEC360 /* SymbolsTestViewController.swift in Sources */,
 				C54AEA0221C81B5F00DEC360 /* HMCodable.swift in Sources */,
 				C54AEA1421C81B5F00DEC360 /* TestManagerController.swift in Sources */,
@@ -2223,6 +2173,7 @@
 				C54AEA0A21C81B5F00DEC360 /* ExtendedGridTestViewController.swift in Sources */,
 				C54AE9DC21C81B5F00DEC360 /* Set+Extensions.swift in Sources */,
 				C54AE9D421C81B5F00DEC360 /* JSONData.swift in Sources */,
+				CB855AD327178D32004599EC /* SageSessionController.swift in Sources */,
 				C5FDC5B4258BE4A100E80E69 /* AuthHandler.swift in Sources */,
 				C54D104622C28A1D00B43E42 /* ChoiceView.swift in Sources */,
 				C54AE9E221C81B5F00DEC360 /* FatalErrorUtil.swift in Sources */,
@@ -2233,7 +2184,6 @@
 				C5C2B12922D3ECBB002CB4C5 /* InfoContentView.swift in Sources */,
 				C54AEA0121C81B5F00DEC360 /* CancelButton.swift in Sources */,
 				C5D24ED7230B048900146E37 /* TotalSessionGoalView.swift in Sources */,
-				E8BA72EA23198B8200823374 /* FAQViewController.swift in Sources */,
 				C5E253BA2421589D007FE0BA /* ACStudyTotalsViewController.swift in Sources */,
 				C54AEA3621C81B5F00DEC360 /* ScheduleController.swift in Sources */,
 				C5C2B12722D3D66C002CB4C5 /* InfoView.swift in Sources */,
@@ -2244,6 +2194,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB855ADF2717A93C004599EC /* SageEarningsControllerTests.swift in Sources */,
 				C5C488B025251C58006500F2 /* StatusCodeTests.swift in Sources */,
 				C584F33522C16682009741A7 /* ArcTests.swift in Sources */,
 			);
@@ -2325,7 +2276,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = HMMarkup/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2354,7 +2305,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = HMMarkup/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2604,7 +2555,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9RQ4636JA2;
 				INFOPLIST_FILE = ArcTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2623,7 +2574,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9RQ4636JA2;
 				INFOPLIST_FILE = ArcTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2649,7 +2600,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = ArcUIKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2678,7 +2629,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = ArcUIKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2798,6 +2749,61 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CB855AC427178C60004599EC /* XCRemoteSwiftPackageReference "BridgeApp-Apple-SDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Sage-Bionetworks/BridgeApp-Apple-SDK";
+			requirement = {
+				kind = exactVersion;
+				version = 5.1.4;
+			};
+		};
+		CB855AD62717A1AD004599EC /* XCRemoteSwiftPackageReference "Bridge-iOS-SDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Sage-Bionetworks/Bridge-iOS-SDK";
+			requirement = {
+				kind = exactVersion;
+				version = 4.4.84;
+			};
+		};
+		CB855AD92717A1C0004599EC /* XCRemoteSwiftPackageReference "SageResearch" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Sage-Bionetworks/SageResearch";
+			requirement = {
+				kind = exactVersion;
+				version = 4.2.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CB855AC527178C60004599EC /* BridgeApp */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CB855AC427178C60004599EC /* XCRemoteSwiftPackageReference "BridgeApp-Apple-SDK" */;
+			productName = BridgeApp;
+		};
+		CB855AC727178C60004599EC /* BridgeAppUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CB855AC427178C60004599EC /* XCRemoteSwiftPackageReference "BridgeApp-Apple-SDK" */;
+			productName = BridgeAppUI;
+		};
+		CB855AD72717A1AD004599EC /* BridgeSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CB855AD62717A1AD004599EC /* XCRemoteSwiftPackageReference "Bridge-iOS-SDK" */;
+			productName = BridgeSDK;
+		};
+		CB855ADA2717A1C0004599EC /* Research */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CB855AD92717A1C0004599EC /* XCRemoteSwiftPackageReference "SageResearch" */;
+			productName = Research;
+		};
+		CB855ADC2717A1C0004599EC /* ResearchUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CB855AD92717A1C0004599EC /* XCRemoteSwiftPackageReference "SageResearch" */;
+			productName = ResearchUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		C54AE94821C81B5C00DEC360 /* arc.xcdatamodeld */ = {

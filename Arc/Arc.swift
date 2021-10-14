@@ -161,6 +161,7 @@ open class Arc : ArcApi {
         environment.configure()
 
     }
+    
     public func nextAvailableState(runPeriodicBackgroundTask:Bool = false, direction:UIWindow.TransitionOptions.Direction = .toRight) {
 		let state = appNavigation.nextAvailableState(runPeriodicBackgroundTask: runPeriodicBackgroundTask)
 		HMLog("Navigating to:  \(state)")
@@ -267,7 +268,7 @@ open class Arc : ArcApi {
 
         config.translation =  matchesBoth?.first?.map ?? matchesLanguage?.first?.map ?? matchesCountry?.first?.map
         if shouldTranslate {
-            assert(config.translation != nil , "Unable to load translation for \(country ?? "")_\(language ?? "")")
+            print("Unable to load translation for \(country ?? "")_\(language ?? "")")
         }
         HMMarkupRenderer.config = config
 
