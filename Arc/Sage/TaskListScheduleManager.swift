@@ -322,7 +322,7 @@ public class TaskListScheduleManager {
             
             // Add the current data groups and the user's arc id
             if let dataGroups = SBAParticipantManager.shared.studyParticipant?.dataGroups {
-                metadata[kDataGroups] = dataGroups
+                metadata[kDataGroups] = dataGroups.joined(separator:",")
             }
             
             // Insert the metadata dictionary
