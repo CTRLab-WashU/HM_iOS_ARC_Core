@@ -36,6 +36,11 @@ public class SymbolsTestViewController: UIViewController, TestProgressViewContro
 	
     @IBOutlet weak var promptLabel: ACLabel!
 	@IBOutlet public weak var choiceContainer: UIView!
+    
+    // Optional since the tutorial view controller does not show button tapsr
+    @IBOutlet public weak var choice1OnClick: UIView?
+    @IBOutlet public weak var choice2OnClick: UIView?
+    
     @IBOutlet public weak var choice1: UIView!
     @IBOutlet public weak var choice2: UIView!
 	public var isPracticeTest:Bool = false
@@ -141,6 +146,11 @@ public class SymbolsTestViewController: UIViewController, TestProgressViewContro
 		if !isPracticeTest {
 			layoutOptionsAndChoices()
 		}
+        
+        self.choice1OnClick?.isHidden = true
+        self.choice1OnClick?.layer.cornerRadius = 2
+        self.choice2OnClick?.isHidden = true
+        self.choice2OnClick?.layer.cornerRadius = 2
     }
     public func layoutOptionsAndChoices(){
         
@@ -180,6 +190,21 @@ public class SymbolsTestViewController: UIViewController, TestProgressViewContro
 		
     }
     @IBAction func optionSelected(_ sender: SymbolSelectButton) {
+        
+        // When video recording this test for data validation, we need to have
+        // have visual feedback which symbol was tapped
+        if (sender.superview == choice1) {
+            self.choice1OnClick?.isHidden = false
+            DispatchQueue.main.asyncAfter(deadline: (.now() + 0.1), execute: { [weak self] in
+                self?.choice1OnClick?.isHidden = true
+            })
+        } else if (sender.superview == choice2) {
+            self.choice2OnClick?.isHidden = false
+            DispatchQueue.main.asyncAfter(deadline: (.now() + 0.1), execute: { [weak self] in
+                self?.choice2OnClick?.isHidden = true
+            })
+        }
+        
 		if !isPracticeTest {
         	_ = controller.mark(timeTouched: questionIndex, date:sender.touchTime!, id: responseID)
         	let _ = controller.set(choice: sender.tag, forQueston: questionIndex, id: responseID)

@@ -217,6 +217,11 @@ open class StudyController : MHController {
 		return results;
 		
 	}
+    
+    open func createFaqViewController() -> UIViewController {
+        // To be implemented by sub-classes
+        return UIViewController()
+    }
 	
 	open func getPastStudyPeriods() -> [StudyPeriod]
 	{

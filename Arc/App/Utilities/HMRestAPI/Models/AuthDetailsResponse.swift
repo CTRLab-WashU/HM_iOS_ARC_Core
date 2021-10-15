@@ -9,6 +9,7 @@
 import Foundation
 public enum AuthDetailType : String, Codable {
     case rater
+    case phone_number_entry
     case confirm_code
     case manual
 }

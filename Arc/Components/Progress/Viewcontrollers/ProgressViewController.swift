@@ -50,7 +50,7 @@ class ProgressViewController: CustomViewController<ACProgressView> {
     
     @objc func viewFaqPressed() {
         print("viewFaqPressed")
-        let vc:FAQViewController = .get()
+        let vc = Arc.shared.studyController.createFaqViewController()
         self.navigationController?.pushViewController(vc, animated: true);
         
         //        let topic = self.faqTopics[indexPath.row]; // get topic name from assets

@@ -575,7 +575,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
     open override func popToRootViewController(animated: Bool) -> [UIViewController]? {
         let vcs = super.popToRootViewController(animated: animated);
         
-        currentIndex = viewControllers.count - 1
+        currentIndex = 0
         print("Controller index:", currentIndex)
 		set(error: nil)
 
