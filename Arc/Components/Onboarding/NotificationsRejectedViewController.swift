@@ -65,7 +65,8 @@ public class NotificationsRejectedViewController : CustomViewController<InfoView
 		customView.backgroundColor = UIColor(named:"Primary")!
 		customView.setTextColor(UIColor(named: "Secondary Text"))
         
-		
+        // Record that we've shown the notifications rejected screen, fix related to DIAN-76
+        UserDefaults.standard.setValue(true, forKey: "rejectedFirstNotifications")
 		
 		customView.setButtonColor(style:.secondary)
 		
@@ -121,6 +122,10 @@ public class NotificationsRejectedViewController : CustomViewController<InfoView
 		Roboto.PostProcess.link(button1)
 		
 		button1.addAction {  [weak self] in
+            // We are proceeding without fixing notifications. Make sure we record that we've continued past notifications so that
+            // when the app opens in the future we don't bug them about it again (DIAN-76).
+            UserDefaults.standard.setValue(true, forKey: "passedNotificationsPrompting")
+            
 			self?.surveyInputDelegate?.tryNextPressed()
 		}
 		customView.setAdditionalFooterContent(button1)
