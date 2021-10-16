@@ -21,10 +21,20 @@ open class OnboardingSurveyViewController: BasicSurveyViewController {
 	}
 	
 	open override func customViewController(forQuestion question: Survey.Question) -> UIViewController? {
-		if question.state == "NotificationAccess" {
-			currentViewControllerAlwaysHidesBarButtons = true
-
-			return NotificationPermissionViewController()
+        // See if we've already rejected the first notifications previously, related to DIAN-76
+        let alreadyRejectedFirstNotifications = UserDefaults.standard.bool(forKey: "rejectedFirstNotifications")
+		
+        if question.state == "NotificationAccess" {
+            if alreadyRejectedFirstNotifications {
+                // we've already rejected previously, so go to the screen to convince them it's a bad
+                // idea instead of the first screen (which will cause an infinite loop)
+                currentViewControllerAlwaysHidesBarButtons = true
+                return NotificationsRejectedViewController()
+            } else {
+                // Things are normal, proceed to the first notifications controller
+                currentViewControllerAlwaysHidesBarButtons = true
+                return NotificationPermissionViewController()
+            }
 		}
 		if question.state == "NotificationAccessRejected" {
 			currentViewControllerAlwaysHidesBarButtons = true
