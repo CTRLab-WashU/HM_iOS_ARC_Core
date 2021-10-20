@@ -514,8 +514,10 @@ public class TaskListScheduleManager {
 
     private func migrationError(completionListener: MigrationCompletedListener, errorStr: String) {
         DispatchQueue.main.async {
+            let arcID = self.arcIdString() ?? ""
+            let deviceId = Arc.shared.deviceId
             print(errorStr)
-            completionListener.failure(errorString: errorStr)
+            completionListener.failure(errorString: "\(errorStr)\n\(arcID)\n\(deviceId)")
         }
     }
     
