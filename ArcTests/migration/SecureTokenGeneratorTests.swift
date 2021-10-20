@@ -41,7 +41,7 @@ class SecureTokenGeneratorTests: XCTestCase {
         for _ in 0..<10000 {
             let password = SecureTokenGenerator.BRIDGE_PASSWORD.nextBridgePassword()
             XCTAssertNotNil(password)
-            XCTAssertEqual(20, password!.count)
+            XCTAssertEqual(9, password!.count)
             XCTAssertTrue(SecureTokenGenerator.BRIDGE_PASSWORD.isValidBridgePassword(password: password))
         }
     }

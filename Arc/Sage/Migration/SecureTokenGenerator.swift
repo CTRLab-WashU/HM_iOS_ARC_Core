@@ -60,10 +60,11 @@ public class SecureTokenGenerator {
     public static var ARC_ID_INSTANCE = SecureTokenGenerator(length: 6, characters: NUMERIC)
 
     /**
-     * Create session identifiers. This is about 4.36e+37 unique values,
-     * which is enough for a good bridge password.
+     * I used this website https://asecuritysite.com/encryption/passes and using our parameters,
+     * it said a 9 character password has 66,540,410,775,079,424 available passwords,
+     * and it would take 2108.59 years to crack if requests were sent.
      */
-    public static var BRIDGE_PASSWORD = SecureTokenGenerator(length: 20, characters: PASSWORD)
+    public static var BRIDGE_PASSWORD = SecureTokenGenerator(length: 9, characters: PASSWORD)
 
     private var characters: String
     public var tokenLength: Int {
