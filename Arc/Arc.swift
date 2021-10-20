@@ -164,7 +164,13 @@ open class Arc : ArcApi {
     
     public func nextAvailableState(runPeriodicBackgroundTask:Bool = false, direction:UIWindow.TransitionOptions.Direction = .toRight) {
 		let state = appNavigation.nextAvailableState(runPeriodicBackgroundTask: runPeriodicBackgroundTask)
-		HMLog("Navigating to:  \(state)")
+        
+        if !appNavigation.shouldNavigate(to: state) {
+            print("App navigation blocked for state \(state)")
+            return
+        }
+        
+		HMLog("Navigating to:  \(state)")        
 		Arc.currentState = state
         appNavigation.navigate(state: state, direction: direction)
 	}

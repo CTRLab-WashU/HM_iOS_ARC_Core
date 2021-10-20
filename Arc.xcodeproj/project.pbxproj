@@ -337,6 +337,10 @@
 		CB855ADB2717A1C0004599EC /* Research in Frameworks */ = {isa = PBXBuildFile; productRef = CB855ADA2717A1C0004599EC /* Research */; };
 		CB855ADD2717A1C0004599EC /* ResearchUI in Frameworks */ = {isa = PBXBuildFile; productRef = CB855ADC2717A1C0004599EC /* ResearchUI */; };
 		CB855ADF2717A93C004599EC /* SageEarningsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB855ADE2717A93C004599EC /* SageEarningsControllerTests.swift */; };
+		CB984EE8271E25C20034C9BB /* HmToSageMigrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB984EE7271E25C20034C9BB /* HmToSageMigrationViewController.swift */; };
+		CB984EF3271F13FF0034C9BB /* SecureTokenGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB984EF2271F13FF0034C9BB /* SecureTokenGenerator.swift */; };
+		CB984EF7271F22350034C9BB /* HmToSageMigrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB984EF5271F22350034C9BB /* HmToSageMigrationViewController.xib */; };
+		CB984EF9271F39A80034C9BB /* SecureTokenGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB984EF8271F39A70034C9BB /* SecureTokenGeneratorTests.swift */; };
 		E86732322315808800844F91 /* ACHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86732312315808800844F91 /* ACHomeViewController.swift */; };
 		E898B20823282EA400FBF22D /* AC2FAHelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E898B20723282EA400FBF22D /* AC2FAHelpViewController.xib */; };
 		E898B20A2328339C00FBF22D /* AC2FAHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E898B2092328339C00FBF22D /* AC2FAHelpViewController.swift */; };
@@ -698,6 +702,10 @@
 		CB855ACD27178D31004599EC /* SageSessionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SageSessionController.swift; sourceTree = "<group>"; };
 		CB855ACE27178D32004599EC /* TaskListScheduleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListScheduleManager.swift; sourceTree = "<group>"; };
 		CB855ADE2717A93C004599EC /* SageEarningsControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SageEarningsControllerTests.swift; sourceTree = "<group>"; };
+		CB984EE7271E25C20034C9BB /* HmToSageMigrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HmToSageMigrationViewController.swift; sourceTree = "<group>"; };
+		CB984EF2271F13FF0034C9BB /* SecureTokenGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTokenGenerator.swift; sourceTree = "<group>"; };
+		CB984EF5271F22350034C9BB /* HmToSageMigrationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HmToSageMigrationViewController.xib; sourceTree = "<group>"; };
+		CB984EF8271F39A70034C9BB /* SecureTokenGeneratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureTokenGeneratorTests.swift; sourceTree = "<group>"; };
 		E86732312315808800844F91 /* ACHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACHomeViewController.swift; sourceTree = "<group>"; };
 		E898B20723282EA400FBF22D /* AC2FAHelpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AC2FAHelpViewController.xib; sourceTree = "<group>"; };
 		E898B2092328339C00FBF22D /* AC2FAHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AC2FAHelpViewController.swift; sourceTree = "<group>"; };
@@ -909,6 +917,7 @@
 		C54AE8F421C81B2F00DEC360 /* ArcTests */ = {
 			isa = PBXGroup;
 			children = (
+				CB984EFA271F3A030034C9BB /* migration */,
 				CB855ADE2717A93C004599EC /* SageEarningsControllerTests.swift */,
 				C54AE8F521C81B2F00DEC360 /* ArcTests.swift */,
 				C5B4BD14251949D90094A338 /* StatusCodeTests.swift */,
@@ -1610,6 +1619,7 @@
 		CB855AC927178D17004599EC /* Sage */ = {
 			isa = PBXGroup;
 			children = (
+				CB984EE6271E25A00034C9BB /* Migration */,
 				CB855ACC27178D31004599EC /* CompletedTestsDefaultsReport.swift */,
 				CB855ACA27178D31004599EC /* SageEarningsController.swift */,
 				CB855ACB27178D31004599EC /* SageScheduleController.swift */,
@@ -1617,6 +1627,24 @@
 				CB855ACE27178D32004599EC /* TaskListScheduleManager.swift */,
 			);
 			path = Sage;
+			sourceTree = "<group>";
+		};
+		CB984EE6271E25A00034C9BB /* Migration */ = {
+			isa = PBXGroup;
+			children = (
+				CB984EF5271F22350034C9BB /* HmToSageMigrationViewController.xib */,
+				CB984EE7271E25C20034C9BB /* HmToSageMigrationViewController.swift */,
+				CB984EF2271F13FF0034C9BB /* SecureTokenGenerator.swift */,
+			);
+			path = Migration;
+			sourceTree = "<group>";
+		};
+		CB984EFA271F3A030034C9BB /* migration */ = {
+			isa = PBXGroup;
+			children = (
+				CB984EF8271F39A70034C9BB /* SecureTokenGeneratorTests.swift */,
+			);
+			path = migration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1852,6 +1880,7 @@
 				C54AEA0F21C81B5F00DEC360 /* PricesTestViewController.xib in Resources */,
 				C54AEA2521C81B5F00DEC360 /* HomeViewController.xib in Resources */,
 				C54AE9CE21C81B5F00DEC360 /* SharedAssets.xcassets in Resources */,
+				CB984EF7271F22350034C9BB /* HmToSageMigrationViewController.xib in Resources */,
 				C54AEA2121C81B5F00DEC360 /* GridImageCell.xib in Resources */,
 				C54AEA2A21C81B5F00DEC360 /* WelcomeViewController.xib in Resources */,
 				C54AEA6721C81B5F00DEC360 /* Roboto-MediumItalic.ttf in Resources */,
@@ -2143,6 +2172,7 @@
 				C54AE9D321C81B5F00DEC360 /* State.swift in Sources */,
 				C57A4B7D258ABD6100238700 /* ACResponsiveAuthViewController.swift in Sources */,
 				C54AE9F421C81B5F00DEC360 /* StudyController.swift in Sources */,
+				CB984EE8271E25C20034C9BB /* HmToSageMigrationViewController.swift in Sources */,
 				C54AE9D221C81B5F00DEC360 /* Study.swift in Sources */,
 				C51A7D8C22D8C33F00854B13 /* NotificationPermissionViewController.swift in Sources */,
 				C5F77F37222F095200BECAE1 /* SignatureViewController.swift in Sources */,
@@ -2182,6 +2212,7 @@
 				C5D24ED7230B048900146E37 /* TotalSessionGoalView.swift in Sources */,
 				C5E253BA2421589D007FE0BA /* ACStudyTotalsViewController.swift in Sources */,
 				C54AEA3621C81B5F00DEC360 /* ScheduleController.swift in Sources */,
+				CB984EF3271F13FF0034C9BB /* SecureTokenGenerator.swift in Sources */,
 				C5C2B12722D3D66C002CB4C5 /* InfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2190,6 +2221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB984EF9271F39A80034C9BB /* SecureTokenGeneratorTests.swift in Sources */,
 				CB855ADF2717A93C004599EC /* SageEarningsControllerTests.swift in Sources */,
 				C5C488B025251C58006500F2 /* StatusCodeTests.swift in Sources */,
 				C584F33522C16682009741A7 /* ArcTests.swift in Sources */,
