@@ -792,6 +792,8 @@ public class TaskListScheduleManager {
                         let completedTestList = try self.jsonDecoder
                             .decode(CompletedTestList.self, from: jsonData)
                         self.completedTests.setCurrent(completedTestList)
+                        // Removing this key will force an earnings reload
+                        Arc.shared.appController.delete(forKey: EarningsController.overviewKey)
                     } catch {
                         self.migrationError(completionListener: completionListener,
                                             errorStr: "Error \(what) decoding completed tests")
