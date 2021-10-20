@@ -111,7 +111,7 @@ public class TaskListScheduleManager {
         var availabilityData: WakeSleepScheduleRequestData? = nil
         var testScheduleData: TestScheduleRequestData? = nil
         
-        let reportIds: [RSDIdentifier] = [.availability, .testSchedule /*, .completedSessions */]
+        let reportIds: [RSDIdentifier] = [.availability, .testSchedule]
         var successCtr = reportIds.count
         
         reportIds.forEach { (identifier) in
