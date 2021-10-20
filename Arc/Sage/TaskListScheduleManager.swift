@@ -187,7 +187,7 @@ public class TaskListScheduleManager {
     }
     
     open func createTestScheduleRequestData(mostRecentReport: SBAReport?) -> TestScheduleRequestData? {
-        
+
         guard let clientData = mostRecentReport?.clientData.toJSONSerializable() as? String,
               let data = clientData.data(using: String.Encoding.utf8) else {
             print("Could not get the TestSchedule client data from report")
@@ -392,36 +392,38 @@ public class TaskListScheduleManager {
     open func transformReportData(_ report: SBBReportData, reportKey: RSDIdentifier, category: SBAReportCategory) -> SBAReport? {
         guard let reportData = report.data, let date = report.date else { return nil }
         
-        if let json = reportData as? [String : Any],
-            let clientData = json[kReportClientDataKey] as? JsonSerializable,
-            let dateString = json[kReportDateKey] as? String,
-            let timeZoneIdentifier = json[kReportTimeZoneIdentifierKey] as? String {
-            let reportDate = self.factory.decodeDate(from: dateString) ?? date
-            let timeZone = TimeZone(identifier: timeZoneIdentifier) ??
-                TimeZone(iso8601: dateString) ??
-                TimeZone.current
-            
-            return SBAReport.init(identifier: reportKey.rawValue, date: reportDate, json: clientData, timeZone: timeZone)
-        }
-        else {
-            switch category {
-            case .timestamp, .groupByDay:
-                return SBAReport.init(identifier: reportKey.rawValue, date: date, json: reportData as! JsonSerializable, timeZone: TimeZone.current)
-                
-            case .singleton:
-                let timeZone = TimeZone(secondsFromGMT: 0)!
-                let reportDate: Date = {
-                    if let localDate = report.localDate {
-                        let dateFormatter = NSDate.iso8601DateOnlyformatter()!
-                        dateFormatter.timeZone = timeZone
-                        return dateFormatter.date(from: localDate) ?? date
-                    }
-                    else {
-                        return date
-                    }
-                }()
-                return SBAReport.init(identifier: reportKey.rawValue, date: reportDate, json: reportData as! JsonSerializable, timeZone: timeZone)
+        // ClientData is a String when uploaded by the iOS/Android app
+        var serializable = reportData.toJSONSerializable()
+        // However, if edited through Bridge, ClientData shows up as a Dictionary
+        if let dictionary = serializable as? [AnyHashable: Any] {
+            // Client data was edited on Bridge
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: dictionary)
+                if let jsonStr = String(data: jsonData, encoding: .utf8) {
+                    serializable = jsonStr
+                }
+            } catch {
+                print(error.localizedDescription)
             }
+        }
+        
+        switch category {
+        case .timestamp, .groupByDay:
+            return SBAReport.init(identifier: reportKey.rawValue, date: date, json: serializable, timeZone: TimeZone.current)
+            
+        case .singleton:
+            let timeZone = TimeZone(secondsFromGMT: 0)!
+            let reportDate: Date = {
+                if let localDate = report.localDate {
+                    let dateFormatter = NSDate.iso8601DateOnlyformatter()!
+                    dateFormatter.timeZone = timeZone
+                    return dateFormatter.date(from: localDate) ?? date
+                }
+                else {
+                    return date
+                }
+            }()
+            return SBAReport.init(identifier: reportKey.rawValue, date: reportDate, json: serializable, timeZone: timeZone)
         }
     }
     
@@ -482,7 +484,7 @@ public class TaskListScheduleManager {
         if (dataMigration != nil) {
             return true
         }
-        var arcID = arcIdString()
+        let arcID = arcIdString()
         let externalId = SBAParticipantManager.shared.studyParticipant?.externalId
         return userNeedsToMigrate(participantId: arcID, externalId: externalId)
     }
