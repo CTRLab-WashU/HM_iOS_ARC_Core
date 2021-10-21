@@ -68,7 +68,7 @@ public class TaskListScheduleManager {
     let PARTICIPANT_STUDY_IDS = "studyIds"
     let PARTICIPANT_EXTERNAL_IDS = "externalIds"
     
-    let ATTRIBUTE_SIGN_IN_TOKEN = "SIGN_IN_TOKEN"
+    let ATTRIBUTE_VERIFICATION_CODE = "VERIFICATION_CODE"
     let ATTRIBUTE_IS_MIGRATED = "IS_MIGRATED"
     let ATTRIBUTE_VALUE_TRUE = "true"
     
@@ -750,7 +750,7 @@ public class TaskListScheduleManager {
             print(what)
             
             var newAttributes = migration.attributes ?? [String: String]()
-            newAttributes[self.ATTRIBUTE_SIGN_IN_TOKEN] = migration.newUserPassword ?? ""
+            newAttributes[self.ATTRIBUTE_VERIFICATION_CODE] = migration.newUserPassword ?? ""
             newAttributes[self.ATTRIBUTE_IS_MIGRATED] = "" // Remove migration status
             var participant = [String: [String: Any]]()
             participant[PARTICIPANT_ATTRIBUTES] = newAttributes
