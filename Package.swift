@@ -1,10 +1,14 @@
 // swift-tools-version:5.5
 // The swift-tools-version declares the minimum version of Swift required to build this package.
-
 import PackageDescription
 
 let package = Package(
     name: "Arc",
+    defaultLocalization: "en",
+    platforms: [
+        // Add support for all platforms starting from a specific version.
+        .iOS(.v12),
+    ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
@@ -37,15 +41,20 @@ let package = Package(
             from: "1.2.3"),
     ],
     targets: [
-	 .target(
+        
+        .target(
             name: "HMMarkup",
+            path: "HMMarkup",
             ),
+        
         .target(
             name: "ArcUIKit",
             dependencies: [
                 "HMMarkup",
             ],
+            path: "ArcUIKit",
             ),
+
         .target(
             name: "Arc",
             dependencies: [
@@ -56,10 +65,9 @@ let package = Package(
                 "BridgeSDK",
                 "JsonModel",
                 "ArcUIKit",
-	        "HMMarkup",
+                "HMMarkup",
             ],
-            path: "ArcCore/BridgeApp/iOS",
-            resources: [],
+            path: "Arc",
             ),
 
     ]
