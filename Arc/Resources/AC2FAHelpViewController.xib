@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -40,7 +40,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="142"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nh2-Yg-A0k" customClass="HMMarkupButton" customModule="HMMarkup">
-                                            <rect key="frame" x="8" y="12" width="75" height="37"/>
+                                            <rect key="frame" x="8" y="12" width="36" height="37"/>
                                             <color key="backgroundColor" white="1" alpha="0.14701947770000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="37" id="Th7-tz-KBS"/>
@@ -137,6 +137,17 @@
             <point key="canvasLocation" x="77.599999999999994" y="84.107946026986511"/>
         </view>
     </objects>
+    <designables>
+        <designable name="Nh2-Yg-A0k">
+            <size key="intrinsicContentSize" width="36" height="37"/>
+        </designable>
+        <designable name="W97-sL-92S">
+            <size key="intrinsicContentSize" width="41.5" height="20"/>
+        </designable>
+        <designable name="zfG-8g-Bwr">
+            <size key="intrinsicContentSize" width="63" height="30.5"/>
+        </designable>
+    </designables>
     <resources>
         <image name="arrow_left_white" width="16" height="16"/>
         <namedColor name="Primary Info">

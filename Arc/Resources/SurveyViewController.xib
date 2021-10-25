@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14810.11" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14766.13"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -113,7 +113,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1UX-tn-iFl">
-                                                    <rect key="frame" x="57.5" y="0.0" width="88" height="24"/>
+                                                    <rect key="frame" x="54" y="0.0" width="95" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="Auq-PM-aC3"/>
                                                     </constraints>
@@ -122,7 +122,7 @@
                                                             <fragment content="Privacy Policy">
                                                                 <attributes>
                                                                     <color key="NSColor" name="Primary"/>
-                                                                    <font key="NSFont" size="15" name=".SFNSText"/>
+                                                                    <font key="NSFont" metaFont="system" size="15"/>
                                                                     <integer key="NSUnderline" value="1"/>
                                                                 </attributes>
                                                             </fragment>
@@ -223,6 +223,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Oti-R1-FeL" secondAttribute="bottom" id="0HU-W3-bcz"/>
@@ -237,16 +238,29 @@
                 <constraint firstItem="mdr-oD-iS5" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="UmE-3z-uxy"/>
                 <constraint firstItem="Oti-R1-FeL" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="u4b-C2-SXj"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="4" y="-45.42728635682159"/>
         </view>
     </objects>
+    <designables>
+        <designable name="0I6-gD-ixz">
+            <size key="intrinsicContentSize" width="65.5" height="30.5"/>
+        </designable>
+        <designable name="68i-9R-al1">
+            <size key="intrinsicContentSize" width="203" height="18"/>
+        </designable>
+        <designable name="9Do-fU-xIu">
+            <size key="intrinsicContentSize" width="287.5" height="30.5"/>
+        </designable>
+        <designable name="Jws-eG-2DS">
+            <size key="intrinsicContentSize" width="30" height="34"/>
+        </designable>
+        <designable name="slk-NL-Rhg">
+            <size key="intrinsicContentSize" width="287.5" height="21"/>
+        </designable>
+    </designables>
     <resources>
         <namedColor name="Error">
             <color red="0.60000002384185791" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Primary">
-            <color red="0.0" green="0.37299999594688416" blue="0.5220000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Primary">
             <color red="0.0" green="0.37299999594688416" blue="0.5220000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

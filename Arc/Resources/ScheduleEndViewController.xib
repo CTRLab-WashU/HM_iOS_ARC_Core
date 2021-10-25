@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -33,12 +31,12 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Great! Starting tomorrow, we’ll only send you reminders between 7:00 AM and 11:00 PM." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCE-ep-AMn" customClass="HMMarkupLabel" customModule="HMMarkup">
-                    <rect key="frame" x="24" y="68" width="327" height="122"/>
+                    <rect key="frame" x="24" y="48" width="327" height="122"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="26"/>
                     <color key="textColor" name="Primary Text"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2PP-q1-Lor" customClass="HMMarkupButton" customModule="HMMarkup">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2PP-q1-Lor" customClass="HMMarkupButton" customModule="HMMarkup">
                     <rect key="frame" x="48" y="539" width="279" height="32"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -55,7 +53,7 @@
                         <action selector="changeTimesPressed:" destination="-1" eventType="touchUpInside" id="x3b-fK-yeA"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oHK-Gp-JMt" customClass="ACButton" customModule="ArcUIKit">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oHK-Gp-JMt" customClass="ACButton" customModule="ArcUIKit">
                     <rect key="frame" x="24" y="595" width="327" height="48"/>
                     <constraints>
                         <constraint firstAttribute="height" priority="999" constant="48" id="vrm-tF-jlR"/>
@@ -82,6 +80,7 @@
                     </connections>
                 </button>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="oHK-Gp-JMt" secondAttribute="trailing" constant="24" id="0G6-K8-Ura"/>
@@ -94,10 +93,20 @@
                 <constraint firstItem="oHK-Gp-JMt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="olc-fK-JDW"/>
                 <constraint firstItem="2PP-q1-Lor" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="48" id="pul-eL-skG"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="40.799999999999997" y="46.326836581709152"/>
         </view>
     </objects>
+    <designables>
+        <designable name="2PP-q1-Lor">
+            <size key="intrinsicContentSize" width="105" height="30"/>
+        </designable>
+        <designable name="hCE-ep-AMn">
+            <size key="intrinsicContentSize" width="1014.5" height="30.5"/>
+        </designable>
+        <designable name="oHK-Gp-JMt">
+            <size key="intrinsicContentSize" width="46" height="34"/>
+        </designable>
+    </designables>
     <resources>
         <namedColor name="Primary">
             <color red="0.0" green="0.3411764705882353" blue="0.50588235294117645" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

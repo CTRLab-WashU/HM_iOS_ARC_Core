@@ -908,8 +908,7 @@
 				C54AE90321C81B5C00DEC360 /* App */,
 				C54AE94B21C81B5C00DEC360 /* Components */,
 				CB855AC927178D17004599EC /* Sage */,
-				C54AE9C021C81B5F00DEC360 /* Roboto */,
-				C54AE90121C81B5B00DEC360 /* SharedAssets.xcassets */,
+				CBE815272727559C00EA9C80 /* Resources */,
 			);
 			path = Arc;
 			sourceTree = "<group>";
@@ -1090,11 +1089,7 @@
 				C556BA2C22CA4B3D0057B54B /* ACTemplateView.swift */,
 				C5C2B12C22D4E4E0002CB4C5 /* SupportViews */,
 				C54AE94121C81B5C00DEC360 /* CancelButton.swift */,
-				C54AE93A21C81B5C00DEC360 /* CancelButton.xib */,
 				C54AE93F21C81B5C00DEC360 /* MHAlertView.swift */,
-				C54AE93D21C81B5C00DEC360 /* MHAlertView.xib */,
-				C5D0F6F9220B477B00F04942 /* MHScrollingAlertView.xib */,
-				C54AE93E21C81B5C00DEC360 /* PrimaryButton.xib */,
 				C54AE94021C81B5C00DEC360 /* PrimaryButton.swift */,
 			);
 			path = Views;
@@ -1124,7 +1119,6 @@
 				C54E8E1322E790230080BFC1 /* Progress */,
 				C51A7D8A22D8C30800854B13 /* Onboarding */,
 				C54AE97F21C81B5C00DEC360 /* LoadingScreenViewController.swift */,
-				C54AE98D21C81B5C00DEC360 /* LoadingScreenViewController.xib */,
 				C54AE94C21C81B5C00DEC360 /* TestManager */,
 				C54AE96C21C81B5C00DEC360 /* Home */,
 				C54AE97421C81B5C00DEC360 /* Auth */,
@@ -1185,19 +1179,13 @@
 			children = (
 				C54AE96221C81B5C00DEC360 /* SymbolSelectButton.swift */,
 				C54AE96321C81B5C00DEC360 /* FCollectionContainerView.swift */,
-				C54AE96421C81B5C00DEC360 /* InterstitialView.xib */,
 				C54AE96521C81B5C00DEC360 /* TextAlertView.swift */,
 				C54AE96621C81B5C00DEC360 /* InterstitialView.swift */,
-				C54AE96721C81B5C00DEC360 /* GridFCell.xib */,
-				C54AE96821C81B5C00DEC360 /* FCollectionContainerView.xib */,
 				C54AE96921C81B5C00DEC360 /* GridTestCells.swift */,
-				C54AE96A21C81B5C00DEC360 /* TextAlertView.xib */,
-				C54AE96B21C81B5C00DEC360 /* GridImageCell.xib */,
 				C56D6C5822CD0DFE00C3F8EA /* TutorialView.swift */,
 				C5C2B12A22D3F205002CB4C5 /* TestInfoView.swift */,
 				C58129F722E20BE000CD1883 /* TutorialCompleteView.swift */,
 				175E961524D8832C001166A1 /* GridTestSelectionView.swift */,
-				17CE9D0724D89E7B002EF878 /* GridTestSelectionView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1216,9 +1204,7 @@
 			children = (
 				C59D6EEE22FA21B20037B671 /* ACHomeTabViewController.swift */,
 				C54AE96E21C81B5C00DEC360 /* ACContactNavigationController.swift */,
-				C54AE96F21C81B5C00DEC360 /* ACContactViewController.xib */,
 				C54AE97021C81B5C00DEC360 /* ACContactViewController.swift */,
-				C54AE97121C81B5C00DEC360 /* HomeViewController.xib */,
 				C54AE97221C81B5C00DEC360 /* AboutViewController.swift */,
 				E86732312315808800844F91 /* ACHomeViewController.swift */,
 			);
@@ -1249,11 +1235,9 @@
 			children = (
 				C589B50D21ED001700389342 /* ACAuthViewController.swift */,
 				C54AE97821C81B5C00DEC360 /* WelcomeViewController.swift */,
-				C54AE97921C81B5C00DEC360 /* WelcomeViewController.xib */,
 				C5F77F36222F095200BECAE1 /* SignatureViewController.swift */,
 				C593227422E8BB0F00528FF5 /* AC2FAuthenticationViewController.swift */,
 				C5E3924F22EB76AD007CB3B6 /* ResendCodeViewController.swift */,
-				E898B20723282EA400FBF22D /* AC2FAHelpViewController.xib */,
 				E898B2092328339C00FBF22D /* AC2FAHelpViewController.swift */,
 				C57A4B7C258ABD6100238700 /* ACResponsiveAuthViewController.swift */,
 			);
@@ -1273,7 +1257,6 @@
 			isa = PBXGroup;
 			children = (
 				C54AE97D21C81B5C00DEC360 /* LoginHelpView.swift */,
-				C54AE97E21C81B5C00DEC360 /* LoginHelpView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1304,13 +1287,10 @@
 			isa = PBXGroup;
 			children = (
 				C54AE98821C81B5C00DEC360 /* SchedulerNavigationController.swift */,
-				C54AE98921C81B5C00DEC360 /* SchedulerViewController.xib */,
 				C57E9C852236C232009F6228 /* StartDateShiftViewController.swift */,
 				C5E1E3972257ECDE00255812 /* ACScheduleViewController.swift */,
 				C5E1E3932257ECC100255812 /* ACChangeAvailabilityViewController.swift */,
-				C5E1E3942257ECC200255812 /* ACChangeAvailabilityViewController.xib */,
 				C593227A22EA397C00528FF5 /* ScheduleEndViewController.swift */,
-				C593227922EA397B00528FF5 /* ScheduleEndViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1355,10 +1335,7 @@
 				C51A7D8F22D8CDAE00854B13 /* BasicSurveyViewController.swift */,
 				C54AE99621C81B5C00DEC360 /* IntroViewController.swift */,
 				C54AE99721C81B5C00DEC360 /* SurveyNavigationViewController.swift */,
-				C54AE99921C81B5C00DEC360 /* SurveyNavigationViewController.xib */,
 				C54AE99A21C81B5C00DEC360 /* SurveyViewController.swift */,
-				C54AE99821C81B5C00DEC360 /* SurveyViewController.xib */,
-				C54AE99B21C81B5C00DEC360 /* IntroViewController.xib */,
 				C540B5B0221E0FD000B539A4 /* LanguageViewController.swift */,
 				C5E1E34E2253E84900255812 /* ACWakeSurveyViewController.swift */,
 			);
@@ -1379,27 +1356,16 @@
 				C54AE9A621C81B5C00DEC360 /* SurveyInputView.swift */,
 				C54AE93B21C81B5C00DEC360 /* ContainerButton.swift */,
 				C5F77F34222F094000BECAE1 /* SignatureView.swift */,
-				C5F77F38222F15DD00BECAE1 /* SignatureView.xib */,
 				C54AE9AE21C81B5C00DEC360 /* DurationView.swift */,
-				C54AE99F21C81B5C00DEC360 /* DurationView.xib */,
 				C54AE9A021C81B5C00DEC360 /* SegmentedTextView.swift */,
-				C54AE9A421C81B5C00DEC360 /* SegmentedTextView.xib */,
 				C54AE9A121C81B5C00DEC360 /* MultilineTextView.swift */,
-				C54AE9A521C81B5C00DEC360 /* MultilineTextView.xib */,
 				C54AE9A221C81B5C00DEC360 /* TextSegment.swift */,
-				C54AE9A721C81B5C00DEC360 /* TextSegment.xib */,
 				C54AE9A821C81B5C00DEC360 /* SliderView.swift */,
-				C54AE9AD21C81B5C00DEC360 /* SliderView.xib */,
 				C54AE9B021C81B5C00DEC360 /* TimeView.swift */,
-				C54AE9A921C81B5C00DEC360 /* TimeView.xib */,
 				C54AE9AA21C81B5C00DEC360 /* PasswordView.swift */,
-				C54AE9AC21C81B5C00DEC360 /* PasswordView.xib */,
 				C54AE9B121C81B5C00DEC360 /* MultipleChoiceView.swift */,
-				C54AE9AB21C81B5C00DEC360 /* MultipleChoiceView.xib */,
 				C54AE9AF21C81B5C00DEC360 /* ChoiceView.swift */,
-				C54AE9A321C81B5C00DEC360 /* ChoiceView.xib */,
 				C57E9C872236CE67009F6228 /* ACPickerView.swift */,
-				C57E9C892236E825009F6228 /* ACPickerView.xib */,
 				C5F77F3A22306CFA00BECAE1 /* DateRangeView.swift */,
 				C50FC3BA22330F2C00143EA8 /* ACCalendarView.swift */,
 			);
@@ -1430,8 +1396,6 @@
 			isa = PBXGroup;
 			children = (
 				C54AE95421C81B5C00DEC360 /* SymbolsTestViewController.swift */,
-				C54AE95621C81B5C00DEC360 /* SymbolsTestViewController.xib */,
-				2DB76D7022F3B3D900EE36A0 /* SymbolsTestTutorialViewController.xib */,
 				C54E8E1022E64CE00080BFC1 /* SymbolsTutorialViewController.swift */,
 			);
 			path = SymbolsTest;
@@ -1505,10 +1469,8 @@
 			children = (
 				C58129FA22E249EE00CD1883 /* ExtendedGridTestTutorialViewController.swift */,
 				C54AE95221C81B5C00DEC360 /* ExtendedGridTestViewController.swift */,
-				C54AE95B21C81B5C00DEC360 /* ExtendedGridTestViewController.xib */,
 				177BA7292527BA150018A25F /* GridTestTutorialViewController.swift */,
 				177BA72C2527BA510018A25F /* GridTestViewController.swift */,
-				177BA72E2527BADF0018A25F /* GridTestViewController.xib */,
 				177BA7332527CD980018A25F /* GridTestType.swift */,
 			);
 			path = "Grid Test";
@@ -1581,9 +1543,7 @@
 				C56D6C5C22CD3FE800C3F8EA /* PricesTestTutorialViewController.swift */,
 				C54AE95921C81B5C00DEC360 /* PricesTestViewController.swift */,
 				2D35988C237B6604005EF2CF /* SimplifiedPricesTestTutorialViewController.swift */,
-				C54AE95721C81B5C00DEC360 /* PricesTestViewController.xib */,
 				C54AE95321C81B5C00DEC360 /* PricesQuestionViewController.swift */,
-				C54AE95821C81B5C00DEC360 /* PricesQuestionViewController.xib */,
 			);
 			path = "Prices Test";
 			sourceTree = "<group>";
@@ -1632,7 +1592,6 @@
 		CB984EE6271E25A00034C9BB /* Migration */ = {
 			isa = PBXGroup;
 			children = (
-				CB984EF5271F22350034C9BB /* HmToSageMigrationViewController.xib */,
 				CB984EE7271E25C20034C9BB /* HmToSageMigrationViewController.swift */,
 				CB984EF2271F13FF0034C9BB /* SecureTokenGenerator.swift */,
 			);
@@ -1645,6 +1604,55 @@
 				CB984EF8271F39A70034C9BB /* SecureTokenGeneratorTests.swift */,
 			);
 			path = migration;
+			sourceTree = "<group>";
+		};
+		CBE815272727559C00EA9C80 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C54AE90121C81B5B00DEC360 /* SharedAssets.xcassets */,
+				C54AE9C021C81B5F00DEC360 /* Roboto */,
+				C5E1E3942257ECC200255812 /* ACChangeAvailabilityViewController.xib */,
+				C54AE96F21C81B5C00DEC360 /* ACContactViewController.xib */,
+				C57E9C892236E825009F6228 /* ACPickerView.xib */,
+				E898B20723282EA400FBF22D /* AC2FAHelpViewController.xib */,
+				C54AE93A21C81B5C00DEC360 /* CancelButton.xib */,
+				C54AE9A321C81B5C00DEC360 /* ChoiceView.xib */,
+				C54AE99F21C81B5C00DEC360 /* DurationView.xib */,
+				C54AE96821C81B5C00DEC360 /* FCollectionContainerView.xib */,
+				C54AE95B21C81B5C00DEC360 /* ExtendedGridTestViewController.xib */,
+				C54AE96721C81B5C00DEC360 /* GridFCell.xib */,
+				C54AE96B21C81B5C00DEC360 /* GridImageCell.xib */,
+				17CE9D0724D89E7B002EF878 /* GridTestSelectionView.xib */,
+				177BA72E2527BADF0018A25F /* GridTestViewController.xib */,
+				C54AE97121C81B5C00DEC360 /* HomeViewController.xib */,
+				CB984EF5271F22350034C9BB /* HmToSageMigrationViewController.xib */,
+				C54AE99B21C81B5C00DEC360 /* IntroViewController.xib */,
+				C54AE96421C81B5C00DEC360 /* InterstitialView.xib */,
+				C54AE98D21C81B5C00DEC360 /* LoadingScreenViewController.xib */,
+				C54AE97E21C81B5C00DEC360 /* LoginHelpView.xib */,
+				C54AE93D21C81B5C00DEC360 /* MHAlertView.xib */,
+				C5D0F6F9220B477B00F04942 /* MHScrollingAlertView.xib */,
+				C54AE9A521C81B5C00DEC360 /* MultilineTextView.xib */,
+				C54AE9AB21C81B5C00DEC360 /* MultipleChoiceView.xib */,
+				C54AE9AC21C81B5C00DEC360 /* PasswordView.xib */,
+				C54AE95721C81B5C00DEC360 /* PricesTestViewController.xib */,
+				C54AE95821C81B5C00DEC360 /* PricesQuestionViewController.xib */,
+				C54AE93E21C81B5C00DEC360 /* PrimaryButton.xib */,
+				C54AE99921C81B5C00DEC360 /* SurveyNavigationViewController.xib */,
+				C54AE99821C81B5C00DEC360 /* SurveyViewController.xib */,
+				C54AE98921C81B5C00DEC360 /* SchedulerViewController.xib */,
+				C593227922EA397B00528FF5 /* ScheduleEndViewController.xib */,
+				C5F77F38222F15DD00BECAE1 /* SignatureView.xib */,
+				C54AE9A421C81B5C00DEC360 /* SegmentedTextView.xib */,
+				C54AE9AD21C81B5C00DEC360 /* SliderView.xib */,
+				C54AE95621C81B5C00DEC360 /* SymbolsTestViewController.xib */,
+				2DB76D7022F3B3D900EE36A0 /* SymbolsTestTutorialViewController.xib */,
+				C54AE96A21C81B5C00DEC360 /* TextAlertView.xib */,
+				C54AE9A721C81B5C00DEC360 /* TextSegment.xib */,
+				C54AE9A921C81B5C00DEC360 /* TimeView.xib */,
+				C54AE97921C81B5C00DEC360 /* WelcomeViewController.xib */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

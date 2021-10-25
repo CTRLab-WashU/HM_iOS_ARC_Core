@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -219,7 +219,7 @@
                                                                     </subviews>
                                                                     <edgeInsets key="layoutMargins" top="16" left="13" bottom="16" right="13"/>
                                                                 </stackView>
-                                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ygc-xb-9dw" customClass="SymbolSelectButton" customModule="Arc" customModuleProvider="target">
+                                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ygc-xb-9dw" customClass="SymbolSelectButton" customModule="Arc" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="58" height="128"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
@@ -279,7 +279,7 @@
                                                                     </subviews>
                                                                     <edgeInsets key="layoutMargins" top="16" left="13" bottom="16" right="13"/>
                                                                 </stackView>
-                                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JY9-Tw-aiX" customClass="SymbolSelectButton" customModule="Arc" customModuleProvider="target">
+                                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JY9-Tw-aiX" customClass="SymbolSelectButton" customModule="Arc" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="58" height="128"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
@@ -352,6 +352,7 @@
                     <edgeInsets key="layoutMargins" top="24" left="0.0" bottom="20" right="0.0"/>
                 </stackView>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="eQL-ej-DGT"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="eQL-ej-DGT" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ZYl-zI-cMh" secondAttribute="bottom" priority="250" constant="83" id="NFL-F0-gnq"/>
@@ -366,7 +367,6 @@
                 <constraint firstItem="s1A-Ga-rHR" firstAttribute="top" secondItem="VbZ-mK-IOE" secondAttribute="top" id="uD7-g9-A1J"/>
                 <constraint firstItem="s1A-Ga-rHR" firstAttribute="leading" secondItem="eQL-ej-DGT" secondAttribute="leading" id="wjK-GV-R07"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="eQL-ej-DGT"/>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="VoC-Tw-krQ"/>
@@ -375,6 +375,11 @@
             <point key="canvasLocation" x="61.600000000000001" y="48.125937031484263"/>
         </view>
     </objects>
+    <designables>
+        <designable name="WiI-f9-XeW">
+            <size key="intrinsicContentSize" width="411.5" height="20.5"/>
+        </designable>
+    </designables>
     <resources>
         <namedColor name="Primary Text">
             <color red="0.23499999940395355" green="0.23499999940395355" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

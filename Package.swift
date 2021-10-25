@@ -64,6 +64,9 @@ let package = Package(
                 "ArcUIKit",
                 "HMMarkup"
             ],
-            path: "Arc")
+	   path: "Arc",
+	   resources: [
+                .process("Resources"),
+            ])
     ]
 )
