@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "ArcCore",
+    name: "Arc",
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
@@ -39,7 +39,7 @@ let package = Package(
     targets: [
 
         .target(
-            name: "ArcCore",
+            name: "Arc",
             dependencies: [
                 .product(name: "BridgeApp", package: "BridgeApp-Apple-SDK"),
                 .product(name: "BridgeAppUI", package: "BridgeApp-Apple-SDK"),
