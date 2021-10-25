@@ -8,14 +8,20 @@ let package = Package(
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
-            name: "ArcCore",
-            targets: ["ArcCore"]),
+            name: "Arc",
+            targets: ["Arc"]),
+        .library(
+            name: "ArcUIKit",
+            targets: ["ArcUIKit"]),
+        .library(
+            name: "HMMarkup",
+            targets: ["HMMarkup"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .package(
-            name: "SageResearch",
-            url: "https://github.com/Sage-Bionetworks/SageResearch.git",
+            name: "BridgeApp-Apple-SDK",
+            url: "https://github.com/Sage-Bionetworks/BridgeApp-Apple-SDK.git",
             from: "5.1.4"),
         .package(
             name: "SageResearch",
@@ -35,8 +41,8 @@ let package = Package(
         .target(
             name: "ArcCore",
             dependencies: [
-                .product(name: "BridgeApp", package: "BridgeApp"),
-                .product(name: "BridgeAppUI", package: "BridgeApp"),
+                .product(name: "BridgeApp", package: "BridgeApp-Apple-SDK"),
+                .product(name: "BridgeAppUI", package: "BridgeApp-Apple-SDK"),
                 .product(name: "Research", package: "SageResearch"),
                 .product(name: "ResearchUI", package: "SageResearch"),
                 "BridgeSDK",
