@@ -59,7 +59,7 @@ let package = Package(
 	        "HMMarkup",
             ],
             path: "ArcCore/BridgeApp/iOS",
-            resources: []
+            resources: [],
             ),
 
     ]
