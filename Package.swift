@@ -8,14 +8,14 @@ let package = Package(
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
-            name: "Arc",
-            targets: ["Arc"]),
+            name: "HMMarkup",
+            targets: ["HMMarkup"]),
         .library(
             name: "ArcUIKit",
             targets: ["ArcUIKit"]),
         .library(
-            name: "HMMarkup",
-            targets: ["HMMarkup"]),
+            name: "Arc",
+            targets: ["Arc"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -37,7 +37,15 @@ let package = Package(
             from: "1.2.3"),
     ],
     targets: [
-
+	 .target(
+            name: "HMMarkup",
+            ),
+        .target(
+            name: "ArcUIKit",
+            dependencies: [
+                "HMMarkup",
+            ],
+            ),
         .target(
             name: "Arc",
             dependencies: [
@@ -47,11 +55,12 @@ let package = Package(
                 .product(name: "ResearchUI", package: "SageResearch"),
                 "BridgeSDK",
                 "JsonModel",
+                "ArcUIKit",
+	        "HMMarkup",
             ],
             path: "ArcCore/BridgeApp/iOS",
-            resources: [
-                .process("Localization"),
-            ]
+            resources: []
             ),
+
     ]
 )
