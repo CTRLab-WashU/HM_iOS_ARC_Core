@@ -49,6 +49,9 @@ public protocol AppNavigationController {
 	
 	///Just replace the current root view controller
 	func navigate(vc:UIViewController, direction: UIWindow.TransitionOptions.Direction, duration:Double)
+    
+    /// To stop a navigation call from occuring, call this function
+    func shouldNavigate(to state: State) -> Bool
 }
 
 
@@ -56,8 +59,6 @@ open class BaseAppNavigationController : AppNavigationController {
 	public func screenShotApp() -> [URL] {
 		return []
 	}
-	
-	
 	
     public init() {
         
@@ -144,8 +145,9 @@ open class BaseAppNavigationController : AppNavigationController {
 		navigate(vc: vc, direction: direction, duration: 0.5)
 	}
 	
-	
-	
+    public func shouldNavigate(to state: State) -> Bool {
+        return true
+    }
 }
 
 

@@ -58,7 +58,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
         super.viewDidLoad()
         self.view.backgroundColor = .primaryInfo
 		customView.bottomScrollIndicatorView.isHidden = true
-		
+        
 		//When in post test mode perform modifications
 		lastUpdated = app.appController.lastFetched[EarningsController.overviewKey]
 
@@ -89,6 +89,10 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		goalDateFormatter.dateFormat = "MM-dd-yy"
 		NotificationCenter.default.addObserver(self, selector: #selector(updateEarnings(notification:)), name: .ACEarningsUpdated, object: nil)
 		
+        if lastUpdated == nil {
+            Arc.shared.earningsController.updateEarnings()
+        }
+        
 		customView.viewDetailsButton.addAction {
 			[weak self] in
             guard self != nil else {
@@ -197,7 +201,11 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 //		}
         
 		lastUpdated = app.appController.lastFetched[EarningsController.overviewKey]
-		earningsData = Arc.shared.appController.read(key: EarningsController.overviewKey)                
+		earningsData = Arc.shared.appController.read(key: EarningsController.overviewKey)
+        
+        if earningsData == nil {
+            Arc.shared.earningsController.updateEarnings()
+        }
 
 		setGoals()
 	}

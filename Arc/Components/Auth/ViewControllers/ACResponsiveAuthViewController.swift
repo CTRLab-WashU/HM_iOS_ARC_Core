@@ -212,7 +212,8 @@ open class ACResponsiveAuthViewController: BasicSurveyViewController {
             break
         case .phone_number_entry:
             loadedNewQuestions = false
-            file = "2FAuth-PhoneEntry"
+            // We have switched to normal auth for this
+            file = "Auth"
 
             break
         case .manual:
