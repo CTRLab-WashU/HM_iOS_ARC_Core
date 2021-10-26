@@ -58,7 +58,7 @@ public struct Roboto {
 			.face(Roboto.Face.regular)
 			.size(16)
 		
-		public static let bodyBold = Font.body
+        public static let bodyBold: UIFont = Roboto.Font.body
 			.boldFont()
 			
 		public static let heading = UIFont(name: "Roboto", size: 26)!
