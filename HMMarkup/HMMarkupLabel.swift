@@ -46,7 +46,7 @@ import UIKit
         paragraphStyle.lineSpacing = spacing
         paragraphStyle.alignment = self.textAlignment
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
-        attributedString.addAttributes([.foregroundColor : self.textColor!], range: NSMakeRange(0, attributedString.length))
+        attributedString.addAttributes([NSAttributedString.Key.foregroundColor : self.textColor!], range: NSMakeRange(0, attributedString.length))
         self.attributedText = attributedString
     }
     
@@ -80,7 +80,7 @@ import UIKit
         paragraphStyle.lineSpacing = spacing
         paragraphStyle.alignment = self.textAlignment
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
-        attributedString.addAttributes([.foregroundColor : self.textColor!], range: NSMakeRange(0, attributedString.length))
+        attributedString.addAttributes([NSAttributedString.Key.foregroundColor : self.textColor!], range: NSMakeRange(0, attributedString.length))
         self.attributedText = attributedString
     }
     
@@ -96,13 +96,13 @@ import UIKit
         
         if let string = attributedText.mutableCopy() as? NSMutableAttributedString {
             string.setAttributes([.link: url,
-                                  .paragraphStyle: paragraphStyle,
-                                  .font : self.font?.boldFont() ?? UIFont.systemFont(ofSize: 18.0)
+                                  NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                                  NSAttributedString.Key.font : self.font?.boldFont() ?? UIFont.systemFont(ofSize: 18.0)
                 ], range: r)
             attributedText = string
             self.linkTextAttributes = [
-                .foregroundColor: UIColor.white,
-                .underlineStyle: NSUnderlineStyle.single.rawValue
+                NSAttributedString.Key.foregroundColor: UIColor.white,
+                NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
                 
             ]
         }

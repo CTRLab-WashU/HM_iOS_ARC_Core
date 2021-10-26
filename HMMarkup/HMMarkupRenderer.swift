@@ -8,13 +8,8 @@
 
 import Foundation
 import UIKit
-#if os(iOS) || os(tvOS) || os(watchOS)
 import UIKit.UIFont
 public typealias Font = UIFont
-#elseif os(OSX)
-import AppKit.NSFont
-public typealias Font = NSFont
-#endif
 
 public final class HMMarkupRenderer {
     public struct Config {
@@ -57,8 +52,8 @@ public final class HMMarkupRenderer {
 	}
 }
 
-private extension HMMarkupNode {
-	func render(withAttributes attributes: [NSAttributedString.Key: Any]) -> NSAttributedString {
+public extension HMMarkupNode {
+    public func render(withAttributes attributes: [NSAttributedString.Key: Any]) -> NSAttributedString {
 		guard let currentFont = attributes[NSAttributedString.Key.font] as? Font else {
 			fatalError("Missing font attribute in \(attributes)")
 		}
@@ -91,8 +86,8 @@ private extension HMMarkupNode {
 	}
 }
 
-extension Array where Element: NSAttributedString {
-	func joined() -> NSAttributedString {
+public extension Array where Element: NSAttributedString {
+    public func joined() -> NSAttributedString {
 		let result = NSMutableAttributedString()
 		for element in self {
 			result.append(element)
@@ -101,17 +96,16 @@ extension Array where Element: NSAttributedString {
 	}
 }
 
-#if os(iOS) || os(tvOS) || os(watchOS)
-extension UIFont {
-	func boldFont() -> UIFont? {
+public extension UIFont {
+	public func boldFont() -> UIFont? {
 		return addingSymbolicTraits(.traitBold)
 	}
 	
-	func italicFont() -> UIFont? {
+    public func italicFont() -> UIFont? {
 		return addingSymbolicTraits(.traitItalic)
 	}
 	
-	func addingSymbolicTraits(_ traits: UIFontDescriptor.SymbolicTraits) -> UIFont? {
+    public func addingSymbolicTraits(_ traits: UIFontDescriptor.SymbolicTraits) -> UIFont? {
 		let newTraits = fontDescriptor.symbolicTraits.union(traits)
 		guard let descriptor = fontDescriptor.withSymbolicTraits(newTraits) else {
 			return nil
@@ -120,14 +114,3 @@ extension UIFont {
 		return UIFont(descriptor: descriptor, size: 0)
 	}
 }
-#elseif os(OSX)
-extension NSFont {
-	func boldFont() -> NSFont? {
-		return NSFontManager.shared.convert(self, toHaveTrait: .boldFontMask)
-	}
-	
-	func italicFont() -> NSFont? {
-		return NSFontManager.shared.convert(self, toHaveTrait: .italicFontMask)
-	}
-}
-#endif
