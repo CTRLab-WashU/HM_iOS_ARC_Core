@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ArcUIKit
+
 open class GridImageCell:UICollectionViewCell
 {
     @IBOutlet weak var image: UIImageView!

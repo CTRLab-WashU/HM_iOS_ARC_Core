@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 public extension UIView {
     static func get<T:UIView>(nib:String? = nil) -> T{
 		//For multi-module environments get the bundle for the class

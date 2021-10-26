@@ -65,7 +65,6 @@
 		C54AE9D421C81B5F00DEC360 /* JSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE90921C81B5C00DEC360 /* JSONData.swift */; };
 		C54AE9D521C81B5F00DEC360 /* Phase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE90A21C81B5C00DEC360 /* Phase.swift */; };
 		C54AE9D621C81B5F00DEC360 /* Arc+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE90D21C81B5C00DEC360 /* Arc+Auth.swift */; };
-		C54AE9DA21C81B5F00DEC360 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE91221C81B5C00DEC360 /* UIView+Extensions.swift */; };
 		C54AE9DB21C81B5F00DEC360 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE91321C81B5C00DEC360 /* UIStackView+Extensions.swift */; };
 		C54AE9DC21C81B5F00DEC360 /* Set+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE91421C81B5C00DEC360 /* Set+Extensions.swift */; };
 		C54AE9DF21C81B5F00DEC360 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE91721C81B5C00DEC360 /* Date+Extensions.swift */; };
@@ -325,6 +324,7 @@
 		CB247162272888DE008C9495 /* Schedule+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB24715E272888DE008C9495 /* Schedule+CoreDataClass.swift */; };
 		CB247163272888DE008C9495 /* Schedule+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB24715F272888DE008C9495 /* Schedule+CoreDataProperties.swift */; };
 		CB24717327289509008C9495 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE91121C81B5C00DEC360 /* UIViewController+Extensions.swift */; };
+		CB24717427289635008C9495 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE91221C81B5C00DEC360 /* UIView+Extensions.swift */; };
 		CB32BCEF2717C82D00B05501 /* JsonModel in Frameworks */ = {isa = PBXBuildFile; productRef = CB32BCEE2717C82D00B05501 /* JsonModel */; };
 		CB855AC627178C60004599EC /* BridgeApp in Frameworks */ = {isa = PBXBuildFile; productRef = CB855AC527178C60004599EC /* BridgeApp */; };
 		CB855AC827178C60004599EC /* BridgeAppUI in Frameworks */ = {isa = PBXBuildFile; productRef = CB855AC727178C60004599EC /* BridgeAppUI */; };
@@ -855,6 +855,7 @@
 		C537A1AC228B74D20098A4CD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				C54AE91221C81B5C00DEC360 /* UIView+Extensions.swift */,
 				C54AE91121C81B5C00DEC360 /* UIViewController+Extensions.swift */,
 				C54AE91621C81B5C00DEC360 /* UILabel+Extensions.swift */,
 				C54D101422C2846E00B43E42 /* UIDSL.swift */,
@@ -979,7 +980,6 @@
 		C54AE91021C81B5C00DEC360 /* System */ = {
 			isa = PBXGroup;
 			children = (
-				C54AE91221C81B5C00DEC360 /* UIView+Extensions.swift */,
 				C54AE91321C81B5C00DEC360 /* UIStackView+Extensions.swift */,
 				C54AE91421C81B5C00DEC360 /* Set+Extensions.swift */,
 				C54AE91721C81B5C00DEC360 /* Date+Extensions.swift */,
@@ -2105,7 +2105,6 @@
 				C54E8E2622E88DC60080BFC1 /* ProgressViewController.swift in Sources */,
 				C54AEA3B21C81B5F00DEC360 /* SurveyResponse.swift in Sources */,
 				C54AEA3D21C81B5F00DEC360 /* Introduction.swift in Sources */,
-				C54AE9DA21C81B5F00DEC360 /* UIView+Extensions.swift in Sources */,
 				C54AEA2621C81B5F00DEC360 /* AboutViewController.swift in Sources */,
 				C58129F822E20BE000CD1883 /* TutorialCompleteView.swift in Sources */,
 				C54D101322C2745A00B43E42 /* QuestionStyle.swift in Sources */,
@@ -2243,6 +2242,7 @@
 				C5192A7722C5231900223B69 /* Georgia.swift in Sources */,
 				C5AA4F2A24476679001DA323 /* Buttons.swift in Sources */,
 				C56D6C5722CBF25900C3F8EA /* Automation.swift in Sources */,
+				CB24717427289635008C9495 /* UIView+Extensions.swift in Sources */,
 				C5192A7522C51F5000223B69 /* Drawing.swift in Sources */,
 				C54E8E1B22E7B6330080BFC1 /* ConstraintDSL.swift in Sources */,
 				C5A43CCF22CA648700C10BC0 /* ACHorizontalBar.swift in Sources */,
