@@ -24,7 +24,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .package(
-            name: "BridgeApp-Apple-SDK",
+            name: "BridgeApp",
             url: "https://github.com/Sage-Bionetworks/BridgeApp-Apple-SDK.git",
             from: "5.1.4"),
         .package(
@@ -55,8 +55,8 @@ let package = Package(
         .target(
             name: "Arc",
             dependencies: [
-                .product(name: "BridgeApp", package: "BridgeApp-Apple-SDK"),
-                .product(name: "BridgeAppUI", package: "BridgeApp-Apple-SDK"),
+                .product(name: "BridgeApp", package: "BridgeApp"),
+                .product(name: "BridgeAppUI", package: "BridgeApp"),
                 .product(name: "Research", package: "SageResearch"),
                 .product(name: "ResearchUI", package: "SageResearch"),
                 "BridgeSDK",
