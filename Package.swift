@@ -42,15 +42,17 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "HMMarkup",
-            path: "HMMarkup"),
+            name: "HMMarkup",	   
+            path: "HMMarkup",
+	   exclude:["README.md", "info.plist"]),
         
         .target(
             name: "ArcUIKit",
             dependencies: [
                 "HMMarkup",
             ],
-            path: "ArcUIKit"),
+            path: "ArcUIKit",
+	   exclude:["info.plist"]),
 
         .target(
             name: "Arc",
@@ -65,6 +67,7 @@ let package = Package(
                 "HMMarkup"
             ],
 	   path: "Arc",
+	   exclude:["info.plist"],
 	   resources: [
                 .process("Resources"),
             ])
