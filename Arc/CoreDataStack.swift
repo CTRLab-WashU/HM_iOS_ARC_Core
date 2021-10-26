@@ -97,7 +97,7 @@ open class CoreDataStack {
     
     // MARK: - Core Data Saving support
     lazy public var managedObjectModel: NSManagedObjectModel = {
-        let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle.module] )!
+        let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: type(of: self))] )!
         return managedObjectModel
     }()
     public func saveContext () {
