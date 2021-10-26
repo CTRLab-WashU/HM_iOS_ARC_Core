@@ -65,7 +65,6 @@
 		C54AE9D421C81B5F00DEC360 /* JSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE90921C81B5C00DEC360 /* JSONData.swift */; };
 		C54AE9D521C81B5F00DEC360 /* Phase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE90A21C81B5C00DEC360 /* Phase.swift */; };
 		C54AE9D621C81B5F00DEC360 /* Arc+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE90D21C81B5C00DEC360 /* Arc+Auth.swift */; };
-		C54AE9D921C81B5F00DEC360 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE91121C81B5C00DEC360 /* UIViewController+Extensions.swift */; };
 		C54AE9DA21C81B5F00DEC360 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE91221C81B5C00DEC360 /* UIView+Extensions.swift */; };
 		C54AE9DB21C81B5F00DEC360 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE91321C81B5C00DEC360 /* UIStackView+Extensions.swift */; };
 		C54AE9DC21C81B5F00DEC360 /* Set+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE91421C81B5C00DEC360 /* Set+Extensions.swift */; };
@@ -325,6 +324,7 @@
 		CB247161272888DE008C9495 /* ScheduleEntry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB24715D272888DE008C9495 /* ScheduleEntry+CoreDataProperties.swift */; };
 		CB247162272888DE008C9495 /* Schedule+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB24715E272888DE008C9495 /* Schedule+CoreDataClass.swift */; };
 		CB247163272888DE008C9495 /* Schedule+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB24715F272888DE008C9495 /* Schedule+CoreDataProperties.swift */; };
+		CB24717327289509008C9495 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE91121C81B5C00DEC360 /* UIViewController+Extensions.swift */; };
 		CB32BCEF2717C82D00B05501 /* JsonModel in Frameworks */ = {isa = PBXBuildFile; productRef = CB32BCEE2717C82D00B05501 /* JsonModel */; };
 		CB855AC627178C60004599EC /* BridgeApp in Frameworks */ = {isa = PBXBuildFile; productRef = CB855AC527178C60004599EC /* BridgeApp */; };
 		CB855AC827178C60004599EC /* BridgeAppUI in Frameworks */ = {isa = PBXBuildFile; productRef = CB855AC727178C60004599EC /* BridgeAppUI */; };
@@ -855,6 +855,7 @@
 		C537A1AC228B74D20098A4CD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				C54AE91121C81B5C00DEC360 /* UIViewController+Extensions.swift */,
 				C54AE91621C81B5C00DEC360 /* UILabel+Extensions.swift */,
 				C54D101422C2846E00B43E42 /* UIDSL.swift */,
 				C54E8E1A22E7B6330080BFC1 /* ConstraintDSL.swift */,
@@ -978,7 +979,6 @@
 		C54AE91021C81B5C00DEC360 /* System */ = {
 			isa = PBXGroup;
 			children = (
-				C54AE91121C81B5C00DEC360 /* UIViewController+Extensions.swift */,
 				C54AE91221C81B5C00DEC360 /* UIView+Extensions.swift */,
 				C54AE91321C81B5C00DEC360 /* UIStackView+Extensions.swift */,
 				C54AE91421C81B5C00DEC360 /* Set+Extensions.swift */,
@@ -2142,7 +2142,6 @@
 				C54D101122C2743F00B43E42 /* QuestionType.swift in Sources */,
 				C54AE9F121C81B5F00DEC360 /* ArcControllerRegistry.swift in Sources */,
 				C54AEA0521C81B5F00DEC360 /* PaddinglessUITextView.swift in Sources */,
-				C54AE9D921C81B5F00DEC360 /* UIViewController+Extensions.swift in Sources */,
 				C54AE9F021C81B5F00DEC360 /* AppNavigationController.swift in Sources */,
 				C54AE9E721C81B5F00DEC360 /* SessionInfoResponse.swift in Sources */,
 				C5EB849923DB8D050070A240 /* ACPDFView.swift in Sources */,
@@ -2238,6 +2237,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB24717327289509008C9495 /* UIViewController+Extensions.swift in Sources */,
 				C56BBCA52214AF5B0025A318 /* Common.swift in Sources */,
 				C583C0F222136E3B0043DFA7 /* ACLabel.swift in Sources */,
 				C5192A7722C5231900223B69 /* Georgia.swift in Sources */,
