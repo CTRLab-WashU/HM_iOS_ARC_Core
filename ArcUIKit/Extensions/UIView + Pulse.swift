@@ -8,6 +8,7 @@
 
 import Foundation
 import QuartzCore
+import UIKit
 
 func createAnimatedLayer(from view: UIView, strokeColor: UIColor, fillColor: UIColor, overlayShape:OverlayShape) -> CAShapeLayer {
 	let layer = CAShapeLayer()

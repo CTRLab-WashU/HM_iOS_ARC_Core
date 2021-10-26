@@ -49,7 +49,6 @@
 		C537A1AE228B74E20098A4CD /* Window+Overlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C537A1AD228B74E20098A4CD /* Window+Overlay.swift */; };
 		C53B123822F348F900BACA9A /* ACTodayProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B123722F348F900BACA9A /* ACTodayProgressViewController.swift */; };
 		C53B123A22F34C1700BACA9A /* ACTodayProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B123922F34C1700BACA9A /* ACTodayProgressView.swift */; };
-		C53BA3E323677CE300FEEF64 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C53BA3E223677CE300FEEF64 /* README.md */; };
 		C540B5B1221E0FD000B539A4 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C540B5B0221E0FD000B539A4 /* LanguageViewController.swift */; };
 		C545AB0523283038002672C2 /* ACPostCycleFinishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C545AB0423283038002672C2 /* ACPostCycleFinishViewController.swift */; };
 		C545AB0723283168002672C2 /* ACPostCycleFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C545AB0623283168002672C2 /* ACPostCycleFinishView.swift */; };
@@ -147,9 +146,6 @@
 		C54AEA2D21C81B5F00DEC360 /* LoginHelpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE97E21C81B5C00DEC360 /* LoginHelpView.xib */; };
 		C54AEA2E21C81B5F00DEC360 /* LoadingScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE97F21C81B5C00DEC360 /* LoadingScreenViewController.swift */; };
 		C54AEA2F21C81B5F00DEC360 /* WeekDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE98221C81B5C00DEC360 /* WeekDay.swift */; };
-		C54AEA3121C81B5F00DEC360 /* Schedule+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE98421C81B5C00DEC360 /* Schedule+CoreDataClass.swift */; };
-		C54AEA3221C81B5F00DEC360 /* ScheduleEntry+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE98521C81B5C00DEC360 /* ScheduleEntry+Extensions.swift */; };
-		C54AEA3321C81B5F00DEC360 /* ScheduleEntry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE98621C81B5C00DEC360 /* ScheduleEntry+CoreDataClass.swift */; };
 		C54AEA3421C81B5F00DEC360 /* SchedulerNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE98821C81B5C00DEC360 /* SchedulerNavigationController.swift */; };
 		C54AEA3521C81B5F00DEC360 /* SchedulerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54AE98921C81B5C00DEC360 /* SchedulerViewController.xib */; };
 		C54AEA3621C81B5F00DEC360 /* ScheduleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE98B21C81B5C00DEC360 /* ScheduleController.swift */; };
@@ -325,6 +321,10 @@
 		C5EB849923DB8D050070A240 /* ACPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EB849823DB8D050070A240 /* ACPDFView.swift */; };
 		C5F77F37222F095200BECAE1 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F77F36222F095200BECAE1 /* SignatureViewController.swift */; };
 		C5FDC5B4258BE4A100E80E69 /* AuthHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FDC5B3258BE4A100E80E69 /* AuthHandler.swift */; };
+		CB247160272888DE008C9495 /* ScheduleEntry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB24715C272888DE008C9495 /* ScheduleEntry+CoreDataClass.swift */; };
+		CB247161272888DE008C9495 /* ScheduleEntry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB24715D272888DE008C9495 /* ScheduleEntry+CoreDataProperties.swift */; };
+		CB247162272888DE008C9495 /* Schedule+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB24715E272888DE008C9495 /* Schedule+CoreDataClass.swift */; };
+		CB247163272888DE008C9495 /* Schedule+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB24715F272888DE008C9495 /* Schedule+CoreDataProperties.swift */; };
 		CB32BCEF2717C82D00B05501 /* JsonModel in Frameworks */ = {isa = PBXBuildFile; productRef = CB32BCEE2717C82D00B05501 /* JsonModel */; };
 		CB855AC627178C60004599EC /* BridgeApp in Frameworks */ = {isa = PBXBuildFile; productRef = CB855AC527178C60004599EC /* BridgeApp */; };
 		CB855AC827178C60004599EC /* BridgeAppUI in Frameworks */ = {isa = PBXBuildFile; productRef = CB855AC727178C60004599EC /* BridgeAppUI */; };
@@ -421,7 +421,6 @@
 		C537A1AD228B74E20098A4CD /* Window+Overlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Window+Overlay.swift"; sourceTree = "<group>"; };
 		C53B123722F348F900BACA9A /* ACTodayProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTodayProgressViewController.swift; sourceTree = "<group>"; };
 		C53B123922F34C1700BACA9A /* ACTodayProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTodayProgressView.swift; sourceTree = "<group>"; };
-		C53BA3E223677CE300FEEF64 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C540B5B0221E0FD000B539A4 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
 		C545AB0423283038002672C2 /* ACPostCycleFinishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPostCycleFinishViewController.swift; sourceTree = "<group>"; };
 		C545AB0623283168002672C2 /* ACPostCycleFinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPostCycleFinishView.swift; sourceTree = "<group>"; };
@@ -529,10 +528,6 @@
 		C54AE97E21C81B5C00DEC360 /* LoginHelpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginHelpView.xib; sourceTree = "<group>"; };
 		C54AE97F21C81B5C00DEC360 /* LoadingScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingScreenViewController.swift; sourceTree = "<group>"; };
 		C54AE98221C81B5C00DEC360 /* WeekDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekDay.swift; sourceTree = "<group>"; };
-		C54AE98321C81B5C00DEC360 /* Schedule+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Schedule+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		C54AE98421C81B5C00DEC360 /* Schedule+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Schedule+CoreDataClass.swift"; sourceTree = "<group>"; };
-		C54AE98521C81B5C00DEC360 /* ScheduleEntry+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ScheduleEntry+Extensions.swift"; sourceTree = "<group>"; };
-		C54AE98621C81B5C00DEC360 /* ScheduleEntry+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ScheduleEntry+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C54AE98821C81B5C00DEC360 /* SchedulerNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulerNavigationController.swift; sourceTree = "<group>"; };
 		C54AE98921C81B5C00DEC360 /* SchedulerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SchedulerViewController.xib; sourceTree = "<group>"; };
 		C54AE98B21C81B5C00DEC360 /* ScheduleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleController.swift; sourceTree = "<group>"; };
@@ -696,6 +691,10 @@
 		C5F77F38222F15DD00BECAE1 /* SignatureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignatureView.xib; sourceTree = "<group>"; };
 		C5F77F3A22306CFA00BECAE1 /* DateRangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRangeView.swift; sourceTree = "<group>"; };
 		C5FDC5B3258BE4A100E80E69 /* AuthHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHandler.swift; sourceTree = "<group>"; };
+		CB24715C272888DE008C9495 /* ScheduleEntry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScheduleEntry+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CB24715D272888DE008C9495 /* ScheduleEntry+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScheduleEntry+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CB24715E272888DE008C9495 /* Schedule+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Schedule+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CB24715F272888DE008C9495 /* Schedule+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Schedule+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CB855ACA27178D31004599EC /* SageEarningsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SageEarningsController.swift; sourceTree = "<group>"; };
 		CB855ACB27178D31004599EC /* SageScheduleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SageScheduleController.swift; sourceTree = "<group>"; };
 		CB855ACC27178D31004599EC /* CompletedTestsDefaultsReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedTestsDefaultsReport.swift; sourceTree = "<group>"; };
@@ -898,7 +897,6 @@
 		C54AE8E921C81B2F00DEC360 /* Arc */ = {
 			isa = PBXGroup;
 			children = (
-				C53BA3E223677CE300FEEF64 /* README.md */,
 				C54AE8EA21C81B2F00DEC360 /* Arc.h */,
 				C54AE90421C81B5C00DEC360 /* Arc.swift */,
 				C54AE8EB21C81B2F00DEC360 /* Info.plist */,
@@ -1185,7 +1183,6 @@
 				C56D6C5822CD0DFE00C3F8EA /* TutorialView.swift */,
 				C5C2B12A22D3F205002CB4C5 /* TestInfoView.swift */,
 				C58129F722E20BE000CD1883 /* TutorialCompleteView.swift */,
-				175E961524D8832C001166A1 /* GridTestSelectionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1274,11 +1271,11 @@
 		C54AE98121C81B5C00DEC360 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CB24715C272888DE008C9495 /* ScheduleEntry+CoreDataClass.swift */,
+				CB24715D272888DE008C9495 /* ScheduleEntry+CoreDataProperties.swift */,
+				CB24715E272888DE008C9495 /* Schedule+CoreDataClass.swift */,
+				CB24715F272888DE008C9495 /* Schedule+CoreDataProperties.swift */,
 				C54AE98221C81B5C00DEC360 /* WeekDay.swift */,
-				C54AE98321C81B5C00DEC360 /* Schedule+CoreDataProperties.swift */,
-				C54AE98421C81B5C00DEC360 /* Schedule+CoreDataClass.swift */,
-				C54AE98521C81B5C00DEC360 /* ScheduleEntry+Extensions.swift */,
-				C54AE98621C81B5C00DEC360 /* ScheduleEntry+CoreDataClass.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1532,6 +1529,7 @@
 				C5D085CB22D7828300043513 /* HintView.swift */,
 				C5A43CCE22CA648700C10BC0 /* ACHorizontalBar.swift */,
 				17732E3224FEF65100FE4990 /* GridChoiceView.swift */,
+				175E961524D8832C001166A1 /* GridTestSelectionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1909,7 +1907,6 @@
 				C54AEA1D21C81B5F00DEC360 /* GridFCell.xib in Resources */,
 				C54AE9FE21C81B5F00DEC360 /* PrimaryButton.xib in Resources */,
 				C54D103922C28A1D00B43E42 /* SegmentedTextView.xib in Resources */,
-				C53BA3E323677CE300FEEF64 /* README.md in Resources */,
 				C54AEA6421C81B5F00DEC360 /* Roboto-Medium.ttf in Resources */,
 				C54AEA1021C81B5F00DEC360 /* PricesQuestionViewController.xib in Resources */,
 				C54D104322C28A1D00B43E42 /* PasswordView.xib in Resources */,
@@ -2044,7 +2041,6 @@
 				C5477C7A231868C80072425D /* RebukedCommitmentView.swift in Sources */,
 				CB855AD127178D32004599EC /* SageScheduleController.swift in Sources */,
 				4CB0BAC522E8FA7B00ABB348 /* ContactInfoResponse.swift in Sources */,
-				C54AEA3221C81B5F00DEC360 /* ScheduleEntry+Extensions.swift in Sources */,
 				C5E7212822F10D25004B9E26 /* TestProgressViewController.swift in Sources */,
 				C58C96F1228201CE001BDE11 /* HMOperation.swift in Sources */,
 				C5C7F715228F65C50086315B /* ArcTranslation.swift in Sources */,
@@ -2096,7 +2092,6 @@
 				C589B50E21ED001700389342 /* ACAuthViewController.swift in Sources */,
 				C54AEA4221C81B5F00DEC360 /* SurveyViewController.swift in Sources */,
 				C54AEA1F21C81B5F00DEC360 /* GridTestCells.swift in Sources */,
-				C54AEA3321C81B5F00DEC360 /* ScheduleEntry+CoreDataClass.swift in Sources */,
 				C54AEA3421C81B5F00DEC360 /* SchedulerNavigationController.swift in Sources */,
 				C578771322F8BED10068E46B /* TestCountDownView.swift in Sources */,
 				C55F8CCB230EC3B8006D43BD /* EarningsController.swift in Sources */,
@@ -2143,6 +2138,7 @@
 				C54D488623E3308000EE9511 /* PriceTestType.swift in Sources */,
 				C57E9C862236C232009F6228 /* StartDateShiftViewController.swift in Sources */,
 				C5192A6F22C519D900223B69 /* UIDSL+ArcCore.swift in Sources */,
+				CB247162272888DE008C9495 /* Schedule+CoreDataClass.swift in Sources */,
 				C54D101122C2743F00B43E42 /* QuestionType.swift in Sources */,
 				C54AE9F121C81B5F00DEC360 /* ArcControllerRegistry.swift in Sources */,
 				C54AEA0521C81B5F00DEC360 /* PaddinglessUITextView.swift in Sources */,
@@ -2172,7 +2168,6 @@
 				C54AE9EC21C81B5F00DEC360 /* HMAPI+Convenience.swift in Sources */,
 				C54AE9F221C81B5F00DEC360 /* UINavigationProxy.swift in Sources */,
 				C54AEA0921C81B5F00DEC360 /* GridTest.swift in Sources */,
-				C54AEA3121C81B5F00DEC360 /* Schedule+CoreDataClass.swift in Sources */,
 				C55F8CC9230D89AC006D43BD /* Study+Expressible.swift in Sources */,
 				CB855AD227178D32004599EC /* CompletedTestsDefaultsReport.swift in Sources */,
 				C54E8E1122E64CE00080BFC1 /* SymbolsTutorialViewController.swift in Sources */,
@@ -2187,6 +2182,7 @@
 				C54AEA3721C81B5F00DEC360 /* ScheduleController+ScheduleEntry.swift in Sources */,
 				C54AE9E921C81B5F00DEC360 /* TestSession.swift in Sources */,
 				C53B123822F348F900BACA9A /* ACTodayProgressViewController.swift in Sources */,
+				CB247161272888DE008C9495 /* ScheduleEntry+CoreDataProperties.swift in Sources */,
 				C594B3DA23E245BA00B9743C /* Alignment.swift in Sources */,
 				C54AE9F321C81B5F00DEC360 /* ProxyManager.swift in Sources */,
 				177BA7342527CD980018A25F /* GridTestType.swift in Sources */,
@@ -2200,6 +2196,7 @@
 				C51A7D9022D8CDAE00854B13 /* BasicSurveyViewController.swift in Sources */,
 				177BA72A2527BA150018A25F /* GridTestTutorialViewController.swift in Sources */,
 				C54AEA0C21C81B5F00DEC360 /* SymbolsTestViewController.swift in Sources */,
+				CB247160272888DE008C9495 /* ScheduleEntry+CoreDataClass.swift in Sources */,
 				C54AEA0221C81B5F00DEC360 /* HMCodable.swift in Sources */,
 				C54AEA1421C81B5F00DEC360 /* TestManagerController.swift in Sources */,
 				C54E8E1E22E800780080BFC1 /* CircularProgressView.swift in Sources */,
@@ -2217,6 +2214,7 @@
 				C54AEA3A21C81B5F00DEC360 /* ACSurveyType.swift in Sources */,
 				C5C2B12922D3ECBB002CB4C5 /* InfoContentView.swift in Sources */,
 				C54AEA0121C81B5F00DEC360 /* CancelButton.swift in Sources */,
+				CB247163272888DE008C9495 /* Schedule+CoreDataProperties.swift in Sources */,
 				C5D24ED7230B048900146E37 /* TotalSessionGoalView.swift in Sources */,
 				C5E253BA2421589D007FE0BA /* ACStudyTotalsViewController.swift in Sources */,
 				C54AEA3621C81B5F00DEC360 /* ScheduleController.swift in Sources */,

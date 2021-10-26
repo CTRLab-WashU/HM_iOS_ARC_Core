@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public protocol ACDrawable{
 	func draw(_ rect:CGRect)

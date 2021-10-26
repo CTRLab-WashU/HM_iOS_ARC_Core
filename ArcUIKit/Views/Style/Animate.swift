@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreGraphics
+import UIKit
 
 public struct Math{
 	public static func toRadians(_ number: Double) -> Double {

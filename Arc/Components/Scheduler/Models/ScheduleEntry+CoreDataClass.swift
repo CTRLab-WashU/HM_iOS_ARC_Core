@@ -1,43 +1,44 @@
 //
 //  ScheduleEntry+CoreDataClass.swift
-//  
+//  Arc
 //
-//  Created by Philip Hayes on 10/1/18.
+//  Created by Michael L DePhillips on 10/26/21.
+//  Copyright © 2021 HealthyMedium. All rights reserved.
 //
 //
 
 import Foundation
 import CoreData
 
-//@objc(ScheduleEntry)
-open class ScheduleEntry: NSManagedObject {
-	public var day:WeekDay {
-		get {
-			return WeekDay(rawValue:self.weekday)!
-		}
-		set {
-			self.weekday = newValue.rawValue
-		}
-	}
-	public func startTimeOn(date:Date) -> Date? {
-		let formatter = DateFormatter()
-		formatter.defaultDate = date
-		formatter.dateFormat = "h:mm a"
-		
-		return formatter.date(from: availabilityStart ?? "")
-	}
-	
+
+public class ScheduleEntry: NSManagedObject {
+    public var day:WeekDay {
+        get {
+            return WeekDay(rawValue:self.weekday)!
+        }
+        set {
+            self.weekday = newValue.rawValue
+        }
+    }
+    public func startTimeOn(date:Date) -> Date? {
+        let formatter = DateFormatter()
+        formatter.defaultDate = date
+        formatter.dateFormat = "h:mm a"
+        
+        return formatter.date(from: availabilityStart ?? "")
+    }
+    
     // returns the end time for the given date.
     // If the availabilityEnd is "before" availabilityStart
     // (ie they wake up at 2pm and go to bed at 4 pm)
     // then we increment the date by one.
     
-	public func endTimeOn(date:Date) -> Date? {
-		let formatter = DateFormatter()
-		formatter.defaultDate = date
-		formatter.dateFormat = "h:mm a"
-		
-		var endTime = formatter.date(from: availabilityEnd ?? "")
+    public func endTimeOn(date:Date) -> Date? {
+        let formatter = DateFormatter()
+        formatter.defaultDate = date
+        formatter.dateFormat = "h:mm a"
+        
+        var endTime = formatter.date(from: availabilityEnd ?? "")
         let startTime = self.startTimeOn(date: date);
         
         if let e = endTime, let s = startTime, s.compare(e) == .orderedDescending
@@ -46,5 +47,5 @@ open class ScheduleEntry: NSManagedObject {
         }
         
         return endTime;
-	}
+    }
 }
