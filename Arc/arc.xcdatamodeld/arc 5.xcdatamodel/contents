@@ -22,14 +22,14 @@
         <attribute name="submitted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="Schedule" representedClassName=".Schedule" syncable="YES" codeGenerationType="category">
+    <entity name="Schedule" representedClassName=".Schedule" syncable="YES">
         <attribute name="createdOn" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="modifiedOn" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="participantID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="scheduleID" optional="YES" attributeType="String"/>
         <relationship name="scheduleEntries" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ScheduleEntry" inverseName="schedule" inverseEntity="ScheduleEntry"/>
     </entity>
-    <entity name="ScheduleEntry" representedClassName=".ScheduleEntry" syncable="YES" codeGenerationType="category">
+    <entity name="ScheduleEntry" representedClassName=".ScheduleEntry" syncable="YES">
         <attribute name="availabilityEnd" optional="YES" attributeType="String"/>
         <attribute name="availabilityStart" optional="YES" attributeType="String"/>
         <attribute name="createdOn" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
