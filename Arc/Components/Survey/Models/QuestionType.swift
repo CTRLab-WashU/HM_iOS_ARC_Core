@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 public enum QuestionType : String, Codable {
 	case none, text, number, slider, choice, checkbox, time, duration, password, segmentedText, multilineText, image, calendar, picker, signature

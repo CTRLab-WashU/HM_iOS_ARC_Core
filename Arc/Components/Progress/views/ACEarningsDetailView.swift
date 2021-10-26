@@ -7,6 +7,7 @@
 //
 
 import ArcUIKit
+import UIKit
 
 public class ACEarningsDetailView : ACTemplateView {
 	public enum GoalDisplayName : String {

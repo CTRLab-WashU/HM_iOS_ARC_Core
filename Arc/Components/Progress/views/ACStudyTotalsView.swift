@@ -8,6 +8,7 @@
 
 import Foundation
 import ArcUIKit
+import UIKit
 
 public class ACStudyTotalsView : UIView {
 	private weak var contentStack:UIStackView!

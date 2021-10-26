@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
 public extension PriceTestMod {
 	
 	//This is a single mod you can put multiple in a file, if related.

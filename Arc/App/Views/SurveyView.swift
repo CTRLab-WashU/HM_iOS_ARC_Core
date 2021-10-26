@@ -9,7 +9,7 @@
 import Foundation
 import ArcUIKit
 import HMMarkup
-
+import UIKit
 
 open class SurveyView : ACTemplateView, SurveyInput, SurveyInputDelegate {
 	

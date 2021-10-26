@@ -8,6 +8,8 @@
 
 import Foundation
 import CoreData
+import UIKit
+
 open class StudyController : MHController {
 	open var DAYS_PER_STUDY:Int = 7;
 	open var SESSIONS_PER_DAY:Int =  4; // sessions per day of arc

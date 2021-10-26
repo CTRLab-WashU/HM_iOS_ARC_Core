@@ -8,6 +8,8 @@
 
 import Foundation
 import ArcUIKit
+import UIKit
+
 public protocol ACPostCycleFinishViewDelegate : class {
 	func nextPressed()
 }

@@ -7,6 +7,7 @@
 //
 
 import ArcUIKit
+import UIKit
 
 public class ACPostTestEarningsView : UIView {
 	public override init(frame: CGRect) {

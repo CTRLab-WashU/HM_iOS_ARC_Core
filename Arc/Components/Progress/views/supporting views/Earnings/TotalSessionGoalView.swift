@@ -7,6 +7,8 @@
 //
 
 import ArcUIKit
+import UIKit
+
 public class TotalSessionGoalView : GoalView {
 	var current:Double = 0
 	var total:Double = 21

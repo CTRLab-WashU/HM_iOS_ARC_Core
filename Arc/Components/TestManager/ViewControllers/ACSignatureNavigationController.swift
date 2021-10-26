@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
 open class ACSignatureNavigationController: SurveyNavigationViewController {
     public var sessionId:Int64 = -1
     public var tag:Int32 = -1

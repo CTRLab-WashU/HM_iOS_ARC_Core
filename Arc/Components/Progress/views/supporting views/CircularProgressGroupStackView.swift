@@ -7,6 +7,7 @@
 //
 
 import ArcUIKit
+import UIKit
 
 public class ACCircularProgressGroupStackView : UIStackView {
 	private var progressViews:[CircularProgressView] = []

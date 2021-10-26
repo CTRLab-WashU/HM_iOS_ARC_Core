@@ -8,6 +8,8 @@
 
 import Foundation
 import ArcUIKit
+import UIKit
+
 public protocol ACTodayProgressViewDelegate : class {
 	func nextPressed()
 }

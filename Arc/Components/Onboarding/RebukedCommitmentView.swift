@@ -9,6 +9,8 @@
 import Foundation
 import ArcUIKit
 import HMMarkup
+import UIKit
+
 public class RebukedCommitmentView : ACTemplateView {
 	weak var contactStudyCoordinatorButton:ACButton!
 	public override func content(_ view: UIView) {

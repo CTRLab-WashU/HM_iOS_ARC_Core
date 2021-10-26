@@ -8,6 +8,8 @@
 
 import Foundation
 import ArcUIKit
+import UIKit
+
 public class NotificationsRejectedViewController : CustomViewController<InfoView>, SurveyInput {
 	public var useDarkStatusBar:Bool = false
     open override var preferredStatusBarStyle: UIStatusBarStyle {

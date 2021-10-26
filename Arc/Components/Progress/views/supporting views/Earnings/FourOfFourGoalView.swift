@@ -7,6 +7,8 @@
 //
 
 import ArcUIKit
+import UIKit
+
 public class FourOfFourGoalView : GoalView {
 	weak var progressGroup:ACCircularProgressGroupStackView!
 	

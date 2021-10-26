@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 #if os(iOS) || os(tvOS) || os(watchOS)
 import UIKit.UIFont
 public typealias Font = UIFont

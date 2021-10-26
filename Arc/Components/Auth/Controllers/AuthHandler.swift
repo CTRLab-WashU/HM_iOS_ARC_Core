@@ -9,6 +9,8 @@
 import Foundation
 import HMMarkup
 import ArcUIKit
+import UIKit
+
 public struct AuthHandler {
     
     public static func addResendCodeButton(surveyVc:BasicSurveyViewController, userId:String) {
