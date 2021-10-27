@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 @IBDesignable open class HMMarkupButton: UIButton {
     @IBInspectable var translationKey:String?
 	@IBInspectable var numberOfLines:Int = 0

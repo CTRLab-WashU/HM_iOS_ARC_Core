@@ -12,9 +12,6 @@ let package = Package(
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
-            name: "HMMarkup",
-            targets: ["HMMarkup"]),
-        .library(
             name: "Arc",
             targets: ["Arc"])
     ],
@@ -38,10 +35,6 @@ let package = Package(
             from: "1.2.3")
     ],
     targets: [
-        .target(
-            name: "HMMarkup",	   
-            path: "HMMarkup",
-	   exclude:["README.md", "Info.plist"]),
 
         .target(
             name: "Arc",
@@ -51,15 +44,13 @@ let package = Package(
                 .product(name: "Research", package: "SageResearch"),
                 .product(name: "ResearchUI", package: "SageResearch"),
                 "BridgeSDK",
-                "JsonModel",
-                "HMMarkup"
+                "JsonModel"
             ],
 	   path: "Arc",
 	   exclude:["Info.plist"],
 	   resources: [
                 .process("Resources"),
             ]),
-	.testTarget(name:"ArcTests", dependencies: ["Arc"], path: "ArcTests"),
-	.testTarget(name:"HMMarkupTests", dependencies: ["HMMarkup"], path: "HMMarkupTests"),
+	.testTarget(name:"ArcTests", dependencies: ["Arc"], path: "ArcTests")
     ]
 )

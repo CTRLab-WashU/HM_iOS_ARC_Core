@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		17732E3924FEF87700FE4990 /* GridTestSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E961524D8832C001166A1 /* GridTestSelectionView.swift */; };
-		17732E3B24FEFB5200FE4990 /* GridChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17732E3224FEF65100FE4990 /* GridChoiceView.swift */; };
 		177BA72A2527BA150018A25F /* GridTestTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BA7292527BA150018A25F /* GridTestTutorialViewController.swift */; };
 		177BA72D2527BA510018A25F /* GridTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BA72C2527BA510018A25F /* GridTestViewController.swift */; };
 		177BA72F2527BADF0018A25F /* GridTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 177BA72E2527BADF0018A25F /* GridTestViewController.xib */; };
@@ -20,33 +18,16 @@
 		2DB76D7122F3B3D900EE36A0 /* SymbolsTestTutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DB76D7022F3B3D900EE36A0 /* SymbolsTestTutorialViewController.xib */; };
 		4CB0BAC522E8FA7B00ABB348 /* ContactInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0BAC422E8FA7B00ABB348 /* ContactInfoResponse.swift */; };
 		C5143959224EA6FD000BF1CB /* ACSignatureNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5143958224EA6FD000BF1CB /* ACSignatureNavigationController.swift */; };
-		C5192A6722C518AC00223B69 /* UIDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D101422C2846E00B43E42 /* UIDSL.swift */; };
-		C5192A6D22C5198F00223B69 /* UIDSL+ArcUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5192A6B22C5190D00223B69 /* UIDSL+ArcUIKit.swift */; };
 		C5192A6F22C519D900223B69 /* UIDSL+ArcCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5192A6E22C519D900223B69 /* UIDSL+ArcCore.swift */; };
-		C5192A7522C51F5000223B69 /* Drawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5192A6522C3E04300223B69 /* Drawing.swift */; };
-		C5192A7722C5231900223B69 /* Georgia.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5192A5F22C3D34100223B69 /* Georgia.swift */; };
-		C5192A7822C5231900223B69 /* Roboto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5192A6222C3DF9000223B69 /* Roboto.swift */; };
-		C5192A7F22C5235E00223B69 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE91621C81B5C00DEC360 /* UILabel+Extensions.swift */; };
 		C51A7D8722D7EC5900854B13 /* ParticipationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51A7D8622D7EC5900854B13 /* ParticipationView.swift */; };
 		C51A7D8C22D8C33F00854B13 /* NotificationPermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51A7D8B22D8C33F00854B13 /* NotificationPermissionViewController.swift */; };
 		C51A7D8E22D8C38300854B13 /* NotificationPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51A7D8D22D8C38300854B13 /* NotificationPermissionView.swift */; };
 		C51A7D9022D8CDAE00854B13 /* BasicSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51A7D8F22D8CDAE00854B13 /* BasicSurveyViewController.swift */; };
 		C523B38622CA76450074337D /* UIViewController + CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C523B38522CA76450074337D /* UIViewController + CustomView.swift */; };
-		C523B38822CA8AF80074337D /* Animate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C523B38722CA8AF80074337D /* Animate.swift */; };
 		C52B75D421C8369400498571 /* arc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C54AE94821C81B5C00DEC360 /* arc.xcdatamodeld */; };
 		C52B75D521C837A200498571 /* Session+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE90E21C81B5C00DEC360 /* Session+Extensions.swift */; };
 		C52B75E521C83B2A00498571 /* HMMarkup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52B75DC21C83B2A00498571 /* HMMarkup.framework */; };
-		C52B75EA21C83B2A00498571 /* HMMarkupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52B75E921C83B2A00498571 /* HMMarkupTests.swift */; };
-		C52B75EC21C83B2A00498571 /* HMMarkup.h in Headers */ = {isa = PBXBuildFile; fileRef = C52B75DE21C83B2A00498571 /* HMMarkup.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C52B75F921C83B4700498571 /* HMMarkupToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52B75F321C83B4600498571 /* HMMarkupToken.swift */; };
-		C52B75FA21C83B4700498571 /* HMMarkupParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52B75F421C83B4600498571 /* HMMarkupParser.swift */; };
-		C52B75FB21C83B4700498571 /* HMMarkupTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52B75F521C83B4600498571 /* HMMarkupTokenizer.swift */; };
-		C52B75FC21C83B4700498571 /* HMMarkupNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52B75F621C83B4600498571 /* HMMarkupNode.swift */; };
-		C52B75FD21C83B4700498571 /* HMMarkupRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52B75F721C83B4700498571 /* HMMarkupRenderer.swift */; };
-		C52B75FE21C83B4700498571 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C52B75F821C83B4700498571 /* README.md */; };
 		C52B760021C83B6400498571 /* HMMarkup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52B75DC21C83B2A00498571 /* HMMarkup.framework */; };
-		C52B760121C83CEA00498571 /* HMMarkupLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE93C21C81B5C00DEC360 /* HMMarkupLabel.swift */; };
-		C537A1AE228B74E20098A4CD /* Window+Overlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C537A1AD228B74E20098A4CD /* Window+Overlay.swift */; };
 		C53B123822F348F900BACA9A /* ACTodayProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B123722F348F900BACA9A /* ACTodayProgressViewController.swift */; };
 		C53B123A22F34C1700BACA9A /* ACTodayProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B123922F34C1700BACA9A /* ACTodayProgressView.swift */; };
 		C540B5B1221E0FD000B539A4 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C540B5B0221E0FD000B539A4 /* LanguageViewController.swift */; };
@@ -54,7 +35,6 @@
 		C545AB0723283168002672C2 /* ACPostCycleFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C545AB0623283168002672C2 /* ACPostCycleFinishView.swift */; };
 		C5477C7A231868C80072425D /* RebukedCommitmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5477C79231868C80072425D /* RebukedCommitmentView.swift */; };
 		C5477C7C231868E10072425D /* RebukedCommitmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5477C7B231868E10072425D /* RebukedCommitmentViewController.swift */; };
-		C548B79122C54D630039DBCB /* UIControl+Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = C548B79022C54D630039DBCB /* UIControl+Closure.swift */; };
 		C54AE8F821C81B2F00DEC360 /* Arc.h in Headers */ = {isa = PBXBuildFile; fileRef = C54AE8EA21C81B2F00DEC360 /* Arc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C54AE9CE21C81B5F00DEC360 /* SharedAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C54AE90121C81B5B00DEC360 /* SharedAssets.xcassets */; };
 		C54AE9CF21C81B5F00DEC360 /* ACEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE90221C81B5B00DEC360 /* ACEnvironment.swift */; };
@@ -207,7 +187,6 @@
 		C54D488623E3308000EE9511 /* PriceTestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D488523E3308000EE9511 /* PriceTestType.swift */; };
 		C54D488823E339CB00EE9511 /* BackgroundStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D488723E339CB00EE9511 /* BackgroundStyle.swift */; };
 		C54E8E1122E64CE00080BFC1 /* SymbolsTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54E8E1022E64CE00080BFC1 /* SymbolsTutorialViewController.swift */; };
-		C54E8E1B22E7B6330080BFC1 /* ConstraintDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54E8E1A22E7B6330080BFC1 /* ConstraintDSL.swift */; };
 		C54E8E1E22E800780080BFC1 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54E8E1C22E800780080BFC1 /* CircularProgressView.swift */; };
 		C54E8E2322E88D590080BFC1 /* StepperProgressview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54E8E2222E88D590080BFC1 /* StepperProgressview.swift */; };
 		C54E8E2622E88DC60080BFC1 /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54E8E2522E88DC60080BFC1 /* ProgressViewController.swift */; };
@@ -223,17 +202,12 @@
 		C55F8CD3230F1BCA006D43BD /* EarningDetailGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F8CD2230F1BCA006D43BD /* EarningDetailGoalView.swift */; };
 		C55F8CD5230F2DAA006D43BD /* EarningsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F8CD4230F2DAA006D43BD /* EarningsDetailViewController.swift */; };
 		C56057F622F9F6AC00EDA919 /* ProgressFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56057F522F9F6AC00EDA919 /* ProgressFlag.swift */; };
-		C56BBCA3221490DF0025A318 /* ACTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56BBCA2221490DF0025A318 /* ACTextView.swift */; };
-		C56BBCA52214AF5B0025A318 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56BBCA42214AF5B0025A318 /* Common.swift */; };
-		C56D6C5422CBA6E000C3F8EA /* UIView + Pulse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56D6C5322CBA6E000C3F8EA /* UIView + Pulse.swift */; };
-		C56D6C5722CBF25900C3F8EA /* Automation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56D6C5622CBF25900C3F8EA /* Automation.swift */; };
 		C56D6C5922CD0DFE00C3F8EA /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56D6C5822CD0DFE00C3F8EA /* TutorialView.swift */; };
 		C56D6C5B22CD2B9F00C3F8EA /* ACTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56D6C5A22CD2B9F00C3F8EA /* ACTutorialViewController.swift */; };
 		C56D6C5D22CD3FE800C3F8EA /* PricesTestTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56D6C5C22CD3FE800C3F8EA /* PricesTestTutorialViewController.swift */; };
 		C57480AC23035B2E00EFC901 /* CircularProgressGroupStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57480AB23035B2E00EFC901 /* CircularProgressGroupStackView.swift */; };
 		C578771322F8BED10068E46B /* TestCountDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C578771222F8BED10068E46B /* TestCountDownView.swift */; };
 		C578771522F8BF260068E46B /* TestCountDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C578771422F8BF260068E46B /* TestCountDownViewController.swift */; };
-		C578B8D622A859A60038DDF0 /* ACView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C578B8D522A859A60038DDF0 /* ACView.swift */; };
 		C57A4B6B258AB3AF00238700 /* AuthDetailsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57A4B6A258AB3AF00238700 /* AuthDetailsRequest.swift */; };
 		C57A4B75258ABB3B00238700 /* AuthDetailsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57A4B74258ABB3B00238700 /* AuthDetailsResponse.swift */; };
 		C57A4B7D258ABD6100238700 /* ACResponsiveAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57A4B7C258ABD6100238700 /* ACResponsiveAuthViewController.swift */; };
@@ -257,13 +231,11 @@
 		C583C0EE22136E0C0043DFA7 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9CB21C81B5F00DEC360 /* Roboto-Bold.ttf */; };
 		C583C0EF22136E0C0043DFA7 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9CC21C81B5F00DEC360 /* Roboto-Thin.ttf */; };
 		C583C0F022136E0C0043DFA7 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54AE9CD21C81B5F00DEC360 /* Roboto-Black.ttf */; };
-		C583C0F222136E3B0043DFA7 /* ACLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C583C0F122136E3B0043DFA7 /* ACLabel.swift */; };
 		C583C0F3221378B10043DFA7 /* HMMarkup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52B75DC21C83B2A00498571 /* HMMarkup.framework */; };
 		C584F33522C16682009741A7 /* ArcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C584F33422C16682009741A7 /* ArcTests.swift */; };
 		C584F33722C16682009741A7 /* Arc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C54AE8E721C81B2F00DEC360 /* Arc.framework */; };
 		C589B50E21ED001700389342 /* ACAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C589B50D21ED001700389342 /* ACAuthViewController.swift */; };
 		C58C96F1228201CE001BDE11 /* HMOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C96F0228201CE001BDE11 /* HMOperation.swift */; };
-		C58D92832294AA1E000AD89F /* HMMarkupButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D92822294AA1E000AD89F /* HMMarkupButton.swift */; };
 		C593227122E890DA00528FF5 /* ACProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C593227022E890DA00528FF5 /* ACProgressView.swift */; };
 		C593227322E8916300528FF5 /* BlockProgressview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C593227222E8916300528FF5 /* BlockProgressview.swift */; };
 		C593227522E8BB0F00528FF5 /* AC2FAuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C593227422E8BB0F00528FF5 /* AC2FAuthenticationViewController.swift */; };
@@ -273,13 +245,8 @@
 		C594B3DA23E245BA00B9743C /* Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C594B3D923E245BA00B9743C /* Alignment.swift */; };
 		C594B3DC23E245F100B9743C /* HideGoodPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C594B3DB23E245F100B9743C /* HideGoodPrice.swift */; };
 		C59D6EEF22FA21B20037B671 /* ACHomeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59D6EEE22FA21B20037B671 /* ACHomeTabViewController.swift */; };
-		C5A43CCF22CA648700C10BC0 /* ACHorizontalBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A43CCE22CA648700C10BC0 /* ACHorizontalBar.swift */; };
-		C5AA4F2A24476679001DA323 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AA4F2924476679001DA323 /* Buttons.swift */; };
 		C5AB56122302030F00129E03 /* WeekStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB56112302030F00129E03 /* WeekStepperView.swift */; };
 		C5B2601C22135F7300BFF778 /* ArcUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B2601322135F7200BFF778 /* ArcUIKit.framework */; };
-		C5B2602122135F7300BFF778 /* ArcUIKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2602022135F7300BFF778 /* ArcUIKitTests.swift */; };
-		C5B2602322135F7300BFF778 /* ArcUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = C5B2601522135F7300BFF778 /* ArcUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C5B2602C2213606600BFF778 /* ACButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2602B2213606600BFF778 /* ACButton.swift */; };
 		C5B2602D2213657500BFF778 /* ArcUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B2601322135F7200BFF778 /* ArcUIKit.framework */; };
 		C5C2B12522D3A2B3002CB4C5 /* PromptDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C2B12422D3A2B3002CB4C5 /* PromptDetailView.swift */; };
 		C5C2B12722D3D66C002CB4C5 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C2B12622D3D66B002CB4C5 /* InfoView.swift */; };
@@ -291,7 +258,6 @@
 		C5CCD7AE22DF717D002A788A /* AsyncAwait.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CCD7AD22DF717D002A788A /* AsyncAwait.swift */; };
 		C5CDF92E23FEFA32003DA532 /* NotificationsRejectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CDF92D23FEFA32003DA532 /* NotificationsRejectedViewController.swift */; };
 		C5CDF93123FEFA46003DA532 /* NotificationsRejectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CDF93023FEFA46003DA532 /* NotificationsRejectedView.swift */; };
-		C5D085CC22D7828300043513 /* HintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D085CB22D7828300043513 /* HintView.swift */; };
 		C5D0F6FA220B477B00F04942 /* MHScrollingAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5D0F6F9220B477B00F04942 /* MHScrollingAlertView.xib */; };
 		C5D24ED3230B02B600146E37 /* FourOfFourGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D24ED2230B02B600146E37 /* FourOfFourGoalView.swift */; };
 		C5D24ED5230B040300146E37 /* TwoADayGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D24ED4230B040300146E37 /* TwoADayGoalView.swift */; };
@@ -301,7 +267,6 @@
 		C5DA181A230492A6003C84C2 /* EarningsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DA1819230492A6003C84C2 /* EarningsViewController.swift */; };
 		C5DA18622305C2EC003C84C2 /* GoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DA18612305C2EC003C84C2 /* GoalView.swift */; };
 		C5DA18662305F6E9003C84C2 /* GoalBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DA18652305F6E9003C84C2 /* GoalBackgroundView.swift */; };
-		C5E0DDB922A5B7D20034DEDF /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0DDB822A5B7D20034DEDF /* IndicatorView.swift */; };
 		C5E1530B22C64B630066FD6B /* PrivacyStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1530A22C64B630066FD6B /* PrivacyStack.swift */; };
 		C5E1E34F2253E84900255812 /* ACWakeSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1E34E2253E84900255812 /* ACWakeSurveyViewController.swift */; };
 		C5E1E3952257ECC200255812 /* ACChangeAvailabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1E3932257ECC100255812 /* ACChangeAvailabilityViewController.swift */; };
@@ -314,7 +279,6 @@
 		C5E3925022EB76AD007CB3B6 /* ResendCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E3924F22EB76AD007CB3B6 /* ResendCodeViewController.swift */; };
 		C5E7212822F10D25004B9E26 /* TestProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E7212722F10D25004B9E26 /* TestProgressViewController.swift */; };
 		C5E7212A22F10D9C004B9E26 /* TestProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E7212922F10D9C004B9E26 /* TestProgressView.swift */; };
-		C5E7212C22F1C9D3004B9E26 /* ACColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E7212B22F1C9D3004B9E26 /* ACColor.swift */; };
 		C5EB849623DB8CA30070A240 /* ACPDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EB849523DB8CA30070A240 /* ACPDFViewController.swift */; };
 		C5EB849923DB8D050070A240 /* ACPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EB849823DB8D050070A240 /* ACPDFView.swift */; };
 		C5F77F37222F095200BECAE1 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F77F36222F095200BECAE1 /* SignatureViewController.swift */; };
@@ -323,8 +287,6 @@
 		CB247161272888DE008C9495 /* ScheduleEntry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB24715D272888DE008C9495 /* ScheduleEntry+CoreDataProperties.swift */; };
 		CB247162272888DE008C9495 /* Schedule+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB24715E272888DE008C9495 /* Schedule+CoreDataClass.swift */; };
 		CB247163272888DE008C9495 /* Schedule+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB24715F272888DE008C9495 /* Schedule+CoreDataProperties.swift */; };
-		CB24717327289509008C9495 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE91121C81B5C00DEC360 /* UIViewController+Extensions.swift */; };
-		CB24717427289635008C9495 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE91221C81B5C00DEC360 /* UIView+Extensions.swift */; };
 		CB32BCEF2717C82D00B05501 /* JsonModel in Frameworks */ = {isa = PBXBuildFile; productRef = CB32BCEE2717C82D00B05501 /* JsonModel */; };
 		CB855AC627178C60004599EC /* BridgeApp in Frameworks */ = {isa = PBXBuildFile; productRef = CB855AC527178C60004599EC /* BridgeApp */; };
 		CB855AC827178C60004599EC /* BridgeAppUI in Frameworks */ = {isa = PBXBuildFile; productRef = CB855AC727178C60004599EC /* BridgeAppUI */; };
@@ -379,8 +341,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		175E961524D8832C001166A1 /* GridTestSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTestSelectionView.swift; sourceTree = "<group>"; };
-		17732E3224FEF65100FE4990 /* GridChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridChoiceView.swift; sourceTree = "<group>"; };
 		177BA7292527BA150018A25F /* GridTestTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTestTutorialViewController.swift; sourceTree = "<group>"; };
 		177BA72C2527BA510018A25F /* GridTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTestViewController.swift; sourceTree = "<group>"; };
 		177BA72E2527BADF0018A25F /* GridTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GridTestViewController.xib; sourceTree = "<group>"; };
@@ -396,30 +356,14 @@
 		C511778222FE0095004AE623 /* arc 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "arc 4.xcdatamodel"; sourceTree = "<group>"; };
 		C5143957224E837C000BF1CB /* arc 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "arc 3.xcdatamodel"; sourceTree = "<group>"; };
 		C5143958224EA6FD000BF1CB /* ACSignatureNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSignatureNavigationController.swift; sourceTree = "<group>"; };
-		C5192A5F22C3D34100223B69 /* Georgia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Georgia.swift; sourceTree = "<group>"; };
-		C5192A6222C3DF9000223B69 /* Roboto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roboto.swift; sourceTree = "<group>"; };
-		C5192A6522C3E04300223B69 /* Drawing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawing.swift; sourceTree = "<group>"; };
-		C5192A6B22C5190D00223B69 /* UIDSL+ArcUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDSL+ArcUIKit.swift"; sourceTree = "<group>"; };
 		C5192A6E22C519D900223B69 /* UIDSL+ArcCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDSL+ArcCore.swift"; sourceTree = "<group>"; };
 		C51A7D8622D7EC5900854B13 /* ParticipationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipationView.swift; sourceTree = "<group>"; };
 		C51A7D8B22D8C33F00854B13 /* NotificationPermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPermissionViewController.swift; sourceTree = "<group>"; };
 		C51A7D8D22D8C38300854B13 /* NotificationPermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPermissionView.swift; sourceTree = "<group>"; };
 		C51A7D8F22D8CDAE00854B13 /* BasicSurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicSurveyViewController.swift; sourceTree = "<group>"; };
 		C523B38522CA76450074337D /* UIViewController + CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + CustomView.swift"; sourceTree = "<group>"; };
-		C523B38722CA8AF80074337D /* Animate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animate.swift; sourceTree = "<group>"; };
 		C52B75DC21C83B2A00498571 /* HMMarkup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HMMarkup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C52B75DE21C83B2A00498571 /* HMMarkup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HMMarkup.h; sourceTree = "<group>"; };
-		C52B75DF21C83B2A00498571 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C52B75E421C83B2A00498571 /* HMMarkupTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HMMarkupTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C52B75E921C83B2A00498571 /* HMMarkupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMMarkupTests.swift; sourceTree = "<group>"; };
-		C52B75EB21C83B2A00498571 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C52B75F321C83B4600498571 /* HMMarkupToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMMarkupToken.swift; sourceTree = "<group>"; };
-		C52B75F421C83B4600498571 /* HMMarkupParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMMarkupParser.swift; sourceTree = "<group>"; };
-		C52B75F521C83B4600498571 /* HMMarkupTokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMMarkupTokenizer.swift; sourceTree = "<group>"; };
-		C52B75F621C83B4600498571 /* HMMarkupNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMMarkupNode.swift; sourceTree = "<group>"; };
-		C52B75F721C83B4700498571 /* HMMarkupRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMMarkupRenderer.swift; sourceTree = "<group>"; };
-		C52B75F821C83B4700498571 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		C537A1AD228B74E20098A4CD /* Window+Overlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Window+Overlay.swift"; sourceTree = "<group>"; };
 		C53B123722F348F900BACA9A /* ACTodayProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTodayProgressViewController.swift; sourceTree = "<group>"; };
 		C53B123922F34C1700BACA9A /* ACTodayProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTodayProgressView.swift; sourceTree = "<group>"; };
 		C540B5B0221E0FD000B539A4 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
@@ -427,7 +371,6 @@
 		C545AB0623283168002672C2 /* ACPostCycleFinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPostCycleFinishView.swift; sourceTree = "<group>"; };
 		C5477C79231868C80072425D /* RebukedCommitmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebukedCommitmentView.swift; sourceTree = "<group>"; };
 		C5477C7B231868E10072425D /* RebukedCommitmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebukedCommitmentViewController.swift; sourceTree = "<group>"; };
-		C548B79022C54D630039DBCB /* UIControl+Closure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Closure.swift"; sourceTree = "<group>"; };
 		C54AE8E721C81B2F00DEC360 /* Arc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Arc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C54AE8EA21C81B2F00DEC360 /* Arc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Arc.h; sourceTree = "<group>"; };
 		C54AE8EB21C81B2F00DEC360 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -443,11 +386,8 @@
 		C54AE90A21C81B5C00DEC360 /* Phase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Phase.swift; sourceTree = "<group>"; };
 		C54AE90D21C81B5C00DEC360 /* Arc+Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Arc+Auth.swift"; sourceTree = "<group>"; };
 		C54AE90E21C81B5C00DEC360 /* Session+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Extensions.swift"; sourceTree = "<group>"; };
-		C54AE91121C81B5C00DEC360 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
-		C54AE91221C81B5C00DEC360 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		C54AE91321C81B5C00DEC360 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
 		C54AE91421C81B5C00DEC360 /* Set+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Set+Extensions.swift"; sourceTree = "<group>"; };
-		C54AE91621C81B5C00DEC360 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		C54AE91721C81B5C00DEC360 /* Date+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		C54AE91821C81B5C00DEC360 /* Data+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
 		C54AE91A21C81B5C00DEC360 /* HMLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMLog.swift; sourceTree = "<group>"; };
@@ -477,7 +417,6 @@
 		C54AE93821C81B5C00DEC360 /* AppController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
 		C54AE93A21C81B5C00DEC360 /* CancelButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CancelButton.xib; sourceTree = "<group>"; };
 		C54AE93B21C81B5C00DEC360 /* ContainerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerButton.swift; sourceTree = "<group>"; };
-		C54AE93C21C81B5C00DEC360 /* HMMarkupLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMMarkupLabel.swift; sourceTree = "<group>"; };
 		C54AE93D21C81B5C00DEC360 /* MHAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MHAlertView.xib; sourceTree = "<group>"; };
 		C54AE93E21C81B5C00DEC360 /* PrimaryButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrimaryButton.xib; sourceTree = "<group>"; };
 		C54AE93F21C81B5C00DEC360 /* MHAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHAlertView.swift; sourceTree = "<group>"; };
@@ -581,12 +520,10 @@
 		C54AE9CD21C81B5F00DEC360 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		C54D101022C2743F00B43E42 /* QuestionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionType.swift; sourceTree = "<group>"; };
 		C54D101222C2745A00B43E42 /* QuestionStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionStyle.swift; sourceTree = "<group>"; };
-		C54D101422C2846E00B43E42 /* UIDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDSL.swift; sourceTree = "<group>"; };
 		C54D104E22C29DA700B43E42 /* SurveyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyView.swift; sourceTree = "<group>"; };
 		C54D488523E3308000EE9511 /* PriceTestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTestType.swift; sourceTree = "<group>"; };
 		C54D488723E339CB00EE9511 /* BackgroundStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundStyle.swift; sourceTree = "<group>"; };
 		C54E8E1022E64CE00080BFC1 /* SymbolsTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolsTutorialViewController.swift; sourceTree = "<group>"; };
-		C54E8E1A22E7B6330080BFC1 /* ConstraintDSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintDSL.swift; sourceTree = "<group>"; };
 		C54E8E1C22E800780080BFC1 /* CircularProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		C54E8E2222E88D590080BFC1 /* StepperProgressview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperProgressview.swift; sourceTree = "<group>"; };
 		C54E8E2522E88DC60080BFC1 /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
@@ -602,17 +539,12 @@
 		C55F8CD2230F1BCA006D43BD /* EarningDetailGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningDetailGoalView.swift; sourceTree = "<group>"; };
 		C55F8CD4230F2DAA006D43BD /* EarningsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningsDetailViewController.swift; sourceTree = "<group>"; };
 		C56057F522F9F6AC00EDA919 /* ProgressFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressFlag.swift; sourceTree = "<group>"; };
-		C56BBCA2221490DF0025A318 /* ACTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTextView.swift; sourceTree = "<group>"; };
-		C56BBCA42214AF5B0025A318 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
-		C56D6C5322CBA6E000C3F8EA /* UIView + Pulse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Pulse.swift"; sourceTree = "<group>"; };
-		C56D6C5622CBF25900C3F8EA /* Automation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Automation.swift; sourceTree = "<group>"; };
 		C56D6C5822CD0DFE00C3F8EA /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		C56D6C5A22CD2B9F00C3F8EA /* ACTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTutorialViewController.swift; sourceTree = "<group>"; };
 		C56D6C5C22CD3FE800C3F8EA /* PricesTestTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricesTestTutorialViewController.swift; sourceTree = "<group>"; };
 		C57480AB23035B2E00EFC901 /* CircularProgressGroupStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressGroupStackView.swift; sourceTree = "<group>"; };
 		C578771222F8BED10068E46B /* TestCountDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCountDownView.swift; sourceTree = "<group>"; };
 		C578771422F8BF260068E46B /* TestCountDownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCountDownViewController.swift; sourceTree = "<group>"; };
-		C578B8D522A859A60038DDF0 /* ACView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACView.swift; sourceTree = "<group>"; };
 		C57A4B6A258AB3AF00238700 /* AuthDetailsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDetailsRequest.swift; sourceTree = "<group>"; };
 		C57A4B74258ABB3B00238700 /* AuthDetailsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDetailsResponse.swift; sourceTree = "<group>"; };
 		C57A4B7C258ABD6100238700 /* ACResponsiveAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACResponsiveAuthViewController.swift; sourceTree = "<group>"; };
@@ -625,13 +557,11 @@
 		C57E9C892236E825009F6228 /* ACPickerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ACPickerView.xib; sourceTree = "<group>"; };
 		C58129F722E20BE000CD1883 /* TutorialCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCompleteView.swift; sourceTree = "<group>"; };
 		C58129FA22E249EE00CD1883 /* ExtendedGridTestTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedGridTestTutorialViewController.swift; sourceTree = "<group>"; };
-		C583C0F122136E3B0043DFA7 /* ACLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACLabel.swift; sourceTree = "<group>"; };
 		C584F33222C16682009741A7 /* ArcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C584F33422C16682009741A7 /* ArcTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcTests.swift; sourceTree = "<group>"; };
 		C584F33622C16682009741A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C589B50D21ED001700389342 /* ACAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACAuthViewController.swift; sourceTree = "<group>"; };
 		C58C96F0228201CE001BDE11 /* HMOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMOperation.swift; sourceTree = "<group>"; };
-		C58D92822294AA1E000AD89F /* HMMarkupButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMMarkupButton.swift; sourceTree = "<group>"; };
 		C593227022E890DA00528FF5 /* ACProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACProgressView.swift; sourceTree = "<group>"; };
 		C593227222E8916300528FF5 /* BlockProgressview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockProgressview.swift; sourceTree = "<group>"; };
 		C593227422E8BB0F00528FF5 /* AC2FAuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AC2FAuthenticationViewController.swift; sourceTree = "<group>"; };
@@ -641,16 +571,9 @@
 		C594B3D923E245BA00B9743C /* Alignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alignment.swift; sourceTree = "<group>"; };
 		C594B3DB23E245F100B9743C /* HideGoodPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideGoodPrice.swift; sourceTree = "<group>"; };
 		C59D6EEE22FA21B20037B671 /* ACHomeTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACHomeTabViewController.swift; sourceTree = "<group>"; };
-		C5A43CCE22CA648700C10BC0 /* ACHorizontalBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACHorizontalBar.swift; sourceTree = "<group>"; };
-		C5AA4F2924476679001DA323 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Buttons.swift; path = ArcUIKit/Views/Style/Buttons.swift; sourceTree = SOURCE_ROOT; };
 		C5AB56112302030F00129E03 /* WeekStepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekStepperView.swift; sourceTree = "<group>"; };
 		C5B2601322135F7200BFF778 /* ArcUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ArcUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C5B2601522135F7300BFF778 /* ArcUIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArcUIKit.h; sourceTree = "<group>"; };
-		C5B2601622135F7300BFF778 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5B2601B22135F7300BFF778 /* ArcUIKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArcUIKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C5B2602022135F7300BFF778 /* ArcUIKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcUIKitTests.swift; sourceTree = "<group>"; };
-		C5B2602222135F7300BFF778 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C5B2602B2213606600BFF778 /* ACButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACButton.swift; sourceTree = "<group>"; };
 		C5B4BD14251949D90094A338 /* StatusCodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCodeTests.swift; sourceTree = "<group>"; };
 		C5C2B12422D3A2B3002CB4C5 /* PromptDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptDetailView.swift; sourceTree = "<group>"; };
 		C5C2B12622D3D66B002CB4C5 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InfoView.swift; path = Arc/App/Views/InfoView.swift; sourceTree = SOURCE_ROOT; };
@@ -661,7 +584,6 @@
 		C5CCD7AD22DF717D002A788A /* AsyncAwait.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncAwait.swift; sourceTree = "<group>"; };
 		C5CDF92D23FEFA32003DA532 /* NotificationsRejectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsRejectedViewController.swift; sourceTree = "<group>"; };
 		C5CDF93023FEFA46003DA532 /* NotificationsRejectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsRejectedView.swift; sourceTree = "<group>"; };
-		C5D085CB22D7828300043513 /* HintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintView.swift; sourceTree = "<group>"; };
 		C5D0F6F9220B477B00F04942 /* MHScrollingAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MHScrollingAlertView.xib; sourceTree = "<group>"; };
 		C5D24ED2230B02B600146E37 /* FourOfFourGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourOfFourGoalView.swift; sourceTree = "<group>"; };
 		C5D24ED4230B040300146E37 /* TwoADayGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoADayGoalView.swift; sourceTree = "<group>"; };
@@ -671,7 +593,6 @@
 		C5DA1819230492A6003C84C2 /* EarningsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningsViewController.swift; sourceTree = "<group>"; };
 		C5DA18612305C2EC003C84C2 /* GoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalView.swift; sourceTree = "<group>"; };
 		C5DA18652305F6E9003C84C2 /* GoalBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalBackgroundView.swift; sourceTree = "<group>"; };
-		C5E0DDB822A5B7D20034DEDF /* IndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorView.swift; sourceTree = "<group>"; };
 		C5E1530A22C64B630066FD6B /* PrivacyStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyStack.swift; sourceTree = "<group>"; };
 		C5E1E34E2253E84900255812 /* ACWakeSurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACWakeSurveyViewController.swift; sourceTree = "<group>"; };
 		C5E1E3932257ECC100255812 /* ACChangeAvailabilityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACChangeAvailabilityViewController.swift; sourceTree = "<group>"; };
@@ -684,7 +605,6 @@
 		C5E3924F22EB76AD007CB3B6 /* ResendCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResendCodeViewController.swift; sourceTree = "<group>"; };
 		C5E7212722F10D25004B9E26 /* TestProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestProgressViewController.swift; sourceTree = "<group>"; };
 		C5E7212922F10D9C004B9E26 /* TestProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestProgressView.swift; sourceTree = "<group>"; };
-		C5E7212B22F1C9D3004B9E26 /* ACColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACColor.swift; sourceTree = "<group>"; };
 		C5EB849523DB8CA30070A240 /* ACPDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPDFViewController.swift; sourceTree = "<group>"; };
 		C5EB849823DB8D050070A240 /* ACPDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPDFView.swift; sourceTree = "<group>"; };
 		C5F77F34222F094000BECAE1 /* SignatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureView.swift; sourceTree = "<group>"; };
@@ -782,27 +702,6 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
-		C5192A6422C3DFA800223B69 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				C5192A5F22C3D34100223B69 /* Georgia.swift */,
-				C5192A6222C3DF9000223B69 /* Roboto.swift */,
-				C5AA4F2924476679001DA323 /* Buttons.swift */,
-			);
-			path = Fonts;
-			sourceTree = "<group>";
-		};
-		C5192A7622C5204F00223B69 /* Style */ = {
-			isa = PBXGroup;
-			children = (
-				C5192A6422C3DFA800223B69 /* Fonts */,
-				C5192A6522C3E04300223B69 /* Drawing.swift */,
-				C523B38722CA8AF80074337D /* Animate.swift */,
-				C5E7212B22F1C9D3004B9E26 /* ACColor.swift */,
-			);
-			path = Style;
-			sourceTree = "<group>";
-		};
 		C51A7D8822D7F65100854B13 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -825,32 +724,6 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
-		C52B75DD21C83B2A00498571 /* HMMarkup */ = {
-			isa = PBXGroup;
-			children = (
-				C52B75F821C83B4700498571 /* README.md */,
-				C52B75DE21C83B2A00498571 /* HMMarkup.h */,
-				C52B75DF21C83B2A00498571 /* Info.plist */,
-				C54AE93C21C81B5C00DEC360 /* HMMarkupLabel.swift */,
-				C58D92822294AA1E000AD89F /* HMMarkupButton.swift */,
-				C52B75F621C83B4600498571 /* HMMarkupNode.swift */,
-				C52B75F421C83B4600498571 /* HMMarkupParser.swift */,
-				C52B75F721C83B4700498571 /* HMMarkupRenderer.swift */,
-				C52B75F321C83B4600498571 /* HMMarkupToken.swift */,
-				C52B75F521C83B4600498571 /* HMMarkupTokenizer.swift */,
-			);
-			path = HMMarkup;
-			sourceTree = "<group>";
-		};
-		C52B75E821C83B2A00498571 /* HMMarkupTests */ = {
-			isa = PBXGroup;
-			children = (
-				C52B75E921C83B2A00498571 /* HMMarkupTests.swift */,
-				C52B75EB21C83B2A00498571 /* Info.plist */,
-			);
-			path = HMMarkupTests;
-			sourceTree = "<group>";
-		};
 		C52B75FF21C83B6400498571 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -858,30 +731,11 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C537A1AC228B74D20098A4CD /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				C54AE91221C81B5C00DEC360 /* UIView+Extensions.swift */,
-				C54AE91121C81B5C00DEC360 /* UIViewController+Extensions.swift */,
-				C54AE91621C81B5C00DEC360 /* UILabel+Extensions.swift */,
-				C54D101422C2846E00B43E42 /* UIDSL.swift */,
-				C54E8E1A22E7B6330080BFC1 /* ConstraintDSL.swift */,
-				C537A1AD228B74E20098A4CD /* Window+Overlay.swift */,
-				C56D6C5322CBA6E000C3F8EA /* UIView + Pulse.swift */,
-				C548B79022C54D630039DBCB /* UIControl+Closure.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		C54AE8DD21C81B2F00DEC360 = {
 			isa = PBXGroup;
 			children = (
 				C54AE8E921C81B2F00DEC360 /* Arc */,
 				C54AE8F421C81B2F00DEC360 /* ArcTests */,
-				C52B75DD21C83B2A00498571 /* HMMarkup */,
-				C52B75E821C83B2A00498571 /* HMMarkupTests */,
-				C5B2601422135F7300BFF778 /* ArcUIKit */,
-				C5B2601F22135F7300BFF778 /* ArcUIKitTests */,
 				C584F33322C16682009741A7 /* ArcTests */,
 				C54AE8E821C81B2F00DEC360 /* Products */,
 				C52B75FF21C83B6400498571 /* Frameworks */,
@@ -1499,46 +1353,6 @@
 			path = PriceTestMods;
 			sourceTree = "<group>";
 		};
-		C5B2601422135F7300BFF778 /* ArcUIKit */ = {
-			isa = PBXGroup;
-			children = (
-				C5B2601522135F7300BFF778 /* ArcUIKit.h */,
-				C5B2601622135F7300BFF778 /* Info.plist */,
-				C56D6C5622CBF25900C3F8EA /* Automation.swift */,
-				C537A1AC228B74D20098A4CD /* Extensions */,
-				C5B2602A2213602400BFF778 /* Views */,
-			);
-			path = ArcUIKit;
-			sourceTree = "<group>";
-		};
-		C5B2601F22135F7300BFF778 /* ArcUIKitTests */ = {
-			isa = PBXGroup;
-			children = (
-				C5B2602022135F7300BFF778 /* ArcUIKitTests.swift */,
-				C5B2602222135F7300BFF778 /* Info.plist */,
-			);
-			path = ArcUIKitTests;
-			sourceTree = "<group>";
-		};
-		C5B2602A2213602400BFF778 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				C5192A7622C5204F00223B69 /* Style */,
-				C5192A6B22C5190D00223B69 /* UIDSL+ArcUIKit.swift */,
-				C56BBCA42214AF5B0025A318 /* Common.swift */,
-				C578B8D522A859A60038DDF0 /* ACView.swift */,
-				C5B2602B2213606600BFF778 /* ACButton.swift */,
-				C583C0F122136E3B0043DFA7 /* ACLabel.swift */,
-				C56BBCA2221490DF0025A318 /* ACTextView.swift */,
-				C5E0DDB822A5B7D20034DEDF /* IndicatorView.swift */,
-				C5D085CB22D7828300043513 /* HintView.swift */,
-				C5A43CCE22CA648700C10BC0 /* ACHorizontalBar.swift */,
-				17732E3224FEF65100FE4990 /* GridChoiceView.swift */,
-				175E961524D8832C001166A1 /* GridTestSelectionView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		C5C2B12322D39386002CB4C5 /* Prices Test */ = {
 			isa = PBXGroup;
 			children = (
@@ -1667,7 +1481,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C52B75EC21C83B2A00498571 /* HMMarkup.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1683,7 +1496,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5B2602322135F7300BFF778 /* ArcUIKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1873,7 +1685,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C52B75FE21C83B4700498571 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1986,13 +1797,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C52B75FC21C83B4700498571 /* HMMarkupNode.swift in Sources */,
-				C52B760121C83CEA00498571 /* HMMarkupLabel.swift in Sources */,
-				C52B75F921C83B4700498571 /* HMMarkupToken.swift in Sources */,
-				C52B75FA21C83B4700498571 /* HMMarkupParser.swift in Sources */,
-				C52B75FD21C83B4700498571 /* HMMarkupRenderer.swift in Sources */,
-				C58D92832294AA1E000AD89F /* HMMarkupButton.swift in Sources */,
-				C52B75FB21C83B4700498571 /* HMMarkupTokenizer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2000,7 +1804,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C52B75EA21C83B2A00498571 /* HMMarkupTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2156,9 +1959,7 @@
 				C54AEA2C21C81B5F00DEC360 /* LoginHelpView.swift in Sources */,
 				C57ABE1F23060BD7000C9315 /* GoalRewardView.swift in Sources */,
 				C54AE9D621C81B5F00DEC360 /* Arc+Auth.swift in Sources */,
-				17732E3924FEF87700FE4990 /* GridTestSelectionView.swift in Sources */,
 				C53B123A22F34C1700BACA9A /* ACTodayProgressView.swift in Sources */,
-				17732E3B24FEFB5200FE4990 /* GridChoiceView.swift in Sources */,
 				E86732322315808800844F91 /* ACHomeViewController.swift in Sources */,
 				C55F8CD3230F1BCA006D43BD /* EarningDetailGoalView.swift in Sources */,
 				C52B75D421C8369400498571 /* arc.xcdatamodeld in Sources */,
@@ -2244,30 +2045,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB24717327289509008C9495 /* UIViewController+Extensions.swift in Sources */,
-				C56BBCA52214AF5B0025A318 /* Common.swift in Sources */,
-				C583C0F222136E3B0043DFA7 /* ACLabel.swift in Sources */,
-				C5192A7722C5231900223B69 /* Georgia.swift in Sources */,
-				C5AA4F2A24476679001DA323 /* Buttons.swift in Sources */,
-				C56D6C5722CBF25900C3F8EA /* Automation.swift in Sources */,
-				CB24717427289635008C9495 /* UIView+Extensions.swift in Sources */,
-				C5192A7522C51F5000223B69 /* Drawing.swift in Sources */,
-				C54E8E1B22E7B6330080BFC1 /* ConstraintDSL.swift in Sources */,
-				C5A43CCF22CA648700C10BC0 /* ACHorizontalBar.swift in Sources */,
-				C5192A7822C5231900223B69 /* Roboto.swift in Sources */,
-				C5192A7F22C5235E00223B69 /* UILabel+Extensions.swift in Sources */,
-				C5E7212C22F1C9D3004B9E26 /* ACColor.swift in Sources */,
-				C578B8D622A859A60038DDF0 /* ACView.swift in Sources */,
-				C5B2602C2213606600BFF778 /* ACButton.swift in Sources */,
-				C5D085CC22D7828300043513 /* HintView.swift in Sources */,
-				C56D6C5422CBA6E000C3F8EA /* UIView + Pulse.swift in Sources */,
-				C56BBCA3221490DF0025A318 /* ACTextView.swift in Sources */,
-				C5E0DDB922A5B7D20034DEDF /* IndicatorView.swift in Sources */,
-				C537A1AE228B74E20098A4CD /* Window+Overlay.swift in Sources */,
-				C5192A6722C518AC00223B69 /* UIDSL.swift in Sources */,
-				C5192A6D22C5198F00223B69 /* UIDSL+ArcUIKit.swift in Sources */,
-				C523B38822CA8AF80074337D /* Animate.swift in Sources */,
-				C548B79122C54D630039DBCB /* UIControl+Closure.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2275,7 +2052,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5B2602122135F7300BFF778 /* ArcUIKitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2365,7 +2141,6 @@
 		C52B75F121C83B2A00498571 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9RQ4636JA2;
 				INFOPLIST_FILE = HMMarkupTests/Info.plist;
@@ -2384,7 +2159,6 @@
 		C52B75F221C83B2A00498571 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9RQ4636JA2;
 				INFOPLIST_FILE = HMMarkupTests/Info.plist;
@@ -2689,7 +2463,6 @@
 		C5B2602622135F7300BFF778 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GT94FFC924;
 				INFOPLIST_FILE = ArcUIKitTests/Info.plist;
@@ -2708,7 +2481,6 @@
 		C5B2602722135F7300BFF778 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GT94FFC924;
 				INFOPLIST_FILE = ArcUIKitTests/Info.plist;
