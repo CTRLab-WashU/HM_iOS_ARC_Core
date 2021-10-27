@@ -170,9 +170,17 @@ public class TaskListScheduleManager {
     
     open func createWakeSleepScheduleRequestData(mostRecentReport: SBAReport?) -> WakeSleepScheduleRequestData? {
         
-        guard let clientData = mostRecentReport?.clientData.toJSONSerializable() as? String,
-              let data = clientData.data(using: String.Encoding.utf8) else {
+        guard let clientData = mostRecentReport?.clientData.toJSONSerializable() as? String else {
             print("Could not get the WakeSleep client data from report")
+            return nil
+        }
+        
+        // Fix for cross-compatibility with Android, where thie field
+        // "wake_sleep_data", is formatted as "wakeSleepData"
+        let clientDataStr = clientData.replacingOccurrences(of: "\"wakeSleepData\"", with: "\"wake_sleep_data\"")
+        
+        guard let data = clientDataStr.data(using: String.Encoding.utf8) else {
+            print("Could not convert WakeSleep client data string to encoded data")
             return nil
         }
         
