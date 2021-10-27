@@ -8,7 +8,7 @@
 
 import Foundation
 
-import HMMarkup
+
 import UIKit
 
 public class RebukedCommitmentView : ACTemplateView {

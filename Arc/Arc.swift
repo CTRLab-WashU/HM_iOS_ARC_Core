@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import HMMarkup
 import PDFKit
 public protocol ArcApi {
 	

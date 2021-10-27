@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import HMMarkup
+
 
 class ResendCodeViewController: CustomViewController<InfoView>, SurveyInput{
 	

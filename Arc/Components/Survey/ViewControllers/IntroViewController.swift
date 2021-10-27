@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import HMMarkup
+
 
 public enum IntroViewControllerStyle : String {
 	case standard, dark, test, grids, symbols, prices

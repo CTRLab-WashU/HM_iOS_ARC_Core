@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import HMMarkup
+
 public protocol TranslationKey {
 	var rawValue:String { get }
 }
