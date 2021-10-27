@@ -20,7 +20,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SurveyViewController" customModule="Arc" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SurveyViewController" customModule="Arc" >
             <connections>
                 <outlet property="bottomAnchor" destination="29A-7U-tte" id="SVv-yg-BDa"/>
                 <outlet property="container" destination="JRC-5u-1Hu" id="duh-sZ-goD"/>

@@ -18,7 +18,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ExtendedGridTestViewController" customModule="Arc" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ExtendedGridTestViewController" customModule="Arc" >
             <connections>
                 <outlet property="collectionStack" destination="efi-qX-YDc" id="aE9-DL-MlU"/>
                 <outlet property="collectionView" destination="7mB-Ww-cRj" id="Hec-Ae-qhB"/>

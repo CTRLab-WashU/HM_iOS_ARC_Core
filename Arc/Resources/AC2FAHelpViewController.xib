@@ -17,7 +17,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AC2FAHelpViewController" customModule="Arc" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AC2FAHelpViewController" customModule="Arc" >
             <connections>
                 <outlet property="answerLabel" destination="W97-sL-92S" id="7bT-hR-nFK"/>
                 <outlet property="backButton" destination="Nh2-Yg-A0k" id="sK9-bR-q0a"/>

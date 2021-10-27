@@ -17,7 +17,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HmToSageMigrationViewController" customModule="Arc" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HmToSageMigrationViewController" customModule="Arc" >
             <connections>
                 <outlet property="contactUsButton" destination="FjS-3X-bfq" id="Cy0-CA-r9a"/>
                 <outlet property="progressBar" destination="QyQ-yE-sxy" id="Y9I-AR-EbX"/>

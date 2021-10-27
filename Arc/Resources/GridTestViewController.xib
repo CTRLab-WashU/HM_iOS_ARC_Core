@@ -13,7 +13,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GridTestViewController" customModule="Arc" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GridTestViewController" customModule="Arc" >
             <connections>
                 <outlet property="collectionView" destination="7mB-Ww-cRj" id="Hec-Ae-qhB"/>
                 <outlet property="collectionViewHeight" destination="Pyq-AP-BS4" id="BS8-bb-zct"/>

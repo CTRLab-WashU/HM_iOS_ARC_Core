@@ -14,7 +14,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SymbolsTestViewController" customModule="Arc" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SymbolsTestViewController" customModule="Arc" >
             <connections>
                 <outlet property="choice1" destination="yTs-uu-qJK" id="R8Q-9G-UIG"/>
                 <outlet property="choice2" destination="cg3-qM-3N4" id="JaC-60-gqi"/>
@@ -49,7 +49,7 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="kot-Za-eWP">
                                             <rect key="frame" x="21" y="0.0" width="214" height="128"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8tU-Py-nND" customClass="SymbolContainer" customModule="Arc" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8tU-Py-nND" customClass="SymbolContainer" customModule="Arc" >
                                                     <rect key="frame" x="0.0" y="0.0" width="58" height="128"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="4QN-Jp-fKc">
@@ -81,7 +81,7 @@
                                                         <constraint firstAttribute="height" constant="128" id="jiW-nK-tll"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4cZ-4w-xsd" customClass="SymbolContainer" customModule="Arc" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4cZ-4w-xsd" customClass="SymbolContainer" customModule="Arc" >
                                                     <rect key="frame" x="78" y="0.0" width="58" height="128"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="TRN-KG-fNi">
@@ -112,7 +112,7 @@
                                                         <constraint firstAttribute="width" secondItem="4cZ-4w-xsd" secondAttribute="height" multiplier="29:64" id="yzF-qY-03t"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i2A-QR-hvV" customClass="SymbolContainer" customModule="Arc" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i2A-QR-hvV" customClass="SymbolContainer" customModule="Arc" >
                                                     <rect key="frame" x="156" y="0.0" width="58" height="128"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="iOg-OE-Ezr">
@@ -198,7 +198,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="Vpx-Sc-gLK">
                                                     <rect key="frame" x="0.0" y="0.0" width="148" height="128"/>
                                                     <subviews>
-                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yTs-uu-qJK" customClass="SymbolContainer" customModule="Arc" customModuleProvider="target">
+                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yTs-uu-qJK" customClass="SymbolContainer" customModule="Arc" >
                                                             <rect key="frame" x="0.0" y="0.0" width="58" height="128"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="eUD-wY-uHp">
@@ -219,7 +219,7 @@
                                                                     </subviews>
                                                                     <edgeInsets key="layoutMargins" top="16" left="13" bottom="16" right="13"/>
                                                                 </stackView>
-                                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ygc-xb-9dw" customClass="SymbolSelectButton" customModule="Arc" customModuleProvider="target">
+                                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ygc-xb-9dw" customClass="SymbolSelectButton" customModule="Arc" >
                                                                     <rect key="frame" x="0.0" y="0.0" width="58" height="128"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
@@ -258,7 +258,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cg3-qM-3N4" customClass="SymbolContainer" customModule="Arc" customModuleProvider="target">
+                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cg3-qM-3N4" customClass="SymbolContainer" customModule="Arc" >
                                                             <rect key="frame" x="90" y="0.0" width="58" height="128"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="eh7-tk-AH1">
@@ -279,7 +279,7 @@
                                                                     </subviews>
                                                                     <edgeInsets key="layoutMargins" top="16" left="13" bottom="16" right="13"/>
                                                                 </stackView>
-                                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JY9-Tw-aiX" customClass="SymbolSelectButton" customModule="Arc" customModuleProvider="target">
+                                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JY9-Tw-aiX" customClass="SymbolSelectButton" customModule="Arc" >
                                                                     <rect key="frame" x="0.0" y="0.0" width="58" height="128"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">

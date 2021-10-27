@@ -17,7 +17,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IntroViewController" customModule="Arc" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IntroViewController" customModule="Arc" >
             <connections>
                 <outlet property="contentTextview" destination="D4g-XW-PG0" id="ppy-nS-YS4"/>
                 <outlet property="headingLabel" destination="GIC-4o-6XR" id="dbs-vv-aK0"/>

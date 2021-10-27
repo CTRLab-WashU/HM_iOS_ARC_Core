@@ -13,7 +13,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PricesQuestionViewController" customModule="Arc" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PricesQuestionViewController" customModule="Arc" >
             <connections>
                 <outlet property="buttonStack" destination="1qs-Df-j36" id="7ZW-3X-QvH"/>
                 <outlet property="questionDisplay" destination="iqG-Hv-gND" id="lRB-CR-dE5"/>

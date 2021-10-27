@@ -17,7 +17,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScheduleEndViewController" customModule="Arc" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScheduleEndViewController" customModule="Arc" >
             <connections>
                 <outlet property="changeTimesButton" destination="2PP-q1-Lor" id="ZEl-tF-gFT"/>
                 <outlet property="message" destination="hCE-ep-AMn" id="cqT-f7-4we"/>

@@ -17,7 +17,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WelcomeViewController" customModule="Arc" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WelcomeViewController" customModule="Arc" >
             <connections>
                 <outlet property="aboutButton" destination="OfG-Rv-UYw" id="A5p-8A-eWz"/>
                 <outlet property="privacyButton" destination="evM-Qz-X7r" id="kZb-sR-K9N"/>

@@ -17,7 +17,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Arc" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Arc" >
             <connections>
                 <outlet property="heading" destination="Hca-8b-Gis" id="Eg4-nj-7t0"/>
                 <outlet property="message" destination="11X-d6-l6g" id="YNZ-an-HmA"/>

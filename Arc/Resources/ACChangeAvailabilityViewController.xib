@@ -20,7 +20,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ACChangeAvailabilityViewController" customModule="Arc" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ACChangeAvailabilityViewController" customModule="Arc" >
             <connections>
                 <outlet property="changeDateButton" destination="wDH-BW-Ib9" id="1Pz-jx-aC9"/>
                 <outlet property="changeTimeButton" destination="ekY-n5-gXH" id="ITg-qc-N6M"/>

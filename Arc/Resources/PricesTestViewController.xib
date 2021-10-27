@@ -14,7 +14,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PricesTestViewController" customModule="Arc" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PricesTestViewController" customModule="Arc" >
             <connections>
                 <outlet property="buttonStack" destination="gFZ-wv-brY" id="smA-GJ-zIk"/>
                 <outlet property="goodPriceLabel" destination="Ry4-bz-xcA" id="c5z-S6-hrT"/>
