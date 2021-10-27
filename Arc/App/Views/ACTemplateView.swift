@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 import HMMarkup
 
 
@@ -153,7 +153,7 @@ open class ACTemplateView: UIView, UIScrollViewDelegate {
 				}
 			}
 			$0.image {
-				$0.image = UIImage(named: "arrow_up_white", in: Bundle(for: self.classForCoder), compatibleWith: nil)
+                $0.image = UIImage(named: "arrow_up_white", in: Bundle.module, compatibleWith: nil)
 				$0.contentMode = .scaleAspectFit
 				$0.layout {
 					$0.width == 20 ~ 999

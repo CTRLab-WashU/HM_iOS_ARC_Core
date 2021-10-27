@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 public enum StudyState {
 	case baseline, active, activeBaseline, inactive, complete, unknown
 }

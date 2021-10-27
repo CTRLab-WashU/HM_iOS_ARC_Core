@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 public class NotificationPermissionView: ACTemplateView {
 
     /*
@@ -34,7 +34,7 @@ public class NotificationPermissionView: ACTemplateView {
 				$0.backgroundColor = .clear
 			}
 			$0.image {
-				$0.image = UIImage(named: "allow-notifications-arrow", in: Bundle(for: self.classForCoder), compatibleWith: nil)
+                $0.image = UIImage(named: "allow-notifications-arrow", in: Bundle.module, compatibleWith: nil)
 				$0.contentMode = .scaleAspectFit
 				
 			}

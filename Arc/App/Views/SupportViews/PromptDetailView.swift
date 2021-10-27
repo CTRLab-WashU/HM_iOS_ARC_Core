@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 import HMMarkup
 public class PromptDetailView: UIStackView {
 	

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import ArcUIKit
+
 import UIKit
 
 public class EarningsDetailGoalView : UIView {

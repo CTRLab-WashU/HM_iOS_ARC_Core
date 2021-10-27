@@ -7,13 +7,13 @@
 //
 
 import UIKit
+
 public extension UIViewController {
 	
 	static func get<T:UIViewController>(nib:String? = nil, bundle:Bundle? = nil) -> T {
-		//For multi-module functionality.
 		var _bundle:Bundle? = bundle
 		if bundle == nil {
-			_bundle = Bundle(for: T.self)
+            _bundle = Bundle.module
 
 		}
         let vc = T(nibName: nib ?? String(describing: self), bundle: _bundle)
@@ -25,7 +25,7 @@ public extension UIViewController {
         //For multi-module functionality.
         var _bundle:Bundle? = bundle
         if bundle == nil {
-            _bundle = Bundle(for: type.self)
+            _bundle = Bundle.module
             
         }
         let vc = type.init(nibName: nib ?? String(describing: self), bundle: _bundle)

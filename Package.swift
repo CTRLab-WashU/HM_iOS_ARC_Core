@@ -15,9 +15,6 @@ let package = Package(
             name: "HMMarkup",
             targets: ["HMMarkup"]),
         .library(
-            name: "ArcUIKit",
-            targets: ["ArcUIKit"]),
-        .library(
             name: "Arc",
             targets: ["Arc"])
     ],
@@ -45,14 +42,6 @@ let package = Package(
             name: "HMMarkup",	   
             path: "HMMarkup",
 	   exclude:["README.md", "Info.plist"]),
-        
-        .target(
-            name: "ArcUIKit",
-            dependencies: [
-                "HMMarkup",
-            ],
-            path: "ArcUIKit",
-	   exclude:["Info.plist"]),
 
         .target(
             name: "Arc",
@@ -63,7 +52,6 @@ let package = Package(
                 .product(name: "ResearchUI", package: "SageResearch"),
                 "BridgeSDK",
                 "JsonModel",
-                "ArcUIKit",
                 "HMMarkup"
             ],
 	   path: "Arc",
@@ -72,7 +60,6 @@ let package = Package(
                 .process("Resources"),
             ]),
 	.testTarget(name:"ArcTests", dependencies: ["Arc"], path: "ArcTests"),
-	.testTarget(name:"ArcUIKitTests", dependencies: ["ArcUIKit"], path: "ArcUIKitTests"),
 	.testTarget(name:"HMMarkupTests", dependencies: ["HMMarkup"], path: "HMMarkupTests"),
     ]
 )

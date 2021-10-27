@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTraits{
 	
 	public weak var surveyInputDelegate: SurveyInputDelegate?

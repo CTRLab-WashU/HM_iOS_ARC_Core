@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 class ExtendedGridTestTutorialViewController: ACTutorialViewController, ExtendedGridTestViewControllerDelegate {
 	
 	enum TestPhase {

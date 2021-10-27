@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 public class TestProgressView:UIView {
 	weak private var progressBar:CircularProgressView!
 	weak private var divider:ACHorizontalBar!

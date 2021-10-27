@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 public class EarningsViewController: CustomViewController<ACEarningsView> {
 	var thisStudy:ThisStudyExpressible = Arc.shared.studyController
 	var thisWeek:ThisWeekExpressible = Arc.shared.studyController
@@ -132,7 +132,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		customView.bonusGoalContent.isHidden = false
 		customView.bonusGoalsSection.isHidden = false
 		customView.errorLabel.isHidden = true
-		customView.backgroundView.image = UIImage(named: "finished_bg", in: Bundle(for: self.classForCoder), compatibleWith: nil)
+        customView.backgroundView.image = UIImage(named: "finished_bg", in: Bundle.module, compatibleWith: nil)
 		customView.backgroundColor = UIColor(named: "Primary Info")
 		customView.button.isHidden = true
 		customView.gradientView?.isHidden = false

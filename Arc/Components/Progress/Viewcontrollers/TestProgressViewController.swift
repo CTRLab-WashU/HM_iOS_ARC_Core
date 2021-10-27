@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 public protocol TestProgressViewControllerDelegate : class {
 	func testProgressDidComplete()
 }

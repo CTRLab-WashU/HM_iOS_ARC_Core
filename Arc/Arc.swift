@@ -18,6 +18,11 @@ public extension Notification.Name {
 	
 }
 
+// Access this module's bundle from app context
+public enum ArcBundle {
+    public static let module = Bundle.module
+}
+
 
 public enum SurveyAvailabilityStatus: Equatable {
     case available, laterToday, tomorrow, startingTomorrow(String, String), laterThisCycle(String), later(String, String), finished, postBaseline
@@ -35,7 +40,7 @@ open class Arc : ArcApi {
 	var STORE_DATA = false
 	var FORGET_ON_RESTART = false
     lazy var arcInfo: NSDictionary? = {
-        if let path = Bundle(for: Arc.self).path(forResource: "Info", ofType: "plist") {
+        if let path = Bundle.module.path(forResource: "Info", ofType: "plist") {
             return NSDictionary(contentsOfFile: path)
             
         }

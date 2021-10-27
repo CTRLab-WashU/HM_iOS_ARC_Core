@@ -8,7 +8,7 @@
 
 import UIKit
 import PDFKit
-import ArcUIKit
+
 public class ACPDFView: UIView {
 
     /*

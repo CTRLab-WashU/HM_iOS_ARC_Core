@@ -10,8 +10,7 @@ import UIKit
 
 public extension UIView {
     static func get<T:UIView>(nib:String? = nil) -> T{
-		//For multi-module environments get the bundle for the class
-		let bundle = Bundle(for: T.self)
+        let bundle = Bundle.module
 
         let view = bundle.loadNibNamed((nib ?? String(describing: self)), owner: nil, options: nil)?.first as! T
         view.translatesAutoresizingMaskIntoConstraints = false

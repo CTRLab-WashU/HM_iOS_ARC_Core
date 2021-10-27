@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 public class GoalRewardView: UIView {
 	weak var titleLabel:ACLabel!
 	weak var backgroundView:GoalBackgroundView!

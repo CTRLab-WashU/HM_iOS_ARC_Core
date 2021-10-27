@@ -8,7 +8,7 @@
 
 import UIKit
 import HMMarkup
-import ArcUIKit
+
 class ResendCodeViewController: CustomViewController<InfoView>, SurveyInput{
 	
 	

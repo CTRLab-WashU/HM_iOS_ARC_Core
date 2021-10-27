@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 public class GoalView: UIView {
 	weak public var contentStack:UIStackView!
 	weak var goalRewardView:GoalRewardView!

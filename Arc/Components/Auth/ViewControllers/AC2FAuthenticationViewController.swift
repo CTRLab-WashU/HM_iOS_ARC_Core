@@ -8,7 +8,7 @@
 
 import UIKit
 import HMMarkup
-import ArcUIKit
+
 public struct ConfirmationCode {
 	public struct Request : Codable {
 		var participant_id:String

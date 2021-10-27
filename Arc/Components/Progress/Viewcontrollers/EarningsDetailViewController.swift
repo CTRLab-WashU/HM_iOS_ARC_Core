@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import ArcUIKit
+
 import UIKit
 
 open class EarningsDetailViewController : CustomViewController<ACEarningsDetailView> {

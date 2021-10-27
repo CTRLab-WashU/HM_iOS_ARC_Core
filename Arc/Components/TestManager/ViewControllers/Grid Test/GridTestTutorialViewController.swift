@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 class GridTestTutorialViewController: ACTutorialViewController, GridTestViewControllerDelegate {
 	
 	enum TestPhase {

@@ -8,7 +8,7 @@
 
 import UIKit
 import HMMarkup
-import ArcUIKit
+
 public enum IntroViewControllerStyle : String {
 	case standard, dark, test, grids, symbols, prices
 	
@@ -49,7 +49,7 @@ public enum IntroViewControllerStyle : String {
 			view.setIntroContentText(content, template: template)
 			view.backgroundColor = UIColor(named:"Primary Info")
 			view.infoContent.alignment = .leading
-			view.backgroundView.image = UIImage(named: "grids_bg", in: Bundle(for: view.classForCoder), compatibleWith: nil)
+            view.backgroundView.image = UIImage(named: "grids_bg", in: Bundle.module, compatibleWith: nil)
             view.setButtonColor(style:.secondary)
 
 		case .symbols:
@@ -59,7 +59,7 @@ public enum IntroViewControllerStyle : String {
 			view.setIntroContentText(content, template: template)
 			view.backgroundColor = UIColor(named:"Primary Info")
 			view.infoContent.alignment = .leading
-			view.backgroundView.image = UIImage(named: "symbols_bg", in: Bundle(for: view.classForCoder), compatibleWith: nil)
+			view.backgroundView.image = UIImage(named: "symbols_bg", in: Bundle.module, compatibleWith: nil)
            	view.setButtonColor(style:.secondary)
 
 		case .prices:
@@ -69,7 +69,7 @@ public enum IntroViewControllerStyle : String {
 			view.setIntroContentText(content, template: template)
 			view.backgroundColor = UIColor(named:"Primary Info")
 			view.infoContent.alignment = .leading
-			view.backgroundView.image = UIImage(named: "prices_bg", in: Bundle(for: view.classForCoder), compatibleWith: nil)
+			view.backgroundView.image = UIImage(named: "prices_bg", in: Bundle.module, compatibleWith: nil)
             view.setButtonColor(style:.secondary)
 		
 		case .dark:

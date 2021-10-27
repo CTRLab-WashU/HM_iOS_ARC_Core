@@ -8,7 +8,7 @@
 
 import UIKit
 import HMMarkup
-import ArcUIKit
+
 
 open class BasicSurveyViewController: UINavigationController, SurveyInputDelegate {
 	public var app:Arc {
@@ -302,7 +302,7 @@ open class BasicSurveyViewController: UINavigationController, SurveyInputDelegat
 		let vc:CustomViewController<InfoView> = getTopViewController()!
         useDarkStatusBar = false
         setNeedsStatusBarAppearanceUpdate()
-        let bg_image = UIImage(named: "availability_bg", in: Bundle(for: BasicSurveyViewController.self), compatibleWith: nil)
+        let bg_image = UIImage(named: "availability_bg", in: Bundle.module, compatibleWith: nil)
         vc.customView.backgroundView.image = bg_image
 		vc.customView.infoContent.alignment = .center
 		vc.customView.backgroundColor = UIColor(named:"Primary")!

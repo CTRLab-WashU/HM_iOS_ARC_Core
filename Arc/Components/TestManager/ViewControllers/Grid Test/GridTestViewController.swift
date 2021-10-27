@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 public protocol GridTestViewControllerDelegate : class {
     func didSelectGrid(indexPath:IndexPath)
     func didSelectLetter(indexPath:IndexPath)
@@ -96,8 +96,8 @@ open class GridTestViewController: ArcViewController, UICollectionViewDelegate, 
             tests = controller.createTutorialTest()
             responseId = controller.createResponse(numSections: 1)
         }
-        collectionView.register(UINib(nibName: "GridFCell", bundle: Bundle(for: GridFCell.self)), forCellWithReuseIdentifier: "fCell")
-        collectionView.register(UINib(nibName: "GridImageCell", bundle: Bundle(for: GridImageCell.self)), forCellWithReuseIdentifier: "imageCell")
+        collectionView.register(UINib(nibName: "GridFCell", bundle: Bundle.module), forCellWithReuseIdentifier: "fCell")
+        collectionView.register(UINib(nibName: "GridImageCell", bundle: Bundle.module), forCellWithReuseIdentifier: "imageCell")
 
         // Do any additional setup after loading the view.
         

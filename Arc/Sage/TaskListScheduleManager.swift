@@ -37,7 +37,7 @@ import Research
 import BridgeApp
 import BridgeAppUI
 import BridgeSDK
-import ArcUIKit
+
 import JsonModel
 
 extension RSDIdentifier {

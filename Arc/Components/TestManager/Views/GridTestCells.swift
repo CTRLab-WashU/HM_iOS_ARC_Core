@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 
 open class GridImageCell:UICollectionViewCell
 {

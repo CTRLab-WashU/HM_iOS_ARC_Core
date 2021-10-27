@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import ArcUIKit
+
 
 open class TextSegment : BorderedView {
 	

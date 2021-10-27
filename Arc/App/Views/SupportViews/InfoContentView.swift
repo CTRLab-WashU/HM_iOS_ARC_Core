@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 import HMMarkup
 /// This view has functions that can be called in any order to change the
 /// composition of the view itself. Each method once called will keep its original position.

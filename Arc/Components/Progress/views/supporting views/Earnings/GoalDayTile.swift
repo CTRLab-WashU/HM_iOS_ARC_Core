@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 public class GoalDayTile: UIView {
 	public weak var progressView:CircularProgressView!
 	weak var titleLabel:ACLabel!

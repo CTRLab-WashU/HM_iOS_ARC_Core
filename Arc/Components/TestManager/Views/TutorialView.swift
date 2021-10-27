@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 public class TutorialView: UIStackView {
 	var headerView:UIView!
     var headerStack:UIStackView!

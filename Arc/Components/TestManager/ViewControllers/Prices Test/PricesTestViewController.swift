@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 public protocol PricesTestDelegate : class {
 	func didSelectGoodPrice(_ option:Int)
 	func didSelectPrice(_ option:Int)

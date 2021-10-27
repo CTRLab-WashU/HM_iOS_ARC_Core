@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 public class ParticipationView: ACTemplateView {
 
     /*
