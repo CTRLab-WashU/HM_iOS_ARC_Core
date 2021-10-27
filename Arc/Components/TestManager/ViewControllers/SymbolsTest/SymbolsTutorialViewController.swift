@@ -19,7 +19,7 @@ class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewCo
                                         6: UIImage(named: "tutorial_symbol 7", in: Bundle.module, compatibleWith: nil)!,
                                         7: UIImage(named: "tutorial_symbol 8", in: Bundle.module, compatibleWith: nil)!]
     
-    var test:SymbolsTestViewController = .get(nib: "SymbolsTestTutorialViewController", bundle: Bundle(for: SymbolsTestViewController.self))
+    var test:SymbolsTestViewController = .get(nib: "SymbolsTestTutorialViewController", bundle: Bundle.module)
 	var selectionMade:Bool = false
 	var questionsAnswered = 0
     
