@@ -30,13 +30,13 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Great! Starting tomorrow, we’ll only send you reminders between 7:00 AM and 11:00 PM." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCE-ep-AMn" customClass="HMMarkupLabel" customModule="HMMarkup">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Great! Starting tomorrow, we’ll only send you reminders between 7:00 AM and 11:00 PM." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCE-ep-AMn" customClass="HMMarkupLabel" customModule="Arc">
                     <rect key="frame" x="24" y="48" width="327" height="122"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="26"/>
                     <color key="textColor" name="Primary Text"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2PP-q1-Lor" customClass="HMMarkupButton" customModule="HMMarkup">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2PP-q1-Lor" customClass="HMMarkupButton" customModule="Arc">
                     <rect key="frame" x="48" y="539" width="279" height="32"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -53,7 +53,7 @@
                         <action selector="changeTimesPressed:" destination="-1" eventType="touchUpInside" id="x3b-fK-yeA"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oHK-Gp-JMt" customClass="ACButton" customModule="ArcUIKit">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oHK-Gp-JMt" customClass="ACButton" customModule="Arc">
                     <rect key="frame" x="24" y="595" width="327" height="48"/>
                     <constraints>
                         <constraint firstAttribute="height" priority="999" constant="48" id="vrm-tF-jlR"/>

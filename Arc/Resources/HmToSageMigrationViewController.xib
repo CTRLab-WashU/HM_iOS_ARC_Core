@@ -42,7 +42,7 @@
                     <rect key="frame" x="48" y="331" width="279" height="4"/>
                     <color key="progressTintColor" name="HorizontalSeparator"/>
                 </progressView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FjS-3X-bfq" userLabel="Contact Us" customClass="ACButton" customModule="ArcUIKit">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FjS-3X-bfq" userLabel="Contact Us" customClass="ACButton" customModule="Arc">
                     <rect key="frame" x="32" y="515" width="311" height="48"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <accessibility key="accessibilityConfiguration" identifier="signin_button"/>
@@ -66,7 +66,7 @@
                         <action selector="contactUsPressed:" destination="-2" eventType="touchUpInside" id="IIn-7r-tFx"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0KY-bW-aN9" userLabel="Try Again" customClass="ACButton" customModule="ArcUIKit">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0KY-bW-aN9" userLabel="Try Again" customClass="ACButton" customModule="Arc">
                     <rect key="frame" x="32" y="587" width="311" height="48"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <accessibility key="accessibilityConfiguration" identifier="signin_button"/>

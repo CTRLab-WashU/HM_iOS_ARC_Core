@@ -39,8 +39,8 @@
                                 <view contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="748" translatesAutoresizingMaskIntoConstraints="NO" id="omo-a9-9xk" userLabel="Header">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="142"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nh2-Yg-A0k" customClass="HMMarkupButton" customModule="HMMarkup">
-                                            <rect key="frame" x="8" y="12" width="36" height="37"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nh2-Yg-A0k" customClass="HMMarkupButton" customModule="Arc">
+                                            <rect key="frame" x="8" y="12" width="72" height="37"/>
                                             <color key="backgroundColor" white="1" alpha="0.14701947770000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="37" id="Th7-tz-KBS"/>
@@ -61,7 +61,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfG-8g-Bwr" customClass="ACLabel" customModule="ArcUIKit">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfG-8g-Bwr" customClass="ACLabel" customModule="Arc">
                                             <rect key="frame" x="24" y="64" width="331" height="31"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="31" id="E83-Lp-u9d"/>
@@ -93,7 +93,7 @@
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="131" id="wng-3s-VWk"/>
                                     </constraints>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W97-sL-92S" customClass="HMMarkupLabel" customModule="HMMarkup">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W97-sL-92S" customClass="HMMarkupLabel" customModule="Arc">
                                     <rect key="frame" x="24" y="142" width="327" height="400"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="400" id="D0A-np-UeF"/>
@@ -139,7 +139,7 @@
     </objects>
     <designables>
         <designable name="Nh2-Yg-A0k">
-            <size key="intrinsicContentSize" width="36" height="37"/>
+            <size key="intrinsicContentSize" width="72" height="37"/>
         </designable>
         <designable name="W97-sL-92S">
             <size key="intrinsicContentSize" width="41.5" height="20"/>

@@ -60,7 +60,7 @@
                         <view contentMode="center" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oEK-Wp-Jtz">
                             <rect key="frame" x="4" y="436" width="312" height="40"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Tap On The Fs" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11X-8i-GZq" customClass="ACLabel" customModule="ArcUIKit">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Tap On The Fs" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11X-8i-GZq" customClass="ACLabel" customModule="Arc">
                                     <rect key="frame" x="20" y="20" width="290" height="24"/>
                                     <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
                                     <constraints>
@@ -85,7 +85,7 @@
                                 <constraint firstItem="11X-8i-GZq" firstAttribute="leading" secondItem="oEK-Wp-Jtz" secondAttribute="leading" constant="20" id="eGk-JX-cUa"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m8K-FL-SjN" customClass="ACButton" customModule="ArcUIKit">
+                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m8K-FL-SjN" customClass="ACButton" customModule="Arc">
                             <rect key="frame" x="32" y="492" width="256" height="48"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="4p9-St-5Yc"/>
