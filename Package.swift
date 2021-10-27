@@ -70,6 +70,9 @@ let package = Package(
 	   exclude:["Info.plist"],
 	   resources: [
                 .process("Resources"),
-            ])
+            ]),
+	.testTarget(name:"ArcTests", dependencies: ["Arc"], path: "ArcTests"),
+	.testTarget(name:"ArcUIKitTests", dependencies: ["ArcUIKit"], path: "ArcUIKitTests"),
+	.testTarget(name:"HMMarkupTests", dependencies: ["HMMarkup"], path: "HMMarkupTests"),
     ]
 )

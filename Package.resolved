@@ -1,0 +1,52 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "BridgeSDK",
+        "repositoryURL": "https://github.com/Sage-Bionetworks/Bridge-iOS-SDK.git",
+        "state": {
+          "branch": null,
+          "revision": "33e3c6ef5affefc679c7585206fbb8a9c7ce835e",
+          "version": "4.4.84"
+        }
+      },
+      {
+        "package": "BridgeApp",
+        "repositoryURL": "https://github.com/Sage-Bionetworks/BridgeApp-Apple-SDK.git",
+        "state": {
+          "branch": null,
+          "revision": "17fa8da02561cc58afa8fc735dea015e438c1b78",
+          "version": "5.1.4"
+        }
+      },
+      {
+        "package": "JsonModel",
+        "repositoryURL": "https://github.com/Sage-Bionetworks/JsonModel-Swift.git",
+        "state": {
+          "branch": null,
+          "revision": "3bb51b58f22e9c3bdc54ebc01137f669aed30f8b",
+          "version": "1.2.3"
+        }
+      },
+      {
+        "package": "MobilePassiveData",
+        "repositoryURL": "https://github.com/Sage-Bionetworks/MobilePassiveData-SDK.git",
+        "state": {
+          "branch": null,
+          "revision": "8bcd6fb0f630f673436ffee987367798580cb02d",
+          "version": "1.1.3"
+        }
+      },
+      {
+        "package": "SageResearch",
+        "repositoryURL": "https://github.com/Sage-Bionetworks/SageResearch.git",
+        "state": {
+          "branch": null,
+          "revision": "316f65c58b51f43c89a9fb65b5d9d58f845520d8",
+          "version": "4.2.3"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
