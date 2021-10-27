@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import HMMarkup
 
 public struct Text {
 	public static func replaceIn(_ text:String?, withTemplate template:[String:String]) -> String {

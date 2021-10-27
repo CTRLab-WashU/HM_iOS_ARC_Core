@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import HMMarkup
+
 public class HintView : IndicatorView {
 	var titleLabel:ACLabel!
 	private var bar:ACHorizontalBar!

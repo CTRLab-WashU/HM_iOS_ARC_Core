@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import HMMarkup
 
 @IBDesignable open class ACTextView : HMMarkupTextView {
     

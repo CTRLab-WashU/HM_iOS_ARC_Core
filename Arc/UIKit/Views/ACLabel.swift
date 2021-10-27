@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import HMMarkup
+
 @IBDesignable open class ACLabel : HMMarkupLabel {
     
     public var style:ACTextStyle = .none {
