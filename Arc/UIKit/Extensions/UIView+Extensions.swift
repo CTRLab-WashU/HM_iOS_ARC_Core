@@ -9,10 +9,10 @@
 import UIKit
 
 public extension UIView {
-    static func get<T:UIView>(nib:String? = nil) -> T{
-        let bundle = Bundle.module
+    static func get<T:UIView>(nib:String? = nil, bundle: Bundle? = nil) -> T{
+        let bundleUnwrapped = bundle ?? Bundle.module
 
-        let view = bundle.loadNibNamed((nib ?? String(describing: self)), owner: nil, options: nil)?.first as! T
+        let view = bundleUnwrapped.loadNibNamed((nib ?? String(describing: self)), owner: nil, options: nil)?.first as! T
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }
