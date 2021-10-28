@@ -51,6 +51,9 @@ let package = Package(
 	   resources: [
                 .process("Resources"),
             ]),
-	.testTarget(name:"ArcTests", dependencies: ["Arc"], path: "ArcTests")
+	.testTarget(name:"ArcTests",
+                dependencies: ["Arc"],
+                path: "ArcTests",
+                exclude:["Info.plist"])
     ]
 )
