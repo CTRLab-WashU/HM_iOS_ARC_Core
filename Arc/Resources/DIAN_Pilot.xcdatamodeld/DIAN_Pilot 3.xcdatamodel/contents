@@ -51,7 +51,7 @@
         <attribute name="y" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GridTestSectionData" inverseName="choices" inverseEntity="GridTestSectionData"/>
     </entity>
-    <entity name="NotificationEntry" representedClassName="EXNotificationEntry" elementID="NotificationEntry" versionHashModifier="1" syncable="YES">
+    <entity name="NotificationEntry" representedClassName="EXNotificationEntry" syncable="YES">
         <attribute name="body" optional="YES" attributeType="String"/>
         <attribute name="createdOn" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="notificationIdentifier" optional="YES" attributeType="String"/>
@@ -183,7 +183,7 @@
         <element name="GridTestImage" positionX="-9" positionY="135" width="128" height="105"/>
         <element name="GridTestSectionData" positionX="-36" positionY="63" width="128" height="165"/>
         <element name="GridTestTap" positionX="0" positionY="144" width="128" height="105"/>
-        <element name="NotificationEntry" positionX="-9" positionY="99" width="128" height="149"/>
+        <element name="NotificationEntry" positionX="-9" positionY="99" width="128" height="165"/>
         <element name="PriceTestData" positionX="-63" positionY="-18" width="128" height="90"/>
         <element name="PriceTestItemData" positionX="9" positionY="117" width="128" height="195"/>
         <element name="SleepWakeData" positionX="-9" positionY="108" width="128" height="75"/>
