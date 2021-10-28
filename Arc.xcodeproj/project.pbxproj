@@ -24,7 +24,6 @@
 		C51A7D8E22D8C38300854B13 /* NotificationPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51A7D8D22D8C38300854B13 /* NotificationPermissionView.swift */; };
 		C51A7D9022D8CDAE00854B13 /* BasicSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51A7D8F22D8CDAE00854B13 /* BasicSurveyViewController.swift */; };
 		C523B38622CA76450074337D /* UIViewController + CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C523B38522CA76450074337D /* UIViewController + CustomView.swift */; };
-		C52B75D421C8369400498571 /* arc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C54AE94821C81B5C00DEC360 /* arc.xcdatamodeld */; };
 		C52B75D521C837A200498571 /* Session+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AE90E21C81B5C00DEC360 /* Session+Extensions.swift */; };
 		C52B75E521C83B2A00498571 /* HMMarkup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52B75DC21C83B2A00498571 /* HMMarkup.framework */; };
 		C52B760021C83B6400498571 /* HMMarkup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52B75DC21C83B2A00498571 /* HMMarkup.framework */; };
@@ -303,7 +302,10 @@
 		CB984EF3271F13FF0034C9BB /* SecureTokenGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB984EF2271F13FF0034C9BB /* SecureTokenGenerator.swift */; };
 		CB984EF7271F22350034C9BB /* HmToSageMigrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB984EF5271F22350034C9BB /* HmToSageMigrationViewController.xib */; };
 		CB984EF9271F39A80034C9BB /* SecureTokenGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB984EF8271F39A70034C9BB /* SecureTokenGeneratorTests.swift */; };
-		CBA7F83C2729C3810062BDF8 /* DIAN_Pilot.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CBA7F8372729C3810062BDF8 /* DIAN_Pilot.xcdatamodeld */; };
+		CBDC4388272A6EA3004ACE2D /* DIAN_Pilot.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CBDC437B272A6EA2004ACE2D /* DIAN_Pilot.xcdatamodeld */; };
+		CBDC4389272A6EA3004ACE2D /* arc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CBDC4380272A6EA3004ACE2D /* arc.xcdatamodeld */; };
+		CBDC438B272A6F10004ACE2D /* Arc4To5MappingModel.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = CBDC438A272A6F10004ACE2D /* Arc4To5MappingModel.xcmappingmodel */; };
+		CBDC438D272A7049004ACE2D /* Arc4To5MigrationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC438C272A7049004ACE2D /* Arc4To5MigrationPolicy.swift */; };
 		E86732322315808800844F91 /* ACHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86732312315808800844F91 /* ACHomeViewController.swift */; };
 		E898B20823282EA400FBF22D /* AC2FAHelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E898B20723282EA400FBF22D /* AC2FAHelpViewController.xib */; };
 		E898B20A2328339C00FBF22D /* AC2FAHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E898B2092328339C00FBF22D /* AC2FAHelpViewController.swift */; };
@@ -353,8 +355,6 @@
 		4C58E91622E934730024F666 /* ScheduleEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEndViewController.swift; sourceTree = "<group>"; };
 		4CB0BAC422E8FA7B00ABB348 /* ContactInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoResponse.swift; sourceTree = "<group>"; };
 		C50FC3BA22330F2C00143EA8 /* ACCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACCalendarView.swift; sourceTree = "<group>"; };
-		C511778222FE0095004AE623 /* arc 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "arc 4.xcdatamodel"; sourceTree = "<group>"; };
-		C5143957224E837C000BF1CB /* arc 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "arc 3.xcdatamodel"; sourceTree = "<group>"; };
 		C5143958224EA6FD000BF1CB /* ACSignatureNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSignatureNavigationController.swift; sourceTree = "<group>"; };
 		C5192A6E22C519D900223B69 /* UIDSL+ArcCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDSL+ArcCore.swift"; sourceTree = "<group>"; };
 		C51A7D8622D7EC5900854B13 /* ParticipationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipationView.swift; sourceTree = "<group>"; };
@@ -426,8 +426,6 @@
 		C54AE94521C81B5C00DEC360 /* BorderedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedTextField.swift; sourceTree = "<group>"; };
 		C54AE94621C81B5C00DEC360 /* BorderedUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedUIView.swift; sourceTree = "<group>"; };
 		C54AE94721C81B5C00DEC360 /* PaddinglessUITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddinglessUITextView.swift; sourceTree = "<group>"; };
-		C54AE94921C81B5C00DEC360 /* mHealth.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = mHealth.xcdatamodel; sourceTree = "<group>"; };
-		C54AE94A21C81B5C00DEC360 /* mHealth 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "mHealth 2.xcdatamodel"; sourceTree = "<group>"; };
 		C54AE94E21C81B5C00DEC360 /* SymbolsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymbolsTest.swift; sourceTree = "<group>"; };
 		C54AE94F21C81B5C00DEC360 /* PriceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceTest.swift; sourceTree = "<group>"; };
 		C54AE95021C81B5C00DEC360 /* GridTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridTest.swift; sourceTree = "<group>"; };
@@ -616,7 +614,6 @@
 		CB24715D272888DE008C9495 /* ScheduleEntry+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScheduleEntry+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CB24715E272888DE008C9495 /* Schedule+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Schedule+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CB24715F272888DE008C9495 /* Schedule+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Schedule+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		CB2471752728A1BC008C9495 /* arc 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "arc 5.xcdatamodel"; sourceTree = "<group>"; };
 		CB855ACA27178D31004599EC /* SageEarningsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SageEarningsController.swift; sourceTree = "<group>"; };
 		CB855ACB27178D31004599EC /* SageScheduleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SageScheduleController.swift; sourceTree = "<group>"; };
 		CB855ACC27178D31004599EC /* CompletedTestsDefaultsReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedTestsDefaultsReport.swift; sourceTree = "<group>"; };
@@ -627,10 +624,19 @@
 		CB984EF2271F13FF0034C9BB /* SecureTokenGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTokenGenerator.swift; sourceTree = "<group>"; };
 		CB984EF5271F22350034C9BB /* HmToSageMigrationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HmToSageMigrationViewController.xib; sourceTree = "<group>"; };
 		CB984EF8271F39A70034C9BB /* SecureTokenGeneratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureTokenGeneratorTests.swift; sourceTree = "<group>"; };
-		CBA7F8382729C3810062BDF8 /* DIAN_Pilot 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DIAN_Pilot 3.xcdatamodel"; sourceTree = "<group>"; };
-		CBA7F8392729C3810062BDF8 /* DIAN_Pilot.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DIAN_Pilot.xcdatamodel; sourceTree = "<group>"; };
-		CBA7F83A2729C3810062BDF8 /* DIAN_Pilot 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DIAN_Pilot 2.xcdatamodel"; sourceTree = "<group>"; };
-		CBA7F83B2729C3810062BDF8 /* DIAN_Pilot 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DIAN_Pilot 4.xcdatamodel"; sourceTree = "<group>"; };
+		CBDC437C272A6EA2004ACE2D /* DIAN_Pilot 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DIAN_Pilot 3.xcdatamodel"; sourceTree = "<group>"; };
+		CBDC437D272A6EA2004ACE2D /* DIAN_Pilot.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DIAN_Pilot.xcdatamodel; sourceTree = "<group>"; };
+		CBDC437E272A6EA2004ACE2D /* DIAN_Pilot 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DIAN_Pilot 2.xcdatamodel"; sourceTree = "<group>"; };
+		CBDC437F272A6EA2004ACE2D /* DIAN_Pilot 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DIAN_Pilot 4.xcdatamodel"; sourceTree = "<group>"; };
+		CBDC4381272A6EA3004ACE2D /* arc 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "arc 5.xcdatamodel"; sourceTree = "<group>"; };
+		CBDC4382272A6EA3004ACE2D /* mHealth 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "mHealth 3.xcdatamodel"; sourceTree = "<group>"; };
+		CBDC4383272A6EA3004ACE2D /* arc 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "arc 3.xcdatamodel"; sourceTree = "<group>"; };
+		CBDC4384272A6EA3004ACE2D /* mHealth.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = mHealth.xcdatamodel; sourceTree = "<group>"; };
+		CBDC4385272A6EA3004ACE2D /* mHealth 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "mHealth 2.xcdatamodel"; sourceTree = "<group>"; };
+		CBDC4386272A6EA3004ACE2D /* arc 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "arc 4.xcdatamodel"; sourceTree = "<group>"; };
+		CBDC4387272A6EA3004ACE2D /* Arc 4 to 5 Mapping.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Arc 4 to 5 Mapping.xcdatamodel"; sourceTree = "<group>"; };
+		CBDC438A272A6F10004ACE2D /* Arc4To5MappingModel.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Arc4To5MappingModel.xcmappingmodel; sourceTree = "<group>"; };
+		CBDC438C272A7049004ACE2D /* Arc4To5MigrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arc4To5MigrationPolicy.swift; sourceTree = "<group>"; };
 		E86732312315808800844F91 /* ACHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACHomeViewController.swift; sourceTree = "<group>"; };
 		E898B20723282EA400FBF22D /* AC2FAHelpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AC2FAHelpViewController.xib; sourceTree = "<group>"; };
 		E898B2092328339C00FBF22D /* AC2FAHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AC2FAHelpViewController.swift; sourceTree = "<group>"; };
@@ -764,6 +770,10 @@
 				C54AE8EB21C81B2F00DEC360 /* Info.plist */,
 				C54AE90221C81B5B00DEC360 /* ACEnvironment.swift */,
 				C54AE9BF21C81B5F00DEC360 /* CoreDataStack.swift */,
+				CBDC4380272A6EA3004ACE2D /* arc.xcdatamodeld */,
+				CBDC438A272A6F10004ACE2D /* Arc4To5MappingModel.xcmappingmodel */,
+				CBDC438C272A7049004ACE2D /* Arc4To5MigrationPolicy.swift */,
+				CBDC437B272A6EA2004ACE2D /* DIAN_Pilot.xcdatamodeld */,
 				C54AE90321C81B5C00DEC360 /* App */,
 				C54AE94B21C81B5C00DEC360 /* Components */,
 				CB855AC927178D17004599EC /* Sage */,
@@ -1426,8 +1436,6 @@
 		CBE815272727559C00EA9C80 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				CBA7F8372729C3810062BDF8 /* DIAN_Pilot.xcdatamodeld */,
-				C54AE94821C81B5C00DEC360 /* arc.xcdatamodeld */,
 				C54AE90121C81B5B00DEC360 /* SharedAssets.xcassets */,
 				C54AE9C021C81B5F00DEC360 /* Roboto */,
 				C5E1E3942257ECC200255812 /* ACChangeAvailabilityViewController.xib */,
@@ -1883,6 +1891,7 @@
 				C54AEA2821C81B5F00DEC360 /* AuthCredentials.swift in Sources */,
 				C54D103622C28A1D00B43E42 /* DurationView.swift in Sources */,
 				C54AEA1821C81B5F00DEC360 /* SymbolSelectButton.swift in Sources */,
+				CBDC4389272A6EA3004ACE2D /* arc.xcdatamodeld in Sources */,
 				C54AEA1721C81B5F00DEC360 /* PricesTestController.swift in Sources */,
 				C593227122E890DA00528FF5 /* ACProgressView.swift in Sources */,
 				2D5711F422EB3AB500E7F881 /* Earnings.swift in Sources */,
@@ -1906,6 +1915,7 @@
 				C578771322F8BED10068E46B /* TestCountDownView.swift in Sources */,
 				C55F8CCB230EC3B8006D43BD /* EarningsController.swift in Sources */,
 				C54D103222C28A1D00B43E42 /* SurveyInputView.swift in Sources */,
+				CBDC4388272A6EA3004ACE2D /* DIAN_Pilot.xcdatamodeld in Sources */,
 				C54AE9CF21C81B5F00DEC360 /* ACEnvironment.swift in Sources */,
 				C55F8CCF230F187E006D43BD /* ACEarningsDetailView.swift in Sources */,
 				C54AE9EE21C81B5F00DEC360 /* ToggleButton.swift in Sources */,
@@ -1949,8 +1959,8 @@
 				C5192A6F22C519D900223B69 /* UIDSL+ArcCore.swift in Sources */,
 				CB247162272888DE008C9495 /* Schedule+CoreDataClass.swift in Sources */,
 				C54D101122C2743F00B43E42 /* QuestionType.swift in Sources */,
-				CBA7F83C2729C3810062BDF8 /* DIAN_Pilot.xcdatamodeld in Sources */,
 				C54AE9F121C81B5F00DEC360 /* ArcControllerRegistry.swift in Sources */,
+				CBDC438B272A6F10004ACE2D /* Arc4To5MappingModel.xcmappingmodel in Sources */,
 				C54AEA0521C81B5F00DEC360 /* PaddinglessUITextView.swift in Sources */,
 				C54AE9F021C81B5F00DEC360 /* AppNavigationController.swift in Sources */,
 				C54AE9E721C81B5F00DEC360 /* SessionInfoResponse.swift in Sources */,
@@ -1962,7 +1972,6 @@
 				C53B123A22F34C1700BACA9A /* ACTodayProgressView.swift in Sources */,
 				E86732322315808800844F91 /* ACHomeViewController.swift in Sources */,
 				C55F8CD3230F1BCA006D43BD /* EarningDetailGoalView.swift in Sources */,
-				C52B75D421C8369400498571 /* arc.xcdatamodeld in Sources */,
 				C58129FB22E249EE00CD1883 /* ExtendedGridTestTutorialViewController.swift in Sources */,
 				C54AEA1121C81B5F00DEC360 /* PricesTestViewController.swift in Sources */,
 				C5D24ED3230B02B600146E37 /* FourOfFourGoalView.swift in Sources */,
@@ -1977,6 +1986,7 @@
 				C54AEA0921C81B5F00DEC360 /* GridTest.swift in Sources */,
 				C55F8CC9230D89AC006D43BD /* Study+Expressible.swift in Sources */,
 				CB855AD227178D32004599EC /* CompletedTestsDefaultsReport.swift in Sources */,
+				CBDC438D272A7049004ACE2D /* Arc4To5MigrationPolicy.swift in Sources */,
 				C54E8E1122E64CE00080BFC1 /* SymbolsTutorialViewController.swift in Sources */,
 				2D35988D237B6604005EF2CF /* SimplifiedPricesTestTutorialViewController.swift in Sources */,
 				C54AE9D321C81B5F00DEC360 /* State.swift in Sources */,
@@ -2633,30 +2643,32 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		C54AE94821C81B5C00DEC360 /* arc.xcdatamodeld */ = {
+		CBDC437B272A6EA2004ACE2D /* DIAN_Pilot.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				CB2471752728A1BC008C9495 /* arc 5.xcdatamodel */,
-				C511778222FE0095004AE623 /* arc 4.xcdatamodel */,
-				C5143957224E837C000BF1CB /* arc 3.xcdatamodel */,
-				C54AE94921C81B5C00DEC360 /* mHealth.xcdatamodel */,
-				C54AE94A21C81B5C00DEC360 /* mHealth 2.xcdatamodel */,
+				CBDC437C272A6EA2004ACE2D /* DIAN_Pilot 3.xcdatamodel */,
+				CBDC437D272A6EA2004ACE2D /* DIAN_Pilot.xcdatamodel */,
+				CBDC437E272A6EA2004ACE2D /* DIAN_Pilot 2.xcdatamodel */,
+				CBDC437F272A6EA2004ACE2D /* DIAN_Pilot 4.xcdatamodel */,
 			);
-			currentVersion = CB2471752728A1BC008C9495 /* arc 5.xcdatamodel */;
-			path = arc.xcdatamodeld;
+			currentVersion = CBDC437F272A6EA2004ACE2D /* DIAN_Pilot 4.xcdatamodel */;
+			path = DIAN_Pilot.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
-		CBA7F8372729C3810062BDF8 /* DIAN_Pilot.xcdatamodeld */ = {
+		CBDC4380272A6EA3004ACE2D /* arc.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				CBA7F8382729C3810062BDF8 /* DIAN_Pilot 3.xcdatamodel */,
-				CBA7F8392729C3810062BDF8 /* DIAN_Pilot.xcdatamodel */,
-				CBA7F83A2729C3810062BDF8 /* DIAN_Pilot 2.xcdatamodel */,
-				CBA7F83B2729C3810062BDF8 /* DIAN_Pilot 4.xcdatamodel */,
+				CBDC4381272A6EA3004ACE2D /* arc 5.xcdatamodel */,
+				CBDC4382272A6EA3004ACE2D /* mHealth 3.xcdatamodel */,
+				CBDC4383272A6EA3004ACE2D /* arc 3.xcdatamodel */,
+				CBDC4384272A6EA3004ACE2D /* mHealth.xcdatamodel */,
+				CBDC4385272A6EA3004ACE2D /* mHealth 2.xcdatamodel */,
+				CBDC4386272A6EA3004ACE2D /* arc 4.xcdatamodel */,
+				CBDC4387272A6EA3004ACE2D /* Arc 4 to 5 Mapping.xcdatamodel */,
 			);
-			currentVersion = CBA7F83B2729C3810062BDF8 /* DIAN_Pilot 4.xcdatamodel */;
-			path = DIAN_Pilot.xcdatamodeld;
+			currentVersion = CBDC4381272A6EA3004ACE2D /* arc 5.xcdatamodel */;
+			path = arc.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

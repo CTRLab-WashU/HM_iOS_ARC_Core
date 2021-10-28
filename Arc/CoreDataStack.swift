@@ -70,7 +70,7 @@ open class CoreDataStack {
 		let container = NSPersistentContainer(name: "arc", managedObjectModel: self.managedObjectModel)
 		if let description = container.persistentStoreDescriptions.first {
 		
-			description.shouldInferMappingModelAutomatically = true
+			description.shouldInferMappingModelAutomatically = false
 			description.shouldMigrateStoreAutomatically = true
 			
 			container.persistentStoreDescriptions = [description]
