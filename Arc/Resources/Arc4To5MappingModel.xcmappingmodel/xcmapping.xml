@@ -190,7 +190,7 @@
     <object type="XDDEVENTITYMAPPING" id="z132">
         <attribute name="sourcename" type="string">AuthEntry</attribute>
         <attribute name="mappingtypename" type="string">Undefined</attribute>
-        <attribute name="mappingnumber" type="int16">9</attribute>
+        <attribute name="mappingnumber" type="int16">8</attribute>
         <attribute name="destinationname" type="string">AuthEntry</attribute>
         <attribute name="autogenerateexpression" type="bool">1</attribute>
         <relationship name="mappingmodel" type="1/1" destination="XDDEVMAPPINGMODEL" idrefs="z146"></relationship>
