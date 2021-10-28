@@ -1,9 +1,8 @@
 //
 //  Schedule+CoreDataProperties.swift
-//  Arc
+//  
 //
-//  Created by Michael L DePhillips on 10/26/21.
-//  Copyright © 2021 HealthyMedium. All rights reserved.
+//  Created by Philip Hayes on 10/1/18.
 //
 //
 
@@ -17,11 +16,17 @@ extension Schedule {
         return NSFetchRequest<Schedule>(entityName: "Schedule")
     }
 
-    @NSManaged public var createdOn: Date?
-    @NSManaged public var modifiedOn: Date?
+    @NSManaged public var hasConfirmedDate: Bool
+    @NSManaged public var hasScheduledNotifications: Bool
     @NSManaged public var participantID: Int64
     @NSManaged public var scheduleID: String?
-    @NSManaged public var scheduleEntries: NSSet?
+    @NSManaged public var createdOn: Date?
+    @NSManaged public var testEndDate: Date?
+    @NSManaged public var testStartDate: Date?
+    @NSManaged public var userEndDate: Date?
+    @NSManaged public var userStartDate: Date?
+    @NSManaged public var scheduleEntries: Set<ScheduleEntry>?
+    @NSManaged public var sessions: Set<Session>?
 
 }
 
