@@ -1,179 +1,179 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ChronotypeSurvey" representedClassName="ChronotypeSurvey" syncable="YES" codeGenerationType="class">
-        <attribute name="cpuLoad" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="deviceMemory" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="numWorkDays" optional="YES" attributeType="Integer 64" defaultValueString="-1" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="wasShiftWorker" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="workFreeSleepTime" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="workFreeWakeTime" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="workSleepTime" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="workWakeTime" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="testSession" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TestSession" inverseName="chronotypeSurvey" inverseEntity="TestSession" syncable="YES"/>
+        <attribute name="cpuLoad" optional="YES" attributeType="String"/>
+        <attribute name="deviceMemory" optional="YES" attributeType="String"/>
+        <attribute name="numWorkDays" optional="YES" attributeType="Integer 64" defaultValueString="-1" usesScalarValueType="YES"/>
+        <attribute name="wasShiftWorker" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="workFreeSleepTime" optional="YES" attributeType="String"/>
+        <attribute name="workFreeWakeTime" optional="YES" attributeType="String"/>
+        <attribute name="workSleepTime" optional="YES" attributeType="String"/>
+        <attribute name="workWakeTime" optional="YES" attributeType="String"/>
+        <relationship name="testSession" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TestSession" inverseName="chronotypeSurvey" inverseEntity="TestSession"/>
     </entity>
     <entity name="ContextSurvey" representedClassName="ContextSurvey" syncable="YES" codeGenerationType="class">
-        <attribute name="alertness" optional="YES" attributeType="Float" minValueString="0" maxValueString="1" defaultValueString="0.5" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="cpuLoad" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="deviceMemory" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="mood" optional="YES" attributeType="Float" minValueString="0" maxValueString="1" defaultValueString="0.5" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="recentActivity" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="whoIsWith" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="testSession" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TestSession" inverseName="contextSurvey" inverseEntity="TestSession" syncable="YES"/>
+        <attribute name="alertness" optional="YES" attributeType="Float" minValueString="0" maxValueString="1" defaultValueString="0.5" usesScalarValueType="YES"/>
+        <attribute name="cpuLoad" optional="YES" attributeType="String"/>
+        <attribute name="deviceMemory" optional="YES" attributeType="String"/>
+        <attribute name="location" optional="YES" attributeType="String"/>
+        <attribute name="mood" optional="YES" attributeType="Float" minValueString="0" maxValueString="1" defaultValueString="0.5" usesScalarValueType="YES"/>
+        <attribute name="recentActivity" optional="YES" attributeType="String"/>
+        <attribute name="whoIsWith" optional="YES" attributeType="String"/>
+        <relationship name="testSession" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TestSession" inverseName="contextSurvey" inverseEntity="TestSession"/>
     </entity>
     <entity name="File" representedClassName="File" syncable="YES" codeGenerationType="class">
-        <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fileName" optional="YES" attributeType="String"/>
     </entity>
     <entity name="GridTestData" representedClassName="GridTestData" syncable="YES" codeGenerationType="class">
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <relationship name="sections" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="GridTestSectionData" inverseName="test" inverseEntity="GridTestSectionData" syncable="YES"/>
-        <relationship name="testSession" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TestSession" inverseName="gridTest" inverseEntity="TestSession" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="sections" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="GridTestSectionData" inverseName="test" inverseEntity="GridTestSectionData"/>
+        <relationship name="testSession" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TestSession" inverseName="gridTest" inverseEntity="TestSession"/>
     </entity>
     <entity name="GridTestImage" representedClassName="GridTestImage" syncable="YES" codeGenerationType="class">
-        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="x" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="y" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GridTestSectionData" inverseName="images" inverseEntity="GridTestSectionData" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="x" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="y" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GridTestSectionData" inverseName="images" inverseEntity="GridTestSectionData"/>
     </entity>
     <entity name="GridTestSectionData" representedClassName="GridTestSectionData" syncable="YES" codeGenerationType="class">
-        <attribute name="displayDistraction" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="displaySymbols" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="displayTestGrid" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="eCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="fCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="choices" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="GridTestTap" inverseName="section" inverseEntity="GridTestTap" syncable="YES"/>
-        <relationship name="images" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="GridTestImage" inverseName="section" inverseEntity="GridTestImage" syncable="YES"/>
-        <relationship name="test" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GridTestData" inverseName="sections" inverseEntity="GridTestData" syncable="YES"/>
+        <attribute name="displayDistraction" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="displaySymbols" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="displayTestGrid" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="eCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="fCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="choices" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="GridTestTap" inverseName="section" inverseEntity="GridTestTap"/>
+        <relationship name="images" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="GridTestImage" inverseName="section" inverseEntity="GridTestImage"/>
+        <relationship name="test" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GridTestData" inverseName="sections" inverseEntity="GridTestData"/>
     </entity>
     <entity name="GridTestTap" representedClassName="GridTestTap" syncable="YES" codeGenerationType="class">
-        <attribute name="selectionTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="x" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="y" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GridTestSectionData" inverseName="choices" inverseEntity="GridTestSectionData" syncable="YES"/>
+        <attribute name="selectionTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="x" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="y" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GridTestSectionData" inverseName="choices" inverseEntity="GridTestSectionData"/>
     </entity>
-    <entity name="NotificationEntry" representedClassName="EXNotificationEntry" syncable="YES">
-        <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="createdOn" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="notificationIdentifier" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="scheduledAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="sessionID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="submitted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="visitID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" elementID="arcID" syncable="YES"/>
+    <entity name="NotificationEntry" representedClassName="EXNotificationEntry" elementID="NotificationEntry" versionHashModifier="1" syncable="YES">
+        <attribute name="body" optional="YES" attributeType="String"/>
+        <attribute name="createdOn" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="notificationIdentifier" optional="YES" attributeType="String"/>
+        <attribute name="scheduledAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="sessionID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="submitted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="visitID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" elementID="arcID"/>
     </entity>
     <entity name="PriceTestData" representedClassName="PriceTestData" syncable="YES" codeGenerationType="class">
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <relationship name="sections" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="PriceTestItemData" inverseName="testData" inverseEntity="PriceTestItemData" syncable="YES"/>
-        <relationship name="testSession" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TestSession" inverseName="pricesTest" inverseEntity="TestSession" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="sections" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="PriceTestItemData" inverseName="testData" inverseEntity="PriceTestItemData"/>
+        <relationship name="testSession" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TestSession" inverseName="pricesTest" inverseEntity="TestSession"/>
     </entity>
     <entity name="PriceTestItemData" representedClassName="PriceTestItemData" syncable="YES" codeGenerationType="class">
-        <attribute name="altPrice" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="correctIndex" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="goodPrice" optional="YES" attributeType="Integer 32" defaultValueString="99" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="item" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="questionDisplayTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="selectedIndex" optional="YES" attributeType="Integer 32" defaultValueString="99" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="selectionTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="stimulusDisplayTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="testData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PriceTestData" inverseName="sections" inverseEntity="PriceTestData" syncable="YES"/>
+        <attribute name="altPrice" optional="YES" attributeType="String"/>
+        <attribute name="correctIndex" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="goodPrice" optional="YES" attributeType="Integer 32" defaultValueString="99" usesScalarValueType="YES"/>
+        <attribute name="item" optional="YES" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="String"/>
+        <attribute name="questionDisplayTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="selectedIndex" optional="YES" attributeType="Integer 32" defaultValueString="99" usesScalarValueType="YES"/>
+        <attribute name="selectionTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="stimulusDisplayTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="testData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PriceTestData" inverseName="sections" inverseEntity="PriceTestData"/>
     </entity>
     <entity name="SleepWakeData" representedClassName="SleepWakeData" syncable="YES" codeGenerationType="class">
-        <attribute name="createdOn" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <relationship name="entries" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SleepWakeEntry" syncable="YES"/>
+        <attribute name="createdOn" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="entries" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SleepWakeEntry"/>
     </entity>
     <entity name="SleepWakeEntry" representedClassName="SleepWakeEntry" syncable="YES" codeGenerationType="class">
-        <attribute name="bed" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="createdOn" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="wake" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="weekday" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="data" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SleepWakeEntry" inverseName="data" inverseEntity="SleepWakeEntry" syncable="YES"/>
+        <attribute name="bed" optional="YES" attributeType="String"/>
+        <attribute name="createdOn" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="wake" optional="YES" attributeType="String"/>
+        <attribute name="weekday" optional="YES" attributeType="String"/>
+        <relationship name="data" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SleepWakeEntry" inverseName="data" inverseEntity="SleepWakeEntry"/>
     </entity>
     <entity name="SurveyData" representedClassName="SurveyData" syncable="YES" codeGenerationType="class">
-        <attribute name="participant" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="session" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="startTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <relationship name="questions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SurveyQuestionItem" syncable="YES"/>
+        <attribute name="participant" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="session" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="questions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SurveyQuestionItem"/>
     </entity>
     <entity name="SurveyQuestionItem" representedClassName="SurveyQuestionItem" syncable="YES" codeGenerationType="class">
-        <attribute name="answer" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="answerTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="question" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="answer" optional="YES" attributeType="String"/>
+        <attribute name="answerTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="question" optional="YES" attributeType="String"/>
     </entity>
     <entity name="SymbolsTestData" representedClassName="SymbolsTestData" syncable="YES" codeGenerationType="class">
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <relationship name="sections" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="SymbolsTestSectionData" inverseName="test" inverseEntity="SymbolsTestSectionData" syncable="YES"/>
-        <relationship name="testSession" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TestSession" inverseName="symbolsTest" inverseEntity="TestSession" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="sections" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="SymbolsTestSectionData" inverseName="test" inverseEntity="SymbolsTestSectionData"/>
+        <relationship name="testSession" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TestSession" inverseName="symbolsTest" inverseEntity="TestSession"/>
     </entity>
     <entity name="SymbolsTestGlyph" representedClassName="SymbolsTestGlyph" syncable="YES" codeGenerationType="class">
-        <attribute name="symbol" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="testItem" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SymbolsTestItem" inverseName="glyphs" inverseEntity="SymbolsTestItem" syncable="YES"/>
+        <attribute name="symbol" optional="YES" attributeType="String"/>
+        <relationship name="testItem" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SymbolsTestItem" inverseName="glyphs" inverseEntity="SymbolsTestItem"/>
     </entity>
     <entity name="SymbolsTestItem" representedClassName="SymbolsTestItem" syncable="YES" codeGenerationType="class">
-        <relationship name="glyphs" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="SymbolsTestGlyph" inverseName="testItem" inverseEntity="SymbolsTestGlyph" syncable="YES"/>
+        <relationship name="glyphs" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="SymbolsTestGlyph" inverseName="testItem" inverseEntity="SymbolsTestGlyph"/>
     </entity>
     <entity name="SymbolsTestSectionData" representedClassName="SymbolsTestSectionData" syncable="YES" codeGenerationType="class">
-        <attribute name="appearanceTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="correct" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="selected" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="selectionTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="choices" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="SymbolsTestItem" syncable="YES"/>
-        <relationship name="options" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="SymbolsTestItem" syncable="YES"/>
-        <relationship name="test" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SymbolsTestData" inverseName="sections" inverseEntity="SymbolsTestData" syncable="YES"/>
+        <attribute name="appearanceTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="correct" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="selected" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="selectionTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="choices" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="SymbolsTestItem"/>
+        <relationship name="options" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="SymbolsTestItem"/>
+        <relationship name="test" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SymbolsTestData" inverseName="sections" inverseEntity="SymbolsTestData"/>
     </entity>
     <entity name="TestSession" representedClassName="TestSession" syncable="YES" codeGenerationType="class">
-        <attribute name="completeTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="endSignature" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="expirationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="finishedSession" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="hasTakenChronotype" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="hasTakenWake" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="interrupted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="missedSession" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="sessionDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="sessionDayIndex" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="sessionID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="startSignature" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="startTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="uploaded" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="willUpgradePhone" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="chronotypeSurvey" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ChronotypeSurvey" inverseName="testSession" inverseEntity="ChronotypeSurvey" syncable="YES"/>
-        <relationship name="contextSurvey" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ContextSurvey" inverseName="testSession" inverseEntity="ContextSurvey" syncable="YES"/>
-        <relationship name="gridTest" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="GridTestData" inverseName="testSession" inverseEntity="GridTestData" syncable="YES"/>
-        <relationship name="pricesTest" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="PriceTestData" inverseName="testSession" inverseEntity="PriceTestData" syncable="YES"/>
-        <relationship name="symbolsTest" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SymbolsTestData" inverseName="testSession" inverseEntity="SymbolsTestData" syncable="YES"/>
-        <relationship name="testVisit" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TestVisit" inverseName="testSessions" inverseEntity="TestVisit" elementID="testArc" syncable="YES"/>
-        <relationship name="wakeSurvey" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="WakeSurvey" inverseName="testSession" inverseEntity="WakeSurvey" syncable="YES"/>
+        <attribute name="completeTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="endSignature" optional="YES" attributeType="Binary"/>
+        <attribute name="expirationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="finishedSession" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="hasTakenChronotype" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="hasTakenWake" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="interrupted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="missedSession" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="sessionDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="sessionDayIndex" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="sessionID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="startSignature" optional="YES" attributeType="Binary"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="uploaded" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="willUpgradePhone" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <relationship name="chronotypeSurvey" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ChronotypeSurvey" inverseName="testSession" inverseEntity="ChronotypeSurvey"/>
+        <relationship name="contextSurvey" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ContextSurvey" inverseName="testSession" inverseEntity="ContextSurvey"/>
+        <relationship name="gridTest" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="GridTestData" inverseName="testSession" inverseEntity="GridTestData"/>
+        <relationship name="pricesTest" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="PriceTestData" inverseName="testSession" inverseEntity="PriceTestData"/>
+        <relationship name="symbolsTest" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SymbolsTestData" inverseName="testSession" inverseEntity="SymbolsTestData"/>
+        <relationship name="testVisit" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TestVisit" inverseName="testSessions" inverseEntity="TestVisit" elementID="testArc"/>
+        <relationship name="wakeSurvey" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="WakeSurvey" inverseName="testSession" inverseEntity="WakeSurvey"/>
     </entity>
     <entity name="TestVisit" representedClassName="TestVisit" elementID="TestArc" syncable="YES" codeGenerationType="class">
-        <attribute name="hasConfirmedDate" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="hasScheduledNotifications" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="userEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="userStartDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="visitEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO" elementID="arcEndDate" syncable="YES"/>
-        <attribute name="visitID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" elementID="arcID" syncable="YES"/>
-        <attribute name="visitStartDate" optional="YES" attributeType="Date" usesScalarValueType="NO" elementID="arcStartDate" syncable="YES"/>
-        <relationship name="testSessions" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="TestSession" inverseName="testVisit" inverseEntity="TestSession" syncable="YES"/>
+        <attribute name="hasConfirmedDate" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="hasScheduledNotifications" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="userEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="userStartDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="visitEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO" elementID="arcEndDate"/>
+        <attribute name="visitID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" elementID="arcID"/>
+        <attribute name="visitStartDate" optional="YES" attributeType="Date" usesScalarValueType="NO" elementID="arcStartDate"/>
+        <relationship name="testSessions" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="TestSession" inverseName="testVisit" inverseEntity="TestSession"/>
     </entity>
     <entity name="UploadQueue" representedClassName="UploadQueue" syncable="YES" codeGenerationType="class">
-        <attribute name="action" attributeType="String" syncable="YES"/>
-        <attribute name="added" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="attempts" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="background" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="filepath" attributeType="String" syncable="YES"/>
-        <attribute name="success" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="action" attributeType="String"/>
+        <attribute name="added" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="attempts" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="background" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="filepath" attributeType="String"/>
+        <attribute name="success" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
     </entity>
     <entity name="WakeSurvey" representedClassName="WakeSurvey" syncable="YES" codeGenerationType="class">
-        <attribute name="bedTime" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="cpuLoad" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="deviceMemory" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="getUpTime" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="numWakes" optional="YES" attributeType="Integer 64" defaultValueString="99" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="sleepQuality" optional="YES" attributeType="Float" minValueString="0" maxValueString="1" defaultValueString="0.5" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="sleepTime" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="wakeTime" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="testSession" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TestSession" inverseName="wakeSurvey" inverseEntity="TestSession" syncable="YES"/>
+        <attribute name="bedTime" optional="YES" attributeType="String"/>
+        <attribute name="cpuLoad" optional="YES" attributeType="String"/>
+        <attribute name="deviceMemory" optional="YES" attributeType="String"/>
+        <attribute name="getUpTime" optional="YES" attributeType="String"/>
+        <attribute name="numWakes" optional="YES" attributeType="Integer 64" defaultValueString="99" usesScalarValueType="YES"/>
+        <attribute name="sleepQuality" optional="YES" attributeType="Float" minValueString="0" maxValueString="1" defaultValueString="0.5" usesScalarValueType="YES"/>
+        <attribute name="sleepTime" optional="YES" attributeType="String"/>
+        <attribute name="wakeTime" optional="YES" attributeType="String"/>
+        <relationship name="testSession" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TestSession" inverseName="wakeSurvey" inverseEntity="TestSession"/>
     </entity>
     <elements>
         <element name="ChronotypeSurvey" positionX="9" positionY="153" width="128" height="180"/>
@@ -183,7 +183,7 @@
         <element name="GridTestImage" positionX="-9" positionY="135" width="128" height="105"/>
         <element name="GridTestSectionData" positionX="-36" positionY="63" width="128" height="165"/>
         <element name="GridTestTap" positionX="0" positionY="144" width="128" height="105"/>
-        <element name="NotificationEntry" positionX="-9" positionY="99" width="128" height="165"/>
+        <element name="NotificationEntry" positionX="-9" positionY="99" width="128" height="149"/>
         <element name="PriceTestData" positionX="-63" positionY="-18" width="128" height="90"/>
         <element name="PriceTestItemData" positionX="9" positionY="117" width="128" height="195"/>
         <element name="SleepWakeData" positionX="-9" positionY="108" width="128" height="75"/>
