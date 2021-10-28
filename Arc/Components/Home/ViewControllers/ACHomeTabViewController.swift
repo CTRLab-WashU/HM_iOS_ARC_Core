@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 public extension Notification.Name {
 	static let ACHomeStartOnboarding = Notification.Name(rawValue: "ACHomeStartOnboarding")
 	

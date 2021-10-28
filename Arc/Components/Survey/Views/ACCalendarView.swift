@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
 public struct ACCalendarStore {
     public var dateRange:ClosedRange<Date>
     public var selectedDateRange:ClosedRange<Date>?

@@ -6,7 +6,9 @@
 //  Copyright © 2019 HealthyMedium. All rights reserved.
 //
 
-import ArcUIKit
+
+import UIKit
+
 public class ACWeekStepperView : StepperProgressView {
 	
 	private var itemStack:UIStackView!

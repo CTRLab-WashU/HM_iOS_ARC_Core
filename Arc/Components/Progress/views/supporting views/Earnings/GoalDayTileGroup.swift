@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 public class GoalDayTileGroup: UIStackView {
 	
 	weak var contents:UIStackView!

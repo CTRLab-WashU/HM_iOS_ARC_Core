@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 open class GridTestController : TestController<GridTestResponse> {
     
@@ -55,7 +56,7 @@ open class GridTestController : TestController<GridTestResponse> {
     public func createTutorialTest() -> [GridTest] {
         var tests = [GridTest]()
 
-        guard let asset = NSDataAsset(name: "grid_test_tutorial", bundle: Bundle(for: GridTestController.self)) else {
+        guard let asset = NSDataAsset(name: "grid_test_tutorial", bundle: Bundle.module) else {
             fatalError("Couldn't find grid tutorial json asset")
         }
         do {

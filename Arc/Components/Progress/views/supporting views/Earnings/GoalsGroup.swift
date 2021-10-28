@@ -7,7 +7,9 @@
 //
 
 import Foundation
-import ArcUIKit
+import UIKit
+
+
 public class GoalsGroup : UIStackView {
 	weak var fourofFourGoal:FourOfFourGoalView!
 	weak var twoADayGoal:TwoADayGoalView!

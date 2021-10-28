@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 open class SliderView: UIView, SurveyInput {
     public var didFinishSetup: (() -> ())?
     

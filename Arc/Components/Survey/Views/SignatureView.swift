@@ -7,7 +7,9 @@
 //
 
 import Foundation
-import ArcUIKit
+
+import UIKit
+
 public enum SignatureViewContentState {
     case empty, dirty
 }

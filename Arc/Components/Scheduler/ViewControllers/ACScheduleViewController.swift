@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
 public class ACScheduleViewController : BasicSurveyViewController {
     
     public var participantId:Int?

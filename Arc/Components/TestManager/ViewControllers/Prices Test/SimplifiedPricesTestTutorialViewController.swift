@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 
 class SimplifiedPricesTestTutorialViewController: PricesTestTutorialViewController {
 

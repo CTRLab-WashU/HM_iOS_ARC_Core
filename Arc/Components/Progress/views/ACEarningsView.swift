@@ -7,7 +7,9 @@
 //
 
 import Foundation
-import ArcUIKit
+
+import UIKit
+
 public class ACEarningsView : ACTemplateView {
 	weak var earningsSection:UIView!
 

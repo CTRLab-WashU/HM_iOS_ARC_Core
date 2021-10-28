@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 public class EarningsViewController: CustomViewController<ACEarningsView> {
 	var thisStudy:ThisStudyExpressible = Arc.shared.studyController
 	var thisWeek:ThisWeekExpressible = Arc.shared.studyController
@@ -132,11 +132,11 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		customView.bonusGoalContent.isHidden = false
 		customView.bonusGoalsSection.isHidden = false
 		customView.errorLabel.isHidden = true
-		customView.backgroundView.image = UIImage(named: "finished_bg", in: Bundle(for: self.classForCoder), compatibleWith: nil)
+        customView.backgroundView.image = UIImage(named: "finished_bg", in: Bundle.module, compatibleWith: nil)
 		customView.backgroundColor = UIColor(named: "Primary Info")
 		customView.button.isHidden = true
 		customView.gradientView?.isHidden = false
-		customView.earningsSection.backgroundColor = .clear
+		customView.earningsSection.backgroundColor = UIColor.clear
 		customView.headerLabel.textAlignment = .center
 		customView.headerLabel.text = "".localized(ACTranslationKey.progress_earnings_header)
 		
@@ -145,7 +145,7 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 		customView.earningsBodyLabel.isHidden = true
 		customView.lastSyncedLabel.isHidden = true
 		
-		customView.bonusGoalsSection.backgroundColor = .clear
+		customView.bonusGoalsSection.backgroundColor = UIColor.clear
 		customView.bonusGoalsHeader.textAlignment = .center
 		customView.bonusGoalsSeparator.isHidden = true
 		customView.bonusGoalsHeader.textColor = .white

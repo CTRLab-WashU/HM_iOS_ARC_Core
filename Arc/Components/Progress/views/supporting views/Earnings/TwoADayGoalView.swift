@@ -6,7 +6,9 @@
 //  Copyright © 2019 HealthyMedium. All rights reserved.
 //
 
-import ArcUIKit
+
+import UIKit
+
 public class TwoADayGoalView : GoalView {
 	
 	weak public var progressGroup:GoalDayTileGroup!

@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
 /// The HasCustomView protocol defines a customView property for UIViewControllers to be used in exchange of the regular view property.
 /// In order for this to work, you have to provide a custom view to your UIViewController at the loadView() method.
 public protocol HasCustomView {

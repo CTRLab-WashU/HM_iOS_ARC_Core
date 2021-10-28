@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 @IBDesignable open class ChoiceView : UIView {
     public enum State {
         case radio, checkBox, button

@@ -14,10 +14,10 @@ import CoreData
 open class Schedule: NSManagedObject {
 	var entries:Set<ScheduleEntry> {
 		get {
-			return scheduleEntries as? Set<ScheduleEntry> ?? []
+            return scheduleEntries ?? []
 		}
 		set {
-			scheduleEntries = NSSet(set: newValue)
+			scheduleEntries = newValue
 		}
 	}
 }

@@ -20,6 +20,7 @@ extension Schedule {
     @NSManaged public var hasScheduledNotifications: Bool
     @NSManaged public var participantID: Int64
     @NSManaged public var scheduleID: String?
+    @NSManaged public var createdOn: Date?
     @NSManaged public var testEndDate: Date?
     @NSManaged public var testStartDate: Date?
     @NSManaged public var userEndDate: Date?

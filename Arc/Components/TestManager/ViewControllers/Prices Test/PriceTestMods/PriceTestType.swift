@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
 public enum PriceTestType {
     case normal, simplified, simplifiedCentered
 	

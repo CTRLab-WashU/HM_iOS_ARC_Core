@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import HMMarkup
+
 open class MHAlertView: UIView {
 	public enum ButtonType {
 		case `default`(String, ()->())

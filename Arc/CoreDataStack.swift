@@ -70,7 +70,7 @@ open class CoreDataStack {
 		let container = NSPersistentContainer(name: "arc", managedObjectModel: self.managedObjectModel)
 		if let description = container.persistentStoreDescriptions.first {
 		
-			description.shouldInferMappingModelAutomatically = true
+			description.shouldInferMappingModelAutomatically = false
 			description.shouldMigrateStoreAutomatically = true
 			
 			container.persistentStoreDescriptions = [description]
@@ -97,7 +97,7 @@ open class CoreDataStack {
     
     // MARK: - Core Data Saving support
     lazy public var managedObjectModel: NSManagedObjectModel = {
-        let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: type(of: self))] )!
+        let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle.module] )!
         return managedObjectModel
     }()
     public func saveContext () {

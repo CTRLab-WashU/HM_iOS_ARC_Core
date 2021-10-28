@@ -7,19 +7,19 @@
 //
 
 import UIKit
-import ArcUIKit
+
 class SymbolsTutorialViewController: ACTutorialViewController, SymbolsTestViewControllerDelegate {
 
-    public var symbols:[Int:UIImage] = [0: UIImage(named: "tutorial_symbol 1", in: Bundle(for: SymbolsTutorialViewController.self), compatibleWith: nil)!,
-                                        1: UIImage(named: "tutorial_symbol 2", in: Bundle(for: SymbolsTutorialViewController.self), compatibleWith: nil)!,
-                                        2: UIImage(named: "tutorial_symbol 3", in: Bundle(for: SymbolsTutorialViewController.self), compatibleWith: nil)!,
-                                        3: UIImage(named: "tutorial_symbol 4", in: Bundle(for: SymbolsTutorialViewController.self), compatibleWith: nil)!,
-                                        4: UIImage(named: "tutorial_symbol 5", in: Bundle(for: SymbolsTutorialViewController.self), compatibleWith: nil)!,
-                                        5: UIImage(named: "tutorial_symbol 6", in: Bundle(for: SymbolsTutorialViewController.self), compatibleWith: nil)!,
-                                        6: UIImage(named: "tutorial_symbol 7", in: Bundle(for: SymbolsTutorialViewController.self), compatibleWith: nil)!,
-                                        7: UIImage(named: "tutorial_symbol 8", in: Bundle(for: SymbolsTutorialViewController.self), compatibleWith: nil)!]
+    public var symbols:[Int:UIImage] = [0: UIImage(named: "tutorial_symbol 1", in: Bundle.module, compatibleWith: nil)!,
+                                        1: UIImage(named: "tutorial_symbol 2", in: Bundle.module, compatibleWith: nil)!,
+                                        2: UIImage(named: "tutorial_symbol 3", in: Bundle.module, compatibleWith: nil)!,
+                                        3: UIImage(named: "tutorial_symbol 4", in: Bundle.module, compatibleWith: nil)!,
+                                        4: UIImage(named: "tutorial_symbol 5", in: Bundle.module, compatibleWith: nil)!,
+                                        5: UIImage(named: "tutorial_symbol 6", in: Bundle.module, compatibleWith: nil)!,
+                                        6: UIImage(named: "tutorial_symbol 7", in: Bundle.module, compatibleWith: nil)!,
+                                        7: UIImage(named: "tutorial_symbol 8", in: Bundle.module, compatibleWith: nil)!]
     
-    var test:SymbolsTestViewController = .get(nib: "SymbolsTestTutorialViewController", bundle: Bundle(for: SymbolsTestViewController.self))
+    var test:SymbolsTestViewController = .get(nib: "SymbolsTestTutorialViewController", bundle: Bundle.module)
 	var selectionMade:Bool = false
 	var questionsAnswered = 0
     

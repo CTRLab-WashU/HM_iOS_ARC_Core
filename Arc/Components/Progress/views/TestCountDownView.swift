@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 public class TestCountDownView: UIView {
 	weak var countLabel:ACLabel!
 	public override init(frame: CGRect) {

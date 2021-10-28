@@ -7,7 +7,9 @@
 //
 
 import Foundation
-import ArcUIKit
+
+import UIKit
+
 public protocol ACPostCycleFinishViewDelegate : class {
 	func nextPressed()
 }
@@ -32,7 +34,7 @@ public class ACPostCycleFinishView : UIView {
 		animationParams.duration = 0.3
 		animationParams.delay = 0.5
 		backgroundImage = image {
-			$0.image = UIImage(named: "finished_bg", in: Bundle(for: self.classForCoder), compatibleWith: nil)
+			$0.image = UIImage(named: "finished_bg", in: Bundle.module, compatibleWith: nil)
 			$0.contentMode = .scaleAspectFill
 			
 			$0.alpha = 0
@@ -60,7 +62,7 @@ public class ACPostCycleFinishView : UIView {
 			$0.layoutMargins.right = 24
 
 			self.headerImageView = $0.image {
-				$0.image = UIImage(named: "finished-medal", in: Bundle(for: self.classForCoder), compatibleWith: nil)
+                $0.image = UIImage(named: "finished-medal", in: Bundle.module, compatibleWith: nil)
 				$0.contentMode = .top
 				$0.setContentHuggingPriority(.fittingSizeLevel, for: .vertical)
 				animationParams.delay = 0.6

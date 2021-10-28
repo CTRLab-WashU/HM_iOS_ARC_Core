@@ -33,6 +33,8 @@
 
 import BridgeApp
 import Research
+import Foundation
+import UIKit
 
 open class CompletedTestsDefaultsReport: UserDefaultsSingletonReport {
 

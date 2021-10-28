@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 public class GoalBackgroundView: UIView {
 	public var config:Drawing.BadgeGradient = Drawing.BadgeGradient()
 	init() {

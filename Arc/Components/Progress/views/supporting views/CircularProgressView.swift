@@ -1,5 +1,5 @@
 import UIKit
-import ArcUIKit
+
 public class CircularProgressView : UIView {
 	
 	public struct Config {

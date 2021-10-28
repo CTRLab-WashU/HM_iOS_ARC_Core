@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 class ACProgressView: ACTemplateView {
 	private var startDay:Date?
 	

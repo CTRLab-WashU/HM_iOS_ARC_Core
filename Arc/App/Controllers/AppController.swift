@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
 open class AppController : MHController {
 	public enum Commitment : String, Codable {
 		case committed, rebuked

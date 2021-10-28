@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import ArcUIKit
-import HMMarkup
+
+
 public class PromptDetailView: UIStackView {
 	
 	public var separatorWidth:CGFloat {

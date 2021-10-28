@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 
 open class TimeView: UIView, SurveyInput {
 	public weak var surveyInputDelegate: SurveyInputDelegate?

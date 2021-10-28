@@ -7,7 +7,9 @@
 //
 
 import Foundation
-import ArcUIKit
+
+import UIKit
+
 public class EarningsDetailGoalView : UIView {
 	weak var bodyLabel:ACLabel!
 	weak var valueLabel:ACLabel!

@@ -7,7 +7,8 @@
 //
 
 import Foundation
-import ArcUIKit
+
+import UIKit
 
 public class EarningsDetailGroup : UIView {
 	weak var headerLabel:ACLabel!

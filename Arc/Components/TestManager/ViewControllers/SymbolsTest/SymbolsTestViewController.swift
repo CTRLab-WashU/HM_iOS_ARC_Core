@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 
 public protocol SymbolsTestViewControllerDelegate : class {
 	func didSelect(index:Int)

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 public class BlockProgressview: UIStackView {
 
 	var maxBlockCount:Int = 12

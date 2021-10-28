@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcUIKit
+
 public protocol TutorialCompleteViewDelegate : class {
 	func closePressed()
 }
