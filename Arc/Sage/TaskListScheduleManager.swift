@@ -113,20 +113,38 @@ public class TaskListScheduleManager {
         
         let reportIds: [RSDIdentifier] = [.availability, .testSchedule]
         var successCtr = reportIds.count
+        var completedCalled = false
         
         reportIds.forEach { (identifier) in
             self.getSingletonReport(reportId: identifier) { (report, error) in
                 if (error != nil) {
-                    completed(nil, nil, error)
+                    if (!completedCalled) {
+                        completed(nil, nil, error)
+                    }
+                    completedCalled = true
+                    return
                 }
                 
+                var errorStr: String? = nil
                 switch(identifier) {
                 case .availability:
-                    availabilityData = self.createWakeSleepScheduleRequestData(mostRecentReport: report)
+                    let result = self.createWakeSleepScheduleRequestData(mostRecentReport: report)
+                    availabilityData = result.0
+                    errorStr = result.1
                 case .testSchedule:
-                    testScheduleData = self.createTestScheduleRequestData(mostRecentReport: report)
+                    let result = self.createTestScheduleRequestData(mostRecentReport: report)
+                    testScheduleData = result.0
+                    errorStr = result.1
                 default:
                     debugPrint("Report id \(identifier) not supported in loadHistoryFromBridge")
+                }
+                
+                if let errorStrUnwrapped = errorStr {
+                    if (!completedCalled) {
+                        completed(nil, nil, errorStrUnwrapped)
+                    }
+                    completedCalled = true
+                    return
                 }
                 
                 successCtr -= 1
@@ -168,11 +186,11 @@ public class TaskListScheduleManager {
         }
     }
     
-    open func createWakeSleepScheduleRequestData(mostRecentReport: SBAReport?) -> WakeSleepScheduleRequestData? {
+    open func createWakeSleepScheduleRequestData(mostRecentReport: SBAReport?) -> (WakeSleepScheduleRequestData?, String?) {
         
         guard let clientData = mostRecentReport?.clientData.toJSONSerializable() as? String else {
-            print("Could not get the WakeSleep client data from report")
-            return nil
+            print("Could not get the WakeSleep client data from report, users first sign in")
+            return (nil, nil)
         }
         
         // Fix for cross-compatibility with Android, where thie field
@@ -181,7 +199,7 @@ public class TaskListScheduleManager {
         
         guard let data = clientDataStr.data(using: String.Encoding.utf8) else {
             print("Could not convert WakeSleep client data string to encoded data")
-            return nil
+            return (nil, "WakeSleep invalid data format")
         }
         
         do {
@@ -194,30 +212,30 @@ public class TaskListScheduleManager {
             if (wakeSleep.timezone_offset == nil) {
                 wakeSleep.timezone_offset = (TimeZone.current.secondsFromGMT() / 3600).toString()
             }
-            return wakeSleep
+            return (wakeSleep, nil)
         } catch let error as NSError {
             print("Error while converting client data to WakeSleep format \(error)")
         }
         
-        return nil
+        return (nil, "WakeSleep invalid data format")
     }
     
-    open func createTestScheduleRequestData(mostRecentReport: SBAReport?) -> TestScheduleRequestData? {
+    open func createTestScheduleRequestData(mostRecentReport: SBAReport?) -> (TestScheduleRequestData?, String?) {
 
         guard let clientData = mostRecentReport?.clientData.toJSONSerializable() as? String,
               let data = clientData.data(using: String.Encoding.utf8) else {
-            print("Could not get the TestSchedule client data from report")
-            return nil
+            print("Could not get the TestSchedule client data from report, first time the user signed in")
+            return (nil, nil)
         }
         
         do {
             let testSchedule = try jsonDecoder.decode(TestScheduleRequestData.self, from: data)
-            return testSchedule
+            return (testSchedule, nil)
         } catch let error as NSError {
             print("Error while converting client data to TestSchedule format \(error)")
         }
         
-        return nil
+        return (nil, "TestSchedule invalid data format")
     }
     
     open func uploadFullTestSession(session: FullTestSession) {
@@ -872,12 +890,13 @@ public class TaskListScheduleManager {
             }
             return
         }
-
-        // Remove traces of successful migrations
-        self.removeMigrationStateImmediately()
+        
         // We are done with migration!
-        DispatchQueue.main
-        completionListener.success()
+        DispatchQueue.main.async {
+            // Remove traces of successful migrations
+            self.removeMigrationStateImmediately()
+            completionListener.success()
+        }
     }
 }
 
