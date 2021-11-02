@@ -185,7 +185,15 @@ public class TaskListScheduleManager {
         }
         
         do {
-            let wakeSleep = try jsonDecoder.decode(WakeSleepScheduleRequestData.self, from: data)
+            var wakeSleep = try jsonDecoder.decode(WakeSleepScheduleRequestData.self, from: data)
+            // Fix for cross-compatibility with Android, where thses fields can
+            // sometimes be missing values saved to the server.
+            if (wakeSleep.timezone_name == nil) {
+                wakeSleep.timezone_name = TimeZone.current.description
+            }
+            if (wakeSleep.timezone_offset == nil) {
+                wakeSleep.timezone_offset = (TimeZone.current.secondsFromGMT() / 3600).toString()
+            }
             return wakeSleep
         } catch let error as NSError {
             print("Error while converting client data to WakeSleep format \(error)")
