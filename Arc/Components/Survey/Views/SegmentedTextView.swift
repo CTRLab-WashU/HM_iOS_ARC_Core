@@ -37,6 +37,7 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput {
     public var smartDashesType: UITextSmartDashesType = .no
     @available(iOS 11.0, *)
     public var smartInsertDeleteType: UITextSmartInsertDeleteType = .no
+    public var returnKeyType: UIReturnKeyType = .done
     
 	public var keyboardType: UIKeyboardType = .numberPad
 	override open var inputAccessoryView: UIView? {
