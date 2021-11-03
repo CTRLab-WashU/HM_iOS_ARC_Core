@@ -113,15 +113,19 @@ public class TaskListScheduleManager {
         
         let reportIds: [RSDIdentifier] = [.availability, .testSchedule]
         var successCtr = reportIds.count
-        var completedCalled = false
+        
+        // To prevent multiple errors from being thrown, leading to
+        // a chaotic user experience, keep track of if one has already been
+        // thrown, so the user only sees the first one.
+        var hasThrownError = false
         
         reportIds.forEach { (identifier) in
             self.getSingletonReport(reportId: identifier) { (report, error) in
                 if (error != nil) {
-                    if (!completedCalled) {
+                    if (!hasThrownError) {
                         completed(nil, nil, error)
                     }
-                    completedCalled = true
+                    hasThrownError = true
                     return
                 }
                 
@@ -140,17 +144,17 @@ public class TaskListScheduleManager {
                 }
                 
                 if let errorStrUnwrapped = errorStr {
-                    if (!completedCalled) {
+                    if (!hasThrownError) {
                         completed(nil, nil, errorStrUnwrapped)
                     }
-                    completedCalled = true
+                    hasThrownError = true
                     return
                 }
                 
                 successCtr -= 1
                 
                 // Check for done state
-                if (successCtr <= 0 && !completedCalled) {
+                if (successCtr <= 0 && !hasThrownError) {
                     self.forceReloadCompletedTestData { (errorStr) in
                         if let errorStrUnwrapped = errorStr {
                             completed(nil, nil, errorStrUnwrapped)
