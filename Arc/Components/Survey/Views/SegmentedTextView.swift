@@ -102,6 +102,10 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput {
 		self.inputStack.setCustomSpacing(size, after:view)
 	}
 	public func insertText(_ text: String) {
+        if text == "\n" {
+            self.doneButtonAction()
+            return
+        }
 		if _value.count < inputStack.arrangedSubviews.count {
 			_value.append(text)
 		}
