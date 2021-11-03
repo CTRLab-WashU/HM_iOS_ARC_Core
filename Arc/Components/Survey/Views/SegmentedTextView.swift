@@ -27,6 +27,7 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTra
 	//MARK: Text Input: Either override or assign default values to get
 	//desired behavior
 	
+    public var autocorrectionType: UITextAutocorrectionType = .default
 	public var keyboardType: UIKeyboardType = .numberPad
 	override open var inputAccessoryView: UIView? {
 		let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x:0, y:0, width:320, height:50))
