@@ -15,7 +15,7 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTra
     public var orientation: UIStackView.Alignment = .top
 	private var problemsButton:UIButton?
 	public var hideHelpButton:Bool = false
-	@IBOutlet weak var inputStack: UIStackView!
+	@IBOutlet public weak var inputStack: UIStackView!
 	public var shouldTryNext = true
 	private var _value:[String] = [] {
 		didSet {
