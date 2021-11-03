@@ -148,8 +148,14 @@ public class TaskListScheduleManager {
                 }
                 
                 successCtr -= 1
-                if (successCtr <= 0) {  // Check for done state
+                
+                // Check for done state
+                if (successCtr <= 0 && !completedCalled) {
                     self.forceReloadCompletedTestData { (errorStr) in
+                        if let errorStrUnwrapped = errorStr {
+                            completed(nil, nil, errorStrUnwrapped)
+                            return
+                        }
                         completed(availabilityData, testScheduleData, errorStr)
                     }
                 }

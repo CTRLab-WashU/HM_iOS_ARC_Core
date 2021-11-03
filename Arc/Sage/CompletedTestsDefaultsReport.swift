@@ -116,6 +116,7 @@ open class CompletedTestsDefaultsReport: UserDefaultsSingletonReport {
             guard let bridgeJsonData = (clientData as? String)?.data(using: .utf8) else {
                 let errorStr = "Error parsing clientData for completed tests report"
                 print(errorStr)
+                completion(errorStr)
                 return
             }
 
@@ -145,9 +146,9 @@ open class CompletedTestsDefaultsReport: UserDefaultsSingletonReport {
                 
                 completion(nil)
             } catch {
-                let errorStr = "Error parsing clientData for completed tests report \(error)"
+                let errorStr = "CompletedTestList invalid data format"
                 completion(errorStr)
-                print(errorStr)
+                print("\(errorStr)\(error.localizedDescription)")
             }
         }
     }
