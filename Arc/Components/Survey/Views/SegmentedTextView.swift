@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTraits{
+public class SegmentedTextView : UIView, SurveyInput, UIKeyInput {
 	
 	public weak var surveyInputDelegate: SurveyInputDelegate?
 
@@ -27,7 +27,17 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTra
 	//MARK: Text Input: Either override or assign default values to get
 	//desired behavior
 	
+    public var autocapitalizationType: UITextAutocapitalizationType = .none
     public var autocorrectionType: UITextAutocorrectionType = .no
+    @available(iOS 5.0, *)
+    public var spellCheckingType: UITextSpellCheckingType = .no
+    @available(iOS 11.0, *)
+    public var smartQuotesType: UITextSmartQuotesType = .no
+    @available(iOS 11.0, *)
+    public var smartDashesType: UITextSmartDashesType = .no
+    @available(iOS 11.0, *)
+    public var smartInsertDeleteType: UITextSmartInsertDeleteType = .no
+    
 	public var keyboardType: UIKeyboardType = .numberPad
 	override open var inputAccessoryView: UIView? {
 		let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x:0, y:0, width:320, height:50))
