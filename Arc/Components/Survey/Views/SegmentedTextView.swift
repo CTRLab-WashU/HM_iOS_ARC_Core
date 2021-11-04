@@ -8,14 +8,14 @@
 
 import UIKit
 
-public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTraits{
+public class SegmentedTextView : UIView, SurveyInput, UIKeyInput {
 	
 	public weak var surveyInputDelegate: SurveyInputDelegate?
 
     public var orientation: UIStackView.Alignment = .top
 	private var problemsButton:UIButton?
 	public var hideHelpButton:Bool = false
-	@IBOutlet weak var inputStack: UIStackView!
+	@IBOutlet public weak var inputStack: UIStackView!
 	public var shouldTryNext = true
 	private var _value:[String] = [] {
 		didSet {
@@ -27,6 +27,18 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTra
 	//MARK: Text Input: Either override or assign default values to get
 	//desired behavior
 	
+    public var autocapitalizationType: UITextAutocapitalizationType = .none
+    public var autocorrectionType: UITextAutocorrectionType = .no
+    @available(iOS 5.0, *)
+    public var spellCheckingType: UITextSpellCheckingType = .no
+    @available(iOS 11.0, *)
+    public var smartQuotesType: UITextSmartQuotesType = .no
+    @available(iOS 11.0, *)
+    public var smartDashesType: UITextSmartDashesType = .no
+    @available(iOS 11.0, *)
+    public var smartInsertDeleteType: UITextSmartInsertDeleteType = .no
+    public var returnKeyType: UIReturnKeyType = .done
+    
 	public var keyboardType: UIKeyboardType = .numberPad
 	override open var inputAccessoryView: UIView? {
 		let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x:0, y:0, width:320, height:50))
@@ -58,9 +70,8 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTra
 	@objc func doneButtonAction() {
 		if shouldTryNext {
         	surveyInputDelegate?.tryNextPressed()
-		} else {
-			resignFirstResponder()
 		}
+        resignFirstResponder()
 	}
 	public var hasText: Bool {
 		return _value.count > 0
@@ -91,6 +102,10 @@ public class SegmentedTextView : UIView, SurveyInput, UIKeyInput, UITextInputTra
 		self.inputStack.setCustomSpacing(size, after:view)
 	}
 	public func insertText(_ text: String) {
+        if text == "\n" {
+            self.doneButtonAction()
+            return
+        }
 		if _value.count < inputStack.arrangedSubviews.count {
 			_value.append(text)
 		}
