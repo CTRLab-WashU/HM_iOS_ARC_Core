@@ -214,9 +214,14 @@ public class SageAuthViewController : BasicSurveyViewController {
                         Arc.shared.nextAvailableState()
 
                     } else {
-                        let genericError = "Account not found".localized(ACTranslationKey.login_error1)
+                        var errorStr = "Account not found".localized(ACTranslationKey.login_error1)
                         
-                        self.set(error:"\(genericError)\n\(error ?? "")")
+                        // Skip this error message, as it is the generic one
+                        if error != "Account not found." {
+                            errorStr = "\(errorStr)\n\(error ?? "")"
+                        }
+                        
+                        self.set(error:errorStr)
                         
                         self.hideSpinner()
                     
