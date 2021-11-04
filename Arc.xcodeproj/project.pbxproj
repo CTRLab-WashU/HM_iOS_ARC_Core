@@ -266,6 +266,7 @@
 		C5FDC5B4258BE4A100E80E69 /* AuthHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FDC5B3258BE4A100E80E69 /* AuthHandler.swift */; };
 		CB32BCEF2717C82D00B05501 /* JsonModel in Frameworks */ = {isa = PBXBuildFile; productRef = CB32BCEE2717C82D00B05501 /* JsonModel */; };
 		CB5C294E2732EEC400CEC823 /* SageAuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5C294D2732EEC400CEC823 /* SageAuthController.swift */; };
+		CB7F44342733647100C5C6B4 /* SageAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F44332733647100C5C6B4 /* SageAuthViewController.swift */; };
 		CB855AC627178C60004599EC /* BridgeApp in Frameworks */ = {isa = PBXBuildFile; productRef = CB855AC527178C60004599EC /* BridgeApp */; };
 		CB855AC827178C60004599EC /* BridgeAppUI in Frameworks */ = {isa = PBXBuildFile; productRef = CB855AC727178C60004599EC /* BridgeAppUI */; };
 		CB855AD027178D32004599EC /* SageEarningsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB855ACA27178D31004599EC /* SageEarningsController.swift */; };
@@ -603,6 +604,7 @@
 		C5F77F3A22306CFA00BECAE1 /* DateRangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRangeView.swift; sourceTree = "<group>"; };
 		C5FDC5B3258BE4A100E80E69 /* AuthHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHandler.swift; sourceTree = "<group>"; };
 		CB5C294D2732EEC400CEC823 /* SageAuthController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SageAuthController.swift; path = Arc/Sage/SageAuthController.swift; sourceTree = SOURCE_ROOT; };
+		CB7F44332733647100C5C6B4 /* SageAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SageAuthViewController.swift; sourceTree = "<group>"; };
 		CB855ACA27178D31004599EC /* SageEarningsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SageEarningsController.swift; sourceTree = "<group>"; };
 		CB855ACB27178D31004599EC /* SageScheduleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SageScheduleController.swift; sourceTree = "<group>"; };
 		CB855ACC27178D31004599EC /* CompletedTestsDefaultsReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedTestsDefaultsReport.swift; sourceTree = "<group>"; };
@@ -1392,9 +1394,18 @@
 			path = Earnings;
 			sourceTree = "<group>";
 		};
+		CB7F44322733645400C5C6B4 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CB7F44332733647100C5C6B4 /* SageAuthViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		CB855AC927178D17004599EC /* Sage */ = {
 			isa = PBXGroup;
 			children = (
+				CB7F44322733645400C5C6B4 /* ViewControllers */,
 				CB984EE6271E25A00034C9BB /* Migration */,
 				CB855ACC27178D31004599EC /* CompletedTestsDefaultsReport.swift */,
 				CB5C294D2732EEC400CEC823 /* SageAuthController.swift */,
@@ -1849,6 +1860,7 @@
 				C54AE9CF21C81B5F00DEC360 /* ACEnvironment.swift in Sources */,
 				C55F8CCF230F187E006D43BD /* ACEarningsDetailView.swift in Sources */,
 				C54AE9EE21C81B5F00DEC360 /* ToggleButton.swift in Sources */,
+				CB7F44342733647100C5C6B4 /* SageAuthViewController.swift in Sources */,
 				C5E1530B22C64B630066FD6B /* PrivacyStack.swift in Sources */,
 				C54AEA0321C81B5F00DEC360 /* BorderedTextField.swift in Sources */,
 				C54AE9FF21C81B5F00DEC360 /* MHAlertView.swift in Sources */,
