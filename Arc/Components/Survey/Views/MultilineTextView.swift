@@ -13,7 +13,7 @@ open class MultilineTextView : UIView, SurveyInput, UITextViewDelegate {
     public var orientation: UIStackView.Alignment = .top
     
 
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet public weak var textView: UITextView!
 	public var maxCharacters:Int?
 	public var minCharacters:Int?
 	public var keyboardType:UIKeyboardType = .default {

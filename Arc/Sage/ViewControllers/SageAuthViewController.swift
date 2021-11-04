@@ -37,6 +37,8 @@ public class SageAuthViewController : BasicSurveyViewController {
     var controller:AuthController = Arc.shared.authController
     var initialValue:String = ""
 	
+    public let maxCharactersVerificationCode: UInt = 9
+    
     public override init(file: String, surveyId:String? = nil, showHelp:Bool? = true) {
 		super.init(file: file)
 		
@@ -63,14 +65,25 @@ public class SageAuthViewController : BasicSurveyViewController {
             if let view = input as? SegmentedTextView {
                 view.set(length: 6)
             }
+            
             input?.setValue(AnyResponse(type: .segmentedText,
                                        value: initialValue))
             
         } else if questionId == "auth_sign_in_token" {
             
             if let view = input as? SegmentedTextView {
-                view.set(length: 9)
+                view.set(length: maxCharactersVerificationCode)
                 view.keyboardType = .default
+            }
+            if let view = input as? MultilineTextView {
+                view.maxCharacters = Int(maxCharactersVerificationCode)
+                view.textView.keyboardType = .default
+                view.textView.autocorrectionType = .no
+                view.textView.returnKeyType = .done
+                view.textView.autocapitalizationType = .none
+                view.textView.smartDashesType = .no
+                view.textView.smartQuotesType = .no
+                view.textView.smartInsertDeleteType = .no
             }
             input?.setValue(AnyResponse(type: .segmentedText,
                                        value: nil))
