@@ -735,7 +735,7 @@ public class TaskListScheduleManager {
                                errorStr: "Error \(what) creating SBBSignUp")
                 return
             }
-            guard let password = SecureTokenGenerator.BRIDGE_PASSWORD.nextBridgePassword() else {
+            guard let password = PasswordGenerator.BRIDGE_PASSWORD.nextBridgePassword() else {
                 migrationError(completionListener: completionListener,
                                errorStr: "Error \(what) creating password")
                 return

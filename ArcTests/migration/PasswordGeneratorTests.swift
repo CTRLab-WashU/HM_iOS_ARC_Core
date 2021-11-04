@@ -34,15 +34,15 @@
 import XCTest
 @testable import Arc
 
-class SecureTokenGeneratorTests: XCTestCase {
+class PasswordGeneratorTests: XCTestCase {
     
     func testGeneratePasswords() throws {
         // Test 10000 bridge passwords for validity
         for _ in 0..<10000 {
-            let password = SecureTokenGenerator.BRIDGE_PASSWORD.nextBridgePassword()
+            let password = PasswordGenerator.BRIDGE_PASSWORD.nextBridgePassword()
             XCTAssertNotNil(password)
             XCTAssertEqual(9, password!.count)
-            XCTAssertTrue(SecureTokenGenerator.BRIDGE_PASSWORD.isValidBridgePassword(password: password))
+            XCTAssertTrue(PasswordGenerator.BRIDGE_PASSWORD.isValidBridgePassword(password: password))
         }
     }
 }
