@@ -154,8 +154,8 @@ public struct WakeSleepScheduleRequestData : Codable {
 	public var device_info:String // "iOS|iPhone8,4|10.1.1",
 	public var app_version:String // "1.2.4",
 	public var model_version:String // "1",
-    public var timezone_name:String //name of timezone ie "Central Standard Time"
-    public var timezone_offset:String //offset from utc ie "UTC-05:00"
+    public var timezone_name:String? //name of timezone ie "Central Standard Time"
+    public var timezone_offset:String? //offset from utc ie "UTC-05:00"
 	
 	public init(withStudyPeriod studyPeriod: StudyPeriod) {
 		

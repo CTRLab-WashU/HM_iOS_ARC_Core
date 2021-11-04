@@ -114,24 +114,52 @@ public class TaskListScheduleManager {
         let reportIds: [RSDIdentifier] = [.availability, .testSchedule]
         var successCtr = reportIds.count
         
+        // To prevent multiple errors from being thrown, leading to
+        // a chaotic user experience, keep track of if one has already been
+        // thrown, so the user only sees the first one.
+        var hasThrownError = false
+        
         reportIds.forEach { (identifier) in
             self.getSingletonReport(reportId: identifier) { (report, error) in
                 if (error != nil) {
-                    completed(nil, nil, error)
+                    if (!hasThrownError) {
+                        completed(nil, nil, error)
+                    }
+                    hasThrownError = true
+                    return
                 }
                 
+                var errorStr: String? = nil
                 switch(identifier) {
                 case .availability:
-                    availabilityData = self.createWakeSleepScheduleRequestData(mostRecentReport: report)
+                    let result = self.createWakeSleepScheduleRequestData(mostRecentReport: report)
+                    availabilityData = result.0
+                    errorStr = result.1
                 case .testSchedule:
-                    testScheduleData = self.createTestScheduleRequestData(mostRecentReport: report)
+                    let result = self.createTestScheduleRequestData(mostRecentReport: report)
+                    testScheduleData = result.0
+                    errorStr = result.1
                 default:
                     debugPrint("Report id \(identifier) not supported in loadHistoryFromBridge")
                 }
                 
+                if let errorStrUnwrapped = errorStr {
+                    if (!hasThrownError) {
+                        completed(nil, nil, errorStrUnwrapped)
+                    }
+                    hasThrownError = true
+                    return
+                }
+                
                 successCtr -= 1
-                if (successCtr <= 0) {  // Check for done state
+                
+                // Check for done state
+                if (successCtr <= 0 && !hasThrownError) {
                     self.forceReloadCompletedTestData { (errorStr) in
+                        if let errorStrUnwrapped = errorStr {
+                            completed(nil, nil, errorStrUnwrapped)
+                            return
+                        }
                         completed(availabilityData, testScheduleData, errorStr)
                     }
                 }
@@ -168,11 +196,11 @@ public class TaskListScheduleManager {
         }
     }
     
-    open func createWakeSleepScheduleRequestData(mostRecentReport: SBAReport?) -> WakeSleepScheduleRequestData? {
+    open func createWakeSleepScheduleRequestData(mostRecentReport: SBAReport?) -> (WakeSleepScheduleRequestData?, String?) {
         
         guard let clientData = mostRecentReport?.clientData.toJSONSerializable() as? String else {
-            print("Could not get the WakeSleep client data from report")
-            return nil
+            print("Could not get the WakeSleep client data from report, users first sign in")
+            return (nil, nil)
         }
         
         // Fix for cross-compatibility with Android, where thie field
@@ -181,35 +209,43 @@ public class TaskListScheduleManager {
         
         guard let data = clientDataStr.data(using: String.Encoding.utf8) else {
             print("Could not convert WakeSleep client data string to encoded data")
-            return nil
+            return (nil, "WakeSleep invalid data format")
         }
         
         do {
-            let wakeSleep = try jsonDecoder.decode(WakeSleepScheduleRequestData.self, from: data)
-            return wakeSleep
+            var wakeSleep = try jsonDecoder.decode(WakeSleepScheduleRequestData.self, from: data)
+            // Fix for cross-compatibility with Android, where thses fields can
+            // sometimes be missing values saved to the server.
+            if (wakeSleep.timezone_name == nil) {
+                wakeSleep.timezone_name = TimeZone.current.description
+            }
+            if (wakeSleep.timezone_offset == nil) {
+                wakeSleep.timezone_offset = (TimeZone.current.secondsFromGMT() / 3600).toString()
+            }
+            return (wakeSleep, nil)
         } catch let error as NSError {
             print("Error while converting client data to WakeSleep format \(error)")
         }
         
-        return nil
+        return (nil, "WakeSleep invalid data format")
     }
     
-    open func createTestScheduleRequestData(mostRecentReport: SBAReport?) -> TestScheduleRequestData? {
+    open func createTestScheduleRequestData(mostRecentReport: SBAReport?) -> (TestScheduleRequestData?, String?) {
 
         guard let clientData = mostRecentReport?.clientData.toJSONSerializable() as? String,
               let data = clientData.data(using: String.Encoding.utf8) else {
-            print("Could not get the TestSchedule client data from report")
-            return nil
+            print("Could not get the TestSchedule client data from report, first time the user signed in")
+            return (nil, nil)
         }
         
         do {
             let testSchedule = try jsonDecoder.decode(TestScheduleRequestData.self, from: data)
-            return testSchedule
+            return (testSchedule, nil)
         } catch let error as NSError {
             print("Error while converting client data to TestSchedule format \(error)")
         }
         
-        return nil
+        return (nil, "TestSchedule invalid data format")
     }
     
     open func uploadFullTestSession(session: FullTestSession) {
@@ -864,12 +900,13 @@ public class TaskListScheduleManager {
             }
             return
         }
-
-        // Remove traces of successful migrations
-        self.removeMigrationStateImmediately()
+        
         // We are done with migration!
-        DispatchQueue.main
-        completionListener.success()
+        DispatchQueue.main.async {
+            // Remove traces of successful migrations
+            self.removeMigrationStateImmediately()
+            completionListener.success()
+        }
     }
 }
 
