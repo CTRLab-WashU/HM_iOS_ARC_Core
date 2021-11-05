@@ -2287,32 +2287,36 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Sage-Bionetworks/JsonModel-Swift";
 			requirement = {
-				kind = exactVersion;
-				version = 1.2.3;
+				kind = versionRange;
+				maximumVersion = 2.0.0;
+				minimumVersion = 1.0.0;
 			};
 		};
 		CB855AC427178C60004599EC /* XCRemoteSwiftPackageReference "BridgeApp-Apple-SDK" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Sage-Bionetworks/BridgeApp-Apple-SDK";
 			requirement = {
-				kind = exactVersion;
-				version = 5.1.4;
+				kind = versionRange;
+				maximumVersion = 6.0.0;
+				minimumVersion = 5.0.0;
 			};
 		};
 		CB855AD62717A1AD004599EC /* XCRemoteSwiftPackageReference "Bridge-iOS-SDK" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Sage-Bionetworks/Bridge-iOS-SDK";
 			requirement = {
-				kind = exactVersion;
-				version = 4.4.84;
+				kind = versionRange;
+				maximumVersion = 5.0.0;
+				minimumVersion = 4.0.0;
 			};
 		};
 		CB855AD92717A1C0004599EC /* XCRemoteSwiftPackageReference "SageResearch" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Sage-Bionetworks/SageResearch";
 			requirement = {
-				kind = exactVersion;
-				version = 4.2.3;
+				kind = versionRange;
+				maximumVersion = 5.0.0;
+				minimumVersion = 4.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
