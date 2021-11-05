@@ -37,7 +37,7 @@ import Foundation
  * This code came from Stack Exchange, with some changes to make it thread-safe. Unfortunately I
  * then lost the reference to the page I took it from. Cleaned up to our formatting standards.
  */
-public class SecureTokenGenerator {
+public class PasswordGenerator {
 
     // Bridge password must be at least 8 characters;
     // Bridge password must contain at least one uppercase letter (a-z)
@@ -49,22 +49,23 @@ public class SecureTokenGenerator {
     private static var LOWERCASE_ALPHA = "abcdefghijkmnopqrstuvwxyz"
     // "0" has been removed, as it shows up too similar to letter "O" on bridge
     private static var NUMERIC = "123456789"
-    // Bridge password must contain at least one symbol ( !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~ );
+    // Bridge password must contain at least one symbol ( !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~ )
     // This subset of symbols was chosen because they would be easier to communicate over the phone
-    private static var SYMBOL = "!#$%&'*+,-.:;=?@_"
+    // As well as removing some that the older participants wouldn't understand
+    private static var SYMBOL = "&.!?"
 
     private static var ALPHANUMERIC = UPPERCASE_ALPHA + LOWERCASE_ALPHA + NUMERIC;
     // ALPHANUMERIC was added 3 times to decrease the number of symbols in a password
     private static var PASSWORD = ALPHANUMERIC + ALPHANUMERIC + ALPHANUMERIC + SYMBOL
     
-    public static var ARC_ID_INSTANCE = SecureTokenGenerator(length: 6, characters: NUMERIC)
+    public static var ARC_ID_INSTANCE = PasswordGenerator(length: 6, characters: NUMERIC)
 
     /**
      * I used this website https://asecuritysite.com/encryption/passes and using our parameters,
      * it said a 9 character password has 66,540,410,775,079,424 available passwords,
      * and it would take 2108.59 years to crack if requests were sent.
      */
-    public static var BRIDGE_PASSWORD = SecureTokenGenerator(length: 9, characters: PASSWORD)
+    public static var BRIDGE_PASSWORD = PasswordGenerator(length: 9, characters: PASSWORD)
 
     private var characters: String
     public var tokenLength: Int {
@@ -120,21 +121,26 @@ public class SecureTokenGenerator {
         var containsLowercase = false
         var containsNumeric = false
         var containsSpecial = false
+        var specialCount = 0
 
         for i in 0..<passwordUnwrapped.count {
             let character = passwordUnwrapped.charAtIndex(i: i)
             containsUppercase = containsUppercase ||
-                SecureTokenGenerator.UPPERCASE_ALPHA.contains(character)
+                PasswordGenerator.UPPERCASE_ALPHA.contains(character)
             containsLowercase = containsLowercase ||
-                SecureTokenGenerator.LOWERCASE_ALPHA.contains(character)
+                PasswordGenerator.LOWERCASE_ALPHA.contains(character)
             containsNumeric = containsNumeric ||
-                SecureTokenGenerator.NUMERIC.contains(character)
+                PasswordGenerator.NUMERIC.contains(character)
             containsSpecial = containsSpecial ||
-                SecureTokenGenerator.SYMBOL.contains(character)
+                PasswordGenerator.SYMBOL.contains(character)
+            if (PasswordGenerator.SYMBOL.contains(character)) {
+                specialCount += 1
+            }
         }
 
+        // We want only 1 special character in the password
         return containsUppercase && containsLowercase &&
-                containsNumeric && containsSpecial
+                containsNumeric && containsSpecial && (specialCount == 1)
     }
 }
 

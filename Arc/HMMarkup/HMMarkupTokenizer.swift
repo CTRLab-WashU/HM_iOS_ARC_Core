@@ -106,16 +106,12 @@ struct HMMarkupTokenizer {
 	}
 	
 	private mutating func scanLeft(delimiter: UnicodeScalar) -> HMMarkupToken? {
-		let p = previous ?? .space
-		
 		guard let n = next else {
 			return nil
 		}
 		
-		// Left delimiters must be predeced by whitespace or punctuation
-		// and NOT followed by whitespaces or newlines
-		guard CharacterSet.whitespaceAndPunctuation.contains(p) &&
-			!CharacterSet.whitespacesAndNewlines.contains(n) &&
+        // Left delimiters must NOT be     followed by whitespaces or newlines
+        guard !CharacterSet.whitespacesAndNewlines.contains(n) &&
 			!leftDelimiters.contains(delimiter) else {
 				return nil
 		}
@@ -131,12 +127,8 @@ struct HMMarkupTokenizer {
 			return nil
 		}
 		
-		let n = next ?? .space
-		
-		// Right delimiters must NOT be preceded by whitespace and must be
-		// followed by whitespace or punctuation
+        // Right delimiters must NOT be preceded by whitespace
 		guard !CharacterSet.whitespacesAndNewlines.contains(p) &&
-			CharacterSet.whitespaceAndPunctuation.contains(n) &&
 			leftDelimiters.contains(delimiter) else {
 				return nil
 		}

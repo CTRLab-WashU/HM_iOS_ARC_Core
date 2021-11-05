@@ -13,7 +13,7 @@ open class MultilineTextView : UIView, SurveyInput, UITextViewDelegate {
     public var orientation: UIStackView.Alignment = .top
     
 
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet public weak var textView: UITextView!
 	public var maxCharacters:Int?
 	public var minCharacters:Int?
 	public var keyboardType:UIKeyboardType = .default {
@@ -77,4 +77,13 @@ open class MultilineTextView : UIView, SurveyInput, UITextViewDelegate {
 		}
 		surveyInputDelegate?.didChangeValue()
 	}
+    
+    public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        // If the return key is "done" and not "return", dismiss keyboard
+        if textView.returnKeyType == .done && text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
 }

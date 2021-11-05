@@ -279,9 +279,9 @@
 		CB855ADD2717A1C0004599EC /* ResearchUI in Frameworks */ = {isa = PBXBuildFile; productRef = CB855ADC2717A1C0004599EC /* ResearchUI */; };
 		CB855ADF2717A93C004599EC /* SageEarningsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB855ADE2717A93C004599EC /* SageEarningsControllerTests.swift */; };
 		CB984EE8271E25C20034C9BB /* HmToSageMigrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB984EE7271E25C20034C9BB /* HmToSageMigrationViewController.swift */; };
-		CB984EF3271F13FF0034C9BB /* SecureTokenGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB984EF2271F13FF0034C9BB /* SecureTokenGenerator.swift */; };
+		CB984EF3271F13FF0034C9BB /* PasswordGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB984EF2271F13FF0034C9BB /* PasswordGenerator.swift */; };
 		CB984EF7271F22350034C9BB /* HmToSageMigrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB984EF5271F22350034C9BB /* HmToSageMigrationViewController.xib */; };
-		CB984EF9271F39A80034C9BB /* SecureTokenGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB984EF8271F39A70034C9BB /* SecureTokenGeneratorTests.swift */; };
+		CB984EF9271F39A80034C9BB /* PasswordGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB984EF8271F39A70034C9BB /* PasswordGeneratorTests.swift */; };
 		CBDC438D272A7049004ACE2D /* Arc4To5MigrationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC438C272A7049004ACE2D /* Arc4To5MigrationPolicy.swift */; };
 		CBDC439B272A7E98004ACE2D /* arc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CBDC438E272A7E98004ACE2D /* arc.xcdatamodeld */; };
 		CBDC439C272A7E98004ACE2D /* Arc4To5MappingModel.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = CBDC4395272A7E98004ACE2D /* Arc4To5MappingModel.xcmappingmodel */; };
@@ -612,9 +612,9 @@
 		CB855ACE27178D32004599EC /* TaskListScheduleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListScheduleManager.swift; sourceTree = "<group>"; };
 		CB855ADE2717A93C004599EC /* SageEarningsControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SageEarningsControllerTests.swift; sourceTree = "<group>"; };
 		CB984EE7271E25C20034C9BB /* HmToSageMigrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HmToSageMigrationViewController.swift; sourceTree = "<group>"; };
-		CB984EF2271F13FF0034C9BB /* SecureTokenGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTokenGenerator.swift; sourceTree = "<group>"; };
+		CB984EF2271F13FF0034C9BB /* PasswordGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGenerator.swift; sourceTree = "<group>"; };
 		CB984EF5271F22350034C9BB /* HmToSageMigrationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HmToSageMigrationViewController.xib; sourceTree = "<group>"; };
-		CB984EF8271F39A70034C9BB /* SecureTokenGeneratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureTokenGeneratorTests.swift; sourceTree = "<group>"; };
+		CB984EF8271F39A70034C9BB /* PasswordGeneratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorTests.swift; sourceTree = "<group>"; };
 		CBDC438C272A7049004ACE2D /* Arc4To5MigrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arc4To5MigrationPolicy.swift; sourceTree = "<group>"; };
 		CBDC438F272A7E98004ACE2D /* arc 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "arc 5.xcdatamodel"; sourceTree = "<group>"; };
 		CBDC4390272A7E98004ACE2D /* mHealth 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "mHealth 3.xcdatamodel"; sourceTree = "<group>"; };
@@ -1421,7 +1421,7 @@
 			isa = PBXGroup;
 			children = (
 				CB984EE7271E25C20034C9BB /* HmToSageMigrationViewController.swift */,
-				CB984EF2271F13FF0034C9BB /* SecureTokenGenerator.swift */,
+				CB984EF2271F13FF0034C9BB /* PasswordGenerator.swift */,
 			);
 			path = Migration;
 			sourceTree = "<group>";
@@ -1429,7 +1429,7 @@
 		CB984EFA271F3A030034C9BB /* migration */ = {
 			isa = PBXGroup;
 			children = (
-				CB984EF8271F39A70034C9BB /* SecureTokenGeneratorTests.swift */,
+				CB984EF8271F39A70034C9BB /* PasswordGeneratorTests.swift */,
 			);
 			path = migration;
 			sourceTree = "<group>";
@@ -1994,7 +1994,7 @@
 				C5D24ED7230B048900146E37 /* TotalSessionGoalView.swift in Sources */,
 				C5E253BA2421589D007FE0BA /* ACStudyTotalsViewController.swift in Sources */,
 				C54AEA3621C81B5F00DEC360 /* ScheduleController.swift in Sources */,
-				CB984EF3271F13FF0034C9BB /* SecureTokenGenerator.swift in Sources */,
+				CB984EF3271F13FF0034C9BB /* PasswordGenerator.swift in Sources */,
 				C5C2B12722D3D66C002CB4C5 /* InfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2003,7 +2003,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB984EF9271F39A80034C9BB /* SecureTokenGeneratorTests.swift in Sources */,
+				CB984EF9271F39A80034C9BB /* PasswordGeneratorTests.swift in Sources */,
 				CB855ADF2717A93C004599EC /* SageEarningsControllerTests.swift in Sources */,
 				C5C488B025251C58006500F2 /* StatusCodeTests.swift in Sources */,
 				C584F33522C16682009741A7 /* ArcTests.swift in Sources */,
