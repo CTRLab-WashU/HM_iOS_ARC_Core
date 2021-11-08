@@ -74,6 +74,17 @@ public class SageAuthViewController : BasicSurveyViewController {
             if let view = input as? SegmentedTextView {
                 view.set(length: maxCharactersVerificationCode)
                 view.keyboardType = .default
+                
+                // There is a bug on smaller devices like the iPhone SE (320 width)
+                // where the default spacing (20) pushes the input off the screen
+                // For this long 9 character input, default the spacing to 10,
+                // and force it to 5 on even smaller devices.
+                // This makes it always look good.
+                if UIScreen.main.bounds.width > 321 {
+                    view.inputStack.spacing = 10
+                } else {
+                    view.inputStack.spacing = 5
+                }
             }
             if let view = input as? MultilineTextView {
                 view.maxCharacters = Int(maxCharactersVerificationCode)
