@@ -37,12 +37,57 @@ import XCTest
 class PasswordGeneratorTests: XCTestCase {
     
     func testGeneratePasswords() throws {
+        var counts = [Int: Int]()
         // Test 10000 bridge passwords for validity
         for _ in 0..<10000 {
             let password = PasswordGenerator.BRIDGE_PASSWORD.nextBridgePassword()
             XCTAssertNotNil(password)
             XCTAssertEqual(9, password!.count)
-            XCTAssertTrue(PasswordGenerator.BRIDGE_PASSWORD.isValidBridgePassword(password: password))
+            XCTAssertTrue(isValidBridgePassword(password: password))
+            
+            // Add to the counts of where each symbol is
+            for j in 0..<9 {
+                for k in 0..<4 {
+                    if password!.charAtIndex(i: j) == PasswordGenerator.SYMBOL.charAtIndex(i: k) {
+                        counts[j] = (counts[j] ?? 0) + 1
+                    }
+                }
+            }
         }
+        
+        for i in 0..<9 {
+            // Make sure that the distribution has at least 1% of the distribution
+            XCTAssertTrue((counts[i] ?? 0) > 10)
+        }
+    }
+        
+    private func isValidBridgePassword(password: String?) -> Bool {
+        guard let passwordUnwrapped = password else {
+            return false
+        }
+        var containsUppercase = false
+        var containsLowercase = false
+        var containsNumeric = false
+        var containsSpecial = false
+        var specialCount = 0
+
+        for i in 0..<passwordUnwrapped.count {
+            let character = passwordUnwrapped.charAtIndex(i: i)
+            containsUppercase = containsUppercase ||
+                PasswordGenerator.UPPERCASE_ALPHA.contains(character)
+            containsLowercase = containsLowercase ||
+                PasswordGenerator.LOWERCASE_ALPHA.contains(character)
+            containsNumeric = containsNumeric ||
+                PasswordGenerator.NUMERIC.contains(character)
+            containsSpecial = containsSpecial ||
+                PasswordGenerator.SYMBOL.contains(character)
+            if (PasswordGenerator.SYMBOL.contains(character)) {
+                specialCount += 1
+            }
+        }
+
+        // We want only 1 special character in the password
+        return containsUppercase && containsLowercase &&
+                containsNumeric && containsSpecial && (specialCount == 1)
     }
 }

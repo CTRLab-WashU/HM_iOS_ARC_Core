@@ -38,39 +38,39 @@ import Foundation
  * then lost the reference to the page I took it from. Cleaned up to our formatting standards.
  */
 public class PasswordGenerator {
+    
+    // DIAN passwords are 9 digits long
+    public static let DEFAULT_PASSWORD_LENGTH = 9;
 
     // Bridge password must be at least 8 characters;
     // Bridge password must contain at least one uppercase letter (a-z)
     // Letter "O" has been removed, as it shows up too similar to number "0" on bridge
     // Letter "I" has been removed, as it shows up too similar to letter "l" on bridge
-    private static var UPPERCASE_ALPHA = "ABCDEFGHJKLMNPQRSTUVWXYZ"
+    public static let UPPERCASE_ALPHA = "ABCDEFGHJKLMNPQRSTUVWXYZ"
     // Bridge password must contain at least one lowercase letter (a-z)
     // Letter "l" has been removed, as it shows up too similar to letter "I" on bridge
-    private static var LOWERCASE_ALPHA = "abcdefghijkmnopqrstuvwxyz"
+    public static let LOWERCASE_ALPHA = "abcdefghijkmnopqrstuvwxyz"
     // "0" has been removed, as it shows up too similar to letter "O" on bridge
-    private static var NUMERIC = "123456789"
+    public static let NUMERIC = "123456789"
     // Bridge password must contain at least one symbol ( !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~ )
     // This subset of symbols was chosen because they would be easier to communicate over the phone
     // As well as removing some that the older participants wouldn't understand
-    private static var SYMBOL = "&.!?"
+    public static let SYMBOL = "&.!?"
 
-    private static var ALPHANUMERIC = UPPERCASE_ALPHA + LOWERCASE_ALPHA + NUMERIC;
+    public static let ALPHANUMERIC = UPPERCASE_ALPHA + LOWERCASE_ALPHA + NUMERIC;
     // ALPHANUMERIC was added 3 times to decrease the number of symbols in a password
-    private static var PASSWORD = ALPHANUMERIC + ALPHANUMERIC + ALPHANUMERIC + SYMBOL
+    public static let PASSWORD = ALPHANUMERIC + SYMBOL
     
-    public static var ARC_ID_INSTANCE = PasswordGenerator(length: 6, characters: NUMERIC)
+    public static let ARC_ID_INSTANCE = PasswordGenerator(length: 6, characters: NUMERIC)
 
     /**
      * I used this website https://asecuritysite.com/encryption/passes and using our parameters,
      * it said a 9 character password has 66,540,410,775,079,424 available passwords,
      * and it would take 2108.59 years to crack if requests were sent.
      */
-    public static var BRIDGE_PASSWORD = PasswordGenerator(length: 9, characters: PASSWORD)
+    public static let BRIDGE_PASSWORD = PasswordGenerator(length: 9, characters: PASSWORD)
 
     private var characters: String
-    public var tokenLength: Int {
-        return self.characters.count
-    }
     private var length: Int
 
     public init (length: Int, characters: String) {
@@ -80,22 +80,39 @@ public class PasswordGenerator {
             assertionFailure("Max characters is \(UInt8.max)")
         }
     }
+    
+    private func getRandomIntegers(size: Int, max: Int) -> [Int]? {
+        var array = [Int]()
+        while (array.count < size) {
+            guard let randomInt = self.getRandomInteger(max: max) else {
+                return nil
+            }
+            array.append(randomInt)
+        }
+        return array
+    }
 
-    public func nextToken() -> String? {
-        var bytes = [UInt8](repeating: 0, count: self.length)
+    private func getUniqueRandomIntegers(size: Int, max: Int) -> [Int]? {
+        var set = [Int]()
+        while (set.count < size) {
+            guard let randomInt = self.getRandomInteger(max: max) else {
+                return nil
+            }
+            if (!set.contains(randomInt)) {
+                set.append(randomInt)
+            }
+        }
+        return set
+    }
+    
+    private func getRandomInteger(max: Int) -> Int? {
+        var bytes = [UInt8](repeating: 0, count: 1)
         let status = SecRandomCopyBytes(kSecRandomDefault, bytes.count, &bytes)
-        
         if status != errSecSuccess {
             print("Error creating secure random token with code \(status)")
             return nil
         }
-        
-        var token = ""
-        for i in 0..<bytes.count {
-            let adjustedI = Int(bytes[i]) % self.tokenLength
-            token += self.characters.charAtIndex(i: adjustedI)
-        }
-        return token
+        return Int(bytes[0]) % max
     }
 
     /**
@@ -103,44 +120,42 @@ public class PasswordGenerator {
      * @return a random password string compatible with Bridge
      */
     public func nextBridgePassword() -> String? {
-        var token = nextToken()
-        while (!isValidBridgePassword(password: token)) {
-            token = nextToken()
-            if (token == nil) {
+        guard let randomIndices = self.getRandomIntegers(size: self.length, max: PasswordGenerator.ALPHANUMERIC.count) else {
+            return nil
+        }
+        // Get a secure ALPHANUMERIC password first
+        var alphaNumericPassword = ""
+        randomIndices.forEach { idx in
+            alphaNumericPassword += PasswordGenerator.ALPHANUMERIC.charAtIndex(i: idx)
+        }
+        // Ensure that all character types are always present by replacing characters
+        // in the password with one random character from each set of character requirements
+        guard let fourIndices = self.getUniqueRandomIntegers(size: 4, max: self.length) else {
+            return nil
+        }
+        var password = ""
+        for i in 0..<self.length {
+            var randomIdx: Int? = -1
+            if fourIndices[0] == i {
+                randomIdx = self.getRandomInteger(max: PasswordGenerator.UPPERCASE_ALPHA.count)
+                password += PasswordGenerator.UPPERCASE_ALPHA.charAtIndex(i: randomIdx ?? 0)
+            } else if fourIndices[1] == i {
+                randomIdx = self.getRandomInteger(max: PasswordGenerator.LOWERCASE_ALPHA.count)
+                password += PasswordGenerator.LOWERCASE_ALPHA.charAtIndex(i: randomIdx ?? 0)
+            } else if fourIndices[2] == i {
+                randomIdx = self.getRandomInteger(max: PasswordGenerator.NUMERIC.count)
+                password += PasswordGenerator.NUMERIC.charAtIndex(i: randomIdx ?? 0)
+            } else if fourIndices[3] == i {
+                randomIdx = self.getRandomInteger(max: PasswordGenerator.SYMBOL.count)
+                password += PasswordGenerator.SYMBOL.charAtIndex(i: randomIdx ?? 0)
+            }
+            if randomIdx == nil {
                 return nil
+            } else if (randomIdx ?? -1) < 0 {
+                password += alphaNumericPassword.charAtIndex(i: i)
             }
         }
-        return token
-    }
-
-    public func isValidBridgePassword(password: String?) -> Bool {
-        guard let passwordUnwrapped = password else {
-            return false
-        }
-        var containsUppercase = false
-        var containsLowercase = false
-        var containsNumeric = false
-        var containsSpecial = false
-        var specialCount = 0
-
-        for i in 0..<passwordUnwrapped.count {
-            let character = passwordUnwrapped.charAtIndex(i: i)
-            containsUppercase = containsUppercase ||
-                PasswordGenerator.UPPERCASE_ALPHA.contains(character)
-            containsLowercase = containsLowercase ||
-                PasswordGenerator.LOWERCASE_ALPHA.contains(character)
-            containsNumeric = containsNumeric ||
-                PasswordGenerator.NUMERIC.contains(character)
-            containsSpecial = containsSpecial ||
-                PasswordGenerator.SYMBOL.contains(character)
-            if (PasswordGenerator.SYMBOL.contains(character)) {
-                specialCount += 1
-            }
-        }
-
-        // We want only 1 special character in the password
-        return containsUppercase && containsLowercase &&
-                containsNumeric && containsSpecial && (specialCount == 1)
+        return password
     }
 }
 
