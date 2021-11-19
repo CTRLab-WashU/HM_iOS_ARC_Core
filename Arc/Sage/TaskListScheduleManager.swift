@@ -187,17 +187,6 @@ public class TaskListScheduleManager: MHController {
                 return
             }
             
-            Arc.shared.appController.commitment = .committed
-            Arc.shared.notificationController.authenticateNotifications { (didAuthenticate, error) in
-                DispatchQueue.main.async {
-                    if Arc.shared.authController.createTestSessions(schedule: testScheduleUnwrapped) {
-                        Arc.shared.studyController.save()
-                    } else {
-                        print("Error creating sessions from schedule")
-                    }
-                }
-            }
-            
             let sortedSessions = testScheduleUnwrapped.sessions.sorted { (test1, test2) -> Bool in
                 return test1.session_date < test2.session_date
             }
@@ -228,6 +217,14 @@ public class TaskListScheduleManager: MHController {
                                       participantId: Int(arcIdInt))
                 }
                 controller.save()
+            }
+            
+            if Arc.shared.authController.createTestSessions(schedule: testScheduleUnwrapped) {
+                Arc.shared.studyController.save()
+            } else {
+                let errorStr = "Error creating sessions from schedule"
+                print(errorStr)
+                completion(nil, errorStr)
             }
             
             completion(arcIdInt, nil)
