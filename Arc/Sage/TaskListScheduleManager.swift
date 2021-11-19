@@ -554,7 +554,7 @@ public class TaskListScheduleManager: MHController {
     }
     
     public static let migrationDataKey = "migrationDataKey"
-    public static let migrationSteps = 12
+    public static let migrationSteps = 13
 
     public func userNeedsToMigrate(participantId: String?, externalId: String?) -> Bool {
         if (participantId == nil) {
@@ -1010,6 +1010,8 @@ public class TaskListScheduleManager: MHController {
                 
         // We are done with migration!
         DispatchQueue.main.async {
+            progressCtr += 1
+            completionListener.progressUpdate(progress: progressCtr)
             // Remove traces of successful migrations
             self.removeMigrationStateImmediately()
             completionListener.success()
