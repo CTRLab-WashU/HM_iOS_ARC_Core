@@ -551,7 +551,7 @@ public class TaskListScheduleManager: MHController {
     }
     
     public static let migrationDataKey = "migrationDataKey"
-    public static let migrationSteps = 13
+    public static let migrationSteps = 14
 
     public func userNeedsToMigrate(participantId: String?, externalId: String?) -> Bool {
         if (participantId == nil) {
