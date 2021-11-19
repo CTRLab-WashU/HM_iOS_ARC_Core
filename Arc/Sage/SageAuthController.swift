@@ -83,91 +83,13 @@ open class SageAuthController : AuthController {
                 return
             }
             
-            TaskListScheduleManager.shared.loadHistoryFromBridge { (wakeSleep, testSchedule, error) in
-                if let errorUnwrapped = error {
-                    completion(nil, errorUnwrapped)
-                    return
-                }
-                
-                // Save the ARC ID
-                self.saveArcId(arcIdInt: arcIdInt)
-                
-                // Start with no commitment, unless the two responses below are non-nil
-                Arc.shared.appController.commitment = .none
-                
-                // We need both to consider the user as previously setup
-                guard let wakeSleepUnwrapped = wakeSleep,
-                      let testScheduleUnwrapped = testSchedule else {
-                    completion(arcIdInt, nil)
-                    return
-                }
-                
-                Arc.shared.appController.commitment = .committed
-                Arc.shared.notificationController.authenticateNotifications { (didAuthenticate, error) in
-                    DispatchQueue.main.async {
-                        if self.createTestSessions(schedule: testScheduleUnwrapped) {
-                            Arc.shared.studyController.save()
-                        } else {
-                            print("Error creating sessions from schedule")
-                        }
-                    }
-                }
-                
-                let sortedSessions = testScheduleUnwrapped.sessions.sorted { (test1, test2) -> Bool in
-                    return test1.session_date < test2.session_date
-                }
-                
-                if let firstTest = sortedSessions.first {
-                    Arc.shared.studyController.firstTest = self.convertToTestState(test: firstTest)
-                }
-                
-                // Get the latest test, which is the most recent test we have past
-                let now = Date().timeIntervalSince1970
-                if let latestTest = sortedSessions.filter({ (test) -> Bool in
-                    return now > test.session_date
-                }).last {
-                    Arc.shared.studyController.latestTest = self.convertToTestState(test: latestTest)
-                    Arc.apply(forVersion: "2.0.0")
-                }
-                
-                NotificationCenter.default.post(name: .ACStartEarningsRefresh, object: nil)
-                
-                // Save wake sleep schedule
-                Arc.shared.appController.commitment = .committed
-                MHController.dataContext.performAndWait {
-                    let controller = Arc.shared.scheduleController
-                    for entry in wakeSleepUnwrapped.wake_sleep_data {
-                        let _ = controller.create(entry: entry.wake,
-                                          endTime: entry.bed,
-                                          weekDay: WeekDay.fromString(day: entry.weekday),
-                                          participantId: Int(arcIdInt))
-                    }
-                    controller.save()
-                }
-                
-                completion(arcIdInt, nil)
-            }
+            TaskListScheduleManager.shared.loadAndSetupUserData(arcIdInt: arcIdInt, completion: completion)
         })
     }
     
-    open func createTestSessions(schedule: TestScheduleRequestData) -> Bool {
+    override open func createTestSessions(schedule: TestScheduleRequestData) -> Bool {
         // Needs to be implemented by sub-class
         assertionFailure("createTestSessions needs to be implemented by sub-class")
         return false
-    }
-    
-    fileprivate func convertToTestState(test: TestScheduleRequestData.Entry) -> SessionInfoResponse.TestState {
-        return SessionInfoResponse.TestState(session_date: test.session_date, week: Int(test.week), day: Int(test.day), session: Int(test.session), session_id: test.session_id)
-    }
-    
-    fileprivate func saveArcId(arcIdInt: Int64) {
-        // Save the user's Arc ID info
-        MHController.dataContext.perform {
-            let entry:AuthEntry = self.new()
-            entry.authDate = Date()
-            entry.participantID = arcIdInt
-            Arc.shared.participantId = Int(arcIdInt)
-            self.save()
-        }
     }
 }

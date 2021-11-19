@@ -247,4 +247,9 @@ open class AuthController:MHController {
         return "Sorry, our app is currently experiencing issues. Please try again later.".localized(ACTranslationKey.login_error3)
     }
     
+    open func createTestSessions(schedule: TestScheduleRequestData) -> Bool {
+        // Needs to be implemented by sub-class
+        assertionFailure("createTestSessions needs to be implemented by sub-class")
+        return false
+    }
 }

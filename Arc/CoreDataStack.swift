@@ -38,7 +38,7 @@ open class CoreDataStack {
     }()
 	public func initializeMockStore() -> NSPersistentContainer {
 		CoreDataStack.useMockContainer = true
-		let container = NSPersistentContainer(name: "arc", managedObjectModel: self.managedObjectModel)
+		let container = NSPersistentContainer(name: "dianarc", managedObjectModel: self.managedObjectModel)
 		let description = NSPersistentStoreDescription()
 		description.type = NSInMemoryStoreType
 		description.shouldAddStoreAsynchronously = false // Make it simpler in test env
@@ -67,7 +67,7 @@ open class CoreDataStack {
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
          */
-		let container = NSPersistentContainer(name: "arc", managedObjectModel: self.managedObjectModel)
+		let container = NSPersistentContainer(name: "dianarc", managedObjectModel: self.managedObjectModel)
 		if let description = container.persistentStoreDescriptions.first {
 		
 			description.shouldInferMappingModelAutomatically = false
@@ -75,6 +75,7 @@ open class CoreDataStack {
 			
 			container.persistentStoreDescriptions = [description]
 		}
+
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
@@ -88,7 +89,7 @@ open class CoreDataStack {
                  * The store could not be migrated to the current model version.
                  Check the error message to determine what the actual problem was.
                  */
-				
+
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })

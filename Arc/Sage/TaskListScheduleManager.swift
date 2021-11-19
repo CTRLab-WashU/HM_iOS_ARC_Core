@@ -47,7 +47,7 @@ extension RSDIdentifier {
 }
 
 /// Subclass the schedule manager to set up a predicate to filter the schedules.
-public class TaskListScheduleManager {
+public class TaskListScheduleManager: MHController {
     
     public static let shared = TaskListScheduleManager()
     
@@ -82,7 +82,7 @@ public class TaskListScheduleManager {
         return JSONDecoder()
     }()
     
-    var defaults: UserDefaults {
+    var standardDefaults: UserDefaults {
         return UserDefaults.standard
     }
     
@@ -164,6 +164,85 @@ public class TaskListScheduleManager {
                     }
                 }
             }
+        }
+    }
+    
+    open func loadAndSetupUserData(arcIdInt: Int64, completion: @escaping ((Int64?, String?) -> ())) {
+        TaskListScheduleManager.shared.loadHistoryFromBridge { (wakeSleep, testSchedule, error) in
+            if let errorUnwrapped = error {
+                completion(nil, errorUnwrapped)
+                return
+            }
+            
+            // Save the ARC ID
+            self.saveArcId(arcIdInt: arcIdInt)
+            
+            // Start with no commitment, unless the two responses below are non-nil
+            Arc.shared.appController.commitment = .none
+            
+            // We need both to consider the user as previously setup
+            guard let wakeSleepUnwrapped = wakeSleep,
+                  let testScheduleUnwrapped = testSchedule else {
+                completion(arcIdInt, nil)
+                return
+            }
+            
+            let sortedSessions = testScheduleUnwrapped.sessions.sorted { (test1, test2) -> Bool in
+                return test1.session_date < test2.session_date
+            }
+            
+            if let firstTest = sortedSessions.first {
+                Arc.shared.studyController.firstTest = self.convertToTestState(test: firstTest)
+            }
+            
+            // Get the latest test, which is the most recent test we have past
+            let now = Date().timeIntervalSince1970
+            if let latestTest = sortedSessions.filter({ (test) -> Bool in
+                return now > test.session_date
+            }).last {
+                Arc.shared.studyController.latestTest = self.convertToTestState(test: latestTest)
+                Arc.apply(forVersion: "2.0.0")
+            }
+            
+            NotificationCenter.default.post(name: .ACStartEarningsRefresh, object: nil)
+            
+            // Save wake sleep schedule
+            Arc.shared.appController.commitment = .committed
+            MHController.dataContext.performAndWait {
+                let controller = Arc.shared.scheduleController
+                for entry in wakeSleepUnwrapped.wake_sleep_data {
+                    let _ = controller.create(entry: entry.wake,
+                                      endTime: entry.bed,
+                                      weekDay: WeekDay.fromString(day: entry.weekday),
+                                      participantId: Int(arcIdInt))
+                }
+                controller.save()
+            }
+            
+            if Arc.shared.authController.createTestSessions(schedule: testScheduleUnwrapped) {
+                Arc.shared.studyController.save()
+            } else {
+                let errorStr = "Error creating sessions from schedule"
+                print(errorStr)
+                completion(nil, errorStr)
+            }
+            
+            completion(arcIdInt, nil)
+        }
+    }
+    
+    fileprivate func convertToTestState(test: TestScheduleRequestData.Entry) -> SessionInfoResponse.TestState {
+        return SessionInfoResponse.TestState(session_date: test.session_date, week: Int(test.week), day: Int(test.day), session: Int(test.session), session_id: test.session_id)
+    }
+    
+    fileprivate func saveArcId(arcIdInt: Int64) {
+        // Save the user's Arc ID info
+        MHController.dataContext.perform {
+            let entry:AuthEntry = self.new()
+            entry.authDate = Date()
+            entry.participantID = arcIdInt
+            Arc.shared.participantId = Int(arcIdInt)
+            self.save()
         }
     }
     
@@ -472,7 +551,7 @@ public class TaskListScheduleManager {
     }
     
     public static let migrationDataKey = "migrationDataKey"
-    public static let migrationSteps = 11
+    public static let migrationSteps = 14
 
     public func userNeedsToMigrate(participantId: String?, externalId: String?) -> Bool {
         if (participantId == nil) {
@@ -518,7 +597,6 @@ public class TaskListScheduleManager {
         return nil
     }
     
-    var TODO_REMOVE = 0
     /**
      * @return true if the user needs to migrate from HM to Sage bridge server, false otherwise
      */
@@ -901,8 +979,36 @@ public class TaskListScheduleManager {
             return
         }
         
+        // Wait a second for Bridge server to finish writes
+        progressCtr += 1
+        if (migration.userSynced == nil) {
+            completionListener.progressUpdate(progress: progressCtr)
+            DispatchQueue.main.asyncAfter(deadline: (.now() + 1.0), execute: {
+                let what = "Sync user with bridge data"
+                print(what)
+                guard let arcIdInt = Int64(migration.arcId) else {
+                    self.migrationError(completionListener: completionListener,
+                                        errorStr: "Error \(what) invalid arcIdInt64")
+                    return
+                }
+                self.loadAndSetupUserData(arcIdInt: arcIdInt, completion: { arcIdInt, error in
+                    if let errorStr = error {
+                        self.migrationError(completionListener: completionListener,
+                                            errorStr: "Error \(what) \(errorStr)")
+                        return
+                    }
+                    let newMigration = migration.copy(userSynced: true)
+                    self.saveAndContinueMigration(completionListener: completionListener,
+                                                  newMigration: newMigration)
+                })
+            })
+            return
+        }
+                
         // We are done with migration!
         DispatchQueue.main.async {
+            progressCtr += 1
+            completionListener.progressUpdate(progress: progressCtr)
             // Remove traces of successful migrations
             self.removeMigrationStateImmediately()
             completionListener.success()
@@ -918,7 +1024,7 @@ public protocol MigrationCompletedListener: AnyObject {
 
 open class UserDefaultsSingletonReport {
     var defaults: UserDefaults {
-        return TaskListScheduleManager.shared.defaults
+        return TaskListScheduleManager.shared.standardDefaults
     }
     
     var isSyncingWithBridge = false
@@ -967,6 +1073,7 @@ public struct MigrationData: Codable {
     var completedTestUploaded: Bool? = nil
     var sessionScheduleUploaded: Bool? = nil
     var wakeSleepScheduleUploaded: Bool? = nil
+    var userSynced: Bool? = nil
     
     public static func initial(arcId: String, deviceId: String) -> MigrationData {
         return MigrationData(arcId: arcId, deviceId: deviceId)
@@ -984,7 +1091,8 @@ public struct MigrationData: Codable {
                      isNewUserAttributesUpdated: Bool? = nil,
                      completedTestUploaded: Bool? = nil,
                      sessionScheduleUploaded: Bool? = nil,
-                     wakeSleepScheduleUploaded: Bool? = nil) -> MigrationData {
+                     wakeSleepScheduleUploaded: Bool? = nil,
+                     userSynced: Bool? = nil) -> MigrationData {
         
         return MigrationData(
             arcId: self.arcId,
@@ -1001,6 +1109,7 @@ public struct MigrationData: Codable {
             isNewUserAttributesUpdated: isNewUserAttributesUpdated ?? self.isNewUserAttributesUpdated,
             completedTestUploaded: completedTestUploaded ?? self.completedTestUploaded,
             sessionScheduleUploaded: sessionScheduleUploaded ?? self.sessionScheduleUploaded,
-            wakeSleepScheduleUploaded: wakeSleepScheduleUploaded ?? self.wakeSleepScheduleUploaded)
+            wakeSleepScheduleUploaded: wakeSleepScheduleUploaded ?? self.wakeSleepScheduleUploaded,
+            userSynced: userSynced ?? self.userSynced)
     }
 }
