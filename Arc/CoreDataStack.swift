@@ -75,6 +75,7 @@ open class CoreDataStack {
 			
 			container.persistentStoreDescriptions = [description]
 		}
+        var loadingError: NSError? = nil
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
@@ -88,10 +89,23 @@ open class CoreDataStack {
                  * The store could not be migrated to the current model version.
                  Check the error message to determine what the actual problem was.
                  */
-				
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+                
+                loadingError = error
+                //fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+        if let error = loadingError {
+            guard let url = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?.appendingPathComponent("arc.sqlite") else {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+            try! persistentContainer.persistentStoreCoordinator.destroyPersistentStore(at: url, ofType: "sqlite", options: nil)
+            
+            container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+                if let error = error as NSError? {
+                    fatalError("Unresolved error \(error), \(error.userInfo)")
+                }
+            })
+        }
         return container
     }()
     
