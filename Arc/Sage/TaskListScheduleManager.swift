@@ -668,7 +668,7 @@ public class TaskListScheduleManager: MHController {
             let what = "signing in with device-id "
             print(what)
             BridgeSDK.authManager.signIn(withExternalId: migration.deviceId,
-                                         password:migration.deviceId) { Session, result, error in
+                                         password:"\(migration.deviceId)Arc#") { Session, result, error in
                 if let errorStr = error?.localizedDescription {
                     self.migrationError(completionListener: completionListener,
                                         errorStr: "Error \(what) \(errorStr)")
