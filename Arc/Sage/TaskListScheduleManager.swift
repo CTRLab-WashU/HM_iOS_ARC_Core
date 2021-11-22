@@ -819,6 +819,7 @@ public class TaskListScheduleManager: MHController {
                 return
             }
             
+            signUp.dataGroups = ["test_user"]
             signUp.password = password
             signUp.sharingScope = self.SHARING_SCOPE_ALL
             
