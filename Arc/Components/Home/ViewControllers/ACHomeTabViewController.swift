@@ -22,7 +22,7 @@ public extension Notification.Name {
 	static let ACStudySummaryUpdated = Notification.Name(rawValue: "ACStudySummaryUpdated")
 }
 
-class ACHomeTabViewController: UITabBarController {
+public class ACHomeTabViewController: UITabBarController {
     
     public static var shouldShowEarningsTab = true
 
@@ -65,7 +65,7 @@ class ACHomeTabViewController: UITabBarController {
 			.forEach {self.tabBar.items?[$0.offset].title = $0.element}
 	}
     
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+    public override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
 		
 		guard let items = self.tabBar.items else {
 			assertionFailure("No items in tab bar")
@@ -94,20 +94,20 @@ class ACHomeTabViewController: UITabBarController {
         }
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         self.selectedIndex = Arc.shared.activeTab
         // Do any additional setup after loading the view.
 		
     }
-	override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		NotificationCenter.default.addObserver(self,
 											   selector: #selector(displayOnboarding),
 											   name: .ACHomeStartOnboarding,
 											   object: nil)
 	}
-	override func viewWillDisappear(_ animated: Bool) {
+    public override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 	}
 	@objc func displayOnboarding() {
