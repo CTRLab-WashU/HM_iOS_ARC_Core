@@ -43,7 +43,7 @@ public enum ACLocale : String{
         case "UK - English": return .en_GB
         case "Canada - English": return .en_CA
 		case "Ireland - English": return .en_IE
-        case "Nederland - Nederlands": return .nl_NL
+        case "NL - Nederlands": return .nl_NL
         case "France - Français": return .fr_FR
         case "España - Español": return .es_ES
 		case "Europe - Spanish": return .es_ES
