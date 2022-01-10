@@ -20,83 +20,94 @@ public extension Notification.Name {
 	static let ACEarningsUpdated = Notification.Name(rawValue: "ACEarningsUpdated")
 	static let ACEarningDetailsUpdated = Notification.Name(rawValue: "ACEarningDetailsUpdated")
 	static let ACStudySummaryUpdated = Notification.Name(rawValue: "ACStudySummaryUpdated")
-
-
 }
-class ACHomeTabViewController: UITabBarController {
-	
-	let onboardingKeys:[ACTranslationKey] = [.popup_tab_home,
-											 .popup_tab_progress,
-											 .popup_tab_earnings,
-											 .popup_tab_resources]
-	
-	let buttonKeys:[ACTranslationKey] = [.popup_next,
-										 .popup_next,
-										 .popup_next,
-										 .popup_done]
-	let tabNames = [
-		"".localized(ACTranslationKey.resources_nav_home),
-		"".localized(ACTranslationKey.resources_nav_progress),
-		"".localized(ACTranslationKey.resources_nav_earnings),
-		"".localized(ACTranslationKey.resources_nav_resources)
 
-	]
-    enum Tabs:Int {
-        case home = 0
-        case progress = 1
-        case earnings = 2
-        case resources = 3
+public class ACHomeTabViewController: UITabBarController {
+    
+    public static var shouldShowEarningsTab = true
+
+    open var buttonKeys: [ACTranslationKey] {
+        var keys: [ACTranslationKey] = [.popup_next, .popup_next]
+        if ACHomeTabViewController.shouldShowEarningsTab {
+            keys.append(.popup_next)
+        }
+        keys.append(.popup_done)
+        return keys
     }
+    
+    open var onboardingKeys: [ACTranslationKey] {
+        var keys: [ACTranslationKey] = [.popup_tab_home, .popup_tab_progress]
+        if ACHomeTabViewController.shouldShowEarningsTab {
+            keys.append(.popup_tab_earnings)
+        }
+        keys.append(.popup_tab_resources)
+        return keys
+    }
+    
+    open var tabNames: [String] {
+        var names = ["".localized(ACTranslationKey.resources_nav_home),
+                     "".localized(ACTranslationKey.resources_nav_progress)]
+        if ACHomeTabViewController.shouldShowEarningsTab {
+            names.append("".localized(ACTranslationKey.resources_nav_earnings))
+        }
+        names.append("".localized(ACTranslationKey.resources_nav_resources))
+        return names
+    }
+
 	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-		
 	}
 	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
-		tabNames
+        self.tabNames
 			.enumerated()
 			.forEach {self.tabBar.items?[$0.offset].title = $0.element}
 	}
-	override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+    
+    public override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
 		
 		guard let items = self.tabBar.items else {
 			assertionFailure("No items in tab bar")
 			return
 		}
 		
-        if item == items[0]{
-            Arc.shared.activeTab = Tabs.home.rawValue
+        if item == items[0] {
+            Arc.shared.activeTab = 0
             print("home")
-        }
-        else if item == items[1]{
-            Arc.shared.activeTab = Tabs.progress.rawValue
+        } else if item == items[1] {
+            Arc.shared.activeTab = 1
             print("progress")
         }
-        else if item == items[2]{
-            Arc.shared.activeTab = Tabs.earnings.rawValue
-            print("earnings")
-        }
-        else if item == items[3]{
-            Arc.shared.activeTab = Tabs.resources.rawValue
+        
+        if ACHomeTabViewController.shouldShowEarningsTab {
+            if item == items[2] {
+                Arc.shared.activeTab = 2
+                print("earnings")
+            } else if item == items[3] {
+                Arc.shared.activeTab = 3
+                print("resources")
+            }
+        } else if item == items[2] {
+            Arc.shared.activeTab = 2
             print("resources")
         }
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         self.selectedIndex = Arc.shared.activeTab
         // Do any additional setup after loading the view.
 		
     }
-	override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		NotificationCenter.default.addObserver(self,
 											   selector: #selector(displayOnboarding),
 											   name: .ACHomeStartOnboarding,
 											   object: nil)
 	}
-	override func viewWillDisappear(_ animated: Bool) {
+    public override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 	}
 	@objc func displayOnboarding() {

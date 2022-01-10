@@ -74,10 +74,9 @@ public class ACTodayProgressViewController: CustomViewController<ACTodayProgress
     }
 	
 	public func nextPressed() {
-		
-		//TODO: put an earnings available check for studies that do not
-		//present earnings to the user.
-		if thisStudy.studyState == .baseline {
+        
+		if thisStudy.studyState == .baseline ||
+            !ACHomeTabViewController.shouldShowEarningsTab {
 			Arc.shared.nextAvailableState()
 		} else {
 			Arc.shared.appNavigation.navigate(vc: EarningsViewController(isPostTest: true), direction: .toRight)

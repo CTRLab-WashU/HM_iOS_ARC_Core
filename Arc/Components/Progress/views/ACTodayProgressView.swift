@@ -146,6 +146,11 @@ public class ACTodayProgressView : UIView {
                 
                 Roboto.Style.body($0, color: ACColor.secondaryText)
                 $0.text = "progress_practice_body2"
+                
+                if ACHomeTabViewController.shouldShowEarningsTab {
+                    $0.text = nil // Do not say anything about earnings
+                }
+                
                 //$0.font = UIFont(name: "Roboto", size: 17)
                 $0.textAlignment = .center
                 animationParams.delay = 1.4
