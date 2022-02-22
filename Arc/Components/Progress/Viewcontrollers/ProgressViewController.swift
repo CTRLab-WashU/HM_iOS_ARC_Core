@@ -45,6 +45,7 @@ class ProgressViewController: CustomViewController<ACProgressView> {
 		thisStudyProgressSetup()
 		self.navigationController?.isNavigationBarHidden = true
 
+        customView.viewFaqButton.titleLabel?.textAlignment = .center
 		customView.viewFaqButton.addTarget(self, action: #selector(self.viewFaqPressed), for: .touchUpInside)
     }
     
