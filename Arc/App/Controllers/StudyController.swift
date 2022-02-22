@@ -268,8 +268,25 @@ open class StudyController : MHController {
 			}
 		}
 		
-		
-		
+        // There is a data model bug with study period's user start/end date,
+        // So let's try another approach to check for the current study period
+        let nowDate = Date()
+        let fullResults:[StudyPeriod] = fetch(predicate:nil, sort:sortDescriptors) ?? []
+
+        for i in 0..<fullResults.count {
+            let period = fullResults[i]
+            if let sessionUnwrapped = period.sessions {
+                if (sessionUnwrapped.count > 1) {
+                    if let firstSessionDate = (sessionUnwrapped[0] as? Session)?.sessionDate,
+                       let lastSessionDate = (sessionUnwrapped[sessionUnwrapped.count - 1] as? Session)?.sessionDate {
+                        if (nowDate >= firstSessionDate && nowDate <= lastSessionDate) {
+                            return period
+                        }
+                    }
+                }
+            }
+        }
+        
 		return nil;
 	}
 	// Is there a currently running test session?
