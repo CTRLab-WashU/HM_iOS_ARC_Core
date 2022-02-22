@@ -107,6 +107,7 @@ class ProgressViewController: CustomViewController<ACProgressView> {
 			customView.noticeLabel.text = "Thanks for completing the practice session today! *Your testing week officially begins tomorrow.*".localized(ACTranslationKey.progress_baseline_notice)
 			if let today = todaysProgress, today.sessionsCompleted == 0 {
 				customView.noticeLabel.text = "".localized(ACTranslationKey.progress_practice_body2)
+                customView.noticeLabel.isHidden = !ACHomeTabViewController.shouldShowEarningsTab
                 if ACHomeTabViewController.shouldShowEarningsTab {
                     customView.noticeLabel.text = nil // Do not say anything about earnings
                 }

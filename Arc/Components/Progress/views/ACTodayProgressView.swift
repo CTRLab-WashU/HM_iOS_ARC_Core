@@ -146,6 +146,7 @@ public class ACTodayProgressView : UIView {
                 
                 Roboto.Style.body($0, color: ACColor.secondaryText)
                 $0.text = "progress_practice_body2"
+                $0.isHidden = !ACHomeTabViewController.shouldShowEarningsTab
                 
                 if ACHomeTabViewController.shouldShowEarningsTab {
                     $0.text = nil // Do not say anything about earnings
