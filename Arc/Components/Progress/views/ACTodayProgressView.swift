@@ -147,8 +147,8 @@ public class ACTodayProgressView : UIView {
                 Roboto.Style.body($0, color: ACColor.secondaryText)
                 $0.text = "progress_practice_body2"
                 
-                if ACHomeTabViewController.shouldShowEarningsTab {
-                    $0.text = nil // Do not say anything about earnings
+                if !ACHomeTabViewController.shouldShowEarningsTab {
+                    $0.text = "" // Do not say anything about earnings
                 }
                 
                 //$0.font = UIFont(name: "Roboto", size: 17)
@@ -161,8 +161,11 @@ public class ACTodayProgressView : UIView {
                     $0.bottom == safeAreaLayoutGuide.bottomAnchor - 100
                 }
                 
-                $0.fadeIn(animationParams)
-                    .translate(animationParams)
+                $0.isHidden = !ACHomeTabViewController.shouldShowEarningsTab
+                if (ACHomeTabViewController.shouldShowEarningsTab) {
+                    $0.fadeIn(animationParams)
+                        .translate(animationParams)
+                }
             }
         }
 		

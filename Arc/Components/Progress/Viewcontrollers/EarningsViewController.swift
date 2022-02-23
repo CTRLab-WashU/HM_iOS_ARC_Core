@@ -251,6 +251,12 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 			
 			break
 		}
+        
+        // The body label mentions earnings, so only show it if we are doing earnings
+        customView.earningsBodyLabel.isHidden = !ACHomeTabViewController.shouldShowEarningsTab
+        if (!ACHomeTabViewController.shouldShowEarningsTab) {
+            customView.earningsBodyLabel.text = ""
+        }
 	}
 	fileprivate func setGoalRewardText(value:String, goalView:GoalView, isComplete:Bool, date:TimeInterval?) {
 		
