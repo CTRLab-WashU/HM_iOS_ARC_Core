@@ -237,9 +237,6 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 	fileprivate func updateBodyText() {
         // There are no syncing of earnings with new local earnings calculations
         customView.lastSyncedLabel.isHidden = true
-
-        // The body label mentions earnings, so only show it if we are doing earnings
-        customView.earningsBodyLabel.isHidden = !ACHomeTabViewController.shouldShowEarningsTab
         
 		customView.bonusGoalsBodyLabel.text = "".localized(ACTranslationKey.earnings_bonus_body)
 		
@@ -254,6 +251,12 @@ public class EarningsViewController: CustomViewController<ACEarningsView> {
 			
 			break
 		}
+        
+        // The body label mentions earnings, so only show it if we are doing earnings
+        customView.earningsBodyLabel.isHidden = !ACHomeTabViewController.shouldShowEarningsTab
+        if (!ACHomeTabViewController.shouldShowEarningsTab) {
+            customView.earningsBodyLabel.text = ""
+        }
 	}
 	fileprivate func setGoalRewardText(value:String, goalView:GoalView, isComplete:Bool, date:TimeInterval?) {
 		
