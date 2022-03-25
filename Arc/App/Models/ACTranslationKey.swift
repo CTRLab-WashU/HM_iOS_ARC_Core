@@ -15,7 +15,8 @@ public enum ACTranslationKey : String, TranslationKey {
     case notification3_default
     case notification3_variation
     case notification4_default
-    case notification4_lastday
+    case Inv_notification4_lastday
+    case HASD_DIAN_notification4_lastday
     case notification_missedtests
     case notification_testproctor_header
     case notification_testproctor_body
@@ -26,7 +27,7 @@ public enum ACTranslationKey : String, TranslationKey {
     case bysigning_key
     case privacy_linked
     case about_linked
-    case login_enter_raterID
+    case login_enter_verification
     case login_enter_ARCID
     case login_confirm_ARCID
     case login_problems_linked
@@ -99,11 +100,18 @@ public enum ACTranslationKey : String, TranslationKey {
     case availability_changetime
     case availability_changedenied_test
     case availability_changedates
+    case HASD_contact_call1
+    case HASD_contact_call2
     case contact_call1
     case contact_call2
+    case HASD_contact_email1
+    case HASD_contact_email2
+    case DIAN_Inv_contact_email1
     case contact_email1
     case contact_email2
     case about_header
+    case DIAN_Inv_about_body
+    case HASD_about_body
     case about_body
     case faq_header
     case faq_testing

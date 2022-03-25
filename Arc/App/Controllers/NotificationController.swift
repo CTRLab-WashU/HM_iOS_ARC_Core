@@ -9,6 +9,7 @@ open class NotificationController : MHController
         case fireDateDeviation(TimeInterval)
     }
 
+    public static var notification4_lastday_key = ACTranslationKey.HASD_DIAN_notification4_lastday
 	
 	open func authenticateNotifications(completion: @escaping (Bool, Error?)->()) {
 		let center = UNUserNotificationCenter.current()
@@ -220,7 +221,7 @@ open class NotificationController : MHController
             switch test.day {
             case 6 where test.study?.studyID != 0, //final test of final day. if the studyId is not 0 Day 7, test 4
 				 7: //Or if the studyID == 0 which is the baseline. Then there are 8 days instead of 7
-                title = "It's time to take your last test of the week! Please finish it by {TIME}. Your coordinator will contact you about your earnings shortly.".localized(ACTranslationKey.notification4_lastday)
+                title = "It's time to take your last test of the week! Please finish it by {TIME}. Your coordinator will contact you about your earnings shortly.".localized(NotificationController.notification4_lastday_key)
             default:
                 title = "The last test of the day is here! Finish strong by completing this test by {TIME}.".localized(ACTranslationKey.notification4_default)
             }
