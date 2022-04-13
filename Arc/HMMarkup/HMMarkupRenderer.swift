@@ -111,6 +111,6 @@ public extension UIFont {
 			return nil
 		}
 		
-		return UIFont(descriptor: descriptor, size: 0)
+        return UIFont(descriptor: descriptor, size: self.pointSize)
 	}
 }
